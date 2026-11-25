@@ -21,14 +21,14 @@ export const font = {
   weight: { regular: 400, medium: 500, semibold: 600, bold: 700 },
 } as const;
 
-// Antrasit + beige, matching Flux Admin defaults and themes/fluxwp theme.json
+// Antrasit + neutral gray (zinc) surfaces, matching Flux Admin defaults and themes/fluxwp theme.json
 // (base, mint, line, ink). Brand indigo / amber override primary and accent.
 export const palette = {
   light: {
     bg: '#F3F2EF',
     surface: '#FFFFFF',
-    surface2: '#F8F5F0',
-    border: '#E6E0D6',
+    surface2: '#F6F6F7',
+    border: '#E4E4E7',
     text: '#111827',
     textMuted: '#4B5563',
     sidebar: '#FFFFFF',
@@ -38,14 +38,14 @@ export const palette = {
     warning: '#A04A06',
     success: '#1F7A4D',
     info: '#1D5FA8',
-    surface3: '#F2EEE7',
+    surface3: '#EDEDEF',
     overlay: 'rgba(6,7,14,.5)',
   },
   dark: {
     bg: '#101114',
     surface: '#191B20',
-    surface2: '#1C1F27',
-    border: '#272A34',
+    surface2: '#1D1D20',
+    border: '#2E2E33',
     text: '#E8E9EF',
     textMuted: '#9A9EAE',
     sidebar: '#14161A',
@@ -55,7 +55,7 @@ export const palette = {
     warning: '#F0A35E',
     success: '#3DDC97',
     info: '#8DBBF2',
-    surface3: '#252833',
+    surface3: '#27272B',
     overlay: 'rgba(0,0,0,.6)',
   },
 } as const;
