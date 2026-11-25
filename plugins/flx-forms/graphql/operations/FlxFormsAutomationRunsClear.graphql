@@ -1,0 +1,6 @@
+mutation FlxFormsAutomationRunsClear($input: FlxFormsAutomationRunsClearInput!) {
+  flxFormsAutomationRunsClear(input: $input) {
+    cleared
+    errors { code message field }
+  }
+}

@@ -19,12 +19,18 @@ Plan: 1 public okuma + gönderim (`flxForm`, `flxFormSubmit`, `flxFormTrack`, `f
 - Servis `includes/services/class-flxf-settings-service.php`: klasik `emsfb_setting` satırına birleştirir (`set_setting_Emsfb`), klasik kayıt kuralları (şablon temizliği, haftalık rapor yetkisi, SMTP durumu, `emsfb_dev_mode`).
 - Ekranda yok: ödeme anahtarları (Stripe/PayPal/payToken, dilim 3 Ödemeler), eklenti bayrakları `Adn*` (dilim 3), `text` / `act_local_efb` (istisna), lisans alanları (Flux Forms'ta lisans yok).
 
+## 2.8.0: ödemeler, otomasyonlar, sistem, eklentiler (dilim 3)
+
+- Sekmeler `flxf_payments`, `flxf_automations` (liste, `?flow=N|new` düzenleyici, `?tab=runs` çalışma günlüğü), `flxf_system`, `Emsfb_addon` React ekranı (`Payments.tsx`, `Automations.tsx`, `FlowEditor.tsx`, `System.tsx`, `Addons.tsx`). Klasik render, `payments/assets/admin.css`, `automations/admin.js|css` silindi; menü kayıtları `flxf_screen_page`.
+- Sorgular: `flxFormsPayments` (sağlayıcılar + son 50 ödeme; Flux Donate ödemeleri üstlenince `available: false`), `flxFormsSystem` (`flx_system_checks` satırları; Flux Donate/Speed ekranı taşıyınca `available: false`), `flxFormsAddons`, `flxFormsAutomations`, `flxFormsAutomationRuns`, `flxFormsAutomationEditor(id)` (FlxJSON). Mutasyonlar: `flxFormsStripeWebhookSecret` (yalnız yazılır, `whsec_`), `flxFormsAutomationSave/Toggle/Delete/Duplicate/Default/DonationForm/RunsClear`.
+- Servisler `class-flxf-tools-service.php`, `class-flxf-automations-service.php`. Eklentiler salt okunur: paketle gelen add-on'lar (`AdnSPF`, `AdnOF`, `AdnSMF`) `get_setting_Emsfb` tarafından hep açık tutulur, kapatma düğmesi yok.
+
 ## İstisnalar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |
 |---|---|---|---|
 | Fork form oluşturucu: `Emsfb_create`, form kaydet/sil/kopyala/önizle AJAX, `POST /flxf/v1/block-forms`, `GET /efb/v1/preview/{id}`, `Emsfb/v1/test`, `admin_post_flxf_block_edit` | flx-forms | Oluştur sayfası klasik kalır (sahip) | Okuma `flxForm` / `flxFormPicker` |
-| Ödeme callback ve webhook: `forms/payment/start`, `confirm`, `quote`, `stripe/card/add`, `stripe/confirm`, `stripe/pkey`, `forms/payment/webhook/{provider}`, `forms/payment/stripe/webhook`, `admin_post_emsfb_stripe_save` | flx-forms | Sağlayıcı sabit URL'e POST atar veya tarayıcı dönüşünü kendi imzasıyla doğrular | Liste `flxFormsPayments` (dilim 4). Sır write-only |
+| Ödeme callback ve webhook: `forms/payment/start`, `confirm`, `quote`, `stripe/card/add`, `stripe/confirm`, `stripe/pkey`, `forms/payment/webhook/{provider}`, `forms/payment/stripe/webhook`, `admin_post_emsfb_stripe_save` | flx-forms | Sağlayıcı sabit URL'e POST atar veya tarayıcı dönüşünü kendi imzasıyla doğrular | Liste `flxFormsPayments` (dilim 3). Sır write-only |
 | `login` / `register` / `logout` / `forms/recovery/efb_set_password` aynı `message/add` callback'inde | flx-forms | `flxFormSubmit` yalnız form, anket, abonelik | REST aynı kalır |
 | Dosya: `POST /Emsfb/v1/forms/file/upload`, `wp_ajax_update_file_Emsfb` (nonce only, no cap), `admin_post_flxf_dash_csv` | flx-forms | Multipart veya CSV baytı | Gönderim yalnız bekleyen / bu bilete ayrılmış adresi kabul eder |
 | `GET /Emsfb/v1/nonce/refresh`, `wp_ajax_heartbeat_Emsfb` | flx-forms | Eski istemcinin `wp_rest` nonce protokolü | GraphQL WP oturum çerezini kullanır |

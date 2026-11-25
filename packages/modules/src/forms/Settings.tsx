@@ -1,12 +1,12 @@
 // Forms › Settings: the classic settings row over flxFormsSettings / flxFormsSettingsUpdate. One draft for every
 // section; Save sends only what changed. The reCAPTCHA secret is write-only.
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import type { FlxFormsSettingsAllFragment, FlxFormsSettingsUpdateInput } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxFormsClearFiles, FlxFormsSettings, FlxFormsSettingsUpdate } from '@fluxwp/graphql/operations';
 import { Check, Loading, Modal } from '@fluxwp/ui';
-import { errorText, payloadError, useForms } from './common';
+import { Field, errorText, payloadError, useForms } from './common';
 
 type S = FlxFormsSettingsAllFragment;
 type Draft = Omit<S, 'secretKeySet' | 'fromHint' | 'trackShortcode' | 'canEmailReport' | 'canEmailStats'>;
@@ -320,16 +320,6 @@ export function SettingsPage() {
           </div>
         </Modal>
       ) : null}
-    </div>
-  );
-}
-
-function Field({ label, note, children }: { label: string; note?: string; children: ReactNode }) {
-  return (
-    <div className="flxfrm-field">
-      <span className="flxfrm-field__label">{label}</span>
-      {children}
-      {note ? <span className="flxfrm-muted">{note}</span> : null}
     </div>
   );
 }

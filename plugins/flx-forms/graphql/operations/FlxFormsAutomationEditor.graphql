@@ -1,0 +1,3 @@
+query FlxFormsAutomationEditor($id: Int!) {
+  flxFormsAutomationEditor(id: $id)
+}

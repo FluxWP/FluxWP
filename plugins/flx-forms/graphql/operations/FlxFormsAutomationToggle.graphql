@@ -1,0 +1,6 @@
+mutation FlxFormsAutomationToggle($input: FlxFormsAutomationToggleInput!) {
+  flxFormsAutomationToggle(input: $input) {
+    enabled
+    errors { code message field }
+  }
+}

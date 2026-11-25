@@ -1,6 +1,6 @@
-// Forms: Dashboard, Forms and Responses. Same screen in wp-admin and the FluxWP app; data over the flxForms*
-// GraphQL operations. In wp-admin the builder, the panel, Payments, Automations, System check and Add-ons are
-// still their own pages: their tabs open them (includes/flx/flux-ui.php lists the ones this user has).
+// Forms: Dashboard, Forms, Responses, Settings, Payments, Automations, System check and Add-ons. Same screen in
+// wp-admin and the FluxWP app; data over the flxForms* GraphQL operations. In wp-admin the builder and the panel
+// are still their own pages: their tabs open them. includes/flx/flux-ui.php lists the tabs this user has.
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
@@ -8,11 +8,15 @@ import { FlxGraphQLProvider, useFlxViewer } from '@fluxwp/graphql/react';
 import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
-import { FormsContext, ISLANDS, REACT_PAGES, type FormsCtx, type Page, type Route } from './common';
+import { FormsContext, ISLANDS, MENU_PAGES, REACT_PAGES, type FormsCtx, type Page, type Route, type RouteOpts } from './common';
 import { DashboardPage } from './Dashboard';
 import { FormsPage } from './FormsList';
 import { ResponsesPage } from './Responses';
 import { SettingsPage } from './Settings';
+import { PaymentsPage } from './Payments';
+import { AutomationsPage } from './Automations';
+import { SystemPage } from './System';
+import { AddonsPage } from './Addons';
 import './forms.css';
 
 interface Toast {
@@ -27,12 +31,19 @@ function parse(raw: string): Route | null {
   const [path = '', qs = ''] = raw.split('?');
   if (!(ALL as string[]).includes(path)) return null;
   const p = new URLSearchParams(qs);
-  return { page: path as Page, form: Number(p.get('form') ?? 0) || 0, entry: Number(p.get('entry') ?? 0) || 0 };
+  const flow = p.get('flow');
+  return {
+    page: path as Page,
+    form: Number(p.get('form') ?? 0) || 0,
+    entry: Number(p.get('entry') ?? 0) || 0,
+    flow: flow === 'new' ? -1 : Number(flow ?? 0) || 0,
+    tab: p.get('tab') ?? '',
+  };
 }
 
 function current(start: string | undefined): Route {
   const hash = window.location.hash.replace(/^#\/?/, '');
-  return (hash && parse(hash)) || parse(start ?? '') || { page: 'dashboard', form: 0, entry: 0 };
+  return (hash && parse(hash)) || parse(start ?? '') || { page: 'dashboard', form: 0, entry: 0, flow: 0, tab: '' };
 }
 
 export function FormsScreen() {
@@ -57,7 +68,7 @@ function Forms() {
   // The other pages this user may open: PHP lists them on #flxf-islands (data-tabs).
   const islands = useMemo<Page[]>(() => {
     const raw = typeof document !== 'undefined' ? document.getElementById('flxf-islands')?.dataset.tabs : undefined;
-    return (raw ?? '').split(',').filter((x): x is Page => x in ISLANDS);
+    return (raw ?? '').split(',').filter((x): x is Page => (MENU_PAGES as string[]).includes(x));
   }, []);
 
   useEffect(() => {
@@ -67,7 +78,7 @@ function Forms() {
   }, [host.startPage]);
 
   const go = useCallback(
-    (page: Page, opts?: { form?: number; entry?: number }) => {
+    (page: Page, opts?: RouteOpts) => {
       const slug = ISLANDS[page];
       if (slug) {
         host.openUrl(admin + 'admin.php?page=' + slug);
@@ -76,9 +87,11 @@ function Forms() {
       const params = new URLSearchParams();
       if (opts?.form) params.set('form', String(opts.form));
       if (opts?.entry) params.set('entry', String(opts.entry));
+      if (opts?.flow) params.set('flow', opts.flow < 0 ? 'new' : String(opts.flow));
+      if (opts?.tab) params.set('tab', opts.tab);
       const qs = params.toString();
       window.location.hash = '/' + page + (qs ? '?' + qs : '');
-      setRoute({ page, form: opts?.form ?? 0, entry: opts?.entry ?? 0 });
+      setRoute({ page, form: opts?.form ?? 0, entry: opts?.entry ?? 0, flow: opts?.flow ?? 0, tab: opts?.tab ?? '' });
     },
     [host, admin],
   );
@@ -107,17 +120,17 @@ function Forms() {
     { id: 'responses', label: t('Responses') },
     { id: 'settings', label: t('Settings') },
   ];
-  if (wp) {
-    const extra: [Page, string][] = [
-      ['create', t('New form')],
-      ['panel', t('Panel')],
-      ['payments', t('Payments')],
-      ['automations', t('Automations')],
-      ['system', t('System check')],
-      ['addons', t('Add-ons')],
-    ];
-    for (const [id, label] of extra) if (islands.includes(id)) tabs.push({ id, label });
-  }
+  const extra: [Page, string][] = [
+    ['create', t('New form')],
+    ['panel', t('Panel')],
+    ['payments', t('Payments')],
+    ['automations', t('Automations')],
+    ['system', t('System check')],
+    ['addons', t('Add-ons')],
+  ];
+  // wp-admin: the pages in this user's Forms menu. The app: the React ones an administrator may open.
+  const appPages: Page[] = v?.isAdmin ? ['payments', 'automations', 'addons'] : [];
+  for (const [id, label] of extra) if (wp ? islands.includes(id) : appPages.includes(id)) tabs.push({ id, label });
 
   return (
     <FormsContext.Provider value={ctx}>
@@ -142,6 +155,10 @@ function Forms() {
                 {route.page === 'forms' ? <FormsPage /> : null}
                 {route.page === 'responses' ? <ResponsesPage form={route.form} entry={route.entry} /> : null}
                 {route.page === 'settings' ? <SettingsPage /> : null}
+                {route.page === 'payments' ? <PaymentsPage /> : null}
+                {route.page === 'automations' ? <AutomationsPage flow={route.flow} tab={route.tab} /> : null}
+                {route.page === 'system' ? <SystemPage /> : null}
+                {route.page === 'addons' ? <AddonsPage /> : null}
               </>
             ) : null}
           </>

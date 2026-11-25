@@ -1,0 +1,7 @@
+mutation FlxFormsAutomationDonationForm($input: FlxFormsAutomationDonationFormInput!) {
+  flxFormsAutomationDonationForm(input: $input) {
+    formId
+    shortcode
+    errors { code message field }
+  }
+}

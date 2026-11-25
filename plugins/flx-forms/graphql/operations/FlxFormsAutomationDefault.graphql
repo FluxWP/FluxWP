@@ -1,0 +1,6 @@
+mutation FlxFormsAutomationDefault($input: FlxFormsAutomationDefaultInput!) {
+  flxFormsAutomationDefault(input: $input) {
+    id
+    errors { code message field }
+  }
+}

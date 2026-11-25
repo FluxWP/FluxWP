@@ -87,3 +87,18 @@ fragment FlxFormsSettingsAll on FlxFormsSettings {
   canEmailReport
   canEmailStats
 }
+
+fragment FlxFormsPaymentsAll on FlxFormsPayments {
+  available
+  limit
+  providers { id label active configured webhookUrl hint secretOption secretSet secretFixed }
+  payments {
+    id
+    date { iso label relative }
+    formId formName track provider type interval amount currency formatted status statusLabel tone reference email
+  }
+}
+
+fragment FlxFormsAddonAll on FlxFormsAddon {
+  key title description enabled available disabledFunctions missingFunctions
+}

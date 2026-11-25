@@ -1,0 +1,6 @@
+query FlxFormsSystem {
+  flxFormsSystem {
+    available
+    checks { id source group groupLabel label status message actionUrl actionLabel }
+  }
+}

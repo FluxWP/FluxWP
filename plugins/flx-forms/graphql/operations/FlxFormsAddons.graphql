@@ -1,0 +1,3 @@
+query FlxFormsAddons {
+  flxFormsAddons { ...FlxFormsAddonAll }
+}

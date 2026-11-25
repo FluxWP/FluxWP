@@ -173,6 +173,24 @@ enum FlxFormType {
   SURVEY
 }
 
+"""An add-on that ships with Flux Forms."""
+type FlxFormsAddon {
+  """Its files are in place."""
+  available: Boolean!
+  """What it does."""
+  description: String!
+  """PHP functions it needs that php.ini disables."""
+  disabledFunctions: [String!]!
+  """It is on (Flux Forms keeps the bundled add-ons on)."""
+  enabled: Boolean!
+  """Add-on key."""
+  key: ID!
+  """PHP functions it needs that no extension provides."""
+  missingFunctions: [String!]!
+  """Name."""
+  title: String!
+}
+
 """A form in the panel list."""
 type FlxFormsAdminForm {
   """When the form was made."""
@@ -213,6 +231,240 @@ type FlxFormsAdminFormEdge {
   cursor: String!
   """The record."""
   node: FlxFormsAdminForm!
+}
+
+"""An automation in the list."""
+type FlxFormsAutomation {
+  """It runs."""
+  enabled: Boolean!
+  """Form it listens to (0 = any)."""
+  formId: Int!
+  """Name of that form."""
+  formTitle: String!
+  """Flow id."""
+  id: Int!
+  """Last run."""
+  lastRun: FlxDateTime
+  """How many times it ran."""
+  runs: Int!
+  """Step types in order."""
+  steps: [String!]!
+  """Name."""
+  title: String!
+  """form_submitted or payment_completed."""
+  triggerType: String!
+}
+
+"""Input for the flxFormsAutomationDefault mutation."""
+input FlxFormsAutomationDefaultInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxFormsAutomationDefault mutation."""
+type FlxFormsAutomationDefaultPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Id of the new flow."""
+  id: Int
+}
+
+"""Input for the flxFormsAutomationDelete mutation."""
+input FlxFormsAutomationDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Flow id."""
+  id: Int!
+}
+
+"""The payload for the flxFormsAutomationDelete mutation."""
+type FlxFormsAutomationDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """It was deleted."""
+  deleted: Boolean
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxFormsAutomationDonationForm mutation."""
+input FlxFormsAutomationDonationFormInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxFormsAutomationDonationForm mutation."""
+type FlxFormsAutomationDonationFormPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Form id."""
+  formId: Int
+  """Its shortcode."""
+  shortcode: String
+}
+
+"""Input for the flxFormsAutomationDuplicate mutation."""
+input FlxFormsAutomationDuplicateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Flow id."""
+  id: Int!
+}
+
+"""The payload for the flxFormsAutomationDuplicate mutation."""
+type FlxFormsAutomationDuplicatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Id of the copy."""
+  id: Int
+}
+
+"""A run of an automation."""
+type FlxFormsAutomationRun {
+  """Flow id."""
+  flowId: Int!
+  """Flow name."""
+  flowTitle: String!
+  """Form name."""
+  formTitle: String!
+  """Run id."""
+  id: ID!
+  """ok, partial, error, skipped or running."""
+  status: String!
+  """Steps."""
+  steps: [FlxFormsAutomationRunStep!]!
+  """When it ran."""
+  time: FlxDateTime
+  """Tracking code of the response."""
+  track: String!
+}
+
+"""A step of a run."""
+type FlxFormsAutomationRunStep {
+  """Result or error."""
+  message: String!
+  """ok, partial, error, skipped or running."""
+  status: String!
+  """Step type."""
+  type: String!
+}
+
+"""Input for the flxFormsAutomationRunsClear mutation."""
+input FlxFormsAutomationRunsClearInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxFormsAutomationRunsClear mutation."""
+type FlxFormsAutomationRunsClearPayload {
+  """The log was emptied."""
+  cleared: Boolean
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxFormsAutomationSave mutation."""
+input FlxFormsAutomationSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The flow: id, title, enabled, trigger, match, conditions, actions."""
+  flow: FlxJSON!
+}
+
+"""The payload for the flxFormsAutomationSave mutation."""
+type FlxFormsAutomationSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The flow as saved."""
+  flow: FlxJSON
+}
+
+"""Input for the flxFormsAutomationToggle mutation."""
+input FlxFormsAutomationToggleInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """On or off."""
+  enabled: Boolean!
+  """Flow id."""
+  id: Int!
+}
+
+"""The payload for the flxFormsAutomationToggle mutation."""
+type FlxFormsAutomationTogglePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """State after the change."""
+  enabled: Boolean
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Forms › Automations."""
+type FlxFormsAutomations {
+  """Flux Certificates is active (certificate steps work)."""
+  certAvailable: Boolean!
+  """The sapling donation form (0 = none yet)."""
+  donationFormId: Int!
+  """Its name."""
+  donationFormTitle: String!
+  """Flows, newest first."""
+  flows: [FlxFormsAutomation!]!
+  """Runs kept at most."""
+  maxRuns: Int!
+  """Runs in the log."""
+  runCount: Int!
 }
 
 """Input for the flxFormsClearFiles mutation."""
@@ -445,6 +697,76 @@ type FlxFormsFormOption {
   title: String!
 }
 
+"""A payment taken through a form."""
+type FlxFormsPayment {
+  """Amount."""
+  amount: Float!
+  """Currency code."""
+  currency: String!
+  """When it was made."""
+  date: FlxDateTime
+  """Payer e-mail."""
+  email: String!
+  """Form id."""
+  formId: Int!
+  """Form name."""
+  formName: String!
+  """Amount with the currency."""
+  formatted: String!
+  """Record id."""
+  id: Int!
+  """Billing interval of a subscription."""
+  interval: String!
+  """Provider name."""
+  provider: String!
+  """Transaction or subscription id at the provider."""
+  reference: String!
+  """Status as the provider reports it."""
+  status: String!
+  """Status in the user&#039;s language."""
+  statusLabel: String!
+  """ok, pending, failed or refunded."""
+  tone: String!
+  """Confirmation code."""
+  track: String!
+  """one-time or subscription."""
+  type: String!
+}
+
+"""A payment provider of the forms."""
+type FlxFormsPaymentProvider {
+  """Forms take payments with this provider."""
+  active: Boolean!
+  """Its keys are set."""
+  configured: Boolean!
+  """How to set the webhook up."""
+  hint: String!
+  """Provider id."""
+  id: ID!
+  """Name."""
+  label: String!
+  """The secret comes from wp-config.php and cannot be changed here."""
+  secretFixed: Boolean!
+  """A webhook signing secret can be saved here."""
+  secretOption: Boolean!
+  """A webhook signing secret is saved."""
+  secretSet: Boolean!
+  """Address the provider sends payment notifications to."""
+  webhookUrl: String!
+}
+
+"""Forms › Payments."""
+type FlxFormsPayments {
+  """Flux Forms takes payments itself (not Flux Donate)."""
+  available: Boolean!
+  """How many payments are listed at most."""
+  limit: Int!
+  """Latest payments, newest first."""
+  payments: [FlxFormsPayment!]!
+  """Providers."""
+  providers: [FlxFormsPaymentProvider!]!
+}
+
 """Forms settings."""
 type FlxFormsSettings {
   """Setting emailSupporter."""
@@ -641,6 +963,62 @@ type FlxFormsSettingsUpdatePayload {
   settings: FlxFormsSettings
 }
 
+"""Input for the flxFormsStripeWebhookSecret mutation."""
+input FlxFormsStripeWebhookSecretInput {
+  """Removes the saved secret."""
+  clear: Boolean
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """New secret (whsec_…). Empty keeps the saved one."""
+  secret: String
+}
+
+"""The payload for the flxFormsStripeWebhookSecret mutation."""
+type FlxFormsStripeWebhookSecretPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Payments after the change."""
+  payments: FlxFormsPayments
+}
+
+"""Forms › System check."""
+type FlxFormsSystem {
+  """Forms hosts the screen (Flux Donate or Flux Speed is not active)."""
+  available: Boolean!
+  """Every row, in display order."""
+  checks: [FlxFormsSystemCheck!]!
+}
+
+"""A system check row."""
+type FlxFormsSystemCheck {
+  """Label of the fix link."""
+  actionLabel: String!
+  """Where to fix it."""
+  actionUrl: String!
+  """Group key."""
+  group: String!
+  """Group name."""
+  groupLabel: String!
+  """Check id."""
+  id: ID!
+  """What is checked."""
+  label: String!
+  """Details."""
+  message: String!
+  """Plugin that adds it."""
+  source: String!
+  """ok, warning, error or info."""
+  status: String!
+}
+
 extend type RootMutation {
   """Sends a form, survey or subscribe form."""
   flxFormSubmit(
@@ -652,6 +1030,43 @@ extend type RootMutation {
     """Input for the flxFormTrackReply mutation"""
     input: FlxFormTrackReplyInput!
   ): FlxFormTrackReplyPayload
+  """Creates the ready-made sapling donation → certificate flow."""
+  flxFormsAutomationDefault(
+    """Input for the flxFormsAutomationDefault mutation"""
+    input: FlxFormsAutomationDefaultInput!
+  ): FlxFormsAutomationDefaultPayload
+  """Deletes a flow."""
+  flxFormsAutomationDelete(
+    """Input for the flxFormsAutomationDelete mutation"""
+    input: FlxFormsAutomationDeleteInput!
+  ): FlxFormsAutomationDeletePayload
+  """
+  Creates the sapling donation form (once) and points the unattached default flows at it.
+  """
+  flxFormsAutomationDonationForm(
+    """Input for the flxFormsAutomationDonationForm mutation"""
+    input: FlxFormsAutomationDonationFormInput!
+  ): FlxFormsAutomationDonationFormPayload
+  """Copies a flow; the copy is off."""
+  flxFormsAutomationDuplicate(
+    """Input for the flxFormsAutomationDuplicate mutation"""
+    input: FlxFormsAutomationDuplicateInput!
+  ): FlxFormsAutomationDuplicatePayload
+  """Empties the run log."""
+  flxFormsAutomationRunsClear(
+    """Input for the flxFormsAutomationRunsClear mutation"""
+    input: FlxFormsAutomationRunsClearInput!
+  ): FlxFormsAutomationRunsClearPayload
+  """Saves a flow from the editor (id 0 creates it)."""
+  flxFormsAutomationSave(
+    """Input for the flxFormsAutomationSave mutation"""
+    input: FlxFormsAutomationSaveInput!
+  ): FlxFormsAutomationSavePayload
+  """Turns a flow on or off."""
+  flxFormsAutomationToggle(
+    """Input for the flxFormsAutomationToggle mutation"""
+    input: FlxFormsAutomationToggleInput!
+  ): FlxFormsAutomationTogglePayload
   """Deletes uploaded files that no response uses."""
   flxFormsClearFiles(
     """Input for the flxFormsClearFiles mutation"""
@@ -689,6 +1104,11 @@ extend type RootMutation {
     """Input for the flxFormsSettingsUpdate mutation"""
     input: FlxFormsSettingsUpdateInput!
   ): FlxFormsSettingsUpdatePayload
+  """Saves or removes the Stripe webhook signing secret."""
+  flxFormsStripeWebhookSecret(
+    """Input for the flxFormsStripeWebhookSecret mutation"""
+    input: FlxFormsStripeWebhookSecretInput!
+  ): FlxFormsStripeWebhookSecretPayload
 }
 
 extend type RootQuery {
@@ -702,6 +1122,8 @@ extend type RootQuery {
     """Tracking code."""
     code: String!
   ): FlxFormTrack
+  """The add-ons that ship with Flux Forms."""
+  flxFormsAddons: [FlxFormsAddon!]!
   """Forms, newest first."""
   flxFormsAdminForms(
     """Cursor to continue after (pageInfo.endCursor)."""
@@ -713,6 +1135,19 @@ extend type RootQuery {
     """Form type."""
     type: String
   ): FlxFormsAdminFormConnection!
+  """
+  The flow editor: the flow (null when not found; id 0 gives a blank one), forms with their fields, certificate templates, events, providers and channels.
+  """
+  flxFormsAutomationEditor(
+    """Flow id; 0 for a new flow."""
+    id: Int!
+  ): FlxJSON!
+  """The run log, newest first."""
+  flxFormsAutomationRuns: [FlxFormsAutomationRun!]!
+  """
+  The automation list. The first visit creates the ready-made donation flow once.
+  """
+  flxFormsAutomations: FlxFormsAutomations!
   """
   Dashboard numbers: responses per day, views, conversion, payments, busy hours, forms and latest responses.
   """
@@ -744,6 +1179,10 @@ extend type RootQuery {
   ): FlxFormsEntry
   """Every form, by name, for filters."""
   flxFormsFormOptions: [FlxFormsFormOption!]!
+  """Payment providers, webhooks and the latest payments."""
+  flxFormsPayments: FlxFormsPayments!
   """Forms settings."""
   flxFormsSettings: FlxFormsSettings!
+  """The shared system check rows of every FluxWP plugin."""
+  flxFormsSystem: FlxFormsSystem!
 }

@@ -1,0 +1,6 @@
+mutation FlxFormsAutomationSave($input: FlxFormsAutomationSaveInput!) {
+  flxFormsAutomationSave(input: $input) {
+    flow
+    errors { code message field }
+  }
+}

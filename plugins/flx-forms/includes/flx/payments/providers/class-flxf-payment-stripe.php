@@ -120,25 +120,6 @@ class FLXF_Payment_Stripe extends FLXF_Payment_Provider_Base implements FLXF_Pay
 	}
 
 	/** Webhook card on the Payments admin page (legacy URL + signing secret form of the add-on). */
-	public function admin_webhook_card() {
-		$has = self::handler() && class_exists( '\Emsfb\StripePayment' ) ? '' !== \Emsfb\StripePayment::webhook_secret() : false;
-		echo '<p class="flxfp-muted">' . esc_html__( 'Optional but recommended: in the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.updated and customer.subscription.deleted, then paste its signing secret below.', 'flx-forms' ) . '</p>';
-		echo '<p><code class="flxfp-code">' . esc_html( rest_url( 'Emsfb/v1/forms/payment/stripe/webhook' ) ) . '</code></p>';
-		if ( ! has_action( 'admin_post_emsfb_stripe_save' ) ) {
-			return;
-		}
-		echo '<form class="flxfp-form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
-		echo '<input type="hidden" name="action" value="emsfb_stripe_save">';
-		wp_nonce_field( 'emsfb_stripe_save' );
-		echo '<label class="flxfp-label" for="emsfb_stripe_webhook_secret">' . esc_html__( 'Webhook signing secret', 'flx-forms' ) . '</label>';
-		echo '<div class="flxfp-row"><input type="password" class="flxfp-input" autocomplete="off" id="emsfb_stripe_webhook_secret" name="emsfb_stripe_webhook_secret" value="" placeholder="' . esc_attr( $has ? __( 'Saved - leave empty to keep it', 'flx-forms' ) : 'whsec_...' ) . '">';
-		echo '<button type="submit" class="flxfp-btn flxfp-btn--primary">' . esc_html__( 'Save', 'flx-forms' ) . '</button></div>';
-		if ( $has ) {
-			echo '<label class="flxfp-check"><input type="checkbox" name="emsfb_stripe_webhook_clear" value="1"> ' . esc_html__( 'Remove the saved secret', 'flx-forms' ) . '</label>';
-		}
-		echo '</form>';
-	}
-
 	public function handle_webhook( $request ) {
 		if ( ! self::handler() ) {
 			return new WP_REST_Response( array( 'error' => 'webhook_not_configured' ), 503 );
