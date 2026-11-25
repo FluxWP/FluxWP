@@ -7,10 +7,10 @@ import type { FlxSpeedSummaryQuery } from '@fluxwp/graphql/types';
 import { Loading, Modal } from '@fluxwp/ui';
 import { Card, Cards, ErrorBox, Table, errorText, fmtKb, fmtMs, num, useSpeed, useT, type RecordFilter, type RecordRow } from './ui';
 
-const PERIODS: [number, string][] = [
-  [1, 'Last hour'],
-  [24, 'Last 24 hours'],
-  [168, 'Last 7 days'],
+const periods = (t: (s: string) => string): [number, string][] => [
+  [1, t('Last hour')],
+  [24, t('Last 24 hours')],
+  [168, t('Last 7 days')],
 ];
 
 /** Live server cards; refreshed every 15 seconds while the screen is open. */
@@ -62,9 +62,9 @@ function Period({ value, onChange }: { value: number; onChange: (h: number) => v
   return (
     <div className="flxpf-filters">
       <select value={value} onChange={(e) => onChange(Number(e.currentTarget.value))} aria-label={t('Period')}>
-        {PERIODS.map(([h, l]) => (
+        {periods(t).map(([h, l]) => (
           <option key={h} value={h}>
-            {t(l)}
+            {l}
           </option>
         ))}
       </select>
@@ -126,27 +126,20 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
       <p className="flxpf-desc">{t('Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average.')}</p>
 
       <h2>{t('By request type')}</h2>
-      <p className="flxpf-desc">{t('The time visitors wait is the "Front end" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy.')}</p>
+      <p className="flxpf-desc">
+        {t(
+          'The time visitors wait is the "Front end" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy.',
+        )}
+      </p>
       <Table
         head={[t('Type'), t('Request'), t('Average'), 'p50', 'p95', t('Longest')]}
-        numeric={[1, 2, 3, 4, 5]}
         empty={t('No records.')}
-        rows={s.byType.map((r) => [
-          <button type="button" className="flxpf-linkbtn" onClick={() => go('records', { filter: { type: r.type, hours: String(hours), slow: true } })}>
-            {r.label}
-          </button>,
-          num(r.count, lg),
-          fmtMs(r.msAvg, lg),
-          fmtMs(r.msP50, lg),
-          fmtMs(r.msP95, lg),
-          fmtMs(r.msMax, lg),
-        ])}
+        rows={s.byType.map((r) => [r.label, num(r.count, lg), fmtMs(r.msAvg, lg), fmtMs(r.msP50, lg), fmtMs(r.msP95, lg), fmtMs(r.msMax, lg)])}
       />
 
       <h2>{t('Slowest URLs')}</h2>
       <Table
         head={[t('URL'), t('Request'), t('Average'), t('Longest'), t('Errors')]}
-        numeric={[1, 2, 3, 4]}
         empty={t('No records.')}
         rows={s.slowestUrls.map((u) => [
           <button type="button" className="flxpf-linkbtn" onClick={() => go('records', { filter: { q: u.url, slow: true } })}>
@@ -162,7 +155,6 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
       <h2>{t('Query time by component (per request)')}</h2>
       <Table
         head={[t('Component'), t('Request'), t('Queries'), t('Per request')]}
-        numeric={[1, 2, 3]}
         empty={t('No records.')}
         rows={s.components.map((c) => [c.component, num(c.requests, lg), num(c.queries, lg), fmtMs(c.msPerRequest, lg)])}
       />
@@ -170,7 +162,6 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
       <h2>{t('Slow and failed queries')}</h2>
       <Table
         head={['SQL', t('Component'), t('Count'), t('Average'), t('Longest')]}
-        numeric={[2, 3, 4]}
         empty={t('No records.')}
         rows={s.slowQueries.map((x) => [
           <>
@@ -190,7 +181,6 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
       <h2>{t('PHP errors')}</h2>
       <Table
         head={[t('Level'), t('Message'), t('Component'), t('Request')]}
-        numeric={[3]}
         empty={t('No records.')}
         rows={s.phpErrors.map((e) => [
           e.level,
@@ -210,7 +200,6 @@ function SummaryBody({ data }: { data: FlxSpeedSummaryQuery }) {
       <h2>{t('HTTP API calls')}</h2>
       <Table
         head={[t('Endpoint'), t('Component'), t('Count'), t('Failed'), t('Average'), t('Last error')]}
-        numeric={[2, 3, 4]}
         empty={t('No records.')}
         rows={s.httpCalls.map((h) => [<code>{h.endpoint}</code>, h.component, num(h.count, lg), num(h.failed, lg), fmtMs(h.msAvg, lg), h.lastError])}
       />
@@ -286,9 +275,9 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
         <form className="flxpf-filters" onSubmit={submit}>
           <select value={draft.hours} onChange={(e) => upd({ hours: e.currentTarget.value })} aria-label={t('Period')}>
             <option value="">{t('All time')}</option>
-            {PERIODS.map(([h, l]) => (
+            {periods(t).map(([h, l]) => (
               <option key={h} value={String(h)}>
-                {t(l)}
+                {l}
               </option>
             ))}
           </select>
@@ -330,7 +319,7 @@ export function RecordsTab({ filter, setFilter }: { filter: RecordFilter; setFil
       {conn && (
         <>
           <div className="flxpf-tablewrap">
-            <table className="flxpf-list">
+            <table className="widefat striped flxpf-list">
               <thead>
                 <tr>
                   <th>{t('Time')}</th>

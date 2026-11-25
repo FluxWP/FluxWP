@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.12.0
+- Sistem Kontrolü klasik ekranla birebir: durum çipleri (simgeli, filtreli), "Kontrol: SS:DD", grup başına özet ve Durum/Kontrol/Ayrıntı/Kaynak/İşlem tablosu (Flux Speed ile ortak bileşen).
+
 ## 2.11.0
 - Headless siteler için formun tamamı GraphQL'den okunur: `flxForm` artık adım listesi (`stepList`), para birimi, alan başına yardım metni, adım, genişlik, varsayılan değer, min/max (uzunluk, sayı ya da tarih), seçenek fiyatı ve görseli, matrix satırları ve kısa bir ayar listesi (`settings`: sütun, seçim sınırı, dosya türü/boyutu, evet/hayır ve açık/kapalı metinleri, bağlantı adresi) döndürür. Gizli ayarlar ve rezervasyon sayaçları yine dışarı çıkmaz.
 - Bu verilerle formu React'te çizen bileşenler `@fluxwp/ui/forms` paketinde (FluxForm).
