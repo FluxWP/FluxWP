@@ -88,6 +88,9 @@ class FLXB_WC_Contact {
 				'email'      => __( 'E-mail', 'flx-donate' ),
 				'phone'      => __( 'Phone', 'flx-donate' ),
 				'help'       => __( 'Write at least one. We send your receipt and certificate there.', 'flx-donate' ),
+				'both'       => (bool) FLXB_WC_Look::get( 'lean' ) && 'compact' === FLXB_WC_Look::get( 'checkout' ), // 2.47.0: phone and e-mail both required
+				'needPhone'  => __( 'Please write your phone number.', 'flx-donate' ),
+				'needEmail'  => __( 'Please write your e-mail address.', 'flx-donate' ),
 				'need'       => self::message(),
 				'badEmail'   => __( 'Please enter a valid e-mail address.', 'flx-donate' ),
 				'badPhone'   => __( 'Please enter a valid phone number.', 'flx-donate' ),

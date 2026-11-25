@@ -169,6 +169,7 @@ final class FLXB_WC_Look {
 			'sticky_bar'   => 1,         // 2.23.0: phones keep the total and the button fixed at the bottom (form and checkout)
 			'card_first'   => 1,         // card methods before bank transfer and cash at the checkout
 			'addresses'    => 1,         // address book (My Account › Addresses, saved addresses at the checkout)
+			'lean'         => 0,         // 2.47.0: short checkout: phone and e-mail both asked up top, only the notes that matter
 			/* 2.33.0 */
 			'amount_presets' => self::AMOUNT_PRESETS, // quick amount buttons of a free amount per currency (a type's own presets win)
 			'texts'          => array(),  // headings per language: [ 'en' => [ 'type_label' => '…', 'amount_label' => '…' ] ]
@@ -300,7 +301,7 @@ final class FLXB_WC_Look {
 				$out['min_amounts'][ $c ] = $v;
 			}
 		}
-		foreach ( array( 'coupons', 'card_first', 'addresses', 'sticky_bar' ) as $k ) {
+		foreach ( array( 'coupons', 'card_first', 'addresses', 'sticky_bar', 'lean' ) as $k ) {
 			$out[ $k ] = array_key_exists( $k, $in ) ? ( empty( $in[ $k ] ) ? 0 : 1 ) : $d[ $k ];
 		}
 		/* 2.33.0: quick amounts per currency; a missing key keeps the built-in lists, an empty list = no buttons. */
@@ -466,6 +467,7 @@ final class FLXB_WC_Look {
 				'min_amounts'  => array( 'type' => 'object', 'default' => array(), 'desc' => 'Lowest hand-written amount per extra currency: { "USD": 5, "EUR": 5 }.' ),
 				'coupons'      => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout of a donation-only cart: the "Add a coupon" box.' ),
 				'sticky_bar'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Phones: the total and the button stay fixed at the bottom of the form and the checkout.' ),
+				'lean'         => array( 'type' => 'bool', 'default' => false, 'desc' => 'Short checkout (compact layout): name, phone and e-mail on top (phone and e-mail both required, so the card form does not ask for the phone again); fewer notes under the card form and the pay button; no provider name in the "Secure payment" badge.' ),
 				'card_first'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout: card methods come before bank transfer and cash.' ),
 				'addresses'    => array( 'type' => 'bool', 'default' => true, 'desc' => 'Address book: My Account › Addresses and the saved addresses at the checkout. Off = the site asks for no address anywhere.' ),
 				'amount_presets' => array( 'type' => 'object', 'default' => self::AMOUNT_PRESETS, 'desc' => 'Quick amount buttons of a free (hand-written) amount per currency, beside an "Other amount" button: { "EUR": [25,50,75], "TRY": [150,300,500] }. A type\'s own preset amounts win; an empty list = no buttons in that currency.' ),
@@ -571,6 +573,7 @@ final class FLXB_WC_Look {
 		echo '<label class="flxb-check"><input type="checkbox" name="signup" value="1"' . checked( (int) $s['signup'], 1, false ) . '> ' . esc_html__( 'Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="sticky_bar" value="1"' . checked( (int) $s['sticky_bar'], 1, false ) . '> ' . esc_html__( 'On phones keep the total and the button fixed at the bottom (form and checkout)', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="card_first" value="1"' . checked( (int) $s['card_first'], 1, false ) . '> ' . esc_html__( 'Card payment comes first, before bank transfer', 'flx-donate' ) . '</label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="lean" value="1"' . checked( (int) $s['lean'], 1, false ) . '> ' . esc_html__( 'Short checkout: phone and e-mail both asked at the top, fewer notes under the card form', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="coupons" value="1"' . checked( (int) $s['coupons'], 1, false ) . '> ' . esc_html__( 'Show the coupon box when the cart holds only donations', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="addresses" value="1"' . checked( (int) $s['addresses'], 1, false ) . '> ' . esc_html__( 'Address book: donors keep addresses under My Account and pick them at the checkout (turn off when you post nothing)', 'flx-donate' ) . '</label>';
 		echo '</section>';
@@ -654,7 +657,7 @@ final class FLXB_WC_Look {
 		$in['signup']      = ! empty( $in['signup'] ) ? 1 : 0;
 		$in['hero']        = ! empty( $in['hero'] ) ? 1 : 0;
 		$in['notes']       = ! empty( $in['notes'] ) ? 1 : 0;
-		foreach ( array( 'period_tabs', 'other_amount', 'coupons', 'card_first', 'addresses', 'sticky_bar' ) as $k ) {
+		foreach ( array( 'period_tabs', 'other_amount', 'coupons', 'card_first', 'addresses', 'sticky_bar', 'lean' ) as $k ) {
 			$in[ $k ] = ! empty( $in[ $k ] ) ? 1 : 0;
 		}
 		update_option( self::OPTION, self::clean( $in ), false );

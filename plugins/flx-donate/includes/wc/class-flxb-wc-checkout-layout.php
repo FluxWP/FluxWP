@@ -33,6 +33,9 @@ final class FLXB_WC_Checkout_Layout {
 	public static function body_class( $c ) {
 		if ( self::on() ) {
 			$c[] = 'flxb-co';
+			if ( FLXB_WC_Look::get( 'lean' ) ) {
+				$c[] = 'flxb-lean';
+			}
 		}
 		return $c;
 	}
@@ -58,7 +61,7 @@ final class FLXB_WC_Checkout_Layout {
 				'pay'      => __( 'Pay %s', 'flx-donate' ),
 				'payPlain' => __( 'Pay', 'flx-donate' ),
 				'terms'    => __( 'Please accept the terms to continue.', 'flx-donate' ),
-				'secure'   => __( 'Secure, encrypted payment. Card details are not stored on this site.', 'flx-donate' ),
+				'secure'   => FLXB_WC_Look::get( 'lean' ) ? '' : __( 'Secure, encrypted payment. Card details are not stored on this site.', 'flx-donate' ),
 			)
 		);
 	}

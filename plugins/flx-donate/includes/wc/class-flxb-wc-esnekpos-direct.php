@@ -112,6 +112,7 @@ final class FLXB_WC_Esnekpos_Direct {
 		return array(
 			'title'        => $gw ? wp_strip_all_tags( (string) $gw->get_title() ) : 'EsnekPOS',
 			'installments' => 'yes' === self::opt( 'flxb_installments' ),
+			'lean'         => (bool) FLXB_WC_Look::get( 'lean' ), // 2.47.0: no filler notes under the card form
 			'rest'         => esc_url_raw( rest_url( self::NS . '/esnekpos/' ) ),
 			'nonce'        => wp_create_nonce( 'wp_rest' ),
 			'test'         => FLXB_WC_Esnekpos::credentials()['test'],

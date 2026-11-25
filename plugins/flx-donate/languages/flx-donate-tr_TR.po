@@ -3960,6 +3960,15 @@ msgstr "Bu düzenli bağış buradan iptal edilemez."
 msgid "The action could not be completed."
 msgstr "İşlem tamamlanamadı."
 
+msgid "Please write your phone number."
+msgstr "Lütfen telefon numaranızı yazın."
+
+msgid "Please write your e-mail address."
+msgstr "Lütfen e-posta adresinizi yazın."
+
+msgid "Short checkout: phone and e-mail both asked at the top, fewer notes under the card form"
+msgstr "Sade ödeme: telefon ve e-posta üstte ikisi de istenir, kart formunun altında daha az not"
+
 msgid "It could not be added to the cart."
 msgstr "Sepete eklenemedi."
 
