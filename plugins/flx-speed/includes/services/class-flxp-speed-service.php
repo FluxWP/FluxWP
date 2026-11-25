@@ -49,7 +49,7 @@ final class FLXP_Speed_Service {
 	}
 
 	/** Nesne önbelleği sahibinin okunur adı. */
-	private static function object_cache_label( $owner ) {
+	private static function object_cache_label( string $owner ): string {
 		$names = array( 'redis' => 'Redis', 'memcached' => 'Memcached', 'litespeed' => 'LiteSpeed Cache', 'sqlite' => 'SQLite Object Cache' );
 		return $names[ $owner ] ?? __( 'External', 'flx-speed' );
 	}
