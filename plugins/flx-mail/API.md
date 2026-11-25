@@ -288,6 +288,7 @@ Echo webhook'u gönderim yanıtından önce gelebilir (henüz `external_id` yok)
 | `flxi_template_args` ($args, $key, $vars, $is_sample) | Şablon çizilmeden önce |
 | `flxi_render_email_args`, `flxi_email_html` | Kurumsal düzen |
 | `flxi_brand` | Logo, renkler, kurum bilgileri |
+| `flxi_tones` | E-postanın ara tonları (çizgi, alıntı zemini, koyu mod renkleri); varsayılan tema paletinden türetilir |
 | `flxi_wrap_email` ($wrap, $key, $atts) | Başka eklentinin e-postası sarılsın mı |
 | `flxi_mail_context` | Hangi şablon/kaynak olduğuna karar |
 | `flxi_user_is_social` ($is_social, $user_id) | Kullanıcının Google ile giriş yaptığına dair güvenilir karar (doğrulama ve parola e-postası bastırma yalnız sağlayıcı kaydı veya bu filtre `true` döndüğünde çalışır) |

@@ -57,6 +57,7 @@ function flxi_render_email( array $a ) {
 	$p    = $b['primary'];
 	$dark = $b['dark'];
 	$txt  = $b['text'];
+	$t    = $b['tones'];
 	$font = "'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif";
 	$head = "'Nunito', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif";
 
@@ -72,9 +73,9 @@ function flxi_render_email( array $a ) {
 		. 'table,td{mso-table-lspace:0;mso-table-rspace:0;border-collapse:collapse}img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;max-width:100%;height:auto}'
 		. 'a{color:' . $p . '}.flxi-body p{margin:0 0 16px}.flxi-body ul,.flxi-body ol{margin:0 0 16px;padding-left:22px}.flxi-body li{margin:0 0 6px}'
 		. '.flxi-body h2{font-family:' . $head . ';font-size:19px;line-height:1.3;margin:24px 0 10px;color:' . $txt . '}.flxi-body h3{font-size:16px;margin:20px 0 8px;color:' . $txt . '}'
-		. '.flxi-body blockquote{margin:0 0 16px;padding:14px 18px;background:#F4F8F5;border-left:4px solid ' . $p . ';border-radius:0 10px 10px 0;color:#33454F}'
+		. '.flxi-body blockquote{margin:0 0 16px;padding:14px 18px;background:' . $t['soft'] . ';border-left:4px solid ' . $p . ';border-radius:0 10px 10px 0;color:' . $t['body'] . '}'
 		. '.flxi-body a{color:' . $p . ';font-weight:600}.flxi-body img{border-radius:10px}'
-		. '.flxi-body table.flxi-kv{width:100%;margin:0 0 16px}.flxi-body table.flxi-kv td{padding:8px 0;border-bottom:1px solid #E3EEE6;font-size:14px}'
+		. '.flxi-body table.flxi-kv{width:100%;margin:0 0 16px}.flxi-body table.flxi-kv td{padding:8px 0;border-bottom:1px solid ' . $t['line'] . ';font-size:14px}'
 		. '.flxi-btn a:hover{background:' . $dark . '!important}'
 		. '@media only screen and (max-width:620px){'
 		. '.flxi-wrap{padding:0!important}.flxi-card{border-radius:0!important;border-left:0!important;border-right:0!important}'
@@ -83,10 +84,10 @@ function flxi_render_email( array $a ) {
 		. '.flxi-col{display:block!important;width:100%!important;text-align:left!important;padding:0 0 10px!important}'
 		. '}'
 		. '@media (prefers-color-scheme:dark){'
-		. '.flxi-bg{background:#0F1A16!important}.flxi-card{background:#16231E!important;border-color:#24382F!important}'
-		. '.flxi-h1,.flxi-body,.flxi-body h2,.flxi-body h3,.flxi-fact-v{color:#E8F1EC!important}.flxi-muted,.flxi-fact-l{color:#A9BDB3!important}'
-		. '.flxi-brandname{color:#E8F1EC!important}.flxi-logo-l,.flxi-art-l{display:none!important}.flxi-logo-d,.flxi-art-d{display:block!important;max-height:none!important;overflow:visible!important}'
-		. '.flxi-body blockquote,.flxi-facts{background:#1D2D27!important;color:#D6E4DC!important}.flxi-body a,.flxi-link{color:#7FD3A8!important}'
+		. '.flxi-bg{background:' . $t['dark_bg'] . '!important}.flxi-card{background:' . $t['dark_card'] . '!important;border-color:' . $t['dark_line'] . '!important}'
+		. '.flxi-h1,.flxi-body,.flxi-body h2,.flxi-body h3,.flxi-fact-v{color:' . $t['dark_ink'] . '!important}.flxi-muted,.flxi-fact-l{color:' . $t['dark_text'] . '!important}'
+		. '.flxi-brandname{color:' . $t['dark_ink'] . '!important}.flxi-logo-l,.flxi-art-l{display:none!important}.flxi-logo-d,.flxi-art-d{display:block!important;max-height:none!important;overflow:visible!important}'
+		. '.flxi-body blockquote,.flxi-facts{background:' . $t['dark_soft'] . '!important;color:' . $t['dark_ink'] . '!important}.flxi-body a,.flxi-link{color:' . $t['dark_link'] . '!important}'
 		. '}'
 		. '</style>';
 	$o .= '<!--[if mso]><style>body,table,td,a,p{font-family:Arial,Helvetica,sans-serif!important}</style><![endif]-->';
@@ -107,9 +108,9 @@ function flxi_render_email( array $a ) {
 	$o .= '<tr><td class="flxi-top flxi-pad" align="left" style="padding:0 6px 18px;">' . $logo . '</td></tr>';
 
 	// Kart
-	$o .= '<tr><td class="flxi-card" style="background:#ffffff;border:1px solid #DDE9E1;border-radius:20px;overflow:hidden;border-collapse:separate;">';
+	$o .= '<tr><td class="flxi-card" style="background:#ffffff;border:1px solid ' . $t['line'] . ';border-radius:20px;overflow:hidden;border-collapse:separate;">';
 	$o .= '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:separate;">';
-	$o .= '<tr><td style="height:6px;line-height:6px;font-size:0;background:' . $p . ';background-image:linear-gradient(90deg,' . $p . ',' . ( $a['accent'] ? esc_attr( $a['accent'] ) : '#F59E0B' ) . ');border-radius:19px 19px 0 0;">&nbsp;</td></tr>';
+	$o .= '<tr><td style="height:6px;line-height:6px;font-size:0;background:' . $p . ';background-image:linear-gradient(90deg,' . $p . ',' . esc_attr( $a['accent'] ? $a['accent'] : $b['accent'] ) . ');border-radius:19px 19px 0 0;">&nbsp;</td></tr>';
 
 	if ( $a['heading'] ) {
 		$o .= '<tr><td class="flxi-pad" style="padding:34px 40px 4px;">'
@@ -117,16 +118,16 @@ function flxi_render_email( array $a ) {
 			. '</td></tr>';
 	}
 
-	$o .= '<tr><td class="flxi-pad flxi-body" style="padding:' . ( $a['heading'] ? '18px' : '34px' ) . ' 40px 8px;font-family:' . $font . ';font-size:16px;line-height:1.65;color:#33454F;">' . $a['body'] . '</td></tr>';
+	$o .= '<tr><td class="flxi-pad flxi-body" style="padding:' . ( $a['heading'] ? '18px' : '34px' ) . ' 40px 8px;font-family:' . $font . ';font-size:16px;line-height:1.65;color:' . $t['body'] . ';">' . $a['body'] . '</td></tr>';
 
 	if ( $a['image'] ) {
-		$img = '<img src="' . esc_url( $a['image'] ) . '" width="' . (int) $a['image_width'] . '" alt="' . esc_attr( $a['image_alt'] ) . '" style="display:block;width:100%;max-width:' . (int) $a['image_width'] . 'px;height:auto;border-radius:14px;border:1px solid #E3EEE6;">';
+		$img = '<img src="' . esc_url( $a['image'] ) . '" width="' . (int) $a['image_width'] . '" alt="' . esc_attr( $a['image_alt'] ) . '" style="display:block;width:100%;max-width:' . (int) $a['image_width'] . 'px;height:auto;border-radius:14px;border:1px solid ' . $t['line'] . ';">';
 		if ( $a['image_link'] ) {
 			$img = '<a href="' . esc_url( $a['image_link'] ) . '" target="_blank" style="text-decoration:none;display:block">' . $img . '</a>';
 		}
 		$o .= '<tr><td class="flxi-pad" align="center" style="padding:8px 40px 6px;">' . $img;
 		if ( $a['image_caption'] ) {
-			$o .= '<div class="flxi-muted" style="font-family:' . $font . ';font-size:13px;color:#6B7C86;padding-top:10px;">' . wp_kses_post( $a['image_caption'] ) . '</div>';
+			$o .= '<div class="flxi-muted" style="font-family:' . $font . ';font-size:13px;color:' . $t['muted'] . ';padding-top:10px;">' . wp_kses_post( $a['image_caption'] ) . '</div>';
 		}
 		$o .= '</td></tr>';
 	}
@@ -138,11 +139,11 @@ function flxi_render_email( array $a ) {
 				continue;
 			}
 			$rows .= '<td class="flxi-col" valign="top" style="padding:0 12px;">'
-				. '<div class="flxi-fact-l" style="font-family:' . $font . ';font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#6B7C86;">' . esc_html( $label ) . '</div>'
+				. '<div class="flxi-fact-l" style="font-family:' . $font . ';font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:' . $t['muted'] . ';">' . esc_html( $label ) . '</div>'
 				. '<div class="flxi-fact-v" style="font-family:' . $head . ';font-size:17px;font-weight:800;color:' . $txt . ';padding-top:2px;">' . esc_html( $value ) . '</div></td>';
 		}
 		if ( $rows ) {
-			$o .= '<tr><td class="flxi-pad" style="padding:14px 40px 4px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" class="flxi-facts" style="background:#F4F8F5;border-radius:14px;"><tr><td style="padding:16px 6px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr>' . $rows . '</tr></table></td></tr></table></td></tr>';
+			$o .= '<tr><td class="flxi-pad" style="padding:14px 40px 4px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" class="flxi-facts" style="background:' . $t['soft'] . ';border-radius:14px;"><tr><td style="padding:16px 6px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr>' . $rows . '</tr></table></td></tr></table></td></tr>';
 		}
 	}
 
@@ -155,14 +156,14 @@ function flxi_render_email( array $a ) {
 	}
 
 	if ( $a['signature'] ) {
-		$o .= '<tr><td class="flxi-pad flxi-body" style="padding:14px 40px 0;font-family:' . $font . ';font-size:15px;line-height:1.6;color:#33454F;">' . wp_kses_post( $a['signature'] ) . '</td></tr>';
+		$o .= '<tr><td class="flxi-pad flxi-body" style="padding:14px 40px 0;font-family:' . $font . ';font-size:15px;line-height:1.6;color:' . $t['body'] . ';">' . wp_kses_post( $a['signature'] ) . '</td></tr>';
 	}
 	if ( $a['quote'] ) {
 		$o .= '<tr><td class="flxi-pad" style="padding:18px 40px 0;">' . flxi_quote_block( $a['quote'], $font ) . '</td></tr>';
 	}
 
 	if ( $a['note'] ) {
-		$o .= '<tr><td class="flxi-pad flxi-muted" style="padding:18px 40px 0;font-family:' . $font . ';font-size:13px;line-height:1.55;color:#6B7C86;">' . wp_kses_post( $a['note'] ) . '</td></tr>';
+		$o .= '<tr><td class="flxi-pad flxi-muted" style="padding:18px 40px 0;font-family:' . $font . ';font-size:13px;line-height:1.55;color:' . $t['muted'] . ';">' . wp_kses_post( $a['note'] ) . '</td></tr>';
 	}
 	$o .= '<tr><td style="height:34px;line-height:34px;font-size:0;">&nbsp;</td></tr>';
 	$o .= '</table></td></tr>';
@@ -182,7 +183,8 @@ function flxi_email_button( $text, $url, $color ) {
 }
 
 function flxi_email_footer( $a, $b, $font ) {
-	$c = 'color:#5E707A;';
+	$t = $b['tones'];
+	$c = 'color:' . $t['muted'] . ';';
 	$o = '<tr><td class="flxi-pad" style="padding:28px 26px 0;font-family:' . $font . ';font-size:13px;line-height:1.6;' . $c . '" align="center">';
 
 	if ( $b['tagline'] ) {
@@ -227,17 +229,17 @@ function flxi_email_footer( $a, $b, $font ) {
 		$small[] = sprintf(
 			/* translators: %s: iletişim e-posta adresi */
 			esc_html__( 'This email was sent automatically; please do not reply. For questions, you can write to %s.', 'flx-mail' ),
-			'<a class="flxi-link" href="mailto:' . esc_attr( $b['email'] ) . '" style="color:#5E707A;">' . esc_html( $b['email'] ) . '</a>'
+			'<a class="flxi-link" href="mailto:' . esc_attr( $b['email'] ) . '" style="' . $c . '">' . esc_html( $b['email'] ) . '</a>'
 		);
 	}
 	if ( $b['note'] ) {
 		$small[] = esc_html( flxi_fill( $b['note'], array() ) );
 	}
 	if ( $a['unsubscribe_url'] ) {
-		$small[] = '<a class="flxi-link" href="' . esc_url( $a['unsubscribe_url'] ) . '" style="color:#5E707A;">' . esc_html__( 'I do not want to receive these kinds of emails', 'flx-mail' ) . '</a>';
+		$small[] = '<a class="flxi-link" href="' . esc_url( $a['unsubscribe_url'] ) . '" style="' . $c . '">' . esc_html__( 'I do not want to receive these kinds of emails', 'flx-mail' ) . '</a>';
 	}
 	$small[] = '© ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( $b['org'] );
-	$o      .= '<div class="flxi-muted" style="padding-top:16px;font-size:12px;line-height:1.6;color:#7C8C95;">' . implode( '<br>', $small ) . '</div>';
+	$o      .= '<div class="flxi-muted" style="padding-top:16px;font-size:12px;line-height:1.6;' . $c . '">' . implode( '<br>', $small ) . '</div>';
 	$o      .= '</td></tr>';
 
 	// Ağaç silüeti: e-postanın en altına yaslanır; koyu modda koyu çizim.
@@ -312,14 +314,15 @@ function flxi_partner_header( $logo, array $partner, array $b, $font ) {
 	// Firma logosu koyu zeminde kaybolmasın diye beyaz kutu içinde.
 	return '<table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr>'
 		. '<td valign="middle">' . $logo . '</td>'
-		. '<td valign="middle" class="flxi-muted" style="padding:0 16px;font-family:' . $font . ';font-size:22px;font-weight:300;color:#8DA39A;">&times;</td>'
+		. '<td valign="middle" class="flxi-muted" style="padding:0 16px;font-family:' . $font . ';font-size:22px;font-weight:300;color:' . $b['tones']['muted'] . ';">&times;</td>'
 		. '<td valign="middle" style="background:#ffffff;border-radius:12px;padding:' . ( $pl ? '6px 10px' : '0' ) . ';">' . $them . '</td>'
 		. '</tr></table>';
 }
 
 /** Yanıtta alıntılanan eski yazışma. */
 function flxi_quote_block( $html, $font ) {
-	return '<div class="flxi-muted" style="border-left:3px solid #D5E3DA;padding:2px 0 2px 14px;font-family:' . $font . ';font-size:13px;line-height:1.55;color:#6B7C86;">' . wp_kses_post( $html ) . '</div>';
+	$t = flxi_brand()['tones'];
+	return '<div class="flxi-muted" style="border-left:3px solid ' . $t['line'] . ';padding:2px 0 2px 14px;font-family:' . $font . ';font-size:13px;line-height:1.55;color:' . $t['muted'] . ';">' . wp_kses_post( $html ) . '</div>';
 }
 
 /**
@@ -328,16 +331,17 @@ function flxi_quote_block( $html, $font ) {
  */
 function flxi_render_letter( array $a ) {
 	$b    = flxi_brand();
+	$t    = $b['tones'];
 	$lang = $a['lang'] ? $a['lang'] : str_replace( '_', '-', determine_locale() );
 	$font = "'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif";
 	$o    = '<!DOCTYPE html><html lang="' . esc_attr( $lang ) . '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">';
 	$o   .= '<meta name="color-scheme" content="light dark"><meta name="supported-color-schemes" content="light dark"><title>' . esc_html( $a['subject'] ) . '</title>';
 	$o   .= '<style>body{margin:0;padding:0}p{margin:0 0 14px}a{color:' . $b['primary'] . '}img{max-width:100%;height:auto}'
-		. '@media (prefers-color-scheme:dark){body,.flxi-l{background:#0F1A16!important;color:#E8F1EC!important}.flxi-muted{color:#A9BDB3!important}a{color:#7FD3A8!important}.flxi-brandname{color:#E8F1EC!important}.flxi-logo-l{display:none!important}.flxi-logo-d{display:block!important;max-height:none!important}}'
+		. '@media (prefers-color-scheme:dark){body,.flxi-l{background:' . $t['dark_bg'] . '!important;color:' . $t['dark_ink'] . '!important}.flxi-muted{color:' . $t['dark_text'] . '!important}a{color:' . $t['dark_link'] . '!important}.flxi-brandname{color:' . $t['dark_ink'] . '!important}.flxi-logo-l{display:none!important}.flxi-logo-d{display:block!important;max-height:none!important}}'
 		. '</style></head>';
 	$o   .= '<body class="flxi-l" style="margin:0;padding:0;background:#ffffff;">';
 	$o   .= '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="flxi-l" style="background:#ffffff;"><tr><td style="padding:20px 16px;">';
-	$o   .= '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:640px;"><tr><td class="flxi-l" style="font-family:' . $font . ';font-size:15px;line-height:1.6;color:#1F2D35;">';
+	$o   .= '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:640px;"><tr><td class="flxi-l" style="font-family:' . $font . ';font-size:15px;line-height:1.6;color:' . $b['text'] . ';">';
 	if ( ! empty( $a['partner']['logo'] ) || ! empty( $a['partner']['name'] ) ) {
 		$logo = flxi_logo_markup( array_merge( $b, array( 'logo_white' => '' ) ), (int) $b['logo_width'], $font );
 		$o   .= '<div style="padding-bottom:18px;">' . flxi_partner_header( $logo, $a['partner'], $b, $font ) . '</div>';
@@ -351,21 +355,21 @@ function flxi_render_letter( array $a ) {
 	}
 	// İmza
 	$sig = $a['signature'] ? wp_kses_post( $a['signature'] ) : '';
-	$o  .= '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:22px;border-top:1px solid #E3EEE6;"><tr><td style="padding-top:14px;font-family:' . $font . ';font-size:13px;line-height:1.55;color:#5E707A;" class="flxi-muted">';
+	$o  .= '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:22px;border-top:1px solid ' . $t['line'] . ';"><tr><td style="padding-top:14px;font-family:' . $font . ';font-size:13px;line-height:1.55;color:' . $t['muted'] . ';" class="flxi-muted">';
 	if ( $sig ) {
-		$o .= '<div style="padding-bottom:8px;color:#1F2D35;font-size:14px;" class="flxi-l">' . $sig . '</div>';
+		$o .= '<div style="padding-bottom:8px;color:' . $b['text'] . ';font-size:14px;" class="flxi-l">' . $sig . '</div>';
 	}
 	$w   = min( 130, (int) $b['logo_width'] );
 	$o  .= '<a href="' . esc_url( $b['website'] ) . '" target="_blank" style="display:block;text-decoration:none;padding-bottom:6px;">'
 		. flxi_logo_markup( $b, $w, $font )
 		. '</a>';
-	$o .= '<strong style="color:#1F2D35;" class="flxi-l">' . esc_html( $b['org'] ) . '</strong><br>';
+	$o .= '<strong style="color:' . $b['text'] . ';" class="flxi-l">' . esc_html( $b['org'] ) . '</strong><br>';
 	$line = array();
 	if ( $b['phone'] ) {
 		$line[] = esc_html( $b['phone'] );
 	}
 	if ( $b['email'] ) {
-		$line[] = '<a href="mailto:' . esc_attr( $b['email'] ) . '" style="color:#5E707A;text-decoration:none;">' . esc_html( $b['email'] ) . '</a>';
+		$line[] = '<a href="mailto:' . esc_attr( $b['email'] ) . '" style="color:' . $t['muted'] . ';text-decoration:none;">' . esc_html( $b['email'] ) . '</a>';
 	}
 	if ( $b['host'] ) {
 		$line[] = '<a href="' . esc_url( $b['website'] ) . '" target="_blank" style="color:' . $b['primary'] . ';text-decoration:none;font-weight:700;">' . esc_html( $b['host'] ) . '</a>';

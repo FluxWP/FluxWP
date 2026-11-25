@@ -62,7 +62,7 @@
   --flx-band-end:var(--wp--custom--color--band-end,color-mix(in srgb,var(--wp--preset--color--primary-dark) 58%,#000));
   --flx-media:var(--wp--custom--color--media,color-mix(in srgb,var(--wp--preset--color--ink) 40%,#000));
   --flx-tint:var(--wp--custom--color--tint,color-mix(in srgb,var(--wp--preset--color--primary) 25%,#fff));
-  --flx-menu-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231F2937' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/%3E%3Cpath d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/%3E%3C/svg%3E");
+  --flx-menu-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4' fill='%231F2937'/%3E%3C/svg%3E");
   /* Koyu mod */
   --flx-d-table-head:var(--wp--custom--dark--table-head,color-mix(in srgb,var(--flx-d-ink) 8%,var(--flx-d-surface)));
   --flx-d-bg:var(--wp--custom--dark--bg,color-mix(in srgb,var(--wp--preset--color--ink) 38%,#000));
@@ -518,8 +518,9 @@ html.flx-modal-open{overflow:hidden}
 .flx-header .is-menu-open .wp-block-navigation__responsive-dialog{position:relative;min-height:100%;max-width:none!important}
 .flx-header .is-menu-open .wp-block-navigation__responsive-dialog{padding:1.1rem 16px 2rem;display:flex;flex-direction:column}
 .flx-header .is-menu-open .wp-block-navigation__responsive-dialog::before{
-  content:"";display:block;height:44px;width:200px;margin:0 0 1.4rem;
-  background:url("../images/logo/logo-yatay.svg") left center/contain no-repeat
+  content:var(--flx-menu-name,"");display:block;height:44px;width:200px;margin:0 0 1.4rem;
+  background:var(--flx-menu-logo,none) left center/contain no-repeat;
+  font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:1.35rem;line-height:44px;color:var(--flx-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis
 }
 /* Kapat */
 .flx-header .is-menu-open .wp-block-navigation__responsive-container-close{
@@ -561,9 +562,9 @@ html.flx-modal-open{overflow:hidden}
 .flx-header .is-menu-open .wp-block-navigation-item__content:active{transform:scale(.98)}
 .flx-header .is-menu-open .current-menu-item>.wp-block-navigation-item__content,
 .flx-header .is-menu-open [aria-current="page"]{border-color:var(--flx-primary);background:var(--flx-surface)}
-/* Alt bilgi: slogan */
+/* Alt bilgi: kurum sloganı (Kurum profili › Slogan; boşsa yok) */
 .flx-header .is-menu-open .wp-block-navigation__responsive-container-content::after{
-  content:"Daha yeşil bir Türkiye mümkün";order:10;display:block;margin:1.8rem auto 0;text-align:center;
+  content:var(--flx-menu-slogan,none);order:10;display:block;margin:1.8rem auto 0;text-align:center;
   font-family:var(--wp--preset--font-family--hand);font-weight:600;font-size:1.6rem;color:var(--flx-primary);transform:rotate(-3deg)
 }
 /* 0.5.28: menü altında Hesabım, Sepet, Bağış Yap */
@@ -753,9 +754,7 @@ body.flx-decoration--leaves .flx-header .wp-block-navigation__responsive-contain
     background-color:var(--flx-d-bg)!important;color:var(--wp--preset--color--text)
   }
   body.flx-dark .flx-header{box-shadow:0 1px 0 var(--flx-line)}
-  body.flx-dark .flx-logo img[src*="logo-yatay.svg"],
-  body.flx-dark .flx-header .wp-block-site-logo img[src*="logo-yatay.svg"]{content:url("../images/logo/logo-yatay-beyaz.svg")}
-  body.flx-dark .flx-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-dialog::before{background-image:url("../images/logo/logo-yatay-beyaz.svg")!important}
+  body.flx-dark .flx-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-dialog::before{background-image:var(--flx-menu-logo-dark,var(--flx-menu-logo,none))!important}
   body.flx-dark .flx-header .wp-block-navigation__responsive-container.is-menu-open{
     background:radial-gradient(600px 300px at 110% -10%,color-mix(in srgb,var(--flx-leaf) 16%,transparent),transparent 60%),radial-gradient(500px 300px at -20% 110%,color-mix(in srgb,var(--flx-primary) 18%,transparent),transparent 60%),var(--flx-d-bg)!important}
   body.flx-dark .flx-header .wp-block-navigation__responsive-container.is-menu-open::before{opacity:.12}

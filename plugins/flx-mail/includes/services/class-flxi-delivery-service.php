@@ -52,7 +52,7 @@ class FLXI_Delivery_Service {
 		$brand_cb = null;
 		if ( 'brand' === $key ) {
 			$brand = (array) ( $f['brand'] ?? array() );
-			$allow = array( 'logo', 'logo_white', 'logo_width', 'color_primary', 'color_dark', 'color_bg', 'color_text', 'org_name', 'tagline', 'address', 'phone', 'contact_email', 'website', 'social', 'footer_note', 'footer_art', 'from_name' );
+			$allow = array( 'logo', 'logo_white', 'logo_width', 'color_primary', 'color_dark', 'color_bg', 'color_text', 'color_accent', 'org_name', 'tagline', 'address', 'phone', 'contact_email', 'website', 'social', 'footer_note', 'footer_art', 'from_name' );
 			$tmp   = array();
 			foreach ( array_intersect_key( $brand, array_flip( $allow ) ) as $bk => $bv ) {
 				try {

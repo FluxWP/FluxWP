@@ -47,6 +47,7 @@ function toDraft(s: Settings): FlxMailSettingsInput {
     colorDark: s.colorDark,
     colorBg: s.colorBg,
     colorText: s.colorText,
+    colorAccent: s.colorAccent,
     orgName: s.orgName,
     tagline: s.tagline,
     address: s.address,
@@ -129,7 +130,7 @@ export function SettingsPage({ section = '' }: { section?: string }) {
 
   const appearance = useMemo(() => {
     if (!draft) return '';
-    return [draft.logo, draft.logoWhite, draft.logoWidth, draft.colorPrimary, draft.colorDark, draft.colorBg, draft.colorText, draft.orgName, draft.tagline, draft.address, draft.phone, draft.contactEmail, draft.website, draft.footerNote, draft.footerArt, draft.fromName, JSON.stringify(draft.social)].join('|');
+    return [draft.logo, draft.logoWhite, draft.logoWidth, draft.colorPrimary, draft.colorDark, draft.colorBg, draft.colorText, draft.colorAccent, draft.orgName, draft.tagline, draft.address, draft.phone, draft.contactEmail, draft.website, draft.footerNote, draft.footerArt, draft.fromName, JSON.stringify(draft.social)].join('|');
   }, [draft]);
 
   useEffect(() => {
@@ -147,6 +148,7 @@ export function SettingsPage({ section = '' }: { section?: string }) {
               colorDark: draft.colorDark,
               colorBg: draft.colorBg,
               colorText: draft.colorText,
+              colorAccent: draft.colorAccent,
               orgName: draft.orgName,
               tagline: draft.tagline,
               address: draft.address,
@@ -423,11 +425,13 @@ export function SettingsPage({ section = '' }: { section?: string }) {
             <Logo label={t('Logo')} url={draft.logo ?? ''} file={logos.logo} onFile={(f) => setLogos({ ...logos, logo: f })} onClear={() => { setText('logo', ''); setLogos({ ...logos, logo: null }); }} t={t} />
             <Logo label={t('Dark background logo')} url={draft.logoWhite ?? ''} file={logos.white} onFile={(f) => setLogos({ ...logos, white: f })} onClear={() => { setText('logoWhite', ''); setLogos({ ...logos, white: null }); }} t={t} />
             <Text label={t('Logo width (px)')} type="number" value={String(draft.logoWidth ?? 0)} onChange={(v) => setNum('logoWidth', v)} />
-            <div className="flxmail-grid4">
-              <Color label={t('Primary color')} value={draft.colorPrimary ?? '#000000'} onChange={(v) => setText('colorPrimary', v)} />
-              <Color label={t('Dark color')} value={draft.colorDark ?? '#000000'} onChange={(v) => setText('colorDark', v)} />
-              <Color label={t('Background')} value={draft.colorBg ?? '#ffffff'} onChange={(v) => setText('colorBg', v)} />
-              <Color label={t('Heading color')} value={draft.colorText ?? '#000000'} onChange={(v) => setText('colorText', v)} />
+            <p className="flxmail-muted">{t('Colours come from the site theme. Change one to use your own; Reset goes back to the theme colour.')}</p>
+            <div className="flxmail-colors">
+              <Color label={t('Primary color')} value={draft.colorPrimary ?? ''} theme={live.themeColors.primary} onChange={(v) => setText('colorPrimary', v)} t={t} />
+              <Color label={t('Dark color')} value={draft.colorDark ?? ''} theme={live.themeColors.dark} onChange={(v) => setText('colorDark', v)} t={t} />
+              <Color label={t('Accent color')} value={draft.colorAccent ?? ''} theme={live.themeColors.accent} onChange={(v) => setText('colorAccent', v)} t={t} />
+              <Color label={t('Background')} value={draft.colorBg ?? ''} theme={live.themeColors.bg} onChange={(v) => setText('colorBg', v)} t={t} />
+              <Color label={t('Heading color')} value={draft.colorText ?? ''} theme={live.themeColors.text} onChange={(v) => setText('colorText', v)} t={t} />
             </div>
             <h3>{t('Footer (organization)')}</h3>
             <Text label={t('Organization name')} value={draft.orgName ?? ''} onChange={(v) => setText('orgName', v)} />
@@ -661,13 +665,24 @@ function Secret({ label, secret, value, onChange, t }: { label: string; secret: 
   );
 }
 
-function Color({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
-  const hex = /^#[0-9a-fA-F]{6}$/.test(value) ? value : '#000000';
+// Empty value = the theme colour (the server stores nothing when the colour equals the theme's).
+function Color({ label, value, theme, onChange, t }: { label: string; value: string; theme: string; onChange: (v: string) => void; t: (s: string) => string }) {
+  const own = /^#[0-9a-fA-F]{6}$/.test(value) && value.toLowerCase() !== theme.toLowerCase();
+  const hex = own ? value : /^#[0-9a-fA-F]{6}$/.test(theme) ? theme : '#000000';
   return (
-    <label className="flxmail-field">
-      <span>{label}</span>
-      <input type="color" value={hex} onChange={(e) => onChange(e.target.value)} />
-    </label>
+    <div className="flxmail-field flxmail-color">
+      <label>
+        <span>{label}</span>
+        <input type="color" value={hex.toLowerCase()} onChange={(e) => onChange(e.target.value)} />
+      </label>
+      {own ? (
+        <button type="button" className="flxmail-link" onClick={() => onChange('')}>
+          {t('Reset')}
+        </button>
+      ) : (
+        <small className="flxmail-muted">{t('From theme')}</small>
+      )}
+    </div>
   );
 }
 

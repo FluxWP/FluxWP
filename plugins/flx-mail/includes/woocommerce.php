@@ -78,7 +78,7 @@ function flxi_wc_apply_brand() {
 		'woocommerce_email_body_background_color'   => '#ffffff',
 		'woocommerce_email_text_color'              => $b['text'],
 		'woocommerce_email_footer_text'             => trim( $b['org'] . ( $b['address'] ? ' · ' . $b['address'] : '' ) . "\n" . $b['host'] ),
-		'woocommerce_email_footer_text_color'       => '#5E707A',
+		'woocommerce_email_footer_text_color'       => $b['tones']['muted'],
 		'woocommerce_email_from_name'               => $s['from_name'],
 		'woocommerce_email_from_address'            => $s['from_email'],
 		'woocommerce_email_header_image_width'      => $b['logo_width'],
