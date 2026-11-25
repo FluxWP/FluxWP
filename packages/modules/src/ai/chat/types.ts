@@ -76,6 +76,7 @@ export interface Boot {
   canManage: boolean;
   commands: Command[];
   maxBytes: number;
+  stt?: boolean;
   widgets: boolean;
   mermaid: string;
   suggestions: string[];

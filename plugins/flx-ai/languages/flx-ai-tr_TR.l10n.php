@@ -3,6 +3,11 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Speech to text needs an OpenAI, Gemini or OpenRouter key (Flux AI & MCP › Settings).' => 'Sesten metne için bir OpenAI, Gemini ya da OpenRouter anahtarı gerekir (Flux AI & MCP › Ayarlar).',
+  'No audio was received.' => 'Ses alınamadı.',
+  'This audio format is not supported.' => 'Bu ses biçimi desteklenmiyor.',
+  'The recording is too long.' => 'Kayıt çok uzun.',
+  'Speech to text failed (%1$d): %2$s' => 'Sesten metne çevirme başarısız (%1$d): %2$s',
   'That plugin does not offer this tool under the same name.' => 'Bu eklenti bu aracı aynı adla sunmuyor.',
   'The prompt cache must be off, 5 minutes or 1 hour.' => 'İstem önbelleği kapalı, 5 dakika ya da 1 saat olmalı.',
   'Effort must be low, medium or high.' => 'Çaba düşük, orta ya da yüksek olmalı.',

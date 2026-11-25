@@ -144,6 +144,7 @@ function flxai_chat_assets( $embed_only ) {
 			'lightOnly'   => function_exists( 'flx_ayar' ) && 'off' === flx_ayar( 'dark_mode' ),
 			'settingsUrl' => flxai_can_manage() ? admin_url( 'admin.php?page=flx-ai-settings' ) : '',
 			'suggestions' => flxai_chat_suggestions(),
+			'stt'         => '' !== flxai_stt_provider(),
 			'widgets'     => (bool) flxai_setting( 'chat_widgets', 1 ),
 			'mermaid'     => FLXAI_URL . 'assets/vendor/mermaid/mermaid.min.js?ver=12.2.0',
 			'i18n'        => flxai_js_strings(),

@@ -94,6 +94,16 @@ export function useChatApi(netText: string) {
           throw wrap(e, netText);
         }
       },
+      transcribe: async (blob: Blob, lang: string): Promise<string> => {
+        const fd = new FormData();
+        fd.append('file', blob, 'audio.' + (/wav/.test(blob.type) ? 'wav' : /mp4/.test(blob.type) ? 'm4a' : 'webm'));
+        fd.append('lang', lang);
+        try {
+          return (await c<{ text: string }>(NS + 'transcribe', { method: 'POST', formData: fd })).text;
+        } catch (e) {
+          throw wrap(e, netText);
+        }
+      },
       ws: (id: number) => call<WsState>(`chats/${id}/ws`),
       wsSettings: (id: number, access: string, folders: string) => call<WsState>(`chats/${id}/ws`, { method: 'POST', body: { access, folders } }),
       wsList: (id: number, path: string) => call<{ path: string; items: WsItem[] }>(`chats/${id}/ws/list`, { query: { path } }),

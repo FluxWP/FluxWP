@@ -175,7 +175,7 @@ add_filter(
 add_filter(
 	'flxai_tool_result',
 	function ( $data, $name ) {
-		if ( ! is_array( $data ) || empty( $data['id'] ) || ! in_array( $name, array( 'flxseo_create_content', 'flxseo_update_content', 'flxseo_get_content' ), true ) ) {
+		if ( ! is_array( $data ) || empty( $data['id'] ) || ! in_array( $name, array( 'flxseo_create_content', 'flxseo_update_content', 'flxseo_get_content', 'flxseo_insert_image' ), true ) ) {
 			return $data;
 		}
 		$p = get_post( (int) $data['id'] );

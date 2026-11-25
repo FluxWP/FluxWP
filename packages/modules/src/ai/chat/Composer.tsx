@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { useAi } from '../common';
 import type { ChatApi } from './api';
 import { FileChip } from './Messages';
+import { canRecord, pickMime, toWav } from './stt';
 import type { Command } from './types';
 
 export interface PendingFile {
@@ -49,6 +50,8 @@ export interface ComposerProps {
   canPickModel: boolean;
   onPickModel: () => void;
   locale: string;
+  /** The site can transcribe recordings (OpenAI, Gemini or OpenRouter key). */
+  stt?: boolean;
   openFilePicker: { current: (() => void) | null };
 }
 
@@ -60,6 +63,12 @@ export function Composer(p: ComposerProps) {
   const [slashOff, setSlashOff] = useState(false);
   const [rec, setRec] = useState<SpeechRec | null>(null);
   const [micErr, setMicErr] = useState(false);
+  const [micMsg, setMicMsg] = useState('');
+  const [srvRec, setSrvRec] = useState<MediaRecorder | null>(null);
+  const [busy, setBusy] = useState(false);
+  const valueRef = useRef(p.value);
+  valueRef.current = p.value;
+  const srv = !!p.stt && canRecord();
   p.openFilePicker.current = () => fileIn.current?.click();
 
   useEffect(() => {
@@ -118,7 +127,46 @@ export function Composer(p: ComposerProps) {
   };
 
   const R = Rec();
+  const dictateServer = async () => {
+    if (busy) return;
+    if (srvRec) return srvRec.stop();
+    setMicErr(false);
+    setMicMsg('');
+    let stream: MediaStream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch {
+      setMicErr(true);
+      return;
+    }
+    const mt = pickMime();
+    const mr = mt ? new MediaRecorder(stream, { mimeType: mt }) : new MediaRecorder(stream);
+    const chunks: Blob[] = [];
+    const timer = window.setTimeout(() => mr.state === 'recording' && mr.stop(), 150000);
+    mr.ondataavailable = (e) => e.data.size && chunks.push(e.data);
+    mr.onstop = () => {
+      window.clearTimeout(timer);
+      stream.getTracks().forEach((k) => k.stop());
+      setSrvRec(null);
+      const blob = new Blob(chunks, { type: mr.mimeType || mt || 'audio/webm' });
+      if (blob.size < 1200) return;
+      setBusy(true);
+      void toWav(blob)
+        .then((w) => p.api.transcribe(w, p.locale || document.documentElement.lang || ''))
+        .then((txt) => {
+          const x = txt.trim();
+          if (x) p.onChange((valueRef.current ? valueRef.current.replace(/\s*$/, ' ') : '') + x);
+          ta.current?.focus();
+        })
+        .catch((e: unknown) => setMicMsg(e instanceof Error ? e.message : String(e)))
+        .finally(() => setBusy(false));
+    };
+    mr.start();
+    setSrvRec(mr);
+    ta.current?.focus();
+  };
   const dictate = () => {
+    if (srv) return void dictateServer();
     if (rec) return rec.stop();
     if (!R) return;
     const r = new R();
@@ -220,8 +268,8 @@ export function Composer(p: ComposerProps) {
               e.target.value = '';
             }}
           />
-          {R && (
-            <button type="button" className={'flxai-ibtn' + (rec ? ' is-on' : '')} aria-pressed={!!rec} title={t('Dictate')} aria-label={t('Dictate')} onClick={dictate}>
+          {(R || srv) && (
+            <button type="button" className={'flxai-ibtn' + (rec || srvRec ? ' is-on' : '') + (busy ? ' is-busy' : '')} disabled={busy} aria-pressed={!!(rec || srvRec)} title={t('Dictate')} aria-label={t('Dictate')} onClick={dictate}>
               <Mic size={16} />
             </button>
           )}
@@ -246,6 +294,7 @@ export function Composer(p: ComposerProps) {
           {t('Enter sends, Shift+Enter adds a line')} · {t('/ commands')}
         </span>
         {micErr && <span className="flxai-k is-warn">{t('Microphone permission was not granted.')}</span>}
+        {micMsg && <span className="flxai-k is-warn">{micMsg}</span>}
       </div>
     </div>
   );

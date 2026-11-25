@@ -216,3 +216,4 @@ html.flxa-dark .flxai-ws-tabs b,body.flx-dark .flxai-ws-tabs b{background:color-
 .flxai-fl textarea{border:1px solid var(--bd);border-radius:8px;padding:6px 8px;background:var(--flux-surface2);color:inherit;font:12.5px ui-monospace,monospace}
 .flxai-ws-rules{display:flex;gap:10px;margin-top:16px;color:var(--mut);font-size:12.5px}
 .flxai-ws-rules ul{margin:4px 0 6px 16px;padding:0}
+.flxai-ibtn.is-busy{opacity:.55}
