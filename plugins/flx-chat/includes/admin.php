@@ -95,7 +95,7 @@ add_action(
 function flxc_screen_enqueue() {
 	wp_register_style( 'flxc-screen', false, array(), FLXC_VERSION );
 	wp_enqueue_style( 'flxc-screen' );
-	wp_add_inline_style( 'flxc-screen', 'body.flxc-page #wpcontent{padding-left:0}body.flxc-page #wpbody-content{padding-bottom:0}body.flxc-page #wpfooter{display:none}body.flxc-page .flx-screen-wrap{margin:0;max-width:none}body.flxc-page #flxc-flux{height:calc(100vh - var(--wp-admin--admin-bar--height,32px));min-height:480px}' );
+	wp_add_inline_style( 'flxc-screen', 'body.flxc-page #wpcontent{padding-left:0}body.flxc-page #wpbody-content{padding-bottom:0}body.flxc-page #wpfooter{display:none}body.flxc-page .flx-screen-wrap{margin:0;max-width:none}body.flxc-page #flxc-flux{height:calc(100vh - var(--wp-admin--admin-bar--height,32px));min-height:480px}@media screen and (min-width:783px){body.flxc-page:not(.flxa-appmode) #flxc-flux{position:relative}body.flxc-page:not(.flxa-appmode) #flxc-flux #flxc-app{position:absolute;inset:0;z-index:1}}' );
 }
 
 /**

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.11.7
+- Çağrı Merkezi ve Görevler ekranları her zaman tam sayfa açılır ve kapanır. Önceden başka bir Flux ekranından sayfa yenilemeden geçilince sohbet tüm pencereyi kaplıyor, sol menü ve üst çubuk kayboluyordu; sohbetten başka ekrana geçince menü dar şerit olarak kalıyordu.
+
 ## 1.11.6
 - Sayfa yenilemeden başka Flux ekranına geçince yeni sayfanın grubu (ör. kapalı "Sistem") otomatik açılır.
 

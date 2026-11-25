@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.11.9
+- Sistem Kontrolü: "Communication", "Integrations" ve "AI" grupları Türkçe (İletişim, Entegrasyonlar, Yapay zekâ). Satırlar site dili farklı olsa da kullanıcının dilinde (Flux GraphQL 0.8.1).
+- Ekran başlığı sol menüdeki ad: "Performans".
+
 ## 0.11.8
 - Redis tanımlı (WP_REDIS_HOST) ama object-cache.php yoksa Önbellek ekranı bunu çakışma olarak gösterir: "Redis tanımlı ama object-cache.php yok". **Onar** düğmesi Redis Object Cache'i kurar/etkinleştirir ve drop-in'i geri yazar. Bu durumda SQLite'a "önerilen" rozeti konmaz. Sistem Kontrolü de hata olarak gösterir.
 

@@ -30,6 +30,8 @@ export interface ModuleHost {
   appIcon?: string;
   /** Paket açıklaması (klasik başlıktaki gibi; alt başlığı olmayan ekranlarda gösterilir). */
   appDesc?: string;
+  /** Paketin sol menüdeki adı (WP: çevrilmiş, Flux Admin'in yeniden adlandırması dahil). */
+  appMenuTitle?: string;
   /** Flux AI ortak sohbeti sayfada yüklü (window.FlxAIChat). */
   aiEmbed?: boolean;
   /** İlk açılacak sayfa (WP alt menüsü: 'dashboard', 'settings'). */
@@ -45,7 +47,7 @@ export interface ModuleHost {
 const Ctx = createContext<ModuleHost | null>(null);
 
 export function ModuleHostProvider({ value, children }: { value: ModuleHost; children: ReactNode }) {
-  const def = useMemo(() => ({ subtitle: value.appDesc || undefined }), [value.appDesc]);
+  const def = useMemo(() => ({ subtitle: value.appDesc || undefined, title: value.appMenuTitle || undefined }), [value.appDesc, value.appMenuTitle]);
   return (
     <Ctx.Provider value={value}>
       <ScreenDefaults.Provider value={def}>{children}</ScreenDefaults.Provider>

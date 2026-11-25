@@ -55,7 +55,8 @@
 		var file = u.pathname.slice(adminPath.length) || 'index.php';
 		var page = u.searchParams.get('page');
 		var r = page && Object.prototype.hasOwnProperty.call(routes, page) ? routes[page] : null;
-		if (!r || r.file !== file) {
+		// pageLoad: the page changes wp-admin's own chrome (Flux Admin's app rail on Chats / Tasks), so it loads as a page.
+		if (!r || r.file !== file || r.pageLoad) {
 			return null;
 		}
 		// Links with other arguments (actions, nonces, record ids) are pages of their own. Arguments of the
@@ -503,7 +504,8 @@
 	}
 
 	function go(href, push) {
-		if (!cfg.on || !current) {
+		// Leaving a pageLoad screen also loads the page: its body classes (app rail) must not stay behind.
+		if (!cfg.on || !current || current.route.pageLoad) {
 			return false;
 		}
 		var m = match(href);
@@ -608,7 +610,7 @@
 		if (m.page === current.page && m.start === current.start) {
 			return; // hash-only step inside the screen
 		}
-		if (!cfg.on || !needsMet(m.route)) {
+		if (!cfg.on || current.route.pageLoad || !needsMet(m.route)) {
 			location.reload();
 			return;
 		}

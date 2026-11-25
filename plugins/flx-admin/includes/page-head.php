@@ -186,6 +186,11 @@ add_filter(
 		if ( ! flxa_enabled() ) {
 			return $route;
 		}
+		// Chats / Tasks change the menu (icon rail, app mode body classes): opening or leaving them in place
+		// left the menu narrow on the next screen or covered by the app. They always load as pages.
+		if ( '' !== flxa_app_screen_of( (string) $page ) ) {
+			$route['pageLoad'] = true;
+		}
 		$info = flxa_page_head_info( (string) $page );
 		if ( $info ) {
 			$route['flxaHead'] = array(

@@ -67,12 +67,21 @@ export interface ScreenProps<T extends string = string> {
 }
 
 /** Ekranın varsayılan alt başlığı (klasik Flux Admin başlığı gibi: ekran kendi alt başlığını vermezse paket açıklaması). */
-export const ScreenDefaults = createContext<{ subtitle?: string | undefined }>({});
+export const ScreenDefaults = createContext<{ subtitle?: string | undefined; title?: string | undefined }>({});
+
+/**
+ * Ürün adıyla verilen başlık ("Flux Performance", "Flux Backup") paketin sol menüdeki adıyla değişir: kullanıcı
+ * ekranı menüde gördüğü adla ("Performans") tanır. Kayıt/alt sayfa başlıkları (ürün adı olmayanlar) aynen kalır.
+ */
+export function screenTitle(title: ReactNode, menuTitle: string | undefined): ReactNode {
+  return menuTitle && typeof title === 'string' && /^Flux\s/.test(title) ? menuTitle : title;
+}
 
 /** Ortak ekran kabuğu: başlık + sekmeler + içerik; padding, en fazla genişlik, safe area ve taşma tek yerde. */
 export function Screen<T extends string = string>(p: ScreenProps<T>) {
   const def = useContext(ScreenDefaults);
   const subtitle = p.subtitle ?? def.subtitle;
+  const title = screenTitle(p.title, def.title);
   const icon = typeof p.icon === 'string' ? <img className="flx-page__icon" src={p.icon} alt="" width={40} height={40} /> : p.icon;
   return (
     <div className={'flx-page flx-page--' + (p.width || 'md') + (p.className ? ' ' + p.className : '')}>
@@ -80,13 +89,13 @@ export function Screen<T extends string = string>(p: ScreenProps<T>) {
       <header className="flx-page__head">
         {icon}
         <div className="flx-page__title">
-          <h1>{p.title}</h1>
+          <h1>{title}</h1>
           {subtitle ? <p>{subtitle}</p> : null}
         </div>
         {p.actions ? <div className="flx-page__actions">{p.actions}</div> : null}
       </header>
       {p.notice}
-      {p.tabs && p.onTab ? <Tabs items={p.tabs} current={p.tab} onChange={p.onTab} label={typeof p.title === 'string' ? p.title : undefined} /> : null}
+      {p.tabs && p.onTab ? <Tabs items={p.tabs} current={p.tab} onChange={p.onTab} label={typeof title === 'string' ? title : undefined} /> : null}
       {p.toolbar}
       <div className="flx-page__body">{p.children}</div>
     </div>

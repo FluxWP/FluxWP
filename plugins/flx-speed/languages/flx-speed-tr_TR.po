@@ -2139,3 +2139,12 @@ msgstr "Ne olduğu; testten sonra boş."
 
 msgid "The state after the operation."
 msgstr "İşlemden sonraki durum."
+
+msgid "Communication"
+msgstr "İletişim"
+
+msgid "Integrations"
+msgstr "Entegrasyonlar"
+
+msgid "AI"
+msgstr "Yapay zekâ"

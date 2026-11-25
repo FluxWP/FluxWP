@@ -717,6 +717,9 @@
     "Runs one operation of the Cache tab: install or activate a cache plugin, switch the object cache, turn the page cache on or off, purge, flush or test.": "Önbellek sekmesinin bir işlemini çalıştırır: önbellek eklentisi kur ya da etkinleştir, nesne önbelleğini değiştir, sayfa önbelleğini aç ya da kapat, temizle, boşalt ya da test et.",
     "The operation.": "İşlem.",
     "What happened; empty after a test.": "Ne olduğu; testten sonra boş.",
-    "The state after the operation.": "İşlemden sonraki durum."
+    "The state after the operation.": "İşlemden sonraki durum.",
+    "Communication": "İletişim",
+    "Integrations": "Entegrasyonlar",
+    "AI": "Yapay zekâ"
   }
 }

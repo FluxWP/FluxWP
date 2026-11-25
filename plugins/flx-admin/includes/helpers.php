@@ -209,8 +209,12 @@ function flxa_app_screen() {
 	if ( ! is_admin() || empty( $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 		return '';
 	}
-	$page = sanitize_key( wp_unslash( $_GET['page'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
-	$map  = (array) apply_filters(
+	return flxa_app_screen_of( sanitize_key( wp_unslash( $_GET['page'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
+}
+
+/** The app screen ('whatsapp', 'tasks') a page slug opens, or '' (filter `flxa_app_screens`). */
+function flxa_app_screen_of( $page ) {
+	$map = (array) apply_filters(
 		'flxa_app_screens',
 		array(
 			'flx-chat'         => 'whatsapp',

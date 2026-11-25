@@ -716,5 +716,8 @@ return array(
   'The operation.' => 'İşlem.',
   'What happened; empty after a test.' => 'Ne olduğu; testten sonra boş.',
   'The state after the operation.' => 'İşlemden sonraki durum.',
+  'Communication' => 'İletişim',
+  'Integrations' => 'Entegrasyonlar',
+  'AI' => 'Yapay zekâ',
  ),
 );

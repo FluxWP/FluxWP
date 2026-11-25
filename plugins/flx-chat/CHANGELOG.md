@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.54.1
+- Sol menü daraltma (uygulama şeridi) kapalıyken sohbet ekranı sol menünün ve üst çubuğun üstüne taşmaz, içerik alanında kalır.
+
 ## 1.54.0
 - Sohbetler ekranı klasik WhatsApp düzeninin birebir aynısı: sohbet listesi, filtre çipleri, açık sohbet, balonlar, yazma alanı (emoji, hızlı yanıt çipleri, ek, ses kaydı), kişi bilgisi paneli, koyu tema ve mobil görünüm.
 - Liste önizlemesi son mesajı gösterir (telefon numarası yerine). Hızlı yanıt çipleri kullanım sayısına göre sıralanır.

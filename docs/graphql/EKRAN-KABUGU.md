@@ -68,6 +68,19 @@ tekrar gitmez, ilk açılışta veri PHP'den gelir (spinner yok). Klasik PHP say
 - FluxWP dışındaki eklentiler ortak runtime üzerinde çalışır (`flux-screens.js`): EKLENTI-EKRANLARI.md.
 - Kabuğu kapatmak için: `add_filter( 'flx_admin_screens_navigation', '__return_false' );`.
 - Route'a ek bilgi: `flx_admin_screen_route` filtresi (`$route, $page`), olayda `detail.route` olarak gelir.
+- `$route['pageLoad'] = true`: o ekrana girerken ve ondan çıkarken gezgin sayfayı normal yükler. wp-admin'in kendi
+  kabuğunu değiştiren ekranlar için (Flux Admin uygulama modu: Çağrı Merkezi, Görevler — sol menü ikon şeridi,
+  `flxa-appmode folded` gövde sınıfları yalnız sunucuda basılır).
+- Seçeneklerde `menuTitle`: paketin sol menüdeki üst öğe adı (rozetsiz). `Screen` ürün adıyla ("Flux …") verilen
+  başlığı bununla gösterir.
+
+## Dil
+
+`includes/locale.php`: `_locale=user` taşıyan GraphQL isteği (tüm FluxWP istemcileri ekler) WPGraphQL kimliği
+doğruladıktan sonra kullanıcının diline geçer (`switch_to_locale`); Flux Lang `?lang=` ile dil seçen istek kendi
+dilinde kalır. `lang_dir_for_domain` filtresi `flx-*` metin alanları için eklentinin `languages/` klasörünü verir:
+paketlerin `locale-loader.php`'si ilk yüklemeyi WordPress'e klasörü öğretmeden yaptığı için dil değişince çeviri
+bulunamıyor, metinler İngilizce kalıyordu. `locale` filtresi eklenmez (seçenek okuyan filtre kendine döner).
 
 ## Test
 

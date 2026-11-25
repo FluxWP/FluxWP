@@ -1,5 +1,8 @@
 # Flux AI Chatbot
 
+## 0.7.1
+- Ekran başlığı sol menüdeki adı gösterir.
+
 ## 0.7.0
 - Ana ekranda, "Bize yazın" kartının altında aynı genişlikte **WhatsApp düğmesi**: tıklayınca doğrudan WhatsApp sohbetine (`wa.me`) yönlendirir. Panelde Metinler → Ana ekran altında üç ayar: WhatsApp numarası (ülke koduyla; boşsa düğme görünmez), düğme yazısı ve hazır mesaj. Ayar anahtarları `flxcb_settings` içinde `whatsapp_number`, `whatsapp_label`, `whatsapp_message`; GraphQL `whatsappNumber` / `whatsappLabel` / `whatsappMessage`. Önizleme düğmeyi canlı gösterir.
 

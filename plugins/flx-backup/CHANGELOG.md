@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.3
+- Ekran başlığı sol menüdeki adı gösterir.
+
 ## 1.8.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

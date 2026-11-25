@@ -1,5 +1,8 @@
 # @fluxwp/ui
 
+## 0.6.1
+- `Screen`: ürün adıyla verilen başlık ("Flux Performance") `ScreenDefaults.title` (paketin sol menüdeki adı, ör. "Performans") ile gösterilir; kayıt ve alt sayfa başlıkları aynen kalır.
+
 ## 0.6.0
 - `ListBar` ve `ListPages`: klasik Flux Admin liste çubuğu (arama, birincil filtreler, "Filtreler" paneli, Temizle) ve sayfalama (sayfa numaraları, "Sayfa başı"). `listPerPage(id)` kayıtlı sayfa başını okur.
 - `Screen`: `back` (başlığın üstünde geri bağlantısı); `ScreenDefaults` bağlamı ile alt başlığı olmayan ekrana varsayılan alt başlık.
