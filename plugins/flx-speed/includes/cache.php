@@ -145,6 +145,24 @@ class FLXP_Cache {
 		return array( 'path' => '', 'size' => 0 );
 	}
 
+	/**
+	 * Redis istemcisi: phpredis uzantısı, Predis (Redis Object Cache gömer) ya da çalışan Redis drop-in'i.
+	 * Docker yığınında uzantı yoksa Predis kullanılır; yalnız class_exists('Redis') bakmak "Redis yok" der.
+	 */
+	public static function redis_client() {
+		if ( class_exists( 'Redis' ) ) {
+			return 'phpredis';
+		}
+		if ( class_exists( 'Predis\\Client', false ) ) {
+			return 'predis';
+		}
+		$d = self::dropin_owner( 'object-cache.php' );
+		if ( $d['exists'] && 'redis' === $d['owner'] && wp_using_ext_object_cache() ) {
+			return 'dropin';
+		}
+		return '';
+	}
+
 	/** Sunucu: LiteSpeed web sunucusu mu? */
 	public static function is_litespeed_server() {
 		$sw = isset( $_SERVER['SERVER_SOFTWARE'] ) ? (string) $_SERVER['SERVER_SOFTWARE'] : ''; // phpcs:ignore
@@ -175,7 +193,7 @@ class FLXP_Cache {
 
 		$ext = array(
 			'memcached' => class_exists( 'Memcached' ) || class_exists( 'Memcache' ),
-			'redis'     => class_exists( 'Redis' ),
+			'redis'     => '' !== self::redis_client(),
 			'sqlite3'   => class_exists( 'SQLite3' ),
 			'igbinary'  => function_exists( 'igbinary_serialize' ),
 			'apcu'      => function_exists( 'apcu_fetch' ) && (bool) ini_get( 'apc.enabled' ),

@@ -444,9 +444,10 @@ function flxp_server_stats() {
 		'opcache'  => $opcache,
 		'caches'   => array(
 			'object_cache' => wp_using_ext_object_cache(),
+			'object_cache_owner' => class_exists( 'FLXP_Cache' ) ? (string) FLXP_Cache::dropin_owner()['owner'] : '',
 			'apcu'         => function_exists( 'apcu_enabled' ) && apcu_enabled(),
 			'memcached'    => class_exists( 'Memcached' ),
-			'redis'        => class_exists( 'Redis' ),
+			'redis'        => class_exists( 'FLXP_Cache' ) ? '' !== FLXP_Cache::redis_client() : class_exists( 'Redis' ),
 			'page_cache'   => defined( 'WP_CACHE' ) && WP_CACHE,
 			'litespeed'    => defined( 'LSCWP_V' ),
 		),

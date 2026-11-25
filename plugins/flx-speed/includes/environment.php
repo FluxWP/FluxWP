@@ -87,7 +87,7 @@ function flxp_environment() {
 			'permalinks'     => (string) get_option( 'permalink_structure' ),
 			'environment'    => wp_get_environment_type(),
 			'multisite'      => is_multisite(),
-			'object_cache'   => wp_using_ext_object_cache() ? 'external' : 'none',
+			'object_cache'   => wp_using_ext_object_cache() ? ( class_exists( 'FLXP_Cache' ) && in_array( FLXP_Cache::dropin_owner()['owner'], array( 'redis', 'memcached', 'litespeed', 'sqlite' ), true ) ? FLXP_Cache::dropin_owner()['owner'] : 'external' ) : 'none',
 			'theme'          => get_stylesheet(),
 			'parent_theme'   => get_template() !== get_stylesheet() ? get_template() : '',
 			'constants'      => $consts,
