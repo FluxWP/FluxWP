@@ -1,5 +1,8 @@
 # Flux AI Chatbot
 
+## 0.6.3
+- Ayarlar ekranı: sekme çubuğu artık sayfanın tam genişliğinde; önizleme sekmelerin altında, içerikle yan yana başlar. "Çalışma şekli" ve diğer seçim kartları, ikili/üçlü alan ve anahtar ızgaraları dar alanda alt alta ya da sarmalı dizilir; metin kelime ortasından kırılmaz. Ortak modül paketi yenilendi.
+
 ## 0.6.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

@@ -231,15 +231,15 @@ function ChatbotSettings() {
         />
       </div>
 
+      <Tabs
+        items={tabs.map(([id, label, icon]) => ({ id, label: (<>{icon}<span>{label}</span></>) }))}
+        current={tab}
+        onChange={goTab}
+        label={t('Flux AI Chatbot')}
+      />
+
       <div className="flxcb-layout">
         <div className="flxcb-main">
-          <Tabs
-            items={tabs.map(([id, label, icon]) => ({ id, label: (<>{icon}<span>{label}</span></>) }))}
-            current={tab}
-            onChange={goTab}
-            label={t('Flux AI Chatbot')}
-          />
-
           <form
             className="flxcb-form"
             onSubmit={(e) => {
