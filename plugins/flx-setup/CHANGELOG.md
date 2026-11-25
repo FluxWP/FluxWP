@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.6.16
+- Paketler › toplu "Otomatik güncellemeyi aç/kapat" "Call to undefined function wp_is_auto_update_enabled_for_type()" hatasıyla düşüyordu: işlev wp-admin/includes/update.php içinde ve GraphQL isteğinde yüklü değildi. Dosya artık gerektiğinde yüklenir (tekli aç/kapa, toplu işlem ve tablo sütunu dahil).
+
 ## 1.6.15
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

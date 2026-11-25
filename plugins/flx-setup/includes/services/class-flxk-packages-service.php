@@ -280,6 +280,16 @@ final class FLXK_Packages_Service {
 	}
 
 	/**
+	 * wp_is_auto_update_enabled_for_type() wp-admin/includes/update.php içinde; GraphQL/AJAX isteğinde yüklü değil.
+	 */
+	private static function auto_enabled( string $type ): bool {
+		if ( ! function_exists( 'wp_is_auto_update_enabled_for_type' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/update.php';
+		}
+		return wp_is_auto_update_enabled_for_type( 'theme' === $type ? 'theme' : 'plugin' );
+	}
+
+	/**
 	 * "Install new versions of FluxWP packages automatically" is on.
 	 */
 	private static function flux_auto_all(): bool {
@@ -309,7 +319,7 @@ final class FLXK_Packages_Service {
 				'canChange' => false,
 			);
 		}
-		if ( ! wp_is_auto_update_enabled_for_type( $type ) ) {
+		if ( ! self::auto_enabled( $type ) ) {
 			return $none;
 		}
 		$opt = 'theme' === $type ? 'auto_update_themes' : 'auto_update_plugins';
@@ -824,7 +834,7 @@ final class FLXK_Packages_Service {
 		if ( 'auto_on' === $op || 'auto_off' === $op ) {
 			// Everything would be skipped one by one with a misleading summary: say why once.
 			$types = array_unique( array_column( $items, 'type' ) );
-			if ( $types && ! array_filter( $types, static fn( $t ): bool => wp_is_auto_update_enabled_for_type( 'theme' === $t ? 'theme' : 'plugin' ) ) ) {
+			if ( $types && ! array_filter( $types, static fn( $t ): bool => self::auto_enabled( 'theme' === $t ? 'theme' : 'plugin' ) ) ) {
 				return new WP_Error( 'flxk_auto', __( 'Automatic updates are turned off for this site.', 'flx-setup' ), array( 'graphql_code' => 'CONFLICT' ) );
 			}
 		}
@@ -905,7 +915,7 @@ final class FLXK_Packages_Service {
 			return 'skip';
 		}
 		if ( 'auto_on' === $op || 'auto_off' === $op ) {
-			if ( ! current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' ) || ! wp_is_auto_update_enabled_for_type( $type ) ) {
+			if ( ! current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' ) || ! self::auto_enabled( $type ) ) {
 				return 'skip';
 			}
 			$set = 'auto_on' === $op;
@@ -991,7 +1001,7 @@ final class FLXK_Packages_Service {
 		if ( ! current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' ) ) {
 			return new WP_Error( 'flxk_auto', __( 'You are not allowed to do this.', 'flx-setup' ), array( 'graphql_code' => 'FORBIDDEN' ) );
 		}
-		if ( ! wp_is_auto_update_enabled_for_type( $type ) ) {
+		if ( ! self::auto_enabled( $type ) ) {
 			return new WP_Error( 'flxk_auto', __( 'Automatic updates are turned off for this site.', 'flx-setup' ), array( 'graphql_code' => 'CONFLICT' ) );
 		}
 		if ( 'plugin' === $type ) {
