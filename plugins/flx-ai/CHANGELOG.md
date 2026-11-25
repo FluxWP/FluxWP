@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.34.2
+- **Düzeltme:** Claude "Invalid `signature` in `thinking` block … bound to a different conversation" (400) hatası. Sistem metni ya da araç listesi turlar arasında değişince eski düşünme imzası geçersiz oluyordu (ör. ajan görevleri). İstek artık `block_binding.prefix_mismatch_behavior = drop_block` ile gider (geçersiz blok düşer); yine de 400 gelirse düşünme blokları atılıp düşünmesiz bir kez yeniden denenir.
+
 ## 0.34.1
 - Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
 
