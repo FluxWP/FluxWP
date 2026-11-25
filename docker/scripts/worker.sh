@@ -1,6 +1,6 @@
 #!/bin/sh
 # FluxWP Docker - worker container.
-# Runtime revision: 2026.11.25.1
+# Runtime revision: 2026.11.20.2
 #
 # 1. Waits for the WordPress files and the database.
 # 2. One-time bootstrap (idempotent, safe on every restart):
@@ -12,7 +12,7 @@
 #        Change it after the first login, then delete the file:
 #          docker compose exec worker rm /run/flx-private/admin-password
 #      - installs the site language (WP_LOCALE),
-#      - enables the Redis object cache when WP_REDIS_HOST is set (Flux Redis, redis-cache as fallback),
+#      - enables the Redis object cache when WP_REDIS_HOST is set,
 #      - Flux Setup (FLUXWP_SETUP, default true): downloaded before the install screen,
 #        activated on install, its wizard opens on the first wp-admin visit.
 #      - FluxWP Realtime mu-plugin when FLX_REALTIME_SECRET is set (removed when it is not).
@@ -165,25 +165,12 @@ setup_locale() {
 	wp option update timezone_string "${WP_TIMEZONE:-UTC}" >/dev/null 2>&1 || true
 }
 
-# Flux Redis (flx-redis, own object cache, uses the PhpRedis in the images). It comes from
-# updater.fluxwp.com like Flux Setup; while that download is not available the worker
-# falls back to the Redis Object Cache plugin, so the cache is never left off.
-# A site that already has an object-cache.php is not touched.
 setup_redis() {
 	[ -n "${WP_REDIS_HOST:-}" ] || return 0
 	if [ -f "$ROOT/wp-content/object-cache.php" ]; then
 		return 0
 	fi
 	log "enabling Redis object cache"
-	if ! wp plugin is-installed flx-redis >/dev/null 2>&1; then
-		FLX_PLUGIN=flx-redis FLX_DIR="$ROOT/wp-content/plugins" php /usr/local/bin/flx-setup-zip.php || true
-	fi
-	if wp plugin is-installed flx-redis >/dev/null 2>&1; then
-		wp plugin activate flx-redis >/dev/null 2>&1 || { log "flx-redis could not be activated"; return 1; }
-		wp redis enable || return 1
-		return 0
-	fi
-	log "flx-redis is not available, using redis-cache"
 	if ! wp plugin is-installed redis-cache >/dev/null 2>&1; then
 		wp plugin install redis-cache --activate >/dev/null || { log "redis-cache could not be installed"; return 1; }
 	else

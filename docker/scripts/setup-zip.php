@@ -1,6 +1,6 @@
 <?php
 /**
- * Download and install a FluxWP plugin zip (FLX_PLUGIN, default flx-setup; also flx-redis).
+ * Download and install the Flux Setup zip.
  * HTTPS only, no redirect to another scheme, size cap, path check, optional SHA-256 pin.
  */
 declare(strict_types=1);
@@ -8,15 +8,7 @@ declare(strict_types=1);
 const FLX_SETUP_MAX_BYTES = 33554432;
 const FLX_SETUP_MAX_UNCOMPRESSED = 134217728;
 const FLX_SETUP_MAX_ENTRIES = 4000;
-const FLX_SETUP_UPDATER = 'https://updater.fluxwp.com/v1/download/%s/latest.zip';
-
-function flx_setup_slug(): string {
-	$slug = (string) (getenv('FLX_PLUGIN') ?: 'flx-setup');
-	if (!in_array($slug, array('flx-setup', 'flx-redis'), true)) {
-		flx_setup_fail('plugin is not allowed');
-	}
-	return $slug;
-}
+const FLX_SETUP_UPDATER = 'https://updater.fluxwp.com/v1/download/flx-setup/latest.zip';
 
 function flx_setup_fail(string $message): void {
 	fwrite(STDERR, "Flux Setup: $message\n");
@@ -156,14 +148,14 @@ function flx_setup_download(string $url, string $dest): void {
 	throw new RuntimeException('too many redirects');
 }
 
-function flx_setup_zip_name_ok(string $name, string $slug): bool {
+function flx_setup_zip_name_ok(string $name): bool {
 	if ($name === '' || str_contains($name, "\0") || str_contains($name, '\\')) {
 		return false;
 	}
 	if ($name[0] === '/' || preg_match('#^[A-Za-z]:#', $name) || str_contains($name, ':')) {
 		return false;
 	}
-	if ($name !== $slug . '/' && !str_starts_with($name, $slug . '/')) {
+	if ($name !== 'flx-setup/' && !str_starts_with($name, 'flx-setup/')) {
 		return false;
 	}
 	foreach (explode('/', $name) as $part) {
@@ -174,7 +166,7 @@ function flx_setup_zip_name_ok(string $name, string $slug): bool {
 	return true;
 }
 
-function flx_setup_install_zip(string $zipPath, string $pluginDir, string $pin, string $slug): void {
+function flx_setup_install_zip(string $zipPath, string $pluginDir, string $pin): void {
 	if ($pin !== '' && !preg_match('/^[a-f0-9]{64}$/', $pin)) {
 		throw new RuntimeException('FLUXWP_SETUP_SHA256 must be 64 hex characters');
 	}
@@ -199,7 +191,7 @@ function flx_setup_install_zip(string $zipPath, string $pluginDir, string $pin, 
 	for ($i = 0; $i < $count; $i++) {
 		$name = $zip->getNameIndex($i);
 		$stat = $zip->statIndex($i);
-		if (!is_string($name) || !is_array($stat) || !flx_setup_zip_name_ok($name, $slug)) {
+		if (!is_string($name) || !is_array($stat) || !flx_setup_zip_name_ok($name)) {
 			$zip->close();
 			throw new RuntimeException('zip entry path is not allowed');
 		}
@@ -218,13 +210,13 @@ function flx_setup_install_zip(string $zipPath, string $pluginDir, string $pin, 
 			$zip->close();
 			throw new RuntimeException('uncompressed zip exceeds the size cap');
 		}
-		if ($name === $slug . '/' . $slug . '.php' && (int) $stat['size'] > 0) {
+		if ($name === 'flx-setup/flx-setup.php' && (int) $stat['size'] > 0) {
 			$hasMain = true;
 		}
 	}
 	if (!$hasMain) {
 		$zip->close();
-		throw new RuntimeException($slug . '/' . $slug . '.php is missing');
+		throw new RuntimeException('flx-setup/flx-setup.php is missing');
 	}
 	$stage = $pluginDir . '/.flx-setup-stage-' . bin2hex(random_bytes(4));
 	if (!mkdir($stage, 0700)) {
@@ -233,16 +225,16 @@ function flx_setup_install_zip(string $zipPath, string $pluginDir, string $pin, 
 	}
 	$extracted = $zip->extractTo($stage);
 	$zip->close();
-	if ($extracted !== true || !is_file($stage . '/' . $slug . '/' . $slug . '.php') || flx_setup_tree_has_link($stage)) {
+	if ($extracted !== true || !is_file($stage . '/flx-setup/flx-setup.php') || flx_setup_tree_has_link($stage)) {
 		flx_setup_remove_tree($stage);
 		throw new RuntimeException('could not extract the archive');
 	}
-	$final = $pluginDir . '/' . $slug;
+	$final = $pluginDir . '/flx-setup';
 	if (file_exists($final)) {
 		flx_setup_remove_tree($stage);
-		throw new RuntimeException($slug . ' is already present');
+		throw new RuntimeException('flx-setup is already present');
 	}
-	if (!rename($stage . '/' . $slug, $final)) {
+	if (!rename($stage . '/flx-setup', $final)) {
 		flx_setup_remove_tree($stage);
 		throw new RuntimeException('could not install the plugin');
 	}
@@ -346,14 +338,14 @@ function flx_setup_pin(): string {
 	return $pin;
 }
 
-function flx_setup_try(string $url, string $dir, string $pin, string $slug): void {
+function flx_setup_try(string $url, string $dir, string $pin): void {
 	$tmp = tempnam(sys_get_temp_dir(), 'flx');
 	if ($tmp === false) {
 		throw new RuntimeException('could not store the archive');
 	}
 	try {
 		flx_setup_download($url, $tmp);
-		flx_setup_install_zip($tmp, $dir, $pin, $slug);
+		flx_setup_install_zip($tmp, $dir, $pin);
 	} catch (Throwable $e) {
 		if (is_file($tmp)) {
 			unlink($tmp);
@@ -361,7 +353,7 @@ function flx_setup_try(string $url, string $dir, string $pin, string $slug): voi
 		throw $e;
 	}
 	unlink($tmp);
-	fwrite(STDERR, "$slug: installed from $url\n");
+	fwrite(STDERR, "Flux Setup: installed from $url\n");
 }
 
 function flx_setup_main(): void {
@@ -369,35 +361,31 @@ function flx_setup_main(): void {
 	if ($dir === '' || !is_dir($dir)) {
 		flx_setup_fail('plugin directory is missing');
 	}
-	$slug = flx_setup_slug();
-	$setup = $slug === 'flx-setup';
-	// URL override and SHA-256 pin belong to Flux Setup only.
-	$pin = $setup ? flx_setup_pin() : '';
-	$explicit = $setup ? trim((string) getenv('FLUXWP_SETUP_URL')) : '';
+	$pin = flx_setup_pin();
+	$explicit = trim((string) getenv('FLUXWP_SETUP_URL'));
 	if ($explicit !== '') {
 		if (!flx_setup_https_url($explicit)) {
 			flx_setup_fail('FLUXWP_SETUP_URL must be https');
 		}
 		try {
-			flx_setup_try($explicit, $dir, $pin, $slug);
+			flx_setup_try($explicit, $dir, $pin);
 		} catch (Throwable $e) {
 			flx_setup_fail($e->getMessage());
 		}
 		exit(0);
 	}
 	try {
-		flx_setup_try(sprintf(FLX_SETUP_UPDATER, $slug), $dir, $pin, $slug);
+		flx_setup_try(FLX_SETUP_UPDATER, $dir, $pin);
 		exit(0);
 	} catch (Throwable $e) {
 		$updaterError = $e->getMessage();
 	}
-	// GitHub releases exist for Flux Setup only (the other plugins are not public).
-	$github = $setup ? flx_setup_github_url() : '';
+	$github = flx_setup_github_url();
 	if ($github === '') {
 		flx_setup_fail($updaterError);
 	}
 	try {
-		flx_setup_try($github, $dir, $pin, $slug);
+		flx_setup_try($github, $dir, $pin);
 	} catch (Throwable $e) {
 		flx_setup_fail($e->getMessage());
 	}
