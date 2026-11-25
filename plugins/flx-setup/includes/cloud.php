@@ -29,6 +29,15 @@ final class FLXK_Cloud {
 		add_action( 'flxu_settings_before', array( __CLASS__, 'card' ) );
 		add_filter( 'flx_system_checks', array( __CLASS__, 'system_checks' ) );
 		add_action( 'rest_api_init', array( __CLASS__, 'rest' ) );
+		// Sites that hide the REST API from visitors (Arifiye Quiz preset) must still answer the ownership proof.
+		add_filter( 'flxaq_rest_allow', array( __CLASS__, 'allow_proof_route' ) );
+	}
+
+	/** @param mixed $allowed Route prefixes a visitor may call. */
+	public static function allow_proof_route( $allowed ): array {
+		$allowed   = is_array( $allowed ) ? $allowed : array();
+		$allowed[] = 'flx-setup/v1/cloud/proof';
+		return $allowed;
 	}
 
 	/**
@@ -168,6 +177,7 @@ final class FLXK_Cloud {
 			'challenge' => $chal,
 			'wp'        => get_bloginfo( 'version' ),
 			'v'         => FLXK_VERSION,
+			'lang'      => determine_locale(), // The fluxwp.com consent page opens in the site's language.
 		);
 		wp_redirect( add_query_arg( array_map( 'rawurlencode', $args ), self::url() . '/' ) ); // phpcs:ignore WordPress.Security.SafeRedirect -- Account server.
 		exit;

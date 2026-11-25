@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.6.17
+- "Sign in with FluxWP" ile bağlanırken fluxwp.com onay sayfası artık sitenin dilinde açılır (bağlantıya `lang` eklenir; fluxwp.com yoksa tarayıcı diline bakar).
+- Ziyaretçiden REST API'yi gizleyen sitelerde (Arifiye Quiz hazır ayarı) site sahipliği kanıtı 404 dönüp fluxwp.com'da "FluxWP Panel çok eski" hatası veriyordu. `/flx-setup/v1/cloud/proof` yolu `flxaq_rest_allow` filtresine eklendi; yalnız bu yol açılır.
+
 ## 1.6.16
 - Paketler › toplu "Otomatik güncellemeyi aç/kapat" "Call to undefined function wp_is_auto_update_enabled_for_type()" hatasıyla düşüyordu: işlev wp-admin/includes/update.php içinde ve GraphQL isteğinde yüklü değildi. Dosya artık gerektiğinde yüklenir (tekli aç/kapa, toplu işlem ve tablo sütunu dahil).
 
