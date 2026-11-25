@@ -60,7 +60,7 @@ import type {
   FlxCommerceReportPreset,
   FlxCommerceReportProductsQuery,
 } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { csvDownload } from './csv';
 import { translator, type Translate } from './i18n';
@@ -194,44 +194,30 @@ function Store() {
   const current = page.startsWith('customer:') ? 'customers' : page;
 
   return (
-    <div className="flxcm-app">
-      <header className="flxcm-head">
-        <div>
-          <h1>{t('Store')}</h1>
-          <p>{t('Sales, customers, subscriptions and the bank-transfer queue.')}</p>
-        </div>
-        <div className="flxcm-head__actions">
-          {host.classicUrl ? (
-            <a className="flxcm-btn" href={host.classicUrl}>
-              {t('Classic view')}
-            </a>
-          ) : null}
-        </div>
-      </header>
-      {notice ? (
-        <p className={'flxcm-notice' + (notice.kind === 'bad' ? ' is-bad' : '')} role="status">
-          <span>{notice.text}</span>
-          <button type="button" onClick={() => setNotice(null)} aria-label="Close">
-            ×
-          </button>
-        </p>
-      ) : null}
-      <nav className="flxcm-tabs" aria-label={t('Store')}>
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            aria-current={current === tab.id ? 'page' : undefined}
-            onClick={() => {
-              setNotice(null);
-              if (tab.id === 'reports') setReportRange(null);
-              setPage(tab.id);
-            }}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </nav>
+    <Screen<string>
+      className="flxcm-app"
+      width="wide"
+      icon={host.appIcon}
+      title={t('Store')}
+      subtitle={t('Sales, customers, subscriptions and the bank-transfer queue.')}
+      notice={
+        notice ? (
+          <p className={'flxcm-notice' + (notice.kind === 'bad' ? ' is-bad' : '')} role="status">
+            <span>{notice.text}</span>
+            <button type="button" onClick={() => setNotice(null)} aria-label="Close">
+              ×
+            </button>
+          </p>
+        ) : null
+      }
+      tabs={tabs.map((tab) => ({ id: tab.id as string, label: tab.label }))}
+      tab={current}
+      onTab={(id) => {
+        setNotice(null);
+        if (id === 'reports') setReportRange(null);
+        setPage(id as Page);
+      }}
+    >
       {page === 'overview' ? (
         <Overview
           t={t}
@@ -287,7 +273,7 @@ function Store() {
         />
       ) : null}
       {page === 'settings' && manage ? <Settings t={t} adminUrl={host.adminUrl} tell={tell} /> : null}
-    </div>
+    </Screen>
   );
 }
 
