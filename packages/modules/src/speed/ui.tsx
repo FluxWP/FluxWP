@@ -86,7 +86,7 @@ export function Card({ label, value, tone = 'NONE', onClick, extra }: { label: s
 export function Table({ head, rows, empty, numeric = [] }: { head: string[]; rows: ReactNode[][]; empty: string; numeric?: number[] }) {
   return (
     <div className="flxpf-tablewrap">
-      <table className="flxpf-list">
+      <table className="widefat striped flxpf-list">
         <thead>
           <tr>
             {head.map((h, i) => (
@@ -122,9 +122,9 @@ export function Table({ head, rows, empty, numeric = [] }: { head: string[]; row
 /** A titled box of label and value rows (server, database, resources). */
 export function Kv({ title, rows }: { title: string; rows: { label: string; value: string }[] }) {
   return (
-    <section className="flxpf-box">
+    <section className="flxpf-kvbox">
       <h2>{title}</h2>
-      <table className="flxpf-kv">
+      <table className="widefat striped flxpf-kv">
         <tbody>
           {rows.map((r, i) => (
             <tr key={i}>
