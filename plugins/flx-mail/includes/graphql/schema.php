@@ -205,6 +205,20 @@ function flxi_gql_register(): void {
 			'fields'      => array(
 				'key'   => flxi_gql_f( 'String!', __( 'Stored key.', 'flx-mail' ) ),
 				'label' => flxi_gql_f( 'String!', __( 'Label.', 'flx-mail' ) ),
+				'image' => flxi_gql_f( 'String', __( 'Preview image URL, when the option has one.', 'flx-mail' ) ),
+			),
+		)
+	);
+	flx_gql_type(
+		'FlxMailOptoutDefaults',
+		array(
+			'description' => __( 'Default opt-out texts and words.', 'flx-mail' ),
+			'fields'      => array(
+				'text'          => flxi_gql_f( 'String!', __( 'Opt-out line.', 'flx-mail' ) ),
+				'keywords'      => flxi_gql_f( 'String!', __( 'Opt-out words.', 'flx-mail' ) ),
+				'optinKeywords' => flxi_gql_f( 'String!', __( 'Start words.', 'flx-mail' ) ),
+				'reply'         => flxi_gql_f( 'String!', __( 'Reply after opting out.', 'flx-mail' ) ),
+				'optinReply'    => flxi_gql_f( 'String!', __( 'Reply after starting again.', 'flx-mail' ) ),
 			),
 		)
 	);
@@ -325,6 +339,7 @@ function flxi_gql_register(): void {
 	$settings['activeSocialPlugins'] = flxi_gql_f( '[String!]!', __( 'Other social-login plugins that are active.', 'flx-mail' ) );
 	$settings['quota']               = flxi_gql_f( '[FlxMailQuotaBox!]!', __( 'Daily mailbox usage.', 'flx-mail' ) );
 	$settings['quotaFullDays']       = flxi_gql_f( 'Int!', __( 'Days in the last 30 when the daily limit was hit.', 'flx-mail' ) );
+	$settings['optoutDefaults']      = flxi_gql_f( 'FlxMailOptoutDefaults!', __( 'Default opt-out texts and words in the site language.', 'flx-mail' ) );
 	$settings['dns']                 = flxi_gql_f( 'FlxMailDns', __( 'Last DNS lookup.', 'flx-mail' ) );
 	$settings['footerArts']          = flxi_gql_f( '[FlxMailChoice!]!', __( 'Footer art choices.', 'flx-mail' ) );
 	$settings['socialNetworks']      = flxi_gql_f( '[FlxMailChoice!]!', __( 'Social networks the footer can show.', 'flx-mail' ) );
@@ -469,6 +484,8 @@ function flxi_gql_register(): void {
 				),
 				'channel'    => flxi_gql_f( 'String!', __( 'Channel.', 'flx-mail' ) ),
 				'template'   => flxi_gql_f( 'String!', __( 'Template key.', 'flx-mail' ) ),
+				'channelLabel'  => flxi_gql_f( 'String!', __( 'Channel name for display.', 'flx-mail' ) ),
+				'templateLabel' => flxi_gql_f( 'String!', __( 'Email name and source for display ("Test · Flux Mail").', 'flx-mail' ) ),
 				'recipient'  => flxi_gql_f( 'String!', __( 'Recipient.', 'flx-mail' ) ),
 				'subject'    => flxi_gql_f( 'String!', __( 'Subject.', 'flx-mail' ) ),
 				'status'     => flxi_gql_f( 'String!', __( 'sent, failed, blocked or sending.', 'flx-mail' ) ),
