@@ -101,7 +101,6 @@ function flxc_default_settings() {
 		'msg_donation_done'    => '',
 		'msg_receipt'          => '',
 		'delete_data'      => 0,
-		'ui_flux'          => 0,
 	);
 }
 

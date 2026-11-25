@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.53.0
+- Sohbetler sayfası artık her zaman yeni React ekranı (masaüstü ve mobil uygulamayla aynı) ve Flux GraphQL ekran kabuğunda açılıyor; diğer Flux ekranlarından tıklayınca yerinde açılır.
+- Eski klasik sohbet arayüzü (app.js) ve Ayarlar'daki "Yeni arayüz (deneysel)" seçeneği kaldırıldı. Flux GraphQL yoksa uyarı gösterilir.
+
 ## 1.52.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

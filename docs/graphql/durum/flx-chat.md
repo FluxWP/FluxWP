@@ -1,4 +1,4 @@
-# flx-chat 1.49.0
+# flx-chat 1.53.0
 
 - Faz: 2
 - Durum: ✱
@@ -20,3 +20,6 @@ Bölüm 1: sohbet, mesaj, `flxChatUpdates` ve sohbet sayfasının işlemleri Gra
 | `admin-post.php?action=flxc_export` | flx-chat | Toplu sohbet dosyası (en çok 1000); PHP ~60 sn | Tek sohbet metni `flxChatExport` |
 | `admin-post.php?action=flxc_receipt` | flx-chat | Dekont binary; Flux Donate de bu adresi açar. Klasik indirme sohbet görünürlüğü süzmez | `FlxFile.url`. GraphQL dekont mutation'ı sohbeti süzer |
 | Rapor gönderimi (`flxc_reports_tick`) | flx-chat | Hostinger WP-Cron çalıştırmaz. `spawn_cron` kalıcı çözüm değil. Jobs ile aynı jetonlu loopback | Durum `flxChatReportStatus`, çalıştır `flxChatReportRun` |
+
+
+1.53.0: Sohbetler `flx_admin_screen` kabuğunda (inline, tam yükseklik), React varsayılan; klasik app.js/app.css/js-strings ve `ui_flux` ayarı silindi (Ahmet 2026-11-25 kararı). Asistan, Ayarlar, Raporlar hâlâ klasik PHP.
