@@ -195,7 +195,7 @@ class FLXI_Log_Service {
 			'createdAt'  => $ts ? $ts : null,
 			'channel'    => $channel,
 			'template'   => flxi_str( $row['template'] ?? '' ),
-			'channelLabel'  => flxi_str( flxi_channels()[ $channel ] ?? $channel ),
+			'channelLabel'  => flxi_str( flxi_arr( flxi_channels() )[ $channel ] ?? $channel ),
 			'templateLabel' => self::template_label( flxi_str( $row['template'] ?? '' ), flxi_str( $row['source'] ?? '' ) ),
 			'recipient'  => flxi_str( $row['recipient'] ?? '' ),
 			'subject'    => flxi_str( $row['subject'] ?? '' ),
@@ -213,9 +213,8 @@ class FLXI_Log_Service {
 	 * Name of the email and its source, as the classic log showed it ("Test · Flux Mail").
 	 */
 	private static function template_label( string $key, string $source ): string {
-		static $types = null, $disc = null;
-		$types = $types ?? flxi_arr( flxi_email_types() );
-		$disc  = $disc ?? flxi_arr( flxi_discovered() );
+		$types = flxi_arr( flxi_email_types() );
+		$disc  = flxi_arr( flxi_discovered() );
 		$type  = flxi_arr( $types[ $key ] ?? null );
 		$name  = flxi_str( $type['label'] ?? '' );
 		if ( '' === $name && isset( $disc[ $key ] ) ) {
