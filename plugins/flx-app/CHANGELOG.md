@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.10.2
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.10.1
 - Yönetim çubuğundaki **Bildirimler** artık düğme değil pencere açar: bu tarayıcı için bir anahtar ve her bildirim türü (bekleyen yorumlar, görevler vb.) için ayrı Açık/Kapalı anahtarı; liste kaydırılır, değişiklik hemen kaydedilir (mobil uygulamadaki tercihlerle aynı). "Bildirimler açılamadı" yazısı çubukta kalmaz, pencerede gösterilir. Ortak flx-brand pencere ve anahtar stilleri kullanılır.
 

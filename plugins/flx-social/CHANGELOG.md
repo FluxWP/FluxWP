@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.5.4
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.5.3
 - Güvenlik: adresten ortam ekleme (panel, REST ve MCP `media_urls`) ortak denetimli indirmeden (flx-brand `flx_safe_download`) geçer: yalnız herkese açık adresler, her yönlendirme yeniden denetlenir.
 

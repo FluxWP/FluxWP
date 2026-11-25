@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.12.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.12.0
 - CRM sayfaları (Genel bakış, Kişiler, kişi kartı, Segmentler, Olaylar, Yolculuklar, Kopyalar, Ayarlar) Flux GraphQL ekran kabuğunda; ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
 - Ortak ekran başlığı ve sekmeler kullanılır.
