@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.4.0
 - **Klasik ekran kaldırıldı.** Flux Files yalnız React ekranıyla açılır; "Klasik görünüm" menü öğesi, görünüm değiştirme (`flxfm_ui`) ve eski istemci (assets/app.js, app.css) silindi.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

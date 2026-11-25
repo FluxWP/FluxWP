@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.11.5
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.11.4
 - Özel giriş adresi dil önekinden etkilenmez: Flux Lang açıkken /tr/fluxadmin gibi önekli adres üretiliyor ve 404 veriyordu. Site Kit "Google ile giriş" bu adrese gönderdiği için yeni Google hesabıyla giriş/kayıt takılı kalıyordu. Adres artık her dilde öneksiz (/fluxadmin).
 
