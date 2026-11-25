@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
  * createdAt is the Unix time of the stored GMT created_at string.
  *
  * @phpstan-type FlxiLogRow array{databaseId: int, createdAt: int|null, channel: string, template: string, channelLabel: string, templateLabel: string, recipient: string, subject: string, status: string, error: string|null, sender: string, campaignId: int, userId: int, body: string|null, person: object|null}
- * @phpstan-type FlxiRestLogItem array{id: int, channel: string, template: string, channelLabel: string, templateLabel: string, recipient: string, subject: string, status: string, status_label: string, error: string, date_label: string}
+ * @phpstan-type FlxiRestLogItem array{id: int, channel: string, template: string, recipient: string, subject: string, status: string, status_label: string, error: string, date_label: string}
  */
 class FLXI_Log_Service {
 
@@ -214,9 +214,13 @@ class FLXI_Log_Service {
 	 */
 	private static function template_label( string $key, string $source ): string {
 		static $types = null, $disc = null;
-		$types = $types ?? flxi_email_types();
-		$disc  = $disc ?? flxi_discovered();
-		$name  = $types[ $key ]['label'] ?? ( isset( $disc[ $key ] ) ? flxi_discovered_label( $key, $disc[ $key ] ) : '' );
+		$types = $types ?? flxi_arr( flxi_email_types() );
+		$disc  = $disc ?? flxi_arr( flxi_discovered() );
+		$type  = flxi_arr( $types[ $key ] ?? null );
+		$name  = flxi_str( $type['label'] ?? '' );
+		if ( '' === $name && isset( $disc[ $key ] ) ) {
+			$name = flxi_str( flxi_discovered_label( $key, flxi_arr( $disc[ $key ] ) ) );
+		}
 		if ( 0 === strpos( $key, 'wc/' ) ) {
 			$name = 'WooCommerce · ' . substr( $key, 3 );
 		} elseif ( 'flx-mail/campaign' === $key ) {
@@ -224,7 +228,7 @@ class FLXI_Log_Service {
 		} elseif ( 'flx-mail/test' === $key ) {
 			$name = __( 'Test', 'flx-mail' );
 		}
-		return trim( $name . ( '' !== $source ? ' · ' . flxi_source_label( $source ) : '' ), ' ·' );
+		return trim( $name . ( '' !== $source ? ' · ' . flxi_str( flxi_source_label( $source ) ) : '' ), ' ·' );
 	}
 
 	/**
