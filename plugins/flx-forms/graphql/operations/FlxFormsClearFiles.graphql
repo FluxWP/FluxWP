@@ -1,0 +1,6 @@
+mutation FlxFormsClearFiles($input: FlxFormsClearFilesInput!) {
+  flxFormsClearFiles(input: $input) {
+    deleted
+    errors { code message field }
+  }
+}

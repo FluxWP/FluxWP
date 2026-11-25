@@ -215,6 +215,28 @@ type FlxFormsAdminFormEdge {
   node: FlxFormsAdminForm!
 }
 
+"""Input for the flxFormsClearFiles mutation."""
+input FlxFormsClearFilesInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""The payload for the flxFormsClearFiles mutation."""
+type FlxFormsClearFilesPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Files deleted."""
+  deleted: Int!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
 """Input for the flxFormsEntriesDelete mutation."""
 input FlxFormsEntriesDeleteInput {
   """
@@ -423,6 +445,202 @@ type FlxFormsFormOption {
   title: String!
 }
 
+"""Forms settings."""
+type FlxFormsSettings {
+  """Setting emailSupporter."""
+  adminEmail: String!
+  """Setting adminSN."""
+  adminSeesName: Boolean!
+  """Setting bootstrap."""
+  bootstrap: Boolean!
+  """This user may change the weekly report."""
+  canEmailReport: Boolean!
+  """This user may change the e-mail statistics report."""
+  canEmailStats: Boolean!
+  """Developer mode (unminified scripts)."""
+  devMode: Boolean!
+  """Setting activeDlBtn."""
+  downloadButton: Boolean!
+  """Setting emailBtnBgColor."""
+  emailButtonColor: String!
+  """Setting emailBtnTextColor."""
+  emailButtonText: String!
+  """Setting emailStatsReport."""
+  emailStatsReport: Boolean!
+  """Setting emailTemp."""
+  emailTemplate: String!
+  """Setting femail."""
+  fromEmail: String!
+  """Sender address used when none is set."""
+  fromHint: String!
+  """Setting osLocationPicker."""
+  locationPicker: Boolean!
+  """Setting respAccent."""
+  respAccent: String!
+  """Setting respBgCard."""
+  respBgCard: String!
+  """Setting respBgEditor."""
+  respBgEditor: String!
+  """Setting respBgMeta."""
+  respBgMeta: String!
+  """Setting respBgResp."""
+  respBgResp: String!
+  """Setting respBgTrack."""
+  respBgTrack: String!
+  """Setting respBrandColor."""
+  respBrandColor: String!
+  """Setting respBtnText."""
+  respBtnText: String!
+  """Setting respCustomFont."""
+  respCustomFont: String!
+  """Setting respEditorPh."""
+  respEditorPh: String!
+  """Setting respEditorText."""
+  respEditorText: String!
+  """Setting respFontFamily."""
+  respFontFamily: String!
+  """Setting respFontSize."""
+  respFontSize: String!
+  """Setting respPreset."""
+  respPreset: String!
+  """Setting respPrimary."""
+  respPrimary: String!
+  """Setting respPrimaryDark."""
+  respPrimaryDark: String!
+  """Setting respText."""
+  respText: String!
+  """Setting respTextMuted."""
+  respTextMuted: String!
+  """A reCAPTCHA secret key is saved."""
+  secretKeySet: Boolean!
+  """Setting sessionDuration."""
+  sessionDuration: Int!
+  """Setting scaptcha."""
+  shortCaptcha: Boolean!
+  """Setting dsupfile."""
+  showUploadedFiles: Boolean!
+  """Setting shield_silent_captcha."""
+  silentCaptcha: Boolean!
+  """Setting siteKey."""
+  siteKey: String!
+  """Setting phnNo."""
+  smsAdminNumbers: String!
+  """Setting sms_config."""
+  smsSender: String!
+  """Setting smtp."""
+  smtp: Boolean!
+  """Setting trackCodeStyle."""
+  trackCodeStyle: String!
+  """Shortcode of the track code finder."""
+  trackShortcode: String!
+  """Setting weeklyEmailReport."""
+  weeklyReport: Boolean!
+}
+
+"""Input for the flxFormsSettingsUpdate mutation."""
+input FlxFormsSettingsUpdateInput {
+  """Setting emailSupporter."""
+  adminEmail: String
+  """Setting adminSN."""
+  adminSeesName: Boolean
+  """Setting bootstrap."""
+  bootstrap: Boolean
+  """Removes the saved reCAPTCHA secret key."""
+  clearSecretKey: Boolean
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Developer mode."""
+  devMode: Boolean
+  """Setting activeDlBtn."""
+  downloadButton: Boolean
+  """Setting emailBtnBgColor."""
+  emailButtonColor: String
+  """Setting emailBtnTextColor."""
+  emailButtonText: String
+  """Setting emailStatsReport."""
+  emailStatsReport: Boolean
+  """Setting emailTemp."""
+  emailTemplate: String
+  """Setting femail."""
+  fromEmail: String
+  """Setting osLocationPicker."""
+  locationPicker: Boolean
+  """Setting respAccent."""
+  respAccent: String
+  """Setting respBgCard."""
+  respBgCard: String
+  """Setting respBgEditor."""
+  respBgEditor: String
+  """Setting respBgMeta."""
+  respBgMeta: String
+  """Setting respBgResp."""
+  respBgResp: String
+  """Setting respBgTrack."""
+  respBgTrack: String
+  """Setting respBrandColor."""
+  respBrandColor: String
+  """Setting respBtnText."""
+  respBtnText: String
+  """Setting respCustomFont."""
+  respCustomFont: String
+  """Setting respEditorPh."""
+  respEditorPh: String
+  """Setting respEditorText."""
+  respEditorText: String
+  """Setting respFontFamily."""
+  respFontFamily: String
+  """Setting respFontSize."""
+  respFontSize: String
+  """Setting respPreset."""
+  respPreset: String
+  """Setting respPrimary."""
+  respPrimary: String
+  """Setting respPrimaryDark."""
+  respPrimaryDark: String
+  """Setting respText."""
+  respText: String
+  """Setting respTextMuted."""
+  respTextMuted: String
+  """New reCAPTCHA secret key (write-only; empty keeps the saved one)."""
+  secretKey: String
+  """Setting sessionDuration."""
+  sessionDuration: Int
+  """Setting scaptcha."""
+  shortCaptcha: Boolean
+  """Setting dsupfile."""
+  showUploadedFiles: Boolean
+  """Setting shield_silent_captcha."""
+  silentCaptcha: Boolean
+  """Setting siteKey."""
+  siteKey: String
+  """Setting phnNo."""
+  smsAdminNumbers: String
+  """Setting sms_config."""
+  smsSender: String
+  """Setting smtp."""
+  smtp: Boolean
+  """Setting trackCodeStyle."""
+  trackCodeStyle: String
+  """Setting weeklyEmailReport."""
+  weeklyReport: Boolean
+}
+
+"""The payload for the flxFormsSettingsUpdate mutation."""
+type FlxFormsSettingsUpdatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """Settings after the save."""
+  settings: FlxFormsSettings
+}
+
 extend type RootMutation {
   """Sends a form, survey or subscribe form."""
   flxFormSubmit(
@@ -434,6 +652,11 @@ extend type RootMutation {
     """Input for the flxFormTrackReply mutation"""
     input: FlxFormTrackReplyInput!
   ): FlxFormTrackReplyPayload
+  """Deletes uploaded files that no response uses."""
+  flxFormsClearFiles(
+    """Input for the flxFormsClearFiles mutation"""
+    input: FlxFormsClearFilesInput!
+  ): FlxFormsClearFilesPayload
   """Deletes responses and their replies."""
   flxFormsEntriesDelete(
     """Input for the flxFormsEntriesDelete mutation"""
@@ -461,6 +684,11 @@ extend type RootMutation {
     """Input for the flxFormsFormDuplicate mutation"""
     input: FlxFormsFormDuplicateInput!
   ): FlxFormsFormDuplicatePayload
+  """Saves the given settings; others stay as they are."""
+  flxFormsSettingsUpdate(
+    """Input for the flxFormsSettingsUpdate mutation"""
+    input: FlxFormsSettingsUpdateInput!
+  ): FlxFormsSettingsUpdatePayload
 }
 
 extend type RootQuery {
@@ -516,4 +744,6 @@ extend type RootQuery {
   ): FlxFormsEntry
   """Every form, by name, for filters."""
   flxFormsFormOptions: [FlxFormsFormOption!]!
+  """Forms settings."""
+  flxFormsSettings: FlxFormsSettings!
 }

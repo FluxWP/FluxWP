@@ -105,3 +105,17 @@ button.flxfrm-kpi:hover{border-color:var(--ac)}
   .flxfrm-fields>div{grid-template-columns:1fr;gap:2px}
   .flxfrm-replies li,.flxfrm-replies li.is-staff{margin:0}
 }
+
+/* 2.7.0 Settings */
+.flxfrm-seg--wrap{flex-wrap:wrap}
+.flxfrm-form{display:flex;flex-direction:column;gap:16px;max-width:760px}
+.flxfrm-form h2{margin:0}
+.flxfrm-field{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.flxfrm-field>input,.flxfrm-field>select,.flxfrm-field>textarea{width:min(100%,460px)}
+.flxfrm-field>textarea{width:100%}
+.flxfrm-field__label{font-weight:600;font-size:13px}
+.flxfrm-colors{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.flxfrm-color{display:flex;align-items:center;gap:8px;font-size:13px;padding:4px 0}
+.flxfrm-app .flxfrm-color input[type=color]{width:36px;height:28px;padding:2px;cursor:pointer}
+.flxfrm-color code{margin-left:auto;color:var(--mut);font-size:12px;white-space:nowrap}
+.flxfrm-mono{font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
