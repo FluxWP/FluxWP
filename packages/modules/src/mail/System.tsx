@@ -16,7 +16,6 @@ export function SystemPage() {
   const rows = q.data?.flxMailSystemChecks ?? [];
   return (
     <div className="flxmail-card">
-      <p className="flxmail-muted">{t('Rows related to email, WhatsApp and SMS. Checks for all plugins are on the system screen.')}</p>
       <button type="button" className="flxmail-btn" onClick={() => void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxMailSystemChecks, {}) })}>
         {t('Recheck')}
       </button>

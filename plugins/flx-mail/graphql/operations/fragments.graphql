@@ -86,15 +86,16 @@ fragment FlxMailSettings on FlxMailSettings {
   optoutWhatsappCount
   optoutSmsCount
   wooActive
-  lastTest { ok to error at { ...FlxMailDate } }
-  wcBranded { ...FlxMailDate }
+  lastTest { ok to error at { ...FlxMailDate short } }
+  wcBranded { ...FlxMailDate short }
   otherSmtpPlugin
   smtpAccountNotes { mailbox level text }
   activeSocialPlugins
-  quota { mailbox type used limit left percent next { ...FlxMailDate } }
+  quota { mailbox type used limit left percent next { ...FlxMailDate short } }
   quotaFullDays
+  optoutDefaults { text keywords optinKeywords reply optinReply }
   dns { domain spf dmarc mx error checkedAt { ...FlxMailDate } }
-  footerArts { key label }
+  footerArts { key label image }
   socialNetworks { key label }
   themeColors { primary dark bg text accent }
 }
@@ -125,9 +126,11 @@ fragment FlxMailTemplate on FlxMailTemplate {
 
 fragment FlxMailLogRow on FlxMailLog {
   databaseId
-  createdAt { ...FlxMailDate }
+  createdAt { ...FlxMailDate short }
   channel
+  channelLabel
   template
+  templateLabel
   recipient
   subject
   status
