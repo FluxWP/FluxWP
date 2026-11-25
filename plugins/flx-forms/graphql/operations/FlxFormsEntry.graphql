@@ -1,0 +1,3 @@
+query FlxFormsEntry($id: Int!) {
+  flxFormsEntry(id: $id) { ...FlxFormsEntryFull }
+}

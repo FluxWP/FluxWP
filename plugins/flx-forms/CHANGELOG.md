@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.6.0
+- Formlar › Pano, Tüm formlar ve Yanıtlar artık tek React ekranı (Flux GraphQL): ortak başlık ve sekmeler, ilk veri sayfayla birlikte gelir, ekran beklemeden açılır.
+- Tüm formlar: ad/kimlik araması, tür filtresi, yanıt ve okunmamış sayısı, son yanıt, kısa kodu tek tıkla kopyalama, düzenle, kopyala, sil (onaylı).
+- Yanıtlar: form, durum ve metin filtresi; toplu okundu/okunmadı ve silme; yanıt ayrıntısı (alanlar, cevaplar), cevap yazma, konuşmayı kapatma/açma. Açılan yanıt okundu sayılır.
+- Pano aynı sayıları gösterir (yanıt, görüntülenme, dönüşüm, ödeme, yoğun saatler, son yanıtlar) ve ortak grafik bileşenini kullanır. Eski Pano sayfası (dashboard.js/css) kaldırıldı.
+- Form oluşturucu, Panel, Ödemeler, Otomasyonlar, Sistem kontrolü ve Eklentiler ekranın sekmelerinden açılır; sonraki sürümlerde bunlar da React'e geçecek.
+
 ## 2.5.2
 - Güvenlik: add-on arşivi indirip `vendor/` içine açan kod yolu tamamen kapatıldı. Add-on'lar (Stripe, koşullu mantık, çevrimdışı listeler) zaten paketin içinde geliyor ve üretici sunucularına istek engelliydi; artık bu engel kalksa bile uzaktan kod kurulamaz.
 

@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( $manifest ), true ) a
 		$GLOBALS['flxf_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 4, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 4 persisted operations' );
+flxt_same( 14, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 14 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -840,5 +840,69 @@ $r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $
 flxt_same( array(), flxf_t_errs( $r, 'flxFormSubmit' ), 'rate limit: first submit is allowed' );
 $r = flxf_t_op( 'FlxFormSubmit', array( 'input' => array( 'formId' => (string) $public_id, 'fields' => $filled ) ) );
 flxt_same( 'RATE_LIMITED', flxt_code( $r ), 'rate limit: second submit' );
+
+/* ---------- 2.6.0: admin screen (Dashboard, All forms, Responses) ---------- */
+$adm_id = wp_insert_user( array( 'user_login' => 'flxf_t_admin', 'user_pass' => wp_generate_password(), 'role' => 'administrator', 'user_email' => 'flxf-admin@example.com' ) );
+$sub_id = wp_insert_user( array( 'user_login' => 'flxf_t_sub', 'user_pass' => wp_generate_password(), 'role' => 'subscriber', 'user_email' => 'flxf-sub@example.com' ) );
+$adm_id = is_wp_error( $adm_id ) ? (int) get_user_by( 'login', 'flxf_t_admin' )->ID : (int) $adm_id;
+$sub_id = is_wp_error( $sub_id ) ? (int) get_user_by( 'login', 'flxf_t_sub' )->ID : (int) $sub_id;
+
+$r = flxf_t_op( 'FlxFormsAdminForms', array( 'first' => 50 ), $sub_id );
+flxt_ok( null !== flxt_code( $r ) || empty( $r['data']['flxFormsAdminForms'] ), 'admin forms: a subscriber is refused' );
+$r = flxf_t_op( 'FlxFormsAdminForms', array( 'first' => 50 ), $adm_id );
+$rows = $r['data']['flxFormsAdminForms']['nodes'] ?? array();
+$row  = null;
+foreach ( $rows as $x ) {
+	if ( (int) $x['databaseId'] === $public_id ) {
+		$row = $x;
+	}
+}
+flxt_ok( is_array( $row ), 'admin forms: the contact form is listed', $r );
+flxt_same( '[EMS_Form_Builder id=' . $public_id . ']', $row['shortcode'] ?? '', 'admin forms: shortcode' );
+flxt_ok( ( $row['responses'] ?? 0 ) >= 1, 'admin forms: response count' );
+$r = flxf_t_op( 'FlxFormsAdminForms', array( 'first' => 50, 'search' => 'Contact' ), $adm_id );
+flxt_same( array( 'Contact' ), array_values( array_unique( array_column( $r['data']['flxFormsAdminForms']['nodes'] ?? array(), 'title' ) ) ), 'admin forms: search by name' );
+
+$r = flxf_t_op( 'FlxFormsDashboard', array(), $adm_id );
+flxt_ok( isset( $r['data']['flxFormsDashboard']['totals']['n'], $r['data']['flxFormsDashboard']['csvUrl'] ), 'dashboard: totals and CSV link', $r );
+$r = flxf_t_op( 'FlxFormsFormOptions', array(), $adm_id );
+flxt_ok( in_array( $public_id, array_column( $r['data']['flxFormsFormOptions'] ?? array(), 'databaseId' ), true ), 'form options: contact form' );
+
+$r       = flxf_t_op( 'FlxFormsEntries', array( 'first' => 2, 'form' => $public_id ), $adm_id );
+$entries = $r['data']['flxFormsEntries'] ?? array();
+flxt_ok( count( $entries['nodes'] ?? array() ) >= 1, 'entries: listed by form', $r );
+$entry_id = (int) ( $entries['nodes'][0]['databaseId'] ?? 0 );
+if ( ( $entries['totalCount'] ?? 0 ) > 2 ) {
+	flxt_ok( ! empty( $entries['pageInfo']['hasNextPage'] ), 'entries: next page' );
+}
+
+$r = flxf_t_op( 'FlxFormsEntriesMark', array( 'input' => array( 'ids' => array( $entry_id ), 'read' => true ) ), $adm_id );
+flxt_same( array(), flxf_t_errs( $r, 'flxFormsEntriesMark' ), 'entries: mark read' );
+$r = flxf_t_op( 'FlxFormsEntriesMark', array( 'input' => array( 'ids' => array( $entry_id ), 'read' => false ) ), $adm_id );
+flxt_same( 1, $r['data']['flxFormsEntriesMark']['changed'] ?? null, 'entries: mark unread' );
+$r = flxf_t_op( 'FlxFormsEntries', array( 'first' => 50, 'form' => $public_id, 'status' => 'unread' ), $adm_id );
+flxt_ok( in_array( $entry_id, array_column( $r['data']['flxFormsEntries']['nodes'] ?? array(), 'databaseId' ), true ), 'entries: unread filter' );
+
+$r = flxf_t_op( 'FlxFormsEntry', array( 'id' => $entry_id ), $adm_id );
+flxt_ok( ! empty( $r['data']['flxFormsEntry']['fields'] ), 'entry: fields', $r );
+$r = flxf_t_op( 'FlxFormsEntryReply', array( 'input' => array( 'id' => $entry_id, 'message' => 'Thanks "friend"' ) ), $adm_id );
+$replies = $r['data']['flxFormsEntryReply']['entry']['replies'] ?? array();
+$last    = end( $replies );
+flxt_ok( is_array( $last ) && ! empty( $last['byStaff'] ) && false !== strpos( (string) $last['body'], 'friend' ), 'entry: staff reply', $r );
+$r = flxf_t_op( 'FlxFormsEntryReply', array( 'input' => array( 'id' => $entry_id, 'message' => '', 'close' => true ) ), $adm_id );
+flxt_same( true, $r['data']['flxFormsEntryReply']['entry']['closed'] ?? null, 'entry: close without text' );
+$r = flxf_t_op( 'FlxFormsEntryReply', array( 'input' => array( 'id' => $entry_id, 'message' => '' ) ), $adm_id );
+flxt_same( array( array( 'INVALID_INPUT', 'message' ) ), flxf_t_errs( $r, 'flxFormsEntryReply' ), 'entry: empty reply refused' );
+
+$r      = flxf_t_op( 'FlxFormsFormDuplicate', array( 'input' => array( 'id' => $public_id ) ), $adm_id );
+$copy   = $r['data']['flxFormsFormDuplicate']['form'] ?? array();
+$copied = (int) ( $copy['databaseId'] ?? 0 );
+flxt_ok( $copied > 0 && $copied !== $public_id, 'form: duplicate', $r );
+$r = flxf_t_op( 'FlxFormsFormDelete', array( 'input' => array( 'id' => $copied ) ), $adm_id );
+flxt_same( true, $r['data']['flxFormsFormDelete']['deleted'] ?? null, 'form: delete the copy' );
+$r = flxf_t_op( 'FlxFormsEntriesDelete', array( 'input' => array( 'ids' => array( $entry_id ) ) ), $adm_id );
+flxt_same( 1, $r['data']['flxFormsEntriesDelete']['deleted'] ?? null, 'entries: delete' );
+$r = flxf_t_op( 'FlxFormsEntry', array( 'id' => $entry_id ), $adm_id );
+flxt_ok( empty( $r['data']['flxFormsEntry'] ), 'entry: gone after delete', $r );
 
 flxt_done();

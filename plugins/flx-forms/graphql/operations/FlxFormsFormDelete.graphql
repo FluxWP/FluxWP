@@ -1,0 +1,6 @@
+mutation FlxFormsFormDelete($input: FlxFormsFormDeleteInput!) {
+  flxFormsFormDelete(input: $input) {
+    deleted
+    errors { code message field }
+  }
+}

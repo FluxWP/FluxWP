@@ -161,6 +161,8 @@ add_action( 'wp_footer', 'flxf_fork_enqueue_theme_style', 5 );
 
 /* Dashboard admin page (KPIs, charts, recent responses, CSV export). */
 require_once __DIR__ . '/dashboard/dashboard.php';
+/* 2.6.0: Dashboard, All forms and Responses as one React screen on the Flux GraphQL shell. */
+require_once __DIR__ . '/flux-ui.php';
 
 /* Automations: flows after form submit / payment (certificate via Flux Certificates, e-mail, webhook). */
 require_once __DIR__ . '/automations/automations.php';
