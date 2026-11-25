@@ -1011,6 +1011,11 @@ body.flxa #adminmenu .wp-submenu > li.flxa-sub-more .flxa-sub-chev { display: in
 body.flxa #adminmenu .wp-submenu > li.flxa-sub-more .flxa-sub-chev svg { width: 14px; height: 14px; }
 body.flxa #adminmenu .wp-submenu.flxa-sub-open > li.flxa-sub-more .flxa-sub-chev { transform: rotate(90deg); }
 body.flxa #adminmenu .wp-submenu.flxa-sub-open > li.flxa-sub-rare > a { padding-left: 18px !important; }
+body.flxa #adminmenu .wp-submenu > li.flxa-sub-more > a { cursor: pointer; }
+body.flxa #adminmenu .wp-submenu > li.flxa-sub-more.current > a::after, body.flxa #adminmenu .wp-submenu > li.flxa-sub-more > a::after { content: none; display: none; }
+/* Alt menü satırı: ad solda, rozet sağda aynı satırda; uzun ad kendi içinde sarılır, rozet alt satıra düşmez */
+body.flxa #adminmenu .wp-submenu li:not(.wp-submenu-head) > a { display: flex; align-items: center; gap: 6px; }
+body.flxa #adminmenu .wp-submenu li > a .awaiting-mod, body.flxa #adminmenu .wp-submenu li > a .update-plugins, body.flxa #adminmenu .wp-submenu li > a .menu-counter { flex: none; margin: 0 0 0 auto; }
 /* Komut paleti arama kutusu: çerçeve ve odak halkası yok */
 html body .flxa-pal .flxa-pal-in input[type=search], html body .flxa-pal .flxa-pal-in input[type=search]:focus { border: 0 !important; box-shadow: none !important; outline: none !important; background: transparent !important; border-radius: 0 !important; padding-left: 0 !important; }
 /* ───────── Mobil düzen (1.1.1) ───────── */

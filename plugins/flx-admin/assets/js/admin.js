@@ -1529,18 +1529,22 @@
 		var open = cur;
 		try { open = open || localStorage.getItem(subOpenKey(top)) === '1'; } catch (e) {}
 		ul.classList.toggle('flxa-sub-open', open);
-		var btn = el('a', { href: '#', role: 'button', 'aria-expanded': open ? 'true' : 'false' }, [
+		/* href YOK: "#" adresi geçerli sayfaya çözülür; Flux ekran kabuğu (sayfa yenilemeden geçiş) bunu menüde
+		   geçerli sayfa sanıp "Diğer" satırını ve üst grubu seçili gösteriyordu. */
+		var btn = el('a', { role: 'button', tabindex: '0', 'aria-expanded': open ? 'true' : 'false' }, [
 			el('span', { text: T.other || 'Diğer' }),
 			el('span', { 'class': 'flxa-sub-n', text: String(rare.length) }),
 			el('span', { 'class': 'flxa-sub-chev', html: B.icons.chevron || '' })
 		]);
-		btn.addEventListener('click', function (e) {
+		function flip(e) {
 			e.preventDefault();
 			e.stopPropagation();
 			var on = ul.classList.toggle('flxa-sub-open');
 			btn.setAttribute('aria-expanded', on ? 'true' : 'false');
 			try { localStorage.setItem(subOpenKey(top), on ? '1' : '0'); } catch (er) {}
-		});
+		}
+		btn.addEventListener('click', flip);
+		btn.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') flip(e); });
 		ul.insertBefore(el('li', { 'class': 'flxa-sub-more' }, [btn]), rare[0]);
 	}
 	$$('#adminmenu > li.menu-top .wp-submenu').forEach(function (ul) {

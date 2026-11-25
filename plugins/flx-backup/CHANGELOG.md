@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 1.8.0
 - Depolama geçmişi ve türe göre halka grafiği ortak etkileşimli grafiğe geçti: yığılmış alan, kota kesikli çizgi, ipucunda toplam, legend'dan seri aç/kapa. Ortak modül paketi yenilendi.
 

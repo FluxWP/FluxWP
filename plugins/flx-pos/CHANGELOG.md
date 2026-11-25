@@ -1,5 +1,8 @@
 # Flux POS Entegrator
 
+## 0.2.2
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.2.1
 
 - "Kart ile öde (Flux POS)" yöntemi ilk kartlı POS hesabı eklenene kadar kapalı gelir. Önceden hesap yokken de "açık" görünüyordu; Flux Donate onu kart yöntemi sayınca iyzico bandı ve tek kart seçimi kayboluyordu. İlk kartlı hesap kaydedilince yöntem kendiliğinden açılır; elle kapattıysanız kapalı kalır.
