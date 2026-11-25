@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026.11.25.1
+
+- PhpRedis 6 with igbinary is built into the `wordpress` (apache, fpm) and `worker` images (`igbinary` + `redis` PECL, redis compiled with igbinary). Redis object cache plugins pick it up on their own (Redis Object Cache: set `WP_REDIS_SERIALIZER=igbinary`). Rebuild/redeploy to get it.
+
 ## 2026.11.20.3
 
 - Realtime serves visitors too (image `realtime-bun1.4` rebuilt, mu-plugin FluxWP Realtime 1.1.0): visitor tickets (`flx_realtime_visitor_ticket()`) that carry only the topics WordPress listed, never users or capabilities; `flx_realtime_publish( ..., array( 'topic' => ... ) )` reaches exactly those sockets; public topics (`public.*`) through the `flx_realtime_public_topics` filter and `POST /wp-json/flx-realtime/v1/public-ticket`. `RT_MAX_VISITORS` (default 300) caps visitor sockets, `RT_VISITOR_LIFE_MINUTES` (default 60) their lifetime. Redeploy the stack to pick up the new image and mu-plugin.
