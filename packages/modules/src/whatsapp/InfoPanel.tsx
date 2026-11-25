@@ -1,119 +1,232 @@
-// Kişi paneli: ad, telefon, etiketler, atanan, notlar (otomatik kayıt), eklenti bölümleri (sertifikalar vb.).
+// Kişi bilgisi paneli (klasik .flxc-info): ad, telefon, etiketler, atanan, kişi notları, eklenti bölümleri, sabitle/kapat.
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useStore } from 'zustand';
-import { Copy, ExternalLink, Pin, X } from 'lucide-react';
 import type { FlxcSection } from '@fluxwp/core';
-import { Avatar } from '@fluxwp/ui';
 import type { WaEngine } from './engine';
+import { I } from './icons';
+import { Av, Ib, fmt, useL, useUi } from './ui';
 
-export function InfoPanel({ engine, id, onClose, onInsert, toast }: { engine: WaEngine; id: number; onClose: () => void; onInsert: (s: string) => void; toast: (s: string) => void }) {
-  const { t, i18n } = useTranslation();
-  const c = useStore(engine.store, (s) => s.chats[id]);
+export function InfoPanel({ engine, id, onClose, onInsert, onLightbox }: { engine: WaEngine; id: number | null; onClose: () => void; onInsert: (s: string) => void; onLightbox: (src: string) => void }) {
+  const { L, lang } = useL();
+  const ui = useUi();
+  const c = useStore(engine.store, (s) => (id ? s.chats[id] : undefined));
   const boot = useStore(engine.store, (s) => s.boot);
   const [sections, setSections] = useState<FlxcSection[]>([]);
   const [name, setName] = useState(c?.name ?? '');
   const [notes, setNotes] = useState(c?.notes ?? '');
-  const [saved, setSaved] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    if (!id) return;
     let live = true;
-    void engine.api.chat(id).then((r) => live && (setSections(r.sections), setName(r.chat.name), setNotes(r.chat.notes)), () => undefined);
+    setSections([]);
+    void engine.api.chat(id).then(
+      (r) => {
+        if (!live) return;
+        engine.upsert(r.chat);
+        setSections(r.sections);
+        setName(r.chat.name);
+        setNotes(r.chat.notes);
+      },
+      () => undefined,
+    );
     return () => {
       live = false;
     };
   }, [engine, id]);
+  useEffect(() => {
+    setName(c?.name ?? '');
+    setNotes(c?.notes ?? '');
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!c) return null;
-  const save = (patch: Parameters<WaEngine['update']>[1]) => void engine.update(id, patch).catch((e: Error) => toast(e.message));
+  const patch = (p: Parameters<WaEngine['update']>[1], ok?: string) =>
+    void engine.update(c.id, p).then(
+      () => ok && ui.toast(ok),
+      (e: Error) => ui.toast(e.message, 'err'),
+    );
+  const labels = boot?.labels ?? [];
+  const agents = boot?.agents ?? [];
+  const f = fmt(lang);
 
   return (
-    <aside className="wa-info">
-      <header>
-        <strong>{t('wa.info.title')}</strong>
-        <button type="button" className="icon-btn" onClick={onClose} aria-label={t('common.close')}><X size={17} /></button>
+    <>
+      <header className="flxc-info-head">
+        <Ib n="close" title={L('Kapat')} onClick={onClose} />
+        <strong>{L('Kişi bilgisi')}</strong>
       </header>
-      <div className="wa-info-body">
-        <div className="wa-info-hero">
-          <Avatar src={c.avatar} name={c.title} size={84} />
-          <input
-            className="wa-info-name"
-            value={name}
-            placeholder={c.pushName || c.phoneFmt}
-            onChange={(e) => setName(e.target.value)}
-            onBlur={() => name !== c.name && save({ name })}
-            onKeyDown={(e) => e.key === 'Enter' && (e.target as HTMLInputElement).blur()}
-          />
-          {c.pushName && c.pushName !== name && <span className="muted small">~{c.pushName}</span>}
-          <button type="button" className="btn-link" onClick={() => void navigator.clipboard?.writeText(c.phoneFmt).then(() => toast(t('wa.info.copied')))}>
-            {c.phoneFmt} <Copy size={13} />
-          </button>
+      <div className="flxc-info-body">
+        <div className="flxc-info-hero">
+          {c.avatar ? (
+            <button type="button" className="flxc-info-av" title={L('Büyüt')} aria-label={L('Fotoğrafı büyüt')} onClick={() => onLightbox(c.avatar)}>
+              <Av c={c} size="xl" />
+            </button>
+          ) : (
+            <Av c={c} size="xl" />
+          )}
+          <label className="flxc-info-name">
+            <input
+              type="text"
+              className="flxc-info-name-in"
+              value={name}
+              placeholder={c.pushName || c.phoneFmt}
+              aria-label={L('Kişi adı')}
+              onChange={(e) => setName(e.target.value)}
+              onBlur={() => name.trim() !== c.name && patch({ name: name.trim() })}
+              onKeyDown={(e) => e.key === 'Enter' && (e.target as HTMLInputElement).blur()}
+            />
+            <I n="edit" />
+          </label>
+          {c.pushName && c.pushName !== c.name && (c.channel || 'whatsapp') === 'whatsapp' && <small className="flxc-muted">{L('WhatsApp adı: {n}', { n: c.pushName })}</small>}
+          <div className="flxc-info-phone">
+            <span>{c.phoneFmt || c.jid}</span>
+            {c.phone && (
+              <Ib
+                n="copy"
+                title={L('Numarayı kopyala')}
+                onClick={() =>
+                  void navigator.clipboard?.writeText('+' + c.phone).then(
+                    () => ui.toast(L('Kopyalandı')),
+                    () => undefined,
+                  )
+                }
+              />
+            )}
+            {c.phone && (
+              <a className="flxc-ib" href={'tel:+' + c.phone} title={L('Ara')}>
+                <I n="phone" />
+              </a>
+            )}
+          </div>
         </div>
-
-        <section>
-          <h3>{t('wa.info.labels')}</h3>
-          <div className="wa-chips">
-            {boot?.labels.map((l) => {
+        <div className="flxc-info-sec">
+          <h4>
+            <I n="label" />
+            {L('Etiketler')}
+          </h4>
+          <div className="flxc-info-labels">
+            {labels.map((l) => {
               const on = c.labels.includes(l.id);
               return (
-                <button key={l.id} type="button" className={on ? 'on' : ''} onClick={() => save({ labels: on ? c.labels.filter((x) => x !== l.id) : [...c.labels, l.id] })}>
-                  <i style={{ background: l.color }} /> {l.name}
+                <button
+                  key={l.id}
+                  type="button"
+                  className={'flxc-chip flxc-chip-label' + (on ? ' is-on' : '')}
+                  style={{ ['--lc' as string]: l.color }}
+                  onClick={() => {
+                    const ls = on ? c.labels.filter((x) => x !== l.id) : [...c.labels, l.id];
+                    patch({ labels: ls.length ? ls : [''] });
+                  }}
+                >
+                  <i className="flxc-dot" />
+                  {l.name}
                 </button>
               );
             })}
+            {!labels.length && <small className="flxc-muted">{L('Etiketler Ayarlar sayfasından tanımlanır.')}</small>}
           </div>
-        </section>
-
-        <section>
-          <h3>{t('wa.assign')}</h3>
-          <select className="wa-select" value={c.assigned} onChange={(e) => save({ assigned: Number(e.target.value) })}>
-            <option value={0}>{t('wa.unassigned')}</option>
-            {boot?.agents.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
+        </div>
+        <div className="flxc-info-sec">
+          <h4>
+            <I n="assign" />
+            {L('Atanan temsilci')}
+          </h4>
+          <select className="flxc-field" value={c.assigned} onChange={(e) => patch({ assigned: +e.target.value })}>
+            <option value="0">{L('— Atanmadı —')}</option>
+            {agents.map((a) => (
+              <option key={a.id} value={a.id}>
+                {a.name}
+              </option>
+            ))}
           </select>
-        </section>
-
-        <section>
-          <h3>{t('wa.info.notes')} {saved && <span className="muted xsmall">· {t('wa.info.saved')}</span>}</h3>
+        </div>
+        {boot?.me.manage && !!boot.staff?.length && !c.group && (
+          <div className="flxc-info-sec">
+            <h4>
+              <I n="person" />
+              {L('Personel')}
+            </h4>
+            <select
+              className="flxc-field"
+              aria-label={L('Personel')}
+              value={c.staffUser ?? 0}
+              onChange={(e) => patch({ staffUser: +e.target.value }, +e.target.value ? L('Sohbet personele bağlandı') : L('Personel bağlantısı kaldırıldı'))}
+            >
+              <option value="0">{L('— Personel değil —')}</option>
+              {boot.staff.map((u) => (
+                <option key={u.id} value={u.id}>
+                  {u.name}
+                </option>
+              ))}
+            </select>
+            <small className="flxc-help">
+              {!c.phone && /@lid$/.test(c.jid || '')
+                ? L('WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.')
+                : L('Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.')}
+            </small>
+          </div>
+        )}
+        <div className="flxc-info-sec">
+          <h4>
+            <I n="note" />
+            {L('Kişi notları')}
+          </h4>
           <textarea
-            className="wa-notes"
+            className="flxc-field"
             rows={4}
             value={notes}
-            placeholder={t('wa.info.notesHint')}
+            placeholder={L('Bu kişi hakkında yalnız temsilcilerin göreceği notlar')}
             onChange={(e) => {
               const v = e.target.value;
               setNotes(v);
-              setSaved(false);
               if (timer.current) clearTimeout(timer.current);
-              timer.current = setTimeout(() => void engine.update(id, { notes: v }).then(() => setSaved(true), (x: Error) => toast(x.message)), 900);
+              timer.current = setTimeout(() => patch({ notes: v }, L('Not kaydedildi')), 900);
             }}
           />
-        </section>
-
-        {sections.map((s) => (
-          <section key={s.id}>
-            <h3>{s.title}</h3>
-            <ul className="wa-sec">
+        </div>
+        <div>
+          {sections.map((s) => (
+            <div key={s.id} className="flxc-info-sec">
+              <h4>
+                {s.id === 'flxs' ? <I n="cert" /> : s.id === 'flxb' ? <I n="gift" /> : null}
+                {s.title}
+              </h4>
               {s.items.map((it, i) => (
-                <li key={i}>
-                  <span className="grow">
-                    <span className="ellipsis">{it.label}</span>
-                    {it.sub && <span className="muted xsmall">{it.sub}</span>}
+                <div key={i} className="flxc-info-item">
+                  <span>
+                    <strong>{it.label}</strong>
+                    {it.sub && <small>{it.sub}</small>}
                   </span>
-                  {it.insert && <button type="button" className="btn-ghost small" onClick={() => onInsert(it.insert!)}>{t('wa.info.insert')}</button>}
-                  {it.url && <a className="icon-btn" href={it.url} target="_blank" rel="noreferrer noopener"><ExternalLink size={15} /></a>}
-                </li>
+                  {it.url && (
+                    <a className="flxc-ib" href={it.url} target="_blank" rel="noopener" title={L('Aç')}>
+                      <I n="open" />
+                    </a>
+                  )}
+                  {it.insert && <Ib n="send" title={L('Mesaja ekle')} onClick={() => onInsert(it.insert!)} />}
+                </div>
               ))}
-            </ul>
-          </section>
-        ))}
-
-        <section className="wa-info-actions">
-          <button type="button" className="btn-ghost small" onClick={() => save({ pinned: !c.pinned })}><Pin size={14} /> {t(c.pinned ? 'wa.unpin' : 'wa.pin')}</button>
-          <button type="button" className="btn-ghost small" onClick={() => save({ status: c.status === 'closed' ? 'open' : 'closed' })}>{t(c.status === 'closed' ? 'wa.reopen' : 'wa.close')}</button>
-        </section>
-        <p className="muted xsmall">{t('wa.info.firstSeen', { date: new Date(c.created).toLocaleDateString(i18n.language, { day: 'numeric', month: 'long', year: 'numeric' }) })}</p>
+            </div>
+          ))}
+        </div>
+        <div className="flxc-info-sec flxc-info-actions">
+          <button type="button" className="flxc-info-act" onClick={() => patch({ pinned: !c.pinned })}>
+            <I n="pin" />
+            {c.pinned ? L('Sabitlemeyi kaldır') : L('Sohbeti sabitle')}
+          </button>
+          {c.status === 'closed' ? (
+            <button type="button" className="flxc-info-act" onClick={() => patch({ status: 'open' })}>
+              <I n="reopen" />
+              {L('Sohbeti yeniden aç')}
+            </button>
+          ) : (
+            <button type="button" className="flxc-info-act is-danger" onClick={() => patch({ status: 'closed' })}>
+              <I n="done" />
+              {L('Sohbeti kapat')}
+            </button>
+          )}
+        </div>
+        <p className="flxc-help flxc-center">{L('İlk kayıt: {d}', { d: f.long(c.created) })}</p>
       </div>
-    </aside>
+    </>
   );
 }

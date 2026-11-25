@@ -1,6 +1,6 @@
 // Ortak ekran kabuğu: her modül ekranı aynı başlığı, sekmeleri, kenar boşluklarını ve en fazla genişliği kullanır.
 // Modül kendi başlık/sekme CSS'ini yazmaz; içerik `className` ile modülün kök sınıfını taşır (eski CSS'i çalışır).
-import type { ReactNode } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
 
 export interface TabItem<T extends string = string> {
   id: T;
@@ -15,7 +15,7 @@ export interface TabsProps<T extends string = string> {
   current: T | null | undefined;
   onChange: (id: T) => void;
   /** Ekran okuyucu etiketi (genelde ekran başlığı). */
-  label?: string;
+  label?: string | undefined;
   /** İkincil sekme sırası (ekran içinde alt görünüm): daha küçük ve alt çizgisiz. */
   size?: 'md' | 'sm';
   className?: string;
@@ -48,6 +48,8 @@ export interface ScreenProps<T extends string = string> {
   subtitle?: ReactNode;
   /** Başlık simgesi (WP'de eklenti logosu: host.appIcon). */
   icon?: string | ReactNode;
+  /** Başlığın üstündeki geri bağlantısı (klasik "‹ Liste" bağlantısı). */
+  back?: ReactNode;
   /** Başlığın sağındaki düğmeler. */
   actions?: ReactNode;
   /** Başlık ile sekmeler arasındaki bildirim alanı. */
@@ -64,16 +66,22 @@ export interface ScreenProps<T extends string = string> {
   children?: ReactNode;
 }
 
+/** Ekranın varsayılan alt başlığı (klasik Flux Admin başlığı gibi: ekran kendi alt başlığını vermezse paket açıklaması). */
+export const ScreenDefaults = createContext<{ subtitle?: string | undefined }>({});
+
 /** Ortak ekran kabuğu: başlık + sekmeler + içerik; padding, en fazla genişlik, safe area ve taşma tek yerde. */
 export function Screen<T extends string = string>(p: ScreenProps<T>) {
+  const def = useContext(ScreenDefaults);
+  const subtitle = p.subtitle ?? def.subtitle;
   const icon = typeof p.icon === 'string' ? <img className="flx-page__icon" src={p.icon} alt="" width={40} height={40} /> : p.icon;
   return (
     <div className={'flx-page flx-page--' + (p.width || 'md') + (p.className ? ' ' + p.className : '')}>
+      {p.back ? <div className="flx-page__back">{p.back}</div> : null}
       <header className="flx-page__head">
         {icon}
         <div className="flx-page__title">
           <h1>{p.title}</h1>
-          {p.subtitle ? <p>{p.subtitle}</p> : null}
+          {subtitle ? <p>{subtitle}</p> : null}
         </div>
         {p.actions ? <div className="flx-page__actions">{p.actions}</div> : null}
       </header>

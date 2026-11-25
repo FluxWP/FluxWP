@@ -1,62 +1,131 @@
-// Yazma alanı: metin (otomatik büyür, Enter gönderir), dahili not modu, alıntı çubuğu, ek (seç/yapıştır/sürükle),
-// "/" hazır cevap seçici, sohbet başına taslak, yazıyor sinyali.
+// Sohbet alt alanı (klasik .flxc-foot): "/" hazır cevap ve emoji açılırı, hazır cevap baloncukları, alıntı çubuğu,
+// ek çubuğu, yazma kutusu (dahili not etiketi, otomatik büyür, Enter gönderir), ses kaydı, sohbet başına taslak.
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FileText, Mic, Paperclip, Send, Smile, Sparkles, StickyNote, X, Zap } from 'lucide-react';
 import type { FlxcMessage, FlxcReply } from '@fluxwp/core';
 import type { WaEngine } from './engine';
-import { fileSize } from './format';
-import { EmojiPicker, Recorder, canRecord } from './extras';
+import { I } from './icons';
+import { EmojiPicker, Recorder, canRecord, emoRecent } from './extras';
+import { Ib, fmtSize, store, useL, useUi } from './ui';
 
-const drafts = new Map<string, string>();
-const touch = typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+const mobile = () => typeof matchMedia === 'function' && matchMedia('(max-width: 899px)').matches;
+const touch = () => typeof window !== 'undefined' && 'ontouchstart' in window;
 
 export interface ComposerProps {
   engine: WaEngine;
   chatId: number;
-  scope: string;
+  chatTitle: string;
   quote: FlxcMessage | null;
   clearQuote: () => void;
   replies: FlxcReply[];
   ai: boolean;
+  chips: boolean;
+  repliesUrl: string;
   onSent: () => void;
-  onError: (msg: string) => void;
   /** Dışarıdan (kişi paneli) metne eklenecek; n her eklemede artar. */
   inject?: { text: string; n: number } | null;
 }
 
-export function Composer({ engine, chatId, scope, quote, clearQuote, replies, ai, onSent, onError, inject }: ComposerProps) {
-  const { t } = useTranslation();
-  const key = scope + '|' + chatId;
-  const [text, setText] = useState(() => drafts.get(key) ?? '');
+interface Att {
+  file: File;
+  kind: 'image' | 'video' | 'document';
+  url: string;
+}
+const attKind = (f: File): Att['kind'] => (f.type.startsWith('image/') && f.type !== 'image/svg+xml' ? 'image' : f.type.startsWith('video/') ? 'video' : 'document');
+
+export function Composer({ engine, chatId, chatTitle, quote, clearQuote, replies, ai, chips, repliesUrl, onSent, inject }: ComposerProps) {
+  const { L, lang } = useL();
+  const ui = useUi();
+  const draftKey = 'draft_' + chatId;
+  const [text, setText] = useState(() => store(draftKey) || '');
   const [note, setNote] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [pick, setPick] = useState(0);
+  const [att, setAtt] = useState<Att[]>([]);
+  const [pop, setPop] = useState<'' | 'emoji' | 'slash'>('');
+  const [sel, setSel] = useState(0);
   const [aiBusy, setAiBusy] = useState(false);
-  const [drag, setDrag] = useState(false);
-  const [emoji, setEmoji] = useState(false);
   const [recording, setRecording] = useState(false);
+  const [, setMq] = useState(0);
   const ta = useRef<HTMLTextAreaElement>(null);
-  const fileInput = useRef<HTMLInputElement>(null);
-  const preview = useMemo(() => (file?.type.startsWith('image/') ? URL.createObjectURL(file) : ''), [file]);
-  useEffect(() => () => void (preview && URL.revokeObjectURL(preview)), [preview]);
+  const fileIn = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    drafts.set(key, text);
-  }, [key, text]);
-  const insertAtCursor = (str: string) => {
+    const mq = matchMedia('(max-width: 899px)');
+    const f = () => setMq((x) => x + 1);
+    mq.addEventListener?.('change', f);
+    return () => mq.removeEventListener?.('change', f);
+  }, []);
+  useEffect(() => {
+    store(draftKey, text);
+  }, [draftKey, text]);
+  useEffect(() => () => att.forEach((a) => URL.revokeObjectURL(a.url)), []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const insertAtCursor = (s: string) => {
     const el = ta.current;
     const a = el?.selectionStart ?? text.length;
     const b = el?.selectionEnd ?? text.length;
-    setText((cur) => cur.slice(0, a) + str + cur.slice(b));
+    setText((cur) => cur.slice(0, a) + s + cur.slice(b));
     requestAnimationFrame(() => {
       el?.focus();
-      el?.setSelectionRange(a + str.length, a + str.length);
+      el?.setSelectionRange(a + s.length, a + s.length);
     });
   };
   useEffect(() => {
-    if (inject?.text) insertAtCursor((text && !text.endsWith(' ') ? ' ' : '') + inject.text);
+    if (inject?.text) insertAtCursor((text && !/\s$/.test(text) ? ' ' : '') + inject.text);
   }, [inject?.n]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!mobile()) ta.current?.focus();
+  }, [chatId, quote]);
+  useEffect(() => {
+    const el = ta.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 160) + 'px';
+  }, [text]);
+
+  // "/" ile hazır cevap
+  const slash = /^\/([^\s]*)$/.exec(text)?.[1];
+  useEffect(() => {
+    if (slash !== undefined && !note) setPop('slash');
+    else if (pop === 'slash' && slash === undefined) setPop('');
+  }, [slash, note]); // eslint-disable-line react-hooks/exhaustive-deps
+  const slashItems = useMemo(() => {
+    const q = (slash ?? '').toLocaleLowerCase(lang);
+    return replies
+      .filter((r) => !q || (r.shortcut + ' ' + r.title + ' ' + r.body).toLocaleLowerCase(lang).includes(q))
+      .sort((a, b) => (a.shortcut.indexOf(q) === 0 ? 0 : 1) - (b.shortcut.indexOf(q) === 0 ? 0 : 1) || b.uses - a.uses);
+  }, [slash, replies, lang]);
+  useEffect(() => setSel(0), [slash]);
+
+  const useReply = async (r: FlxcReply) => {
+    setPop('');
+    try {
+      const res = await engine.api.useReply(r.id, chatId);
+      const body = res.text || r.body;
+      setText((v) => {
+        const cur = v.replace(/^\/\S*$/, '');
+        return cur ? cur + (/\s$/.test(cur) ? '' : ' ') + body : body;
+      });
+      requestAnimationFrame(() => {
+        const el = ta.current;
+        if (el) {
+          el.focus();
+          el.selectionStart = el.selectionEnd = el.value.length;
+        }
+      });
+    } catch (e) {
+      ui.toast((e as Error).message, 'err');
+    }
+  };
+
+  const addFiles = (files: File[]) => {
+    if (!files.length) return;
+    setAtt((cur) => [...cur, ...files.map((f) => ({ file: f, kind: attKind(f), url: URL.createObjectURL(f) }))]);
+    ta.current?.focus();
+  };
+  const removeAtt = (a: Att) => {
+    URL.revokeObjectURL(a.url);
+    setAtt((cur) => cur.filter((x) => x !== a));
+  };
 
   const sendVoice = async (blob: Blob, name: string) => {
     setRecording(false);
@@ -65,175 +134,281 @@ export function Composer({ engine, chatId, scope, quote, clearQuote, replies, ai
       await engine.send(chatId, { type: 'audio', file: blob, name, quoted: quote?.id });
       clearQuote();
     } catch (e) {
-      onError((e as Error).message);
+      ui.toast((e as Error).message, 'err');
     }
-  };
-  useEffect(() => {
-    ta.current?.focus();
-  }, [chatId, quote]);
-  useEffect(() => {
-    const el = ta.current;
-    if (!el) return;
-    el.style.height = 'auto';
-    el.style.height = Math.min(160, el.scrollHeight) + 'px';
-  }, [text]);
-
-  const slash = /^\/(\S*)$/.exec(text)?.[1];
-  const matches = useMemo(() => {
-    if (slash === undefined) return [];
-    const s = slash.toLocaleLowerCase('tr');
-    return replies.filter((r) => !s || r.shortcut.includes(s) || r.title.toLocaleLowerCase('tr').includes(s) || r.body.toLocaleLowerCase('tr').includes(s)).slice(0, 8);
-  }, [slash, replies]);
-
-  const useReply = async (r: FlxcReply) => {
-    setText(r.body);
-    try {
-      const filled = await engine.api.useReply(r.id, chatId);
-      if (filled.text) setText(filled.text);
-    } catch {
-      /* metin dolduruldu, değişkenler kalır */
-    }
-    ta.current?.focus();
   };
 
   const submit = async () => {
     const body = text.trim();
-    if (!body && !file) return;
-    const args = file
-      ? { type: (file.type.startsWith('image/') ? 'image' : file.type.startsWith('video/') ? 'video' : 'document') as 'image' | 'video' | 'document', file, name: file.name, body, quoted: quote?.id }
-      : { type: (note ? 'note' : 'text') as 'note' | 'text', body, quoted: quote?.id };
+    if (att.length) {
+      const list = att;
+      setAtt([]);
+      setText('');
+      clearQuote();
+      onSent();
+      for (let i = 0; i < list.length; i++) {
+        const a = list[i]!;
+        try {
+          await engine.send(chatId, { type: a.kind, file: a.file, name: a.file.name, body: i === list.length - 1 ? body : '', quoted: i === 0 ? quote?.id : undefined });
+        } catch (e) {
+          ui.toast((e as Error).message, 'err');
+        }
+        URL.revokeObjectURL(a.url);
+      }
+      return;
+    }
+    if (!body) return;
     setText('');
-    setFile(null);
     clearQuote();
     onSent();
     try {
-      await engine.send(chatId, args);
+      await engine.send(chatId, { type: note ? 'note' : 'text', body, quoted: quote?.id });
+      if (note) setNote(false);
     } catch (e) {
-      onError((e as Error).message);
+      ui.toast((e as Error).message, 'err');
     }
   };
 
   const suggest = async () => {
     setAiBusy(true);
     try {
-      const r = await engine.api.ai(chatId, { fresh: !!text.trim() });
+      const r = await engine.api.ai(chatId, { fresh: true });
       if (r.text) setText(r.text);
     } catch (e) {
-      onError((e as Error).message);
+      ui.toast((e as Error).message, 'err');
     } finally {
       setAiBusy(false);
       ta.current?.focus();
     }
   };
 
-  const takeFiles = (list: FileList | null | undefined) => {
-    const f = list?.[0];
-    if (f) setFile(f);
+  const setNoteMode = (on: boolean) => {
+    setNote(on);
+    if (on) ta.current?.focus();
   };
+
+  // Escape: açılır → alıntı → not
+  useEffect(() => {
+    const k = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (pop) return setPop('');
+      if (quote) return clearQuote();
+      if (note) setNote(false);
+    };
+    document.addEventListener('keydown', k);
+    return () => document.removeEventListener('keydown', k);
+  }, [pop, quote, note, clearQuote]);
+
+  const has = text.trim().length > 0 || att.length > 0;
+  const send = has || note || mobile();
+  const showChips = chips && replies.length > 0 && !note;
+  const chipList = useMemo(() => replies.slice().sort((a, b) => b.uses - a.uses).slice(0, 14), [replies]);
+  const ph = note ? L('Yalnız temsilcilerin göreceği notu yazın') : mobile() ? L('Mesaj') : L('Mesaj yazın — hazır cevap için /');
 
   return (
     <div
-      className={'wa-composer' + (note ? ' note' : '') + (drag ? ' drag' : '')}
-      onDragOver={(e) => (e.preventDefault(), setDrag(true))}
-      onDragLeave={() => setDrag(false)}
-      onDrop={(e) => (e.preventDefault(), setDrag(false), takeFiles(e.dataTransfer.files))}
+      className="flxc-foot"
+      onDragOver={(e) => e.dataTransfer.types.includes('Files') && e.preventDefault()}
+      onDrop={(e) => {
+        if (!e.dataTransfer.files.length) return;
+        e.preventDefault();
+        addFiles(Array.from(e.dataTransfer.files));
+      }}
     >
-      {matches.length > 0 && (
-        <div className="wa-picker" role="listbox">
-          {matches.map((r, i) => (
-            <button key={r.id} type="button" className={i === pick ? 'on' : ''} onMouseEnter={() => setPick(i)} onClick={() => void useReply(r)}>
-              <strong>/{r.shortcut || r.title}</strong>
-              <span className="muted ellipsis">{r.body}</span>
+      {pop && (
+        <div className="flxc-pop" data-kind={pop}>
+          {pop === 'emoji' ? (
+            <EmojiPicker
+              onPick={(e) => {
+                emoRecent(e);
+                insertAtCursor(e);
+              }}
+            />
+          ) : (
+            <>
+              <div className="flxc-qr-head">
+                <I n="bolt" />
+                <strong>{L('Hazır cevaplar')}</strong>
+                {repliesUrl && (
+                  <a className="flxc-link" href={repliesUrl}>
+                    {L('Düzenle')}
+                  </a>
+                )}
+              </div>
+              <div className="flxc-qr-list" role="listbox">
+                {!slashItems.length && <div className="flxc-qr-empty">{replies.length ? L('Eşleşen hazır cevap yok.') : L('Henüz hazır cevap yok. "Düzenle" ile ekleyin.')}</div>}
+                {slashItems.map((r, i) => (
+                  <button key={r.id} type="button" role="option" aria-selected={i === sel} className={'flxc-qr-i' + (i === sel ? ' is-on' : '')} onMouseEnter={() => setSel(i)} onClick={() => void useReply(r)}>
+                    <span className="flxc-qr-top">
+                      {r.shortcut && <code>{'/' + r.shortcut}</code>}
+                      <strong>{r.title}</strong>
+                      {r.category && <em>{r.category}</em>}
+                    </span>
+                    <span className="flxc-qr-body">{r.body}</span>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+      {showChips && (
+        <div className="flxc-qchips" role="toolbar" aria-label={L('Hazır cevaplar')}>
+          {chipList.map((r) => (
+            <button key={r.id} type="button" className="flxc-qchip" title={r.body} onClick={() => void useReply(r)}>
+              {r.title || '/' + r.shortcut}
             </button>
           ))}
+          {repliesUrl && (
+            <a className="flxc-qchip flxc-qchip-edit" href={repliesUrl} title={L('Hazır cevapları düzenle')} aria-label={L('Hazır cevapları düzenle')}>
+              <I n="edit" />
+            </a>
+          )}
         </div>
       )}
       {quote && (
-        <div className="wa-quote-bar">
-          <div className={'wa-quote ' + quote.dir}>
-            <strong>{quote.dir === 'in' ? t('wa.customer') : quote.user || t('wa.you')}</strong>
-            <span className="ellipsis">{quote.body || t(`wa.types.${quote.type}`)}</span>
+        <div className="flxc-replybar">
+          <div className={'flxc-quote flxc-quote-' + quote.dir}>
+            <strong>{quote.dir === 'in' ? chatTitle : L('Siz')}</strong>
+            <span>{quote.body || ({ image: L('Fotoğraf'), video: L('Video'), audio: L('Sesli mesaj'), document: quote.type === 'document' ? L('Belge') : '' } as Record<string, string>)[quote.type] || ''}</span>
           </div>
-          <button type="button" className="icon-btn" onClick={clearQuote} aria-label={t('common.cancel')}><X size={16} /></button>
+          <Ib n="close" title={L('Yanıtı iptal et')} onClick={clearQuote} />
         </div>
       )}
-      {file && (
-        <div className="wa-file-bar">
-          {preview ? <img src={encodeURI(preview)} alt="" /> : <FileText size={22} />}
-          <span className="grow ellipsis">{file.name} <span className="muted small">{fileSize(file.size)}</span></span>
-          <button type="button" className="icon-btn" onClick={() => setFile(null)} aria-label={t('common.cancel')}><X size={16} /></button>
+      {att.length > 0 && (
+        <div className="flxc-attbar" role="list" aria-label={L('Ekler')}>
+          {att.map((a, i) => (
+            <div key={i} className={'flxc-att is-' + a.kind + ' is-done'} title={a.file.name + ' · ' + fmtSize(a.file.size, lang)}>
+              {a.kind === 'image' ? (
+                <img src={a.url} alt="" />
+              ) : a.kind === 'video' ? (
+                <video src={a.url + '#t=0.1'} muted preload="metadata" playsInline />
+              ) : (
+                <span className="flxc-att-doc">
+                  <I n="doc" />
+                  <small>{(a.file.name.split('.').pop() || '').slice(0, 5).toUpperCase()}</small>
+                </span>
+              )}
+              {a.kind === 'video' && <span className="flxc-att-play"><I n="play" /></span>}
+              {a.kind === 'document' && <span className="flxc-att-name">{a.file.name}</span>}
+              <button type="button" className="flxc-att-x" aria-label={L('Kaldır')} title={L('Kaldır')} onMouseDown={(e) => e.preventDefault()} onClick={() => removeAtt(a)}>
+                <I n="close" />
+              </button>
+            </div>
+          ))}
         </div>
       )}
-      {recording && (
-        <Recorder onDone={(b, n) => void sendVoice(b, n)} onCancel={() => setRecording(false)} onTick={() => engine.typing(chatId, 'recording')} onError={onError} />
-      )}
-      {note && <div className="wa-note-hint"><StickyNote size={13} /> {t('wa.noteHint')}</div>}
-      {!recording && <div className="wa-compose-row">
-        <button type="button" className="icon-btn" onClick={() => fileInput.current?.click()} title={t('wa.attach')} disabled={note}>
-          <Paperclip size={18} />
-        </button>
-        <input ref={fileInput} type="file" hidden onChange={(e) => (takeFiles(e.target.files), (e.target.value = ''))} />
-        <button type="button" className={'icon-btn' + (note ? ' active' : '')} onClick={() => setNote((x) => !x)} title={t('wa.noteMode')}>
-          <StickyNote size={18} />
-        </button>
-        {replies.length > 0 && (
-          <button type="button" className="icon-btn wa-opt" onClick={() => (setText('/'), ta.current?.focus())} title={t('wa.quickReplies')}>
-            <Zap size={18} />
-          </button>
-        )}
-        {ai && !note && (
-          <button type="button" className="icon-btn wa-opt" onClick={() => void suggest()} disabled={aiBusy} title={t('wa.aiSuggest')}>
-            <Sparkles size={18} className={aiBusy ? 'spin-slow' : ''} />
-          </button>
-        )}
-        <span className="wa-emoji-wrap">
-          <button type="button" className={'icon-btn' + (emoji ? ' active' : '')} onClick={() => setEmoji((x) => !x)} title={t('wa.emoji')}>
-            <Smile size={18} />
-          </button>
-          {emoji && <EmojiPicker onPick={(e) => insertAtCursor(e)} onClose={() => setEmoji(false)} />}
-        </span>
-        <textarea
-          ref={ta}
-          rows={1}
-          value={text}
-          placeholder={note ? t('wa.notePlaceholder') : file ? t('wa.caption') : t('wa.write')}
-          onChange={(e) => {
-            setText(e.target.value);
-            setPick(0);
-            if (!note && e.target.value) engine.typing(chatId);
-          }}
-          onPaste={(e) => {
-            if (e.clipboardData.files.length) {
-              e.preventDefault();
-              takeFiles(e.clipboardData.files);
-            }
-          }}
-          onKeyDown={(e) => {
-            if (matches.length) {
-              if (e.key === 'ArrowDown') return e.preventDefault(), setPick((p) => (p + 1) % matches.length);
-              if (e.key === 'ArrowUp') return e.preventDefault(), setPick((p) => (p - 1 + matches.length) % matches.length);
-              if (e.key === 'Enter' || e.key === 'Tab') return e.preventDefault(), void useReply(matches[pick]!);
-            }
-            if (e.key === 'Escape') {
-              if (quote) return clearQuote();
-              if (note) return setNote(false);
-            }
-            if (e.key === 'Enter' && !e.shiftKey && !touch && !e.nativeEvent.isComposing) {
-              e.preventDefault();
-              void submit();
-            }
+      <div className={'flxc-comp' + (note ? ' is-note' : '')}>
+        <Ib
+          n="emoji"
+          title={L('Emoji')}
+          cls="flxc-emo-b"
+          onClick={(e) => {
+            e.stopPropagation();
+            setPop((p) => (p === 'emoji' ? '' : 'emoji'));
           }}
         />
-        {!text.trim() && !file && !note && canRecord() ? (
-          <button type="button" className="btn-primary wa-send" onClick={() => setRecording(true)} aria-label={t('wa.voice.start')} title={t('wa.voice.start')}>
-            <Mic size={18} />
-          </button>
-        ) : (
-          <button type="button" className="btn-primary wa-send" onClick={() => void submit()} disabled={!text.trim() && !file} aria-label={t('common.send')}>
-            <Send size={17} />
-          </button>
-        )}
-      </div>}
+        <Ib
+          n="plus"
+          title={L('Ekle')}
+          cls="flxc-att-b"
+          onClick={(e) =>
+            ui.menu(
+              e.currentTarget,
+              [
+                {
+                  icon: 'image',
+                  label: L('Fotoğraf ve video'),
+                  fn: () => {
+                    if (fileIn.current) fileIn.current.accept = 'image/*,video/*';
+                    fileIn.current?.click();
+                  },
+                },
+                {
+                  icon: 'doc',
+                  label: L('Belge'),
+                  fn: () => {
+                    if (fileIn.current) fileIn.current.accept = '';
+                    fileIn.current?.click();
+                  },
+                },
+                { icon: 'bolt', label: L('Hazır cevap'), fn: () => (setText('/'), ta.current?.focus()) },
+                { icon: 'note', label: L('Dahili not'), fn: () => setNoteMode(true) },
+                ai ? { icon: 'ai', label: L('Yapay zekâ önerisi'), fn: () => void suggest() } : null,
+              ],
+              { alignLeft: true },
+            )
+          }
+        />
+        {ai && <Ib n="ai" title={L('Yapay zekâ önerisi')} cls={'flxc-ai-b' + (aiBusy ? ' is-busy' : '')} onClick={() => void suggest()} />}
+        <Ib n="mic" title={L('Sesli mesaj kaydet')} cls="flxc-mic-b" onClick={() => canRecord() && setRecording(true)} />
+        <div className="flxc-input-wrap">
+          {note && (
+            <span className="flxc-note-tag">
+              <I n="note" />
+              {L('Dahili not')}
+              <button type="button" aria-label={L('Notu iptal et')} onClick={() => setNote(false)}>
+                <I n="close" />
+              </button>
+            </span>
+          )}
+          <textarea
+            ref={ta}
+            className="flxc-input"
+            rows={1}
+            value={text}
+            placeholder={ph}
+            aria-label={L('Mesaj')}
+            enterKeyHint="send"
+            onChange={(e) => {
+              setText(e.target.value);
+              if (e.target.value && !note) engine.typing(chatId);
+            }}
+            onPaste={(e) => {
+              const files = Array.from(e.clipboardData.files);
+              if (files.length) {
+                e.preventDefault();
+                addFiles(files);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (pop === 'slash') {
+                if (e.key === 'ArrowDown') return e.preventDefault(), setSel((s) => Math.min(slashItems.length - 1, s + 1));
+                if (e.key === 'ArrowUp') return e.preventDefault(), setSel((s) => Math.max(0, s - 1));
+                if ((e.key === 'Enter' || e.key === 'Tab') && slashItems[sel]) return e.preventDefault(), void useReply(slashItems[sel]!);
+              }
+              if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing && !(mobile() && touch())) {
+                e.preventDefault();
+                void submit();
+              }
+            }}
+          />
+        </div>
+        <button
+          type="button"
+          className={'flxc-send' + (!send ? ' is-mic' : '') + (send && !has ? ' is-empty' : '')}
+          aria-label={send ? L('Gönder') : L('Sesli mesaj kaydet')}
+          onMouseDown={(e) => att.length && e.preventDefault()}
+          onClick={() => {
+            if (has) void submit();
+            else if (mobile()) ta.current?.focus();
+            else if (canRecord()) setRecording(true);
+          }}
+        >
+          <I n={send ? 'send' : 'mic'} />
+        </button>
+        <input
+          ref={fileIn}
+          type="file"
+          hidden
+          multiple
+          onChange={(e) => {
+            addFiles(Array.from(e.target.files ?? []));
+            e.target.value = '';
+          }}
+        />
+        {recording && <Recorder onDone={(b, n) => void sendVoice(b, n)} onCancel={() => setRecording(false)} onTick={() => engine.typing(chatId, 'recording')} onError={(m) => ui.toast(m, 'err')} />}
+      </div>
     </div>
   );
 }

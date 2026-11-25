@@ -26,7 +26,7 @@ import type {
   FlxGatheringKind,
   FlxGatheringStatus,
 } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { DatePicker, Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { Card, Empty, Head, Ic, errText, href, useCrm, type Route } from './ui';
 
@@ -99,7 +99,7 @@ function GatheringList({ route }: { route: Route }) {
     <>
       <Head
         title={t('Events')}
-        lead={t('Planting days, meetings and trainings. People other plugins attach, and the messages you send them.')}
+        lead={t('Events of every FluxWP package in one place. Close an event when it is over: it moves to the archive, its records stay valid and packages stop adding new ones.')}
         actions={
           can && (
             <a className="button button-primary" href={href('events/new')}>
@@ -156,23 +156,8 @@ function GatheringList({ route }: { route: Route }) {
 function EventCard({ e, mailReady }: { e: CardNode; mailReady: boolean }) {
   const crm = useCrm();
   const { t, num, can } = crm;
-  const refresh = useRefresh();
-  const status = useFlxMutation(FlxCrmGatheringStatus);
-  const del = useFlxMutation(FlxCrmGatheringDelete);
-  const page = useFlxMutation(FlxCrmGatheringPage);
-  const [ask, setAsk] = useState(false);
   const url = href('event/' + e.databaseId);
   const bar = e.stats.find((s) => s.progress != null) ?? (e.progress != null ? { progress: e.progress, hint: e.progressHint } : null);
-  const run = async (fn: () => Promise<{ errors: ReadonlyArray<{ message: string }> } | null | undefined>, ok: string) => {
-    try {
-      const r = await fn();
-      if (!r || r.errors.length) throw new Error(errText(r?.errors));
-      crm.tell('ok', ok);
-      refresh();
-    } catch (err) {
-      crm.fail(err);
-    }
-  };
   return (
     <article className={'flxcrm-card flxcrm-evcard' + (e.status === 'CLOSED' ? ' is-closed' : '')}>
       <a className="flxcrm-evcard__cover" href={url} tabIndex={-1} aria-hidden="true">
@@ -227,8 +212,35 @@ function EventCard({ e, mailReady }: { e: CardNode; mailReady: boolean }) {
           </a>
         )}
         <span className="flxcrm-evcard__sp" />
+        <EventMore e={e} />
+      </footer>
+    </article>
+  );
+}
+
+/** "⋯" menu of an event (card footer and detail header, like the classic page). */
+function EventMore({ e, size = 'small' }: { e: CardNode; size?: 'small' | 'normal' }) {
+  const crm = useCrm();
+  const { t, can } = crm;
+  const refresh = useRefresh();
+  const status = useFlxMutation(FlxCrmGatheringStatus);
+  const del = useFlxMutation(FlxCrmGatheringDelete);
+  const page = useFlxMutation(FlxCrmGatheringPage);
+  const [ask, setAsk] = useState(false);
+  const run = async (fn: () => Promise<{ errors: ReadonlyArray<{ message: string }> } | null | undefined>, ok: string) => {
+    try {
+      const r = await fn();
+      if (!r || r.errors.length) throw new Error(errText(r?.errors));
+      crm.tell('ok', ok);
+      refresh();
+    } catch (err) {
+      crm.fail(err);
+    }
+  };
+  return (
+    <>
         <details className="flxcrm-more">
-          <summary className="button button-small" aria-label={t('More actions')}>
+          <summary className={size === 'small' ? 'button button-small' : 'button'} aria-label={t('More actions')}>
             <span aria-hidden="true">⋯</span>
           </summary>
           <div className="flxcrm-more__menu" role="menu">
@@ -271,7 +283,6 @@ function EventCard({ e, mailReady }: { e: CardNode; mailReady: boolean }) {
             )}
           </div>
         </details>
-      </footer>
       {ask && (
         <Modal title={t('Delete')} onClose={() => setAsk(false)}>
           <p>{t('Are you sure? This cannot be undone.')}</p>
@@ -293,7 +304,7 @@ function EventCard({ e, mailReady }: { e: CardNode; mailReady: boolean }) {
           </div>
         </Modal>
       )}
-    </article>
+    </>
   );
 }
 
@@ -340,6 +351,7 @@ function GatheringDetail({ id, route, go }: { id: number; route: Route; go: (to:
                   <Ic n="send" /> {crm.t('Send message')}
                 </a>
               )}
+              <EventMore e={e} size="normal" />
             </>
           )
         }
@@ -363,7 +375,7 @@ function GatheringDetail({ id, route, go }: { id: number; route: Route; go: (to:
 }
 
 function Overview({ e }: { e: Detail }) {
-  const { t, num, can } = useCrm();
+  const { t, num, can, lang } = useCrm();
   const icons = ['chart', 'badge', 'coins', 'heart', 'chart'];
   const max = Math.max(1, ...e.reasons.map((r) => r.count));
   return (
@@ -384,7 +396,7 @@ function Overview({ e }: { e: Detail }) {
               <Ic n={icons[i % icons.length] ?? 'chart'} size={17} />
             </span>
             <div className="flxcrm-kpi__body">
-              <span className="flxcrm-kpi__label">{s.label}</span>
+              <span className="flxcrm-kpi__label">{s.label.charAt(0).toLocaleUpperCase(lang) + s.label.slice(1)}</span>
               <span className="flxcrm-kpi__value">{s.value}</span>
               {s.hint ? <span className="flxcrm-kpi__hint">{s.hint}</span> : null}
               {s.progress != null && (
@@ -432,6 +444,18 @@ function Overview({ e }: { e: Detail }) {
                     </dd>
                   </>
                 ) : null}
+                <dt>{t('Page on the site')}</dt>
+                <dd>
+                  {e.pageState === 'published' && e.pageUrl ? (
+                    <a href={e.pageUrl} target="_blank" rel="noreferrer">
+                      {e.pageTitle || e.pageUrl}
+                    </a>
+                  ) : e.postId ? (
+                    t('Not published')
+                  ) : (
+                    t('None')
+                  )}
+                </dd>
               </dl>
               {can && e.note ? (
                 <p className="flxcrm-evinfo__note">
@@ -508,6 +532,7 @@ function Overview({ e }: { e: Detail }) {
                 {e.actions.map((a) => (
                   <a key={a.url + a.label} href={a.url} target={a.target || undefined}>
                     <Ic n="link" /> <span>{a.label}</span>
+                    <Ic n="arrow" size={14} />
                   </a>
                 ))}
               </div>
@@ -619,10 +644,10 @@ function MessageBoard({ id, route, go, name }: { id: number; route: Route; go: (
           <Ic n="plus" size={14} /> {t('New message')}
         </a>
         <a href={href('event/' + id + '?view=message&sub=sent')} className={sub === 'sent' ? 'is-on' : undefined}>
-          {t('Sent')} <b>{num(active.length + sent.length)}</b>
+          {t('Sent %s', '').trim()} <b>{num(active.length + sent.length)}</b>
         </a>
         <a href={href('event/' + id + '?view=message&sub=planned')} className={sub === 'planned' ? 'is-on' : undefined}>
-          {t('Planned')} <b>{num(planned.length)}</b>
+          {t('Planned %s', '').trim()} <b>{num(planned.length)}</b>
         </a>
       </nav>
       {sub === 'new' ? (
@@ -790,7 +815,7 @@ function SendDetail({ id, sendKey, route }: { id: number; sendKey: string; route
   return (
     <>
       <a className="flxcrm-back" href={href('event/' + id + '?view=message&sub=' + back)}>
-        <Ic n="back" size={15} /> {back === 'planned' ? t('Planned') : t('Sent')}
+        <Ic n="back" size={15} /> {back === 'planned' ? t('Planned %s', '').trim() : t('Sent %s', '').trim()}
       </a>
       <SendCard id={id} s={s} full />
       <section className="flxcrm-card flxcrm-card--flush flxcrm-sendrec">
@@ -1001,7 +1026,7 @@ function Composer({ id, name, data, go }: { id: number; name: string; data: Mess
         <div className="flxcrm-evmsg__vars">
           {groupVars(data.variables).map((g) => (
             <div className="flxcrm-evmsg__vgroup" key={g.group}>
-              <span>{g.group}</span>
+              <span>{({ PERSON: t('Person'), EVENT: t('Event'), SITE: t('Site') } as Record<string, string>)[g.group.toUpperCase()] ?? g.group}</span>
               {g.items.map((v) => (
                 <button key={v.key} type="button" className={'flxcrm-evmsg__var' + (v.off ? ' is-off' : '')} disabled={v.off} title={'{' + v.key + '}'} onClick={() => insert(v.key)}>
                   {v.label}
@@ -1062,7 +1087,10 @@ function Composer({ id, name, data, go }: { id: number; name: string; data: Mess
             <input type="radio" checked={when === 'later'} onChange={() => setWhen('later')} /> {t('Plan for')}
           </label>
           <input type="datetime-local" value={sendAt} disabled={when !== 'later'} onChange={(e) => setSendAt(e.currentTarget.value)} />
-          <small>{t('Site time (%s). Planned sends can be cancelled below until they start.', data.timezone)}</small>
+          <small>
+            {t('Site time (%s). Planned sends can be cancelled below until they start.', data.timezone)}{' '}
+            {t('WhatsApp and SMS do not go out in the quiet hours of the Flux Mail connection (21:00–09:00 by default); a message planned then waits for the next allowed hour.')}
+          </small>
         </fieldset>
         <p className="flxcrm-evmsg__submit">
           <button className="button button-primary" disabled={send.isPending || !body.trim() || channels.length === 0}>
@@ -1077,13 +1105,11 @@ function Composer({ id, name, data, go }: { id: number; name: string; data: Mess
 
 function GatheringForm({ id, go }: { id: number; go: (to: string) => void }) {
   const crm = useCrm();
-  const host = useHost();
   const refresh = useRefresh();
   const q = useFlxQuery(FlxCrmGatheringForm, { id: id || undefined });
   const save = useFlxMutation(FlxCrmGatheringSave);
   const [values, setValues] = useState<Record<string, string>>({});
   const [createPost, setCreatePost] = useState(false);
-  const [imageUploadId, setImageUploadId] = useState('');
   const [ready, setReady] = useState(false);
   useEffect(() => {
     const form = q.data?.flxGatheringForm;
@@ -1110,7 +1136,6 @@ function GatheringForm({ id, go }: { id: number; go: (to: string) => void }) {
           input: {
             id: id || undefined,
             createPost,
-            imageUploadId: imageUploadId || undefined,
             fields,
           },
         })
@@ -1132,20 +1157,15 @@ function GatheringForm({ id, go }: { id: number; go: (to: string) => void }) {
             <section className="flxcrm-card flxcrm-form" key={s.key}>
               {s.title ? <h2 className="flxcrm-card__title">{s.title}</h2> : null}
               {s.fields.map((f) => (
-                <label key={f.key} className="flxcrm-jf">
-                  <span>
-                    {f.label}
-                    {f.required ? ' *' : ''}
-                  </span>
-                  <FieldInput f={f} value={values[f.key] ?? ''} onChange={(v) => set(f.key, v)} onUpload={async (file) => {
-                    const fd = new FormData();
-                    fd.append('context', 'flx-crm/event-image');
-                    fd.append('file', file, file.name);
-                    const up = await host.client<{ uploadId: string }>('flx/v1/upload', { method: 'POST', formData: fd });
-                    setImageUploadId(up.uploadId);
-                  }} />
-                  {f.help ? <small className="flxcrm-muted">{f.help}</small> : null}
-                </label>
+                <Field
+                  key={f.key}
+                  f={f}
+                  value={values[f.key] ?? ''}
+                  onChange={(v) => set(f.key, v)}
+                  postType={form.postType}
+                  createPost={createPost}
+                  setCreatePost={setCreatePost}
+                />
               ))}
               {s.html ? <div className="flxcrm-html" dangerouslySetInnerHTML={{ __html: s.html }} /> : null}
             </section>
@@ -1153,13 +1173,8 @@ function GatheringForm({ id, go }: { id: number; go: (to: string) => void }) {
         </div>
         <div className="flxcrm-card flxcrm-form">
           {form.afterHtml ? <div className="flxcrm-html" dangerouslySetInnerHTML={{ __html: form.afterHtml }} /> : null}
-          {form.postType && (
-            <label className="flx-ev-check">
-              <input type="checkbox" checked={createPost} onChange={(e) => setCreatePost(e.currentTarget.checked)} /> {crm.t('Create site page')}
-            </label>
-          )}
           <p>
-            <button className="button button-primary" disabled={save.isPending}>
+            <button className="button button-primary button-large" disabled={save.isPending}>
               {id ? crm.t('Save') : crm.t('Create event')}
             </button>
           </p>
@@ -1185,13 +1200,64 @@ function packageControls(form: HTMLFormElement): { key: string; value: string }[
   return out;
 }
 
-function FieldInput({ f, value, onChange, onUpload }: { f: FormData['sections'][number]['fields'][number]; value: string; onChange: (v: string) => void; onUpload: (file: File) => Promise<void> }) {
+type FormField = FormData['sections'][number]['fields'][number];
+
+/** One field of the event form, laid out like the classic form: label, control, help below. */
+function Field({ f, value, onChange, postType, createPost, setCreatePost }: { f: FormField; value: string; onChange: (v: string) => void; postType: boolean; createPost: boolean; setCreatePost: (on: boolean) => void }) {
   const { t } = useCrm();
-  if (f.type === 'textarea') return <textarea rows={4} required={f.required} placeholder={f.placeholder} value={value} onChange={(e) => onChange(e.currentTarget.value)} />;
-  if (f.type === 'post' || (f.options.length > 0 && f.type !== 'image')) {
+  const label = (
+    <span>
+      {f.label}
+      {f.required ? ' *' : ''}
+    </span>
+  );
+  const help = f.help ? <small>{f.help}</small> : null;
+  if (f.type === 'image') {
     return (
+      <>
+        <label>{label}</label>
+        <EventImage value={value} onChange={onChange} />
+        {help}
+      </>
+    );
+  }
+  if (f.type === 'post') {
+    if (!postType) {
+      return (
+        <label>
+          {label}
+          <small>{t('The theme has no event post type; the event has no page of its own.')}</small>
+        </label>
+      );
+    }
+    return (
+      <>
+        <label>
+          {label}
+          <select value={value} onChange={(e) => onChange(e.currentTarget.value)}>
+            <option value="0">{t('— Not linked —')}</option>
+            {f.options.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+          {help}
+        </label>
+        {!Number(value) ? (
+          <label className="flxcrm-check">
+            <input type="checkbox" checked={createPost} onChange={(e) => setCreatePost(e.currentTarget.checked)} />{' '}
+            {t('Create the page on the site when none is linked (links a page with the same title if there is one)')}
+          </label>
+        ) : null}
+      </>
+    );
+  }
+  let control;
+  if (f.type === 'textarea') control = <textarea rows={3} required={f.required} placeholder={f.placeholder} value={value} onChange={(e) => onChange(e.currentTarget.value)} />;
+  else if (f.options.length > 0) {
+    control = (
       <select value={value} onChange={(e) => onChange(e.currentTarget.value)}>
-        <option value="">{t('None')}</option>
         {f.options.map((o) => (
           <option key={o.value} value={o.value}>
             {o.label}
@@ -1199,20 +1265,62 @@ function FieldInput({ f, value, onChange, onUpload }: { f: FormData['sections'][
         ))}
       </select>
     );
-  }
-  if (f.type === 'image') {
-    return (
-      <span>
-        <input value={value} onChange={(e) => onChange(e.currentTarget.value)} placeholder={f.placeholder} />
-        <label className="button button-small">
-          {t('Upload')}
-          <input type="file" accept="image/*" hidden onChange={(e) => { const file = e.currentTarget.files?.[0]; if (file) void onUpload(file); }} />
-        </label>
-      </span>
-    );
-  }
-  const type = f.type === 'date' || f.type === 'time' || f.type === 'number' || f.type === 'url' ? f.type : 'text';
-  return <input type={type} required={f.required} placeholder={f.placeholder} value={value} onChange={(e) => onChange(e.currentTarget.value)} />;
+  } else if (f.type === 'date') control = <DatePicker value={value} onChange={(v: string) => onChange(v)} />;
+  else if (f.type === 'number') control = <input type="number" min={0} required={f.required} placeholder={f.placeholder} value={Number(value) ? value : ''} onChange={(e) => onChange(e.currentTarget.value)} />;
+  else control = <input type="text" required={f.required} placeholder={f.placeholder} value={value} onChange={(e) => onChange(e.currentTarget.value)} />;
+  return (
+    <label>
+      {label}
+      {control}
+      {help}
+    </label>
+  );
+}
+
+/** Event image from the media library (preview box, Choose image, Remove), as on the classic form. */
+function EventImage({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const { t } = useCrm();
+  const [url, setUrl] = useState('');
+  const id = Number(value) || 0;
+  useEffect(() => {
+    if (!id) {
+      setUrl('');
+      return;
+    }
+    const wpm = (window as unknown as { wp?: { media?: { attachment?: (id: number) => { fetch: () => Promise<unknown>; get: (k: string) => unknown } } } }).wp?.media;
+    const a = wpm?.attachment?.(id);
+    if (!a) return;
+    void a.fetch().then(() => {
+      const sizes = a.get('sizes') as Record<string, { url: string }> | undefined;
+      setUrl(sizes?.medium?.url ?? String(a.get('url') ?? ''));
+    });
+  }, [id]);
+  const pick = () => {
+    const wp = (window as unknown as { wp?: WpWithMedia }).wp;
+    const frame = wp?.media?.({ title: t('Event image'), button: { text: t('Use this image') }, multiple: false, library: { type: 'image' } });
+    if (!frame) return;
+    frame.on('select', () => {
+      const a = frame.state().get('selection').first().toJSON();
+      onChange(String(a.id));
+      setUrl(a.url ?? '');
+    });
+    frame.open();
+  };
+  return (
+    <div className="flxcrm-evimg">
+      <div className="flxcrm-evimg__prev">{url ? <img src={url} alt="" /> : <span>{t('No image')}</span>}</div>
+      <p>
+        <button type="button" className="button" onClick={pick}>
+          {t('Choose image')}
+        </button>{' '}
+        {id ? (
+          <button type="button" className="button-link button-link-delete" onClick={() => onChange('0')}>
+            {t('Remove')}
+          </button>
+        ) : null}
+      </p>
+    </div>
+  );
 }
 
 function groupVars(vars: Messages['variables']) {

@@ -15,7 +15,7 @@ import {
 } from '@fluxwp/graphql/operations';
 import type { FlxContactNoteType, FlxCrmContactCardFragment, FlxCrmEventFragment, FlxCrmTimelineQuery } from '@fluxwp/graphql/types';
 import { Loading, Modal } from '@fluxwp/ui';
-import { Avatar, Card, Head, Ic, Kpi, Money, RolePills, errText, href, useCrm } from './ui';
+import { Avatar, Card, Head, Ic, Kpi, Money, RolePills, errText, href, siteTimeZone, useCrm } from './ui';
 import { PersonSections } from './Sections';
 
 type Card_ = FlxCrmContactCardFragment;
@@ -269,6 +269,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
   };
   const addNote = async (e: FormEvent) => {
     e.preventDefault();
+    if (!note.trim()) return;
     try {
       const r = (await addEvent.mutateAsync({ input: { contactId: c.id, text: note, type: noteType } })).flxContactEventAdd;
       if (!r?.event) throw new Error(errText(r?.errors));
@@ -323,16 +324,18 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
   };
 
   let lastDay = '';
+  const tz = siteTimeZone(shell.flxCrmMeta.timezone);
   const none = <span className="flxcrm-muted">—</span>;
   return (
     <>
+      <a className="flxcrm-back" href={href('contacts')}>
+        <Ic n="back" size={15} />
+        {t('Contacts')}
+      </a>
       <header className="flxcrm-card flxcrm-hero">
-        <a className="flxcrm-backbtn" href={href('contacts')} aria-label={t('Back to contacts')} title={t('Back to contacts')}>
-          <Ic n="back" size={18} />
-        </a>
-        <Avatar name={c.name} src={c.avatar} size="lg" />
+        <Avatar name={c.name} size="lg" />
         <div className="flxcrm-hero__main">
-          <h1 className="flxcrm-hero__name">{c.name}</h1>
+          <h2 className="flxcrm-hero__name" aria-level={1}>{c.name}</h2>
           <span className="flxcrm-pills">
             <RolePills keys={c.roles ?? []} />
             {c.status === 'ARCHIVED' && <span className="flxcrm-badge">{t('Archived')}</span>}
@@ -432,7 +435,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
                       </option>
                     ))}
                   </select>
-                  <button className="button button-primary" disabled={addEvent.isPending || !note.trim()}>
+                  <button className="button button-primary" disabled={addEvent.isPending}>
                     {t('Add')}
                   </button>
                 </div>
@@ -446,7 +449,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
               <ol className="flxcrm-timeline">
                 {tl.events.map((e) => {
                   const d = new Date(e.at.iso);
-                  const day = d.toLocaleDateString(crm.lang, { day: 'numeric', month: 'long', year: 'numeric' });
+                  const day = d.toLocaleDateString(crm.lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: tz });
                   const head = day !== lastDay;
                   lastDay = day;
                   return (
@@ -465,7 +468,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
                                 {!e.paid && e.status && <span className="flxcrm-badge is-warn">{statusLabel(t, e.status)}</span>}
                               </>
                             )}
-                            <time dateTime={e.at.iso}>{d.toLocaleTimeString(crm.lang, { hour: '2-digit', minute: '2-digit' })}</time>
+                            <time dateTime={e.at.iso}>{d.toLocaleTimeString(crm.lang, { hour: '2-digit', minute: '2-digit', timeZone: tz })}</time>
                           </div>
                           {e.title && <p className="flxcrm-ev__title">{e.url ? <a href={e.url}>{e.title}</a> : e.title}</p>}
                           {e.body && e.body.trim() !== e.title && (
@@ -517,7 +520,6 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
         </div>
 
         <aside className="flxcrm-profile__side">
-          <PersonSections sections={c.sections} placement="SIDE" />
           <Card
             title={t('Details')}
             icon="user"
@@ -582,7 +584,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
                         const on = c.consent?.[x.key as keyof Form['consent']] ?? false;
                         return (
                           <span key={x.key} className={'flxcrm-consent' + (on ? ' is-on' : '')}>
-                            <Ic n={on ? 'check' : 'alert'} size={13} />
+                            <Ic n={on ? 'check' : 'x'} size={13} />
                             <span>{x.label}</span>
                             <span style={{ position: 'absolute', left: -9999 }}>{on ? t('allowed') : t('not allowed')}</span>
                           </span>
@@ -604,7 +606,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
             )}
           </Card>
 
-          <Card title={t('Tags')} icon="badge">
+          <Card title={t('Tags')} icon="tag">
             <div className="flxcrm-tags flxcrm-tags--edit">
               {(c.tags ?? []).length === 0 && <span className="flxcrm-muted">{t('No tags.')}</span>}
               {(c.tags ?? []).map((x) => (
@@ -626,7 +628,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
                     <option key={x.databaseId} value={x.name} />
                   ))}
                 </datalist>
-                <button className="button" disabled={!tag.trim() || addTag.isPending}>
+                <button className="button" disabled={addTag.isPending}>
                   {t('Add')}
                 </button>
               </form>
@@ -663,6 +665,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
               </p>
             )}
           </Card>
+          <PersonSections sections={c.sections} placement="SIDE" />
         </aside>
       </div>
 

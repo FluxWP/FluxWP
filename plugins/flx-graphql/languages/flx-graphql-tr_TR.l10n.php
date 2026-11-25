@@ -270,6 +270,8 @@ return array(
   'Unix timestamp.' => 'Unix zaman damgası.',
   'Date and time for display, in the site time zone and the user\'s language.' => 'Gösterim için tarih ve saat; site saat diliminde ve kullanıcının dilinde.',
   'Relative time for display ("5 minutes ago").' => 'Gösterim için göreli zaman ("5 dakika önce").',
+  'Date only, in the site time zone and the user\'s language.' => 'Yalnız tarih; site saat diliminde ve kullanıcının dilinde.',
+  'Compact date and time for tables (16.10.2026 14:24 in Turkish).' => 'Tablolar için kısa tarih ve saat (Türkçede 16.10.2026 14:24).',
   'An amount of money.' => 'Bir para tutarı.',
   'Amount in the currency unit (150.5).' => 'Para biriminde tutar (150.5).',
   'ISO 4217 code (TRY, USD).' => 'ISO 4217 kodu (TRY, USD).',

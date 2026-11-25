@@ -42,6 +42,8 @@ function Crm() {
   const q = useFlxQuery(FlxCrmShell, {}, { staleTime: 60_000 });
   const [route, go] = useRoute(START[host.startPage ?? ''] ?? (host.startPage || 'overview'));
   const [notice, setNotice] = useState<Notice>(null);
+  const [head, setHead] = useState<{ title: string; lead?: string } | null>(null);
+  const [actionsEl, setActionsEl] = useState<HTMLDivElement | null>(null);
 
   const tell = useCallback((kind: 'ok' | 'bad', text: string) => {
     setNotice({ kind, text });
@@ -61,8 +63,8 @@ function Crm() {
         return nf.format(n);
       }
     };
-    return { t, tn, lang: i18n.language, shell: q.data, can: q.data.flxCrmMeta.canWrite, tell, fail, reloadShell, short, num: (n) => nf.format(n), adminUrl: host.adminUrl };
-  }, [q.data, t, tn, i18n.language, tell, fail, reloadShell, host.adminUrl]);
+    return { t, tn, lang: i18n.language, shell: q.data, can: q.data.flxCrmMeta.canWrite, tell, fail, reloadShell, short, num: (n) => nf.format(n), adminUrl: host.adminUrl, setHead, actionsEl };
+  }, [q.data, t, tn, i18n.language, tell, fail, reloadShell, host.adminUrl, actionsEl]);
 
   if (q.isLoading) return <Loading />;
   if (q.isError || !crm) return <div className="flxcrm-app"><div className="flxcrm-notice is-bad">{q.error?.message || t('The action could not be completed.')}</div></div>;
@@ -71,8 +73,8 @@ function Crm() {
     ['overview', t('Overview')],
     ['contacts', t('Contacts')],
     ['segments', t('Segments')],
-    ['journeys', t('Journeys')],
     ['events', t('Events')],
+    ['journeys', t('Journeys')],
     ['settings', t('Settings')],
   ];
   const active = route.name === 'contact' || route.name === 'duplicates' ? 'contacts' : route.name === 'event' ? 'events' : route.name;
@@ -116,10 +118,12 @@ function Crm() {
   return (
     <CrmCtx.Provider value={crm}>
       <Screen<string>
-        className="flxcrm-app"
+        className={'flxcrm-app' + (route.name === 'contact' ? ' is-bare' : '')}
         width="wide"
         icon={host.appIcon}
-        title={t('CRM')}
+        title={head?.title ?? t('CRM')}
+        subtitle={head?.lead}
+        actions={<div ref={setActionsEl} className="flxcrm-head__actions" />}
         notice={box}
         tabs={tabs.map(([id, label]) => ({ id, label }))}
         tab={active}

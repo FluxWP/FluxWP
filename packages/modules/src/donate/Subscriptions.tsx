@@ -1,16 +1,15 @@
 // Recurring donations: the KPIs (monthly value, active, past due, canceled), status + search, the table
 // (also on the donor card) and cancel at the payment provider with a confirmation. PHP preloads the first
 // page of the filter in the address (FLXB_Admin::preload_subscriptions()).
-import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { keepPreviousData, useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxDonateDashboard, FlxDonateDonor, FlxDonateSubscriptions, FlxSubscriptionCancel } from '@fluxwp/graphql/operations';
 import type { FlxDonateSubscriptionsQuery, FlxSubscriptionListFilter } from '@fluxwp/graphql/types';
-import { Loading, Modal, Screen } from '@fluxwp/ui';
+import { ListBar, Loading, Modal, Screen, listPerPage } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { cursorAt, Go, Ico, Pager, useDonate } from './shared';
 
-const PER = 25;
 export type Sub = FlxDonateSubscriptionsQuery['flxSubscriptionList']['nodes'][number];
 const STATUSES = ['active', 'past_due', 'canceled'] as const;
 
@@ -30,12 +29,13 @@ export function Subscriptions({ query, notice }: { query: string; notice: ReactN
   const start = new URLSearchParams(query);
   const [applied, setApplied] = useState({ s: start.get('s') ?? '', status: start.get('status') ?? '' });
   const [search, setSearch] = useState(applied.s);
+  const [per, setPer] = useState(() => listPerPage('flxb-subscriptions', 20));
   const [offset, setOffset] = useState(() => {
     const p = Number(start.get('paged') ?? '1');
-    return Number.isInteger(p) && p > 1 ? (p - 1) * PER : 0;
+    return Number.isInteger(p) && p > 1 ? (p - 1) * per : 0;
   });
   const filter = useMemo(() => subFilter(new URLSearchParams(Object.entries(applied).filter(([, v]) => v !== ''))), [applied]);
-  const q = useFlxQuery(FlxDonateSubscriptions, { first: PER, after: cursorAt(offset), filter: Object.keys(filter).length ? filter : undefined }, { placeholderData: keepPreviousData });
+  const q = useFlxQuery(FlxDonateSubscriptions, { first: per, after: cursorAt(offset), filter: Object.keys(filter).length ? filter : undefined }, { placeholderData: keepPreviousData });
   const list = q.data?.flxSubscriptionList;
   const tot = q.data?.flxSubscriptionTotals;
 
@@ -46,16 +46,11 @@ export function Subscriptions({ query, notice }: { query: string; notice: ReactN
     const next = new URLSearchParams({ page: 'flxb-subscriptions' });
     if (applied.s.trim()) next.set('s', applied.s.trim());
     if (applied.status) next.set('status', applied.status);
-    if (offset) next.set('paged', String(offset / PER + 1));
+    if (offset) next.set('paged', String(Math.floor(offset / per) + 1));
     const s = '?' + next.toString();
     if (u.search !== s) history.replaceState(history.state, '', u.pathname + s);
-  }, [applied, offset, host.mode]);
+  }, [applied, offset, per, host.mode]);
 
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    setOffset(0);
-    setApplied((a) => ({ ...a, s: search.trim() }));
-  };
   const seg: { key: string; label: string }[] = [
     { key: '', label: t('All') },
     { key: 'active', label: t('Active') },
@@ -78,14 +73,19 @@ export function Subscriptions({ query, notice }: { query: string; notice: ReactN
           <Count label={t('Canceled')} n={tot.canceled} accent="#7A8C96" />
         </div>
       ) : null}
-      <form className="flxdn-filters" onSubmit={submit} role="search">
-        <div className="flxdn-filters__main">
-          <input type="search" className="flxdn-input" value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t('Name, e-mail, phone, reference…')} aria-label={t('Search')} />
-          <label className="flxdn-filters__field">
-            <span className="screen-reader-text">{t('Status')}</span>
+      <ListBar
+        id="flxb-subscriptions"
+        className="flxdn-filters flxdn-filters--lib"
+        onSubmit={() => {
+          setOffset(0);
+          setApplied({ ...applied, s: search.trim() });
+        }}
+        search={<input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t('Name, e-mail, phone, reference…')} aria-label={t('Search')} />}
+        primary={
+          <label>
+            <span>{t('Status')}</span>
             <select
               value={applied.status}
-              aria-label={t('Status')}
               onChange={(e) => {
                 setOffset(0);
                 setApplied({ s: search.trim(), status: e.target.value });
@@ -98,12 +98,8 @@ export function Subscriptions({ query, notice }: { query: string; notice: ReactN
               ))}
             </select>
           </label>
-          <button className="flxdn-btn flxdn-btn--primary" type="submit">
-            <Ico name="search" />
-            {t('Search')}
-          </button>
-        </div>
-      </form>
+        }
+      />
       <div className={'flxdn-panel' + (q.isFetching && list ? ' is-busy' : '')}>
         {!q.data ? (
           q.isError ? (
@@ -122,7 +118,7 @@ export function Subscriptions({ query, notice }: { query: string; notice: ReactN
             <SubsTable rows={list.nodes} showDonor />
             <div className="flxdn-tablefoot">
               <span>{tn('%s recurring donation', '%s recurring donations', total, total.toLocaleString())}</span>
-              <Pager offset={offset} per={PER} total={total} hasNext={list.pageInfo.hasNextPage} onGo={setOffset} />
+              <Pager id="flxb-subscriptions" offset={offset} per={per} total={total} onGo={setOffset} onPer={(v) => (setPer(v), setOffset(0))} />
             </div>
           </>
         )}

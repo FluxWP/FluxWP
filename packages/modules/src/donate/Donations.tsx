@@ -2,16 +2,15 @@
 // address bar), the table (the whole row opens the donation), bulk trash / restore / delete with a
 // confirmation, the totals line, the trash link and pages. PHP preloads the first page of the filter in
 // the address, so the list shows at once.
-import { useEffect, useMemo, useState, type FormEvent, type MouseEvent, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type MouseEvent, type ReactNode } from 'react';
 import { keepPreviousData, useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxDonateDashboard, FlxDonateDonations, FlxDonationsBulk } from '@fluxwp/graphql/operations';
 import type { FlxDonateDonationsQuery, FlxDonationBulkAction } from '@fluxwp/graphql/types';
-import { DatePicker, Loading, Modal, Screen } from '@fluxwp/ui';
+import { DatePicker, ListBar, ListPages, Loading, Modal, Screen, listPerPage } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { cursorAt, filterFromQuery, filterToQuery, filterVar, Go, Ico, useDonate } from './shared';
 
-const PER = 25;
 const AWAIT_SHOW = 5;
 type Info = FlxDonateDonationsQuery['flxDonationListInfo'];
 type Row = FlxDonateDonationsQuery['flxDonationList']['nodes'][number];
@@ -33,17 +32,17 @@ export function Donations({ query, notice }: { query: string; notice: ReactNode 
   const qc = useQueryClient();
   const [applied, setApplied] = useState<Draft>(() => draftOf(new URLSearchParams(query)));
   const [draft, setDraft] = useState<Draft>(applied);
-  const [more, setMore] = useState(() => ['type', 'from', 'to', 'form', 'ref'].some((k) => applied[k as keyof Draft] !== ''));
+  const [per, setPer] = useState(() => listPerPage('flxb-donations', 20));
   const [offset, setOffset] = useState(() => {
     const p = Number(new URLSearchParams(query).get('paged') ?? '1');
-    return Number.isInteger(p) && p > 1 ? (p - 1) * PER : 0;
+    return Number.isInteger(p) && p > 1 ? (p - 1) * per : 0;
   });
   const [picked, setPicked] = useState<Set<number>>(() => new Set());
   const [action, setAction] = useState<FlxDonationBulkAction | ''>('');
   const [confirm, setConfirm] = useState<{ action: FlxDonationBulkAction; ids: number[] } | null>(null);
 
   const filter = useMemo(() => filterFromQuery(paramsOf(applied)), [applied]);
-  const vars = { first: PER, after: cursorAt(offset), filter: filterVar(filter) };
+  const vars = { first: per, after: cursorAt(offset), filter: filterVar(filter) };
   const q = useFlxQuery(FlxDonateDonations, vars, { placeholderData: keepPreviousData });
   const list = q.data?.flxDonationList;
   const info = q.data?.flxDonationListInfo;
@@ -56,10 +55,10 @@ export function Donations({ query, notice }: { query: string; notice: ReactNode 
     if (u.searchParams.get('page') !== 'flxb-donations') return;
     const next = new URLSearchParams({ page: 'flxb-donations' });
     filterToQuery(filter).forEach((v, k) => next.set(k, v));
-    if (offset) next.set('paged', String(offset / PER + 1));
+    if (offset) next.set('paged', String(Math.floor(offset / per) + 1));
     const s = '?' + next.toString();
     if (u.search !== s) history.replaceState(history.state, '', u.pathname + s);
-  }, [filter, offset, host.mode]);
+  }, [filter, offset, per, host.mode]);
 
   useEffect(() => setPicked(new Set()), [applied, offset]);
 
@@ -94,14 +93,17 @@ export function Donations({ query, notice }: { query: string; notice: ReactNode 
   ) : null;
   const own = info?.ownOnly ?? false;
 
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
+  /** The classic list library applies a filter as soon as it changes; the search on Enter. */
+  const apply = (p: Partial<Draft>) => {
+    const d = { ...draft, ...p };
+    setDraft(d);
+    setApplied(d);
     setOffset(0);
-    setApplied({ ...draft, s: draft.s.trim() });
   };
+  const pick = (k: keyof Draft) => (v: string) => apply({ [k]: v, s: draft.s.trim() });
   /** Only one status, every other filter cleared (trash, receipts awaiting approval). */
   const only = (status: string) => {
-    const d = { ...draftOf(new URLSearchParams()), status };
+    const d = { ...draftOf(new URLSearchParams()), status, donor_id: applied.donor_id };
     setDraft(d);
     setApplied(d);
     setOffset(0);
@@ -125,8 +127,7 @@ export function Donations({ query, notice }: { query: string; notice: ReactNode 
 
   const rows = list?.nodes ?? [];
   const total = list?.totalCount ?? 0;
-  const pages = Math.max(1, Math.ceil(total / PER));
-  const page = offset / PER + 1;
+  const page = Math.floor(offset / per) + 1;
   const showRef = !own;
 
   return (
@@ -141,49 +142,48 @@ export function Donations({ query, notice }: { query: string; notice: ReactNode 
     >
       {info && offset === 0 && !inTrash && applied.status !== 'receipt' ? <Awaiting items={info.awaiting} onShow={() => only('receipt')} /> : null}
       {info ? (
-        <form className="flxdn-filters" onSubmit={submit} role="search">
-          <div className="flxdn-filters__main">
-            <input type="search" className="flxdn-input" value={draft.s} onChange={(e) => set('s')(e.target.value)} placeholder={t('Name, e-mail, phone, code…')} aria-label={t('Search')} />
-            <Select label={t('Status')} all={t('All statuses')} value={draft.status} onChange={set('status')} opts={withCurrent(info.statuses, draft.status, inTrash ? t('Trash') : draft.status)} />
-            {info.donationTypes.length ? (
-              <Select label={t('Donation type')} all={t('All donation types')} value={draft.dtype} onChange={set('dtype')} opts={[{ value: '0', label: t('No donation type') }, ...info.donationTypes]} />
-            ) : null}
-            <button type="button" className="flxdn-btn" aria-expanded={more} onClick={() => setMore((m) => !m)}>
-              {t('Filters')}
-              {countMore(applied) ? <span className="flxdn-filters__n">{countMore(applied)}</span> : null}
-            </button>
-            <button className="flxdn-btn flxdn-btn--primary" type="submit">
-              <Ico name="search" />
-              {t('Filter')}
-            </button>
-          </div>
-          <div className="flxdn-filters__adv" hidden={!more}>
-            <Select
-              label={t('Type')}
-              all={t('All types')}
-              value={draft.type}
-              onChange={set('type')}
-              opts={[
-                { value: 'one_time', label: t('One-time') },
-                { value: 'recurring', label: t('Recurring') },
-              ]}
-            />
-            <div className="flxdn-filters__dates">
+        <ListBar
+          id="flxb-donations"
+          className="flxdn-filters flxdn-filters--lib"
+          onSubmit={() => apply({ s: draft.s.trim() })}
+          onClear={KEYS.some((k) => k !== 'donor_id' && applied[k] !== '') ? () => only('') : undefined}
+          moreActive={countMore(applied)}
+          search={<input type="search" value={draft.s} onChange={(e) => set('s')(e.target.value)} placeholder={t('Name, e-mail, phone, code…')} aria-label={t('Search')} />}
+          primary={
+            <>
+              <Select label={t('Status')} all={t('All statuses')} value={draft.status} onChange={pick('status')} opts={withCurrent(info.statuses, draft.status, inTrash ? t('Trash') : draft.status)} />
+              {info.donationTypes.length ? (
+                <Select label={t('Donation type')} all={t('All donation types')} value={draft.dtype} onChange={pick('dtype')} opts={[{ value: '0', label: t('No donation type') }, ...info.donationTypes]} />
+              ) : null}
+            </>
+          }
+          more={
+            <>
+              <Select
+                label={t('Type')}
+                all={t('All types')}
+                value={draft.type}
+                onChange={pick('type')}
+                opts={[
+                  { value: 'one_time', label: t('One-time') },
+                  { value: 'recurring', label: t('Recurring') },
+                ]}
+              />
               <label>
                 <span>{t('From')}</span>
-                <DatePicker value={draft.from} onChange={set('from')} aria-label={t('From')} />
+                <DatePicker value={draft.from} onChange={pick('from')} aria-label={t('From')} />
               </label>
               <label>
                 <span>{t('To')}</span>
-                <DatePicker value={draft.to} onChange={set('to')} aria-label={t('To')} />
+                <DatePicker value={draft.to} onChange={pick('to')} aria-label={t('To')} />
               </label>
-            </div>
-            {info.forms.length ? <Select label={t('Form')} all={t('All forms')} value={draft.form} onChange={set('form')} opts={info.forms} /> : null}
-            {showRef && (info.referrals.length || draft.ref !== '') ? (
-              <Select label={t('Referral')} all={t('All referrals')} value={draft.ref} onChange={set('ref')} opts={[{ value: '0', label: t('No referral') }, ...info.referrals]} />
-            ) : null}
-          </div>
-        </form>
+              {info.forms.length ? <Select label={t('Form')} all={t('All forms')} value={draft.form} onChange={pick('form')} opts={info.forms} /> : null}
+              {showRef && (info.referrals.length || draft.ref !== '') ? (
+                <Select label={t('Referral')} all={t('All referrals')} value={draft.ref} onChange={pick('ref')} opts={[{ value: '0', label: t('No referral') }, ...info.referrals]} />
+              ) : null}
+            </>
+          }
+        />
       ) : null}
 
       <div className={'flxdn-panel' + (q.isFetching && list ? ' is-busy' : '')}>
@@ -244,17 +244,17 @@ export function Donations({ query, notice }: { query: string; notice: ReactNode 
                   </>
                 ) : null}
               </span>
-              {pages > 1 ? (
-                <nav className="flxdn-pager" aria-label={t('Pages')}>
-                  <button type="button" className="flxdn-btn flxdn-btn--sm" disabled={page <= 1} onClick={() => setOffset(Math.max(0, offset - PER))} aria-label={t('Previous page')}>
-                    ‹
-                  </button>
-                  <span>{t('%1$s of %2$s', page, pages)}</span>
-                  <button type="button" className="flxdn-btn flxdn-btn--sm" disabled={!list?.pageInfo.hasNextPage} onClick={() => setOffset(offset + PER)} aria-label={t('Next page')}>
-                    ›
-                  </button>
-                </nav>
-              ) : null}
+              <ListPages
+              id="flxb-donations"
+              total={total}
+              per={per}
+              page={page}
+              onPage={(n) => setOffset((n - 1) * per)}
+              onPer={(v) => {
+                setPer(v);
+                setOffset(0);
+              }}
+            />
             </div>
           </>
         )}
@@ -290,9 +290,9 @@ function withCurrent(opts: { value: string; label: string }[], value: string, la
 
 function Select({ label, all, value, onChange, opts }: { label: string; all: string; value: string; onChange: (v: string) => void; opts: { value: string; label: string }[] }) {
   return (
-    <label className="flxdn-filters__field">
-      <span className="screen-reader-text">{label}</span>
-      <select value={value} onChange={(e) => onChange(e.target.value)} aria-label={label}>
+    <label>
+      <span>{label}</span>
+      <select value={value} onChange={(e) => onChange(e.target.value)}>
         <option value="">{all}</option>
         {opts.map((o) => (
           <option key={o.value} value={o.value}>
@@ -406,7 +406,7 @@ export function GiftTable({ rows, showRef, bulk, picked, setPicked, compact = fa
                 </td>
               ) : null}
               <td className="flxdn-col-date" data-label={t('Date')}>
-                <span>{r.date?.label ?? ''}</span>
+                <span>{r.date?.short ?? ''}</span>
               </td>
               {compact ? null : (
                 <td className="flxdn-col-main">

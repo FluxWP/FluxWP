@@ -4,7 +4,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxCrmOverview, FlxCrmScoreRun, FlxCrmSyncStep } from '@fluxwp/graphql/operations';
 import { Loading } from '@fluxwp/ui';
-import { Chart } from '@fluxwp/ui/chart';
 import { Avatar, Card, Head, Ic, Kpi, Money, errText, href, useCrm } from './ui';
 import { runSync } from './sync';
 
@@ -189,7 +188,7 @@ export function Overview(_props: { go: (to: string) => void }) {
               {risk.map((c) => (
                 <li key={c.id}>
                   <a href={href('contact/' + c.databaseId)}>
-                    <Avatar name={c.name} src={c.avatar} size="sm" />
+                    <Avatar name={c.name} size="sm" />
                     <span className="flxcrm-list__main">
                       <strong>{c.name}</strong>
                       <small>{t('last payment %s', c.lastPaidAt?.relative ?? '—')}</small>
@@ -236,7 +235,22 @@ export function Overview(_props: { go: (to: string) => void }) {
           {o.sources.length === 0 ? (
             <p className="flxcrm-empty">{t('No contacts yet.')}</p>
           ) : (
-            <Chart kind="doughnut" height={220} labels={o.sources.map((x) => x.label)} series={[{ label: t('Contacts'), data: o.sources.map((x) => x.count) }]} format={(v) => num(v)} label={t('Where they came from')} />
+            <ul className="flxcrm-bars">
+              {o.sources.map((x) => {
+                const max = Math.max(1, ...o.sources.map((y) => y.count));
+                return (
+                  <li key={x.label}>
+                    <div className="flxcrm-bars__top">
+                      <span>{x.label}</span>
+                      <strong>{num(x.count)}</strong>
+                    </div>
+                    <div className="flxcrm-bars__track">
+                      <span style={{ width: Math.round((x.count / max) * 1000) / 10 + '%' }} />
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           )}
           {shell.flxSegments.length > 0 && (
             <>

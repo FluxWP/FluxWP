@@ -46,9 +46,34 @@ final class FLXC_Chat_Node implements FLXGQL_Node {
 	 */
 	public function js(): array {
 		if ( null === $this->js ) {
-			$this->js = flxc_chat_for_js( $this->row );
+			$last = null;
+			if ( ! empty( $this->row['last_msg_id'] ) ) {
+				global $wpdb;
+				/** @var wpdb $wpdb */
+				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery
+				$last = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'messages' ) . ' WHERE id = %d', FLXC_Val::int( $this->row['last_msg_id'] ) ), ARRAY_A ); // @phpstan-ignore argument.type
+			}
+			$this->js = flxc_chat_for_js( $this->row, is_array( $last ) ? $last : null );
 		}
 		return $this->js;
+	}
+
+	/**
+	 * Nodes for a page of chats; the latest lines come in one query (list preview).
+	 *
+	 * @param array<int,array<string,mixed>> $rows Chat rows.
+	 * @return array<int,FLXC_Chat_Node>
+	 */
+	public static function many( array $rows ): array {
+		$rows = array_values( $rows );
+		$js   = flxc_chats_for_js( $rows );
+		$out  = array();
+		foreach ( $rows as $i => $row ) {
+			$node     = new self( $row );
+			$node->js = $js[ $i ];
+			$out[]    = $node;
+		}
+		return $out;
 	}
 }
 
@@ -817,6 +842,8 @@ flx_gql_type(
 			'shortcut'   => array( 'type' => 'String!', 'description' => __( 'Shortcut.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str(( is_array( $r ) ? ( $r['shortcut'] ?? '' ) : '' )) ),
 			'title'      => array( 'type' => 'String!', 'description' => __( 'Title.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str(( is_array( $r ) ? ( $r['title'] ?? '' ) : '' )) ),
 			'body'       => array( 'type' => 'String!', 'description' => __( 'Body.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str(( is_array( $r ) ? ( $r['body'] ?? '' ) : '' )) ),
+			'category'   => array( 'type' => 'String!', 'description' => __( 'Category.', 'flx-chat' ), 'resolve' => static fn( $r ): string => FLXC_Val::str(( is_array( $r ) ? ( $r['category'] ?? '' ) : '' )) ),
+			'uses'       => array( 'type' => 'Int!', 'description' => __( 'Times used; the most used come first as chips.', 'flx-chat' ), 'resolve' => static fn( $r ): int => FLXC_Val::int(( is_array( $r ) ? ( $r['uses'] ?? 0 ) : 0 )) ),
 		),
 	)
 );
@@ -853,6 +880,12 @@ flx_gql_type(
 			'labels'      => array( 'type' => '[FlxChatLabel!]!', 'description' => __( 'Labels.', 'flx-chat' ) ),
 			'connections' => array( 'type' => '[FlxChatConnState!]!', 'description' => __( 'Connections without keys.', 'flx-chat' ) ),
 			'replies'     => array( 'type' => '[FlxChatReply!]!', 'description' => __( 'Quick replies.', 'flx-chat' ) ),
+			'staff'       => array( 'type' => '[FlxChatAgent!]!', 'description' => __( 'Users a chat can be linked to as staff. Empty for an agent.', 'flx-chat' ) ),
+			'chips'       => array(
+				'type'        => 'Boolean!',
+				'description' => __( 'Show quick reply chips above the composer.', 'flx-chat' ),
+				'resolve'     => static fn( $b ): bool => FLXC_Val::bool( flx_gql_arr( flx_gql_arr( $b )['records'] ?? null )['chips'] ?? true ),
+			),
 			'unread'      => array( 'type' => 'Int!', 'description' => __( 'Unread total.', 'flx-chat' ) ),
 			'ai'          => array(
 				'type'        => 'String',
@@ -953,7 +986,7 @@ flx_gql_query(
 				static function ( int $offset, int $limit ) use ( $filter ): array {
 					$rows = FLXC_Chat_Service::query_rows( $filter + array( 'offset' => $offset, 'limit' => $limit ) );
 					return array(
-						'items' => array_map( static fn( $row ): FLXC_Chat_Node => new FLXC_Chat_Node( $row ), $rows ),
+						'items' => FLXC_Chat_Node::many( $rows ),
 						'total' => FLXC_Chat_Service::count( $filter ),
 					);
 				}
@@ -1034,10 +1067,7 @@ flx_gql_query(
 			$cut   = count( $rows ) > 50;
 			$rows  = array_slice( $rows, 0, 50 );
 			$last  = $rows ? $rows[ count( $rows ) - 1 ] : null;
-			$nodes = array();
-			foreach ( $rows as $row ) {
-				$nodes[] = new FLXC_Chat_Node( $row );
-			}
+			$nodes = FLXC_Chat_Node::many( $rows );
 			$messages = array();
 			$mcut     = false;
 			if ( ! empty( $args['chatId'] ) ) {

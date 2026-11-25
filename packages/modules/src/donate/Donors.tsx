@@ -1,17 +1,16 @@
 // Donor list: search, kind (recurring / may be contacted) and sort, kept in the address bar; the whole row
 // opens the donor card. Staff with flxb_donors_own see "My donors" with only their referrals' figures.
 // PHP preloads the first page of the filter in the address (FLXB_Admin::preload_donors()).
-import { useEffect, useMemo, useState, type FormEvent, type MouseEvent, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type MouseEvent, type ReactNode } from 'react';
 import { keepPreviousData } from '@tanstack/react-query';
 import { useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxDonateDonors } from '@fluxwp/graphql/operations';
 import type { FlxDonateDonorsQuery, FlxDonorListFilter } from '@fluxwp/graphql/types';
-import { Loading, Screen } from '@fluxwp/ui';
+import { ListBar, Loading, Screen, listPerPage } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { cursorAt, Go, Ico, Pager, useDonate } from './shared';
 import { Failed } from './Subscriptions';
 
-const PER = 25;
 type Row = FlxDonateDonorsQuery['flxDonorList']['nodes'][number];
 type Draft = { s: string; kind: string; orderby: string };
 
@@ -40,12 +39,13 @@ export function Donors({ query, notice }: { query: string; notice: ReactNode }) 
   const start = new URLSearchParams(query);
   const [applied, setApplied] = useState<Draft>({ s: start.get('s') ?? '', kind: start.get('kind') ?? '', orderby: start.get('orderby') ?? '' });
   const [draft, setDraft] = useState<Draft>(applied);
+  const [per, setPer] = useState(() => listPerPage('flxb-donors', 20));
   const [offset, setOffset] = useState(() => {
     const p = Number(start.get('paged') ?? '1');
-    return Number.isInteger(p) && p > 1 ? (p - 1) * PER : 0;
+    return Number.isInteger(p) && p > 1 ? (p - 1) * per : 0;
   });
   const filter = useMemo(() => donorFilter(applied), [applied]);
-  const q = useFlxQuery(FlxDonateDonors, { first: PER, after: cursorAt(offset), filter: Object.keys(filter).length ? filter : undefined }, { placeholderData: keepPreviousData });
+  const q = useFlxQuery(FlxDonateDonors, { first: per, after: cursorAt(offset), filter: Object.keys(filter).length ? filter : undefined }, { placeholderData: keepPreviousData });
   const list = q.data?.flxDonorList;
   const own = q.data?.flxDonorListInfo.ownOnly ?? false;
 
@@ -57,19 +57,15 @@ export function Donors({ query, notice }: { query: string; notice: ReactNode }) 
     if (applied.s.trim()) next.set('s', applied.s.trim());
     if (applied.kind) next.set('kind', applied.kind);
     if (applied.orderby && applied.orderby !== 'last_donation_at') next.set('orderby', applied.orderby);
-    if (offset) next.set('paged', String(offset / PER + 1));
+    if (offset) next.set('paged', String(Math.floor(offset / per) + 1));
     const s = '?' + next.toString();
     if (u.search !== s) history.replaceState(history.state, '', u.pathname + s);
-  }, [applied, offset, host.mode]);
+  }, [applied, offset, per, host.mode]);
 
   const go = (d: Draft) => {
     setOffset(0);
     setDraft(d);
     setApplied({ ...d, s: d.s.trim() });
-  };
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    go(draft);
   };
   const kinds = [
     { value: '', label: t('All') },
@@ -95,35 +91,36 @@ export function Donors({ query, notice }: { query: string; notice: ReactNode }) 
       subtitle={own ? t('People who gave through you. Totals count only the gifts you referred.') : t('One card per person, matched on phone number or e-mail address.')}
       notice={notice}
     >
-      <form className="flxdn-filters" onSubmit={submit} role="search">
-        <div className="flxdn-filters__main">
-          <input type="search" className="flxdn-input" value={draft.s} onChange={(e) => setDraft({ ...draft, s: e.target.value })} placeholder={t('Name, e-mail or phone…')} aria-label={t('Search')} />
-          <label className="flxdn-filters__field">
-            <span className="screen-reader-text">{t('Show')}</span>
-            <select value={draft.kind} aria-label={t('Show')} onChange={(e) => go({ ...draft, kind: e.target.value })}>
-              {kinds.map((o) => (
-                <option key={o.value} value={o.value}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="flxdn-filters__field">
-            <span className="screen-reader-text">{t('Sort by')}</span>
-            <select value={draft.orderby || 'last_donation_at'} aria-label={t('Sort by')} onChange={(e) => go({ ...draft, orderby: e.target.value })}>
-              {sorts.map((o) => (
-                <option key={o.value} value={o.value}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <button className="flxdn-btn flxdn-btn--primary" type="submit">
-            <Ico name="search" />
-            {t('Search')}
-          </button>
-        </div>
-      </form>
+      <ListBar
+        id="flxb-donors"
+        className="flxdn-filters flxdn-filters--lib"
+        onSubmit={() => go(draft)}
+        search={<input type="search" value={draft.s} onChange={(e) => setDraft({ ...draft, s: e.target.value })} placeholder={t('Name, e-mail or phone…')} aria-label={t('Search')} />}
+        primary={
+          <>
+            <label>
+              <span>{t('Show')}</span>
+              <select value={draft.kind} onChange={(e) => go({ ...draft, kind: e.target.value })}>
+                {kinds.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>{t('Sort by')}</span>
+              <select value={draft.orderby || 'last_donation_at'} onChange={(e) => go({ ...draft, orderby: e.target.value })}>
+                {sorts.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </>
+        }
+      />
       <div className={'flxdn-panel' + (q.isFetching && list ? ' is-busy' : '')}>
         {!q.data ? (
           q.isError ? (
@@ -141,7 +138,7 @@ export function Donors({ query, notice }: { query: string; notice: ReactNode }) 
             <Table rows={rows} />
             <div className="flxdn-tablefoot">
               <span>{tn('%s donor', '%s donors', total, total.toLocaleString())}</span>
-              <Pager offset={offset} per={PER} total={total} hasNext={list?.pageInfo.hasNextPage ?? false} onGo={setOffset} />
+              <Pager id="flxb-donors" offset={offset} per={per} total={total} onGo={setOffset} onPer={(v) => (setPer(v), setOffset(0))} />
             </div>
           </>
         )}
@@ -196,7 +193,7 @@ function Table({ rows }: { rows: Row[] }) {
                 <span>{d.gifts.toLocaleString()}</span>
               </td>
               <td className="flxdn-col-date" data-label={t('Latest gift')}>
-                <span>{d.lastGift?.label ?? '—'}</span>
+                <span>{d.lastGift?.day ?? '—'}</span>
               </td>
               <td data-label={t('Recurring')}>
                 <span>
@@ -213,7 +210,6 @@ function Table({ rows }: { rows: Row[] }) {
               <td className="flxdn-col-act">
                 <Go className="flxdn-btn flxdn-btn--sm flxdn-row-go" href={d.url}>
                   {t('Open card')}
-                  <span aria-hidden="true">›</span>
                 </Go>
               </td>
             </tr>

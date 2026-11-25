@@ -44,7 +44,7 @@ export function Duplicates(_props: { go: (to: string) => void }) {
     <>
       <Head
         title={t('Possible duplicates')}
-        lead={t('The same person can arrive twice, e.g. once with only a phone and later with only an e-mail. Pick the card to keep: the others are merged into it, and every package moves its records.')}
+        lead={t('The same person can arrive twice, e.g. once with only a phone and later with only an e-mail. Pick the card to keep: the others are merged into it, and every package moves its records (certificates, donations…) to it.')}
         back={{ to: 'contacts', label: t('Contacts') }}
       />
       {groups.length === 0 ? (

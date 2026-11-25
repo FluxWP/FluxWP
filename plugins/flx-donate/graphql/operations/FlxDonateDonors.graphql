@@ -9,7 +9,7 @@ query FlxDonateDonors($first: Int, $after: String, $filter: FlxDonorListFilter) 
       phone
       totalLabel
       gifts
-      lastGift { label }
+      lastGift { day }
       recurring
       url
     }

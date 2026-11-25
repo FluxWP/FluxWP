@@ -1,10 +1,10 @@
 // CRM › Contacts: role chips, filters, sorting, bulk actions, CSV, pages.
-import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxCrmContactBulk, FlxCrmContacts, FlxCrmOverview } from '@fluxwp/graphql/operations';
 import type { FlxConsentChannel, FlxContactBulkAction, FlxContactFilterInput, FlxContactOrder, FlxContactOrderBy, FlxCrmContactsQuery } from '@fluxwp/graphql/types';
-import { Loading, Modal } from '@fluxwp/ui';
+import { ListBar, ListPages, Loading, Modal, listPerPage } from '@fluxwp/ui';
 import { Avatar, ChurnMeter, Empty, Head, Ic, RolePills, SegmentBadge, countsLabel, errText, href, useCrm, type Route } from './ui';
 import { csvDownload } from './csv';
 
@@ -36,24 +36,25 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
   }, [p.toString()]); // eslint-disable-line react-hooks/exhaustive-deps
   const key = p.toString();
 
-  const [cursors, setCursors] = useState<Array<string | null>>([null]);
+  const [per, setPer] = useState(() => listPerPage('flxcrm-contacts', PER));
+  const page = Math.max(1, Number(get('paged')) || 1);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [bulk, setBulk] = useState<{ action: FlxContactBulkAction; value: string }>({ action: 'TAG', value: '' });
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [exporting, setExporting] = useState(false);
   useEffect(() => {
-    setCursors([null]);
     setSelected(new Set());
   }, [key]);
-  const page = cursors.length - 1;
-  const after = cursors[page] ?? null;
+  const offset = (page - 1) * per;
+  const after = offset > 0 ? btoa('flxo:' + (offset - 1)) : null;
 
-  const q = useFlxQuery(FlxCrmContacts, { filter, orderBy, order, first: PER, after }, { placeholderData: (old) => old });
+  const q = useFlxQuery(FlxCrmContacts, { filter, orderBy, order, first: per, after }, { placeholderData: (old) => old });
   const ov = useFlxQuery(FlxCrmOverview, {}, { staleTime: 30_000 });
   const bulkMut = useFlxMutation(FlxCrmContactBulk);
 
   const setParam = (changes: Record<string, string>) => {
     const n = new URLSearchParams(p);
+    if (!('paged' in changes)) n.delete('paged');
     for (const [k, v] of Object.entries(changes)) (v === '' ? n.delete(k) : n.set(k, v));
     go('contacts' + (n.toString() ? '?' + n.toString() : ''));
   };
@@ -66,14 +67,9 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
 
   const [search, setSearch] = useState(get('q'));
   useEffect(() => setSearch(get('q')), [key]); // eslint-disable-line react-hooks/exhaustive-deps
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    setParam({ q: search.trim() });
-  };
 
   const rows: ReadonlyArray<Row> = q.data?.flxContacts.nodes ?? [];
   const total = q.data?.flxContacts.totalCount ?? 0;
-  const hasNext = q.data?.flxContacts.pageInfo.hasNextPage ?? false;
   const allOn = rows.length > 0 && rows.every((r) => selected.has(r.id));
   const toggle = (id: string, on: boolean) =>
     setSelected((s) => {
@@ -134,7 +130,8 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
     }
   };
 
-  const filtered = [...p.keys()].some((k) => k !== 'status' && k !== 'orderby' && k !== 'order');
+  const filtered = [...p.keys()].some((k) => k !== 'status' && k !== 'orderby' && k !== 'order' && k !== 'paged');
+  const clearable = [...p.keys()].some((k) => !['status', 'orderby', 'order', 'paged', 'role'].includes(k)) || archived;
   const sid = Number(get('sid'));
   const sg = sid ? shell.flxSegments.find((s) => s.databaseId === sid) : undefined;
   const roleCounts = new Map((ov.data?.flxCrmOverview.roles ?? []).map((r) => [r.key, r.count]));
@@ -176,51 +173,60 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
           ))}
       </div>
 
-      <form className="flxcrm-filters" onSubmit={submit}>
-        <input type="search" value={search} onChange={(e) => setSearch(e.currentTarget.value)} placeholder={t('Name, e-mail, phone, organisation, city')} aria-label={t('Search contacts')} />
-        <select value={get('segment')} onChange={(e) => setParam({ segment: e.currentTarget.value })} aria-label={t('RFM segment')}>
-          <option value="">{t('All RFM segments')}</option>
-          {shell.flxCrmMeta.rfm.map((s) => (
-            <option key={s.key} value={s.key}>
-              {s.label}
-            </option>
-          ))}
-          <option value="none">{t('No payments')}</option>
-        </select>
-        <select value={get('sid')} onChange={(e) => setParam({ sid: e.currentTarget.value })} aria-label={t('Saved segment')}>
-          <option value="">{t('Saved segment')}</option>
-          {shell.flxSegments.map((s) => (
-            <option key={s.databaseId} value={s.databaseId}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-        <select value={get('tag')} onChange={(e) => setParam({ tag: e.currentTarget.value })} aria-label={t('Tag')}>
-          <option value="">{t('All tags')}</option>
-          {shell.flxTags.map((x) => (
-            <option key={x.databaseId} value={x.databaseId}>
-              {x.name + ' (' + num(x.count) + ')'}
-            </option>
-          ))}
-        </select>
-        <select value={get('consent')} onChange={(e) => setParam({ consent: e.currentTarget.value })} aria-label={t('Consent')}>
-          <option value="">{t('Any consent')}</option>
-          {shell.flxCrmMeta.consents.map((c) => (
-            <option key={c.key} value={c.key.toUpperCase()}>
-              {t('has %s consent', c.label)}
-            </option>
-          ))}
-        </select>
-        <label className="flxcrm-check">
-          <input type="checkbox" checked={get('risk') !== ''} onChange={(e) => setParam({ risk: e.currentTarget.checked ? '1' : '' })} /> {t('Only high churn risk')}
-        </label>
-        <label className="flxcrm-check">
-          <input type="checkbox" checked={archived} onChange={(e) => setParam({ status: e.currentTarget.checked ? 'archived' : '' })} /> {t('Archive')}
-        </label>
-        <button className="button" type="submit">
-          {t('Filter')}
-        </button>
-      </form>
+      <ListBar
+        id="flxcrm-contacts"
+        onSubmit={() => setParam({ q: search.trim() })}
+        onClear={clearable ? () => go('contacts' + (get('role') ? '?role=' + get('role') : '')) : undefined}
+        moreActive={[get('tag'), get('consent'), get('risk'), archived ? '1' : ''].filter(Boolean).length}
+        search={<input type="search" value={search} onChange={(e) => setSearch(e.currentTarget.value)} placeholder={t('Name, e-mail, phone, organisation, city')} aria-label={t('Search contacts')} />}
+        primary={
+          <>
+            <select value={get('segment')} onChange={(e) => setParam({ segment: e.currentTarget.value })} aria-label={t('RFM segment')}>
+              <option value="">{t('All RFM segments')}</option>
+              {shell.flxCrmMeta.rfm.map((s) => (
+                <option key={s.key} value={s.key}>
+                  {s.label}
+                </option>
+              ))}
+              <option value="none">{t('No payments')}</option>
+            </select>
+            <select value={get('sid')} onChange={(e) => setParam({ sid: e.currentTarget.value })} aria-label={t('Saved segment')}>
+              <option value="">{t('Saved segment')}</option>
+              {shell.flxSegments.map((s) => (
+                <option key={s.databaseId} value={s.databaseId}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+          </>
+        }
+        more={
+          <>
+            <select value={get('tag')} onChange={(e) => setParam({ tag: e.currentTarget.value })} aria-label={t('Tag')}>
+              <option value="">{t('All tags')}</option>
+              {shell.flxTags.map((x) => (
+                <option key={x.databaseId} value={x.databaseId}>
+                  {x.name + ' (' + num(x.count) + ')'}
+                </option>
+              ))}
+            </select>
+            <select value={get('consent')} onChange={(e) => setParam({ consent: e.currentTarget.value })} aria-label={t('Consent')}>
+              <option value="">{t('Any consent')}</option>
+              {shell.flxCrmMeta.consents.map((c) => (
+                <option key={c.key} value={c.key.toUpperCase()}>
+                  {t('has %s consent', c.label)}
+                </option>
+              ))}
+            </select>
+            <label className="flxcrm-check">
+              <input type="checkbox" checked={get('risk') !== ''} onChange={(e) => setParam({ risk: e.currentTarget.checked ? '1' : '' })} /> {t('Only high churn risk')}
+            </label>
+            <label className="flxcrm-check">
+              <input type="checkbox" checked={archived} onChange={(e) => setParam({ status: e.currentTarget.checked ? 'archived' : '' })} /> {t('Archive')}
+            </label>
+          </>
+        }
+      />
 
       {q.isLoading ? (
         <Loading />
@@ -305,7 +311,7 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
                     )}
                     <td data-label={t('Contact')}>
                       <a className="flxcrm-who" href={href('contact/' + c.databaseId)}>
-                        <Avatar name={c.name} src={c.avatar} />
+                        <Avatar name={c.name} />
                         <span>
                           <strong>{c.name}</strong>
                           <small>{[c.email, c.phone?.display, c.city].filter(Boolean).join(' · ')}</small>
@@ -348,17 +354,18 @@ export function Contacts({ route, go }: { route: Route; go: (to: string) => void
               </tbody>
             </table>
           </div>
-          <div className="flxcrm-pager" style={{ alignItems: 'center' }}>
-            <button type="button" className="button button-small" disabled={page === 0} onClick={() => setCursors((c) => c.slice(0, -1))}>
-              ‹ {t('Previous')}
-            </button>
-            <span className="flxcrm-muted" style={{ padding: '0 8px' }}>
-              {num(page * PER + 1)}–{num(page * PER + rows.length)} / {num(total)}
-            </span>
-            <button type="button" className="button button-small" disabled={!hasNext} onClick={() => setCursors((c) => [...c, q.data?.flxContacts.pageInfo.endCursor ?? null])}>
-              {t('Next')} ›
-            </button>
-          </div>
+          <ListPages
+            id="flxcrm-contacts"
+            total={total}
+            per={per}
+            page={page}
+            locale={crm.lang}
+            onPage={(n) => setParam({ paged: n > 1 ? String(n) : '' })}
+            onPer={(v) => {
+              setPer(v);
+              setParam({ paged: '' });
+            }}
+          />
         </>
       )}
       {confirmDelete && (

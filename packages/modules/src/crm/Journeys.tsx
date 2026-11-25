@@ -71,7 +71,7 @@ function List({ data, go }: { data: FlxCrmJourneysQuery; go: (to: string) => voi
     <>
       <Head
         title={t('Journeys')}
-        lead={t('Automatic flows: when something happens to a contact, messages and tags follow on a schedule. A new journey starts as a draft; nothing is sent until you turn it on. Messages go only to people who allowed that channel.')}
+        lead={t('Automatic flows: when something happens to a contact, messages and tags follow on a schedule. A new journey starts as a draft; nothing is sent until you turn it on. Messages go only to people who allowed that channel, never at night, and at most a few per week.')}
         actions={
           can && (
             <a className="button button-primary" href={href('journeys/new')}>
@@ -81,7 +81,7 @@ function List({ data, go }: { data: FlxCrmJourneysQuery; go: (to: string) => voi
         }
       />
       {can && (
-        <Card title={t('Start from a template')} icon="chart">
+        <Card title={t('Start from a template')} icon="layers">
           <div className="flxcrm-jtpl">
             {data.flxJourneyConfig.templates.map((x) => (
               <button
@@ -312,7 +312,7 @@ function Editor({ id, data, go }: { id: string; data: FlxCrmJourneysQuery; go: (
                     </label>
                   </>
                 )}
-                <button type="button" className="button-link flxcrm-jdel" aria-label={t('Remove step')} onClick={() => setSteps((x) => x.filter((_, k) => k !== i))}>
+                <button type="button" className="button-link button-link-delete flxcrm-jdel" aria-label={t('Remove step')} onClick={() => setSteps((x) => x.filter((_, k) => k !== i))}>
                   ×
                 </button>
               </div>
@@ -369,7 +369,7 @@ function Editor({ id, data, go }: { id: string; data: FlxCrmJourneysQuery; go: (
           </div>
         </div>
         <p className="flxcrm-jsave">
-          <button className="button button-primary" disabled={save.isPending || !name.trim()}>
+          <button className="button button-primary" disabled={save.isPending}>
             {isNew ? t('Save as draft') : t('Save')}
           </button>
           <a className="button" href={href('journeys')}>

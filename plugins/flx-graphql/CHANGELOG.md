@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0
+- `FlxDateTime` iki yeni alan: `short` (tablolar için kısa tarih-saat, Türkçede 24.11.2026 23:52) ve `day` (yalnız tarih).
+- Eklenti ekranlarına paket açıklaması (`appDesc`) gider; alt başlığı olmayan ekran klasik başlıktaki açıklamayı gösterir.
+
 ## 0.7.4
 - Eklenti ekranları runtime'ı (`assets/runtime/`) güncel paketlerle yeniden derlendi: ortak ekran kabuğu (`Screen`, `Tabs`) ve stilleri artık runtime'da. `@fluxwp/plugin-kit` 0.1.2 ile derlenen ekranların (Flux Extras: Qurban, Agents…) başlık ve sekmeleri diğer FluxWP ekranlarıyla aynı görünür; eski runtime'da sekmeler stilsiz kalıyordu.
 

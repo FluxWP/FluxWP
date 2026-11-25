@@ -2,6 +2,7 @@
 import { createContext, useContext, type MouseEvent, type ReactNode } from 'react';
 import type { FlxDonationListFilter } from '@fluxwp/graphql/types';
 import type { Translate, TranslateN } from './i18n';
+import { ListPages } from '@fluxwp/ui';
 
 export type Page = 'dashboard' | 'list' | 'detail' | 'donors' | 'donor' | 'subscriptions' | 'types' | 'type' | 'add' | 'partners' | 'settle' | 'partner' | 'track' | 'item' | 'import' | 'reports' | 'report-edit' | 'settings';
 export type Notice = { kind: 'ok' | 'error'; text: string };
@@ -111,21 +112,7 @@ export function Go({ href, className, children, title }: { href: string; classNa
   );
 }
 
-/** Previous / next page of a list (offset pages of `per`). */
-export function Pager({ offset, per, total, hasNext, onGo }: { offset: number; per: number; total: number; hasNext: boolean; onGo: (offset: number) => void }) {
-  const { t } = useDonate();
-  const pages = Math.max(1, Math.ceil(total / per));
-  if (pages <= 1) return null;
-  const page = offset / per + 1;
-  return (
-    <nav className="flxdn-pager" aria-label={t('Pages')}>
-      <button type="button" className="flxdn-btn flxdn-btn--sm" disabled={page <= 1} onClick={() => onGo(Math.max(0, offset - per))} aria-label={t('Previous page')}>
-        ‹
-      </button>
-      <span>{t('%1$s of %2$s', page, pages)}</span>
-      <button type="button" className="flxdn-btn flxdn-btn--sm" disabled={!hasNext} onClick={() => onGo(offset + per)} aria-label={t('Next page')}>
-        ›
-      </button>
-    </nav>
-  );
+/** Page numbers and "Per page" of a list (the classic Flux Admin list pagination). */
+export function Pager({ offset, per, total, onGo, id, onPer }: { offset: number; per: number; total: number; hasNext?: boolean; onGo: (offset: number) => void; id?: string; onPer?: (per: number) => void }) {
+  return <ListPages id={id} total={total} per={per} page={Math.floor(offset / per) + 1} onPage={(n) => onGo((n - 1) * per)} onPer={onPer} />;
 }

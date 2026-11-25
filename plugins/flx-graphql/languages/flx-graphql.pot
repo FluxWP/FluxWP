@@ -1072,6 +1072,14 @@ msgid "Relative time for display (\"5 minutes ago\")."
 msgstr ""
 
 #: includes/kit/types.php
+msgid "Date only, in the site time zone and the user's language."
+msgstr ""
+
+#: includes/kit/types.php
+msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
+msgstr ""
+
+#: includes/kit/types.php
 msgid "An amount of money."
 msgstr ""
 

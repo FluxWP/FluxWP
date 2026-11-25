@@ -1,6 +1,7 @@
 # Vocabulary every CRM screen needs: roles, value segments, event types, tags, saved segments.
 query FlxCrmShell {
   flxCrmMeta {
+    timezone
     roles {
       key
       label

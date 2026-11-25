@@ -1,6 +1,7 @@
 // Modül ekranlarının çalıştığı ortam. FluxWP paneli ve WP admin gömmesi (apps/wp-embed) ayrı ayrı sağlar;
 // ekran kodu ikisinde de aynıdır.
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
+import { ScreenDefaults } from '@fluxwp/ui';
 import { useQueryClient } from '@tanstack/react-query';
 import type { ApiClient } from '@fluxwp/core';
 import type { RealtimeFeed } from '@fluxwp/runtime/src/feed';
@@ -27,6 +28,8 @@ export interface ModuleHost {
   adminUrl?: string;
   /** Ekranın başlık simgesi (WP'de eklenti/marka logosu). */
   appIcon?: string;
+  /** Paket açıklaması (klasik başlıktaki gibi; alt başlığı olmayan ekranlarda gösterilir). */
+  appDesc?: string;
   /** Flux AI ortak sohbeti sayfada yüklü (window.FlxAIChat). */
   aiEmbed?: boolean;
   /** İlk açılacak sayfa (WP alt menüsü: 'dashboard', 'settings'). */
@@ -42,7 +45,12 @@ export interface ModuleHost {
 const Ctx = createContext<ModuleHost | null>(null);
 
 export function ModuleHostProvider({ value, children }: { value: ModuleHost; children: ReactNode }) {
-  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+  const def = useMemo(() => ({ subtitle: value.appDesc || undefined }), [value.appDesc]);
+  return (
+    <Ctx.Provider value={value}>
+      <ScreenDefaults.Provider value={def}>{children}</ScreenDefaults.Provider>
+    </Ctx.Provider>
+  );
 }
 
 export function useHost(): ModuleHost {
