@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.11.7
+- Redis (Docker yığını) doğru algılanır. Performans › Sunucu "Nesne önbelleği: Harici, Redis: Hayır" diyordu: yalnız php-redis uzantısına bakılıyordu, Redis Object Cache Predis ile de çalışır. Artık uzantı, Predis ya da çalışan Redis drop-in'i sayılır; nesne önbelleği satırı sahibin adını gösterir (Redis, LiteSpeed Cache…).
+- Önbellek ekranı Redis (ya da başka kalıcı bir nesne önbelleği) çalışırken "Bu sunucu için önerilen" rozetini SQLite/LiteSpeed'e koymaz.
+
 ## 0.11.6
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

@@ -48,6 +48,12 @@ final class FLXP_Speed_Service {
 		return is_numeric( $v ) ? (float) $v : $default;
 	}
 
+	/** Nesne önbelleği sahibinin okunur adı. */
+	private static function object_cache_label( $owner ) {
+		$names = array( 'redis' => 'Redis', 'memcached' => 'Memcached', 'litespeed' => 'LiteSpeed Cache', 'sqlite' => 'SQLite Object Cache' );
+		return $names[ $owner ] ?? __( 'External', 'flx-speed' );
+	}
+
 	/**
 	 * @param mixed $v Value.
 	 * @return array<string,mixed>
@@ -616,7 +622,7 @@ final class FLXP_Speed_Service {
 			'cache',
 			__( 'Cache', 'flx-speed' ),
 			array(
-				__( 'Object cache', 'flx-speed' )          => ! empty( $c['object_cache'] ) ? __( 'External', 'flx-speed' ) : __( 'None', 'flx-speed' ),
+				__( 'Object cache', 'flx-speed' )          => ! empty( $c['object_cache'] ) ? self::object_cache_label( self::s( $c['object_cache_owner'] ?? '' ) ) : __( 'None', 'flx-speed' ),
 				__( 'Page cache (WP_CACHE)', 'flx-speed' ) => ! empty( $c['page_cache'] ),
 				'LiteSpeed Cache'                          => ! empty( $c['litespeed'] ),
 				'APCu'                                     => ! empty( $c['apcu'] ),
