@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.25.0
+- E-posta renkleri tamamen sitenin temasından: kart çizgisi, alıntı ve bilgi kutusu zemini, alt bilgi yazısı ve koyu mod (zemin, kart, yazı, bağlantı) artık sabit yeşil değil, tema paletinden ve temanın koyu mod formülünden türetilir. Üstteki şerit ana renkten vurgu rengine geçer (önceden her sitede turuncu).
+- Yeni ayar: **Vurgu rengi** (varsayılan tema paletindeki "leaf" rengi). Ayarlar › Görünüm'deki renkler boşken tema rengini gösterir ("Temadan"); değiştirilen rengin yanında **Sıfırla** tema rengine döndürür. Mektup görünümü ve WooCommerce alt bilgi rengi de aynı tonları kullanır.
+- Geliştirici: `flxi_brand()['accent']` ve `['tones']`, filtre `flxi_tones`; GraphQL `FlxMailSettings.colorAccent`, `themeColors`.
+
 ## 1.24.1
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

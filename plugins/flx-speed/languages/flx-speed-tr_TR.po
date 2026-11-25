@@ -55,6 +55,9 @@ msgstr "LiteSpeed Cache nesne önbelleği Redis'e ayarlı ama sunucuda Redis PHP
 msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
 msgstr "LiteSpeed Cache nesne önbelleği Memcached'e ayarlı ama Memcached PHP uzantısı yok. Hostinger'da hPanel'den açın (Gelişmiş › PHP Yapılandırması › Memcached) ya da yerine SQLite Object Cache kullanın."
 
+msgid "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on."
+msgstr "Bu sitede Redis tanımlı ama object-cache.php yok, hiçbir şey önbelleğe alınmıyor. Onar, Redis Object Cache'i yeniden açar."
+
 msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
 msgstr "Eklenti etkin olmadığı hâlde SQLite Object Cache'in object-cache.php dosyası wp-content'te duruyor. Onar dosyayı kaldırır."
 
@@ -93,6 +96,9 @@ msgstr "Memcached ya da Redis PHP uzantısı yok. Hostinger'da önce hPanel'den 
 
 msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
 msgstr "Ayar kaydedildi ama LiteSpeed Cache henüz object-cache.php yazmadı. LiteSpeed Cache › Önbellek › Nesne'yi açıp bir kez Kaydet'e basın."
+
+msgid "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable."
+msgstr "Redis Object Cache etkin ama object-cache.php yazılamadı (wp-content yazılabilir olmayabilir). Ayarlar › Redis'i açıp Etkinleştir'e basın."
 
 msgid "The test request returned HTTP %d."
 msgstr "Test isteği HTTP %d döndü."
@@ -868,6 +874,9 @@ msgstr "Drop-in: %s"
 msgid "WordPress core"
 msgstr "WordPress çekirdeği"
 
+msgid "External"
+msgstr "Harici"
+
 msgid "Account limit (cgroup)"
 msgstr "Hesap sınırı (cgroup)"
 
@@ -975,9 +984,6 @@ msgstr "Yeniden başlama"
 
 msgid "No data (disabled or not allowed by the server)."
 msgstr "Bilgi alınamadı (kapalı ya da sunucu izin vermiyor)."
-
-msgid "External"
-msgstr "Harici"
 
 msgid "None"
 msgstr "Yok"

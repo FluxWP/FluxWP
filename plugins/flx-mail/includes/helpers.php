@@ -62,6 +62,7 @@ function flxi_default_values() {
 		'color_dark'       => '',
 		'color_bg'         => '',
 		'color_text'       => '',
+		'color_accent'     => '',
 		'org_name'         => '',
 		'tagline'          => '',
 		'address'          => '',
@@ -251,11 +252,15 @@ function flxi_brand() {
 		'dark'       => flxi_hex( $s['color_dark'], flxi_theme_color( 'color_dark' ) ),
 		'bg'         => flxi_hex( $s['color_bg'], flxi_theme_color( 'color_bg' ) ),
 		'text'       => flxi_hex( $s['color_text'], flxi_theme_color( 'color_text' ) ),
+		'accent'     => flxi_hex( $s['color_accent'], flxi_theme_color( 'color_accent' ) ),
 		'social'     => $social,
 		'note'       => $s['footer_note'],
 		'art'        => flxi_footer_art_urls( $s['footer_art'] ),
 	);
-	return apply_filters( 'flxi_brand', $brand );
+	$brand = apply_filters( 'flxi_brand', $brand );
+	// Ara tonlar (kart çizgisi, alıntı zemini, koyu mod) site renklerinden türetilir; filtre sonrası renge göre.
+	$brand['tones'] = flxi_tones( $brand );
+	return $brand;
 }
 
 /**
@@ -325,38 +330,112 @@ function flxi_logo_markup( array $b, $width, $font ) {
 }
 
 /**
- * E-posta renginin varsayılanı: sitenin tema paletindeki karşılığı (FluxWP temasında indigo; ön ayar ya da
- * Site Editor değiştirdiyse o). Tema paleti yoksa FluxWP renkleri.
+ * E-posta renginin varsayılanı: sitenin tema paletindeki karşılığı (ön ayar ya da Site Editor
+ * değiştirdiyse o). Tema paleti yoksa FluxWP renkleri. Vurgu rengi paletin "leaf" rengidir, o da yoksa ana renk.
  *
- * @param string $key color_primary | color_dark | color_bg | color_text.
+ * @param string $key color_primary | color_dark | color_bg | color_text | color_accent.
  * @return string
  */
 function flxi_theme_color( $key ) {
-	static $palette = null;
 	$map = array(
 		'color_primary' => array( 'primary', '#1F2937' ),
 		'color_dark'    => array( 'primary-dark', '#111827' ),
 		'color_bg'      => array( 'mint-soft', '#F8F5F0' ),
 		'color_text'    => array( 'ink', '#111827' ),
+		'color_accent'  => array( 'leaf', '' ),
 	);
 	if ( ! isset( $map[ $key ] ) ) {
 		return '';
 	}
-	if ( null === $palette ) {
-		$palette = array();
-		if ( function_exists( 'wp_get_global_settings' ) ) {
-			$p = wp_get_global_settings( array( 'color', 'palette' ) );
-			foreach ( array( 'theme', 'custom' ) as $origin ) {
-				foreach ( (array) ( $p[ $origin ] ?? array() ) as $c ) {
-					$hex = sanitize_hex_color( $c['color'] ?? '' );
-					if ( $hex && ! empty( $c['slug'] ) ) {
-						$palette[ $c['slug'] ] = $hex;
-					}
+	$palette = flxi_theme_palette();
+	$hex     = $palette[ $map[ $key ][0] ] ?? $map[ $key ][1];
+	return '' === $hex ? flxi_theme_color( 'color_primary' ) : $hex;
+}
+
+/**
+ * Temanın renk paleti (slug => #hex): tema/ön ayar paleti, Site Editor'de değiştirilenler üstte.
+ *
+ * @return array<string,string>
+ */
+function flxi_theme_palette() {
+	static $palette = null;
+	if ( null !== $palette ) {
+		return $palette;
+	}
+	$palette = array();
+	if ( function_exists( 'wp_get_global_settings' ) ) {
+		$p = wp_get_global_settings( array( 'color', 'palette' ) );
+		foreach ( array( 'theme', 'custom' ) as $origin ) {
+			foreach ( (array) ( $p[ $origin ] ?? array() ) as $c ) {
+				$hex = sanitize_hex_color( $c['color'] ?? '' );
+				if ( $hex && ! empty( $c['slug'] ) ) {
+					$palette[ $c['slug'] ] = $hex;
 				}
 			}
 		}
 	}
-	return $palette[ $map[ $key ][0] ] ?? $map[ $key ][1];
+	return $palette;
+}
+
+/**
+ * İki rengi karıştırır (CSS color-mix in srgb gibi).
+ *
+ * @param string $a   #hex.
+ * @param string $b   #hex.
+ * @param float  $pct $a'nın payı (0-100).
+ * @return string #RRGGBB
+ */
+function flxi_mix( $a, $b, $pct ) {
+	$rgb = static function ( $hex ) {
+		$hex = ltrim( (string) sanitize_hex_color( (string) $hex ), '#' );
+		if ( 3 === strlen( $hex ) ) {
+			$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+		}
+		return 6 === strlen( $hex ) ? array_map( 'hexdec', str_split( $hex, 2 ) ) : array( 0, 0, 0 );
+	};
+	$x = $rgb( $a );
+	$y = $rgb( $b );
+	$w = max( 0, min( 100, (float) $pct ) ) / 100;
+	$o = '#';
+	for ( $i = 0; $i < 3; $i++ ) {
+		$o .= sprintf( '%02X', (int) round( $x[ $i ] * $w + $y[ $i ] * ( 1 - $w ) ) );
+	}
+	return $o;
+}
+
+/**
+ * E-postanın ara tonları: açık modda çizgi/alıntı zemini/metin, koyu modda zemin, kart, yazı ve bağlantı.
+ * Tema ile aynı formül (theme.css --flx-d-*): temanın koyu mod renkleri (settings.custom.dark) varsa onlar.
+ * Böylece her site kendi renginde; sabit yeşil yok. Filtre: flxi_tones.
+ *
+ * @param array $b flxi_brand() (primary, text).
+ * @return array<string,string>
+ */
+function flxi_tones( array $b ) {
+	$p       = (string) $b['primary'];
+	$pal     = flxi_theme_palette();
+	$ink     = $pal['ink'] ?? (string) $b['text'];
+	$dark    = function_exists( 'wp_get_global_settings' ) ? (array) wp_get_global_settings( array( 'custom', 'dark' ) ) : array();
+	$d       = static function ( $k, $fallback ) use ( $dark ) {
+		$v = sanitize_hex_color( (string) ( $dark[ $k ] ?? '' ) );
+		return $v ? $v : $fallback;
+	};
+	$d_bg    = $d( 'bg', flxi_mix( $ink, '#000000', 38 ) );
+	$d_card  = $d( 'surface', flxi_mix( $ink, '#000000', 55 ) );
+	$tones   = array(
+		'line'      => flxi_mix( $p, '#FFFFFF', 12 ),
+		'soft'      => flxi_mix( $p, '#FFFFFF', 6 ),
+		'body'      => $pal['text'] ?? '#374151',
+		'muted'     => '#6B7280',
+		'dark_bg'   => $d_bg,
+		'dark_card' => $d_card,
+		'dark_line' => $d( 'line', flxi_mix( $p, $d_bg, 28 ) ),
+		'dark_soft' => flxi_mix( $p, $d_card, 14 ),
+		'dark_ink'  => $d( 'ink', flxi_mix( $p, '#FFFFFF', 8 ) ),
+		'dark_text' => $d( 'text', flxi_mix( $p, '#B4B8C4', 18 ) ),
+		'dark_link' => $d( 'link', flxi_mix( $p, '#FFFFFF', 45 ) ),
+	);
+	return (array) apply_filters( 'flxi_tones', $tones, $b );
 }
 
 function flxi_hex( $v, $fallback ) {

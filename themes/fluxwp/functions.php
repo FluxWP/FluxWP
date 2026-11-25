@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/inc/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLX_VERSION', '0.10.4' ); // style.css Version ile aynı tutulur (CSS/JS önbelleği bununla yenilenir).
+define( 'FLX_VERSION', '0.10.5' ); // style.css Version ile aynı tutulur (CSS/JS önbelleği bununla yenilenir).
 
 /**
  * Theme supports.
@@ -46,6 +46,7 @@ function flx_assets() {
 	wp_enqueue_style( 'fluxwp', get_theme_file_uri( $css ), array(), FLX_VERSION );
 	wp_add_inline_style( 'fluxwp', flx_palette_css() );
 	wp_add_inline_style( 'fluxwp', flx_ayar_colors_css() );
+	wp_add_inline_style( 'fluxwp', flx_menu_brand_css() );
 	wp_enqueue_script( 'fluxwp', get_theme_file_uri( 'assets/js/main.js' ), array(), FLX_VERSION, array( 'strategy' => 'defer', 'in_footer' => true ) );
 
 	// Swiper yalnızca sayfada slider varsa yüklenir (bkz. flx_enqueue_slider).
@@ -73,8 +74,59 @@ function flx_palette_css() {
 	if ( ! $primary ) {
 		return '';
 	}
-	$svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='" . $primary . "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 21v-9'/><path d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/><path d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/></svg>";
-	return ':root{--flx-menu-icon:url("data:image/svg+xml,' . rawurlencode( $svg ) . '")}';
+	// Mobil menü kartlarının simgesi: varsayılan sade nokta; "yapraklar" süslemesinde yaprak.
+	$dot  = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='4' fill='" . $primary . "'/></svg>";
+	$leaf = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='" . $primary . "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 21v-9'/><path d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/><path d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/></svg>";
+	return ':root{--flx-menu-icon:url("data:image/svg+xml,' . rawurlencode( $dot ) . '")}'
+		. 'body.flx-decoration--leaves{--flx-menu-icon:url("data:image/svg+xml,' . rawurlencode( $leaf ) . '")}';
+}
+
+/**
+ * CSS dizgesi: content:"..." içinde güvenle kullanılır (tırnak, ters bölü, satır sonu ve < kaçar).
+ *
+ * @param string $text Metin.
+ * @return string Tırnaklı CSS dizgesi.
+ */
+function flx_css_string( $text ) {
+	$text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( (string) $text ) ) );
+	return '"' . str_replace( array( '\\', '"', '<', '>' ), array( '\\\\', '\\"', '\\3c ', '\\3e ' ), $text ) . '"';
+}
+
+/**
+ * Mobil menü katmanının markası: üstteki logo (koyu modda açık renk logo) ve alttaki slogan
+ * sitenin kurum profilinden gelir (Flux Setup › Kurum profili: logo, logo_light, tagline).
+ * Logo yoksa site adı yazılır; slogan boşsa gösterilmez. Filtreler: flx_menu_brand.
+ *
+ * @return string
+ */
+function flx_menu_brand_css() {
+	$f      = flx_logo_files();
+	$slogan = function_exists( 'flx_profile' ) ? (string) flx_profile( 'tagline', '' ) : '';
+	$brand  = (array) apply_filters(
+		'flx_menu_brand',
+		array(
+			'logo'      => (string) $f['light'],
+			'logo_dark' => (string) $f['dark'],
+			'name'      => (string) $f['alt'],
+			'slogan'    => $slogan,
+		)
+	);
+	$url  = function ( $u ) {
+		$u = esc_url_raw( (string) $u );
+		return '' === $u ? '' : 'url("' . str_replace( array( '"', '\\', ')' ), array( '%22', '%5C', '%29' ), $u ) . '")';
+	};
+	$vars = array();
+	if ( '' !== $url( $brand['logo'] ?? '' ) ) {
+		$vars[] = '--flx-menu-logo:' . $url( $brand['logo'] );
+		$dark   = $url( ( $brand['logo_dark'] ?? '' ) ? $brand['logo_dark'] : $brand['logo'] );
+		$vars[] = '--flx-menu-logo-dark:' . $dark;
+	} elseif ( '' !== trim( (string) ( $brand['name'] ?? '' ) ) ) {
+		$vars[] = '--flx-menu-name:' . flx_css_string( $brand['name'] );
+	}
+	if ( '' !== trim( (string) ( $brand['slogan'] ?? '' ) ) ) {
+		$vars[] = '--flx-menu-slogan:' . flx_css_string( $brand['slogan'] );
+	}
+	return $vars ? '.flx-header{' . implode( ';', $vars ) . '}' : '';
 }
 
 /**

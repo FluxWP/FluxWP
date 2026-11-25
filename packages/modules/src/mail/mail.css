@@ -23,6 +23,8 @@
 .flxmail-grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
 .flxmail-grid3{display:grid;grid-template-columns:1fr 120px 160px;gap:0 12px}
 .flxmail-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:0 12px}
+.flxmail-colors{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:0 12px}
+.flxmail-color>label{display:flex;flex-direction:column;gap:4px}.flxmail-color>label>span{font-weight:600}.flxmail-color small,.flxmail-color .flxmail-link{font-size:12px}
 .flxmail-subnav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
 .flxmail-subnav a,.flxmail-subnav button{padding:4px 8px;border-radius:99px;background:var(--flux-surface2);border:0;color:var(--ac);text-decoration:none}
 .flxmail-seg{display:inline-flex;border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin:0 0 12px}

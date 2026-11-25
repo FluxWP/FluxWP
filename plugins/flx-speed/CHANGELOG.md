@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.11.8
+- Redis tanımlı (WP_REDIS_HOST) ama object-cache.php yoksa Önbellek ekranı bunu çakışma olarak gösterir: "Redis tanımlı ama object-cache.php yok". **Onar** düğmesi Redis Object Cache'i kurar/etkinleştirir ve drop-in'i geri yazar. Bu durumda SQLite'a "önerilen" rozeti konmaz. Sistem Kontrolü de hata olarak gösterir.
+
+## 0.11.7
+- Redis (Docker yığını) doğru algılanır. Performans › Sunucu "Nesne önbelleği: Harici, Redis: Hayır" diyordu: yalnız php-redis uzantısına bakılıyordu, Redis Object Cache Predis ile de çalışır. Artık uzantı, Predis ya da çalışan Redis drop-in'i sayılır; nesne önbelleği satırı sahibin adını gösterir (Redis, LiteSpeed Cache…).
+- Önbellek ekranı Redis (ya da başka kalıcı bir nesne önbelleği) çalışırken "Bu sunucu için önerilen" rozetini SQLite/LiteSpeed'e koymaz.
+
 ## 0.11.6
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

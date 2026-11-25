@@ -320,7 +320,9 @@ export function CacheTab() {
       </div>
     );
   };
-  const rec = ext.memcached ? 'litespeed' : 'sqlite';
+  // Redis (ya da başka kalıcı bir drop-in) zaten çalışıyorsa öneri yok: SQLite/LiteSpeed rozeti çıkmaz.
+  const foreign = (st.persistent && !['sqlite', 'litespeed'].includes(st.dropinOwner)) || st.conflicts.some((c) => c.code === 'redis_dropin_missing');
+  const rec = foreign ? 'none' : ext.memcached ? 'litespeed' : 'sqlite';
   const usedSqlite = sq.active && st.dropinOwner === 'sqlite';
   const usedLs = ls.active && ls.object && st.dropinOwner === 'litespeed';
   const back = ext.memcached || ext.redis;
