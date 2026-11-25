@@ -1,5 +1,8 @@
 # @fluxwp/ui
 
+## 0.8.0
+- `SystemChecks`: klasik Sistem Kontrolü ekranı (durum çipleri ve filtresi, "Kontrol: SS:DD", grup başına özet, Durum/Kontrol/Ayrıntı/Kaynak/İşlem tablosu). Metinler 10 dilde içinde (`lang`); stil styles.css'te (`flxsc-*`).
+
 ## 0.7.0
 - `WpEditor`: klasik WordPress editörü (TinyMCE + Metin sekmesi) React ekranında; sayfa `wp_enqueue_editor()` ile yükler. WordPress dışında (uygulama, headless) düz metin alanına düşer.
 
