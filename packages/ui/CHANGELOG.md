@@ -1,5 +1,8 @@
 # @fluxwp/ui
 
+## 0.7.0
+- `WpEditor`: klasik WordPress editörü (TinyMCE + Metin sekmesi) React ekranında; sayfa `wp_enqueue_editor()` ile yükler. WordPress dışında (uygulama, headless) düz metin alanına düşer.
+
 ## 0.6.0
 - `ListBar` ve `ListPages`: klasik Flux Admin liste çubuğu (arama, birincil filtreler, "Filtreler" paneli, Temizle) ve sayfalama (sayfa numaraları, "Sayfa başı"). `listPerPage(id)` kayıtlı sayfa başını okur.
 - `Screen`: `back` (başlığın üstünde geri bağlantısı); `ScreenDefaults` bağlamı ile alt başlığı olmayan ekrana varsayılan alt başlık.

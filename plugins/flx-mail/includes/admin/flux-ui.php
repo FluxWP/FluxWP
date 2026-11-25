@@ -81,9 +81,12 @@ function flxi_register_screens(): void {
 }
 add_action( 'admin_menu', 'flxi_register_screens', 5 );
 
-/** Logo picker of Settings › Brand. */
+/** Logo picker of Settings › Brand; the classic editor for the email content (@fluxwp/ui WpEditor). */
 function flxi_screen_enqueue(): void {
 	wp_enqueue_media();
+	if ( 'flxi' === flxi_current_page() && function_exists( 'wp_enqueue_editor' ) ) {
+		wp_enqueue_editor();
+	}
 }
 
 /** The route the current page starts on (template key, log filters). */

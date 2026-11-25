@@ -176,8 +176,25 @@ class FLXI_Settings_Service {
 		$out['activeSocialPlugins'] = is_array( $social ) ? array_map( 'flxi_str', array_values( $social ) ) : array();
 		$out['quota']               = self::quota();
 		$out['quotaFullDays']       = self::full_days();
+		$out['optoutDefaults']      = array(
+			'text'          => __( 'If you don\'t want messages like this, reply STOP.', 'flx-mail' ),
+			'keywords'      => flxi_str( flxi_optout_default_words() ),
+			'optinKeywords' => flxi_str( flxi_optin_default_words() ),
+			'reply'         => flxi_str( flxi_optout_reply_text( 'out' ) ),
+			'optinReply'    => flxi_str( flxi_optout_reply_text( 'in' ) ),
+		);
 		$out['dns']                 = FLXI_System_Service::stored_dns();
-		$out['footerArts']          = self::choices( flxi_footer_arts() );
+		$out['footerArts']          = array_map(
+			/**
+			 * @param array{key:string,label:string} $c
+			 * @return array{key:string,label:string,image:string|null}
+			 */
+			static function ( array $c ): array {
+				$c['image'] = 'none' === $c['key'] ? null : FLXI_URL . 'assets/img/footer/' . $c['key'] . '.png';
+				return $c;
+			},
+			self::choices( flxi_footer_arts() )
+		);
 		$out['socialNetworks']      = self::choices( flxi_social_services() );
 		$out['themeColors']         = array(
 			'primary' => flxi_theme_color( 'color_primary' ),

@@ -1,13 +1,13 @@
-.flxmail-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
-.flxmail-app *{box-sizing:border-box}
-.flxmail-app h2{font-size:16px;font-weight:600;margin:0 0 8px}
-.flxmail-app h3{font-size:14px;font-weight:600;margin:16px 0 8px}
-.flxmail-app a,.flxmail-link{color:var(--ac);background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left}
-.flxmail-app button{font:inherit;color:inherit;cursor:pointer}
-.flxmail-app input:not([type="checkbox"]):not([type="radio"]),.flxmail-app select,.flxmail-app textarea{width:100%;min-height:34px;padding:6px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit}
-.flxmail-app input[type="checkbox"],.flxmail-app input[type="radio"]{accent-color:var(--ac)}
-.flxmail-app textarea{resize:vertical}
-.flxmail-app input:not([type="checkbox"]):not([type="radio"]):focus,.flxmail-app select:focus,.flxmail-app textarea:focus{outline:2px solid color-mix(in srgb,var(--ac) 45%,transparent);border-color:var(--ac)}
+.flxmail-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);color:var(--flux-text)}
+.flxmail-app :where(*){box-sizing:border-box}
+.flxmail-app :where(h2){font-size:16px;font-weight:600;margin:0 0 8px}
+.flxmail-app :where(h3){font-size:14px;font-weight:600;margin:16px 0 8px}
+.flxmail-app :where(a),.flxmail-link{color:var(--ac);background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left}
+.flxmail-app :where(button){font:inherit;color:inherit;cursor:pointer}
+.flxmail-app :where(input:not([type="checkbox"]):not([type="radio"]):not([class*="flxi-"]):not(.flxa-list *):not(.flxi-field *):not(.flxi-inline *),select:not(.flxa-list *):not(.flxi-field *):not(.flxi-inline *),textarea:not(.flxi-field *):not(.wp-editor-wrap *)){width:100%;min-height:34px;padding:6px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit}
+.flxmail-app :where(input[type="checkbox"],input[type="radio"]){accent-color:var(--ac)}
+.flxmail-app :where(textarea){resize:vertical}
+.flxmail-app :where(input:not([type="checkbox"]):not([type="radio"]):focus,select:focus,textarea:focus){outline:2px solid color-mix(in srgb,var(--ac) 45%,transparent);border-color:var(--ac)}
 .flxmail-card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:0 0 16px}
 .flxmail-muted{color:var(--mut)}
 .flxmail-bad{color:var(--flux-danger)}
@@ -82,3 +82,13 @@
 .flxmail-app .flxi-island{display:block;min-width:0}
 .flux-root .flxmail-app .flxi-island .button{background:#f6f7f7;border:1px solid #2271b1;color:#2271b1;border-radius:3px;padding:0 10px;min-height:30px;line-height:2.15384615;font-size:13px}
 .flux-root .flxmail-app .flxi-island .button-primary{background:#2271b1;color:#fff}
+/* Klasik wp-admin metni (13px) ve klasik liste çubuğu: arama kalan genişliği alır. */
+.flxmail-app.flxi-wrap{font-size:13px;line-height:1.4}
+.flxi-filters.flxa-list .flxa-list__search{flex:1 1 auto;max-width:none}
+.flux-root .flxmail-app.flxi-wrap :is(.flxi-field,.flxi-inline,.flxi-toolbar) :is(input:not([type="checkbox"]):not([type="radio"]),select){font-size:14px;line-height:2}
+.flux-root .flxmail-app.flxi-wrap :is(.flxi-field,.flxi-inline) textarea{font-size:14px;line-height:1.42857143}
+/* The shell resets buttons and fields (.flux-root button/textarea); the classic WordPress editor keeps its own look and height. */
+.flux-root .flxmail-app .wp-switch-editor{float:left;box-sizing:content-box;position:relative;top:1px;background:#f0f0f1;color:#646970;font-size:13px;line-height:1.46153846;height:20px;margin:5px 0 0 5px;padding:3px 8px 4px;border:1px solid #dcdcde}
+.flux-root .flxmail-app .html-active .switch-html,.flux-root .flxmail-app .tmce-active .switch-tmce{background:#f6f7f7;color:#50575e;border-bottom-color:#f6f7f7}
+.flux-root .flxmail-app .wp-editor-area{font-family:Consolas,Monaco,monospace;font-size:13px;padding:10px;margin:1px 0 0;line-height:150%;border:0;min-height:0}
+.flux-root .flxmail-app .flxi-queue-toolbar label{white-space:nowrap}

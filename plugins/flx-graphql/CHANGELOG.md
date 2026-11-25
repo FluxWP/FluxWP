@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.1
+- Ortak arayüz paketi yenilendi: klasik WordPress editörü React ekranlarında (`WpEditor`).
+
 ## 0.8.0
 - `FlxDateTime` iki yeni alan: `short` (tablolar için kısa tarih-saat, Türkçede 24.11.2026 23:52) ve `day` (yalnız tarih).
 - Eklenti ekranlarına paket açıklaması (`appDesc`) gider; alt başlığı olmayan ekran klasik başlıktaki açıklamayı gösterir.
