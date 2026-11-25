@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.45.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 2.45.0
 - Pano > Günlük bağışlar grafiği ortak etkileşimli grafiğe geçti: tek seferlik/düzenli yığılmış çubuk, ipucunda toplam, legend'dan seri aç/kapa. Ortak modül paketi yenilendi.
 

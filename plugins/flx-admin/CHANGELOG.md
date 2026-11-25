@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.11.3
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 1.11.2
 - Sol menü: başka bir Flux ekranına sayfa yenilemeden geçince "FluxWP Panel" grubu açık ve seçili, alt menüdeki "Diğer" satırı da seçili (çift ok) görünüyordu. "Diğer" düğmesi artık adres taşımıyor, ekran kabuğu onu geçerli sayfa sanmıyor; klavyeyle (Enter/Boşluk) de açılır.
 - Alt menüde rozet (ör. "WordPress güncellemeleri" yanındaki sayı) uzun adlarda alt satıra düşmüyor; ad solda, rozet sağda aynı satırda.

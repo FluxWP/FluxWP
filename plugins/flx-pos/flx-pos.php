@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux POS Entegrator
  * Description:       WooCommerce için ortak sanal POS: Türkiye'deki bankalar (Akbank, Garanti BBVA, İş Bankası, Yapı Kredi, Ziraat, Halkbank, Vakıfbank, QNB, Denizbank, TEB, Kuveyt Türk…) ve ödeme kuruluşları (iyzico, PayTR, Sipay, Param, Craftgate, Moka, Paratika, EsnekPOS…) tek eklentide. Kendi kart formu (klasik ve blok ödeme), 3D Secure, test modu, taksit, siteden iade, işlem kayıtları ve sitedeki tüm ödeme yöntemlerinin yetenek tablosu.
- * Version:           0.2.1
+ * Version:           0.2.2
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -25,7 +25,7 @@ if ( defined( 'FLXPOS_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXPOS_VERSION', '0.2.1' );
+define( 'FLXPOS_VERSION', '0.2.2' );
 define( 'FLXPOS_DB', 1 );
 define( 'FLXPOS_FILE', __FILE__ );
 define( 'FLXPOS_DIR', plugin_dir_path( __FILE__ ) );

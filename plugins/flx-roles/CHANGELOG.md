@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.7.3
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 1.7.2
 - Rol ekranının altındaki notta bağlantılar düz HTML yazısı yerine tıklanabilir bağlantı olarak görünür.
 - Telefon genişliğinde içerik ekranın dışına taşmıyor (grid sütunları minmax(0,1fr)).

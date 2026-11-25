@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.34.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.34.0
 - Genel bakış ve Faturalandırma grafikleri etkileşimli (ortak Chart.js grafiği): üzerine gelince ipucu (tooltip), legend'dan seri aç/kapa, koyu/açık tema. Günlük maliyet çubuk + model istekleri çizgisi (sağ eksen), zaman yığılmış çubuk, token alan grafiği (önbellek serisi legend'dan açılır), araç süreleri yatay çubuk; yeni: eklentiye ve modele göre maliyet halka grafikleri. Ortak modül paketi yenilendi.
 

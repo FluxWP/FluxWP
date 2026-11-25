@@ -1,5 +1,8 @@
 # Flux AI Chatbot
 
+## 0.6.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.6.0
 - Canlı yanıt (Docker siteler, Flux Realtime): açık sohbet penceresi yanıt, devir ya da kapanış olunca bir sonraki yoklamayı beklemeden hemen günceller. Pencere yalnız kendi sohbeti için tek kullanımlık bilet alır (`POST flx-chatbot/v1/rt`, sohbet anahtarı kanıt); soketten mesaj metni gelmez, yanıtlar yine yoklamadan okunur. Bağlıyken yoklama 60 sn'ye iner; bağlantı koparsa ya da sitede realtime yoksa eski aralıklar (3,5 / 15 / 30 sn) aynen sürer.
 
