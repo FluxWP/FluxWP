@@ -265,8 +265,8 @@ final class FLXF_Automations_Service {
 		if ( ! $form_id ) {
 			return self::invalid( 'form', __( 'The form could not be created.', 'flx-forms' ) );
 		}
-		$fresh   = FLXF_Automations::default_flow_data( $form_id );
-		$actions = is_array( $fresh ) && is_array( $fresh['actions'] ?? null ) ? $fresh['actions'] : array();
+		$fresh   = (array) FLXF_Automations::default_flow_data( $form_id );
+		$actions = is_array( $fresh['actions'] ?? null ) ? $fresh['actions'] : array();
 		$first   = is_array( $actions[0] ?? null ) ? $actions[0] : array();
 		foreach ( FLXF_Automations::get_flows() as $f ) {
 			$trigger = is_array( $f['trigger'] ?? null ) ? $f['trigger'] : array();

@@ -135,13 +135,11 @@ final class FLXF_Tools_Service {
 		}
 		self::stripe_call( 'maybe_install_table' );
 		$t    = self::str( self::stripe_call( 'table_name' ) );
+		/** @var list<array<string,mixed>> $rows */
 		// @phpstan-ignore argument.type
-		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} ORDER BY id DESC LIMIT %d", self::PAYMENTS_LIMIT ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+		$rows = (array) $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} ORDER BY id DESC LIMIT %d", self::PAYMENTS_LIMIT ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
 		$out  = array();
-		foreach ( is_array( $rows ) ? $rows : array() as $r ) {
-			if ( ! is_array( $r ) ) {
-				continue;
-			}
+		foreach ( $rows as $r ) {
 			$gateway  = self::str( $r['gateway'] ?? '' );
 			$provider = function_exists( 'flxf_payment_provider' ) ? flxf_payment_provider( $gateway ) : null;
 			$status   = strtolower( self::str( $r['status'] ?? '' ) );
@@ -229,8 +227,8 @@ final class FLXF_Tools_Service {
 				'checks'    => array(),
 			);
 		}
-		$labels = function_exists( 'flx_system_checks_labels' ) ? flx_system_checks_labels() : array();
-		$groups = is_array( $labels ) && is_array( $labels['groups'] ?? null ) ? $labels['groups'] : array();
+		$labels = function_exists( 'flx_system_checks_labels' ) ? (array) flx_system_checks_labels() : array();
+		$groups = is_array( $labels['groups'] ?? null ) ? $labels['groups'] : array();
 		$checks = array();
 		foreach ( (array) flx_system_checks_sorted() as $c ) {
 			if ( ! is_array( $c ) ) {
