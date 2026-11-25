@@ -58,7 +58,7 @@ final class FLXF_Tools_Service {
 					? __( 'Optional but recommended: in the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.updated and customer.subscription.deleted, then paste its signing secret below.', 'flx-forms' )
 					: __( 'Webhook URL for this provider (if it sends payment notifications):', 'flx-forms' ),
 				'secretOption' => $stripe,
-				'secretSet'    => $stripe && '' !== \Emsfb\StripePayment::webhook_secret(),
+				'secretSet'    => $stripe && '' !== self::str( self::stripe_call( 'webhook_secret' ) ),
 				'secretFixed'  => $stripe && defined( 'EMSFB_STRIPE_WEBHOOK_SECRET' ) && EMSFB_STRIPE_WEBHOOK_SECRET,
 			);
 		}
@@ -78,7 +78,7 @@ final class FLXF_Tools_Service {
 			return self::invalid( 'secret', __( 'Stripe is not available.', 'flx-forms' ) );
 		}
 		if ( $clear ) {
-			delete_option( \Emsfb\StripePayment::SECRET_OPTION );
+			delete_option( self::stripe_secret_option() );
 			return true;
 		}
 		$secret = trim( sanitize_text_field( $secret ) );
@@ -88,7 +88,7 @@ final class FLXF_Tools_Service {
 		if ( 0 !== strpos( $secret, 'whsec_' ) ) {
 			return self::invalid( 'secret', __( 'A Stripe webhook signing secret starts with "whsec_".', 'flx-forms' ) );
 		}
-		update_option( \Emsfb\StripePayment::SECRET_OPTION, $secret, false );
+		update_option( self::stripe_secret_option(), $secret, false );
 		return true;
 	}
 
@@ -106,17 +106,36 @@ final class FLXF_Tools_Service {
 	}
 
 	/**
+	 * A static method of the Stripe add-on class (legacy code, loaded at runtime).
+	 *
+	 * @param string $method Method name.
+	 * @return mixed
+	 */
+	private static function stripe_call( string $method ) {
+		$cb = array( '\Emsfb\StripePayment', $method );
+		return is_callable( $cb ) ? call_user_func( $cb ) : null;
+	}
+
+	/** Option name of the Stripe webhook signing secret. */
+	private static function stripe_secret_option(): string {
+		$c = '\Emsfb\StripePayment::SECRET_OPTION';
+		return defined( $c ) ? self::str( constant( $c ) ) : 'emsfb_stripe_webhook_secret';
+	}
+
+	/**
 	 * Latest payment records.
 	 *
 	 * @return list<array<string,mixed>>
 	 */
 	private static function payment_rows(): array {
 		global $wpdb;
+		/** @var wpdb $wpdb */
 		if ( ! self::stripe_store() ) {
 			return array();
 		}
-		\Emsfb\StripePayment::maybe_install_table();
-		$t    = \Emsfb\StripePayment::table_name();
+		self::stripe_call( 'maybe_install_table' );
+		$t    = self::str( self::stripe_call( 'table_name' ) );
+		// @phpstan-ignore argument.type
 		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} ORDER BY id DESC LIMIT %d", self::PAYMENTS_LIMIT ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
 		$out  = array();
 		foreach ( is_array( $rows ) ? $rows : array() as $r ) {
@@ -211,7 +230,7 @@ final class FLXF_Tools_Service {
 			);
 		}
 		$labels = function_exists( 'flx_system_checks_labels' ) ? flx_system_checks_labels() : array();
-		$groups = is_array( $labels['groups'] ?? null ) ? $labels['groups'] : array();
+		$groups = is_array( $labels ) && is_array( $labels['groups'] ?? null ) ? $labels['groups'] : array();
 		$checks = array();
 		foreach ( (array) flx_system_checks_sorted() as $c ) {
 			if ( ! is_array( $c ) ) {

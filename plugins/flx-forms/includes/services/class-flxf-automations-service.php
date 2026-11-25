@@ -136,7 +136,7 @@ final class FLXF_Automations_Service {
 			'providers'     => (object) FLXF_Automations::cert_providers(),
 			'channels'      => (object) ( is_array( $channels ) ? $channels : array() ),
 			'certAvailable' => (bool) FLXF_Automations::certificates_available(),
-			'saplingPrice'  => (float) FLXF_Automations::sapling_unit_price(),
+			'saplingPrice'  => is_numeric( $price = FLXF_Automations::sapling_unit_price() ) ? (float) $price : 0.0,
 			'adminEmail'    => self::str( get_option( 'admin_email' ) ),
 		);
 	}
@@ -265,8 +265,9 @@ final class FLXF_Automations_Service {
 		if ( ! $form_id ) {
 			return self::invalid( 'form', __( 'The form could not be created.', 'flx-forms' ) );
 		}
-		$fresh = FLXF_Automations::default_flow_data( $form_id );
-		$first = is_array( $fresh['actions'][0] ?? null ) ? $fresh['actions'][0] : array();
+		$fresh   = FLXF_Automations::default_flow_data( $form_id );
+		$actions = is_array( $fresh ) && is_array( $fresh['actions'] ?? null ) ? $fresh['actions'] : array();
+		$first   = is_array( $actions[0] ?? null ) ? $actions[0] : array();
 		foreach ( FLXF_Automations::get_flows() as $f ) {
 			$trigger = is_array( $f['trigger'] ?? null ) ? $f['trigger'] : array();
 			$actions = is_array( $f['actions'] ?? null ) ? $f['actions'] : array();
