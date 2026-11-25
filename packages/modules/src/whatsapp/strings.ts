@@ -184,4 +184,10 @@ export const EN: Record<string, string> = {
   "İndir": "Download",
   "İsteğe bağlı": "Optional",
   "— Atanmadı —": "— Unassigned —",
+  "Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.": "The assistant recognises staff by the number in their Flux Roles profile. If the number does not match, you can link them here; in a chat with a known number the number comes first.",
+  "Personel": "Staff",
+  "Personel bağlantısı kaldırıldı": "Staff link removed",
+  "Sohbet personele bağlandı": "Chat linked to staff member",
+  "WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.": "WhatsApp hides this person's number, so the assistant cannot recognise staff by number. If this person is on your team, link them here and the assistant opens the staff tools.",
+  "— Personel değil —": "— Not staff —",
 };

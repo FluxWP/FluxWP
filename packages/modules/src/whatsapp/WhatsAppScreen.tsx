@@ -889,7 +889,7 @@ function Conversation({
         clearQuote={() => setQuote(null)}
         replies={boot?.replies ?? []}
         ai={!!boot?.ai}
-        chips={chips}
+        chips={chips && boot?.chips !== false}
         repliesUrl={boot?.me.manage ? settingsUrl : ''}
         onSent={() => ((stick.current = true), setAtBottom(true))}
         inject={inject}

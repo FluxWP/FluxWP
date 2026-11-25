@@ -70,7 +70,7 @@ type GChat = {
   title: string; name: string; pushName: string; avatarUrl: string; labels: string[]; notes: string; status: string;
   assignedTo: number; unread: number; pinned: boolean; lastMs: string; lastInMs: string; group: boolean; typing: number;
   rev: string; createdMs: string; unknownName: boolean; blocked: boolean; optOut: boolean; bot: string | null;
-  botBusy: boolean; ai: boolean; lastMessage: GLast | null;
+  botBusy: boolean; ai: boolean; staffUser?: number | null; lastMessage: GLast | null;
 };
 type GMsg = {
   databaseId: number; chatId: number; dir: string; type: string; body: string; status: string | null; error: string;
@@ -91,7 +91,7 @@ function chatOf(c: GChat): FlxcChat {
     lastTs: num(c.lastMs), lastInTs: num(c.lastInMs), group: c.group, typing: c.typing, rev: num(c.rev), created: num(c.createdMs),
     last: last ? { dir: low(last.dir) as FlxcDir, type: last.type as FlxcMsgType, body: last.body, status: (last.status ? low(last.status) : '') as FlxcStatus, user: last.user } : null,
     unknownName: c.unknownName, meta: c.blocked ? { blocked: 1 } : {}, bot: (c.bot ? low(c.bot) : '') as FlxcChat['bot'],
-    botBusy: c.botBusy ? 1 : 0, ai: c.ai ? 1 : 0, optout: c.optOut ? 1 : 0,
+    botBusy: c.botBusy ? 1 : 0, ai: c.ai ? 1 : 0, optout: c.optOut ? 1 : 0, staffUser: c.staffUser ?? 0,
   };
 }
 
@@ -217,6 +217,7 @@ export class WaEngine {
         connections: b.connections.map(connOf),
         replies: b.replies.map((q) => ({ id: q.databaseId, shortcut: q.shortcut, title: q.title, body: q.body, category: q.category, uses: q.uses })),
         unread: b.unread, ai: b.ai ? { id: 'ai', label: b.ai, auto: false } : null, bot: b.bot, records: {}, rev: num(b.rev),
+        staff: b.staff.map((a) => ({ id: a.databaseId, name: a.name })), chips: b.chips,
       };
       this.since = b.rev;
       this.set({ boot, rev: boot.rev, conns: boot.connections, unread: b.unread });
@@ -328,7 +329,7 @@ export class WaEngine {
         input: {
           id: String(id), name: patch.name ?? null, notes: patch.notes ?? null, labels: patch.labels ?? null,
           status: patch.status === 'closed' ? 'CLOSED' : patch.status === 'open' ? 'OPEN' : null,
-          assigned: patch.assigned ?? null, pinned: patch.pinned ?? null, unread: patch.unread ?? null, staffUser: null,
+          assigned: patch.assigned ?? null, pinned: patch.pinned ?? null, unread: patch.unread ?? null, staffUser: patch.staffUser ?? null,
         },
       });
       const err = r.flxChatUpdate?.errors[0];

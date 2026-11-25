@@ -43,6 +43,8 @@ export interface FlxcChat {
   botBusy: 0 | 1;
   ai: 0 | 1;
   optout: 0 | 1;
+  /** Yönetici: sohbetin bağlı olduğu personel kullanıcısı (0 yok). */
+  staffUser?: number;
 }
 
 export interface FlxcMedia {
@@ -133,6 +135,10 @@ export interface FlxcBootstrap {
   ai: { id: string; label: string; auto: boolean } | null;
   bot: boolean;
   records: Record<string, unknown>;
+  /** Yönetici: personel olarak bağlanabilecek kullanıcılar. */
+  staff?: FlxcAgent[];
+  /** Hazır cevap baloncukları gösterilsin mi (ayar). */
+  chips?: boolean;
   rev: number;
 }
 
@@ -160,6 +166,7 @@ export interface FlxcChatPatch {
   assigned?: number;
   pinned?: boolean;
   unread?: number;
+  staffUser?: number;
 }
 
 export interface FlxcSendArgs {

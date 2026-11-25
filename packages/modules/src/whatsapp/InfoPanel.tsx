@@ -140,6 +140,32 @@ export function InfoPanel({ engine, id, onClose, onInsert, onLightbox }: { engin
             ))}
           </select>
         </div>
+        {boot?.me.manage && !!boot.staff?.length && !c.group && (
+          <div className="flxc-info-sec">
+            <h4>
+              <I n="person" />
+              {L('Personel')}
+            </h4>
+            <select
+              className="flxc-field"
+              aria-label={L('Personel')}
+              value={c.staffUser ?? 0}
+              onChange={(e) => patch({ staffUser: +e.target.value }, +e.target.value ? L('Sohbet personele bağlandı') : L('Personel bağlantısı kaldırıldı'))}
+            >
+              <option value="0">{L('— Personel değil —')}</option>
+              {boot.staff.map((u) => (
+                <option key={u.id} value={u.id}>
+                  {u.name}
+                </option>
+              ))}
+            </select>
+            <small className="flxc-help">
+              {!c.phone && /@lid$/.test(c.jid || '')
+                ? L('WhatsApp bu kişinin numarasını gizliyor, asistan personeli numaradan tanıyamaz. Bu kişi ekibinizdense buradan bağlayın; asistan personel araçlarını açar.')
+                : L('Asistan personeli Flux Roles profilindeki numaradan tanır. Numara eşleşmiyorsa buradan bağlayabilirsiniz; numarası bilinen sohbette numara önceliklidir.')}
+            </small>
+          </div>
+        )}
         <div className="flxc-info-sec">
           <h4>
             <I n="note" />

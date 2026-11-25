@@ -879,6 +879,12 @@ flx_gql_type(
 			'labels'      => array( 'type' => '[FlxChatLabel!]!', 'description' => __( 'Labels.', 'flx-chat' ) ),
 			'connections' => array( 'type' => '[FlxChatConnState!]!', 'description' => __( 'Connections without keys.', 'flx-chat' ) ),
 			'replies'     => array( 'type' => '[FlxChatReply!]!', 'description' => __( 'Quick replies.', 'flx-chat' ) ),
+			'staff'       => array( 'type' => '[FlxChatAgent!]!', 'description' => __( 'Users a chat can be linked to as staff. Empty for an agent.', 'flx-chat' ) ),
+			'chips'       => array(
+				'type'        => 'Boolean!',
+				'description' => __( 'Show quick reply chips above the composer.', 'flx-chat' ),
+				'resolve'     => static fn( $b ): bool => FLXC_Val::bool( flx_gql_arr( flx_gql_arr( $b )['records'] ?? null )['chips'] ?? true ),
+			),
 			'unread'      => array( 'type' => 'Int!', 'description' => __( 'Unread total.', 'flx-chat' ) ),
 			'ai'          => array(
 				'type'        => 'String',

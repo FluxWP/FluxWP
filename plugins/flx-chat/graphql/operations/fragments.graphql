@@ -27,6 +27,7 @@ fragment FlxChatFields on FlxChat {
   bot
   botBusy
   ai
+  staffUser
   lastMessage {
     dir
     type

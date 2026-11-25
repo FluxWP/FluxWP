@@ -353,6 +353,8 @@ type FlxChatInbox {
   ai: String
   """The assistant is enabled."""
   bot: Boolean!
+  """Show quick reply chips above the composer."""
+  chips: Boolean!
   """Classic chat page."""
   classicUrl: String!
   """Connections without keys."""
@@ -367,6 +369,8 @@ type FlxChatInbox {
   replies: [FlxChatReply!]!
   """Current revision."""
   rev: String!
+  """Users a chat can be linked to as staff. Empty for an agent."""
+  staff: [FlxChatAgent!]!
   """Unread total."""
   unread: Int!
 }
