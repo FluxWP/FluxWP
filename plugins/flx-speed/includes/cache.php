@@ -39,6 +39,11 @@ class FLXP_Cache {
 					'file' => 'sqlite-object-cache/sqlite-object-cache.php',
 					'name' => 'SQLite Object Cache',
 				),
+				'redis'     => array(
+					'slug' => 'redis-cache',
+					'file' => 'redis-cache/redis-cache.php',
+					'name' => 'Redis Object Cache',
+				),
 			)
 		);
 	}
@@ -163,6 +168,12 @@ class FLXP_Cache {
 		return '';
 	}
 
+	/** wp-config'te Redis sunucusu tanımlı mı (Docker yığını WP_REDIS_HOST yazar). */
+	public static function redis_configured() {
+		return ( defined( 'WP_REDIS_HOST' ) && '' !== trim( (string) WP_REDIS_HOST ) )
+			|| defined( 'WP_REDIS_SERVERS' ) || defined( 'WP_REDIS_CLUSTER' ) || defined( 'WP_REDIS_SENTINEL' );
+	}
+
 	/** Sunucu: LiteSpeed web sunucusu mu? */
 	public static function is_litespeed_server() {
 		$sw = isset( $_SERVER['SERVER_SOFTWARE'] ) ? (string) $_SERVER['SERVER_SOFTWARE'] : ''; // phpcs:ignore
@@ -220,6 +231,10 @@ class FLXP_Cache {
 				$conflicts[] = 'ls_no_backend';
 			}
 		}
+		// Redis tanımlı ama drop-in yok (Redis Object Cache kapatıldı ya da drop-in silindi): önbellek boşta.
+		if ( self::redis_configured() && ! $drop['exists'] && ! $sq['active'] && ! $ls_object_live ) {
+			$conflicts[] = 'redis_dropin_missing';
+		}
 		if ( ! $sq['active'] && 'sqlite' === $drop['owner'] ) {
 			$conflicts[] = 'sqlite_orphan';
 		}
@@ -268,6 +283,8 @@ class FLXP_Cache {
 				return 'redis' === ( $st['litespeed']['object_kind'] ?? '' )
 					? __( 'LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache.', 'flx-speed' )
 					: __( 'LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead.', 'flx-speed' );
+			case 'redis_dropin_missing':
+				return __( 'Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on.', 'flx-speed' );
 			case 'sqlite_orphan':
 				return __( 'object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on.', 'flx-speed' );
 			case 'two_page_caches':
@@ -480,9 +497,41 @@ class FLXP_Cache {
 		return true;
 	}
 
+	/** Redis nesne önbelleğini açar: Redis Object Cache kurulur/etkinleşir, drop-in'i wp-content'e kopyalanır. */
+	public static function use_redis() {
+		$d = self::dropin_owner();
+		if ( $d['exists'] && 'redis' === $d['owner'] ) {
+			return true;
+		}
+		if ( $d['exists'] ) {
+			/* translators: %s: drop-in eklentisinin adı */
+			return new WP_Error( 'other', sprintf( __( 'object-cache.php belongs to another plugin (%s). Turn that plugin\'s object cache off first.', 'flx-speed' ), $d['name'] ? $d['name'] : $d['owner'] ) );
+		}
+		$r = self::install( 'redis' );
+		if ( ! is_wp_error( $r ) ) {
+			$r = self::activate( 'redis' );
+		}
+		if ( is_wp_error( $r ) ) {
+			return $r;
+		}
+		$p   = self::plugin_state( 'redis' );
+		$src = WP_PLUGIN_DIR . '/' . dirname( (string) ( $p['file'] ?? 'redis-cache/redis-cache.php' ) ) . '/includes/object-cache.php';
+		if ( ! is_file( $src ) || ! @copy( $src, WP_CONTENT_DIR . '/object-cache.php' ) ) { // phpcs:ignore
+			return new WP_Error( 'dropin', __( 'Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable.', 'flx-speed' ) );
+		}
+		if ( function_exists( 'opcache_invalidate' ) ) {
+			@opcache_invalidate( WP_CONTENT_DIR . '/object-cache.php', true ); // phpcs:ignore
+		}
+		delete_option( self::TEST_OPTION );
+		return true;
+	}
+
 	/** Çakışmayı onarır: drop-in'i etkin sağlayıcıya göre düzeltir. */
 	public static function repair() {
 		$st = self::status();
+		if ( in_array( 'redis_dropin_missing', $st['conflicts'], true ) ) {
+			return self::use_redis();
+		}
 		if ( $st['sqlite']['active'] ) {
 			return self::use_sqlite();
 		}
@@ -597,7 +646,7 @@ add_filter(
 		$src    = __( 'Flux Performance', 'flx-speed' );
 		$url    = admin_url( 'admin.php?page=flx-speed&tab=cache' );
 		if ( $st['conflicts'] ) {
-			$hard = array_intersect( $st['conflicts'], array( 'both_on', 'sqlite_dropin_taken', 'ls_dropin_taken', 'sqlite_dropin_missing' ) );
+			$hard = array_intersect( $st['conflicts'], array( 'both_on', 'sqlite_dropin_taken', 'ls_dropin_taken', 'sqlite_dropin_missing', 'redis_dropin_missing' ) );
 			$checks[] = array(
 				'id'           => 'flxp.cache_conflict',
 				'source'       => $src,

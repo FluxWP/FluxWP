@@ -55,6 +55,9 @@ msgstr ""
 msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
 msgstr ""
 
+msgid "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on."
+msgstr ""
+
 msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
 msgstr ""
 
@@ -92,6 +95,9 @@ msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcach
 msgstr ""
 
 msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
+msgstr ""
+
+msgid "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable."
 msgstr ""
 
 msgid "The test request returned HTTP %d."
@@ -868,6 +874,9 @@ msgstr ""
 msgid "WordPress core"
 msgstr ""
 
+msgid "External"
+msgstr ""
+
 msgid "Account limit (cgroup)"
 msgstr ""
 
@@ -974,9 +983,6 @@ msgid "Restarts"
 msgstr ""
 
 msgid "No data (disabled or not allowed by the server)."
-msgstr ""
-
-msgid "External"
 msgstr ""
 
 msgid "None"

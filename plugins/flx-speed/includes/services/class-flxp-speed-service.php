@@ -1073,7 +1073,7 @@ final class FLXP_Speed_Service {
 			$conflicts[] = array(
 				'code'       => $code,
 				'text'       => self::s( FLXP_Cache::conflict_text( $code, $st ) ),
-				'repairable' => in_array( $code, array( 'sqlite_dropin_missing', 'sqlite_orphan', 'ls_dropin_taken' ), true ),
+				'repairable' => in_array( $code, array( 'sqlite_dropin_missing', 'sqlite_orphan', 'ls_dropin_taken', 'redis_dropin_missing' ), true ),
 			);
 		}
 		$plugin = static function ( array $p ): array {

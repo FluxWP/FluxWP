@@ -571,5 +571,7 @@
   "once": "bir kez",
   "Recent fixes (AI / MCP)": "Son düzeltmeler (yapay zekâ / MCP)",
   "Fix": "Düzeltme",
-  "Before → After": "Önce → Sonra"
+  "Before → After": "Önce → Sonra",
+  "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on.": "Bu sitede Redis tanımlı ama object-cache.php yok, hiçbir şey önbelleğe alınmıyor. Onar, Redis Object Cache'i yeniden açar.",
+  "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable.": "Redis Object Cache etkin ama object-cache.php yazılamadı (wp-content yazılabilir olmayabilir). Ayarlar › Redis'i açıp Etkinleştir'e basın."
 }
