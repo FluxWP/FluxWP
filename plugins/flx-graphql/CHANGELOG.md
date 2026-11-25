@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.2
+- Ortak arayüz paketi yenilendi: ortak Sistem Kontrolü ekranı (`SystemChecks`) ve stili.
+
 ## 0.8.1
 - Ortak arayüz paketi yenilendi: klasik WordPress editörü React ekranlarında (`WpEditor`).
 

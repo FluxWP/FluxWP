@@ -2,16 +2,7 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
-import {
-  FlxSpeedCache,
-  FlxSpeedCacheRun,
-  FlxSpeedConfig,
-  FlxSpeedPageSpeed,
-  FlxSpeedPageSpeedClear,
-  FlxSpeedPageSpeedSave,
-  FlxSpeedSettings,
-  FlxSpeedSettingsSave,
-} from '@fluxwp/graphql/operations';
+import { FlxSpeedCache, FlxSpeedCacheRun, FlxSpeedConfig, FlxSpeedPageSpeed, FlxSpeedPageSpeedClear, FlxSpeedPageSpeedSave, FlxSpeedSettings, FlxSpeedSettingsSave } from '@fluxwp/graphql/operations';
 import type { FlxSpeedCacheFieldsFragment, FlxSpeedCacheOp, FlxSpeedPageSpeedFieldsFragment, FlxSpeedSettingsFieldsFragment } from '@fluxwp/graphql/types';
 import { Loading, Modal } from '@fluxwp/ui';
 import { Check, ErrorBox, Pill, Switch, errorText, fmtBytes, num, useSpeed, useT } from './ui';
@@ -126,7 +117,11 @@ export function PageSpeedTab() {
     );
   return (
     <>
-      <p className="flxpf-intro">{t('Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a "Test first" item, check a few pages of the site (home, a post, donation/checkout).')}</p>
+      <p className="flxpf-intro">
+        {t(
+          'Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a "Test first" item, check a few pages of the site (home, a post, donation/checkout).',
+        )}
+      </p>
       <form onSubmit={submit}>
         {psSections(t).map((s) => (
           <section key={s.title} className="flxpf-card2">
@@ -214,10 +209,14 @@ export function PageSpeedTab() {
         </section>
         <section className="flxpf-card2">
           <h2>{t('Animations not running on the GPU')}</h2>
-          <p className="flxpf-desc">{t('Lighthouse "non-composited animations": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity.')}</p>
+          <p className="flxpf-desc">
+            {t(
+              'Lighthouse "non-composited animations": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity.',
+            )}
+          </p>
           {p.animations.length > 0 ? (
             <div className="flxpf-tablewrap">
-              <table className="flxpf-list">
+              <table className="widefat striped flxpf-list">
                 <thead>
                   <tr>
                     <th>{t('Animation')}</th>
@@ -282,13 +281,7 @@ export function CacheTab() {
   const ext = st.extensions;
   const busy = run.isPending;
   const btn = (op: Op, label: string, primary = false, confirmText = '') => (
-    <button
-      key={op}
-      type="button"
-      className={'flxpf-btn' + (primary ? ' is-primary' : '')}
-      disabled={busy}
-      onClick={() => (confirmText ? setAsk({ text: confirmText, label, op }) : run.mutate({ input: { op } }))}
-    >
+    <button key={op} type="button" className={'flxpf-btn' + (primary ? ' is-primary' : '')} disabled={busy} onClick={() => (confirmText ? setAsk({ text: confirmText, label, op }) : run.mutate({ input: { op } }))}>
       {label}
     </button>
   );
@@ -335,11 +328,14 @@ export function CacheTab() {
     if (x.persistent) return <p className="flxpf-test is-ok">{t('Last test (%1$s): works, %2$s keeps values between requests. 100 writes + 100 reads took %3$s ms.', x.at.relative, prov, num(x.ms, lang, 1))}</p>;
     return <p className="flxpf-test is-warn">{t('Last test (%s): values are lost after the request ends, so there is no persistent object cache.', x.at.relative)}</p>;
   };
-  const badge = (used: boolean, recommended: boolean) =>
-    used ? <span className="flxpf-badge is-safe">{t('In use')}</span> : recommended ? <span className="flxpf-badge is-test">{t('Recommended here')}</span> : null;
+  const badge = (used: boolean, recommended: boolean) => (used ? <span className="flxpf-badge is-safe">{t('In use')}</span> : recommended ? <span className="flxpf-badge is-test">{t('Recommended here')}</span> : null);
   return (
     <div className="flxpf-cache">
-      <p className="flxpf-intro">{t('Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way.')}</p>
+      <p className="flxpf-intro">
+        {t(
+          'Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way.',
+        )}
+      </p>
       {st.pendingError && <div className="flxpf-notice is-warn inline">{st.pendingError}</div>}
       {st.conflicts.map((c) => (
         <div key={c.code} className="flxpf-alert">
@@ -420,7 +416,11 @@ export function CacheTab() {
             </h3>
             <p className="flxpf-desc">{t("LiteSpeed Cache's own object cache, kept in Memcached memory. On Hostinger, Memcached is switched on per site in hPanel.")}</p>
             <ul className="flxpf-reqs">
-              {req(ext.memcached ? true : ext.redis ? 'opt' : false, t('Memcached PHP extension'), ext.memcached ? '' : ext.redis ? t('missing; Redis is used instead') : t('missing; on Hostinger: hPanel › Advanced › PHP Configuration › Memcached'))}
+              {req(
+                ext.memcached ? true : ext.redis ? 'opt' : false,
+                t('Memcached PHP extension'),
+                ext.memcached ? '' : ext.redis ? t('missing; Redis is used instead') : t('missing; on Hostinger: hPanel › Advanced › PHP Configuration › Memcached'),
+              )}
               {req(ls.active, t('LiteSpeed Cache plugin'), verLabel(ls, t('not installed, installed from wordpress.org with one click')))}
             </ul>
             {usedLs && (
@@ -638,7 +638,8 @@ export function SettingsTab() {
                 <label htmlFor="flxpf-sample">{t('Sampling')}</label>
               </th>
               <td>
-                {num2('sample', { id: 'flxpf-sample', min: 0, max: 100 })} %<p className="flxpf-desc">{t('This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off.')}</p>
+                {num2('sample', { id: 'flxpf-sample', min: 0, max: 100 })} %
+                <p className="flxpf-desc">{t('This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off.')}</p>
               </td>
             </tr>
             <tr>
@@ -667,14 +668,20 @@ export function SettingsTab() {
               </th>
               <td>
                 {num2('diskQuotaGb', { id: 'flxpf-quota', min: 0, step: 0.1 })} GB
-                <p className="flxpf-desc">{t("Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only.")}</p>
+                <p className="flxpf-desc">
+                  {t(
+                    "Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only.",
+                  )}
+                </p>
               </td>
             </tr>
           </tbody>
         </table>
 
         <h2 id="flxpf-login">{t('Admin login URL')}</h2>
-        <p>{t('Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load.')}</p>
+        <p>
+          {t('Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load.')}
+        </p>
         {s.loginDisabled ? (
           <div className="flxpf-notice is-warn inline">{t('FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved.')}</div>
         ) : (
@@ -715,7 +722,9 @@ export function SettingsTab() {
                 <p className="flxpf-desc">
                   {s.loginSlugLocked
                     ? t('The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it.')
-                    : t('Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed).')}
+                    : t(
+                        'Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed).',
+                      )}
                 </p>
               </td>
             </tr>
@@ -729,13 +738,21 @@ export function SettingsTab() {
                 <label>
                   <input type="radio" name="flxpf-blocked" checked={d.loginBlocked === 'HOME'} onChange={() => setD({ ...d, loginBlocked: 'HOME' })} /> {t('Redirect to the home page')}
                 </label>
-                <p className="flxpf-desc">{t('Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected.')}</p>
+                <p className="flxpf-desc">
+                  {t(
+                    'Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected.',
+                  )}
+                </p>
               </td>
             </tr>
             <tr>
               <th>{t('Recovery')}</th>
               <td>
-                <p className="flxpf-desc">{t("If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line.")}</p>
+                <p className="flxpf-desc">
+                  {t(
+                    "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line.",
+                  )}
+                </p>
                 <code className="flxpf-codeline">define( &apos;FLXP_LOGIN_DISABLE&apos;, true );</code>
               </td>
             </tr>
@@ -743,7 +760,11 @@ export function SettingsTab() {
         </table>
 
         <h2>{t('AI (MCP)')}</h2>
-        <p>{t('The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url.')}</p>
+        <p>
+          {t(
+            'The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url.',
+          )}
+        </p>
         <p>{s.mcpActive ? t('Flux AI & MCP is active: tools are registered.') : t('Flux AI & MCP is not active: tools are available in Flux AI chat only.')}</p>
         <button type="submit" className="flxpf-btn is-primary" disabled={save.isPending}>
           {t('Save Changes')}

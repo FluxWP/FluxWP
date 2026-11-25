@@ -135,12 +135,6 @@ button.flxfrm-kpi:hover{border-color:var(--ac)}
 .flxfrm-pill.is-pending,.flxfrm-pill.is-warning{background:color-mix(in srgb,var(--flux-warning,#d97706) 18%,transparent);color:var(--flux-warning,#b45309)}
 .flxfrm-pill.is-failed,.flxfrm-pill.is-error{background:color-mix(in srgb,var(--flux-danger) 14%,transparent);color:var(--flux-danger)}
 .flxfrm-pill.is-info,.flxfrm-pill.is-soft,.flxfrm-pill.is-refunded{color:var(--mut)}
-.flxfrm-chip{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13px;border:1px solid var(--bd);background:var(--card);color:inherit;border-radius:99px;padding:5px 12px;cursor:pointer}
-.flxfrm-chip:disabled{opacity:.5;cursor:default}
-.flxfrm-chip.is-ok strong{color:var(--flux-success)}
-.flxfrm-chip.is-warning strong{color:var(--flux-warning,#b45309)}
-.flxfrm-chip.is-error strong{color:var(--flux-danger)}
-.flxfrm-chip.is-on{border-color:var(--ac);background:color-mix(in srgb,var(--flux-primary) 10%,var(--card))}
 .flxfrm-note{margin:0 0 12px;padding:10px 12px;border-radius:8px;border:1px solid var(--bd);font-size:13px}
 .flxfrm-note p{margin:0 0 4px}
 .flxfrm-note.is-warn{border-color:color-mix(in srgb,var(--flux-warning,#d97706) 45%,var(--bd));background:color-mix(in srgb,var(--flux-warning,#d97706) 8%,var(--card))}
