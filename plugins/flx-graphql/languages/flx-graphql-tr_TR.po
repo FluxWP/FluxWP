@@ -806,6 +806,12 @@ msgstr "Gösterim için tarih ve saat; site saat diliminde ve kullanıcının di
 msgid "Relative time for display (\"5 minutes ago\")."
 msgstr "Gösterim için göreli zaman (\"5 dakika önce\")."
 
+msgid "Date only, in the site time zone and the user's language."
+msgstr "Yalnız tarih; site saat diliminde ve kullanıcının dilinde."
+
+msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
+msgstr "Tablolar için kısa tarih ve saat (Türkçede 16.10.2026 14:24)."
+
 msgid "An amount of money."
 msgstr "Bir para tutarı."
 
