@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.11.4
+- Giriş ekranında "Google ile oturum açın" (Site Kit) butonu kartın üstünde beyaz şerit olarak durmuyor: formun altında "veya" ayracıyla, ortada; koyu modda beyaz zemin yok.
+
 ## 1.11.3
 - Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
 

@@ -3459,3 +3459,15 @@ msgstr "Bu her zamankinden uzun sürüyor. Biraz daha bekleyebilir ya da iptal e
 
 msgid "Cancel"
 msgstr "İptal"
+
+msgid "terms of use"
+msgstr "kullanım şartlarını"
+
+msgid "privacy policy"
+msgstr "gizlilik ilkesini"
+
+msgid "I have read and accept the %1$s and the %2$s."
+msgstr "%1$s ve %2$s okudum, kabul ediyorum."
+
+msgid "Please accept the terms of use and the privacy policy to create an account."
+msgstr "Hesap oluşturmak için kullanım şartlarını ve gizlilik ilkesini kabul edin."
