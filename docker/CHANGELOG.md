@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026.11.25.1
+
+- PhpRedis 6 with igbinary is built into the `wordpress` (apache, fpm) and `worker` images (`igbinary` + `redis` PECL, redis compiled with igbinary). Flux Redis picks it up on its own; without it the cache used a slower PHP client. Rebuild/redeploy to get it.
+- The worker enables **Flux Redis** (`flx-redis`, downloaded from updater.fluxwp.com like Flux Setup) instead of Redis Object Cache when `WP_REDIS_HOST` is set. `WP_REDIS_*` variables are unchanged and `wp redis enable` works the same. If the download is not available the worker falls back to `redis-cache`, so the cache is never left off. Sites that already have an `object-cache.php` are not touched; activate Flux Redis in wp-admin to take over the drop-in.
+
 ## 2026.11.20.3
 
 - Realtime serves visitors too (image `realtime-bun1.4` rebuilt, mu-plugin FluxWP Realtime 1.1.0): visitor tickets (`flx_realtime_visitor_ticket()`) that carry only the topics WordPress listed, never users or capabilities; `flx_realtime_publish( ..., array( 'topic' => ... ) )` reaches exactly those sockets; public topics (`public.*`) through the `flx_realtime_public_topics` filter and `POST /wp-json/flx-realtime/v1/public-ticket`. `RT_MAX_VISITORS` (default 300) caps visitor sockets, `RT_VISITOR_LIFE_MINUTES` (default 60) their lifetime. Redeploy the stack to pick up the new image and mu-plugin.
