@@ -1,6 +1,7 @@
 // Records, new certificate and people. Same screens in wp-admin; reads and writes go through
 // plugins/flx-certificates/graphql/operations. Pages that have not moved stay on the classic UI.
-import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { Screen } from '@fluxwp/ui';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import type { ApiClient } from '@fluxwp/core';
@@ -38,7 +39,31 @@ import { translator, type Translate } from './i18n';
 import { bytesToBlob, ensureRenderer, mergePdfs, type FlxsRenderApi } from './render';
 import './certificates.css';
 
-type Route = { page: 'records' } | { page: 'new'; id?: number } | { page: 'people' } | { page: 'add' } | { page: 'person'; id: number };
+type Island = 'dashboard' | 'events' | 'queue' | 'bulk' | 'templates' | 'logs' | 'settings' | 'system';
+type Route = { page: 'records' } | { page: 'new'; id?: number } | { page: 'people' } | { page: 'add' } | { page: 'person'; id: number } | { page: Island };
+
+/** PHP pages the screen shows under its header (flux-ui.php prints the open one hidden): wp-admin slug. */
+const ISLANDS: Record<Island, string> = {
+  dashboard: 'flxs-dashboard',
+  events: 'flxs-etkinlikler',
+  queue: 'flxs-kuyruk',
+  bulk: 'flxs-toplu',
+  templates: 'flxs-sablonlar',
+  logs: 'flxs-kayitlar',
+  settings: 'flxs-ayarlar',
+  system: 'flxs-sistem',
+};
+const ISLAND_LABELS: Record<Island, string> = {
+  dashboard: 'Dashboard',
+  events: 'Events',
+  queue: 'Send queue',
+  bulk: 'Bulk send',
+  templates: 'Templates',
+  logs: 'Log',
+  settings: 'Settings',
+  system: 'System check',
+};
+const isIsland = (p: string): p is Island => p in ISLANDS;
 type Row = FlxCertificateRecordsQuery['flxCertificates']['nodes'][number];
 type Meta = FlxCertificateRecordsQuery['flxCertificateRecordsMeta'];
 type PersonRow = FlxCertificateDirectoryQuery['flxCertificateDirectory']['nodes'][number];
@@ -61,6 +86,7 @@ function routeOf(start?: string): Route {
   if (start === 'people') return { page: 'people' };
   if (start === 'people:add') return { page: 'add' };
   if (start?.startsWith('person:')) return { page: 'person', id: Number(start.slice(7)) || 0 };
+  if (start && isIsland(start)) return { page: start };
   return { page: 'records' };
 }
 
@@ -108,28 +134,74 @@ function Certificates() {
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const [route, setRoute] = useState<Route>(() => routeOf(host.startPage));
   const [notice, setNotice] = useState<Notice | null>(null);
+  // The island tabs this user has (wp-admin only; flux-ui.php lists them on the page).
+  const islands = useMemo<Island[]>(() => {
+    try {
+      const raw = typeof document !== 'undefined' ? document.getElementById('flxs-islands')?.dataset.tabs : undefined;
+      const list: unknown = raw ? JSON.parse(raw) : [];
+      return Array.isArray(list) ? list.filter((x): x is Island => typeof x === 'string' && isIsland(x)) : [];
+    } catch {
+      return [];
+    }
+  }, []);
+  const island = isIsland(route.page) ? route.page : null;
+  // Opened in place from another screen: the island is not on this page, load it.
+  useEffect(() => {
+    if (island && host.mode === 'wp' && !document.querySelector(`[data-flxs-island="${island}"]`)) location.assign(admin(host.adminUrl, 'page=' + ISLANDS[island]));
+  }, [island, host.mode, host.adminUrl]);
+  const tab = route.page === 'add' || route.page === 'person' ? 'people' : route.page;
+  const tabs = [
+    { id: 'records', label: t('Certificates') },
+    { id: 'new', label: t('New certificate') },
+    { id: 'people', label: t('People') },
+    ...islands.map((i) => ({ id: i as string, label: t(ISLAND_LABELS[i]) })),
+  ];
+  const go = (id: string) => {
+    setNotice(null);
+    if (isIsland(id)) host.openUrl(admin(host.adminUrl, 'page=' + ISLANDS[id]));
+    else setRoute(id === 'new' ? { page: 'new' } : id === 'people' ? { page: 'people' } : { page: 'records' });
+  };
   return (
-    <div className="flxs-app">
-      <header className="flxs-head">
-        <h1>{route.page === 'people' || route.page === 'add' || route.page === 'person' ? t('People') : route.page === 'new' ? t('New certificate') : t('Certificates')}</h1>
-        <div className="flxs-acts">
-          {host.classicUrl && <a href={host.classicUrl}>{t('Classic view')}</a>}
-          {route.page !== 'records' && <button type="button" onClick={() => setRoute({ page: 'records' })}>{t('Certificates')}</button>}
-          {route.page !== 'people' && <button type="button" onClick={() => setRoute({ page: 'people' })}>{t('People')}</button>}
-        </div>
-      </header>
-      {notice && (
-        <div className={'flxs-notice' + (notice.kind === 'err' ? ' is-error' : '')}>
-          {notice.text} <button type="button" onClick={() => setNotice(null)}>{t('Close')}</button>
-        </div>
-      )}
+    <Screen<string>
+      className="flxs-app"
+      width="wide"
+      icon={host.appIcon}
+      title={t('Certificates')}
+      notice={
+        notice ? (
+          <div className={'flxs-notice' + (notice.kind === 'err' ? ' is-error' : '')}>
+            {notice.text} <button type="button" onClick={() => setNotice(null)}>{t('Close')}</button>
+          </div>
+        ) : null
+      }
+      tabs={tabs}
+      tab={tab}
+      onTab={go}
+    >
+      {island ? <IslandNode id={island} /> : null}
       {route.page === 'records' && <Records t={t} tn={tn} onNotice={setNotice} onEdit={(id) => setRoute({ page: 'new', id })} onNew={() => setRoute({ page: 'new' })} onPerson={(id) => setRoute({ page: 'person', id })} />}
       {route.page === 'new' && <Create t={t} id={route.id} onNotice={setNotice} onDone={() => setRoute({ page: 'records' })} />}
       {route.page === 'people' && <People t={t} onNotice={setNotice} onOpen={(id) => setRoute({ page: 'person', id })} onAdd={() => setRoute({ page: 'add' })} />}
       {route.page === 'add' && <PersonForm t={t} onNotice={setNotice} onSaved={(id) => setRoute({ page: 'person', id })} />}
       {route.page === 'person' && <PersonDetail t={t} id={route.id} onNotice={setNotice} onBack={() => setRoute({ page: 'people' })} onCert={() => setRoute({ page: 'new' })} />}
-    </div>
+    </Screen>
   );
+}
+
+/** Moves the page's hidden island (flux-ui.php) into the screen while it is open. */
+function IslandNode({ id }: { id: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const el = document.querySelector<HTMLElement>(`[data-flxs-island="${CSS.escape(id)}"]`);
+    const home = el?.parentElement ?? null;
+    const box = ref.current;
+    if (!el || !box) return;
+    box.appendChild(el);
+    return () => {
+      if (home && el.parentElement === box) home.appendChild(el);
+    };
+  }, [id]);
+  return <div ref={ref} className="flxs-islandslot" />;
 }
 
 function Records({ t, tn, onNotice, onEdit, onNew, onPerson }: { t: Translate; tn: (a: string, b: string, n: number) => string; onNotice: (n: Notice) => void; onEdit: (id: number) => void; onNew: () => void; onPerson: (id: number) => void }) {

@@ -6,7 +6,6 @@ require_once __DIR__ . '/page-certificates.php';
 require_once __DIR__ . '/export.php';
 require_once __DIR__ . '/ecards.php';
 require_once __DIR__ . '/page-system.php';
-require_once __DIR__ . '/page-create.php';
 require_once __DIR__ . '/page-people.php';
 require_once __DIR__ . '/page-dashboard.php';
 require_once __DIR__ . '/page-events.php';
@@ -20,24 +19,24 @@ add_action( 'admin_menu', 'flxs_admin_menu' );
 
 function flxs_admin_menu() {
 	$cap_use = flxs_can_manage() ? 'flxs_manage' : 'flxs_use';
-	add_menu_page( 'Sertifikalar', 'Sertifikalar', $cap_use, 'flxs', 'flxs_page_certificates', 'none', 26 );
-	add_submenu_page( 'flxs', 'Tüm Sertifikalar', 'Tüm Sertifikalar', $cap_use, 'flxs', 'flxs_page_certificates' );
+	add_menu_page( 'Sertifikalar', 'Sertifikalar', $cap_use, 'flxs', 'flxs_screen_page', 'none', 26 );
+	add_submenu_page( 'flxs', 'Tüm Sertifikalar', 'Tüm Sertifikalar', $cap_use, 'flxs', 'flxs_screen_page' );
 	if ( flxs_can_dashboard() ) {
-		add_submenu_page( 'flxs', 'Dashboard', 'Dashboard', flxs_can_manage() ? 'flxs_manage' : 'flxs_dashboard', 'flxs-dashboard', 'flxs_page_dashboard', 0 );
+		add_submenu_page( 'flxs', 'Dashboard', 'Dashboard', flxs_can_manage() ? 'flxs_manage' : 'flxs_dashboard', 'flxs-dashboard', 'flxs_screen_page', 0 );
 	}
 	// 2.0.2: with Flux CRM the events live in CRM › Events; no Events item here (the old address redirects there).
 	if ( function_exists( 'flxcrm_events_url' ) ) {
 		add_submenu_page( 'options.php', 'Etkinlikler', 'Etkinlikler', 'flxs_manage', 'flxs-etkinlikler', '__return_null' );
 	} else {
-		add_submenu_page( 'flxs', 'Etkinlikler', 'Etkinlikler', 'flxs_manage', 'flxs-etkinlikler', 'flxs_page_events', 1 );
+		add_submenu_page( 'flxs', 'Etkinlikler', 'Etkinlikler', 'flxs_manage', 'flxs-etkinlikler', 'flxs_screen_page', 1 );
 	}
-	add_submenu_page( 'flxs', 'Yeni Sertifika', 'Yeni Sertifika', $cap_use, 'flxs-yeni', 'flxs_page_create' );
-	add_submenu_page( 'flxs', 'Kişiler', 'Kişiler', $cap_use, 'flxs-kisiler', 'flxs_page_people' );
-	add_submenu_page( 'flxs', 'Gönderim Kuyruğu', 'Gönderim Kuyruğu', $cap_use, 'flxs-kuyruk', 'flxs_page_queue' );
+	add_submenu_page( 'flxs', 'Yeni Sertifika', 'Yeni Sertifika', $cap_use, 'flxs-yeni', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', 'Kişiler', 'Kişiler', $cap_use, 'flxs-kisiler', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', 'Gönderim Kuyruğu', 'Gönderim Kuyruğu', $cap_use, 'flxs-kuyruk', 'flxs_screen_page' );
 	if ( flxs_can_bulk() ) {
-		add_submenu_page( 'flxs', 'Toplu Gönderim', 'Toplu Gönderim', $cap_use, 'flxs-toplu', 'flxs_page_bulk' );
+		add_submenu_page( 'flxs', 'Toplu Gönderim', 'Toplu Gönderim', $cap_use, 'flxs-toplu', 'flxs_screen_page' );
 	}
-	add_submenu_page( 'flxs', 'Şablonlar', 'Şablonlar', 'flxs_manage', 'flxs-sablonlar', 'flxs_page_templates' );
+	add_submenu_page( 'flxs', 'Şablonlar', 'Şablonlar', 'flxs_manage', 'flxs-sablonlar', 'flxs_screen_page' );
 	// Sağlayıcılar ekranı kaldırıldı (v1.3.0): WhatsApp/SMS/e-posta ayarları Flux Mail'de; eski adres (gizli sayfa) oraya yönlenir.
 	$old = add_submenu_page( 'options.php', 'Sağlayıcılar', 'Sağlayıcılar', 'flxs_manage', 'flxs-saglayicilar', '__return_null' );
 	add_action(
@@ -47,9 +46,9 @@ function flxs_admin_menu() {
 			exit;
 		}
 	);
-	add_submenu_page( 'flxs', 'Kayıtlar (Log)', 'Kayıtlar (Log)', 'flxs_manage', 'flxs-kayitlar', 'flxs_page_logs' );
-	add_submenu_page( 'flxs', 'Sertifika Ayarları', 'Ayarlar', 'flxs_manage', 'flxs-ayarlar', 'flxs_page_settings' );
-	add_submenu_page( 'flxs', __( 'System check', 'flx-certificates' ), __( 'System check', 'flx-certificates' ), 'flxs_manage', 'flxs-sistem', 'flxs_page_system' );
+	add_submenu_page( 'flxs', 'Kayıtlar (Log)', 'Kayıtlar (Log)', 'flxs_manage', 'flxs-kayitlar', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', 'Sertifika Ayarları', 'Ayarlar', 'flxs_manage', 'flxs-ayarlar', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', __( 'System check', 'flx-certificates' ), __( 'System check', 'flx-certificates' ), 'flxs_manage', 'flxs-sistem', 'flxs_screen_page' );
 }
 
 /* Menü ikonu: renkli FluxWP logosu (WordPress menü ikonlarını tek renge boyadığı için CSS ile) */
@@ -97,6 +96,9 @@ function flxs_admin_assets( $hook ) {
 	if ( 0 !== strpos( $page, 'flxs' ) ) {
 		return;
 	}
+	if ( isset( flxs_react_pages()[ $page ] ) && function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+		return; // 2.3.0: the Flux GraphQL screen shell loads the React screen; the island pages keep the classic styles and scripts.
+	}
 	wp_enqueue_style( 'flxs-admin', FLXS_URL . 'assets/css/admin.css', array(), FLXS_VERSION );
 	wp_enqueue_script( 'flxs-admin', FLXS_URL . 'assets/js/admin.js', array(), FLXS_VERSION, true );
 	wp_localize_script(
@@ -139,6 +141,18 @@ function flxs_admin_assets( $hook ) {
 /* ---------- Ortak görünüm yardımcıları ---------- */
 
 function flxs_admin_header( $title, $actions = array(), $sub = '' ) {
+	if ( flxs_is_island() ) {
+		// 2.3.0: the screen draws the title and tabs around the island; the page's own buttons stay.
+		if ( $actions ) {
+			echo '<div class="flxs-head flxs-head--island"><div class="flxs-head__actions">';
+			foreach ( $actions as $a ) {
+				printf( '<a href="%s" class="button %s">%s</a> ', esc_url( $a['url'] ), esc_attr( $a['class'] ?? '' ), esc_html( $a['label'] ) );
+			}
+			echo '</div></div>';
+		}
+		flxs_admin_notices();
+		return;
+	}
 	echo '<div class="wrap flxs-wrap">';
 	echo '<div class="flxs-head"><div><h1 class="flxs-title">' . esc_html( $title ) . '</h1>';
 	if ( $sub ) {
@@ -153,6 +167,9 @@ function flxs_admin_header( $title, $actions = array(), $sub = '' ) {
 }
 
 function flxs_admin_footer() {
+	if ( flxs_is_island() ) {
+		return;
+	}
 	echo '</div>';
 }
 

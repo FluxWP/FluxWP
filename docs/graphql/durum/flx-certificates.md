@@ -1,4 +1,4 @@
-# flx-certificates 2.2.0
+# flx-certificates 2.3.0
 
 - Faz: 1
 - Durum: 👀
@@ -18,3 +18,6 @@ Kayıtlar, kişiler ve herkese açık doğrulama (bölüm 1). 9 sorgu, 12 mutati
 | `admin-post` `flxs_ecards_zip` | flx-certificates | Tasarım görsellerinin zip akışı | İçe aktarma `flxCertificateEcardsImport` |
 | `/{konum}/{id}` konum QR (`flxs_location_redirect`) | flx-certificates | 302 ile harita adresine gider ve sayaç artırır | Yönetici `flxCertificateEvent.locationUrl` |
 | `flxs_queue_tick`, `flxs_run_queue`, `flxs_render_files`, `flxs_daily` | flx-certificates | Hostinger’da WP cron tetiklenmez; nopriv AJAX yok, zamanlayıcı ve işçi kalp atışı GraphQL dışı | Adım `flxCertificateQueueStep` ve `flxCertificateRenderMissing`; durum `flxCertificateQueue` |
+
+
+2.3.0: tüm Sertifika sayfaları `flx_admin_screen` kabuğunda, preload `flxs_preload_for`. React: kayıtlar, yeni, kişiler; diğer sayfalar ada (`flxs_island_pages`, sekme listesi `#flxs-islands[data-tabs]`). Klasik kayıt/yeni/kişi sayfaları ve görünüm geçişi silindi.

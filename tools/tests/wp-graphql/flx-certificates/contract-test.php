@@ -456,14 +456,14 @@ wp_set_current_user( $admin );
 flxt_ok( false !== wp_verify_nonce( (string) ( $q['_wpnonce'] ?? '' ), 'flxs_cert_export' ), 'export url: the nonce is the one the export checks' );
 flxt_same( array( 'flxs_cert_export', 'a b&c', 'ACTIVE' ), array( $q['action'] ?? null, $q['s'] ?? null, strtoupper( (string) ( $q['status'] ?? '' ) ) ), 'export url: the filters survive' );
 
-// The switch back to the classic pages (classicUrl) has the same shape.
+// 2.3.0: the shell preloads the first queries of the start route (same variables as the screen).
 require_once FLXS_DIR . 'includes/admin/flux-ui.php';
-$switch = flxs_ui_switch_url( 'classic' );
-flxt_ok( false !== strpos( $switch, '&_wpnonce=' ) && false === strpos( $switch, 'amp;' ), 'classic switch url: a plain ampersand before the nonce', $switch );
-$sq = array();
-wp_parse_str( (string) wp_parse_url( $switch, PHP_URL_QUERY ), $sq );
-flxt_same( array( 'classic', true ), array( $sq['flxs_ui'] ?? null, false !== wp_verify_nonce( (string) ( $sq['_wpnonce'] ?? '' ), 'flxs_ui' ) ), 'classic switch url: the parameter and the nonce read back' );
-flxt_ok( false !== strpos( esc_url( $switch ), '&#038;_wpnonce=' ), 'classic switch url: markup output escapes it once' );
+flxt_same( '{"first":20,"after":null,"filter":{}}', wp_json_encode( flxs_preload_for( 'records' )[0][1] ), 'preload: records keyed like the client (empty filter is {})' );
+flxt_same( array( array( 'FlxCertificateCreateConfig', array( 'certificateId' => null ) ) ), flxs_preload_for( 'new' ), 'preload: new certificate' );
+flxt_same( array( 'FlxCertificatePerson', array( 'id' => 5 ) ), flxs_preload_for( 'person:5' )[0], 'preload: a person' );
+flxt_same( array(), flxs_preload_for( 'queue' ), 'preload: an island page has no query' );
+$pre = graphql( array( 'query' => 'query($first:Int!,$after:String,$filter:FlxCertificateFilterInput){ flxCertificates(first:$first,after:$after,filter:$filter){ totalCount } }', 'variables' => flxs_preload_for( 'records' )[0][1] ) );
+flxt_same( null, $pre['errors'] ?? null, 'preload: the records variables run' );
 
 // Merging two people (Flux CRM) moves certificates; the cached answers of the moved ones go.
 [ $keep_cert, $keep_person ] = flxs_t_make( $tpl, 'Keep ' . $stamp, 'keep-' . $stamp . '@example.test' );
