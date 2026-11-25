@@ -185,7 +185,11 @@ class FLXI_Settings_Service {
 		);
 		$out['dns']                 = FLXI_System_Service::stored_dns();
 		$out['footerArts']          = array_map(
-			static function ( $c ) {
+			/**
+			 * @param array{key:string,label:string} $c
+			 * @return array{key:string,label:string,image:string|null}
+			 */
+			static function ( array $c ): array {
 				$c['image'] = 'none' === $c['key'] ? null : FLXI_URL . 'assets/img/footer/' . $c['key'] . '.png';
 				return $c;
 			},
