@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.6.2
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 0.6.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.6.0
 - **GraphQL API.** Satış özeti, müşteriler, abonelikler, raporlar, ayarlar, havale kuyruğu ve Hesabım abonelikleri Flux GraphQL üzerinden okunur ve yazılır. Yetkiler mevcut WooCommerce yetkileridir. `flx-graphql` yokken şema kaydı atlanır; REST cevapları aynı kalır.
 - **React yönetim ekranı** (`flxcm-store`): Genel bakış, Müşteriler, Abonelikler, Satış raporu, Ayarlar. wp-admin varsayılanı budur; klasik sayfalar kullanıcı tercihiyle durur.

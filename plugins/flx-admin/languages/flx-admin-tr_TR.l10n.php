@@ -155,6 +155,7 @@ return array(
   'Next page' => 'Sonraki sayfa',
   'Per page' => 'Sayfa başı',
   'Apply' => 'Uygula',
+  'or' => 'veya',
   'General' => 'Genel',
   'Communication' => 'İletişim',
   'Growth' => 'Büyüme',

@@ -1,13 +1,14 @@
 // Communication: Settings, Templates, Log and System. Same screen in wp-admin and the FluxWP app.
-// Reads and writes go through the Flux Mail GraphQL operations.
-import { useCallback, useEffect, useMemo, useState } from 'react';
+// Reads and writes go through the Flux Mail GraphQL operations. In wp-admin, Send, Queue, Blocklist and
+// Connections are PHP forms the page prints hidden ("island", flux-ui.php): the screen shows the open one.
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, useFlxViewer } from '@fluxwp/graphql/react';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
-import { MailContext, type MailCtx, type Page } from './common';
+import { ISLANDS, MailContext, type MailCtx, type Page } from './common';
 import { SettingsPage } from './Settings';
 import { TemplatesPage } from './Templates';
 import { LogsPage } from './Logs';
@@ -28,7 +29,7 @@ interface Toast {
   kind: 'ok' | 'error';
 }
 
-const PAGES: Page[] = ['templates', 'logs', 'settings', 'system'];
+const PAGES: Page[] = ['templates', 'send', 'queue', 'logs', 'blocklist', 'connections', 'settings', 'system'];
 
 function parseStart(start: string | undefined): Route {
   if (!start) return { page: 'templates', key: null, status: '', template: '', campaign: '', section: '' };
@@ -83,7 +84,6 @@ function Mail() {
   const viewer = useFlxViewer();
   const [route, setRoute] = useState<Route>(() => parseHash(host.startPage));
   const [toasts, setToasts] = useState<Toast[]>([]);
-  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
     const on = () => setRoute(parseHash(host.startPage));
@@ -92,6 +92,12 @@ function Mail() {
   }, [host.startPage]);
 
   const go = useCallback((page: Page, query?: Record<string, string>) => {
+    const slug = ISLANDS[page];
+    if (slug) {
+      // The island arrives with its page only.
+      host.openUrl((host.adminUrl ?? '/wp-admin/') + 'admin.php?page=' + slug);
+      return;
+    }
     const params = new URLSearchParams();
     if (query?.key) params.set('key', query.key);
     if (query?.status) params.set('status', query.status);
@@ -107,8 +113,7 @@ function Mail() {
       campaign: query?.campaign ?? '',
       section: '',
     });
-    setMenu(false);
-  }, []);
+  }, [host]);
 
   const toast = useCallback((text: string, kind: 'ok' | 'error' = 'ok') => {
     const id = Date.now() + Math.random();
@@ -120,60 +125,49 @@ function Mail() {
   const caps = viewer.data?.flxViewer.capabilities;
   const allowed = caps ? caps.includes('flxi_manage') || caps.includes('manage_options') : undefined;
 
-  const classic = useMemo(() => {
-    if (!host.classicUrl) return undefined;
-    if (!route.key) return host.classicUrl;
-    const u = new URL(host.classicUrl, window.location.href);
-    u.searchParams.set('key', route.key);
-    return u.toString();
-  }, [host.classicUrl, route.key]);
-
+  const wp = host.mode === 'wp';
   const nav: { page: Page; label: string }[] = [
     { page: 'templates', label: t('Emails') },
+    ...(wp ? [{ page: 'send' as Page, label: t('Send') }, { page: 'queue' as Page, label: t('Queue') }] : []),
     { page: 'logs', label: t('Log') },
+    ...(wp ? [{ page: 'blocklist' as Page, label: t('Blocklist') }, { page: 'connections' as Page, label: t('Connections') }] : []),
     { page: 'settings', label: t('Settings') },
     { page: 'system', label: t('System check') },
   ];
+  const island = ISLANDS[route.page];
+  // Opened in place from another screen: the island is not on this page, load it.
+  useEffect(() => {
+    if (island && wp && !document.querySelector(`[data-flxi-island="${route.page}"]`)) location.assign((host.adminUrl ?? '/wp-admin/') + 'admin.php?page=' + island);
+  }, [island, wp, route.page, host.adminUrl]);
 
   return (
     <MailContext.Provider value={ctx}>
-      <div className={'flxmail-app' + (menu ? ' is-menu' : '')}>
-        <aside className="flxmail-side">
-          <div className="flxmail-brand">
-            {host.appIcon ? <img src={host.appIcon} alt="" width={22} height={22} /> : null}
-            <strong>{t('Communication')}</strong>
-          </div>
-          <nav>
-            {nav.map((n) => (
-              <button key={n.page} type="button" className={'flxmail-nav' + (route.page === n.page ? ' is-on' : '')} onClick={() => go(n.page)}>
-                {n.label}
-              </button>
-            ))}
-          </nav>
-          {classic ? (
-            <p className="flxmail-side-foot">
-              <a href={classic}>{t('Classic view')}</a>
-            </p>
-          ) : null}
-        </aside>
-        <main className="flxmail-main">
-          <div className="flxmail-top">
-            <button type="button" className="flxmail-burger" onClick={() => setMenu((v) => !v)} aria-label={t('Menu')}>
-              ☰
-            </button>
-            <h1>{nav.find((n) => n.page === route.page)?.label}</h1>
-          </div>
-          {allowed === undefined ? <Loading /> : null}
-          {allowed === false ? <p className="flxmail-empty">{t('You cannot open this screen.')}</p> : null}
-          {allowed ? (
-            <>
-              {route.page === 'templates' ? <TemplatesPage editKey={route.key} onEdit={(key) => go('templates', key ? { key } : undefined)} /> : null}
-              {route.page === 'logs' ? <LogsPage initialStatus={route.status} initialTemplate={route.template} initialCampaign={route.campaign} /> : null}
-              {route.page === 'settings' ? <SettingsPage section={route.section} /> : null}
-              {route.page === 'system' ? <SystemPage /> : null}
-            </>
-          ) : null}
-        </main>
+      <Screen<Page>
+        className="flxmail-app"
+        width="wide"
+        icon={host.appIcon}
+        title={t('Communication')}
+        tabs={nav.map((n) => ({ id: n.page, label: n.label }))}
+        tab={route.page}
+        onTab={(p) => go(p)}
+      >
+        {island ? (
+          <IslandNode id={route.page} />
+        ) : (
+          <>
+            {allowed === undefined ? <Loading /> : null}
+            {allowed === false ? <p className="flxmail-empty">{t('You cannot open this screen.')}</p> : null}
+            {allowed ? (
+              <>
+                {route.page === 'templates' ? <TemplatesPage editKey={route.key} onEdit={(key) => go('templates', key ? { key } : undefined)} /> : null}
+                {route.page === 'logs' ? <LogsPage initialStatus={route.status} initialTemplate={route.template} initialCampaign={route.campaign} /> : null}
+                {route.page === 'settings' ? <SettingsPage section={route.section} /> : null}
+                {route.page === 'system' ? <SystemPage /> : null}
+              </>
+            ) : null}
+          </>
+        )}
+      </Screen>
         <div className="flxmail-toasts">
           {toasts.map((x) => (
             <div key={x.id} className={'flxmail-toast' + (x.kind === 'error' ? ' is-error' : '')}>
@@ -181,7 +175,22 @@ function Mail() {
             </div>
           ))}
         </div>
-      </div>
     </MailContext.Provider>
   );
+}
+
+/** Moves the page's hidden island (flux-ui.php) into the screen while it is open. */
+function IslandNode({ id }: { id: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const el = document.querySelector<HTMLElement>(`[data-flxi-island="${CSS.escape(id)}"]`);
+    const home = el?.parentElement ?? null;
+    const box = ref.current;
+    if (!el || !box) return;
+    box.appendChild(el);
+    return () => {
+      if (home && el.parentElement === box) home.appendChild(el);
+    };
+  }, [id]);
+  return <div ref={ref} className="flxmail-islandslot" />;
 }

@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.7.4
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 1.7.3
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 1.7.2
 - Rol ekranının altındaki notta bağlantılar düz HTML yazısı yerine tıklanabilir bağlantı olarak görünür.
 - Telefon genişliğinde içerik ekranın dışına taşmıyor (grid sütunları minmax(0,1fr)).

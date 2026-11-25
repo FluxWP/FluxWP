@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.45.2
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 2.45.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 2.45.0
 - Pano > Günlük bağışlar grafiği ortak etkileşimli grafiğe geçti: tek seferlik/düzenli yığılmış çubuk, ipucunda toplam, legend'dan seri aç/kapa. Ortak modül paketi yenilendi.
 

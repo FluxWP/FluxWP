@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.2
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 2.2.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 2.2.0
 - Records, people and public verification are available over GraphQL (`flxCertificates`, `flxCertificate`, people, `flxCertificateVerify`, `flxCertificateLookup`). The records, new-certificate and people screens in wp-admin open the React UI; the classic pages stay one click away. Requires PHP 8.1 and Flux GraphQL.
 - A staff member limited to their own records (`flxs_own_ref` or the staff-own-only setting) cannot see, count or edit another person's certificates or people through GraphQL. The classic people list is unchanged.

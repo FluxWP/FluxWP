@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.52.2
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 1.52.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 1.52.0
 - WhatsApp asistanı kişinin dilinde: kişinin dili gelen mesajdan ücretsiz tespit edilir (yazı sistemi + sık kelimeler) ya da model araçta `lang` verir; sohbette saklanır. Sistemin gönderdiği hazır mesajlar (fiyat/fidan listesi, bağış özeti, ödeme ve IBAN mesajları, iptal, devir, günlük sınır, dekont cevabı, yedek mesaj) artık site dilinde değil kişinin dilinde gider. Personelin gördüğü sistem notları site dilinde kalır.
 - Değişkenli çeviri şablonu: rakam, tutar, IBAN, link, e-posta, `{değişken}` ve isimler çeviriden önce `{{n}}` olur; şablon dil başına bir kez AI ile çevrilip saklanır (`flxc_tr_<dil>`, Redis gerekmez), gönderirken güncel değerler yerine konur. Fiyat değişince yeni çeviri gerekmez. Yer tutucusu eksik ya da fazladan rakam/link içeren çeviri kullanılmaz, kaynak metin gider: fiyatı model yazmaz. Yedek mesaj yalnız saklanan çeviriyi kullanır (AI hatasında beklemez).

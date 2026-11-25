@@ -1,7 +1,16 @@
 # Changelog
 
-## 1.11.3
+## 1.11.6
 - Sayfa yenilemeden başka Flux ekranına geçince yeni sayfanın grubu (ör. kapalı "Sistem") otomatik açılır.
+
+## 1.11.5
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 1.11.4
+- Giriş ekranında "Google ile oturum açın" (Site Kit) butonu kartın üstünde beyaz şerit olarak durmuyor: formun altında "veya" ayracıyla, ortada; koyu modda beyaz zemin yok.
+
+## 1.11.3
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
 
 ## 1.11.2
 - Sol menü: başka bir Flux ekranına sayfa yenilemeden geçince "FluxWP Panel" grubu açık ve seçili, alt menüdeki "Diğer" satırı da seçili (çift ok) görünüyordu. "Diğer" düğmesi artık adres taşımıyor, ekran kabuğu onu geçerli sayfa sanmıyor; klavyeyle (Enter/Boşluk) de açılır.

@@ -53,7 +53,9 @@
 .flxpf-flag{display:inline-block;font-size:11px;line-height:18px;padding:0 6px;border-radius:9px;background:var(--flux-surface2);color:var(--flux-text);margin:1px 0;white-space:nowrap}
 .flxpf-flag-fatal,.flxpf-flag-error,.flxpf-flag-5xx,.flxpf-flag-db_error,.flxpf-flag-log_error{background:var(--flux-danger);color:#fff}
 .flxpf-flag-http_fail{background:color-mix(in srgb,var(--flux-danger) 80%,#000);color:#fff}
-.flxpf-flag-slow,.flxpf-flag-slow_query{background:var(--flux-warning);color:#1d2327}
+.flxpf-flag-slow,.flxpf-flag-slow_query{background:var(--flux-warning);color:#fff}
+html.flxa-dark .flxpf-flag-slow,body.flx-dark .flxpf-flag-slow{background:color-mix(in srgb,var(--flux-warning) 55%,#000)}
+html.flxa-dark .flxpf-flag-slow_query,body.flx-dark .flxpf-flag-slow_query{background:color-mix(in srgb,var(--flux-warning) 55%,#000)}
 .flxpf-flag-profile{background:var(--flxpf-ac);color:var(--flux-primary-contrast,#fff)}
 .flxpf-empty{text-align:center;color:var(--flxpf-mut);padding:20px!important}
 .flxpf-pager{display:flex;gap:10px;align-items:center;margin:10px 0}

@@ -1,5 +1,17 @@
 # Değişiklikler
 
+## 0.10.4
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 0.10.3
+- Kayıt formu kısaldı: altındaki uzun "Kişisel verileriniz…" paragrafı yerine tek satır zorunlu onay kutusu ("Kullanım şartlarını ve gizlilik ilkesini okudum, kabul ediyorum", sayfalar varsa bağlantılı). İşaretlenmeden kayıt olmaz; ödeme sayfasındaki hesap oluşturma etkilenmez.
+- Telefon alanı ortak telefon bileşeniyle (bayraklı ülke seçici, ülke arama, ✓/✗ doğrulama); numara E.164 kaydedilir. Altındaki açıklama satırı kaldırıldı.
+- Giriş ve Kayıt sekmeleri aynı boyda: sekme değişince pencere zıplamaz. Kart düzeninde pencere biraz genişledi (560 px).
+- Google butonu koyu modda beyaz şerit çizmez.
+
+## 0.10.2
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 0.10.1
 - "Google ile giriş yap" (Site Kit) butonu Kayıt Ol sekmesinde de çıkar ("Google ile kaydol" metniyle). Giriş formunda buton yoksa (Site Kit bağlı değilse) kayıtta da çıkmaz.
 - Google ile giriş sürerken formun üstünde bilgi kartı ve İptal butonu: Google penceresi açıkken "hesabınızı seçin (açılmadıysa açılır pencerelere izin verin)", giriş sunucuya gidince "Google ile giriş yapılıyor, hesabınız yoksa oluşturuluyor", 25 sn'de sonuç gelmezse "uzun sürüyor". İptal isteği durdurur, forma geri döner.

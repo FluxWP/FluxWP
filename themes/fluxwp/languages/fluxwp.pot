@@ -178,6 +178,18 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
+msgid "terms of use"
+msgstr ""
+
+msgid "privacy policy"
+msgstr ""
+
+msgid "I have read and accept the %1$s and the %2$s."
+msgstr ""
+
+msgid "Please accept the terms of use and the privacy policy to create an account."
+msgstr ""
+
 msgid "Welcome"
 msgstr ""
 
@@ -215,9 +227,6 @@ msgid "Phone"
 msgstr ""
 
 msgid "(optional)"
-msgstr ""
-
-msgid "So we can also send your donation and order updates via WhatsApp."
 msgstr ""
 
 msgid "The phone number looks invalid. Example: +90 532 123 45 67"
@@ -1460,6 +1469,9 @@ msgid "You can plant a sapling, make a donation or join our events."
 msgstr ""
 
 msgid "Children waving at a tree planting site"
+msgstr ""
+
+msgid "So we can also send your donation and order updates via WhatsApp."
 msgstr ""
 
 msgid "Where are the saplings planted?"

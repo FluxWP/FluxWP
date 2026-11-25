@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.14.2
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 1.14.1
+- Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
+
 ## 1.14.0
 - Rapor geçmişi grafikleri (öneriler, PageSpeed puanları) etkileşimli ortak grafiğe geçti: tarih tarih ipucu, legend'dan seri aç/kapa, koyu/açık tema, mobilde tam genişlik. Ortak modül paketi yenilendi.
 

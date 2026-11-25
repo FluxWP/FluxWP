@@ -463,6 +463,9 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
+msgid "or"
+msgstr ""
+
 msgid "General"
 msgstr ""
 
