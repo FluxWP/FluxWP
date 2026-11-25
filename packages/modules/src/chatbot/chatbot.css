@@ -34,8 +34,8 @@
 .flxcb-card h2 .flxcb-i{color:var(--c-ac)}
 .flxcb-sub{font-size:12px;color:var(--c-mut);margin:16px 0 8px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
 .flxcb-grid2,.flxcb-grid3{display:grid;gap:14px 18px;margin:12px 0 0}
-.flxcb-grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.flxcb-grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.flxcb-grid2{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.flxcb-grid3{grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))}
 /* Alanlar */
 .flxcb-field{display:flex;flex-direction:column;gap:5px;min-width:0;margin:12px 0 0}
 .flxcb-grid2>.flxcb-field,.flxcb-grid3>.flxcb-field{margin:0}
@@ -46,7 +46,7 @@
 .flxcb .flxcb-field input[type=range]{width:100%;accent-color:var(--c-ac)}
 .flxcb-field output{font-variant-numeric:tabular-nums;color:var(--c-ac);font-weight:650}
 /* Anahtar */
-.flxcb-toggles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 18px;margin:12px 0 0}
+.flxcb-toggles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:4px 18px;margin:12px 0 0}
 .flxcb-toggle{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:9px 0;cursor:pointer;border-bottom:1px dashed var(--c-bd)}
 .flxcb-card>.flxcb-toggle:last-child,.flxcb-toggles .flxcb-toggle{border-bottom:0}
 .flxcb-toggle.is-off{opacity:.55;cursor:not-allowed}
@@ -61,15 +61,15 @@
 .flxcb-switch input:focus-visible+.flxcb-switch__ui{outline:2px solid var(--c-ac);outline-offset:2px}
 .flxcb-switch input:disabled{cursor:not-allowed}
 /* Seçim kartları */
-.flxcb-choices{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:8px}
+.flxcb-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,calc(var(--min,200px))),1fr));gap:8px}
 .flxcb-choice{position:relative;display:flex;gap:10px;align-items:flex-start;border:1px solid var(--c-bd);border-radius:10px;padding:11px 12px;cursor:pointer;background:var(--c-card);transition:border-color .15s,background .15s}
 .flxcb-choice:hover{border-color:var(--c-ac)}
 .flxcb-choice:has(input:checked){border-color:var(--c-ac);background:var(--c-ac-soft);box-shadow:0 0 0 1px var(--c-ac) inset}
-.flxcb-choice input{position:absolute;opacity:0;pointer-events:none}
+.flxcb .flxcb-choice input{position:absolute;opacity:0;pointer-events:none;width:0;height:0;margin:0}
 .flxcb-choice:has(input:focus-visible){outline:2px solid var(--c-ac);outline-offset:2px}
 .flxcb-choice__i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--c-s2);color:var(--c-ac);flex:none}
 .flxcb-choice:has(input:checked) .flxcb-choice__i{background:var(--c-ac);color:#fff}
-.flxcb-choice>span:last-child{display:flex;flex-direction:column;gap:2px;min-width:0}
+.flxcb-choice>span:last-child{display:flex;flex-direction:column;gap:2px;min-width:0;overflow-wrap:break-word;hyphens:auto}
 .flxcb-choice strong{font-size:13px}
 /* Simge seçici */
 .flxcb-icons{display:flex;flex-wrap:wrap;gap:8px}
@@ -138,7 +138,6 @@
 @media (max-width:1100px){.flxcb-layout{grid-template-columns:1fr}.flxcb-side{position:static}.flxcb-stage{height:680px}}
 @media (max-width:782px){
 	.flxcb-grid2,.flxcb-grid3,.flxcb-toggles{grid-template-columns:1fr}
-	.flxcb-choices{grid-template-columns:1fr}
 	.flxcb-preview__bar{flex-wrap:wrap}
 	.flxcb-kpis{grid-template-columns:1fr 1fr}
 }
