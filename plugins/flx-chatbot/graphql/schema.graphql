@@ -606,7 +606,9 @@ type FlxSettingsChatbot {
   whatsappLabel: String
   """Ready-made text the WhatsApp chat opens with. Empty sends nothing."""
   whatsappMessage: String
-  """WhatsApp number with country code (digits, e.g. 905301234567). Shows a WhatsApp button under the chat card on the home screen; empty hides it."""
+  """
+  WhatsApp number with country code (digits, e.g. 905301234567). Shows a WhatsApp button under the chat card on the home screen; empty hides it.
+  """
   whatsappNumber: String
   """Window width, px (320-480)."""
   width: Int
@@ -842,7 +844,9 @@ input FlxSettingsChatbotInput {
   whatsappLabel: String
   """Ready-made text the WhatsApp chat opens with. Empty sends nothing."""
   whatsappMessage: String
-  """WhatsApp number with country code (digits, e.g. 905301234567). Shows a WhatsApp button under the chat card on the home screen; empty hides it."""
+  """
+  WhatsApp number with country code (digits, e.g. 905301234567). Shows a WhatsApp button under the chat card on the home screen; empty hides it.
+  """
   whatsappNumber: String
   """Window width, px (320-480)."""
   width: Int
