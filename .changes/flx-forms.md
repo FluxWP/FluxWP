@@ -7,3 +7,5 @@ Forms: Payments, Automations (list, flow editor, run log), System check and Add-
 Forms 2.9.0: payment forms are paid on the WooCommerce checkout (no gateway of their own). `flxFormsPayments` now returns `checkout { active installed configured currency gateways url }` instead of the provider list, and `flxFormsStripeWebhookSecret` is removed.
 
 Forms 2.10.0: the form builder (Forms › New form / Edit) edits the form's Flux Forms blocks in a block editor of its own, over the new `flxFormsBuilderForm`, `flxFormsBuilderSave` (hash check, CONFLICT unless `force`) and `flxFormsBuilderTemplates` operations. The classic builder and the Panel page are removed (`create` tab only; `panel` is gone).
+
+Forms 2.11.0: `flxForm` returns everything a headless form needs to draw its fields: `stepList`, `currency`, and per field `help`, `step`, `width`, `defaultValue`, `min`, `max`, `rows` (matrix), `settings` (a short public list) and option `price` / `image`. `@fluxwp/ui/forms` draws it in React.

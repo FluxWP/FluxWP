@@ -7,12 +7,18 @@ Drawing fields of one form. Notification, webhook and booking data are not inclu
 type FlxForm {
   """Send button label."""
   buttonLabel: String!
+  """Currency of a payment form (ISO 4217). Empty on other forms."""
+  currency: String!
   """Fields to draw."""
   fields: [FlxFormField!]!
   """Kind of form."""
   formType: FlxFormType!
   """Form id."""
   id: ID!
+  """
+  Steps of a multi-step form, in order. Empty or one item on a one-step form.
+  """
+  stepList: [FlxFormStep!]!
   """How many steps the form has."""
   steps: Int!
   """Message shown after a successful send."""
@@ -33,20 +39,42 @@ type FlxFormAnswer {
 
 """One drawing field. Hidden and read-only fields are left out."""
 type FlxFormField {
+  """
+  Starting value. Heading and link: their text; HTML: its markup (safe tags only). Empty on choice and file fields.
+  """
+  defaultValue: String!
+  """Help text under the field."""
+  help: String!
   """Field id to send back on submit."""
   id: ID!
   """Label."""
   label: String!
+  """Like min, the upper limit."""
+  max: String!
+  """
+  Text fields: minimum length. Number and slider: minimum. Date: earliest date (YYYY-MM-DD, 1 = today). Empty when not set.
+  """
+  min: String!
   """Choices. Empty when the field is not a choice."""
   options: [FlxFormOption!]!
   """Placeholder. Empty when the field has none."""
   placeholder: String!
   """The visitor must fill this in."""
   required: Boolean!
+  """Rows of a rating table (table_matrix). Empty on other fields."""
+  rows: [FlxFormOption!]!
+  """
+  Type settings a front end needs, by Flux Forms key: op_style (columns), minSelect, maxSelect, file, file_ctype, max_fsize, button_1_text, button_2_text, on, off, pholder_chl_value, max_duration, rec_countdown, rec_download, record_quality, country, statePov, href, el_text_size, lat, lng, zoom, mark. Only keys the field has.
+  """
+  settings: FlxJSON!
+  """Step the field is on (1 on a one-step form)."""
+  step: Int!
   """
   Editor field type. The editor type list is open, because add-ons and the form builder add types, so this is a string rather than an enum.
   """
   type: String!
+  """Width in percent of the form row: 100, 75, 50, 33 or 25."""
+  width: Int!
 }
 
 """One field value."""
@@ -59,8 +87,12 @@ input FlxFormFieldValueInput {
 
 """One choice a visitor can pick."""
 type FlxFormOption {
+  """Image address of an image choice. Empty on other choices."""
+  image: String!
   """Label on the form."""
   label: String!
+  """Price of a product choice (payment fields). Null on other choices."""
+  price: Float
   """Stored value."""
   value: String!
 }
@@ -73,6 +105,16 @@ type FlxFormReply {
   body: String!
   """When the reply was stored."""
   createdAt: FlxDateTime!
+}
+
+"""One step of a multi-step form."""
+type FlxFormStep {
+  """Text under the title."""
+  help: String!
+  """Step number (FlxFormField.step)."""
+  number: Int!
+  """Step title."""
+  title: String!
 }
 
 """A stored submission or reply."""

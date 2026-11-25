@@ -12,9 +12,10 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Reads one form for anonymous visitors and the block editor.
  *
- * @phpstan-type FlxfFormOption array{value:string,label:string}
- * @phpstan-type FlxfFormField array{id:string,type:string,label:string,required:bool,placeholder:string,options:list<FlxfFormOption>}
- * @phpstan-type FlxfPublicForm array{id:string,title:string,formType:string,steps:int,buttonLabel:string,successTitle:string,successMessage:string,fields:list<FlxfFormField>}
+ * @phpstan-type FlxfFormOption array{value:string,label:string,price:float|null,image:string}
+ * @phpstan-type FlxfFormField array{id:string,type:string,label:string,required:bool,placeholder:string,options:list<FlxfFormOption>,help:string,step:int,width:int,defaultValue:string,min:string,max:string,rows:list<FlxfFormOption>,settings:array<string,string|int|float|bool>}
+ * @phpstan-type FlxfFormStep array{number:int,title:string,help:string}
+ * @phpstan-type FlxfPublicForm array{id:string,title:string,formType:string,steps:int,buttonLabel:string,successTitle:string,successMessage:string,fields:list<FlxfFormField>,stepList:list<FlxfFormStep>,currency:string}
  * @phpstan-type FlxfLoadedForm array{row:array<string,string>,structure:array<int,array<string,mixed>>}
  */
 class FLXF_Form_Service {
@@ -52,6 +53,45 @@ class FLXF_Form_Service {
 	 *
 	 * @var list<string>
 	 */
+	/**
+	 * Field types whose `milen` / `mlen` are a length or a value limit the visitor sees (on choice fields they are
+	 * booking counters and stay on the server).
+	 *
+	 * @var list<string>
+	 */
+	public const LIMIT_TYPES = array( 'text', 'textarea', 'tel', 'password', 'number', 'range', 'date' );
+
+	/**
+	 * Type-specific keys a front end needs to draw a field (FlxFormField.settings).
+	 *
+	 * @var list<string>
+	 */
+	public const SETTING_KEYS = array(
+		'op_style',
+		'minSelect',
+		'maxSelect',
+		'file',
+		'file_ctype',
+		'max_fsize',
+		'button_1_text',
+		'button_2_text',
+		'on',
+		'off',
+		'pholder_chl_value',
+		'max_duration',
+		'rec_countdown',
+		'rec_download',
+		'record_quality',
+		'country',
+		'statePov',
+		'href',
+		'el_text_size',
+		'lat',
+		'lng',
+		'zoom',
+		'mark',
+	);
+
 	public const FORBIDDEN_FIELD = array(
 		'registered_count',
 		'mlen',
@@ -113,8 +153,17 @@ class FLXF_Form_Service {
 		$head    = $structure[0] ?? array();
 		$thanks  = isset( $head['thank_you_message'] ) && is_array( $head['thank_you_message'] ) ? $head['thank_you_message'] : array();
 		$fields  = array();
+		$steps   = array();
 		foreach ( $structure as $i => $field ) {
 			if ( 0 === $i || self::is_child_row( $field ) ) {
+				continue;
+			}
+			if ( 'step' === sanitize_key( self::str( $field['type'] ?? '' ) ) ) {
+				$steps[] = array(
+					'number' => max( 1, self::num( $field['step'] ?? $field['id_'] ?? count( $steps ) + 1 ) ),
+					'title'  => self::text( $field['name'] ?? '' ),
+					'help'   => self::text( $field['message'] ?? '' ),
+				);
 				continue;
 			}
 			$drawn = self::field( $field, $structure );
@@ -131,6 +180,8 @@ class FLXF_Form_Service {
 			'successTitle'    => self::text( $thanks['thankYou'] ?? '' ),
 			'successMessage'  => self::text( $thanks['done'] ?? '' ),
 			'fields'          => $fields,
+			'stepList'        => $steps,
+			'currency'        => strtoupper( sanitize_key( self::str( $head['currency'] ?? '' ) ) ),
 		);
 	}
 
@@ -151,13 +202,34 @@ class FLXF_Form_Service {
 		if ( '' === $id ) {
 			return null;
 		}
+		$limits   = in_array( $type, self::LIMIT_TYPES, true );
+		$settings = array();
+		foreach ( self::SETTING_KEYS as $key ) {
+			$value = $field[ $key ] ?? null;
+			if ( is_bool( $value ) || is_int( $value ) || is_float( $value ) ) {
+				$settings[ $key ] = $value;
+			} elseif ( is_string( $value ) && '' !== $value ) {
+				$settings[ $key ] = 'href' === $key ? esc_url_raw( $value ) : sanitize_text_field( $value );
+			}
+		}
+		$options = self::public_options( self::choice_rows( $field, $structure ) );
+		$rows    = self::public_options( self::matrix_rows( $id, $structure ) );
+		$choice = array() !== $options || array() !== $rows;
 		return array(
-			'id'          => $id,
-			'type'        => $type,
-			'label'       => self::text( $field['name'] ?? $field['label'] ?? '' ),
-			'required'    => self::flag( $field['required'] ?? false ),
-			'placeholder' => self::text( $field['placeholder'] ?? '' ),
-			'options'     => self::public_options( $field, $structure ),
+			'id'           => $id,
+			'type'         => $type,
+			'label'        => self::text( $field['name'] ?? $field['label'] ?? '' ),
+			'required'     => self::flag( $field['required'] ?? false ),
+			'placeholder'  => self::text( $field['placeholder'] ?? '' ),
+			'options'      => $options,
+			'help'         => self::text( $field['message'] ?? '' ),
+			'step'         => max( 1, self::num( $field['step'] ?? 1 ) ),
+			'width'        => self::width( $field['size'] ?? 100 ),
+			'defaultValue' => 'html' === $type ? wp_kses_post( self::str( $field['value'] ?? '' ) ) : ( $choice || in_array( $type, array( 'file', 'dadfile', 'audio_recorder', 'video_recorder', 'screen_recorder' ), true ) ? '' : self::text( $field['value'] ?? '' ) ),
+			'min'          => $limits ? self::text( $field['milen'] ?? '' ) : '',
+			'max'          => $limits ? self::text( $field['mlen'] ?? '' ) : '',
+			'rows'         => $rows,
+			'settings'     => $settings,
 		);
 	}
 
@@ -214,13 +286,12 @@ class FLXF_Form_Service {
 	}
 
 	/**
-	 * @param array<string,mixed>            $field     Parent field.
-	 * @param array<int,array<string,mixed>> $structure Whole structure.
+	 * @param list<array<string,mixed>> $list Option rows.
 	 * @return list<FlxfFormOption>
 	 */
-	private static function public_options( array $field, array $structure ): array {
+	private static function public_options( array $list ): array {
 		$out = array();
-		foreach ( self::choice_rows( $field, $structure ) as $option ) {
+		foreach ( $list as $option ) {
 			$value = self::text( $option['value'] ?? '' );
 			$label = self::text( $option['label'] ?? $option['name'] ?? $value );
 			if ( '' === $value ) {
@@ -229,12 +300,41 @@ class FLXF_Form_Service {
 			if ( '' === $value && '' === $label ) {
 				continue;
 			}
+			$price = $option['price'] ?? null;
 			$out[] = array(
 				'value' => '' !== $value ? $value : $label,
 				'label' => '' !== $label ? $label : $value,
+				'price' => is_numeric( $price ) ? (float) $price : null,
+				'image' => esc_url_raw( self::str( $option['src'] ?? '' ) ),
 			);
 		}
 		return $out;
+	}
+
+	/**
+	 * Rows of a rating table (`r_matrix` rows whose parent is the field).
+	 *
+	 * @param array<int,array<string,mixed>> $structure Whole structure.
+	 * @return list<array<string,mixed>>
+	 */
+	private static function matrix_rows( string $id, array $structure ): array {
+		$out = array();
+		foreach ( $structure as $row ) {
+			if ( 'r_matrix' === sanitize_key( self::str( $row['type'] ?? '' ) ) && sanitize_text_field( self::str( $row['parent'] ?? '' ) ) === $id ) {
+				$out[] = $row;
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Field width in percent (the builder's size: 100, 75, 50, 33, 25).
+	 *
+	 * @param mixed $size Stored size.
+	 */
+	private static function width( mixed $size ): int {
+		$n = self::num( $size );
+		return $n > 0 && $n <= 100 ? $n : 100;
 	}
 
 	/**
