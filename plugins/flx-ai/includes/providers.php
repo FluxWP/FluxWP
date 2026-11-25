@@ -518,6 +518,7 @@ function flxai_anthropic_request( array $messages, array $opts, $model ) {
 	if ( ! in_array( $cache, array( 'off', '5m', '1h' ), true ) ) {
 		$cache = (string) flxai_setting( 'cache', '5m' );
 	}
+	$betas = array();
 	list( $system, $msgs ) = flxai_anthropic_messages( $messages, $model, 'off' !== $cache );
 	$max  = (int) ( $opts['max_tokens'] ?? 1024 );
 	$body = array(
@@ -557,9 +558,16 @@ function flxai_anthropic_request( array $messages, array $opts, $model ) {
 	if ( $adaptive ) {
 		$show = $opts['thinking'] ?? false;
 		if ( $show ) {
-			$body['thinking'] = preg_match( '/^claude-(opus|sonnet)-4-6/', $model )
+			$legacy           = (bool) preg_match( '/^claude-(opus|sonnet)-4-6/', $model );
+			$body['thinking'] = $legacy
 				? array( 'type' => 'adaptive' )
 				: array( 'type' => 'adaptive', 'display' => 'summarized' );
+			if ( ! $legacy ) {
+				// Sistem/araç listesi turlar arasında değişirse eski düşünme imzası geçersiz olur (400 "bound to a different
+				// conversation"); API geçersiz bloğu düşürsün, istek hata vermesin.
+				$body['thinking']['block_binding'] = array( 'prefix_mismatch_behavior' => 'drop_block' );
+				$betas[]                           = 'thinking-binding-controls-2026-08-01';
+			}
 		}
 		// Düşünme çıkış token'ından yer; görünen cevap için pay bırakılır.
 		$body['max_tokens'] = min( 32000, $max + 6000 );
@@ -570,8 +578,11 @@ function flxai_anthropic_request( array $messages, array $opts, $model ) {
 	$headers                 = flxai_anthropic_headers( $key );
 	$headers['content-type'] = 'application/json';
 	if ( flxai_anthropic_fallbacks( $model ) ) {
-		$headers['anthropic-beta'] = 'server-side-fallback-2026-07-01';
-		$body['fallbacks']         = 'default';
+		$betas[]           = 'server-side-fallback-2026-07-01';
+		$body['fallbacks'] = 'default';
+	}
+	if ( $betas ) {
+		$headers['anthropic-beta'] = implode( ',', array_unique( $betas ) );
 	}
 	$url     = flxai_anthropic_base() . '/messages';
 	$timeout = (int) ( $opts['timeout'] ?? 45 );
@@ -674,6 +685,15 @@ function flxai_anthropic_request( array $messages, array $opts, $model ) {
 	}
 	if ( $code < 200 || $code >= 300 || ! is_array( $json ) || isset( $json['error'] ) ) {
 		$msg = is_array( $json ) ? (string) ( $json['error']['message'] ?? '' ) : '';
+		if ( 400 === $code && empty( $opts['_no_thinking_retry'] ) && false !== stripos( $msg, 'signature' ) && false !== stripos( $msg, 'thinking' ) ) {
+			// Düşünme imzası bu isteğin önekine uymuyor (sistem/araçlar değişmiş): düşünme bloklarını at, düşünmesiz bir kez yeniden dene.
+			foreach ( $messages as $i => $m ) {
+				unset( $messages[ $i ]['_raw'], $messages[ $i ]['_raw_model'] );
+			}
+			$opts['thinking']           = false;
+			$opts['_no_thinking_retry'] = true;
+			return flxai_anthropic_request( $messages, $opts, $model );
+		}
 		return flxai_api_error( 'anthropic', $code ? $code : 500, $msg, $key );
 	}
 	$blocks = is_array( $json['content'] ?? null ) ? $json['content'] : array();

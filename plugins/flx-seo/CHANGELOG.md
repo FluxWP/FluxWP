@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.15.0
+- **AI/MCP:** var olan içeriği konumlu düzenleme: `flxseo_content_blocks` (üst düzey blokların sıralı dökümü) ve `flxseo_insert_image` (medya kütüphanesinden görseli bloğun sonrasına, başlığın altına ya da en başa/sona ekler; gövdenin kalanına dokunmaz). Ajan ve sohbet "şu taslağa aralara resim ekle" işini bununla yapar.
+
 ## 1.14.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

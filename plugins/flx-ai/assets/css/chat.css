@@ -286,6 +286,7 @@ svg { width: 18px; height: 18px; flex: none; display: block; }
 .cb { width: 30px; height: 30px; border-radius: 9px; cursor: pointer; display: grid; place-items: center; color: var(--muted); flex: none; background: transparent; transition: background .15s, color .15s; }
 .cb:hover { background: var(--bg3); color: var(--text); }
 .cb svg { width: 17px; height: 17px; }
+.cb.mic.busy { opacity: .55; animation: flxai-pulse 1s infinite; }
 .cb.mic.on { color: #fff; background: #e5484d; animation: flxai-pulse 1.4s infinite; }
 @keyframes flxai-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(229, 72, 77, .45); } 50% { box-shadow: 0 0 0 6px rgba(229, 72, 77, 0); } }
 .files { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 4px 6px; }
