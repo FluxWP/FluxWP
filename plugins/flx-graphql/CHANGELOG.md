@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.3
+- Sayfa yenilemeden ekran geçişinde sol menü: `#` ile başlayan bağlantılar (ör. alt menüdeki "Diğer" düğmesi) geçerli sayfa sayılmaz. Menü işaretlenince `flx:menu-marked` olayı yayınlanır; Flux Admin yeni sayfanın grubunu açar.
+
 ## 0.7.2
 - Gömülü WPGraphQL'in "Review your WPGraphQL settings" bildirimi ve "Review Settings" menü öğesi gizlendi: erişim, istek sınırı ve hata ayıklama ayarlarının hepsi zaten Flux GraphQL ayarlarından yönetiliyor.
 

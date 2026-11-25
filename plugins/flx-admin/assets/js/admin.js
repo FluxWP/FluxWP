@@ -642,6 +642,8 @@
 			if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('li.flxa-gh')) { e.preventDefault(); e.target.click(); }
 		});
 		paintGroups();
+		// Flux ekran kabuğu sayfa yenilemeden geçince yeni sayfanın grubu açılsın.
+		d.addEventListener('flx:menu-marked', paintGroups);
 		wide.addEventListener && wide.addEventListener('change', paintGroups);
 		// Açık sayfanın menü öğesi görünmüyorsa (ör. Sistem grubunun içinde) menüyü ona kaydır.
 		(function () {
