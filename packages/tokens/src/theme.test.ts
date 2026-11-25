@@ -27,6 +27,6 @@ describe('theme', () => {
     const t = themeFromConfig({ mode: 'light', brand, config: { light: { primary: '#4338CA' } } });
     expect(t.colors.bg).toBe('#F3F2EF');
     expect(t.colors.accent).toBe('#F59E0B');
-    expect(t.colors.border).toBe('#E6E0D6');
+    expect(t.colors.border).toBe('#E4E4E7');
   });
 });
