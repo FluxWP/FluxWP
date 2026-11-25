@@ -507,6 +507,8 @@ input FlxCartVariationInput {
 
 """A point in time with labels in the user&#039;s language."""
 type FlxDateTime {
+  """Date only, in the site time zone and the user&#039;s language."""
+  day: String!
   """ISO 8601 in UTC (2026-11-15T14:59:00Z)."""
   iso: String!
   """
@@ -515,6 +517,8 @@ type FlxDateTime {
   label: String!
   """Relative time for display (&quot;5 minutes ago&quot;)."""
   relative: String!
+  """Compact date and time for tables (16.10.2026 14:24 in Turkish)."""
+  short: String!
   """Unix timestamp."""
   timestamp: Int!
 }

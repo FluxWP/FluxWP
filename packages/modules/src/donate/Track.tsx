@@ -2,7 +2,7 @@
 // bulk steps, and one item's page (?item=N): flow strip, details, donation and payment, status buttons,
 // files and history. PHP preloads the page of the address (FLXB_Admin::preload_track()). A file upload stays
 // a form post (the file goes with it); the extra detail tabs are printed by PHP as an island.
-import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { keepPreviousData, useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import {
@@ -15,7 +15,7 @@ import {
   FlxDonationTrackNote,
 } from '@fluxwp/graphql/operations';
 import type { FlxDonateTrackItemQuery, FlxDonateTrackQuery, FlxDonationTrackFilter } from '@fluxwp/graphql/types';
-import { Check, DatePicker, Loading, Modal, Screen } from '@fluxwp/ui';
+import { Check, DatePicker, ListBar, Loading, Modal, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { IslandNode } from './Detail';
 import { Go, Ico, Pager, useDonate } from './shared';
@@ -170,10 +170,6 @@ function List(p: {
   const can = d.canEdit;
   const ids = d.items.map((x) => x.databaseId);
   const all = ids.length > 0 && ids.every((x) => sel.includes(x));
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    p.patch('search', p.search.trim());
-  };
   return (
     <div className={p.fetching ? 'is-busy' : undefined}>
       <div className="flxdn-seg flxdn-kseg">
@@ -183,46 +179,91 @@ function List(p: {
           </button>
         ))}
       </div>
-      <form className="flxdn-filters" onSubmit={submit}>
-        <input type="search" value={p.search} onChange={(e) => p.setSearch(e.target.value)} placeholder={t('Code, name, phone, donation no…')} aria-label={t('Search')} />
-        {d.types.length ? (
-          <label>
-            <select value={String(filter.typeId ?? '')} onChange={(e) => p.patch('typeId', Number(e.target.value) || undefined)} aria-label={t('Donation type')}>
-              <option value="">{t('All types')}</option>
-              {d.types.map((x) => (
-                <option key={x.value} value={x.value}>
-                  {x.label}
-                </option>
-              ))}
-            </select>
-          </label>
-        ) : null}
-        <label>
-          <select value={filter.place ?? ''} onChange={(e) => p.patch('place', e.target.value)} aria-label={d.partnerLabel}>
-            <option value="">— {d.partnerLabel} —</option>
-            {d.places.map((x) => (
-              <option key={x.value} value={x.value}>
-                {x.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          <select value={filter.paid ?? ''} onChange={(e) => p.patch('paid', e.target.value)} aria-label={t('Payment')}>
-            <option value="">{t('Any payment')}</option>
-            <option value="1">{t('Paid')}</option>
-            <option value="0">{t('Not paid')}</option>
-          </select>
-        </label>
-        <Check checked={!!filter.due} onChange={(x) => p.patch('due', x)}>
-          {t('Due now')}
-        </Check>
+      {/* Classic list library: the first two selects stay visible, the rest go under "Filters". */}
+      <ListBar
+        id="flxb-track"
+        className="flxdn-filters flxdn-filters--lib"
+        onSubmit={() => p.patch('search', p.search.trim())}
+        moreActive={(d.types.length ? [filter.paid ?? '', filter.due ? '1' : ''] : [filter.due ? '1' : '']).filter(Boolean).length}
+        search={<input type="search" value={p.search} onChange={(e) => p.setSearch(e.target.value)} placeholder={t('Code, name, phone, donation no…')} aria-label={t('Search')} />}
+        primary={
+          d.types.length ? (
+            <>
+            <label>
+              <span className="screen-reader-text">{t('Donation type')}</span>
+              <select value={String(filter.typeId ?? '')} onChange={(e) => p.patch('typeId', Number(e.target.value) || undefined)}>
+                <option value="">{t('All types')}</option>
+                {d.types.map((x) => (
+                  <option key={x.value} value={x.value}>
+                    {x.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="screen-reader-text">{d.partnerLabel}</span>
+              <select value={filter.place ?? ''} onChange={(e) => p.patch('place', e.target.value)}>
+                <option value="">— {d.partnerLabel} —</option>
+                {d.places.map((x) => (
+                  <option key={x.value} value={x.value}>
+                    {x.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            </>
+          ) : (
+            <>
+            <label>
+              <span className="screen-reader-text">{d.partnerLabel}</span>
+              <select value={filter.place ?? ''} onChange={(e) => p.patch('place', e.target.value)}>
+                <option value="">— {d.partnerLabel} —</option>
+                {d.places.map((x) => (
+                  <option key={x.value} value={x.value}>
+                    {x.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="screen-reader-text">{t('Payment')}</span>
+              <select value={filter.paid ?? ''} onChange={(e) => p.patch('paid', e.target.value)}>
+                <option value="">{t('Any payment')}</option>
+                <option value="1">{t('Paid')}</option>
+                <option value="0">{t('Not paid')}</option>
+              </select>
+            </label>
+            </>
+          )
+        }
+        more={
+          d.types.length ? (
+            <>
+            <label>
+              <span className="screen-reader-text">{t('Payment')}</span>
+              <select value={filter.paid ?? ''} onChange={(e) => p.patch('paid', e.target.value)}>
+                <option value="">{t('Any payment')}</option>
+                <option value="1">{t('Paid')}</option>
+                <option value="0">{t('Not paid')}</option>
+              </select>
+            </label>
+            <Check checked={!!filter.due} onChange={(x) => p.patch('due', x)}>
+              {t('Due now')}
+            </Check>
+            </>
+          ) : (
+            <Check checked={!!filter.due} onChange={(x) => p.patch('due', x)}>
+              {t('Due now')}
+            </Check>
+          )
+        }
+      >
         <div className="flxdn-filters__end">
           <button className="flxdn-btn flxdn-btn--primary" type="submit">
             <Ico name="search" /> {t('Search')}
           </button>
         </div>
-      </form>
+      </ListBar>
       <div className="flxdn-panel">
         {!d.items.length ? (
           <div className="flxdn-emptystate">

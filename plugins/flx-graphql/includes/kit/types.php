@@ -77,6 +77,15 @@ function flx_gql_register_shared_types(): void {
 					'type'        => 'String!',
 					'description' => __( 'Relative time for display ("5 minutes ago").', 'flx-graphql' ),
 				),
+				'day'       => array(
+					'type'        => 'String!',
+					'description' => __( 'Date only, in the site time zone and the user\'s language.', 'flx-graphql' ),
+				),
+				'day'       => function_exists( 'flx_date' ) ? flx_gql_str( flx_date( $ts, 'date' ) ) : gmdate( 'Y-m-d', $ts ),
+		'short'     => array(
+					'type'        => 'String!',
+					'description' => __( 'Compact date and time for tables (16.10.2026 14:24 in Turkish).', 'flx-graphql' ),
+				),
 			),
 		)
 	);
@@ -209,7 +218,7 @@ function flx_gql_register_shared_types(): void {
  * FlxDateTime value. Accepts a Unix timestamp, DateTimeInterface or a GMT "Y-m-d H:i:s" string.
  *
  * @param mixed $time Time.
- * @return array{iso:string,timestamp:int,label:string,relative:string}|null Null for an empty time.
+ * @return array{iso:string,timestamp:int,label:string,relative:string,day:string,short:string}|null Null for an empty time.
  */
 function flx_gql_datetime( $time ): ?array {
 	if ( null === $time || '' === $time || '0000-00-00 00:00:00' === $time ) {
@@ -230,6 +239,7 @@ function flx_gql_datetime( $time ): ?array {
 		'timestamp' => $ts,
 		'label'     => function_exists( 'flx_date' ) ? flx_gql_str( flx_date( $ts, 'datetime' ) ) : gmdate( 'Y-m-d H:i', $ts ),
 		'relative'  => function_exists( 'flx_time_ago' ) ? flx_gql_str( flx_time_ago( $ts ) ) : gmdate( 'Y-m-d H:i', $ts ),
+		'short'     => function_exists( 'flx_date' ) ? flx_gql_str( flx_date( $ts, ( function_exists( 'flx_lang' ) && 'tr' === flx_lang() ) ? 'd.m.Y H:i' : 'datetime' ) ) : gmdate( 'Y-m-d H:i', $ts ),
 	);
 }
 

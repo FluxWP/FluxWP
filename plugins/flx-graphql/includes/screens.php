@@ -483,6 +483,9 @@ function flx_admin_screen_options( string $page, array $s, array $extra = array(
 		if ( ! empty( $head['logo'] ) ) {
 			$o['appIcon'] = (string) $head['logo'];
 		}
+		if ( ! empty( $head['desc'] ) ) {
+			$o['appDesc'] = (string) $head['desc'];
+		}
 	}
 	return $o;
 }

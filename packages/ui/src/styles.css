@@ -429,3 +429,4 @@ input:is([type=checkbox],[type=radio])[type=checkbox][role=switch][aria-invalid=
 /* Ortak grafik (Chart.tsx): kap yüksekliği sabit, canvas kabı doldurur; mobilde yatay taşma yok. */
 .flx-chart{position:relative;width:100%;min-width:0;max-width:100%}
 .flx-chart>canvas{display:block;max-width:100%}
+.flx-page__back{margin:2px 0 6px}.flx-page__back a{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:13px;text-decoration:none}

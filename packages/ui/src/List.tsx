@@ -38,9 +38,11 @@ export interface ListBarProps {
   /** Enter ile arama. */
   onSubmit?: () => void;
   className?: string;
+  /** Formun doğrudan çocukları olarak eklenen öğeler (klasikteki görünür "Ara" düğmesi gibi). */
+  children?: ReactNode;
 }
 
-export function ListBar({ id, search, primary, more, moreActive = 0, onClear, onSubmit, className }: ListBarProps) {
+export function ListBar({ id, search, primary, more, moreActive = 0, onClear, onSubmit, className, children }: ListBarProps) {
   const s = str();
   const [open, setOpen] = useState(() => store(id) === '1');
   const submit = (e: FormEvent) => {
@@ -94,6 +96,7 @@ export function ListBar({ id, search, primary, more, moreActive = 0, onClear, on
           {more}
         </div>
       ) : null}
+      {children}
       <button type="submit" className="flxa-list__hidden" tabIndex={-1} aria-hidden="true" />
     </form>
   );

@@ -42,6 +42,7 @@ export interface MountOptions {
   siteName?: string;
   adminUrl?: string;
   appIcon?: string;
+  appDesc?: string;
   /** Eklentinin vurgu rengi (--brand). */
   accent?: string;
   /** Flux AI ortak sohbeti sayfada yüklü. */
@@ -235,6 +236,7 @@ export function createEmbed(screens: ScreenSource): EmbedApi {
       siteName: o.siteName,
       adminUrl: o.adminUrl,
       appIcon: o.appIcon,
+      appDesc: o.appDesc,
       aiEmbed: o.aiEmbed,
       startPage: o.startPage || undefined,
       classicUrl: o.classicUrl,

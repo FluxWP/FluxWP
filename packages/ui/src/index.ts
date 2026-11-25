@@ -9,5 +9,5 @@ export { Icon } from './Icon';
 export { openSanitizedLink, sanitizeHtml } from './sanitize';
 export { useOverlay } from './overlay';
 export { MenuIcon } from './MenuIcon';
-export { Screen, Tabs, type ScreenProps, type TabsProps, type TabItem } from './Screen';
+export { Screen, ScreenDefaults, Tabs, type ScreenProps, type TabsProps, type TabItem } from './Screen';
 // Chart: ayrı giriş '@fluxwp/ui/chart' (Chart.js yalnız grafik kullanan ekranın parçasına düşsün, ortak girişe değil).

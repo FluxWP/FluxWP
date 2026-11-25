@@ -181,7 +181,7 @@ function General({ s, island }: { s: S; island: boolean }) {
                 </div>
               ) : null}
             </fieldset>
-            <div className="flxdn-actions">
+            <div className="flxdn-formactions">
               <button type="submit" className="flxdn-btn flxdn-btn--primary" disabled={save.isPending}>
                 {t('Save settings')}
               </button>
@@ -276,7 +276,7 @@ function Organisation({ s }: { s: S }) {
             <textarea id="flxdn-footer" rows={3} value={v.footerText} onChange={(e) => setV((d) => ({ ...d, footerText: e.target.value }))} />
             <p className="flxdn-help">{t('Address, registration number, bank details and similar; printed at the bottom of receipts.')}</p>
           </div>
-          <div className="flxdn-actions">
+          <div className="flxdn-formactions">
             <button type="submit" className="flxdn-btn flxdn-btn--primary" disabled={save.isPending}>
               {t('Save settings')}
             </button>
@@ -348,7 +348,7 @@ function Categories({ s }: { s: S }) {
             <Ico name="plus" size={14} /> {t('Add category')}
           </button>
         </div>
-        <div className="flxdn-actions">
+        <div className="flxdn-formactions">
           <button type="submit" className="flxdn-btn flxdn-btn--primary" disabled={save.isPending}>
             {t('Save categories')}
           </button>
@@ -399,7 +399,7 @@ function Tracking({ s }: { s: S }) {
               <p className="flxdn-help">{t('The text a donor accepts to authorise the organisation to give on their behalf. Every change is saved as a new version; each donation keeps the version that was accepted.')}</p>
             </div>
           ) : null}
-          <div className="flxdn-actions">
+          <div className="flxdn-formactions">
             <button type="submit" className="flxdn-btn flxdn-btn--primary" disabled={save.isPending}>
               {t('Save settings')}
             </button>

@@ -911,11 +911,9 @@ html.flxa-dark .flxdn .flxdn-pill--failed { background: #3B1E1E; color: #FCA5A5;
 /* React screen extras. */
 .flxdn .flxdn-row-link { cursor: pointer; }
 .flxdn .flxdn-filters input[type=search] { flex: 1 1 260px; }
-.flxdn .flxdn-pager { display: inline-flex; gap: 6px; align-items: center; }
 .flxdn .flxdn-skel { height: 220px; border-radius: 10px; background: var(--flxdn-cell0); }
 .flxdn .flxdn-notice p { margin: 0; flex: 1 1 auto; }
 .flxdn .flxdn-notice__x { flex: 0 0 auto; border: 0; background: none; color: inherit; font-size: 18px; line-height: 1; cursor: pointer; padding: 0 2px; }
-.flxdn .flxdn-linkbtn { border: 0; background: none; padding: 0; font: inherit; color: var(--flxdn-primary); text-decoration: underline; cursor: pointer; }
 .flxdn .flxdn-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
 .flxdn .flxdn-btn--danger-solid { background: var(--flxdn-down); border-color: var(--flxdn-down); }
 .flxdn .flxdn-btn--danger-solid:hover { background: color-mix(in srgb, var(--flxdn-down) 85%, #000); border-color: color-mix(in srgb, var(--flxdn-down) 85%, #000); }
@@ -1008,3 +1006,6 @@ html.flxa-dark .flxdn .flxdn-pill--failed { background: #3B1E1E; color: #FCA5A5;
 .flux-root .flxdn-island .flxb-btn { background: var(--flxb-surface); }
 .flux-root .flxdn-island .flxb-btn--primary { background: var(--flxb-primary); }
 .flux-root .flxdn-island .flxb-btn--primary:hover { background: var(--flxb-dark); }
+.flxdn .flxdn-filters--lib .flxa-list__search { flex: 1 1 auto; max-width: none; }
+.flxdn .flxdn-field .flx-dt-wrap { display: flex; width: 100%; } .flxdn .flxdn-field .flx-dt-wrap .flx-dt { flex: 1 1 auto; width: 100%; }
+.flxdn .flxdn-filters--lib .flxa-list__search input[type=search] { width: 100%; }

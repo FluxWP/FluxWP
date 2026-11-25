@@ -6,7 +6,7 @@ import { useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react
 import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxDonateAdd, FlxDonationAdd, FlxDonationRequest } from '@fluxwp/graphql/operations';
 import type { FlxDonateAddQuery } from '@fluxwp/graphql/types';
-import { Check, Loading, Screen } from '@fluxwp/ui';
+import { Check, DatePicker, Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { Go, useDonate } from './shared';
 import { Failed } from './Subscriptions';
@@ -252,7 +252,7 @@ function Record({ f, notice }: { f: F; notice: ReactNode }) {
       icon={host.appIcon}
       title={t('Add donation')}
       subtitle={t('Record a gift paid or promised by bank transfer, in cash or another way.')}
-      actions={<Back f={f} />}
+      back={<Back f={f} />}
       notice={notice}
     >
       <form ref={root} className="flxdn-form flxdn-add2" onSubmit={submit}>
@@ -348,15 +348,18 @@ function Record({ f, notice }: { f: F; notice: ReactNode }) {
                 </div>
               </div>
               <div className="flxdn-chips flxdn-add2__consents">
-                <Check checked={consent.kvkk} onChange={(v) => setConsent({ ...consent, kvkk: v })}>
-                  {t('Privacy notice (KVKK) accepted')}
-                </Check>
-                <Check checked={consent.email} onChange={(v) => setConsent({ ...consent, email: v })}>
-                  {t('E-mail allowed')}
-                </Check>
-                <Check checked={consent.sms} onChange={(v) => setConsent({ ...consent, sms: v })}>
-                  {t('SMS allowed')}
-                </Check>
+                <label className="flxdn-chipcheck">
+                  <input type="checkbox" checked={consent.kvkk} onChange={(e) => setConsent({ ...consent, kvkk: e.target.checked })} />
+                  <span>{t('Privacy notice (KVKK) accepted')}</span>
+                </label>
+                <label className="flxdn-chipcheck">
+                  <input type="checkbox" checked={consent.email} onChange={(e) => setConsent({ ...consent, email: e.target.checked })} />
+                  <span>{t('E-mail allowed')}</span>
+                </label>
+                <label className="flxdn-chipcheck">
+                  <input type="checkbox" checked={consent.sms} onChange={(e) => setConsent({ ...consent, sms: e.target.checked })} />
+                  <span>{t('SMS allowed')}</span>
+                </label>
               </div>
             </section>
 
@@ -460,7 +463,7 @@ function Record({ f, notice }: { f: F; notice: ReactNode }) {
               </div>
               <div className="flxdn-field">
                 <label htmlFor="flxdn-a-date">{t('Date')}</label>
-                <input type="datetime-local" id="flxdn-a-date" value={date} onChange={(e) => setDate(e.target.value)} />
+                <DatePicker time id="flxdn-a-date" value={date} onChange={setDate} />
               </div>
               <div className="flxdn-field">
                 <label htmlFor="flxdn-a-ref">{t('Receipt or transaction no.')}</label>
@@ -572,7 +575,7 @@ function Request({ f, notice }: { f: F; notice: ReactNode }) {
       icon={host.appIcon}
       title={t('New donation request')}
       subtitle={t('Open a donation on behalf of a donor. The donor gets a payment link and you are the referral.')}
-      actions={<Back f={f} />}
+      back={<Back f={f} />}
       notice={notice}
     >
       {done ? (

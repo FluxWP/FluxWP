@@ -21,7 +21,7 @@ query FlxDonateDonor($id: Int!) {
       kind
       statusLabel
       tone
-      date { label }
+      date { label short }
       where
       lines
       referral
