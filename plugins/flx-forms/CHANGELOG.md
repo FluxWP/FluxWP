@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.8.0
+- Ödemeler, Otomasyonlar, Sistem kontrolü ve Eklentiler artık Formlar ekranının React sekmeleri (Flux GraphQL); klasik sayfalar kaldırıldı.
+- Ödemeler: sağlayıcı durumu, webhook adresi (kopyala), Stripe webhook sırrı yalnız yazılır; son 50 ödeme. Flux Donate kuruluysa ödemeler orada yönetilir.
+- Otomasyonlar: liste, aç/kapat, kopyala, sil (onaylı), hazır başlangıç akışı; dikey akış düzenleyici (tetikleyici, koşullar, adım ekle/taşı/sürükle, Ctrl+S); çalışma günlüğü ve temizleme.
+- Sistem kontrolü: durum çipleriyle süzme, "Yeniden kontrol et".
+- Eklentiler: paketle gelen add-on'lar hep açık, PHP'de eksik/kapalı fonksiyon varsa hangisi olduğu yazılır.
+
 ## 2.7.0
 - Formlar › Ayarlar artık React ekranı (Flux GraphQL): Genel, Yanıtlar, Yanıt kutusu, Captcha, E-posta, E-posta şablonu ve SMS bölümleri tek sayfada, tek Kaydet düğmesiyle.
 - Kaydet yalnız değişen ayarları gönderir; değerler klasik ayar kaydıyla aynı kurallarla temizlenir (e-posta şablonunda script/olay temizliği, `shortcode_message` zorunlu, renk ve gün doğrulaması).

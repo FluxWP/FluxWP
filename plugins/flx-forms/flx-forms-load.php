@@ -404,6 +404,8 @@ require_once __DIR__ . '/includes/services/class-flxf-form-service.php';
 require_once __DIR__ . '/includes/services/class-flxf-submission-service.php';
 require_once __DIR__ . '/includes/services/class-flxf-admin-service.php';
 require_once __DIR__ . '/includes/services/class-flxf-settings-service.php';
+require_once __DIR__ . '/includes/services/class-flxf-tools-service.php';
+require_once __DIR__ . '/includes/services/class-flxf-automations-service.php';
 
 add_filter(
 	'flx_captcha_contexts',
@@ -469,5 +471,6 @@ add_action(
 		require_once __DIR__ . '/includes/graphql/schema.php';
 		require_once __DIR__ . '/includes/graphql/admin-schema.php';
 		require_once __DIR__ . '/includes/graphql/settings-schema.php';
+		require_once __DIR__ . '/includes/graphql/tools-schema.php';
 	}
 );

@@ -1,0 +1,6 @@
+mutation FlxFormsAutomationDuplicate($input: FlxFormsAutomationDuplicateInput!) {
+  flxFormsAutomationDuplicate(input: $input) {
+    id
+    errors { code message field }
+  }
+}

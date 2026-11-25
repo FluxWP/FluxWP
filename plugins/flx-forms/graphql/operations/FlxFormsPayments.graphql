@@ -1,0 +1,3 @@
+query FlxFormsPayments {
+  flxFormsPayments { ...FlxFormsPaymentsAll }
+}

@@ -21,8 +21,6 @@ final class FLXF_System_Checks {
 	/** Flux Certificates version the certificate automations are built against (events + send queue). */
 	const MIN_FLXS = '1.2.0';
 
-	private static $hook = '';
-
 	public static function init() {
 		add_filter( 'flx_system_checks', array( __CLASS__, 'checks' ), 15 );
 		add_filter( 'flx_system_checks_labels', array( __CLASS__, 'labels' ), 5 );
@@ -74,16 +72,7 @@ final class FLXF_System_Checks {
 	}
 
 	public static function menu() {
-		self::$hook = (string) add_submenu_page( 'Emsfb', __( 'System check', 'flx-forms' ), __( 'System check', 'flx-forms' ), 'manage_options', self::SLUG, array( __CLASS__, 'render' ) );
-	}
-
-	public static function render() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'flx-forms' ) );
-		}
-		echo '<div class="wrap"><h1>' . esc_html__( 'System check', 'flx-forms' ) . '</h1><hr class="wp-header-end">';
-		flx_system_checks_render( array( 'recheck_url' => self::url() ) );
-		echo '</div>';
+		add_submenu_page( 'Emsfb', __( 'System check', 'flx-forms' ), __( 'System check', 'flx-forms' ), 'manage_options', self::SLUG, 'flxf_screen_page' ); // 2.8.0: the Forms React screen (flxFormsSystem).
 	}
 
 	public static function labels( $l ) {

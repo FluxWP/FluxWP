@@ -1,0 +1,13 @@
+query FlxFormsAutomations {
+  flxFormsAutomations {
+    certAvailable
+    donationFormId
+    donationFormTitle
+    runCount
+    maxRuns
+    flows {
+      id title enabled triggerType formId formTitle steps runs
+      lastRun { iso label relative }
+    }
+  }
+}

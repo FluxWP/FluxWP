@@ -1,10 +1,10 @@
 <?php
 /**
- * Forms › Dashboard, All forms, Responses and Settings are one React screen (packages/modules/src/forms, assets/flux/ via
- * tools/fluxapp/embed-sync.sh flx-forms) on the Flux GraphQL shell (flx_admin_screen). The first queries of the
- * page are preloaded, so it opens with data. The builder, the panel, Payments, Automations, System check and
- * Add-ons are still their own pages: the screen shows their tabs (the ones in this user's Forms menu) and opens
- * them. Without Flux GraphQL the page says so.
+ * Forms › Dashboard, All forms, Responses, Settings, Payments, Automations, System check and Add-ons are one
+ * React screen (packages/modules/src/forms, assets/flux/ via tools/fluxapp/embed-sync.sh flx-forms) on the Flux
+ * GraphQL shell (flx_admin_screen). The first queries of the page are preloaded, so it opens with data. The
+ * builder and the panel are still their own pages: the screen shows their tabs and opens them. The screen shows
+ * only the tabs of this user's Forms menu (#flxf-islands data-tabs). Without Flux GraphQL the page says so.
  *
  * @package FLX_Forms
  */
@@ -18,10 +18,14 @@ defined( 'ABSPATH' ) || exit;
  */
 function flxf_react_pages(): array {
 	return array(
-		'flxf-dashboard' => 'dashboard',
-		'flxf-forms'     => 'forms',
-		'flxf-responses' => 'responses',
-		'flxf-settings'  => 'settings',
+		'flxf-dashboard'   => 'dashboard',
+		'flxf-forms'       => 'forms',
+		'flxf-responses'   => 'responses',
+		'flxf-settings'    => 'settings',
+		'flxf_payments'    => 'payments',
+		'flxf_automations' => 'automations',
+		'flxf_system'      => 'system',
+		'Emsfb_addon'      => 'addons',
 	);
 }
 
@@ -32,12 +36,8 @@ function flxf_react_pages(): array {
  */
 function flxf_other_pages(): array {
 	return array(
-		'Emsfb_create'     => 'create',
-		'Emsfb'            => 'panel',
-		'flxf_payments'    => 'payments',
-		'flxf_automations' => 'automations',
-		'flxf_system'      => 'system',
-		'Emsfb_addon'      => 'addons',
+		'Emsfb_create' => 'create',
+		'Emsfb'        => 'panel',
 	);
 }
 
@@ -47,8 +47,9 @@ function flxf_register_screens(): void {
 		return;
 	}
 	foreach ( flxf_react_pages() as $page => $route ) {
+		// The shell looks the page up by sanitize_key() (lower case): "Emsfb_addon" is registered as "emsfb_addon".
 		flx_admin_screen(
-			$page,
+			strtolower( $page ),
 			array(
 				'module'       => 'flxf-forms',
 				'assets_dir'   => EMSFB_PLUGIN_DIRECTORY . 'assets/flux/',
@@ -65,11 +66,23 @@ function flxf_register_screens(): void {
 }
 add_action( 'admin_menu', 'flxf_register_screens', 5 );
 
-/** Route of the open page: "dashboard", "forms", "responses?form=N" or "responses?entry=N". */
+/** Route of the open page: "dashboard", "forms", "responses?form=N", "responses?entry=N", "automations?flow=N|new", "automations?tab=runs" … */
 function flxf_flux_start(): string {
 	// phpcs:disable WordPress.Security.NonceVerification.Recommended
 	$page  = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flxf-dashboard';
-	$route = flxf_react_pages()[ $page ] ?? 'dashboard';
+	$route = array_change_key_case( flxf_react_pages() )[ $page ] ?? 'dashboard';
+	if ( 'automations' === $route ) {
+		$flow = isset( $_GET['flow'] ) ? sanitize_key( wp_unslash( $_GET['flow'] ) ) : '';
+		if ( 'new' === $flow ) {
+			return 'automations?flow=new';
+		}
+		if ( absint( $flow ) > 0 ) {
+			return 'automations?flow=' . absint( $flow );
+		}
+		if ( isset( $_GET['tab'] ) && 'runs' === sanitize_key( wp_unslash( $_GET['tab'] ) ) ) {
+			return 'automations?tab=runs';
+		}
+	}
 	if ( 'responses' === $route ) {
 		if ( ! empty( $_GET['entry'] ) ) {
 			return 'responses?entry=' . absint( $_GET['entry'] );
@@ -137,12 +150,28 @@ function flxf_preload_for( string $start ): array {
 				$vars['form'] = absint( $args['form'] );
 			}
 			return array( $options, array( 'FlxFormsEntries', $vars ) );
+		case 'payments':
+			return array( array( 'FlxFormsPayments', array() ) );
+		case 'system':
+			return array( array( 'FlxFormsSystem', array() ) );
+		case 'addons':
+			return array( array( 'FlxFormsAddons', array() ) );
+		case 'automations':
+			if ( ! empty( $args['flow'] ) ) {
+				$id = 'new' === $args['flow'] ? 0 : absint( $args['flow'] );
+				return array( array( 'FlxFormsAutomationEditor', array( 'id' => $id ) ) );
+			}
+			if ( 'runs' === ( $args['tab'] ?? '' ) ) {
+				return array( array( 'FlxFormsAutomationRuns', array() ), array( 'FlxFormsAutomations', array() ) );
+			}
+			return array( array( 'FlxFormsAutomations', array() ) );
 	}
 	return array();
 }
 
 /**
- * The other Forms pages this user has in the menu (screen tabs).
+ * The Forms pages that are there only for some users or setups and that this user has in the menu (screen tabs):
+ * the builder, the panel, Payments, Automations, System check and Add-ons.
  *
  * @return list<string>
  */
@@ -155,7 +184,8 @@ function flxf_other_tabs(): array {
 		}
 	}
 	$tabs = array();
-	foreach ( flxf_other_pages() as $slug => $tab ) {
+	$pages = flxf_other_pages() + array_diff_key( flxf_react_pages(), array_flip( array( 'flxf-dashboard', 'flxf-forms', 'flxf-responses', 'flxf-settings' ) ) );
+	foreach ( $pages as $slug => $tab ) {
 		if ( isset( $have[ $slug ] ) ) {
 			$tabs[] = $tab;
 		}
@@ -163,7 +193,7 @@ function flxf_other_tabs(): array {
 	return $tabs;
 }
 
-/** The menu callback of Dashboard, All forms and Responses: the shell prints the screen. */
+/** The menu callback of every React page: the shell prints the screen. */
 function flxf_screen_page(): void {
 	if ( ! function_exists( 'flx_admin_screen_page' ) ) {
 		echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'Something went wrong.', 'flx-forms' ) . ' (Flux GraphQL)</p></div></div>';

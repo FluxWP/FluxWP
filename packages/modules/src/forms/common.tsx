@@ -1,31 +1,41 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
 import type { Translate } from './i18n';
 
 export type Page = 'dashboard' | 'forms' | 'responses' | 'settings' | 'create' | 'panel' | 'payments' | 'automations' | 'system' | 'addons';
 
 /** React pages. */
-export const REACT_PAGES: Page[] = ['dashboard', 'forms', 'responses', 'settings'];
+export const REACT_PAGES: Page[] = ['dashboard', 'forms', 'responses', 'settings', 'payments', 'automations', 'system', 'addons'];
 
-/** Pages PHP prints (hidden island under the shared header): wp-admin slug. */
+/** Pages that are still their own wp-admin pages (the builder and the panel): wp-admin slug. */
 export const ISLANDS: Partial<Record<Page, string>> = {
   create: 'Emsfb_create',
   panel: 'Emsfb',
-  payments: 'flxf_payments',
-  automations: 'flxf_automations',
-  system: 'flxf_system',
-  addons: 'Emsfb_addon',
 };
+
+/** Pages only some users or setups have: shown when PHP lists them (#flxf-islands data-tabs). */
+export const MENU_PAGES: Page[] = ['create', 'panel', 'payments', 'automations', 'system', 'addons'];
+
+export interface RouteOpts {
+  form?: number;
+  entry?: number;
+  /** Automation: id, -1 for a new one. */
+  flow?: number;
+  /** Automations: "runs" for the run log. */
+  tab?: string;
+}
 
 export interface Route {
   page: Page;
   form: number;
   entry: number;
+  flow: number;
+  tab: string;
 }
 
 export interface FormsCtx {
   t: Translate;
   wp: boolean;
-  go: (page: Page, opts?: { form?: number; entry?: number }) => void;
+  go: (page: Page, opts?: RouteOpts) => void;
   toast: (text: string, kind?: 'ok' | 'error') => void;
   num: (n: number) => string;
 }
@@ -59,4 +69,25 @@ export function typeLabel(type: string, t: Translate): string {
     smart: t('Smart form'),
   };
   return map[type] ?? type;
+}
+
+/** A labelled form row. */
+export function Field({ label, note, children }: { label: string; note?: string; children: ReactNode }) {
+  return (
+    <div className="flxfrm-field">
+      <span className="flxfrm-field__label">{label}</span>
+      {children}
+      {note ? <span className="flxfrm-muted">{note}</span> : null}
+    </div>
+  );
+}
+
+/** Copies text and says so. */
+export async function copyText(text: string, toast: FormsCtx['toast'], t: Translate): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast(t('Copied.'));
+  } catch {
+    toast(text);
+  }
 }

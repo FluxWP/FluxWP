@@ -1,0 +1,7 @@
+query FlxFormsAutomationRuns {
+  flxFormsAutomationRuns {
+    id flowId flowTitle formTitle track status
+    time { iso label relative }
+    steps { type status message }
+  }
+}

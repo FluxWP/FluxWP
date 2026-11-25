@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( $manifest ), true ) a
 		$GLOBALS['flxf_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 17, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 17 persisted operations' );
+flxt_same( 31, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 31 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -940,5 +940,93 @@ $r = flxf_t_op( 'FlxFormsSettingsUpdate', array( 'input' => array( 'clearSecretK
 flxt_same( false, $r['data']['flxFormsSettingsUpdate']['settings']['secretKeySet'] ?? null, 'settings: clear the secret' );
 $r = flxf_t_op( 'FlxFormsClearFiles', array( 'input' => array() ), $adm_id );
 flxt_ok( isset( $r['data']['flxFormsClearFiles']['deleted'] ), 'settings: clear unused files', $r );
+
+/* ---------- 2.8.0: payments, system check, add-ons, automations ---------- */
+foreach ( array( 'FlxFormsPayments' => 'flxFormsPayments', 'FlxFormsSystem' => 'flxFormsSystem', 'FlxFormsAddons' => 'flxFormsAddons', 'FlxFormsAutomations' => 'flxFormsAutomations', 'FlxFormsAutomationRuns' => 'flxFormsAutomationRuns' ) as $flxf_op => $flxf_field ) {
+	$r = flxf_t_op( $flxf_op, array(), $sub_id );
+	flxt_ok( null !== flxt_code( $r ), 'tools: a subscriber cannot read ' . $flxf_field );
+	$r = flxf_t_op( $flxf_op, array(), $adm_id );
+	flxt_ok( isset( $r['data'][ $flxf_field ] ) && null === flxt_code( $r ), 'tools: admin reads ' . $flxf_field, $r );
+}
+$r   = flxf_t_op( 'FlxFormsPayments', array(), $adm_id );
+$pay = $r['data']['flxFormsPayments'] ?? array();
+if ( ! FLXF_Tools_Service::payments_available() ) {
+	// Flux Donate owns the payment layer: the page says so and the secret cannot be set here.
+	flxt_same( array( false, array(), array() ), array( $pay['available'] ?? null, $pay['providers'] ?? null, $pay['payments'] ?? null ), 'payments: with Flux Donate the page is empty', $pay );
+	$r = flxf_t_op( 'FlxFormsStripeWebhookSecret', array( 'input' => array( 'secret' => 'whsec_contract' ) ), $adm_id );
+	flxt_same( array( array( 'INVALID_INPUT', 'secret' ) ), flxf_t_errs( $r, 'flxFormsStripeWebhookSecret' ), 'payments: with Flux Donate the secret is refused' );
+} else {
+	flxt_ok( ! empty( $pay['available'] ) && in_array( 'stripe', array_column( (array) ( $pay['providers'] ?? array() ), 'id' ), true ), 'payments: Stripe is listed', $pay );
+	$r = flxf_t_op( 'FlxFormsStripeWebhookSecret', array( 'input' => array( 'secret' => 'nope' ) ), $adm_id );
+	flxt_same( array( array( 'INVALID_INPUT', 'secret' ) ), flxf_t_errs( $r, 'flxFormsStripeWebhookSecret' ), 'payments: secret must start with whsec_' );
+	$r = flxf_t_op( 'FlxFormsStripeWebhookSecret', array( 'input' => array( 'secret' => 'whsec_contract' ) ), $adm_id );
+	$stripe = array_values( array_filter( (array) ( $r['data']['flxFormsStripeWebhookSecret']['payments']['providers'] ?? array() ), static fn( $p ) => 'stripe' === ( $p['id'] ?? '' ) ) )[0] ?? array();
+	flxt_same( array( true, 'whsec_contract' ), array( $stripe['secretSet'] ?? null, get_option( 'emsfb_stripe_webhook_secret' ) ), 'payments: secret saved', $r );
+	flxt_ok( false === strpos( (string) wp_json_encode( $r ), 'whsec_contract' ), 'payments: secret is not returned' );
+	$r = flxf_t_op( 'FlxFormsStripeWebhookSecret', array( 'input' => array( 'clear' => true ) ), $adm_id );
+	flxt_same( false, get_option( 'emsfb_stripe_webhook_secret', false ), 'payments: secret removed' );
+	global $wpdb;
+	if ( class_exists( '\Emsfb\StripePayment' ) ) {
+		\Emsfb\StripePayment::maybe_install_table();
+		$wpdb->insert( \Emsfb\StripePayment::table_name(), array( 'form_id' => 7, 'track' => 'CTRK1', 'gateway' => 'stripe', 'payment_type' => 'one-time', 'transaction_id' => 'pi_contract', 'amount' => 12.5, 'currency' => 'usd', 'status' => 'mismatch', 'payer_email' => 'payer@example.com', 'form_name' => 'Pay form', 'created_at' => gmdate( 'Y-m-d H:i:s' ) ) );
+		$r   = flxf_t_op( 'FlxFormsPayments', array(), $adm_id );
+		$row = array_values( array_filter( (array) ( $r['data']['flxFormsPayments']['payments'] ?? array() ), static fn( $p ) => 'CTRK1' === ( $p['track'] ?? '' ) ) )[0] ?? array();
+		flxt_same( array( 'failed', 'pi_contract', 'USD', 'Stripe', 12.5 ), array( $row['tone'] ?? null, $row['reference'] ?? null, $row['currency'] ?? null, $row['provider'] ?? null, $row['amount'] ?? null ), 'payments: a record is listed with tone and reference', $row );
+		$wpdb->delete( \Emsfb\StripePayment::table_name(), array( 'track' => 'CTRK1' ) );
+	}
+}
+
+$r      = flxf_t_op( 'FlxFormsSystem', array(), $adm_id );
+$checks = (array) ( $r['data']['flxFormsSystem']['checks'] ?? array() );
+flxt_ok( in_array( 'flxf.uploads', array_column( $checks, 'id' ), true ), 'system: the Forms rows are there', $checks );
+flxt_ok( '' !== (string) ( $checks[0]['groupLabel'] ?? '' ), 'system: rows have a group name' );
+
+$r    = flxf_t_op( 'FlxFormsAddons', array(), $adm_id );
+$keys = array_column( (array) ( $r['data']['flxFormsAddons'] ?? array() ), 'key' );
+flxt_same( array( 'AdnSPF', 'AdnOF', 'AdnSMF' ), $keys, 'addons: the bundled add-ons are listed', $r );
+flxt_ok( ! in_array( false, array_column( (array) ( $r['data']['flxFormsAddons'] ?? array() ), 'enabled' ), true ), 'addons: the bundled add-ons are always on' );
+
+$r    = flxf_t_op( 'FlxFormsAutomationEditor', array( 'id' => 0 ), $adm_id );
+$ed   = $r['data']['flxFormsAutomationEditor'] ?? array();
+flxt_same( array( 0, 'form_submitted' ), array( $ed['flow']['id'] ?? null, $ed['flow']['trigger']['type'] ?? null ), 'automations: a blank flow for id 0', $r );
+flxt_ok( is_array( $ed['forms'] ?? null ) && isset( $ed['channels'] ), 'automations: editor lists forms and channels' );
+$flow = array(
+	'id'         => 0,
+	'title'      => 'Contract flow',
+	'enabled'    => true,
+	'trigger'    => array( 'type' => 'form_submitted', 'form_id' => 0 ),
+	'match'      => 'all',
+	'conditions' => array( array( 'field' => 'f1', 'op' => 'eq', 'value' => 'x' ) ),
+	'actions'    => array(
+		array( 'id' => 'w1', 'type' => 'webhook', 'url' => 'https://example.com/hook', 'secret' => '' ),
+		array( 'id' => 'bad', 'type' => 'run_shell', 'cmd' => 'rm' ),
+	),
+);
+$r     = flxf_t_op( 'FlxFormsAutomationSave', array( 'input' => array( 'flow' => $flow ) ), $adm_id );
+$saved = $r['data']['flxFormsAutomationSave']['flow'] ?? array();
+$aid   = (int) ( $saved['id'] ?? 0 );
+flxt_same( array( true, 'Contract flow', array( 'webhook' ) ), array( $aid > 0, $saved['title'] ?? null, array_column( (array) ( $saved['actions'] ?? array() ), 'type' ) ), 'automations: save creates the flow and drops unknown steps', $r );
+$r = flxf_t_op( 'FlxFormsAutomationToggle', array( 'input' => array( 'id' => $aid, 'enabled' => false ) ), $adm_id );
+flxt_same( false, FLXF_Automations::get_flow( $aid )['enabled'] ?? null, 'automations: toggle off', $r );
+$r   = flxf_t_op( 'FlxFormsAutomationDuplicate', array( 'input' => array( 'id' => $aid ) ), $adm_id );
+$cid = (int) ( $r['data']['flxFormsAutomationDuplicate']['id'] ?? 0 );
+flxt_ok( $cid > 0 && $cid !== $aid && false === ( FLXF_Automations::get_flow( $cid )['enabled'] ?? true ), 'automations: duplicate is off', $r );
+$r = flxf_t_op( 'FlxFormsAutomations', array(), $adm_id );
+flxt_ok( in_array( $aid, array_column( (array) ( $r['data']['flxFormsAutomations']['flows'] ?? array() ), 'id' ), true ), 'automations: the list has it' );
+$r = flxf_t_op( 'FlxFormsAutomationEditor', array( 'id' => $aid ), $adm_id );
+flxt_same( 'Contract flow', $r['data']['flxFormsAutomationEditor']['flow']['title'] ?? null, 'automations: editor opens it' );
+foreach ( array( $aid, $cid ) as $flxf_id ) {
+	$r = flxf_t_op( 'FlxFormsAutomationDelete', array( 'input' => array( 'id' => $flxf_id ) ), $adm_id );
+	flxt_same( true, $r['data']['flxFormsAutomationDelete']['deleted'] ?? null, 'automations: delete ' . $flxf_id );
+}
+$r = flxf_t_op( 'FlxFormsAutomationEditor', array( 'id' => $aid ), $adm_id );
+flxt_ok( is_array( $r['data']['flxFormsAutomationEditor'] ?? null ) && null === $r['data']['flxFormsAutomationEditor']['flow'], 'automations: a deleted flow is null', $r );
+$r = flxf_t_op( 'FlxFormsAutomationDelete', array( 'input' => array( 'id' => $aid ) ), $adm_id );
+flxt_same( array( array( 'INVALID_INPUT', 'id' ) ), flxf_t_errs( $r, 'flxFormsAutomationDelete' ), 'automations: deleting twice is an input error' );
+FLXF_Automations::store_run( array( 'id' => 'run-contract', 'time' => time(), 'flow_id' => 1, 'flow_title' => 'F', 'form_title' => 'Fo', 'track' => 'T1', 'status' => 'ok', 'steps' => array( array( 'type' => 'webhook', 'status' => 'ok', 'message' => '200' ) ) ) );
+$r = flxf_t_op( 'FlxFormsAutomationRuns', array(), $adm_id );
+flxt_same( array( 'run-contract', 'webhook' ), array( $r['data']['flxFormsAutomationRuns'][0]['id'] ?? null, $r['data']['flxFormsAutomationRuns'][0]['steps'][0]['type'] ?? null ), 'automations: run log', $r );
+$r = flxf_t_op( 'FlxFormsAutomationRunsClear', array( 'input' => array() ), $adm_id );
+flxt_same( array(), FLXF_Automations::get_runs(), 'automations: clear the log', $r );
 
 flxt_done();
