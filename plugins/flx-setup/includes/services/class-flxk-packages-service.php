@@ -286,7 +286,7 @@ final class FLXK_Packages_Service {
 		if ( ! function_exists( 'wp_is_auto_update_enabled_for_type' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/update.php';
 		}
-		return wp_is_auto_update_enabled_for_type( $type );
+		return wp_is_auto_update_enabled_for_type( 'theme' === $type ? 'theme' : 'plugin' );
 	}
 
 	/**
