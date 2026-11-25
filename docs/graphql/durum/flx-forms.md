@@ -40,6 +40,11 @@ Plan: 1 public okuma + gönderim (`flxForm`, `flxFormSubmit`, `flxFormTrack`, `f
 - Klasik oluşturucu (`class-Emsfb-create.php` render + `add_form_Emsfb` AJAX), Panel (`class-Emsfb-panel.php`, `admin_assets`), oluşturucu kabuğu (`includes/flx/builder`) ve yalnız onların JS/CSS'i silindi. `admin.php?page=Emsfb` yönlendirir (`flxf_panel_redirect`). Tüm formlar "Düzenle" `editUrl` → oluşturucu.
 - Klasik panelin diğer `wp_ajax_*_Emsfb` uçları (`class-Emsfb-admin.php`) artık çağıran ekranı olmadan duruyor; ayrı temizlik PR'ı.
 
+## 2.11.0: headless form verisi
+- `flxForm` genişledi (yalnız ekleme): `stepList { number title help }`, `currency`; alan: `help`, `step`, `width` (1-100, varsayılan 100), `defaultValue` (html öğede `wp_kses_post`; seçim ve dosya alanında boş), `min`/`max` (`milen`/`mlen`; yalnız text, textarea, tel, password, number, range, date; seçim alanında bunlar rezervasyon sayacıdır, dışarı çıkmaz), `rows` (matrix `r_matrix` satırları), `settings` (`FLXF_Form_Service::SETTING_KEYS` beyaz listesi; `href` `esc_url_raw`), seçenek `price` (Float, yoksa null) ve `image` (`src`, `esc_url_raw`).
+- React tarafı `@fluxwp/ui/forms` (`FluxForm`, alan bileşenleri). Gönderilemeyen türler (imza, harita, şifre, kart ödemesi, rezervasyon, matrix) "web sitesinde doldurulabilir" der; ödeme, giriş ve kayıt formları REST'te kalır. Koşullu mantık (`logic_rules`) public değil, headless'ta tüm alanlar görünür.
+- Contract test: zengin form (adımlar, genişlik, varsayılan, sınırlar, fiyat/görsel, matrix, ayar beyaz listesi, `javascript:` bağlantı).
+
 ## İstisnalar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |

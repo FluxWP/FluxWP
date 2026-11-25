@@ -32,8 +32,8 @@ export const NPM_PACKAGES: NpmPackage[] = [
   {
     name: '@fluxwp/ui',
     dir: 'packages/ui',
-    description: 'React UI kit of FluxWP wp-admin screens: checkbox/switch, date picker, modal, icons, interactive charts (Chart.js); light and dark.',
-    keywords: [...COMMON, 'react', 'ui', 'components', 'wp-admin', 'date-picker', 'checkbox', 'switch', 'dark-mode', 'charts'],
+    description: 'React UI kit of FluxWP wp-admin screens: checkbox/switch, date picker, modal, icons, interactive charts (Chart.js), Flux Forms forms for headless sites; light and dark.',
+    keywords: [...COMMON, 'react', 'ui', 'components', 'wp-admin', 'date-picker', 'checkbox', 'switch', 'dark-mode', 'charts', 'forms', 'headless'],
   },
   {
     name: '@fluxwp/graphql',

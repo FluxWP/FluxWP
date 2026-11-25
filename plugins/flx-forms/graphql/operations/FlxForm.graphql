@@ -8,13 +8,32 @@ query FlxForm($id: ID!) {
     buttonLabel
     successTitle
     successMessage
+    currency
+    stepList {
+      number
+      title
+      help
+    }
     fields {
       id
       type
       label
       required
       placeholder
+      help
+      step
+      width
+      defaultValue
+      min
+      max
+      settings
       options {
+        value
+        label
+        price
+        image
+      }
+      rows {
         value
         label
       }

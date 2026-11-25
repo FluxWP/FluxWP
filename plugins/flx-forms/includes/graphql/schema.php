@@ -34,6 +34,20 @@ flx_gql_type(
 		'fields'      => array(
 			'value' => array( 'type' => 'String!', 'description' => __( 'Stored value.', 'flx-forms' ) ),
 			'label' => array( 'type' => 'String!', 'description' => __( 'Label on the form.', 'flx-forms' ) ),
+			'price' => array( 'type' => 'Float', 'description' => __( 'Price of a product choice (payment fields). Null on other choices.', 'flx-forms' ) ),
+			'image' => array( 'type' => 'String!', 'description' => __( 'Image address of an image choice. Empty on other choices.', 'flx-forms' ) ),
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxFormStep',
+	array(
+		'description' => __( 'One step of a multi-step form.', 'flx-forms' ),
+		'fields'      => array(
+			'number' => array( 'type' => 'Int!', 'description' => __( 'Step number (FlxFormField.step).', 'flx-forms' ) ),
+			'title'  => array( 'type' => 'String!', 'description' => __( 'Step title.', 'flx-forms' ) ),
+			'help'   => array( 'type' => 'String!', 'description' => __( 'Text under the title.', 'flx-forms' ) ),
 		),
 	)
 );
@@ -49,6 +63,14 @@ flx_gql_type(
 			'required'    => array( 'type' => 'Boolean!', 'description' => __( 'The visitor must fill this in.', 'flx-forms' ) ),
 			'placeholder' => array( 'type' => 'String!', 'description' => __( 'Placeholder. Empty when the field has none.', 'flx-forms' ) ),
 			'options'     => array( 'type' => '[FlxFormOption!]!', 'description' => __( 'Choices. Empty when the field is not a choice.', 'flx-forms' ) ),
+			'help'         => array( 'type' => 'String!', 'description' => __( 'Help text under the field.', 'flx-forms' ) ),
+			'step'         => array( 'type' => 'Int!', 'description' => __( 'Step the field is on (1 on a one-step form).', 'flx-forms' ) ),
+			'width'        => array( 'type' => 'Int!', 'description' => __( 'Width in percent of the form row: 100, 75, 50, 33 or 25.', 'flx-forms' ) ),
+			'defaultValue' => array( 'type' => 'String!', 'description' => __( 'Starting value. Heading and link: their text; HTML: its markup (safe tags only). Empty on choice and file fields.', 'flx-forms' ) ),
+			'min'          => array( 'type' => 'String!', 'description' => __( 'Text fields: minimum length. Number and slider: minimum. Date: earliest date (YYYY-MM-DD, 1 = today). Empty when not set.', 'flx-forms' ) ),
+			'max'          => array( 'type' => 'String!', 'description' => __( 'Like min, the upper limit.', 'flx-forms' ) ),
+			'rows'         => array( 'type' => '[FlxFormOption!]!', 'description' => __( 'Rows of a rating table (table_matrix). Empty on other fields.', 'flx-forms' ) ),
+			'settings'     => array( 'type' => 'FlxJSON!', 'description' => __( 'Type settings a front end needs, by Flux Forms key: op_style (columns), minSelect, maxSelect, file, file_ctype, max_fsize, button_1_text, button_2_text, on, off, pholder_chl_value, max_duration, rec_countdown, rec_download, record_quality, country, statePov, href, el_text_size, lat, lng, zoom, mark. Only keys the field has.', 'flx-forms' ) ),
 		),
 	)
 );
@@ -66,6 +88,8 @@ flx_gql_type(
 			'successTitle'   => array( 'type' => 'String!', 'description' => __( 'Title shown after a successful send.', 'flx-forms' ) ),
 			'successMessage' => array( 'type' => 'String!', 'description' => __( 'Message shown after a successful send.', 'flx-forms' ) ),
 			'fields'         => array( 'type' => '[FlxFormField!]!', 'description' => __( 'Fields to draw.', 'flx-forms' ) ),
+			'stepList'       => array( 'type' => '[FlxFormStep!]!', 'description' => __( 'Steps of a multi-step form, in order. Empty or one item on a one-step form.', 'flx-forms' ) ),
+			'currency'       => array( 'type' => 'String!', 'description' => __( 'Currency of a payment form (ISO 4217). Empty on other forms.', 'flx-forms' ) ),
 		),
 	)
 );

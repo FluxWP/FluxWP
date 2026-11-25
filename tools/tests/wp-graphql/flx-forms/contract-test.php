@@ -212,6 +212,47 @@ flxt_ok( ! str_contains( $blob, 'hooks.example' ), 'public form: webhook url is 
 flxt_ok( ! str_contains( $blob, '2099-01-01' ), 'public form: booking expiry is absent' );
 flxt_ok( ! str_contains( $blob, 'registered_count' ), 'public form: booking counter name is absent' );
 
+// The fields a headless form needs to draw each field: steps, help, width, defaults, limits, prices, images, matrix rows and a short settings list.
+$rich_id = flxf_t_form(
+	'Rich',
+	'form',
+	array(
+		array( 'type' => 'form', 'steps' => 2, 'formName' => 'Rich', 'stateForm' => 0, 'currency' => 'usd', 'button_single_text' => 'Go' ),
+		array( 'id' => 's1', 'type' => 'step', 'step' => 1, 'name' => 'About you', 'message' => 'First step' ),
+		array( 'id' => 'age', 'type' => 'number', 'name' => 'Age', 'step' => 1, 'size' => 50, 'message' => 'In years', 'value' => '30', 'milen' => '18', 'mlen' => '99' ),
+		array( 'id' => 's2', 'type' => 'step', 'step' => 2, 'name' => 'Choice', 'message' => '' ),
+		array( 'id' => 'plan', 'type' => 'imgradio', 'name' => 'Plan', 'step' => 2, 'size' => 250, 'value' => 'b', 'mlen' => '5', 'op_style' => '2', 'email_to' => 'x@example.com' ),
+		array( 'id' => 'pa', 'type' => 'option', 'parent' => 'plan', 'value' => 'a', 'name' => 'Basic', 'price' => '10.5', 'src' => 'https://example.com/a.png' ),
+		array( 'id' => 'pb', 'type' => 'option', 'parent' => 'plan', 'value' => 'b', 'name' => 'Pro' ),
+		array( 'id' => 'grid', 'type' => 'table_matrix', 'name' => 'Grid', 'step' => 2 ),
+		array( 'id' => 'r1', 'type' => 'r_matrix', 'parent' => 'grid', 'value' => 'speed', 'name' => 'Speed' ),
+		array( 'id' => 'link', 'type' => 'link', 'name' => 'Terms', 'step' => 2, 'href' => 'javascript:alert(1)' ),
+	)
+);
+$r    = flxf_t_op( 'FlxForm', array( 'id' => (string) $rich_id ) );
+$rich = $r['data']['flxForm'] ?? array();
+flxt_same( null, $r['errors'] ?? null, 'rich form: no errors' );
+flxt_same( 'USD', $rich['currency'] ?? null, 'rich form: currency' );
+flxt_same( array( array( 'number' => 1, 'title' => 'About you', 'help' => 'First step' ), array( 'number' => 2, 'title' => 'Choice', 'help' => '' ) ), $rich['stepList'] ?? null, 'rich form: step list' );
+$by = array();
+foreach ( $rich['fields'] ?? array() as $f ) {
+	$by[ $f['id'] ] = $f;
+}
+flxt_same( array( 'age', 'plan', 'grid', 'link' ), array_keys( $by ), 'rich form: step and child rows are not fields' );
+flxt_same( array( 1, 50, 'In years', '30', '18', '99' ), array( $by['age']['step'] ?? 0, $by['age']['width'] ?? 0, $by['age']['help'] ?? '', $by['age']['defaultValue'] ?? '', $by['age']['min'] ?? '', $by['age']['max'] ?? '' ), 'rich form: number field step, width, help, default and limits' );
+flxt_same( array( 2, 100, '', '' ), array( $by['plan']['step'] ?? 0, $by['plan']['width'] ?? 0, $by['plan']['defaultValue'] ?? 'x', $by['plan']['max'] ?? 'x' ), 'rich form: choice field has no default or booking limit, width falls back to 100' );
+flxt_same(
+	array(
+		array( 'value' => 'a', 'label' => 'Basic', 'price' => 10.5, 'image' => 'https://example.com/a.png' ),
+		array( 'value' => 'b', 'label' => 'Pro', 'price' => null, 'image' => '' ),
+	),
+	$by['plan']['options'] ?? null,
+	'rich form: option price and image'
+);
+flxt_same( array( 'op_style' => '2' ), $by['plan']['settings'] ?? null, 'rich form: only listed settings are public' );
+flxt_same( array( array( 'value' => 'speed', 'label' => 'Speed' ) ), $by['grid']['rows'] ?? null, 'rich form: matrix rows' );
+flxt_ok( ! str_contains( (string) ( $by['link']['settings']['href'] ?? '' ), 'javascript' ), 'rich form: link href is sanitized' );
+
 $r = flxf_t_op( 'FlxForm', array( 'id' => (string) $private_id ) );
 flxt_same( null, array_key_exists( 'flxForm', $r['data'] ?? array() ) ? $r['data']['flxForm'] : null, 'private form: visitor gets null' );
 flxt_same( null, $r['errors'] ?? null, 'private form: not an error' );
@@ -428,7 +469,7 @@ foreach ( is_array( $b_form['fields'] ?? null ) ? $b_form['fields'] : array() as
 	}
 }
 flxt_same( array( 'bname', 'bemail', 'burl', 'bcolor', 'bdate', 'brange', 'bnum', 'brat', 'bp5', 'bp10', 'bpick', 'bmulti', 'bmtx', 'bpdf', 'brec' ), $b_fids, 'builder form: option, r_matrix and step rows do not leak into fields' );
-flxt_same( array( array( 'value' => 'Red', 'label' => 'Red' ), array( 'value' => 'Expired', 'label' => 'Expired' ) ), $b_opts, 'builder form: sibling option rows attach to parent choice field' );
+flxt_same( array( array( 'value' => 'Red', 'label' => 'Red', 'price' => null, 'image' => '' ), array( 'value' => 'Expired', 'label' => 'Expired', 'price' => null, 'image' => '' ) ), $b_opts, 'builder form: sibling option rows attach to parent choice field' );
 
 $b_base = array(
 	array( 'fieldId' => 'bname', 'value' => 'Grace' ),

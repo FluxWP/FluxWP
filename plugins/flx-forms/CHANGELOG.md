@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.11.0
+- Headless siteler için formun tamamı GraphQL'den okunur: `flxForm` artık adım listesi (`stepList`), para birimi, alan başına yardım metni, adım, genişlik, varsayılan değer, min/max (uzunluk, sayı ya da tarih), seçenek fiyatı ve görseli, matrix satırları ve kısa bir ayar listesi (`settings`: sütun, seçim sınırı, dosya türü/boyutu, evet/hayır ve açık/kapalı metinleri, bağlantı adresi) döndürür. Gizli ayarlar ve rezervasyon sayaçları yine dışarı çıkmaz.
+- Bu verilerle formu React'te çizen bileşenler `@fluxwp/ui/forms` paketinde (FluxForm).
+
 ## 2.10.0
 - Form oluşturucu yenilendi: Formlar › Yeni form ve "Düzenle", Flux Forms bloklarını kendi blok düzenleyicisinde açar. Sayfa düzenleyicideki bloklarla aynıdır, form iki yerde de aynı görünür; ayarlar sağ panelde.
 - Yeni form boş başlar ya da bir şablondan (örn. Fidan Bağışı) seçilir. Kaydet düğmesi ve Ctrl+S; kaydedilmemiş değişiklik varken sayfadan çıkmadan önce sorulur.

@@ -123,7 +123,10 @@ for (const p of NPM_PACKAGES) {
     }
     if (!sub['.'] && !exports['.']) exports['.'] = { types: './types/' + main.slice(4).replace(/\.tsx?$/, '.d.ts'), default: `./${main}` };
     for (const f of p.extra ?? []) exports[`./${f}`] = `./${f}`;
-    if (p.name === '@fluxwp/ui') exports['./styles.css'] = './src/styles.css';
+    if (p.name === '@fluxwp/ui') {
+      exports['./styles.css'] = './src/styles.css';
+      exports['./forms.css'] = './src/forms/forms.css';
+    }
   }
 
   // A plugin project installs only @fluxwp/plugin-kit: the type packages its screens import come with it.

@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/ui",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "main": "src/index.ts",
@@ -8,6 +8,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./chart": "./src/Chart.tsx",
+    "./forms": "./src/forms/index.ts",
+    "./forms.css": "./src/forms/forms.css",
     "./src/*": "./src/*"
   },
   "scripts": {
