@@ -24,3 +24,12 @@ body.login { background: var(--bg); color: var(--text); font-family: "FLXA Figtr
 .login input[type=checkbox]:focus { border-color: var(--flxa-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--flxa-accent) 35%, transparent); }
 .login .wp-tooltip .wp-tooltip__toggle { color: var(--muted); }
 .login .wp-tooltip .wp-tooltip__toggle:hover, .login .wp-tooltip .wp-tooltip__toggle:focus { color: var(--flxa-accent); }
+
+/* Google ile giriş (Site Kit): formun altında "veya" ayracıyla, kartla aynı genişlikte; koyu modda beyaz şerit yok. */
+#login { display: flex; flex-direction: column; }
+#login > * { order: 2; }
+#login > h1, #login > .message, #login > .notice, #login > #login_error, #login > form { order: 0; }
+#login > .googlesitekit-sign-in-with-google__frontend-output-button { order: 1; display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: none; margin: 18px 0 8px; }
+#login > .googlesitekit-sign-in-with-google__frontend-output-button::before { content: var(--flxa-or, "or"); align-self: stretch; text-align: center; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: linear-gradient(var(--border), var(--border)) left center / calc(50% - 28px) 1px no-repeat, linear-gradient(var(--border), var(--border)) right center / calc(50% - 28px) 1px no-repeat; }
+#login > .googlesitekit-sign-in-with-google__frontend-output-button iframe { color-scheme: light; }
+

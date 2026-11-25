@@ -463,6 +463,9 @@ msgstr "Sayfa başı"
 msgid "Apply"
 msgstr "Uygula"
 
+msgid "or"
+msgstr "veya"
+
 msgid "General"
 msgstr "Genel"
 

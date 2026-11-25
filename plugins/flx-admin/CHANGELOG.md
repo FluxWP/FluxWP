@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.5
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 1.11.4
+- Giriş ekranında "Google ile oturum açın" (Site Kit) butonu kartın üstünde beyaz şerit olarak durmuyor: formun altında "veya" ayracıyla, ortada; koyu modda beyaz zemin yok.
+
 ## 1.11.3
 - Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
 
