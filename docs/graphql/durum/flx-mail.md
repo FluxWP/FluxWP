@@ -1,4 +1,4 @@
-# flx-mail 1.23.0
+# flx-mail 1.24.0
 
 - Faz: 3
 - Durum: ✱
@@ -14,3 +14,6 @@ Parça 1 uygulandı: Ayarlar, E-postalar (şablon düzenleyici dahil), Kayıtlar
 | Posta kutusu eki `GET /wp-json/flxi/v1/mailbox/item/{id}/attachment` | flx-mail | Ham dosya baytı; GraphQL JSON döner | Bu parçada yok. Parça 4’te ad, boyut ve tür; bayt bu URL’de kalır |
 | Toplu e-posta çıkışı `/?flxi_unsub=` ve eski `yti_unsub` (`GET`+`POST`) | flx-mail | E-posta istemcisi ve RFC 8058 List-Unsubscribe bu URL'e gider | `flxMailSettings.unsubscribedCount` (sayı). Çıkış URL’si kalır |
 | WP-Cron `flxi_run_queue`, `flxi_netgsm_poll`, `flxi_mailbox_sync`, `flxi_daily` | flx-mail | Zamanlayıcı kancası. Hostinger cron'u tetiklemez | Bu parçada yok. Kuyruk parça 3, posta kutusu parça 4. Günlük temizlik mutation değil |
+
+
+1.24.0: tüm İletişim sayfaları `flx_admin_screen` kabuğunda, sayfa başına preload (`flxi_preload_for`). Gönder/Kuyruk/Kara liste/Bağlantılar ada (PHP formu gizli basılır, ekran taşır); sırada React. Klasik şablon/kayıt/ayar/sistem sayfaları ve görünüm geçişi silindi. Posta kutusu ayrı menü, değişmedi.

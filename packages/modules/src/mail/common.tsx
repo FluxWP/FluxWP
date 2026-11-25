@@ -1,7 +1,10 @@
 import { createContext, useContext } from 'react';
 import type { Translate } from './i18n';
 
-export type Page = 'templates' | 'logs' | 'settings' | 'system';
+export type Page = 'templates' | 'send' | 'queue' | 'logs' | 'blocklist' | 'connections' | 'settings' | 'system';
+
+/** Pages PHP prints (the page sends them hidden; the screen shows them under its header): wp-admin slug. */
+export const ISLANDS: Partial<Record<Page, string>> = { send: 'flxi-gonder', queue: 'flxi-kuyruk', blocklist: 'flxi-kara-liste', connections: 'flxi-baglantilar' };
 
 export interface MailCtx {
   t: Translate;

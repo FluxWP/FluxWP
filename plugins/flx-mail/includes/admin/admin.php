@@ -8,13 +8,10 @@
 defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/flux-ui.php';
-require_once __DIR__ . '/page-templates.php';
 require_once __DIR__ . '/page-send.php';
 require_once __DIR__ . '/page-queue.php';
-require_once __DIR__ . '/page-log.php';
 require_once __DIR__ . '/page-blocklist.php';
 require_once __DIR__ . '/page-connections.php';
-require_once __DIR__ . '/page-settings.php';
 require_once __DIR__ . '/page-mailbox.php';
 
 add_action(
@@ -24,16 +21,16 @@ add_action(
 		// Posta kutusu her gün açılan bir ekran: WordPress'teki Yorumlar gibi sol menüde ayrı ana öğe.
 		$unread = flxi_mailbox_enabled() ? flxi_mailbox_unread_count() + flxi_drafts_count( 'review' ) : 0;
 		add_menu_page( __( 'Mailbox', 'flx-mail' ), __( 'Mailbox', 'flx-mail' ) . ( $unread ? ' <span class="awaiting-mod">' . (int) $unread . '</span>' : '' ), $cap, 'flxi-posta', 'flxi_page_mailbox', 'dashicons-email-alt', 26 );
-		add_menu_page( __( 'Communication', 'flx-mail' ), __( 'Communication', 'flx-mail' ), $cap, 'flxi', 'flxi_page_templates', 'none', 58 );
-		add_submenu_page( 'flxi', __( 'Email templates', 'flx-mail' ), __( 'Emails', 'flx-mail' ), $cap, 'flxi', 'flxi_page_templates' );
-		add_submenu_page( 'flxi', __( 'Send', 'flx-mail' ), __( 'Send', 'flx-mail' ), $cap, 'flxi-gonder', 'flxi_page_send' );
-		add_submenu_page( 'flxi', __( 'Delivery queue', 'flx-mail' ), __( 'Queue', 'flx-mail' ), $cap, 'flxi-kuyruk', 'flxi_page_queue' );
-		add_submenu_page( 'flxi', __( 'Log', 'flx-mail' ), __( 'Log', 'flx-mail' ), $cap, 'flxi-kayitlar', 'flxi_page_log' );
-		add_submenu_page( 'flxi', __( 'Blocklist', 'flx-mail' ), __( 'Blocklist', 'flx-mail' ), $cap, 'flxi-kara-liste', 'flxi_page_blocklist' );
-		add_submenu_page( 'flxi', __( 'WhatsApp and SMS connections', 'flx-mail' ), __( 'Connections', 'flx-mail' ), $cap, 'flxi-baglantilar', 'flxi_page_connections' );
-		add_submenu_page( 'flxi', __( 'Communication settings', 'flx-mail' ), __( 'Settings', 'flx-mail' ), $cap, 'flxi-ayarlar', 'flxi_page_settings' );
+		add_menu_page( __( 'Communication', 'flx-mail' ), __( 'Communication', 'flx-mail' ), $cap, 'flxi', 'flxi_screen_page', 'none', 58 );
+		add_submenu_page( 'flxi', __( 'Email templates', 'flx-mail' ), __( 'Emails', 'flx-mail' ), $cap, 'flxi', 'flxi_screen_page' );
+		add_submenu_page( 'flxi', __( 'Send', 'flx-mail' ), __( 'Send', 'flx-mail' ), $cap, 'flxi-gonder', 'flxi_screen_page' );
+		add_submenu_page( 'flxi', __( 'Delivery queue', 'flx-mail' ), __( 'Queue', 'flx-mail' ), $cap, 'flxi-kuyruk', 'flxi_screen_page' );
+		add_submenu_page( 'flxi', __( 'Log', 'flx-mail' ), __( 'Log', 'flx-mail' ), $cap, 'flxi-kayitlar', 'flxi_screen_page' );
+		add_submenu_page( 'flxi', __( 'Blocklist', 'flx-mail' ), __( 'Blocklist', 'flx-mail' ), $cap, 'flxi-kara-liste', 'flxi_screen_page' );
+		add_submenu_page( 'flxi', __( 'WhatsApp and SMS connections', 'flx-mail' ), __( 'Connections', 'flx-mail' ), $cap, 'flxi-baglantilar', 'flxi_screen_page' );
+		add_submenu_page( 'flxi', __( 'Communication settings', 'flx-mail' ), __( 'Settings', 'flx-mail' ), $cap, 'flxi-ayarlar', 'flxi_screen_page' );
 		if ( ! flxi_system_moved() ) {
-			add_submenu_page( 'flxi', __( 'System check', 'flx-mail' ), __( 'System check', 'flx-mail' ), $cap, 'flxi-sistem', 'flxi_page_system' );
+			add_submenu_page( 'flxi', __( 'System check', 'flx-mail' ), __( 'System check', 'flx-mail' ), $cap, 'flxi-sistem', 'flxi_screen_page' );
 		}
 	}
 );
@@ -57,9 +54,8 @@ add_action(
 		if ( 0 !== strpos( $page, 'flxi' ) ) {
 			return;
 		}
-		if ( flxi_flux_ui() && isset( flxi_flux_pages()[ $page ] ) ) {
-			flxi_flux_assets( $page );
-			return;
+		if ( isset( flxi_screen_pages()[ $page ] ) && ! isset( flxi_island_pages()[ $page ] ) && function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+			return; // The Flux GraphQL screen shell loads the React screen; the island pages keep the classic styles for what PHP prints.
 		}
 		wp_enqueue_style( 'flxi-admin', FLXI_URL . 'assets/css/admin.css', array(), FLXI_VERSION );
 		if ( 'flxi-ayarlar' === $page ) {
@@ -241,6 +237,10 @@ add_action(
 
 /** Sayfa başlığı + sekme çubuğu. */
 function flxi_page_head( $title, $sub = '', $tabs_on = true ) {
+	if ( flxi_is_island() ) {
+		flxi_notices(); // 1.24.0: the screen draws the header and tabs around the island.
+		return;
+	}
 	$page  = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flxi'; // phpcs:ignore
 	$tabs  = array(
 		'flxi'             => __( 'Emails', 'flx-mail' ),
@@ -260,9 +260,6 @@ function flxi_page_head( $title, $sub = '', $tabs_on = true ) {
 		echo '<p class="flxi-head__sub">' . wp_kses_post( $sub ) . '</p>';
 	}
 	echo '</div></div>';
-	if ( flxi_flux_available() && isset( flxi_flux_pages()[ $page ] ) ) {
-		echo '<a class="flxi-tab" href="' . esc_url( flxi_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-mail' ) . '</a>';
-	}
 	if ( $tabs_on ) {
 		echo '<nav class="flxi-tabs" aria-label="' . esc_attr__( 'Communication', 'flx-mail' ) . '">';
 		foreach ( $tabs as $slug => $label ) {
@@ -275,6 +272,9 @@ function flxi_page_head( $title, $sub = '', $tabs_on = true ) {
 }
 
 function flxi_page_foot() {
+	if ( flxi_is_island() ) {
+		return;
+	}
 	echo '</div>';
 }
 
@@ -326,33 +326,6 @@ function flxi_badge( $text, $kind = '' ) {
 
 function flxi_sender_label( $sender ) {
 	return 'noreply' === $sender ? flxi_setting( 'noreply_email' ) : flxi_setting( 'from_email' );
-}
-
-/* ------------------------------------------------------------------ */
-/* Sistem kontrolü sayfası                                             */
-/* ------------------------------------------------------------------ */
-
-function flxi_page_system() {
-	if ( flxi_flux_screen( 'system' ) ) {
-		return;
-	}
-	flxi_page_head( __( 'System check', 'flx-mail' ), __( 'Rows related to email, WhatsApp and SMS. Checks for all plugins are on the Appearance › System Check screen.', 'flx-mail' ) );
-	add_filter( 'flx_system_checks_labels', 'flxi_system_checks_labels', 20 );
-	$all  = function_exists( 'flx_system_checks_sorted' ) ? flx_system_checks_sorted() : array();
-	$mine = array_values(
-		array_filter(
-			$all,
-			function ( $c ) {
-				return 0 === strpos( (string) $c['id'], 'flxi.' );
-			}
-		)
-	);
-	echo '<div class="flxi-card">';
-	if ( function_exists( 'flx_system_checks_render' ) ) {
-		flx_system_checks_render( array( 'checks' => $mine, 'recheck_url' => flxi_admin_url( 'flxi-sistem' ), 'heading' => false ) );
-	}
-	echo '</div>';
-	flxi_page_foot();
 }
 
 /** Renkli menü ikonu (WordPress menü ikonlarını tek renge boyadığı için CSS ile). */

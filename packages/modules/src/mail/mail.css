@@ -1,6 +1,5 @@
-.flxmail-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);display:grid;grid-template-columns:220px minmax(0,1fr);gap:0 24px;color:var(--flux-text);font-size:14px;line-height:1.5;height:100%;overflow:auto;padding:0 24px;align-content:start}
+.flxmail-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
 .flxmail-app *{box-sizing:border-box}
-.flxmail-app h1{font-size:22px;font-weight:600;margin:0}
 .flxmail-app h2{font-size:16px;font-weight:600;margin:0 0 8px}
 .flxmail-app h3{font-size:14px;font-weight:600;margin:16px 0 8px}
 .flxmail-app a,.flxmail-link{color:var(--ac);background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left}
@@ -9,15 +8,6 @@
 .flxmail-app input[type="checkbox"],.flxmail-app input[type="radio"]{accent-color:var(--ac)}
 .flxmail-app textarea{resize:vertical}
 .flxmail-app input:not([type="checkbox"]):not([type="radio"]):focus,.flxmail-app select:focus,.flxmail-app textarea:focus{outline:2px solid color-mix(in srgb,var(--ac) 45%,transparent);border-color:var(--ac)}
-.flxmail-side{position:sticky;top:0;align-self:start;display:flex;flex-direction:column;gap:10px;padding:16px 0}
-.flxmail-brand{display:flex;align-items:center;gap:8px}
-.flxmail-side nav{display:flex;flex-direction:column;gap:2px}
-.flxmail-nav{text-align:left;padding:8px 10px;border:0;border-radius:6px;background:none}
-.flxmail-nav.is-on{background:color-mix(in srgb,var(--ac) 14%,transparent);font-weight:600}
-.flxmail-side-foot{margin-top:12px;font-size:13px}
-.flxmail-main{min-width:0;padding:16px 0 48px}
-.flxmail-top{display:flex;align-items:center;gap:10px;margin:0 0 16px}
-.flxmail-burger{display:none;border:1px solid var(--bd);border-radius:6px;background:var(--flux-surface2);width:36px;height:34px}
 .flxmail-card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:0 0 16px}
 .flxmail-muted{color:var(--mut)}
 .flxmail-bad{color:var(--flux-danger)}
@@ -80,11 +70,13 @@
 .flxmail-toast.is-error{background:var(--flux-danger);color:#fff}
 .flxmail-sr{position:absolute;width:1px;height:1px;overflow:hidden}
 @media (max-width:720px){
-  .flxmail-app{grid-template-columns:1fr;padding:0 12px}
-  .flxmail-side{display:none;position:static}
-  .flxmail-app.is-menu .flxmail-side{display:flex}
-  .flxmail-burger{display:inline-flex;align-items:center;justify-content:center}
   .flxmail-grid2,.flxmail-grid3,.flxmail-grid4,.flxmail-split,.flxmail-editor,.flxmail-stats{grid-template-columns:1fr}
   .flxmail-row{grid-template-columns:auto minmax(0,1fr)}
   .flxmail-row>.flxmail-meta,.flxmail-row>.flxmail-btn{grid-column:2;justify-self:start}
 }
+
+/* 1.24.0 islands: the PHP form of Send, Queue, Blocklist, Connections under the shared header. */
+.flxmail-islandslot{display:contents}
+.flxmail-app .flxi-island{display:block;min-width:0}
+.flux-root .flxmail-app .flxi-island .button{background:#f6f7f7;border:1px solid #2271b1;color:#2271b1;border-radius:3px;padding:0 10px;min-height:30px;line-height:2.15384615;font-size:13px}
+.flux-root .flxmail-app .flxi-island .button-primary{background:#2271b1;color:#fff}

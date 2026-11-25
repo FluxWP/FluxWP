@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.24.0 — 2026-11-24
+- İletişim sayfaları Flux GraphQL ekran kabuğunda: ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
+- Ortak ekran başlığı ve sekmeler: E-postalar, Gönder, Kuyruk, Kayıtlar, Kara liste, Bağlantılar, Ayarlar, Sistem kontrolü tek sekme çubuğunda.
+- Gönder, Kuyruk, Kara liste ve Bağlantılar formları aynı başlık altında açılır (sonraki sürümde React'e geçecek).
+- Klasik görünüm ve "Yeni görünüm" geçişi kaldırıldı; E-postalar, Kayıtlar, Ayarlar ve Sistem kontrolünün klasik PHP sayfaları silindi. Flux GraphQL yoksa uyarı gösterilir.
+
 ## 1.23.1
 - Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
 
