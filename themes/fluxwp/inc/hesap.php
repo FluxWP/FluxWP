@@ -277,6 +277,65 @@ add_filter(
 	2
 );
 
+/* ---------- Kayıt formu: uzun gizlilik paragrafı yerine zorunlu onay kutusu ---------- */
+/*
+ * WooCommerce kayıt formunun altına uzun "Kişisel verileriniz..." paragrafını basar. Yerine tek satır onay kutusu:
+ * "Kullanım şartlarını ve gizlilik ilkesini okudum, kabul ediyorum." (sayfalar varsa bağlantılı). İşaretlenmeden kayıt olmaz.
+ * Ödeme sayfasındaki hesap oluşturma etkilenmez (kutu yalnız Hesabım kayıt formunda; işaret alanı flx_terms_on).
+ */
+add_action(
+	'init',
+	static function () {
+		remove_action( 'woocommerce_register_form', 'wc_registration_privacy_policy_text', 20 );
+	}
+);
+
+/** Onay kutusu metni (HTML, bağlantılı). */
+function flx_kayit_onay_metni(): string {
+	$link = static function ( $url, $text ) {
+		return $url ? '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $text ) . '</a>' : esc_html( $text );
+	};
+	$terms_id = function_exists( 'wc_terms_and_conditions_page_id' ) ? (int) wc_terms_and_conditions_page_id() : 0;
+	$terms    = $link( $terms_id ? get_permalink( $terms_id ) : '', __( 'terms of use', 'fluxwp' ) );
+	$privacy  = $link( get_privacy_policy_url(), __( 'privacy policy', 'fluxwp' ) );
+	/* translators: 1: terms of use link, 2: privacy policy link */
+	return sprintf( __( 'I have read and accept the %1$s and the %2$s.', 'fluxwp' ), $terms, $privacy );
+}
+
+add_action(
+	'woocommerce_register_form',
+	static function () {
+		$on = ! empty( $_POST['flx_terms'] ); // phpcs:ignore WordPress.Security.NonceVerification
+		echo '<input type="hidden" name="flx_terms_on" value="1">';
+		if ( function_exists( 'flx_check' ) ) {
+			echo '<div class="form-row flx-terms-row">' . flx_check( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Ortak bileşen kaçışı yapar.
+				array(
+					'name'       => 'flx_terms',
+					'id'         => 'reg_flx_terms',
+					'label_html' => flx_kayit_onay_metni(),
+					'checked'    => $on,
+					'required'   => true,
+				)
+			) . '</div>';
+			return;
+		}
+		echo '<p class="form-row flx-terms-row"><label class="woocommerce-form__label woocommerce-form__label-for-checkbox"><input type="checkbox" name="flx_terms" id="reg_flx_terms" value="1" required' . checked( $on, true, false ) . '> <span>' . wp_kses_post( flx_kayit_onay_metni() ) . '</span></label></p>';
+	},
+	20
+);
+
+add_filter(
+	'woocommerce_registration_errors',
+	static function ( $errors ) {
+		// phpcs:disable WordPress.Security.NonceVerification -- WooCommerce kayıt nonce'unu kendisi doğrular.
+		if ( ! empty( $_POST['flx_terms_on'] ) && empty( $_POST['flx_terms'] ) ) {
+			$errors->add( 'flx_terms', __( 'Please accept the terms of use and the privacy policy to create an account.', 'fluxwp' ) );
+		}
+		// phpcs:enable
+		return $errors;
+	}
+);
+
 /* ---------- Giriş penceresi tasarımı (Tema Ayarları › Giriş penceresi; ön ayar flx_ayarlar.auth_*) ---------- */
 
 /**
@@ -396,26 +455,42 @@ add_action(
 /* ---------- Telefon (isteğe bağlı): kayıt formu + Hesap bilgileri → billing_phone ---------- */
 /* Sertifika gönderiminde (WhatsApp) hesap sahibinin numarası buradan okunur. */
 
-/** Telefonu temizler; geçersizse false, boşsa ''. */
+/** Telefonu temizler; geçersizse false, boşsa ''. Ortak telefon alanı E.164 gönderir (+905321234567). */
 function flx_telefon_temizle( $raw ) {
 	$raw = trim( sanitize_text_field( (string) $raw ) );
 	if ( '' === $raw ) {
 		return '';
 	}
+	if ( function_exists( 'flx_phone_normalize' ) ) {
+		$e164 = flx_phone_normalize( $raw );
+		return '' === $e164 ? false : $e164;
+	}
 	$digits = preg_replace( '/\D+/', '', $raw );
 	if ( strlen( $digits ) < 10 || strlen( $digits ) > 15 || preg_match( '/[^0-9+\s().-]/', $raw ) ) {
 		return false;
 	}
-	return function_exists( 'flxs_normalize_phone' ) ? flxs_normalize_phone( $raw ) : preg_replace( '/[^0-9+]/', '', $raw );
+	return preg_replace( '/[^0-9+]/', '', $raw );
 }
 
+/** Telefon satırı: ortak telefon alanı (bayraklı ülke seçici + doğrulama, flx-brand). */
 function flx_telefon_alani( $id, $value ) {
 	?>
-	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide flx-tel-row">
+	<div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide flx-tel-row">
 		<label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Phone', 'fluxwp' ); ?> <span class="optional"><?php esc_html_e( '(optional)', 'fluxwp' ); ?></span></label>
-		<input type="tel" class="woocommerce-Input woocommerce-Input--text input-text" name="flx_phone" id="<?php echo esc_attr( $id ); ?>" autocomplete="tel" inputmode="tel" placeholder="05XX XXX XX XX" value="<?php echo esc_attr( $value ); ?>">
-		<span class="flx-tel-hint"><?php echo esc_html( apply_filters( 'flx_phone_hint_text', __( 'So we can also send your donation and order updates via WhatsApp.', 'fluxwp' ) ) ); ?></span>
-	</p>
+		<?php
+		if ( function_exists( 'flx_phone_field' ) ) {
+			echo flx_phone_field( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Alan kendi kaçışını yapar.
+				array(
+					'name'  => 'flx_phone',
+					'id'    => $id,
+					'value' => (string) $value,
+				)
+			);
+		} else {
+			echo '<input type="tel" class="woocommerce-Input woocommerce-Input--text input-text" name="flx_phone" id="' . esc_attr( $id ) . '" autocomplete="tel" inputmode="tel" value="' . esc_attr( (string) $value ) . '">';
+		}
+		?>
+	</div>
 	<?php
 }
 

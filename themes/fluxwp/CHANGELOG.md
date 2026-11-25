@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 0.10.4
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
+## 0.10.3
+- Kayıt formu kısaldı: altındaki uzun "Kişisel verileriniz…" paragrafı yerine tek satır zorunlu onay kutusu ("Kullanım şartlarını ve gizlilik ilkesini okudum, kabul ediyorum", sayfalar varsa bağlantılı). İşaretlenmeden kayıt olmaz; ödeme sayfasındaki hesap oluşturma etkilenmez.
+- Telefon alanı ortak telefon bileşeniyle (bayraklı ülke seçici, ülke arama, ✓/✗ doğrulama); numara E.164 kaydedilir. Altındaki açıklama satırı kaldırıldı.
+- Giriş ve Kayıt sekmeleri aynı boyda: sekme değişince pencere zıplamaz. Kart düzeninde pencere biraz genişledi (560 px).
+- Google butonu koyu modda beyaz şerit çizmez.
+
 ## 0.10.2
 - Panel yüzeyleri (düğme, etiket, kenarlık) krem yerine nötr gri; ortak modül paketi yenilendi.
 

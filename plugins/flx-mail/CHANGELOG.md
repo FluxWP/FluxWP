@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.24.1
+- Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
+
 ## 1.24.0 — 2026-11-24
 - İletişim sayfaları Flux GraphQL ekran kabuğunda: ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
 - Ortak ekran başlığı ve sekmeler: E-postalar, Gönder, Kuyruk, Kayıtlar, Kara liste, Bağlantılar, Ayarlar, Sistem kontrolü tek sekme çubuğunda.

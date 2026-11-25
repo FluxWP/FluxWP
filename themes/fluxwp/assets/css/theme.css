@@ -1224,6 +1224,14 @@ body:not(.editor-styles-wrapper) .flx-slider:not(.swiper){overflow:hidden}
 #customer_login.flx-tabbed>.u-column2{display:none;background:var(--flx-surface)}
 #customer_login.flx-tabbed.is-register>.u-column1{display:none}
 #customer_login.flx-tabbed.is-register>.u-column2{display:block}
+/* Giriş / Kayıt aynı boyda: iki sekme aynı ızgara hücresinde, görünmeyen yalnız gizlenir (yer kaplar). */
+#customer_login.flx-tabbed{display:grid}
+#customer_login.flx-tabbed>.u-column1,#customer_login.flx-tabbed>.u-column2{grid-area:1/1;display:block}
+#customer_login.flx-tabbed:not(.is-register)>.u-column2,#customer_login.flx-tabbed.is-register>.u-column1{visibility:hidden;pointer-events:none}
+.flx-terms-row{margin:.25rem 0 1rem!important;font-size:.9rem;line-height:1.45}
+.flx-terms-row a{color:var(--flx-primary);text-decoration:underline;text-underline-offset:2px}
+/* Google butonu iframe'i koyu modda beyaz zemin çizmesin. */
+.flx-social-login iframe,.googlesitekit-sign-in-with-google__frontend-output-button iframe{color-scheme:light}
 #customer_login.flx-tabbed h2{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);margin:0}
 /* Kayıt kapalıyken (tek form) ve kayıp parola: dar kart */
 .woocommerce-account:not(.logged-in) .woocommerce>form.woocommerce-form-login{max-width:480px;margin:0 auto;padding:clamp(1.3rem,3vw,2rem);border-radius:var(--flx-radius);background:var(--flx-surface);box-shadow:var(--flx-shadow);border:1px solid var(--flx-line)}
@@ -1249,7 +1257,6 @@ body:not(.editor-styles-wrapper) .flx-slider:not(.swiper){overflow:hidden}
 
 /* ---------- Telefon alanı ---------- */
 .flx-tel-row .optional{font-weight:400;color:var(--flx-text);font-size:.85em}
-.flx-tel-hint{display:block;margin-top:.35rem;font-size:.8rem;color:var(--flx-text)}
 .flx-tel-nudge{display:flex;align-items:center;gap:.8rem 1rem;flex-wrap:wrap;margin:0 0 1.25rem;padding-block:.8rem .8rem;padding-inline:.8rem 1rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);background:var(--flx-mint)}
 .flx-tel-nudge p{flex:1 1 240px;margin:0;font-size:var(--wp--preset--font-size--small);color:var(--flx-ink)}
 .flx-tel-nudge__ic{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--flx-surface);color:var(--flx-primary)}
@@ -1576,7 +1583,7 @@ html[dir=rtl] .flx-pay-logos{background-position:right center}
 .flx-auth-modal{box-sizing:border-box;border:0;padding:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;background:transparent;color:var(--flx-ink)}
 .flx-auth-modal::backdrop{background:color-mix(in srgb,var(--flx-deep) 60%,transparent);backdrop-filter:blur(8px)}
 .flx-auth-modal[open]{display:flex;align-items:flex-start;justify-content:center;padding:clamp(1rem,8vh,5rem) 16px 1rem;overflow:auto}
-.flx-auth-modal__inner{box-sizing:border-box;position:relative;width:min(520px,100%);background:var(--flx-surface);border-radius:var(--flx-radius-media);padding:3.5rem clamp(1rem,4vw,2rem) clamp(1rem,4vw,1.75rem);box-shadow:0 40px 80px -20px rgba(0,0,0,.4);animation:flx-modal-in .35s cubic-bezier(.2,.7,.2,1)}
+.flx-auth-modal__inner{box-sizing:border-box;position:relative;width:min(560px,100%);background:var(--flx-surface);border-radius:var(--flx-radius-media);padding:3.5rem clamp(1rem,4vw,2rem) clamp(1rem,4vw,1.75rem);box-shadow:0 40px 80px -20px rgba(0,0,0,.4);animation:flx-modal-in .35s cubic-bezier(.2,.7,.2,1)}
 .flx-auth-modal__close{position:absolute;z-index:1;top:.75rem;inset-inline-end:.75rem;width:40px;height:40px;border:0;border-radius:50%;background:var(--flx-mint-soft);cursor:pointer;font-size:1.4rem;line-height:1;color:var(--flx-ink)}
 .flx-auth-modal__close:hover{background:var(--flx-mint)}
 .flx-auth-modal__close::before{content:"\00d7"}
