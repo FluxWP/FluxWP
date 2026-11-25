@@ -56,6 +56,8 @@ final class FLXF_Admin_Service {
 		);
 		list( $from, $to, $form ) = FLXF_Dashboard::request_filters( $src );
 		$out = FLXF_Dashboard::stats( $from, $to, $form );
+		/** @var array<string,mixed> $out */
+		$out = is_array( $out ) ? $out : array();
 		$out['csvUrl'] = add_query_arg(
 			array(
 				'action'   => 'flxf_dash_csv',
@@ -101,23 +103,23 @@ final class FLXF_Admin_Service {
 			$vals[] = $type;
 		}
 		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared -- table names; $where is built from placeholders.
-		$total = (int) $wpdb->get_var( $vals ? $wpdb->prepare( "SELECT COUNT(*) FROM `{$form}` WHERE {$where}", ...$vals ) : "SELECT COUNT(*) FROM `{$form}` WHERE {$where}" );
+		$total = (int) $wpdb->get_var( $vals ? $wpdb->prepare( "SELECT COUNT(*) FROM `{$form}` WHERE {$where}", ...$vals ) : "SELECT COUNT(*) FROM `{$form}` WHERE {$where}" ); // @phpstan-ignore argument.type
 		$rows  = $wpdb->get_results(
-			$wpdb->prepare( "SELECT form_id, form_name, form_type, form_create_date, status FROM `{$form}` WHERE {$where} ORDER BY form_id DESC LIMIT %d OFFSET %d", ...array_merge( $vals, array( $limit, $offset ) ) ),
+			$wpdb->prepare( "SELECT form_id, form_name, form_type, form_create_date, status FROM `{$form}` WHERE {$where} ORDER BY form_id DESC LIMIT %d OFFSET %d", ...array_merge( $vals, array( $limit, $offset ) ) ), // @phpstan-ignore argument.type
 			ARRAY_A
 		);
-		$ids   = array_map( static fn( $r ) => (int) $r['form_id'], (array) $rows );
+		$ids   = array_map( static fn( $r ) => self::num( $r['form_id'] ), (array) $rows );
 		$stats = array();
 		if ( $ids ) {
 			$in = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
-			foreach ( (array) $wpdb->get_results( $wpdb->prepare( "SELECT form_id, COUNT(*) n, SUM(read_ IN (0,3)) u, MAX(`date`) last_date FROM `{$msg}` WHERE read_ <> 2 AND form_id IN ({$in}) GROUP BY form_id", ...$ids ), ARRAY_A ) as $s ) {
-				$stats[ (int) $s['form_id'] ] = $s;
+			foreach ( (array) $wpdb->get_results( $wpdb->prepare( "SELECT form_id, COUNT(*) n, SUM(read_ IN (0,3)) u, MAX(`date`) last_date FROM `{$msg}` WHERE read_ <> 2 AND form_id IN ({$in}) GROUP BY form_id", ...$ids ), ARRAY_A ) as $s ) { // @phpstan-ignore argument.type
+				$stats[ self::num( $s['form_id'] ) ] = $s;
 			}
 		}
 		// phpcs:enable
 		$items = array();
 		foreach ( (array) $rows as $r ) {
-			$id      = (int) $r['form_id'];
+			$id      = self::num( $r['form_id'] );
 			$s       = $stats[ $id ] ?? array();
 			$items[] = array(
 				'databaseId'     => $id,
@@ -149,8 +151,8 @@ final class FLXF_Admin_Service {
 		$out  = array();
 		foreach ( (array) $rows as $r ) {
 			$out[] = array(
-				'databaseId' => (int) $r['form_id'],
-				'title'      => self::title( self::str( $r['form_name'] ), (int) $r['form_id'] ),
+				'databaseId' => self::num( $r['form_id'] ),
+				'title'      => self::title( self::str( $r['form_name'] ), self::num( $r['form_id'] ) ),
 			);
 		}
 		return $out;
@@ -189,9 +191,9 @@ final class FLXF_Admin_Service {
 			$vals[] = '%' . $wpdb->esc_like( $q ) . '%';
 		}
 		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared -- table name; $where is built from placeholders.
-		$total = (int) $wpdb->get_var( $vals ? $wpdb->prepare( "SELECT COUNT(*) FROM `{$msg}` WHERE {$where}", ...$vals ) : "SELECT COUNT(*) FROM `{$msg}` WHERE {$where}" );
+		$total = (int) $wpdb->get_var( $vals ? $wpdb->prepare( "SELECT COUNT(*) FROM `{$msg}` WHERE {$where}", ...$vals ) : "SELECT COUNT(*) FROM `{$msg}` WHERE {$where}" ); // @phpstan-ignore argument.type
 		$rows  = $wpdb->get_results(
-			$wpdb->prepare( "SELECT msg_id, form_id, track, `date`, read_, content, form_title_x FROM `{$msg}` WHERE {$where} ORDER BY `date` DESC, msg_id DESC LIMIT %d OFFSET %d", ...array_merge( $vals, array( $limit, $offset ) ) ),
+			$wpdb->prepare( "SELECT msg_id, form_id, track, `date`, read_, content, form_title_x FROM `{$msg}` WHERE {$where} ORDER BY `date` DESC, msg_id DESC LIMIT %d OFFSET %d", ...array_merge( $vals, array( $limit, $offset ) ) ), // @phpstan-ignore argument.type
 			ARRAY_A
 		);
 		// phpcs:enable
@@ -223,7 +225,7 @@ final class FLXF_Admin_Service {
 		$out     = self::entry_row( $row, $forms );
 		$items   = FLXF_Dashboard::decode_json( self::str( $row['content'] ) );
 		$fields  = array();
-		foreach ( FLXF_Dashboard::flatten( $items ) as $label => $value ) {
+		foreach ( FLXF_Dashboard::flatten( is_array( $items ) ? $items : array() ) as $label => $value ) {
 			$value    = (string) $value;
 			$fields[] = array(
 				'label'  => (string) $label,
@@ -241,7 +243,7 @@ final class FLXF_Admin_Service {
 	/**
 	 * Marks responses read or unread.
 	 *
-	 * @param list<int> $ids  Response ids.
+	 * @param array<mixed> $ids  Response ids.
 	 * @param bool      $read Read.
 	 */
 	public static function mark( array $ids, bool $read ): int {
@@ -255,10 +257,10 @@ final class FLXF_Admin_Service {
 		$msg = $wpdb->prefix . 'emsfb_msg_';
 		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared -- table name; ids are placeholders.
 		if ( $read ) {
-			$n = (int) $wpdb->query( $wpdb->prepare( "UPDATE `{$msg}` SET read_ = IF(read_ = 3, 4, 1), read_date = %s, read_by = %s WHERE read_ IN (0,3) AND msg_id IN ({$in})", wp_date( 'Y-m-d H:i:s' ), (string) get_current_user_id(), ...$ids ) );
-			$wpdb->query( $wpdb->prepare( 'UPDATE `' . $wpdb->prefix . "emsfb_rsp_` SET read_ = 1 WHERE msg_id IN ({$in})", ...$ids ) );
+			$n = (int) $wpdb->query( $wpdb->prepare( "UPDATE `{$msg}` SET read_ = IF(read_ = 3, 4, 1), read_date = %s, read_by = %s WHERE read_ IN (0,3) AND msg_id IN ({$in})", wp_date( 'Y-m-d H:i:s' ), (string) get_current_user_id(), ...$ids ) ); // @phpstan-ignore argument.type, argument.type
+			$wpdb->query( $wpdb->prepare( 'UPDATE `' . $wpdb->prefix . "emsfb_rsp_` SET read_ = 1 WHERE msg_id IN ({$in})", ...$ids ) ); // @phpstan-ignore argument.type, argument.type
 		} else {
-			$n = (int) $wpdb->query( $wpdb->prepare( "UPDATE `{$msg}` SET read_ = IF(read_ = 4, 3, 0) WHERE read_ IN (1,4) AND msg_id IN ({$in})", ...$ids ) );
+			$n = (int) $wpdb->query( $wpdb->prepare( "UPDATE `{$msg}` SET read_ = IF(read_ = 4, 3, 0) WHERE read_ IN (1,4) AND msg_id IN ({$in})", ...$ids ) ); // @phpstan-ignore argument.type, argument.type
 		}
 		// phpcs:enable
 		return $n;
@@ -267,7 +269,7 @@ final class FLXF_Admin_Service {
 	/**
 	 * Deletes responses and their replies.
 	 *
-	 * @param list<int> $ids Response ids.
+	 * @param array<mixed> $ids Response ids.
 	 */
 	public static function delete_entries( array $ids ): int {
 		global $wpdb;
@@ -278,8 +280,8 @@ final class FLXF_Admin_Service {
 		}
 		$in = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
 		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared -- table names; ids are placeholders.
-		$n = (int) $wpdb->query( $wpdb->prepare( 'DELETE FROM `' . $wpdb->prefix . "emsfb_msg_` WHERE msg_id IN ({$in})", ...$ids ) );
-		$wpdb->query( $wpdb->prepare( 'DELETE FROM `' . $wpdb->prefix . "emsfb_rsp_` WHERE msg_id IN ({$in})", ...$ids ) );
+		$n = (int) $wpdb->query( $wpdb->prepare( 'DELETE FROM `' . $wpdb->prefix . "emsfb_msg_` WHERE msg_id IN ({$in})", ...$ids ) ); // @phpstan-ignore argument.type, argument.type
+		$wpdb->query( $wpdb->prepare( 'DELETE FROM `' . $wpdb->prefix . "emsfb_rsp_` WHERE msg_id IN ({$in})", ...$ids ) ); // @phpstan-ignore argument.type, argument.type
 		// phpcs:enable
 		return $n;
 	}
@@ -373,7 +375,7 @@ final class FLXF_Admin_Service {
 		if ( false === $r || 0 === $r ) {
 			return false;
 		}
-		$ids = array_map( 'intval', (array) $wpdb->get_col( $wpdb->prepare( 'SELECT msg_id FROM %i WHERE form_id = %d', $wpdb->prefix . 'emsfb_msg_', $id ) ) );
+		$ids = (array) $wpdb->get_col( $wpdb->prepare( 'SELECT msg_id FROM %i WHERE form_id = %d', $wpdb->prefix . 'emsfb_msg_', $id ) );
 		self::delete_entries( $ids );
 		if ( class_exists( 'FLXF_Form_Service' ) ) {
 			FLXF_Form_Service::purge( $id );
@@ -457,7 +459,7 @@ final class FLXF_Admin_Service {
 			$by    = self::num( $r['rsp_by'] ?? 0 );
 			$user  = $by > 0 ? get_userdata( $by ) : false;
 			$out[] = array(
-				'databaseId'  => (int) $r['rsp_id'],
+				'databaseId'  => self::num( $r['rsp_id'] ),
 				'body'        => sanitize_textarea_field( strtr( $text, array( "\u{201D}" => '"', "\u{29F5}" => '\\' ) ) ),
 				'createdAt'   => self::moment( self::str( $r['date'] ) ),
 				'attachments' => $files,
@@ -470,7 +472,7 @@ final class FLXF_Admin_Service {
 	}
 
 	/**
-	 * @param array<string,mixed>            $r     Row.
+	 * @param array<mixed>                   $r     Row.
 	 * @param array<int,array<string,mixed>> $forms Forms by id.
 	 * @return array<string,mixed>
 	 */
@@ -502,7 +504,7 @@ final class FLXF_Admin_Service {
 	}
 
 	private static function ip(): string {
-		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( self::str( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) ) : '';
 		return (string) filter_var( $ip, FILTER_VALIDATE_IP ) ? $ip : '';
 	}
 
