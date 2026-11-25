@@ -91,7 +91,7 @@ fragment FlxFormsSettingsAll on FlxFormsSettings {
 fragment FlxFormsPaymentsAll on FlxFormsPayments {
   available
   limit
-  providers { id label active configured webhookUrl hint secretOption secretSet secretFixed }
+  checkout { active installed configured currency gateways url }
   payments {
     id
     date { iso label relative }

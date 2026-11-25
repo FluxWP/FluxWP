@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.9.0
+- Ödeme formları artık WooCommerce ödeme sayfasında ödenir; Flux Forms'un kendi ödeme altyapısı (paketle gelen Stripe add-on'u, Stripe anahtarları ve webhook'u) kaldırıldı. Ödeme, WooCommerce'te açık herhangi bir yöntemle alınır (Flux POS kart, havale…).
+- Ödeme almayan formlar için hiçbir şey gerekmez. Ödeme formu varsa WooCommerce etkin ve en az bir ödeme yöntemi açık olmalı; değilse ödeme kutusu "online ödeme kullanılamıyor" der, Sistem kontrolü bunu hata olarak gösterir. Form para birimi mağaza para birimiyle aynı olmalı.
+- Öde: tutar sunucuda formdan hesaplanır, bu tutarla bekleyen bir WooCommerce siparişi açılır ve siparişin ödeme sayfası pencerede açılır; form sayfada kalır, yazılanlar kaybolmaz. Ödeme sunucuda siparişten (ödendi + tutar + para birimi) doğrulanır; pencere erken kapansa da sipariş ödenince kayıt işaretlenir.
+- Formlar › Ödemeler: WooCommerce durumu (kurulu değil / etkin değil / ödeme yöntemi yok / hazır), açık yöntemler ve mağaza para birimi; son ödemeler listesi kaldı.
+- Flux Donate kuruluyken form ödemeleri eskisi gibi Donate'te; Donate'in çağırdığı eski sınıf adları korunuyor.
+
 ## 2.8.0
 - Ödemeler, Otomasyonlar, Sistem kontrolü ve Eklentiler artık Formlar ekranının React sekmeleri (Flux GraphQL); klasik sayfalar kaldırıldı.
 - Ödemeler: sağlayıcı durumu, webhook adresi (kopyala), Stripe webhook sırrı yalnız yazılır; son 50 ödeme. Flux Donate kuruluysa ödemeler orada yönetilir.

@@ -467,6 +467,24 @@ type FlxFormsAutomations {
   runCount: Int!
 }
 
+"""WooCommerce, where payment forms are paid."""
+type FlxFormsCheckout {
+  """WooCommerce is active."""
+  active: Boolean!
+  """WooCommerce has an enabled payment method."""
+  configured: Boolean!
+  """Store currency; payment forms must use it."""
+  currency: String!
+  """Enabled payment methods."""
+  gateways: [String!]!
+  """WooCommerce is installed (active or not)."""
+  installed: Boolean!
+  """
+  Where to set payments up (WooCommerce › Payments, or Plugins when it is not active).
+  """
+  url: String!
+}
+
 """Input for the flxFormsClearFiles mutation."""
 input FlxFormsClearFilesInput {
   """
@@ -733,38 +751,16 @@ type FlxFormsPayment {
   type: String!
 }
 
-"""A payment provider of the forms."""
-type FlxFormsPaymentProvider {
-  """Forms take payments with this provider."""
-  active: Boolean!
-  """Its keys are set."""
-  configured: Boolean!
-  """How to set the webhook up."""
-  hint: String!
-  """Provider id."""
-  id: ID!
-  """Name."""
-  label: String!
-  """The secret comes from wp-config.php and cannot be changed here."""
-  secretFixed: Boolean!
-  """A webhook signing secret can be saved here."""
-  secretOption: Boolean!
-  """A webhook signing secret is saved."""
-  secretSet: Boolean!
-  """Address the provider sends payment notifications to."""
-  webhookUrl: String!
-}
-
 """Forms › Payments."""
 type FlxFormsPayments {
-  """Flux Forms takes payments itself (not Flux Donate)."""
+  """The payment records of the forms are kept here (not by Flux Donate)."""
   available: Boolean!
+  """WooCommerce state."""
+  checkout: FlxFormsCheckout!
   """How many payments are listed at most."""
   limit: Int!
   """Latest payments, newest first."""
   payments: [FlxFormsPayment!]!
-  """Providers."""
-  providers: [FlxFormsPaymentProvider!]!
 }
 
 """Forms settings."""
@@ -963,32 +959,6 @@ type FlxFormsSettingsUpdatePayload {
   settings: FlxFormsSettings
 }
 
-"""Input for the flxFormsStripeWebhookSecret mutation."""
-input FlxFormsStripeWebhookSecretInput {
-  """Removes the saved secret."""
-  clear: Boolean
-  """
-  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
-  """
-  clientMutationId: String
-  """New secret (whsec_…). Empty keeps the saved one."""
-  secret: String
-}
-
-"""The payload for the flxFormsStripeWebhookSecret mutation."""
-type FlxFormsStripeWebhookSecretPayload {
-  """
-  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
-  """
-  clientMutationId: String
-  """
-  Input problems to show next to the form fields. Empty when the mutation succeeded.
-  """
-  errors: [FlxUserError!]!
-  """Payments after the change."""
-  payments: FlxFormsPayments
-}
-
 """Forms › System check."""
 type FlxFormsSystem {
   """Forms hosts the screen (Flux Donate or Flux Speed is not active)."""
@@ -1104,11 +1074,6 @@ extend type RootMutation {
     """Input for the flxFormsSettingsUpdate mutation"""
     input: FlxFormsSettingsUpdateInput!
   ): FlxFormsSettingsUpdatePayload
-  """Saves or removes the Stripe webhook signing secret."""
-  flxFormsStripeWebhookSecret(
-    """Input for the flxFormsStripeWebhookSecret mutation"""
-    input: FlxFormsStripeWebhookSecretInput!
-  ): FlxFormsStripeWebhookSecretPayload
 }
 
 extend type RootQuery {
@@ -1179,7 +1144,7 @@ extend type RootQuery {
   ): FlxFormsEntry
   """Every form, by name, for filters."""
   flxFormsFormOptions: [FlxFormsFormOption!]!
-  """Payment providers, webhooks and the latest payments."""
+  """WooCommerce state and the latest payments of the forms."""
   flxFormsPayments: FlxFormsPayments!
   """Forms settings."""
   flxFormsSettings: FlxFormsSettings!

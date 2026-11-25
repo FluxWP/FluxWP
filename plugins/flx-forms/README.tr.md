@@ -28,7 +28,7 @@ Flux Forms, Easy Form Builder'ın tüm özellikleri açık ve dışarıya hiçbi
 
 Form eklentileri genelde işe yarayan kısımları (ödeme, koşullu mantık, dosya yükleme) lisansa bağlar ve bunu kontrol etmek için dışarıya bağlanır. Bize tamamen bizim olan, paylaşımlı sunucuda çalışan ve bağış ve sertifika paketlerimizle birlikte çalışan bir form gerekiyordu. Flux Forms bu:
 
-- 🔓 **Her şey açık.** Lisans kontrolü, uzaktan eklenti indirme ve telemetri yok; Stripe, koşullu mantık ve çevrimdışı ülke/il listeleri yeniden yazıldı.
+- 🔓 **Her şey açık.** Lisans kontrolü, uzaktan eklenti indirme ve telemetri yok; koşullu mantık ve çevrimdışı ülke/il listeleri yeniden yazıldı.
 - 🎨 **Siteye benzer.** Formlar temanın renklerini, yazı tiplerini ve koyu modunu kendiliğinden kullanır; builder formu sitede görüneceği gibi gösterir.
 - 📈 **Neyin işe yaradığını görün.** Form başına yanıt, görüntülenme, dönüşüm oranı ve ödeme; önceki dönemle karşılaştırmalı.
 - 🌱 **Bağıştan sertifikaya, kendiliğinden.** Ödenen fidan bağışı sertifikayı oluşturur (Flux Certificates), WhatsApp ve e-postayla gönderir ve teşekkür ekranında gösterir.
@@ -52,7 +52,7 @@ Form eklentileri genelde işe yarayan kısımları (ödeme, koşullu mantık, do
 - Günlük yanıt grafiği, ödeme durumu, forma göre yanıtlar, gün-saat ısı haritası ve son yanıtlar; form ve döneme göre süzgeç, CSV.
 
 ### Ödeme ve otomasyonlar
-- Flux Donate varsa **Öde** adımı seçilen tutarı WooCommerce ödeme sayfasına taşır (kart, havale, aylık bağış); yoksa sunucuda tutar doğrulamalı ve webhook'lu yerleşik Stripe.
+- Flux Donate varsa **Öde** adımı seçilen tutarı WooCommerce ödeme sayfasına taşır (kart, havale, aylık bağış); yoksa sipariş WooCommerce ödeme sayfasında ödenir (her ödeme yöntemi, sunucuda tutar doğrulama). Ödeme almayan formlar için bir şey gerekmez.
 - **Otomasyonlar:** form gönderilince ya da ödeme tamamlanınca *Sertifika oluştur*, *Sertifika gönder*, *Teşekkür ekranında göster*, *E-posta gönder*, *Webhook* gibi adımlar çalışır. Hazır "Fidan bağışı → Sertifika" akışı tek tıkla kurulur.
 
 ## Ekran görüntüleri

@@ -1707,7 +1707,7 @@ class efbFunction {
 			"customerFeedback" => $state  &&  isset($ac->text->customerFeedback) ? $ac->text->customerFeedback : esc_html__('Customer Feedback','flx-forms'),
 			"supportTicketF" => $state  &&  isset($ac->text->supportTicketF) ? $ac->text->supportTicketF : esc_html__('Support Ticket Form','flx-forms'),
 			"paymentform" => $state  &&  isset($ac->text->paymentform) ? $ac->text->paymentform : esc_html__('Payment Form','flx-forms'),
-			"stripe" => $state  &&  isset($ac->text->stripe) ? $ac->text->stripe : esc_html__('Stripe','flx-forms'),
+			"stripe" => $state  &&  isset($ac->text->stripe) ? $ac->text->stripe : esc_html__('Card payment','flx-forms'),
 			"payment" => $state  &&  isset($ac->text->payment ) ? $ac->text->payment  : esc_html__('Payment','flx-forms'),
 			"address" => $state  &&  isset($ac->text->address ) ? $ac->text->address  : esc_html__('Address','flx-forms'),
 			"paymentGateway" => $state  &&  isset($ac->text->paymentGateway) ? $ac->text->paymentGateway : esc_html__('Payment Gateway','flx-forms'),
@@ -1801,7 +1801,7 @@ class efbFunction {
 			"upDMsg" => $state  &&  isset($ac->text->upDMsg) ? $ac->text->upDMsg : esc_html__('Please update Flux Forms before trying again.','flx-forms'),
 			"AfLnFrm" => $state  &&  isset($ac->text->AfLnFrm) ? $ac->text->AfLnFrm : esc_html__('Activation of offline form mode.','flx-forms'),
 			"IMAddons" => $state  &&  isset($ac->text->IMAddons) ? $ac->text->IMAddons : esc_html__('Before activating this option, install','flx-forms'),
-			"IMAddonP" => $state  &&  isset($ac->text->IMAddonP) ? $ac->text->IMAddonP : esc_html__('To create a payment form to collect online payments, you must first install a payment add-on such as the Stripe Add-on.','flx-forms'),
+			"IMAddonP" => $state  &&  isset($ac->text->IMAddonP) ? $ac->text->IMAddonP : esc_html__('To take online payments with a payment form, install and activate WooCommerce and enable a payment method.','flx-forms'),
 			"allformat" => $state  &&  isset($ac->text->allformat) ? $ac->text->allformat : esc_html__('All formats','flx-forms'),
 			"AdnSST" => $state  &&  isset($ac->text->AdnSST) ? $ac->text->AdnSST : esc_html__('EFB SMS Add-on','flx-forms'),
 			"AdnSSD" => $state  &&  isset($ac->text->AdnSSD) ? $ac->text->AdnSSD : esc_html__('Enable SMS functionality in your forms with the EFB SMS add-on, allowing you to validate mobile numbers and send confirmation codes via SMS, as well as receive notifications through SMS service.','flx-forms'),
@@ -3986,7 +3986,6 @@ class efbFunction {
 	 */
 	public function get_addon_required_files_efb(){
 		return array(
-			'AdnSPF' => array( 'vendor/stripe/class-Emsfb-stripe-payment.php' ),
 			'AdnOF'  => array( 'vendor/offline/json/countries.js' ),
 			'AdnPPF' => array( 'vendor/persiapay/zarinpal.php' ),
 			'AdnSS'  => array( 'vendor/smssended/smsefb.php' ),

@@ -1,26 +1,17 @@
-# Ödeme sağlayıcısı ekleme (Flux Forms + Flux Donate)
+# Ödeme sağlayıcısı (Flux Forms + WooCommerce)
 
-> **Ödeme sağlayıcı katmanı artık Flux Donate eklentisindedir.** Flux Donate etkinse Flux Forms ödemeleri
-> ona devreder (`flxf_payments_delegate` filtresi): sağlayıcı kaydı, ayarlar, Stripe, webhook'lar ve
-> **Bağışlar › Ödemeler** sayfası Flux Donate'tadır (`flx-donate/providers/`). Flux Donate kapalıyken Flux Forms
-> kendi yerleşik katmanını (yalnızca Stripe) yedek olarak kullanır; ikisi de aynı adları, REST
-> yollarını ve `{prefix}emsfb_pay_` tablosunu kullandığı için geçişte hiçbir şey taşınmaz.
+> **Flux Forms'un kendi ödeme altyapısı yoktur; ödeme formları WooCommerce ödeme sayfasında ödenir** (2.9.0).
+> Tek sağlayıcı `woocommerce` (`includes/flx/payments/providers/class-flxf-payment-wc.php`): WooCommerce etkinken kaydolur;
+> form tutarıyla bekleyen bir sipariş açar, ödeme WooCommerce'te açık herhangi bir yöntemle alınır (Flux POS kart, havale…).
+> Form para birimi mağaza para birimi olmalı. Ödeme almayan formlar WooCommerce istemez. WooCommerce yoksa ödeme kutusu
+> "online ödeme kullanılamıyor" der, Sistem kontrolü hata gösterir.
 >
-> | | Flux Donate etkin | Flux Donate kapalı |
-> |---|---|---|
-> | Kod | `flx-donate/providers/` | `includes/flx/payments/` |
-> | Ayarlar | Bağışlar › Ödemeler (boşsa Flux Forms ayarlarındaki Stripe anahtarları) | Flux Forms Ayarlar › Ödeme |
-> | Webhook | `Emsfb/v1/forms/payment/webhook/{id}` ve eski `…/stripe/webhook` | aynı yollar |
-> | Yinelenen bağış (Stripe aboneliği) | Flux Donate'ın düzenli bağışlarına kaydedilir | yalnızca ödeme kaydı |
+> Flux Donate etkinse ödeme katmanını Donate tanımlar (`flxf_payment_*` fonksiyonları onda), Forms'unki yüklenmez.
 >
-> Aşağıdaki sözleşme iki durumda da aynıdır; sağlayıcınızı `FLXF_Payment_Provider_Base` ile yazın
-> (Flux Donate'ta bu ad `FLXB_Payment_Provider_Base` sınıfının takma adıdır).
+> Yeni banka/sanal POS Forms'a değil, WooCommerce gateway'i olarak (Flux POS) eklenir.
 
-Ödemeler sağlayıcıdan bağımsızdır. Stripe ilk (ve şimdilik tek) sağlayıcıdır; yeni bir
-sağlayıcı (iyzico, PayTR…) **tek bir sınıf + bir filtre** ile eklenir, çekirdeğe dokunulmaz.
-
-Kod: `flx-donate/providers/` (Flux Donate etkinken) veya `includes/flx/payments/` (yedek): sözleşme, kayıt,
-genel REST akışı, Ödemeler sayfası. Ön yüz katmanı: `flxf-pay.js` (`window.FLXFPay`, iki eklentide aynı).
+Kod: `includes/flx/payments/` (sözleşme, çekirdek `class-flxf-payment-core.php`, kayıt `FLXF_Payment_Records`, genel REST
+akışı, `compat.php`). Ön yüz: `flxf-pay.js` (`window.FLXFPay`) + `flxf-pay-wc.js` (ödeme sayfası penceresi, dönüş `?flxf_pay_return=1`).
 
 ## Akış
 
@@ -29,8 +20,6 @@ genel REST akışı, Ödemeler sayfası. Ön yüz katmanı: `flxf-pay.js` (`wind
    `ctx.setReady(true)` çağrısıyla açılır.
 2. Ödeme: `POST Emsfb/v1/forms/payment/start` → etkin sağlayıcının `create_payment( $amount, $currency, $meta )`
    yöntemi. **Tutar her zaman sunucu teklifidir**, tarayıcıdan gelen tutar kullanılmaz.
-   (Eski `forms/payment/stripe/card/add` adresi çalışmaya devam eder; Stripe dışı bir sağlayıcı etkinse
-   isteği `start`'a yönlendirir.)
 3. Sonuç `FLXF_Payment_Result` olarak döner: `completed`, `pending`, `requires_action`, `redirect`, `failed`.
    Çekirdek bekleyen form kaydını (onay kodu) ve `{$wpdb->prefix}emsfb_pay_` tablosundaki ödeme
    kaydını (`gateway` = sağlayıcı kimliği) oluşturur; yanıt görüntüleyici ve Ödemeler sayfası bunu okur.
@@ -125,9 +114,8 @@ sağlayıcısı** listesinden seçin.
 
 - Sözleşme: `flx-donate/providers/contract.php` (yedek: `includes/flx/payments/interface-flxf-payment-provider.php`)
   (`id, label, supports, settings_fields, is_configured, front_assets, create_payment, verify, handle_webhook, refund`).
-- Ayarlar: Flux Donate etkinken `flxb_payments` seçeneğinde (`provider` + `fields`); `flxf_payment_setting()` önce
-  oraya, sonra Flux Forms'un ayar satırına bakar. Yedek katmanda ayarlar Flux Forms'un ayar satırında düz anahtarlardır
-  (`flxfPayProvider` = etkin sağlayıcı, Stripe: `stripePKey`, `stripeSKey`).
+- Ayarlar: Flux Forms'ta ödeme ayarı yok; ödeme yöntemleri WooCommerce › Ayarlar › Ödemeler'de. Flux Donate etkinken
+  Donate'in kendi ayarları (`flxb_payments`) geçerlidir.
 - Bağış formu bir bağış türüne bağlıysa tutarı türün fiyatları belirler (filtre `flxf_payment_server_amount`,
   Flux Donate). Sağlayıcıya gelen `$amount` her zaman bu sunucu tutarıdır.
 - `window.flxfPayCfg.configured` false ise (sağlayıcı ayarlanmamış) ya da sağlayıcı yüklenemezse ödeme kutusunda

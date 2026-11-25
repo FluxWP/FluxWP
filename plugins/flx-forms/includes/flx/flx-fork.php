@@ -24,9 +24,9 @@ if ( ! defined( 'EFB_Path_IR' ) ) {
 	define( 'EFB_Path_IR', false );
 }
 
-/** Eklentiyle birlikte gelen (vendor/ içinde dosyası olan) eklentiler. */
+/** Eklentiyle birlikte gelen (vendor/ içinde dosyası olan) eklentiler. Ödeme kutusu (AdnSPF) eklenti değil: WooCommerce açıksa açık. */
 function flxf_fork_bundled_addons() {
-	return array( 'AdnSPF', 'AdnSMF', 'AdnOF' );
+	return array( 'AdnSMF', 'AdnOF' );
 }
 
 /* ---------- Pro: her zaman açık ---------- */
@@ -205,6 +205,8 @@ require_once __DIR__ . '/payment-quote.php';
 /* Loaded once every plugin is in: when Flux Donate is active it owns the payment layer
  * (same function, class and route names) and this built-in one stays off. */
 function flxf_fork_load_payments() {
+	/* Old class names Flux Donate's form payments still call; loaded with or without Donate. */
+	require_once __DIR__ . '/payments/compat.php';
 	if ( apply_filters( 'flxf_payments_delegate', false ) || function_exists( 'flxf_payment_providers' ) ) {
 		return;
 	}

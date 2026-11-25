@@ -402,6 +402,17 @@ const tr: Record<string, string> = {
   'These add-ons ship with Flux Forms and are always on. Nothing is downloaded.': 'Bu eklentiler Flux Forms ile gelir ve hep açıktır. Hiçbir şey indirilmez.',
   'Files missing': 'Dosyalar eksik',
   Paused: 'Duraklatıldı',
+  Plugins: 'Eklentiler',
+  'Flux Donate keeps the payment records: see Donations › Payments.': 'Ödeme kayıtlarını Flux Donate tutar: Bağışlar › Ödemeler.',
+  'Not active': 'Etkin değil',
+  'Not installed': 'Kurulu değil',
+  Ready: 'Hazır',
+  'Payment forms are paid on the WooCommerce checkout. Forms that take no payment need nothing.': 'Ödeme formları WooCommerce ödeme sayfasında ödenir. Ödeme almayan formlar için bir şey gerekmez.',
+  'WooCommerce is needed to take payments. Until it is active, the payment box of payment forms says online payment is not available.': 'Ödeme almak için WooCommerce gerekir. Etkin olana kadar ödeme formlarının ödeme kutusu online ödemenin kullanılamadığını söyler.',
+  'No payment method': 'Ödeme yöntemi yok',
+  'WooCommerce is active but has no enabled payment method. Enable one (for example Flux POS card or bank transfer).': 'WooCommerce etkin ama açık ödeme yöntemi yok. Bir tane açın (örneğin Flux POS kart ya da havale).',
+  'Payment methods: {list}. Payment forms must use the store currency ({currency}).': 'Ödeme yöntemleri: {list}. Ödeme formları mağaza para birimini ({currency}) kullanmalı.',
+  'Payment methods': 'Ödeme yöntemleri',
 };
 
 export type Translate = (source: string, params?: Record<string, string | number>) => string;

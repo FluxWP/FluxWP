@@ -1,9 +1,8 @@
 <?php
 /**
- * Forms › Payments, System check and Add-ons for the Forms screen (GraphQL). Reads and writes what the
- * classic pages did: the payment records table and provider list (includes/flx/payments), the shared
- * flx_system_checks rows (includes/flx/system-checks) and the bundled add-ons (Flux Forms keeps them always on:
- * Emsfb::get_setting_Emsfb sets AdnOF, AdnSPF and AdnSMF).
+ * Forms › Payments, System check and Add-ons for the Forms screen (GraphQL): WooCommerce state and the payment
+ * records (includes/flx/payments), the shared flx_system_checks rows (includes/flx/system-checks) and the bundled
+ * add-ons (Flux Forms keeps them always on: Emsfb::get_setting_Emsfb sets AdnOF and AdnSMF).
  *
  * @package FLX_Forms
  */
@@ -18,108 +17,47 @@ final class FLXF_Tools_Service {
 	/** Payments listed. */
 	public const PAYMENTS_LIMIT = 50;
 
-	private const STRIPE_FILE = 'vendor/stripe/class-Emsfb-stripe-payment.php';
-
 	/* ------------------------------------------------------------ Payments */
 
 	/**
-	 * Flux Forms takes payments itself (with Flux Donate the payment layer and its screen are there).
+	 * The payment records are Flux Forms's (with Flux Donate's payment layer they are there).
 	 */
 	public static function payments_available(): bool {
-		return class_exists( 'FLXF_Payments_Admin' ) && function_exists( 'flxf_payment_providers' );
+		return class_exists( 'FLXF_Payments_Admin' ) && class_exists( 'FLXF_Payment_Records' );
 	}
 
 	/**
-	 * Providers and the latest payments.
+	 * WooCommerce state (payment forms are paid on its checkout).
 	 *
 	 * @return array<string,mixed>
 	 */
-	public static function payments(): array {
-		if ( ! self::payments_available() ) {
-			return array(
-				'available' => false,
-				'providers' => array(),
-				'payments'  => array(),
-				'limit'     => self::PAYMENTS_LIMIT,
-			);
-		}
-		$active    = function_exists( 'flxf_payment_active_provider_id' ) ? self::str( flxf_payment_active_provider_id() ) : '';
-		$providers = array();
-		foreach ( (array) flxf_payment_providers() as $id => $p ) {
-			$id     = self::str( $id );
-			$stripe = 'stripe' === $id && self::stripe_store();
-			$providers[] = array(
-				'id'           => $id,
-				'label'        => self::str( $p->label() ),
-				'active'       => $id === $active,
-				'configured'   => (bool) $p->is_configured(),
-				'webhookUrl'   => $stripe ? rest_url( 'Emsfb/v1/forms/payment/stripe/webhook' ) : rest_url( 'Emsfb/v1/forms/payment/webhook/' . $id ),
-				'hint'         => $stripe
-					? __( 'Optional but recommended: in the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.updated and customer.subscription.deleted, then paste its signing secret below.', 'flx-forms' )
-					: __( 'Webhook URL for this provider (if it sends payment notifications):', 'flx-forms' ),
-				'secretOption' => $stripe,
-				'secretSet'    => $stripe && '' !== self::str( self::stripe_call( 'webhook_secret' ) ),
-				'secretFixed'  => $stripe && defined( 'EMSFB_STRIPE_WEBHOOK_SECRET' ) && EMSFB_STRIPE_WEBHOOK_SECRET,
-			);
-		}
+	public static function checkout(): array {
+		$active    = class_exists( 'FLXF_Payment_WC' ) ? FLXF_Payment_WC::available() : function_exists( 'wc_create_order' );
+		$installed = $active || file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' );
+		$gateways  = $active && class_exists( 'FLXF_Payment_WC' ) ? FLXF_Payment_WC::gateways() : array();
 		return array(
-			'available' => true,
-			'providers' => $providers,
-			'payments'  => self::payment_rows(),
-			'limit'     => self::PAYMENTS_LIMIT,
+			'active'     => $active,
+			'installed'  => $installed,
+			'configured' => $active && array() !== $gateways,
+			'currency'   => $active && class_exists( 'FLXF_Payment_WC' ) ? FLXF_Payment_WC::currency() : '',
+			'gateways'   => $gateways,
+			'url'        => $active ? admin_url( 'admin.php?page=wc-settings&tab=checkout' ) : admin_url( 'plugins.php' ),
 		);
 	}
 
 	/**
-	 * Saves or removes the Stripe webhook signing secret (same rule as the classic form).
-	 */
-	public static function stripe_secret( string $secret, bool $clear ): bool|WP_Error {
-		if ( ! self::payments_available() || ! self::stripe_store() ) {
-			return self::invalid( 'secret', __( 'Stripe is not available.', 'flx-forms' ) );
-		}
-		if ( $clear ) {
-			delete_option( self::stripe_secret_option() );
-			return true;
-		}
-		$secret = trim( sanitize_text_field( $secret ) );
-		if ( '' === $secret ) {
-			return true;
-		}
-		if ( 0 !== strpos( $secret, 'whsec_' ) ) {
-			return self::invalid( 'secret', __( 'A Stripe webhook signing secret starts with "whsec_".', 'flx-forms' ) );
-		}
-		update_option( self::stripe_secret_option(), $secret, false );
-		return true;
-	}
-
-	/**
-	 * The Stripe add-on class that owns the payment records table.
-	 */
-	private static function stripe_store(): bool {
-		if ( ! class_exists( '\Emsfb\StripePayment' ) ) {
-			$f = EMSFB_PLUGIN_DIRECTORY . self::STRIPE_FILE;
-			if ( is_readable( $f ) ) {
-				require_once $f;
-			}
-		}
-		return class_exists( '\Emsfb\StripePayment' );
-	}
-
-	/**
-	 * A static method of the Stripe add-on class (legacy code, loaded at runtime).
+	 * WooCommerce state and the latest payments.
 	 *
-	 * @param string $method Method name.
-	 * @return mixed
+	 * @return array<string,mixed>
 	 */
-	private static function stripe_call( string $method ) {
-		$cb = array( '\Emsfb\StripePayment', $method );
-		return is_callable( $cb ) ? call_user_func( $cb ) : null;
-	}
-
-	/** Option name of the Stripe webhook signing secret. */
-	private static function stripe_secret_option(): string {
-		$c = '\Emsfb\StripePayment::SECRET_OPTION';
-		return defined( $c ) ? self::str( constant( $c ) ) : 'emsfb_stripe_webhook_secret';
+	public static function payments(): array {
+		$ok = self::payments_available();
+		return array(
+			'available' => $ok,
+			'checkout'  => self::checkout(),
+			'payments'  => $ok ? self::payment_rows() : array(),
+			'limit'     => self::PAYMENTS_LIMIT,
+		);
 	}
 
 	/**
@@ -128,16 +66,8 @@ final class FLXF_Tools_Service {
 	 * @return list<array<string,mixed>>
 	 */
 	private static function payment_rows(): array {
-		global $wpdb;
-		/** @var wpdb $wpdb */
-		if ( ! self::stripe_store() ) {
-			return array();
-		}
-		self::stripe_call( 'maybe_install_table' );
-		$t    = self::str( self::stripe_call( 'table_name' ) );
 		/** @var list<array<string,mixed>> $rows */
-		// @phpstan-ignore argument.type
-		$rows = (array) $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$t} ORDER BY id DESC LIMIT %d", self::PAYMENTS_LIMIT ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name only.
+		$rows = FLXF_Payment_Records::latest( self::PAYMENTS_LIMIT );
 		$out  = array();
 		foreach ( $rows as $r ) {
 			$gateway  = self::str( $r['gateway'] ?? '' );
@@ -154,7 +84,7 @@ final class FLXF_Tools_Service {
 				'formId'      => self::num( $r['form_id'] ?? 0 ),
 				'formName'    => self::str( $r['form_name'] ?? '' ),
 				'track'       => self::str( $r['track'] ?? '' ),
-				'provider'    => $provider instanceof FLXF_Payment_Provider ? self::str( $provider->label() ) : $gateway,
+				'provider'    => $provider instanceof FLXF_Payment_Provider ? self::str( $provider->label() ) : ( 'stripe' === $gateway ? 'Stripe' : $gateway ),
 				'type'        => 'subscription' === self::str( $r['payment_type'] ?? '' ) ? 'subscription' : 'one-time',
 				'interval'    => strtolower( self::str( $r['interval_unit'] ?? '' ) ),
 				'amount'      => $amount,
@@ -263,7 +193,6 @@ final class FLXF_Tools_Service {
 	 */
 	private static function addon_texts(): array {
 		return array(
-			'AdnSPF' => array( __( 'Stripe Payment Add-on', 'flx-forms' ), __( 'The Stripe add-on for Flux Forms enables you to integrate your WordPress site with Stripe for payment processing, donations, and online orders.', 'flx-forms' ) ),
 			'AdnOF'  => array( __( 'Offline Forms Add-on', 'flx-forms' ), __( 'The Offline Forms add-on for Flux Forms allows users to save their progress when filling out forms in offline situations.', 'flx-forms' ) ),
 			'AdnSMF' => array( __( 'Conditional logic Add-on', 'flx-forms' ), __( 'The Conditional Logic Add-on enables dynamic and interactive forms based on specific user inputs or conditional rules. It allows for highly personalized forms tailored to meet users’ unique needs.', 'flx-forms' ) ),
 		);
@@ -323,18 +252,6 @@ final class FLXF_Tools_Service {
 	}
 
 	/* ------------------------------------------------------------ Helpers */
-
-	private static function invalid( string $field, string $message ): WP_Error {
-		return new WP_Error(
-			'flxf_invalid',
-			$message,
-			array(
-				'graphql_code' => 'INVALID_INPUT',
-				'field'        => $field,
-				'status'       => 400,
-			)
-		);
-	}
 
 	private static function str( mixed $value ): string {
 		return is_scalar( $value ) ? (string) $value : '';

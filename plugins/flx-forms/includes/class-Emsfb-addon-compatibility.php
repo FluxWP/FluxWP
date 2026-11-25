@@ -32,10 +32,7 @@ class Emsfb_Addon_Compatibility {
 	 */
 	public static function addon_requirements() {
 		$requirements = array(
-			'AdnSPF' => array(
-				'name'      => 'Stripe Payment',
-				'functions' => array( 'curl_init', 'curl_setopt_array', 'curl_exec', 'curl_errno', 'curl_error', 'curl_getinfo', 'curl_close', 'curl_reset', 'curl_version', 'openssl_random_pseudo_bytes', 'ini_get', 'json_encode', 'json_decode' ),
-			),
+			'AdnSPF' => array( 'name' => 'Payment (WooCommerce checkout)', 'functions' => array() ),
 			'AdnOF'  => array( 'name' => 'Offline Forms', 'functions' => array() ),
 			'AdnPPF' => array(
 				'name'      => 'Persia Payment',

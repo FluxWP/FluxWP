@@ -7,7 +7,7 @@
  * - {prefix}emsfb_msg_   responses; content = submitted JSON, read_ 0/3 = unread, 1/4 = read,
  *                        2 = draft waiting for an online payment (not a response yet)
  * - {prefix}emsfb_stts_  one row per form page view (session); pruned after ~8 days by EFB
- * - {prefix}emsfb_pay_   Stripe payments (created by vendor/stripe), created_at in UTC
+ * - {prefix}emsfb_pay_   payments of payment forms (FLXF_Payment_Records), created_at in UTC
  *
  * The numbers feed the React Dashboard (flxFormsDashboard, includes/graphql/admin-schema.php).
  */

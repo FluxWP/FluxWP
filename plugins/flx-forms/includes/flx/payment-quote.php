@@ -2,11 +2,11 @@
 /**
  * Flux Forms: server-authoritative payment amount (front-end strings + cache busting).
  *
- * The REST route itself (Emsfb/v1/forms/payment/quote) lives with the other Stripe
- * routes in vendor/stripe/class-Emsfb-stripe-handler.php; the provider-neutral layer
- * (includes/flx/payments/assets/flxf-pay.js, loaded before stripe_pay-efb.js) calls it
- * and shows the server amount. This file only hands it its translated strings and
- * versions the Stripe script by file time so visitors never run a stale copy.
+ * The REST route itself (Emsfb/v1/forms/payment/quote) is FLXF_Payment_Core::quote
+ * (includes/flx/payments); the payment layer (includes/flx/payments/assets/flxf-pay.js,
+ * loaded before the payment box script stripe_pay-efb.js) calls it and shows the server
+ * amount. This file only hands it its translated strings and versions the box script by
+ * file time so visitors never run a stale copy.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
