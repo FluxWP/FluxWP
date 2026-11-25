@@ -51,7 +51,7 @@ final class FLXC_Chat_Node implements FLXGQL_Node {
 				global $wpdb;
 				/** @var wpdb $wpdb */
 				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery
-				$last = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'messages' ) . ' WHERE id = %d', FLXC_Val::int( $this->row['last_msg_id'] ) ), ARRAY_A );
+				$last = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'messages' ) . ' WHERE id = %d', FLXC_Val::int( $this->row['last_msg_id'] ) ), ARRAY_A ); // @phpstan-ignore argument.type
 			}
 			$this->js = flxc_chat_for_js( $this->row, is_array( $last ) ? $last : null );
 		}
