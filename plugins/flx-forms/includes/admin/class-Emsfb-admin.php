@@ -22,7 +22,6 @@ class Admin {
         if (is_admin() and is_super_admin()) {
             $this->add_cap();
         }
-        add_action('admin_enqueue_scripts', [$this, 'admin_assets']);
         add_action('admin_menu', [$this, 'admin_menu']);
         add_action('admin_head', [$this, 'menu_icon_css']);
         $this->ip = $this->get_ip_address();
@@ -92,79 +91,6 @@ class Admin {
         }
     }
 
-    public function admin_assets($hook) {
-        global $current_screen;
-        $hook = $hook ? $hook : http_build_query($_GET);
-        $package_type_efb = (int) get_option('emsfb_pro' ,2);
-        if (strpos($hook, 'Emsfb') !== false && is_admin()) {
-
-                    wp_register_style('Emsfb-admin', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/admin-efb.css', true,EMSFB_PLUGIN_VERSION );
-                    wp_enqueue_style('Emsfb-admin');
-
-            if (is_rtl()) {
-                wp_register_style('Emsfb-css-rtl', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/admin-rtl-efb.css', true,EMSFB_PLUGIN_VERSION );
-                wp_enqueue_style('Emsfb-css-rtl');
-            }
-            wp_register_style('Emsfb-style-css', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/style-efb.css',true,EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('Emsfb-style-css');
-            /* The steps and progress styles, whole. The builder has to be able to
-             * draw any of them, so unlike the front end - which inlines only the
-             * chunks a form actually uses - wp-admin takes the file as it is.
-             * After style-efb.css, because it overrides the classic step rules
-             * that live there. */
-            wp_register_style('efb-steps-progress-css', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/steps-progress-efb.css', array('Emsfb-style-css'), EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('efb-steps-progress-css');
-            wp_register_style('Emsfb-responsive-css', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/min-1200-style.css',true,EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('Emsfb-responsive-css');
-            wp_register_style('Emsfb-bootstrap', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/bootstrap.min-efb.css',true,EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('Emsfb-bootstrap');
-            wp_register_style('Emsfb-bootstrap-icons-css', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/bootstrap-icons-efb.css',true,EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('Emsfb-bootstrap-icons-css');
-            wp_register_style('Emsfb-bootstrap-select-css', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/bootstrap-select-efb.css',true,EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('Emsfb-bootstrap-select-css');
-            wp_register_style('Emsfb-response-viewer-css', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/response-viewer-efb.css',true,EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('Emsfb-response-viewer-css');
-            // The dialog design system, last of the stylesheets on purpose.
-            // admin-rtl-efb.css is registered before bootstrap.min-efb.css, so
-            // anything enqueued earlier than this loses to bootstrap's own
-            // .modal rules; registering it here is what lets it restyle
-            // #settingModalEfb without an !important on every declaration.
-            wp_register_style('efb-modal-system', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/modal-system-efb.css', true, EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('efb-modal-system');
-            // The Colors & Fonts dialog reshapes the shared shell into a wide
-            // two-pane editor, so it has to win against the shell's own rules
-            // in modal-system-efb.css - hence after it, not before.
-            wp_register_style('efb-response-colors-modal', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/response-colors-modal-efb.css', array('efb-modal-system'), EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('efb-response-colors-modal');
-            // The email server test draws the same panel in two places - the
-            // settings modal and the setup wizard - so its look and its markup
-            // both live in one pair of files, loaded wherever either can run.
-            wp_register_style('efb-email-test', EMSFB_PLUGIN_URL . 'includes/admin/assets/css/email-test-efb.css', array('efb-modal-system'), EMSFB_PLUGIN_VERSION);
-            wp_enqueue_style('efb-email-test');
-            wp_enqueue_script('efb-email-test-ui', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/email-test-ui-efb.js', array(), EMSFB_PLUGIN_VERSION, true);
-            $this->check_and_enqueue_font_roboto_Emsfb();
-            wp_enqueue_style('wp-pointer');
-            wp_enqueue_script('wp-pointer');
-            $lang = get_locale();
-            if (strlen($lang) > 0) {$lang = explode('_', $lang)[0];}
-                wp_enqueue_script('efb-bootstrap-min-js', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/bootstrap.min-efb.js', array('jquery'), EMSFB_PLUGIN_VERSION);
-                 wp_enqueue_script('efb-bootstrap-bundle-min-js', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/bootstrap.bundle.min-efb.js', array( 'jquery' ), EMSFB_PLUGIN_VERSION);
-                wp_enqueue_script('efb-bootstrap-icon-js', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/bootstrap-icon-efb.js', array('jquery'), EMSFB_PLUGIN_VERSION);
-                $efb_main_js_path = EMSFB_PLUGIN_DIRECTORY . 'includes/admin/assets/js/new-efb.js';
-                $efb_main_js_version = is_readable($efb_main_js_path) ? (string) filemtime($efb_main_js_path) : EMSFB_PLUGIN_VERSION;
-                $efb_response_viewer_js_path = EMSFB_PLUGIN_DIRECTORY . 'includes/admin/assets/js/response-viewer-efb.js';
-                $efb_response_viewer_js_version = is_readable($efb_response_viewer_js_path) ? (string) filemtime($efb_response_viewer_js_path) : EMSFB_PLUGIN_VERSION;
-                wp_enqueue_script('efb-main-js', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/new-efb.js', array('jquery'), $efb_main_js_version);
-                /* The steps runtime and its markup builders. The builders are
-                 * wp-admin only - on the front end the markup arrives from PHP -
-                 * and the runtime is the same file the front end inlines, loaded
-                 * here as a file because the builder needs it on every screen. */
-                wp_enqueue_script('efb-steps-progress-runtime', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/steps-progress-runtime-efb.js', array('efb-main-js'), EMSFB_PLUGIN_VERSION);
-                wp_enqueue_script('efb-steps-progress-builder', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/steps-progress-builder-efb.js', array('efb-steps-progress-runtime'), EMSFB_PLUGIN_VERSION);
-                wp_enqueue_script('efb-response-viewer-js', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/response-viewer-efb.js', array('efb-main-js', 'jquery'), $efb_response_viewer_js_version);
-        }
-    }
-
     public function admin_menu() {
         $noti_count = count($this->get_not_read_message());
         $icon       = 'none'; // Flux Forms: colour logo drawn by menu_icon_css()
@@ -173,11 +99,10 @@ class Admin {
             $noti_count ? sprintf(esc_html__('Forms', 'flx-forms') . ' <span id="efbCountM" class="efb awaiting-mod">%d</span>', $noti_count) : esc_html__('Forms', 'flx-forms'),
             'Emsfb',
             'Emsfb',
-            '',
+            '__return_null', // Old panel addresses redirect (flxf_panel_redirect); the menu opens the Dashboard.
             $icon,
             27
         );
-        add_submenu_page('Emsfb', esc_html__('Panel', 'flx-forms'), esc_html__('Panel', 'flx-forms'), 'Emsfb', 'Emsfb', [$this, 'panel_callback']);
     }
 
     /** Colour menu logo (shared FluxWP logos). One swap point: replace assets/icon.svg or filter `flxf_menu_icon_url`. */
@@ -191,10 +116,6 @@ class Admin {
         echo '<style id="flxf-menu-icon">' . $sel . '{background:url("' . esc_url(self::menu_icon_url()) . '") center/20px 20px no-repeat;opacity:.9}' . $sel . ':before{content:none}#adminmenu #toplevel_page_Emsfb:hover .wp-menu-image,#adminmenu #toplevel_page_Emsfb.wp-has-current-submenu .wp-menu-image{opacity:1}</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
-    public function panel_callback() {
-        include_once EMSFB_PLUGIN_DIRECTORY . "/includes/admin/class-Emsfb-panel.php";
-        $list_table = new Panel_edit();
-    }
     public function delete_form_id_public() {
         $efbFunction = get_efbFunction();
         $text = ["error403","somethingWentWrongPleaseRefresh"];

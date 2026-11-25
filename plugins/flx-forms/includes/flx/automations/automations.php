@@ -16,8 +16,10 @@ if ( ! class_exists( 'FLXF_Automations' ) ) {
 	require_once __DIR__ . '/class-flxf-automations-engine.php';
 	FLXF_Automations::init();
 	FLXF_Automations_Engine::init();
+	require_once __DIR__ . '/class-flxf-automations-admin.php';
+	// The builder's templates are read over GraphQL too (not only in wp-admin).
+	add_filter( 'flxf_builder_templates', array( 'FLXF_Automations_Admin', 'builder_template' ) );
 	if ( is_admin() ) {
-		require_once __DIR__ . '/class-flxf-automations-admin.php';
 		FLXF_Automations_Admin::init();
 	}
 }

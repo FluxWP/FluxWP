@@ -467,6 +467,76 @@ type FlxFormsAutomations {
   runCount: Int!
 }
 
+"""
+A form in the builder: its Flux Forms structure and the hash a save sends back.
+"""
+type FlxFormsBuilderForm {
+  """Version of the stored form; a save with an older hash is refused."""
+  hash: String!
+  """Form id."""
+  id: Int!
+  """Form name."""
+  name: String!
+  """
+  Flux Forms structure (form settings first, then the fields). The blocks of the builder are made from it.
+  """
+  structure: FlxJSON!
+  """form, survey, subscribe, payment, register or login."""
+  type: String!
+}
+
+"""Input for the flxFormsBuilderSave mutation."""
+input FlxFormsBuilderSaveInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Save even when the form changed since."""
+  force: Boolean
+  """Hash the builder read."""
+  hash: String
+  """Form id; 0 creates a form."""
+  id: Int!
+  """Form name."""
+  name: String!
+  """Flux Forms structure."""
+  structure: FlxJSON!
+}
+
+"""The payload for the flxFormsBuilderSave mutation."""
+type FlxFormsBuilderSavePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """New hash."""
+  hash: String
+  """Form id."""
+  id: Int
+  """Form name as saved."""
+  name: String
+}
+
+"""
+A ready form a new form can start from (filter flxf_builder_templates).
+"""
+type FlxFormsBuilderTemplate {
+  """One line on the template."""
+  description: String!
+  """Template key."""
+  key: String!
+  """Flux Forms structure."""
+  structure: FlxJSON!
+  """Title."""
+  title: String!
+  """Form type."""
+  type: String!
+}
+
 """WooCommerce, where payment forms are paid."""
 type FlxFormsCheckout {
   """WooCommerce is active."""
@@ -1037,6 +1107,13 @@ extend type RootMutation {
     """Input for the flxFormsAutomationToggle mutation"""
     input: FlxFormsAutomationToggleInput!
   ): FlxFormsAutomationTogglePayload
+  """
+  Saves a form from the builder (id 0 creates it). A form changed elsewhere since it was read is refused (CONFLICT) unless force is set.
+  """
+  flxFormsBuilderSave(
+    """Input for the flxFormsBuilderSave mutation"""
+    input: FlxFormsBuilderSaveInput!
+  ): FlxFormsBuilderSavePayload
   """Deletes uploaded files that no response uses."""
   flxFormsClearFiles(
     """Input for the flxFormsClearFiles mutation"""
@@ -1113,6 +1190,13 @@ extend type RootQuery {
   The automation list. The first visit creates the ready-made donation flow once.
   """
   flxFormsAutomations: FlxFormsAutomations!
+  """A form to edit in the builder (null when not found)."""
+  flxFormsBuilderForm(
+    """Form id."""
+    id: Int!
+  ): FlxFormsBuilderForm
+  """The templates a new form can start from, besides the blank form."""
+  flxFormsBuilderTemplates: [FlxFormsBuilderTemplate!]!
   """
   Dashboard numbers: responses per day, views, conversion, payments, busy hours, forms and latest responses.
   """

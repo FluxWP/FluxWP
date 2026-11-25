@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( $manifest ), true ) a
 		$GLOBALS['flxf_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 30, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 30 persisted operations' );
+flxt_same( 33, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 33 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -1063,5 +1063,46 @@ $r = flxf_t_op( 'FlxFormsAutomationRuns', array(), $adm_id );
 flxt_same( array( 'run-contract', 'webhook' ), array( $r['data']['flxFormsAutomationRuns'][0]['id'] ?? null, $r['data']['flxFormsAutomationRuns'][0]['steps'][0]['type'] ?? null ), 'automations: run log', $r );
 $r = flxf_t_op( 'FlxFormsAutomationRunsClear', array( 'input' => array() ), $adm_id );
 flxt_same( array(), FLXF_Automations::get_runs(), 'automations: clear the log', $r );
+
+/* ---------- 2.10.0: builder ---------- */
+$bstruct = array(
+	array( 'type' => 'form', 'steps' => '1', 'formName' => 'x', 'email' => '', 'trackingCode' => '1', 'button_single_text' => 'Send' ),
+	array( 'id_' => '1', 'dataId' => '1', 'type' => 'step', 'name' => 'Step', 'step' => '1', 'amount' => '1' ),
+	array( 'id_' => 'bt1', 'dataId' => 'bt1-id', 'type' => 'text', 'name' => 'Your name', 'required' => '1', 'step' => '1', 'amount' => '2' ),
+);
+$r = flxf_t_op( 'FlxFormsBuilderSave', array( 'input' => array( 'id' => 0, 'name' => 'Builder contract', 'structure' => $bstruct ) ), $sub_id );
+flxt_ok( null !== flxt_code( $r ), 'builder: a subscriber cannot save' );
+$r   = flxf_t_op( 'FlxFormsBuilderSave', array( 'input' => array( 'id' => 0, 'name' => 'Builder contract', 'structure' => $bstruct ) ), $adm_id );
+$bs  = $r['data']['flxFormsBuilderSave'] ?? array();
+$bid = (int) ( $bs['id'] ?? 0 );
+flxt_ok( $bid > 0 && array() === ( $bs['errors'] ?? null ) && 'Builder contract' === ( $bs['name'] ?? '' ), 'builder: save creates the form', $r );
+$r = flxf_t_op( 'FlxFormsBuilderForm', array( 'id' => $bid ), $adm_id );
+$bf = $r['data']['flxFormsBuilderForm'] ?? array();
+flxt_same( array( 'Builder contract', 'form', 'Your name', $bs['hash'] ?? '' ), array( $bf['name'] ?? null, $bf['type'] ?? null, $bf['structure'][2]['name'] ?? null, $bf['hash'] ?? null ), 'builder: read it back with the same hash', $r );
+$r = flxf_t_op( 'FlxFormsBuilderForm', array( 'id' => $bid ), $sub_id );
+flxt_ok( null !== flxt_code( $r ), 'builder: a subscriber cannot read it' );
+$bstruct[2]['name'] = 'Full name';
+$r  = flxf_t_op( 'FlxFormsBuilderSave', array( 'input' => array( 'id' => $bid, 'name' => 'Builder contract', 'structure' => $bstruct, 'hash' => $bf['hash'] ?? '' ) ), $adm_id );
+$h2 = (string) ( $r['data']['flxFormsBuilderSave']['hash'] ?? '' );
+flxt_ok( '' !== $h2 && $h2 !== ( $bf['hash'] ?? '' ), 'builder: save with the read hash', $r );
+$r = flxf_t_op( 'FlxFormsBuilderSave', array( 'input' => array( 'id' => $bid, 'name' => 'Builder contract', 'structure' => $bstruct, 'hash' => $bf['hash'] ?? '' ) ), $adm_id );
+flxt_same( array( 'CONFLICT' ), array_column( flxf_t_errs( $r, 'flxFormsBuilderSave' ), 0 ), 'builder: an older hash is a conflict', $r );
+$r = flxf_t_op( 'FlxFormsBuilderSave', array( 'input' => array( 'id' => $bid, 'name' => 'Builder contract', 'structure' => $bstruct, 'hash' => $bf['hash'] ?? '', 'force' => true ) ), $adm_id );
+flxt_same( array(), $r['data']['flxFormsBuilderSave']['errors'] ?? null, 'builder: force saves over it', $r );
+$r = flxf_t_op( 'FlxFormsBuilderSave', array( 'input' => array( 'id' => $bid, 'name' => 'Bad', 'structure' => array( array( 'type' => 'shell' ) ) ) ), $adm_id );
+flxt_same( array( 'INVALID_INPUT' ), array_column( flxf_t_errs( $r, 'flxFormsBuilderSave' ), 0 ), 'builder: an unknown form type is refused', $r );
+$r = flxf_t_op( 'FlxFormsBuilderForm', array( 'id' => 999999 ), $adm_id );
+flxt_ok( array_key_exists( 'flxFormsBuilderForm', (array) ( $r['data'] ?? array() ) ) && null === $r['data']['flxFormsBuilderForm'], 'builder: a missing form is null', $r );
+$r = flxf_t_op( 'FlxFormsAdminForms', array( 'first' => 50 ), $adm_id );
+$row = array_values( array_filter( (array) ( $r['data']['flxFormsAdminForms']['nodes'] ?? array() ), static fn( $n ) => $bid === (int) ( $n['databaseId'] ?? 0 ) ) );
+flxt_ok( isset( $row[0]['editUrl'] ) && false !== strpos( (string) $row[0]['editUrl'], 'page=Emsfb_create&form=' . $bid ), 'builder: the forms list edits in the builder', $r );
+$r    = flxf_t_op( 'FlxFormsBuilderTemplates', array(), $adm_id );
+$tpls = (array) ( $r['data']['flxFormsBuilderTemplates'] ?? array() );
+$tpl  = array_values( array_filter( $tpls, static fn( $x ) => 'sapling-donation' === ( $x['key'] ?? '' ) ) );
+flxt_ok( isset( $tpl[0]['structure'][0]['type'] ) && 'payment' === $tpl[0]['type'], 'builder: the sapling donation template', $r );
+$r = flxf_t_op( 'FlxFormsBuilderTemplates', array(), $sub_id );
+flxt_ok( null !== flxt_code( $r ), 'builder: a subscriber gets no templates' );
+$r = flxf_t_op( 'FlxFormsFormDelete', array( 'input' => array( 'id' => $bid ) ), $adm_id );
+flxt_same( true, $r['data']['flxFormsFormDelete']['deleted'] ?? null, 'builder: delete the test form' );
 
 flxt_done();

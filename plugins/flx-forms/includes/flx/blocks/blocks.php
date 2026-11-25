@@ -48,30 +48,7 @@ class FLXF_Blocks {
 		add_action( 'init', array( __CLASS__, 'register' ) );
 		add_action( 'rest_api_init', array( __CLASS__, 'routes' ) );
 		add_filter( 'block_categories_all', array( __CLASS__, 'category' ), 10, 1 );
-		add_action( 'admin_post_flxf_block_edit', array( __CLASS__, 'edit_with_blocks' ) );
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'panel_button' ) );
 		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'hide_legacy_forms' ), 1 );
-	}
-
-	/**
-	 * Panel list: an "Edit with blocks" button next to each form's edit button.
-	 *
-	 * @param string $hook Admin page hook.
-	 */
-	public static function panel_button( $hook ) {
-		if ( 'toplevel_page_Emsfb' !== $hook || ! self::can_manage() || ! current_user_can( 'edit_pages' ) ) {
-			return;
-		}
-		wp_register_script( 'flxf-blocks-panel', false, array(), (string) filemtime( __FILE__ ), true );
-		wp_enqueue_script( 'flxf-blocks-panel' );
-		$cfg = array(
-			'url'   => admin_url( 'admin-post.php?action=flxf_block_edit&_wpnonce=' . wp_create_nonce( 'flxf_block_edit' ) . '&id=' ),
-			'label' => __( 'Edit with blocks', 'flx-forms' ),
-		);
-		wp_add_inline_script(
-			'flxf-blocks-panel',
-			'(function(c){function add(){document.querySelectorAll(".efb-actions-group").forEach(function(g){if(g.querySelector(".flxf-act-blocks"))return;var e=g.querySelector(".efb-act-edit");if(!e)return;var a=document.createElement("a");a.className="efb efb-act-btn flxf-act-blocks";a.href=c.url+encodeURIComponent(e.getAttribute("data-id"));a.setAttribute("data-efb-tip",c.label);a.setAttribute("aria-label",c.label);a.title=c.label;a.innerHTML=\'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7.5" height="7" rx="1.5"/><rect x="13" y="13.5" width="7.5" height="7" rx="1.5"/></svg>\';a.addEventListener("click",function(ev){ev.stopPropagation();});e.insertAdjacentElement("afterend",a);});}new MutationObserver(add).observe(document.body,{childList:true,subtree:true});add();})(' . wp_json_encode( $cfg ) . ');'
-		);
 	}
 
 	/**
@@ -87,63 +64,6 @@ class FLXF_Blocks {
 			'wp-blocks',
 			'wp.hooks.addFilter("blocks.registerBlockType","flxf/hide-legacy-forms",function(s,n){return ["flx/form","flx/advanced-form"].indexOf(n)>-1?Object.assign({},s,{supports:Object.assign({},s.supports||{},{inserter:false})}):s;});'
 		);
-	}
-
-	/**
-	 * Open a form in the block editor: the page that already holds its block, or a new
-	 * draft page with the block.
-	 */
-	public static function edit_with_blocks() {
-		$id = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( ! $id || ! self::can_manage() || ! current_user_can( 'edit_pages' ) || ! check_admin_referer( 'flxf_block_edit' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-forms' ), 403 );
-		}
-		global $wpdb;
-		$name = $wpdb->get_var( $wpdb->prepare( "SELECT form_name FROM {$wpdb->prefix}emsfb_form WHERE form_id = %d", $id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-		if ( null === $name ) {
-			wp_die( esc_html__( 'Form not found.', 'flx-forms' ), 404 );
-		}
-		$found = $wpdb->get_col( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-			$wpdb->prepare(
-				"SELECT ID FROM {$wpdb->posts} WHERE post_status NOT IN ('trash','auto-draft','inherit') AND post_type NOT IN ('revision') AND post_content LIKE %s ORDER BY post_modified DESC LIMIT 20",
-				'%' . $wpdb->esc_like( '<!-- wp:flxf/form {"formId":' . $id ) . '%'
-			)
-		);
-		foreach ( (array) $found as $post_id ) {
-			$content = (string) get_post_field( 'post_content', $post_id );
-			if ( preg_match( '/<!-- wp:flxf\/form \{"formId":' . $id . '[,}]/', $content ) && current_user_can( 'edit_post', $post_id ) ) {
-				wp_safe_redirect( get_edit_post_link( $post_id, 'raw' ) );
-				exit;
-			}
-		}
-		$block   = serialize_block(
-			array(
-				'blockName'    => 'flxf/form',
-				'attrs'        => array(
-					'formId'   => $id,
-					'formName' => (string) $name,
-				),
-				'innerBlocks'  => array(),
-				'innerHTML'    => '',
-				'innerContent' => array(),
-			)
-		);
-		$post_id = wp_insert_post(
-			wp_slash(
-				array(
-					'post_type'    => 'page',
-					'post_status'  => 'draft',
-					'post_title'   => (string) $name,
-					'post_content' => $block,
-				)
-			),
-			true
-		);
-		if ( is_wp_error( $post_id ) ) {
-			wp_die( esc_html( $post_id->get_error_message() ) );
-		}
-		wp_safe_redirect( get_edit_post_link( $post_id, 'raw' ) );
-		exit;
 	}
 
 	/**
@@ -194,8 +114,9 @@ class FLXF_Blocks {
 			'flxf-blocks',
 			'flxfBlocks',
 			array(
-				'panelUrl'  => admin_url( 'admin.php?page=Emsfb' ),
-				'canManage' => self::can_manage(),
+				'builderUrl'   => admin_url( 'admin.php?page=Emsfb_create' ),
+				'responsesUrl' => admin_url( 'admin.php?page=flxf-responses' ),
+				'canManage'    => self::can_manage(),
 				'hasFlxBlocks' => defined( 'FLXBK_VERSION' ),
 				'geoUrl'       => EMSFB_PLUGIN_URL . 'vendor/offline/json/',
 				'sampleImage'  => EMSFB_PLUGIN_URL . 'includes/admin/assets/image/header.png',
@@ -237,6 +158,35 @@ class FLXF_Blocks {
 				)
 			);
 		}
+	}
+
+	/**
+	 * The builder (Forms › New form): the block editor's scripts and styles, the Flux Forms blocks and the builder
+	 * that the Forms screen mounts (window.flxfBuilder).
+	 */
+	public static function builder_assets() {
+		$dir   = __DIR__ . '/build/';
+		$asset = is_readable( $dir . 'builder.asset.php' ) ? include $dir . 'builder.asset.php' : array(
+			'dependencies' => array(),
+			'version'      => '0',
+		);
+		$context = new WP_Block_Editor_Context( array( 'name' => 'flxf/builder' ) );
+		wp_add_inline_script(
+			'wp-blocks',
+			'wp.blocks.setCategories(' . wp_json_encode( get_block_categories( $context ) ) . ');wp.blocks.unstable__bootstrapServerSideBlockDefinitions(' . wp_json_encode( get_block_editor_server_block_settings() ) . ');'
+		);
+		wp_enqueue_script( 'wp-format-library' );
+		wp_enqueue_script( 'flxf-blocks' );
+		wp_register_script( 'flxf-builder', plugins_url( 'build/builder.js', __FILE__ ), array_merge( (array) $asset['dependencies'], array( 'flxf-blocks' ) ), $asset['version'], true );
+		wp_set_script_translations( 'flxf-builder', 'flx-forms', EMSFB_PLUGIN_DIRECTORY . 'languages' );
+		wp_enqueue_script( 'flxf-builder' );
+		foreach ( array( 'wp-components', 'wp-block-editor', 'wp-block-editor-content', 'wp-edit-blocks', 'wp-format-library', 'flxf-blocks', 'flxf-blocks-editor' ) as $style ) {
+			if ( wp_style_is( $style, 'registered' ) ) {
+				wp_enqueue_style( $style );
+			}
+		}
+		wp_register_style( 'flxf-builder', plugins_url( 'assets/builder.css', __FILE__ ), array( 'wp-components' ), $asset['version'] );
+		wp_enqueue_style( 'flxf-builder' );
 	}
 
 	/**
@@ -336,19 +286,11 @@ class FLXF_Blocks {
 	 * @param WP_REST_Request $request Request.
 	 */
 	public static function rest_get( $request ) {
-		$row = self::row( (int) $request['id'] );
-		if ( ! $row ) {
+		$form = self::get( (int) $request['id'] );
+		if ( ! $form ) {
 			return new WP_Error( 'flxf_form_missing', __( 'Form not found.', 'flx-forms' ), array( 'status' => 404 ) );
 		}
-		return rest_ensure_response(
-			array(
-				'id'        => (int) $row->form_id,
-				'name'      => (string) $row->form_name,
-				'type'      => (string) $row->form_type,
-				'structure' => self::decode( $row->form_structer ),
-				'hash'      => md5( (string) $row->form_structer ),
-			)
-		);
+		return rest_ensure_response( $form );
 	}
 
 	/**
@@ -357,10 +299,50 @@ class FLXF_Blocks {
 	 * @param WP_REST_Request $request Request.
 	 */
 	public static function rest_save( $request ) {
+		$r = self::save(
+			(int) $request->get_param( 'id' ),
+			(string) $request->get_param( 'name' ),
+			$request->get_param( 'structure' ),
+			(string) $request->get_param( 'hash' ),
+			(bool) $request->get_param( 'force' )
+		);
+		return $r instanceof WP_Error ? $r : rest_ensure_response( $r );
+	}
+
+	/**
+	 * A stored form for an editor: id, name, type, structure and the hash a save sends back.
+	 *
+	 * @param int $id Form id.
+	 * @return array<string,mixed>|null
+	 */
+	public static function get( $id ) {
+		$row = self::row( (int) $id );
+		if ( ! $row ) {
+			return null;
+		}
+		return array(
+			'id'        => (int) $row->form_id,
+			'name'      => (string) $row->form_name,
+			'type'      => (string) $row->form_type,
+			'structure' => self::decode( $row->form_structer ),
+			'hash'      => md5( (string) $row->form_structer ),
+		);
+	}
+
+	/**
+	 * Create or update a form from an editor (blocks or the Forms builder).
+	 *
+	 * @param int    $id        Form id; 0 creates one.
+	 * @param string $name      Form name.
+	 * @param mixed  $structure Flux Forms structure (head first).
+	 * @param string $hash      Hash the editor read; '' skips the check.
+	 * @param bool   $force     Save even when the form changed since.
+	 * @return array{id:int,name:string,hash:string}|WP_Error
+	 */
+	public static function save( $id, $name, $structure, $hash = '', $force = false ) {
 		global $wpdb;
-		$id        = (int) $request->get_param( 'id' );
-		$name      = sanitize_text_field( (string) $request->get_param( 'name' ) );
-		$structure = $request->get_param( 'structure' );
+		$id   = (int) $id;
+		$name = sanitize_text_field( (string) $name );
 		if ( '' === $name ) {
 			$name = __( 'Form', 'flx-forms' );
 		}
@@ -368,7 +350,7 @@ class FLXF_Blocks {
 			return new WP_Error( 'flxf_form_invalid', __( 'The form structure is not valid.', 'flx-forms' ), array( 'status' => 400 ) );
 		}
 		if ( ! in_array( $structure[0]['type'], self::FORM_TYPES, true ) ) {
-			return new WP_Error( 'flxf_form_type', __( 'This form type can only be edited in the Flux Forms panel.', 'flx-forms' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxf_form_type', __( 'This form type is not supported.', 'flx-forms' ), array( 'status' => 400 ) );
 		}
 		$structure[0]['formName'] = $name;
 		$efb = function_exists( 'get_efbFunction' ) ? get_efbFunction() : null;
@@ -376,7 +358,7 @@ class FLXF_Blocks {
 			$structure = $efb->sanitize_obj_msg_efb( $structure );
 		}
 		$json   = wp_json_encode( $structure, JSON_UNESCAPED_UNICODE );
-		$stored = str_replace( '"', '\\"', $json );
+		$stored = str_replace( '"', '\\"', (string) $json );
 		$table  = $wpdb->prefix . 'emsfb_form';
 
 		if ( $id ) {
@@ -384,9 +366,8 @@ class FLXF_Blocks {
 			if ( ! $row ) {
 				return new WP_Error( 'flxf_form_missing', __( 'Form not found.', 'flx-forms' ), array( 'status' => 404 ) );
 			}
-			$sent_hash = (string) $request->get_param( 'hash' );
-			if ( '' !== $sent_hash && ! hash_equals( md5( (string) $row->form_structer ), $sent_hash ) && ! $request->get_param( 'force' ) ) {
-				return new WP_Error( 'flxf_form_conflict', __( 'This form was changed in the Flux Forms panel after you opened it.', 'flx-forms' ), array( 'status' => 409 ) );
+			if ( '' !== $hash && ! hash_equals( md5( (string) $row->form_structer ), $hash ) && ! $force ) {
+				return new WP_Error( 'flxf_form_conflict', __( 'This form was changed somewhere else after you opened it.', 'flx-forms' ), array( 'status' => 409 ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- plugin table.
 			$wpdb->update(
@@ -418,18 +399,16 @@ class FLXF_Blocks {
 		}
 		self::flush( $id );
 		/**
-		 * A form was saved from the block editor.
+		 * A form was saved from the block editor or the Forms builder.
 		 *
 		 * @param int   $id        Form id.
 		 * @param array $structure Structure.
 		 */
 		do_action( 'flxf_block_form_saved', $id, $structure );
-		return rest_ensure_response(
-			array(
-				'id'   => $id,
-				'name' => $name,
-				'hash' => md5( $stored ),
-			)
+		return array(
+			'id'   => $id,
+			'name' => $name,
+			'hash' => md5( $stored ),
 		);
 	}
 

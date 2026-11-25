@@ -40,14 +40,16 @@ const PAYMENT_BLOCKS = Object.keys(TYPES)
 	.map((t) => `flxf/${TYPES[t].slug || t}`);
 const CURRENCIES = ['try', 'usd', 'eur', 'gbp', 'chf', 'cad', 'aud', 'sar', 'aed', 'jpy'];
 const cfg = window.flxfBlocks || {};
+// The Forms builder screen (builder.js) loads and saves the form itself; the block only edits it there.
+const standalone = () => !!(window.flxfBuilderActive);
 
-const TEMPLATE = [
+export const TEMPLATE = [
 	['flxf/text', { label: __('Full name', 'flx-forms'), required: true, width: '50' }],
 	['flxf/email', { label: __('Email', 'flx-forms'), required: true, width: '50' }],
 	['flxf/textarea', { label: __('Message', 'flx-forms'), required: true }],
 ];
 
-function toBlocks(list) {
+export function toBlocks(list) {
 	return list.map(([name, attrs]) => createBlock(name, attrs));
 }
 
@@ -78,7 +80,7 @@ let resaveQueued = false;
 
 function Edit({ attributes, setAttributes, clientId }) {
 	const { formId, formName, head = {}, design = {}, uid } = attributes;
-	const [state, setState] = useState(formId ? 'loading' : 'ready');
+	const [state, setState] = useState(formId && !standalone() ? 'loading' : 'ready');
 	const [forms, setForms] = useState(null);
 	const [error, setError] = useState('');
 	const [conflict, setConflict] = useState(false);
@@ -143,7 +145,7 @@ function Edit({ attributes, setAttributes, clientId }) {
 	};
 
 	useEffect(() => {
-		if (formId) {
+		if (formId && !standalone()) {
 			load(formId, false);
 		}
 	}, []);
@@ -153,6 +155,9 @@ function Edit({ attributes, setAttributes, clientId }) {
 	attrsRef.current = attributes;
 	const busy = useRef(false);
 	useEffect(() => {
+		if (standalone()) {
+			return undefined;
+		}
 		let wasSaving = false;
 		return subscribe(() => {
 			const editor = select('core/editor');
@@ -240,7 +245,7 @@ function Edit({ attributes, setAttributes, clientId }) {
 				<Placeholder
 					icon="feedback"
 					label={__('Flux Form', 'flx-forms')}
-					instructions={__('Build a new form here, or edit a form made in the Flux Forms panel. Both edit the same form.', 'flx-forms')}
+					instructions={__('Build a new form here, or pick a form made in Forms. Both edit the same form.', 'flx-forms')}
 				>
 					<Button variant="primary" onClick={() => replaceInnerBlocks(clientId, toBlocks(TEMPLATE), false)}>
 						{__('New form', 'flx-forms')}
@@ -285,7 +290,7 @@ function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<div {...blockProps}>
-			{formId > 0 && (
+			{formId > 0 && !standalone() && (
 				<BlockControls>
 					<ToolbarGroup>
 						<ToolbarButton
@@ -301,7 +306,7 @@ function Edit({ attributes, setAttributes, clientId }) {
 					<TextControl
 						__nextHasNoMarginBottom
 						label={__('Form name', 'flx-forms')}
-						help={__('Shown in the Flux Forms panel.', 'flx-forms')}
+						help={__('Shown in Forms.', 'flx-forms')}
 						value={formName}
 						onChange={(v) => setAttributes({ formName: v })}
 					/>
@@ -311,12 +316,12 @@ function Edit({ attributes, setAttributes, clientId }) {
 						value={h.button_single_text}
 						onChange={(v) => setHead({ button_single_text: v })}
 					/>
-					{formId > 0 ? (
+					{standalone() ? null : formId > 0 ? (
 						<p className="flxf-b-links">
 							{/* translators: %d: Flux Forms form id. */}
 							{sprintf(__('Flux Forms form #%d', 'flx-forms'), formId)} ·{' '}
-							<ExternalLink href={`${cfg.panelUrl}&state=edit-form&id=${formId}`}>{__('Open in panel', 'flx-forms')}</ExternalLink>{' '}
-							· <ExternalLink href={`${cfg.panelUrl}&state=show-messages&id=${formId}&form_type=form`}>{__('Responses', 'flx-forms')}</ExternalLink>
+							<ExternalLink href={`${cfg.builderUrl}&form=${formId}`}>{__('Open in Forms', 'flx-forms')}</ExternalLink>{' '}
+							· <ExternalLink href={`${cfg.responsesUrl}&form=${formId}`}>{__('Responses', 'flx-forms')}</ExternalLink>
 						</p>
 					) : (
 						<p className="flxf-b-help">{__('The form is created in Flux Forms when you save the page.', 'flx-forms')}</p>
@@ -465,11 +470,11 @@ function Edit({ attributes, setAttributes, clientId }) {
 					status="warning"
 					isDismissible={false}
 					actions={[
-						{ label: __('Load the panel version', 'flx-forms'), onClick: () => load(formId, true) },
+						{ label: __('Load the saved version', 'flx-forms'), onClick: () => load(formId, true) },
 						{ label: __('Keep mine', 'flx-forms'), onClick: forceSave, variant: 'secondary' },
 					]}
 				>
-					{__('This form was changed in the Flux Forms panel after you opened it, so your changes were not written to the form. Load the panel version, or keep yours and overwrite it.', 'flx-forms')}
+					{__('This form was changed somewhere else after you opened it, so your changes were not written to the form. Load the saved version, or keep yours and overwrite it.', 'flx-forms')}
 				</Notice>
 			)}
 			<div {...innerBlocksProps} />

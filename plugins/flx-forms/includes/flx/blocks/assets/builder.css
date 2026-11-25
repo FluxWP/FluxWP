@@ -1,0 +1,48 @@
+/* Flux Forms builder: the form's blocks (canvas) and the selected block's settings (side panel). */
+.flxf-builder {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 320px;
+	gap: 0;
+	min-height: 60vh;
+	border: 1px solid var(--flx-border, #e4e4e7);
+	border-radius: 10px;
+	background: var(--flx-surface, #fff);
+	overflow: hidden;
+}
+.flxf-builder__canvas {
+	position: relative;
+	padding: 64px 40px 64px;
+	background: #fff;
+	color: #1e1e1e;
+	min-width: 0;
+}
+.flxf-builder__canvas .block-editor-block-list__layout.is-root-container {
+	max-width: 760px;
+	margin: 0 auto;
+}
+.flxf-builder__side {
+	border-left: 1px solid var(--flx-border, #e4e4e7);
+	background: #fff;
+	color: #1e1e1e;
+	max-height: calc(100vh - 140px);
+	overflow-y: auto;
+	position: sticky;
+	top: 32px;
+}
+.flxf-builder__side .block-editor-block-inspector__no-blocks {
+	padding: 16px;
+}
+@media (max-width: 960px) {
+	.flxf-builder {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.flxf-builder__side {
+		border-left: 0;
+		border-top: 1px solid var(--flx-border, #e4e4e7);
+		position: static;
+		max-height: none;
+	}
+	.flxf-builder__canvas {
+		padding: 56px 12px 48px;
+	}
+}

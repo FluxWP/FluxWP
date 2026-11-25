@@ -33,11 +33,18 @@ Plan: 1 public okuma + gönderim (`flxForm`, `flxFormSubmit`, `flxFormTrack`, `f
 - `flxFormsPayments`: `checkout { active installed configured currency gateways url }` + son 50 ödeme; `flxFormsStripeWebhookSecret` kaldırıldı (`graphql-breaking`). Eklentiler listesinde `AdnSPF` yok (`AdnOF`, `AdnSMF`).
 - Flux Donate kuruluyken ödeme katmanını Donate tanımlar (değişmedi).
 
+## 2.10.0: form oluşturucu (dilim 4)
+
+- Formlar › Yeni form (`Emsfb_create`, `&form=N` düzenler) Formlar React ekranının `create` sekmesi (`Builder.tsx`). Yalnız bu sayfa blok düzenleyiciyi ve Flux Forms bloklarını yükler (`FLXF_Blocks::builder_assets()`, `blocks/build/builder.js` → `window.flxfBuilder.mount`); blok tanımları ve kategoriler sunucudan (`unstable__bootstrapServerSideBlockDefinitions`, `setCategories`). Başka sayfada ya da uygulamada sekme bu sayfayı açar.
+- Sorgu `flxFormsBuilderForm(id)` (yapı FlxJSON + `hash`), `flxFormsBuilderTemplates` (filtre `flxf_builder_templates`; Otomasyonlar "Fidan Bağışı"nı ekler). Mutasyon `flxFormsBuilderSave` (`id` 0 oluşturur; eski `hash` → `CONFLICT`, `force` üzerine yazar; tanınmayan tür `INVALID_INPUT`). Kayıt `FLXF_Blocks::save()` (blok REST'iyle aynı yol, `flxf_block_form_saved`). Hepsi `manage_options` ya da `Emsfb`.
+- Klasik oluşturucu (`class-Emsfb-create.php` render + `add_form_Emsfb` AJAX), Panel (`class-Emsfb-panel.php`, `admin_assets`), oluşturucu kabuğu (`includes/flx/builder`) ve yalnız onların JS/CSS'i silindi. `admin.php?page=Emsfb` yönlendirir (`flxf_panel_redirect`). Tüm formlar "Düzenle" `editUrl` → oluşturucu.
+- Klasik panelin diğer `wp_ajax_*_Emsfb` uçları (`class-Emsfb-admin.php`) artık çağıran ekranı olmadan duruyor; ayrı temizlik PR'ı.
+
 ## İstisnalar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |
 |---|---|---|---|
-| Fork form oluşturucu: `Emsfb_create`, form kaydet/sil/kopyala/önizle AJAX, `POST /flxf/v1/block-forms`, `GET /efb/v1/preview/{id}`, `Emsfb/v1/test`, `admin_post_flxf_block_edit` | flx-forms | Oluştur sayfası klasik kalır (sahip) | Okuma `flxForm` / `flxFormPicker` |
+| Sayfa düzenleyicideki Flux Form bloğu: `GET/POST /flxf/v1/block-forms`, `GET /efb/v1/preview/{id}` | flx-forms | Gutenberg bloğu `apiFetch` ile kaydeder (oluşturucu GraphQL kullanır) | `flxFormsBuilderForm` / `flxFormsBuilderSave` |
 | Ödeme: `forms/payment/start`, `confirm`, `quote`, `forms/payment/webhook/{provider}`, dönüş sayfası `?flxf_pay_return=1` | flx-forms | Ziyaretçi formundan çağrılır; POS penceresi sabit adrese döner | Durum ve liste `flxFormsPayments` |
 | `login` / `register` / `logout` / `forms/recovery/efb_set_password` aynı `message/add` callback'inde | flx-forms | `flxFormSubmit` yalnız form, anket, abonelik | REST aynı kalır |
 | Dosya: `POST /Emsfb/v1/forms/file/upload`, `wp_ajax_update_file_Emsfb` (nonce only, no cap), `admin_post_flxf_dash_csv` | flx-forms | Multipart veya CSV baytı | Gönderim yalnız bekleyen / bu bilete ayrılmış adresi kabul eder |

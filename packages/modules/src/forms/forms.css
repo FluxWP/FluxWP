@@ -2,8 +2,8 @@
 .flxfrm-app{--bd:var(--flux-border);--mut:var(--flux-text-muted);--ac:var(--flux-primary);--card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.45;padding:0 0 28px}
 .flxfrm-app a{color:var(--ac)}
 .flxfrm-app h2{font-size:15px;font-weight:600;margin:0 0 10px}
-.flxfrm-app input,.flxfrm-app select,.flxfrm-app textarea{font:inherit;color:inherit;background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:6px 8px;max-width:100%}
-.flxfrm-app textarea{width:100%;box-sizing:border-box;margin:10px 0 8px;resize:vertical}
+.flxfrm-app :is(input,select,textarea):not(.flxf-builder *){font:inherit;color:inherit;background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:6px 8px;max-width:100%}
+.flxfrm-app textarea:not(.flxf-builder *){width:100%;box-sizing:border-box;margin:10px 0 8px;resize:vertical}
 .flxfrm-muted{color:var(--mut);font-size:12px}
 .flxfrm-bad{color:var(--flux-danger)}
 .flxfrm-empty{padding:16px;color:var(--mut)}
@@ -215,3 +215,11 @@ button.flxfrm-kpi:hover{border-color:var(--ac)}
   .flxfrm-show,.flxfrm-var,.flxfrm-cond{grid-template-columns:1fr}
   .flxfrm-node__head{flex-wrap:wrap}
 }
+/* 2.10.0: builder (Forms › New form) */
+.flxfrm-builder__bar{position:sticky;top:32px;z-index:100;background:var(--flux-bg,var(--card));padding:8px 0}
+.flxfrm-builder__name{flex:1 1 280px;min-width:0}
+.flxfrm-builder__name input{width:100%;max-width:520px;font-size:18px;font-weight:600;padding:6px 10px}
+.flxfrm-templates{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.flxfrm-template{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:16px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:inherit;cursor:pointer;font:inherit}
+.flxfrm-template:hover,.flxfrm-template:focus-visible{border-color:var(--ac)}
+@media (max-width:782px){.flxfrm-builder__bar{top:46px}}

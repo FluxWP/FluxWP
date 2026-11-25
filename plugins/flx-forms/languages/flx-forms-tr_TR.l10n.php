@@ -6116,5 +6116,6 @@ return array(
   'To take online payments with a payment form, install and activate WooCommerce and enable a payment method.' => 'Ödeme formuyla online ödeme almak için WooCommerce\'i kurup etkinleştirin ve bir ödeme yöntemi açın.',
   'WooCommerce has no enabled payment method: %d payment form cannot take payments.' . "\0" . 'WooCommerce has no enabled payment method: %d payment forms cannot take payments.' => 'WooCommerce\'te açık ödeme yöntemi yok: %d ödeme formu ödeme alamıyor.' . "\0" . 'WooCommerce\'te açık ödeme yöntemi yok: %d ödeme formu ödeme alamıyor.',
   'WooCommerce is not active: %d payment form shows "Online payment is not available".' . "\0" . 'WooCommerce is not active: %d payment forms show "Online payment is not available".' => 'WooCommerce etkin değil: %d ödeme formu "Online ödeme kullanılamıyor" gösteriyor.' . "\0" . 'WooCommerce etkin değil: %d ödeme formu "Online ödeme kullanılamıyor" gösteriyor.',
+  'This form type is not supported.' => 'Bu form türü desteklenmiyor.',
  ),
 );
