@@ -125,6 +125,28 @@ function flxseo_mcp_check_post( $id, $cap = 'edit_post' ) {
 	return $p;
 }
 
+/** Gövdenin üst düzey blokları (boşluk/metin düğümleri atılır). */
+function flxseo_blocks_top( $content ) {
+	return array_values(
+		array_filter(
+			parse_blocks( (string) $content ),
+			function ( $b ) {
+				return ! empty( $b['blockName'] );
+			}
+		)
+	);
+}
+
+/** Üst düzey blokların kısa dökümü: sıra (1'den), tür, ilk 80 karakter. */
+function flxseo_blocks_outline( array $blocks ) {
+	$out = array();
+	foreach ( $blocks as $i => $b ) {
+		$txt   = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( render_block( $b ) ) ) );
+		$out[] = array( 'index' => $i + 1, 'type' => $b['blockName'], 'text' => mb_substr( $txt, 0, 80 ) );
+	}
+	return $out;
+}
+
 /**
  * Markdown / HTML → Gutenberg blokları. Blok işaretlemesi gelirse aynen bırakılır.
  */
@@ -636,6 +658,80 @@ function flxseo_mcp_tools_core() {
 				}
 				flxseo_mcp_apply( $p->ID, $a, false );
 				return array( 'updated' => true ) + flxseo_mcp_post_summary( get_post( $p->ID ) );
+			},
+		),
+		'flxseo_content_blocks'     => array(
+			'title'       => 'İçerik bloklarını listele',
+			'description' => 'Bir içeriğin üst düzey bloklarını sırayla verir (index, tür, ilk 80 karakter). "Şu paragraftan sonra resim ekle" gibi konumlu düzenlemelerden önce bununla hangi indeksin nerede olduğuna bak; flxseo_insert_image after_block ile bu indeksleri kullanır.',
+			'readonly'    => true,
+			'schema'      => array(
+				'type'       => 'object',
+				'properties' => array( 'id' => array( 'type' => 'integer' ) ),
+				'required'   => array( 'id' ),
+			),
+			'run'         => function ( $a ) {
+				$p = flxseo_mcp_check_post( $a['id'] ?? 0 );
+				return array( 'id' => $p->ID, 'title' => $p->post_title, 'blocks' => flxseo_blocks_outline( flxseo_blocks_top( $p->post_content ) ) );
+			},
+		),
+		'flxseo_insert_image'       => array(
+			'title'       => 'İçeriğe resim ekle',
+			'description' => 'Var olan bir içeriğin gövdesine, kalanına dokunmadan, medya kütüphanesindeki bir görseli blok olarak ekler. Konum: after_block (flxseo_content_blocks indeksi; 0 = en başa) ya da after_heading (başlık metni, büyük/küçük harf fark etmez) ya da hiçbiri = en sona. Görseli önce flxai_image_generate ile üret ya da flxseo_list_media ile bul; attachment_id ver. Birden çok resim için aracı art arda çağır (her çağrıdan sonra indeksler kayar; dönen blocks listesine bak).',
+			'cap'         => 'edit_posts',
+			'schema'      => array(
+				'type'       => 'object',
+				'properties' => array(
+					'id'            => array( 'type' => 'integer' ),
+					'attachment_id' => array( 'type' => 'integer' ),
+					'after_block'   => array( 'type' => 'integer', 'description' => 'Bu indeksteki bloktan sonra (1\'den başlar; 0 = en başa).' ),
+					'after_heading' => array( 'type' => 'string', 'description' => 'Bu metni içeren başlık bloğundan sonra.' ),
+					'alt'           => array( 'type' => 'string', 'description' => 'Alt metin; boşsa görselin kayıtlı alt metni.' ),
+					'caption'       => array( 'type' => 'string' ),
+					'align'         => array( 'type' => 'string', 'enum' => array( 'none', 'left', 'right', 'center', 'wide', 'full' ), 'default' => 'none' ),
+				),
+				'required'   => array( 'id', 'attachment_id' ),
+			),
+			'run'         => function ( $a ) {
+				$p   = flxseo_mcp_check_post( $a['id'] ?? 0 );
+				$att = (int) ( $a['attachment_id'] ?? 0 );
+				if ( ! $att || ! wp_attachment_is_image( $att ) ) {
+					throw new Exception( 'Geçerli bir görsel (attachment_id) verin.' );
+				}
+				$blocks = flxseo_blocks_top( $p->post_content );
+				$at     = count( $blocks ); // varsayılan: en sona
+				if ( isset( $a['after_block'] ) ) {
+					$at = max( 0, min( count( $blocks ), (int) $a['after_block'] ) );
+				} elseif ( ! empty( $a['after_heading'] ) ) {
+					$q  = mb_strtolower( trim( (string) $a['after_heading'] ) );
+					$at = -1;
+					foreach ( $blocks as $i => $b ) {
+						if ( 'core/heading' === $b['blockName'] && false !== mb_strpos( mb_strtolower( wp_strip_all_tags( $b['innerHTML'] ) ), $q ) ) {
+							$at = $i + 1;
+							break;
+						}
+					}
+					if ( $at < 0 ) {
+						throw new Exception( 'Bu metne sahip başlık bulunamadı: ' . $a['after_heading'] . ' (flxseo_content_blocks ile bak).' );
+					}
+				}
+				$size  = 'large';
+				$src   = wp_get_attachment_image_src( $att, $size );
+				$alt   = isset( $a['alt'] ) ? (string) $a['alt'] : (string) get_post_meta( $att, '_wp_attachment_image_alt', true );
+				$cap   = trim( (string) ( $a['caption'] ?? '' ) );
+				$align = in_array( $a['align'] ?? '', array( 'left', 'right', 'center', 'wide', 'full' ), true ) ? $a['align'] : '';
+				$attrs = array( 'id' => $att, 'sizeSlug' => $size, 'linkDestination' => 'none' );
+				if ( $align ) {
+					$attrs['align'] = $align;
+				}
+				$html  = '<figure class="wp-block-image' . ( $align ? ' align' . $align : '' ) . ' size-' . $size . '"><img src="' . esc_url( $src[0] ) . '" alt="' . esc_attr( $alt ) . '" class="wp-image-' . $att . '"/>'
+					. ( '' !== $cap ? '<figcaption class="wp-element-caption">' . esc_html( $cap ) . '</figcaption>' : '' ) . '</figure>';
+				$new   = parse_blocks( '<!-- wp:image ' . wp_json_encode( $attrs ) . " -->\n" . $html . "\n<!-- /wp:image -->" );
+				array_splice( $blocks, $at, 0, array( $new[0] ) );
+				$r = wp_update_post( wp_slash( array( 'ID' => $p->ID, 'post_content' => serialize_blocks( $blocks ) ) ), true );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return array( 'inserted' => true, 'position' => $at + 1, 'blocks' => flxseo_blocks_outline( $blocks ) ) + flxseo_mcp_post_summary( get_post( $p->ID ) );
 			},
 		),
 		'flxseo_delete_content'     => array(

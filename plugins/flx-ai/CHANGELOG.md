@@ -1,6 +1,7 @@
 # Flux AI — Değişiklikler
 
 ## 0.35.0
+- Flux SEO'nun yeni `flxseo_insert_image` aracı sonucu da önizleme/düzenleme bağlantısı taşır.
 - **Sesten metne:** sohbetteki mikrofon düğmesi artık sesi kaydedip sitede yazıya çevirir (OpenAI, Gemini ya da OpenRouter anahtarı varsa; `POST flx-ai/v1/transcribe`). Tarayıcının kendi konuşma tanıması olmayan ortamlarda (WebView, Tauri, Firefox) da çalışır; anahtar yoksa eski tarayıcı yöntemi kalır. Hem klasik sohbet (ajan görev penceresi dahil) hem React sohbet ekranı.
 
 ## 0.34.2
