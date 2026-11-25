@@ -41,3 +41,49 @@ fragment FlxFormsEntryFull on FlxFormsEntry {
     state
   }
 }
+fragment FlxFormsSettingsAll on FlxFormsSettings {
+  bootstrap
+  locationPicker
+  sessionDuration
+  trackCodeStyle
+  shortCaptcha
+  showUploadedFiles
+  downloadButton
+  adminSeesName
+  siteKey
+  silentCaptcha
+  adminEmail
+  fromEmail
+  smtp
+  weeklyReport
+  emailStatsReport
+  emailTemplate
+  emailButtonColor
+  emailButtonText
+  smsSender
+  smsAdminNumbers
+  respPreset
+  respBrandColor
+  respPrimary
+  respPrimaryDark
+  respAccent
+  respText
+  respTextMuted
+  respBgCard
+  respBgMeta
+  respBgTrack
+  respBgResp
+  respBgEditor
+  respEditorText
+  respEditorPh
+  respBtnText
+  respFontFamily
+  respFontSize
+  respCustomFont
+  devMode
+  secretKeySet
+  fromHint
+  trackShortcode
+  canEmailReport
+  canEmailStats
+}

@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 2.7.0
+- Formlar › Ayarlar artık React ekranı (Flux GraphQL): Genel, Yanıtlar, Yanıt kutusu, Captcha, E-posta, E-posta şablonu ve SMS bölümleri tek sayfada, tek Kaydet düğmesiyle.
+- Kaydet yalnız değişen ayarları gönderir; değerler klasik ayar kaydıyla aynı kurallarla temizlenir (e-posta şablonunda script/olay temizliği, `shortcode_message` zorunlu, renk ve gün doğrulaması).
+- reCAPTCHA gizli anahtarı yalnız yazılır: ekran kayıtlı olup olmadığını gösterir, değeri geri okumaz; "Kaldır" ile silinir.
+- Yanıt kutusu renkleri Açık, Koyu ve Marka hazır temalarıyla; tek renk değişince "Özel"e geçer.
+- Kullanılmayan yüklemeleri silme Ayarlar › Genel'de (onaylı).
+- Ödeme anahtarları ve eklentiler kendi sayfalarında kalır (sonraki sürüm).
+
 ## 2.6.0
 - Formlar › Pano, Tüm formlar ve Yanıtlar artık tek React ekranı (Flux GraphQL): ortak başlık ve sekmeler, ilk veri sayfayla birlikte gelir, ekran beklemeden açılır.
 - Tüm formlar: ad/kimlik araması, tür filtresi, yanıt ve okunmamış sayısı, son yanıt, kısa kodu tek tıkla kopyalama, düzenle, kopyala, sil (onaylı).

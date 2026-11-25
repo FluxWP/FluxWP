@@ -1,6 +1,6 @@
 <?php
 /**
- * Forms › Dashboard, All forms and Responses are one React screen (packages/modules/src/forms, assets/flux/ via
+ * Forms › Dashboard, All forms, Responses and Settings are one React screen (packages/modules/src/forms, assets/flux/ via
  * tools/fluxapp/embed-sync.sh flx-forms) on the Flux GraphQL shell (flx_admin_screen). The first queries of the
  * page are preloaded, so it opens with data. The builder, the panel, Payments, Automations, System check and
  * Add-ons are still their own pages: the screen shows their tabs (the ones in this user's Forms menu) and opens
@@ -21,6 +21,7 @@ function flxf_react_pages(): array {
 		'flxf-dashboard' => 'dashboard',
 		'flxf-forms'     => 'forms',
 		'flxf-responses' => 'responses',
+		'flxf-settings'  => 'settings',
 	);
 }
 
@@ -123,6 +124,8 @@ function flxf_preload_for( string $start ): array {
 	switch ( $parts[0] ) {
 		case 'dashboard':
 			return array( array( 'FlxFormsDashboard', array() ), $options );
+		case 'settings':
+			return array( array( 'FlxFormsSettings', array() ) );
 		case 'forms':
 			return array( array( 'FlxFormsAdminForms', array( 'first' => 50 ) ) );
 		case 'responses':

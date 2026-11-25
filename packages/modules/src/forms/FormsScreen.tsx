@@ -12,6 +12,7 @@ import { FormsContext, ISLANDS, REACT_PAGES, type FormsCtx, type Page, type Rout
 import { DashboardPage } from './Dashboard';
 import { FormsPage } from './FormsList';
 import { ResponsesPage } from './Responses';
+import { SettingsPage } from './Settings';
 import './forms.css';
 
 interface Toast {
@@ -20,7 +21,7 @@ interface Toast {
   kind: 'ok' | 'error';
 }
 
-const ALL: Page[] = ['dashboard', 'forms', 'responses', 'create', 'panel', 'payments', 'automations', 'system', 'addons'];
+const ALL: Page[] = ['dashboard', 'forms', 'responses', 'settings', 'create', 'panel', 'payments', 'automations', 'system', 'addons'];
 
 function parse(raw: string): Route | null {
   const [path = '', qs = ''] = raw.split('?');
@@ -104,6 +105,7 @@ function Forms() {
     { id: 'dashboard', label: t('Dashboard') },
     { id: 'forms', label: t('Forms') },
     { id: 'responses', label: t('Responses') },
+    { id: 'settings', label: t('Settings') },
   ];
   if (wp) {
     const extra: [Page, string][] = [
@@ -139,6 +141,7 @@ function Forms() {
                 {route.page === 'dashboard' ? <DashboardPage /> : null}
                 {route.page === 'forms' ? <FormsPage /> : null}
                 {route.page === 'responses' ? <ResponsesPage form={route.form} entry={route.entry} /> : null}
+                {route.page === 'settings' ? <SettingsPage /> : null}
               </>
             ) : null}
           </>

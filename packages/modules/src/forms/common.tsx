@@ -1,10 +1,10 @@
 import { createContext, useContext } from 'react';
 import type { Translate } from './i18n';
 
-export type Page = 'dashboard' | 'forms' | 'responses' | 'create' | 'panel' | 'payments' | 'automations' | 'system' | 'addons';
+export type Page = 'dashboard' | 'forms' | 'responses' | 'settings' | 'create' | 'panel' | 'payments' | 'automations' | 'system' | 'addons';
 
 /** React pages. */
-export const REACT_PAGES: Page[] = ['dashboard', 'forms', 'responses'];
+export const REACT_PAGES: Page[] = ['dashboard', 'forms', 'responses', 'settings'];
 
 /** Pages PHP prints (hidden island under the shared header): wp-admin slug. */
 export const ISLANDS: Partial<Record<Page, string>> = {

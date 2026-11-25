@@ -1,0 +1,6 @@
+mutation FlxFormsSettingsUpdate($input: FlxFormsSettingsUpdateInput!) {
+  flxFormsSettingsUpdate(input: $input) {
+    settings { ...FlxFormsSettingsAll }
+    errors { code message field }
+  }
+}

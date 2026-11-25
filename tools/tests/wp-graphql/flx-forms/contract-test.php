@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( $manifest ), true ) a
 		$GLOBALS['flxf_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 14, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 14 persisted operations' );
+flxt_same( 17, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 17 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -904,5 +904,41 @@ $r = flxf_t_op( 'FlxFormsEntriesDelete', array( 'input' => array( 'ids' => array
 flxt_same( 1, $r['data']['flxFormsEntriesDelete']['deleted'] ?? null, 'entries: delete' );
 $r = flxf_t_op( 'FlxFormsEntry', array( 'id' => $entry_id ), $adm_id );
 flxt_ok( empty( $r['data']['flxFormsEntry'] ), 'entry: gone after delete', $r );
+
+/* ---------- 2.7.0: settings ---------- */
+$r = flxf_t_op( 'FlxFormsSettings', array(), $sub_id );
+flxt_ok( null !== flxt_code( $r ), 'settings: a subscriber is refused' );
+$r = flxf_t_op( 'FlxFormsSettings', array(), $adm_id );
+flxt_ok( isset( $r['data']['flxFormsSettings']['sessionDuration'] ), 'settings: read', $r );
+$r = flxf_t_op(
+	'FlxFormsSettingsUpdate',
+	array(
+		'input' => array(
+			'sessionDuration' => 4,
+			'trackCodeStyle'  => 'unique_num',
+			'respPrimary'     => '#123456',
+			'adminEmail'      => 'forms-admin@example.com',
+			'secretKey'       => 'secret-xyz',
+			'devMode'         => false,
+		),
+	),
+	$adm_id
+);
+$st = $r['data']['flxFormsSettingsUpdate']['settings'] ?? array();
+flxt_same( array( 4, 'unique_num', '#123456', 'forms-admin@example.com', true ), array( $st['sessionDuration'] ?? null, $st['trackCodeStyle'] ?? null, $st['respPrimary'] ?? null, $st['adminEmail'] ?? null, $st['secretKeySet'] ?? null ), 'settings: save', $r );
+flxt_ok( false === strpos( (string) wp_json_encode( $r ), 'secret-xyz' ), 'settings: secret is not returned' );
+$dec = get_setting_Emsfb( 'decoded' );
+flxt_same( array( '4', '#123456', 'secret-xyz', 1 ), array( (string) ( $dec->sessionDuration ?? '' ), $dec->respPrimary ?? '', $dec->secretKey ?? '', (int) ( $dec->package_type ?? 0 ) ), 'settings: classic row has the values' );
+$r = flxf_t_op( 'FlxFormsSettingsUpdate', array( 'input' => array( 'sessionDuration' => 9 ) ), $adm_id );
+flxt_same( array( array( 'INVALID_INPUT', 'sessionDuration' ) ), flxf_t_errs( $r, 'flxFormsSettingsUpdate' ), 'settings: days out of range' );
+$r = flxf_t_op( 'FlxFormsSettingsUpdate', array( 'input' => array( 'emailTemplate' => '<p>No shortcode</p>' ) ), $adm_id );
+flxt_same( array( array( 'INVALID_INPUT', 'emailTemplate' ) ), flxf_t_errs( $r, 'flxFormsSettingsUpdate' ), 'settings: template needs shortcode_message' );
+$r = flxf_t_op( 'FlxFormsSettingsUpdate', array( 'input' => array( 'emailTemplate' => '<p onclick="x()">Hi</p><script>bad()</script> shortcode_message <a href="https://example.com/a">x</a>' ) ), $adm_id );
+$tpl = (string) ( $r['data']['flxFormsSettingsUpdate']['settings']['emailTemplate'] ?? '' );
+flxt_ok( false !== strpos( $tpl, 'shortcode_message' ) && false === strpos( $tpl, 'script' ) && false === strpos( $tpl, 'onclick' ) && false !== strpos( $tpl, 'https://example.com/a' ), 'settings: template is cleaned and keeps links', $tpl );
+$r = flxf_t_op( 'FlxFormsSettingsUpdate', array( 'input' => array( 'clearSecretKey' => true ) ), $adm_id );
+flxt_same( false, $r['data']['flxFormsSettingsUpdate']['settings']['secretKeySet'] ?? null, 'settings: clear the secret' );
+$r = flxf_t_op( 'FlxFormsClearFiles', array( 'input' => array() ), $adm_id );
+flxt_ok( isset( $r['data']['flxFormsClearFiles']['deleted'] ), 'settings: clear unused files', $r );
 
 flxt_done();

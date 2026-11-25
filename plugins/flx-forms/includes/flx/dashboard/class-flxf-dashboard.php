@@ -55,6 +55,7 @@ class FLXF_Dashboard {
 		add_submenu_page( 'Emsfb', __( 'Dashboard', 'flx-forms' ), __( 'Dashboard', 'flx-forms' ), 'Emsfb', self::SLUG, $cb, 0 );
 		add_submenu_page( 'Emsfb', __( 'Forms', 'flx-forms' ), __( 'All forms', 'flx-forms' ), 'Emsfb', 'flxf-forms', $cb, 1 );
 		add_submenu_page( 'Emsfb', __( 'Responses', 'flx-forms' ), __( 'Responses', 'flx-forms' ), 'Emsfb', 'flxf-responses', $cb, 2 );
+		add_submenu_page( 'Emsfb', __( 'Settings', 'flx-forms' ), __( 'Settings', 'flx-forms' ), 'Emsfb', 'flxf-settings', $cb, 3 );
 	}
 
 	private static function asset_ver( $file ) {

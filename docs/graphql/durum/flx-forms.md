@@ -13,6 +13,12 @@ Plan: 1 public okuma + gönderim (`flxForm`, `flxFormSubmit`, `flxFormTrack`, `f
 - Servis `includes/services/class-flxf-admin-service.php`; sözleşme testi `tools/tests/wp-graphql/flx-forms/contract-test.php` (admin bölümü).
 - Sıradaki dilimler: 2 Ayarlar, 3 Ödemeler/Otomasyonlar/Sistem/Eklentiler, 4 Form oluşturucu. O zamana kadar bu sayfalar sekmeden kendi sayfası olarak açılır.
 
+## 2.7.0: ayarlar (dilim 2)
+
+- Ayarlar sekmesi (`flxf-settings`, `packages/modules/src/forms/Settings.tsx`). Sorgu `flxFormsSettings`, mutasyonlar `flxFormsSettingsUpdate` (yalnız gelen alanlar; `secretKey` yalnız yazılır, `clearSecretKey`), `flxFormsClearFiles`.
+- Servis `includes/services/class-flxf-settings-service.php`: klasik `emsfb_setting` satırına birleştirir (`set_setting_Emsfb`), klasik kayıt kuralları (şablon temizliği, haftalık rapor yetkisi, SMTP durumu, `emsfb_dev_mode`).
+- Ekranda yok: ödeme anahtarları (Stripe/PayPal/payToken, dilim 3 Ödemeler), eklenti bayrakları `Adn*` (dilim 3), `text` / `act_local_efb` (istisna), lisans alanları (Flux Forms'ta lisans yok).
+
 ## İstisnalar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |
