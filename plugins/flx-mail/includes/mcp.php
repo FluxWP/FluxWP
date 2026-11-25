@@ -17,7 +17,7 @@ add_filter( 'flx_system_checks_versions', function ( $v ) {
 add_filter( 'flxseo_mcp_tools', 'flxi_mcp_tools' );
 
 function flxi_mcp_public_settings() {
-	return array( 'from_name', 'from_email', 'noreply_name', 'noreply_email', 'reply_to', 'force_from', 'mailer', 'smtp_host', 'smtp_port', 'smtp_secure', 'smtp_auth', 'smtp_user', 'smtp_nr_user', 'wrap_plain', 'wrap_html', 'email_images_fix', 'embed_images', 'footer_art', 'logo', 'logo_white', 'logo_width', 'color_primary', 'color_dark', 'color_bg', 'color_text', 'org_name', 'tagline', 'address', 'phone', 'contact_email', 'website', 'social', 'footer_note', 'log_enabled', 'log_days', 'social_block_core', 'social_block_wc', 'social_verified', 'bulk_per_run', 'bulk_unsubscribe', 'limit_daily', 'limit_recipients', 'limit_size_mb', 'limit_attach_mb', 'limit_storage_gb', 'limit_mailbox_emails', 'limit_aliases', 'limit_forwarders', 'limit_reserve', 'mailbox_enabled', 'imap_host', 'imap_port', 'imap_secure', 'imap_user', 'mailbox_days', 'mailbox_keep_days', 'mailbox_signature' );
+	return array( 'from_name', 'from_email', 'noreply_name', 'noreply_email', 'reply_to', 'force_from', 'mailer', 'smtp_host', 'smtp_port', 'smtp_secure', 'smtp_auth', 'smtp_user', 'smtp_nr_user', 'wrap_plain', 'wrap_html', 'email_images_fix', 'embed_images', 'footer_art', 'logo', 'logo_white', 'logo_width', 'color_primary', 'color_dark', 'color_bg', 'color_text', 'color_accent', 'org_name', 'tagline', 'address', 'phone', 'contact_email', 'website', 'social', 'footer_note', 'log_enabled', 'log_days', 'social_block_core', 'social_block_wc', 'social_verified', 'bulk_per_run', 'bulk_unsubscribe', 'limit_daily', 'limit_recipients', 'limit_size_mb', 'limit_attach_mb', 'limit_storage_gb', 'limit_mailbox_emails', 'limit_aliases', 'limit_forwarders', 'limit_reserve', 'mailbox_enabled', 'imap_host', 'imap_port', 'imap_secure', 'imap_user', 'mailbox_days', 'mailbox_keep_days', 'mailbox_signature' );
 }
 
 function flxi_mcp_template_row( $key ) {
@@ -301,7 +301,7 @@ function flxi_sanitize_setting( $k, $v ) {
 		}
 		return $v;
 	}
-	if ( in_array( $k, array( 'color_primary', 'color_dark', 'color_bg', 'color_text' ), true ) ) {
+	if ( in_array( $k, array( 'color_primary', 'color_dark', 'color_bg', 'color_text', 'color_accent' ), true ) ) {
 		$c = sanitize_hex_color( (string) $v );
 		// Temanın rengiyle aynıysa saklanmaz: tema/ön ayar rengi değişince e-postalar da değişir.
 		return ( $c && strtolower( $c ) !== strtolower( flxi_theme_color( $k ) ) ) ? $c : '';

@@ -48,6 +48,7 @@ fragment FlxMailSettings on FlxMailSettings {
   colorDark
   colorBg
   colorText
+  colorAccent
   orgName
   tagline
   address
@@ -95,6 +96,7 @@ fragment FlxMailSettings on FlxMailSettings {
   dns { domain spf dmarc mx error checkedAt { ...FlxMailDate } }
   footerArts { key label }
   socialNetworks { key label }
+  themeColors { primary dark bg text accent }
 }
 
 fragment FlxMailTemplate on FlxMailTemplate {

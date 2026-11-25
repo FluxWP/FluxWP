@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.10.5
+- Mobil menü katmanı sitenin kendi markasını gösterir: üstteki logo kurum profilinden (koyu modda açık renk logo), logo yoksa site adı; alttaki slogan kurum profilindeki slogan, boşsa gösterilmez. Önceden tüm sitelerde sabit Yeşil Türkiye logosu ve sloganı vardı. Ön ayar `flx_menu_brand` filtresiyle değiştirebilir.
+- Menü kartlarının simgesi varsayılanda site renginde sade nokta; "Yapraklar" süslemesinde eskisi gibi yaprak.
+- Koyu modda header logosunu tema içindeki olmayan bir dosyayla değiştiren eski kural kaldırıldı (logo zaten `<picture>` ile açık renk sürüme geçiyor).
+
 ## 0.10.4
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

@@ -72,7 +72,7 @@ function flxi_gql_content( array $input ): array {
 	$brand    = array();
 	foreach ( array(
 		'logo' => 'logo', 'logoWhite' => 'logo_white', 'logoWidth' => 'logo_width',
-		'colorPrimary' => 'color_primary', 'colorDark' => 'color_dark', 'colorBg' => 'color_bg', 'colorText' => 'color_text',
+		'colorPrimary' => 'color_primary', 'colorDark' => 'color_dark', 'colorBg' => 'color_bg', 'colorText' => 'color_text', 'colorAccent' => 'color_accent',
 		'orgName' => 'org_name', 'tagline' => 'tagline', 'address' => 'address', 'phone' => 'phone',
 		'contactEmail' => 'contact_email', 'website' => 'website', 'footerNote' => 'footer_note', 'footerArt' => 'footer_art', 'fromName' => 'from_name',
 	) as $gql => $key ) {
@@ -209,6 +209,19 @@ function flxi_gql_register(): void {
 		)
 	);
 	flx_gql_type(
+		'FlxMailThemeColors',
+		array(
+			'description' => __( 'Email colours taken from the site theme (#RRGGBB).', 'flx-mail' ),
+			'fields'      => array(
+				'primary' => flxi_gql_f( 'String!', __( 'Primary colour.', 'flx-mail' ) ),
+				'dark'    => flxi_gql_f( 'String!', __( 'Dark colour (button hover).', 'flx-mail' ) ),
+				'bg'      => flxi_gql_f( 'String!', __( 'Background.', 'flx-mail' ) ),
+				'text'    => flxi_gql_f( 'String!', __( 'Heading colour.', 'flx-mail' ) ),
+				'accent'  => flxi_gql_f( 'String!', __( 'Accent colour (top stripe).', 'flx-mail' ) ),
+			),
+		)
+	);
+	flx_gql_type(
 		'FlxMailSocialLink',
 		array(
 			'description' => __( 'A social profile URL.', 'flx-mail' ),
@@ -315,6 +328,7 @@ function flxi_gql_register(): void {
 	$settings['dns']                 = flxi_gql_f( 'FlxMailDns', __( 'Last DNS lookup.', 'flx-mail' ) );
 	$settings['footerArts']          = flxi_gql_f( '[FlxMailChoice!]!', __( 'Footer art choices.', 'flx-mail' ) );
 	$settings['socialNetworks']      = flxi_gql_f( '[FlxMailChoice!]!', __( 'Social networks the footer can show.', 'flx-mail' ) );
+	$settings['themeColors']         = flxi_gql_f( 'FlxMailThemeColors!', __( 'Colours the site theme gives; used when a colour setting is empty.', 'flx-mail' ) );
 	flx_gql_type( 'FlxMailSettings', array( 'description' => __( 'Communication settings. Secrets are masked.', 'flx-mail' ), 'fields' => $settings ) );
 
 	$input = array();
@@ -347,7 +361,7 @@ function flxi_gql_register(): void {
 			'description' => __( 'Unsaved appearance fields for a preview.', 'flx-mail' ),
 			'fields'      => array(
 				'logo' => flxi_gql_f( 'String', 'logo' ), 'logoWhite' => flxi_gql_f( 'String', 'logoWhite' ), 'logoWidth' => flxi_gql_f( 'Int', 'logoWidth' ),
-				'colorPrimary' => flxi_gql_f( 'String', 'colorPrimary' ), 'colorDark' => flxi_gql_f( 'String', 'colorDark' ), 'colorBg' => flxi_gql_f( 'String', 'colorBg' ), 'colorText' => flxi_gql_f( 'String', 'colorText' ),
+				'colorPrimary' => flxi_gql_f( 'String', 'colorPrimary' ), 'colorDark' => flxi_gql_f( 'String', 'colorDark' ), 'colorBg' => flxi_gql_f( 'String', 'colorBg' ), 'colorText' => flxi_gql_f( 'String', 'colorText' ), 'colorAccent' => flxi_gql_f( 'String', 'colorAccent' ),
 				'orgName' => flxi_gql_f( 'String', 'orgName' ), 'tagline' => flxi_gql_f( 'String', 'tagline' ), 'address' => flxi_gql_f( 'String', 'address' ), 'phone' => flxi_gql_f( 'String', 'phone' ),
 				'contactEmail' => flxi_gql_f( 'String', 'contactEmail' ), 'website' => flxi_gql_f( 'String', 'website' ), 'footerNote' => flxi_gql_f( 'String', 'footerNote' ), 'footerArt' => flxi_gql_f( 'String', 'footerArt' ), 'fromName' => flxi_gql_f( 'String', 'fromName' ),
 				'social' => flxi_gql_f( '[FlxMailSocialLinkInput!]', 'social' ),

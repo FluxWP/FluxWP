@@ -64,6 +64,7 @@ class FLXI_Settings_Service {
 			'colorDark'            => array( 'color_dark', 'string' ),
 			'colorBg'              => array( 'color_bg', 'string' ),
 			'colorText'            => array( 'color_text', 'string' ),
+			'colorAccent'          => array( 'color_accent', 'string' ),
 			'orgName'              => array( 'org_name', 'string' ),
 			'tagline'              => array( 'tagline', 'string' ),
 			'address'              => array( 'address', 'string' ),
@@ -178,6 +179,13 @@ class FLXI_Settings_Service {
 		$out['dns']                 = FLXI_System_Service::stored_dns();
 		$out['footerArts']          = self::choices( flxi_footer_arts() );
 		$out['socialNetworks']      = self::choices( flxi_social_services() );
+		$out['themeColors']         = array(
+			'primary' => flxi_theme_color( 'color_primary' ),
+			'dark'    => flxi_theme_color( 'color_dark' ),
+			'bg'      => flxi_theme_color( 'color_bg' ),
+			'text'    => flxi_theme_color( 'color_text' ),
+			'accent'  => flxi_theme_color( 'color_accent' ),
+		);
 		if ( function_exists( 'flx_gql_cache_tag' ) ) {
 			flx_gql_cache_tag( 'flx-mail:settings' );
 		}
