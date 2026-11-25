@@ -1,6 +1,7 @@
-// Forms: Dashboard, Forms, Responses, Settings, Payments, Automations, System check and Add-ons. Same screen in
-// wp-admin and the FluxWP app; data over the flxForms* GraphQL operations. In wp-admin the builder and the panel
-// are still their own pages: their tabs open them. includes/flx/flux-ui.php lists the tabs this user has.
+// Forms: Dashboard, Forms, Responses, Settings, New form (the builder), Payments, Automations, System check and
+// Add-ons. Same screen in wp-admin and the FluxWP app; data over the flxForms* GraphQL operations. The builder needs
+// the block editor, which only its wp-admin page (Forms › New form) loads: elsewhere its tab opens that page.
+// includes/flx/flux-ui.php lists the tabs this user has.
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
@@ -8,7 +9,7 @@ import { FlxGraphQLProvider, useFlxViewer } from '@fluxwp/graphql/react';
 import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
-import { FormsContext, ISLANDS, MENU_PAGES, REACT_PAGES, type FormsCtx, type Page, type Route, type RouteOpts } from './common';
+import { BUILDER_SLUG, FormsContext, MENU_PAGES, REACT_PAGES, type FormsCtx, type Page, type Route, type RouteOpts } from './common';
 import { DashboardPage } from './Dashboard';
 import { FormsPage } from './FormsList';
 import { ResponsesPage } from './Responses';
@@ -17,6 +18,7 @@ import { PaymentsPage } from './Payments';
 import { AutomationsPage } from './Automations';
 import { SystemPage } from './System';
 import { AddonsPage } from './Addons';
+import { BuilderPage, builderHere } from './Builder';
 import './forms.css';
 
 interface Toast {
@@ -25,7 +27,7 @@ interface Toast {
   kind: 'ok' | 'error';
 }
 
-const ALL: Page[] = ['dashboard', 'forms', 'responses', 'settings', 'create', 'panel', 'payments', 'automations', 'system', 'addons'];
+const ALL: Page[] = ['dashboard', 'forms', 'responses', 'settings', 'create', 'payments', 'automations', 'system', 'addons'];
 
 function parse(raw: string): Route | null {
   const [path = '', qs = ''] = raw.split('?');
@@ -79,9 +81,8 @@ function Forms() {
 
   const go = useCallback(
     (page: Page, opts?: RouteOpts) => {
-      const slug = ISLANDS[page];
-      if (slug) {
-        host.openUrl(admin + 'admin.php?page=' + slug);
+      if (page === 'create' && !builderHere()) {
+        host.openUrl(admin + 'admin.php?page=' + BUILDER_SLUG + (opts?.form ? '&form=' + opts.form : ''));
         return;
       }
       const params = new URLSearchParams();
@@ -107,12 +108,11 @@ function Forms() {
 
   const v = viewer.data?.flxViewer;
   const allowed = v ? v.isAdmin || v.capabilities.includes('Emsfb') : undefined;
-  const island = ISLANDS[route.page];
-
-  // A link to one of the other pages (#/panel …): open it.
+  // wp-admin: a link to the builder (#/create) on another Forms page opens the builder's page.
+  const island = wp && route.page === 'create' && !builderHere();
   useEffect(() => {
-    if (island) host.openUrl(admin + 'admin.php?page=' + island);
-  }, [island, host, admin]);
+    if (island) host.openUrl(admin + 'admin.php?page=' + BUILDER_SLUG + (route.form ? '&form=' + route.form : ''));
+  }, [island, host, admin, route.form]);
 
   const tabs: { id: Page; label: string }[] = [
     { id: 'dashboard', label: t('Dashboard') },
@@ -122,7 +122,6 @@ function Forms() {
   ];
   const extra: [Page, string][] = [
     ['create', t('New form')],
-    ['panel', t('Panel')],
     ['payments', t('Payments')],
     ['automations', t('Automations')],
     ['system', t('System check')],
@@ -155,6 +154,7 @@ function Forms() {
                 {route.page === 'forms' ? <FormsPage /> : null}
                 {route.page === 'responses' ? <ResponsesPage form={route.form} entry={route.entry} /> : null}
                 {route.page === 'settings' ? <SettingsPage /> : null}
+                {route.page === 'create' ? <BuilderPage key={route.form} form={route.form} /> : null}
                 {route.page === 'payments' ? <PaymentsPage /> : null}
                 {route.page === 'automations' ? <AutomationsPage flow={route.flow} tab={route.tab} /> : null}
                 {route.page === 'system' ? <SystemPage /> : null}

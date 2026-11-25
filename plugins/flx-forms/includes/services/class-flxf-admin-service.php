@@ -130,7 +130,7 @@ final class FLXF_Admin_Service {
 				'unread'         => self::num( $s['u'] ?? 0 ),
 				'lastResponseAt' => ! empty( $s['last_date'] ) ? self::moment( self::str( $s['last_date'] ) ) : null,
 				'shortcode'      => '[EMS_Form_Builder id=' . $id . ']',
-				'editUrl'        => admin_url( 'admin.php?page=Emsfb&state=edit-form&id=' . $id ),
+				'editUrl'        => admin_url( 'admin.php?page=Emsfb_create&form=' . $id ),
 			);
 		}
 		return array(

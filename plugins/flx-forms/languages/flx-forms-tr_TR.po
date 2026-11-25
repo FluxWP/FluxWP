@@ -10140,3 +10140,6 @@ msgid "WooCommerce is not active: %d payment form shows \"Online payment is not 
 msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
 msgstr[0] "WooCommerce etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
 msgstr[1] "WooCommerce etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
+
+msgid "This form type is not supported."
+msgstr "Bu form türü desteklenmiyor."

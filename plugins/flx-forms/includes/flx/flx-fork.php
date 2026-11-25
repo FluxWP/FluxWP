@@ -169,7 +169,6 @@ require_once __DIR__ . '/automations/automations.php';
 /* 2.1.0: form e-mails as editable Flux Mail templates (falls back to Flux Forms's own sender). */
 require_once __DIR__ . '/class-flxf-iletisim.php';
 FLXF_Iletisim::init();
-require_once __DIR__ . '/builder/builder.php';
 /* 2.2.0: Gutenberg blocks that build and edit Flux Forms forms. */
 require_once __DIR__ . '/blocks/blocks.php';
 

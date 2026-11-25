@@ -1,19 +1,16 @@
 import { createContext, useContext, type ReactNode } from 'react';
 import type { Translate } from './i18n';
 
-export type Page = 'dashboard' | 'forms' | 'responses' | 'settings' | 'create' | 'panel' | 'payments' | 'automations' | 'system' | 'addons';
+export type Page = 'dashboard' | 'forms' | 'responses' | 'settings' | 'create' | 'payments' | 'automations' | 'system' | 'addons';
 
-/** React pages. */
-export const REACT_PAGES: Page[] = ['dashboard', 'forms', 'responses', 'settings', 'payments', 'automations', 'system', 'addons'];
+/** React pages. "create" (the builder) also needs the block editor, which only its wp-admin page loads. */
+export const REACT_PAGES: Page[] = ['dashboard', 'forms', 'responses', 'settings', 'create', 'payments', 'automations', 'system', 'addons'];
 
-/** Pages that are still their own wp-admin pages (the builder and the panel): wp-admin slug. */
-export const ISLANDS: Partial<Record<Page, string>> = {
-  create: 'Emsfb_create',
-  panel: 'Emsfb',
-};
+/** The builder's wp-admin page (Forms › New form; &form=N edits). */
+export const BUILDER_SLUG = 'Emsfb_create';
 
 /** Pages only some users or setups have: shown when PHP lists them (#flxf-islands data-tabs). */
-export const MENU_PAGES: Page[] = ['create', 'panel', 'payments', 'automations', 'system', 'addons'];
+export const MENU_PAGES: Page[] = ['create', 'payments', 'automations', 'system', 'addons'];
 
 export interface RouteOpts {
   form?: number;

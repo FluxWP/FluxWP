@@ -2,9 +2,10 @@
 /**
  * Forms › Dashboard, All forms, Responses, Settings, Payments, Automations, System check and Add-ons are one
  * React screen (packages/modules/src/forms, assets/flux/ via tools/fluxapp/embed-sync.sh flx-forms) on the Flux
- * GraphQL shell (flx_admin_screen). The first queries of the page are preloaded, so it opens with data. The
- * builder and the panel are still their own pages: the screen shows their tabs and opens them. The screen shows
- * only the tabs of this user's Forms menu (#flxf-islands data-tabs). Without Flux GraphQL the page says so.
+ * GraphQL shell (flx_admin_screen). The first queries of the page are preloaded, so it opens with data. Forms ›
+ * New form (Emsfb_create, ?form=N to edit) is the builder: the same screen, plus the block editor and the Flux
+ * Forms blocks (blocks/src/builder.js), which only that page loads. The screen shows only the tabs of this user's
+ * Forms menu (#flxf-islands data-tabs). Without Flux GraphQL the page says so.
  *
  * @package FLX_Forms
  */
@@ -26,6 +27,7 @@ function flxf_react_pages(): array {
 		'flxf_automations' => 'automations',
 		'flxf_system'      => 'system',
 		'Emsfb_addon'      => 'addons',
+		'Emsfb_create'     => 'create',
 	);
 }
 
@@ -35,10 +37,7 @@ function flxf_react_pages(): array {
  * @return array<string,string>
  */
 function flxf_other_pages(): array {
-	return array(
-		'Emsfb_create' => 'create',
-		'Emsfb'        => 'panel',
-	);
+	return array();
 }
 
 /** Registers the pages on the shell (before the menu). */
@@ -82,6 +81,9 @@ function flxf_flux_start(): string {
 		if ( isset( $_GET['tab'] ) && 'runs' === sanitize_key( wp_unslash( $_GET['tab'] ) ) ) {
 			return 'automations?tab=runs';
 		}
+	}
+	if ( 'create' === $route ) {
+		return ! empty( $_GET['form'] ) ? 'create?form=' . absint( $_GET['form'] ) : 'create';
 	}
 	if ( 'responses' === $route ) {
 		if ( ! empty( $_GET['entry'] ) ) {
@@ -152,6 +154,8 @@ function flxf_preload_for( string $start ): array {
 			return array( $options, array( 'FlxFormsEntries', $vars ) );
 		case 'payments':
 			return array( array( 'FlxFormsPayments', array() ) );
+		case 'create':
+			return ! empty( $args['form'] ) ? array( array( 'FlxFormsBuilderForm', array( 'id' => absint( $args['form'] ) ) ) ) : array();
 		case 'system':
 			return array( array( 'FlxFormsSystem', array() ) );
 		case 'addons':
@@ -202,3 +206,47 @@ function flxf_screen_page(): void {
 	flx_admin_screen_page();
 	echo '<div id="flxf-islands" hidden data-tabs="' . esc_attr( implode( ',', flxf_other_tabs() ) ) . '"></div>';
 }
+
+/**
+ * The builder (Forms › New form, ?form=N to edit): the block editor and the Flux Forms blocks, which the builder
+ * screen mounts (includes/flx/blocks/src/builder.js).
+ *
+ * @param string $hook Admin page hook.
+ */
+function flxf_builder_assets( $hook ): void {
+	unset( $hook );
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( ! isset( $_GET['page'] ) || 'Emsfb_create' !== sanitize_text_field( wp_unslash( $_GET['page'] ) ) || ! class_exists( 'FLXF_Blocks' ) ) {
+		return;
+	}
+	FLXF_Blocks::builder_assets();
+}
+add_action( 'admin_enqueue_scripts', 'flxf_builder_assets', 20 );
+
+/** Old panel addresses (admin.php?page=Emsfb…): the builder for "edit form", Responses, Settings, else the forms list. */
+function flxf_panel_redirect(): void {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended
+	$state = isset( $_GET['state'] ) ? sanitize_key( wp_unslash( $_GET['state'] ) ) : '';
+	$id    = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
+	// phpcs:enable
+	if ( 'edit-form' === $state && $id ) {
+		$to = admin_url( 'admin.php?page=Emsfb_create&form=' . $id );
+	} elseif ( 'show-messages' === $state && $id ) {
+		$to = admin_url( 'admin.php?page=flxf-responses&form=' . $id );
+	} elseif ( 'setting' === $state ) {
+		$to = admin_url( 'admin.php?page=flxf-settings' );
+	} elseif ( 'create' === $state ) {
+		$to = admin_url( 'admin.php?page=Emsfb_create' );
+	} else {
+		$to = admin_url( 'admin.php?page=flxf-forms' );
+	}
+	wp_safe_redirect( $to );
+	exit;
+}
+add_action( 'load-toplevel_page_Emsfb', 'flxf_panel_redirect' );
+
+/** WordPress lists the top-level page as the first submenu item when it has no submenu of its own: not needed (it redirects). */
+function flxf_hide_panel_item(): void {
+	remove_submenu_page( 'Emsfb', 'Emsfb' );
+}
+add_action( 'admin_menu', 'flxf_hide_panel_item', 999 );

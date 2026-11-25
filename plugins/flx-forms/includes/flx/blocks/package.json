@@ -4,8 +4,8 @@
 	"license": "GPL-2.0-or-later",
 	"packageManager": "bun@1.4.4",
 	"scripts": {
-		"build": "wp-scripts build src/index.js --output-path=build",
-		"start": "wp-scripts start src/index.js --output-path=build"
+		"build": "wp-scripts build index=./src/index.js builder=./src/builder.js --output-path=build",
+		"start": "wp-scripts start index=./src/index.js builder=./src/builder.js --output-path=build"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "30.27.0"

@@ -1,0 +1,9 @@
+query FlxFormsBuilderTemplates {
+  flxFormsBuilderTemplates {
+    key
+    title
+    description
+    type
+    structure
+  }
+}

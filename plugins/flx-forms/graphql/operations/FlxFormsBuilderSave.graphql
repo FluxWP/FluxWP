@@ -1,0 +1,8 @@
+mutation FlxFormsBuilderSave($input: FlxFormsBuilderSaveInput!) {
+  flxFormsBuilderSave(input: $input) {
+    id
+    name
+    hash
+    errors { code message field }
+  }
+}

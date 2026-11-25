@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.10.0
+- Form oluşturucu yenilendi: Formlar › Yeni form ve "Düzenle", Flux Forms bloklarını kendi blok düzenleyicisinde açar. Sayfa düzenleyicideki bloklarla aynıdır, form iki yerde de aynı görünür; ayarlar sağ panelde.
+- Yeni form boş başlar ya da bir şablondan (örn. Fidan Bağışı) seçilir. Kaydet düğmesi ve Ctrl+S; kaydedilmemiş değişiklik varken sayfadan çıkmadan önce sorulur.
+- Form başka yerde (sayfa düzenleyici, başka sekme) değiştiyse kaydetme üzerine yazmaz; "Benim sürümümü kaydet" ya da "Yeniden yükle" seçilir.
+- Klasik oluşturucu ve Panel sayfası kaldırıldı; eski panel adresleri yeni ekranlara yönlenir (form düzenleme → oluşturucu, yanıtlar → Yanıtlar, ayarlar → Ayarlar).
+- Kayıt GraphQL ile (`flxFormsBuilderForm`, `flxFormsBuilderSave`, `flxFormsBuilderTemplates`).
+
 ## 2.9.0
 - Ödeme formları artık WooCommerce ödeme sayfasında ödenir; Flux Forms'un kendi ödeme altyapısı (paketle gelen Stripe add-on'u, Stripe anahtarları ve webhook'u) kaldırıldı. Ödeme, WooCommerce'te açık herhangi bir yöntemle alınır (Flux POS kart, havale…).
 - Ödeme almayan formlar için hiçbir şey gerekmez. Ödeme formu varsa WooCommerce etkin ve en az bir ödeme yöntemi açık olmalı; değilse ödeme kutusu "online ödeme kullanılamıyor" der, Sistem kontrolü bunu hata olarak gösterir. Form para birimi mağaza para birimiyle aynı olmalı.

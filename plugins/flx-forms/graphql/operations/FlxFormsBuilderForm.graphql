@@ -1,0 +1,9 @@
+query FlxFormsBuilderForm($id: Int!) {
+  flxFormsBuilderForm(id: $id) {
+    id
+    name
+    type
+    structure
+    hash
+  }
+}

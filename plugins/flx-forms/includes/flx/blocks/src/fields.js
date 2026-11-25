@@ -15,7 +15,6 @@ import {
 	SelectControl,
 	Button,
 	Notice,
-	ExternalLink,
 	Spinner,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
@@ -769,22 +768,14 @@ export function registerFields() {
 		inserter: false,
 		attributes: { efb: { type: 'object', default: {} }, children: { type: 'array', default: [] } },
 		supports: { html: false, reusable: false, inserter: false },
-		usesContext: ['flxf/formId'],
-		edit: ({ attributes, context }) => {
+		edit: ({ attributes }) => {
 			const r = attributes.efb || {};
-			const formId = context && context['flxf/formId'];
 			const blockProps = useBlockProps({ className: 'flxf-b-field flxf-b-raw' });
 			return (
 				<div {...blockProps}>
 					<span className="flxf-b-label">{r.name || r.type}</span>
 					<Notice status="info" isDismissible={false}>
 						{__('This field type is not available as a block. It is kept unchanged.', 'flx-forms')} <code>{r.type}</code>
-						{formId && cfg().canManage ? (
-							<>
-								{' '}
-								<ExternalLink href={`${cfg().panelUrl}&state=edit-form&id=${formId}`}>{__('Edit in panel', 'flx-forms')}</ExternalLink>
-							</>
-						) : null}
 					</Notice>
 				</div>
 			);

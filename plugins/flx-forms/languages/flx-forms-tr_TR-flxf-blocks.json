@@ -133,9 +133,6 @@
       "This field type is edited in the Flux Forms panel. It is kept unchanged.": [
         "Bu alan türü Flux Forms panelinde düzenlenir. Olduğu gibi korunur."
       ],
-      "Edit in panel": [
-        "Panelde düzenle"
-      ],
       "The form could not be loaded.": [
         "Form yüklenemedi."
       ],
@@ -147,9 +144,6 @@
       ],
       "Flux Form": [
         "Flux Form"
-      ],
-      "Build a new form here, or edit a form made in the Flux Forms panel. Both edit the same form.": [
-        "Burada yeni bir form kurun ya da Flux Forms panelinde yapılmış bir formu düzenleyin. İkisi de aynı formu düzenler."
       ],
       "New form": [
         "Yeni form"
@@ -172,17 +166,11 @@
       "Form name": [
         "Form adı"
       ],
-      "Shown in the Flux Forms panel.": [
-        "Flux Forms panelinde görünür."
-      ],
       "Button text": [
         "Düğme metni"
       ],
       "Flux Forms form #%d": [
         "Flux Forms formu #%d"
-      ],
-      "Open in panel": [
-        "Panelde aç"
       ],
       "Responses": [
         "Yanıtlar"
@@ -259,14 +247,8 @@
       "The title and step bar Flux Forms prints above the fields.": [
         "Flux Forms'un alanların üstüne yazdığı başlık ve adım çubuğu."
       ],
-      "Load the panel version": [
-        "Paneldeki sürümü yükle"
-      ],
       "Keep mine": [
         "Benimkini koru"
-      ],
-      "This form was changed in the Flux Forms panel after you opened it, so your changes were not written to the form. Load the panel version, or keep yours and overwrite it.": [
-        "Bu form, siz açtıktan sonra Flux Forms panelinde değişti; bu yüzden değişiklikleriniz forma yazılmadı. Paneldeki sürümü yükleyin ya da kendinizinkini koruyup üstüne yazın."
       ],
       "This is a multi-step form. Steps are edited in the Flux Forms panel for now; the page shows the form as it is.": [
         "Bu çok adımlı bir form. Adımlar şimdilik Flux Forms panelinde düzenlenir; sayfa formu olduğu gibi gösterir."
@@ -294,9 +276,6 @@
       ],
       "The form structure is not valid.": [
         "Form yapısı geçerli değil."
-      ],
-      "This form type can only be edited in the Flux Forms panel.": [
-        "Bu form türü yalnız Flux Forms panelinde düzenlenebilir."
       ],
       "This form was changed in the Flux Forms panel after you opened it.": [
         "Bu form, siz açtıktan sonra Flux Forms panelinde değişti."
@@ -891,6 +870,24 @@
       ],
       "Forms are now made with Flux Forms. This form keeps working as it is; move it to manage its responses, emails and automations in Flux Forms.": [
         "Formlar artık Flux Forms ile yapılıyor. Bu form olduğu gibi çalışmaya devam eder; yanıtlarını, e-postalarını ve otomasyonlarını Flux Forms'ta yönetmek için taşıyın."
+      ],
+      "Build a new form here, or pick a form made in Forms. Both edit the same form.": [
+        "Burada yeni bir form oluşturun ya da Formlar'da yapılmış bir formu seçin. İkisi de aynı formu düzenler."
+      ],
+      "Shown in Forms.": [
+        "Formlar'da görünür."
+      ],
+      "Load the saved version": [
+        "Kayıtlı sürümü yükle"
+      ],
+      "This form was changed somewhere else after you opened it, so your changes were not written to the form. Load the saved version, or keep yours and overwrite it.": [
+        "Bu form siz açtıktan sonra başka bir yerde değiştirildi, bu yüzden değişiklikleriniz forma yazılmadı. Kayıtlı sürümü yükleyin ya da kendinizinkini tutup üzerine yazın."
+      ],
+      "Open in Forms": [
+        "Formlar'da aç"
+      ],
+      "Settings": [
+        "Ayarlar"
       ]
     }
   }

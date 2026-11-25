@@ -282,3 +282,107 @@ flx_gql_mutation(
 		},
 	)
 );
+
+/* ------------------------------------------------------------ Builder */
+
+flx_gql_type(
+	'FlxFormsBuilderForm',
+	array(
+		'description' => __( 'A form in the builder: its Flux Forms structure and the hash a save sends back.', 'flx-forms' ),
+		'fields'      => array(
+			'id'        => flxf_gql_f( 'Int!', __( 'Form id.', 'flx-forms' ) ),
+			'name'      => flxf_gql_f( 'String!', __( 'Form name.', 'flx-forms' ) ),
+			'type'      => flxf_gql_f( 'String!', __( 'form, survey, subscribe, payment, register or login.', 'flx-forms' ) ),
+			'structure' => flxf_gql_f( 'FlxJSON!', __( 'Flux Forms structure (form settings first, then the fields). The blocks of the builder are made from it.', 'flx-forms' ) ),
+			'hash'      => flxf_gql_f( 'String!', __( 'Version of the stored form; a save with an older hash is refused.', 'flx-forms' ) ),
+		),
+	)
+);
+
+flx_gql_query(
+	'flxFormsBuilderForm',
+	array(
+		'type'        => 'FlxFormsBuilderForm',
+		'description' => __( 'A form to edit in the builder (null when not found).', 'flx-forms' ),
+		'cap'         => flx_gql_any_cap( 'manage_options', 'Emsfb' ),
+		'args'        => array( 'id' => flxf_gql_f( 'Int!', __( 'Form id.', 'flx-forms' ) ) ),
+		'resolve'     => static function ( $root, array $args ) {
+			unset( $root );
+			return class_exists( 'FLXF_Blocks' ) ? FLXF_Blocks::get( flx_gql_int( flx_gql_arr( $args )['id'] ?? 0 ) ) : null;
+		},
+	)
+);
+
+flx_gql_mutation(
+	'flxFormsBuilderSave',
+	array(
+		'description' => __( 'Saves a form from the builder (id 0 creates it). A form changed elsewhere since it was read is refused (CONFLICT) unless force is set.', 'flx-forms' ),
+		'cap'         => flx_gql_any_cap( 'manage_options', 'Emsfb' ),
+		'input'       => array(
+			'id'        => flxf_gql_f( 'Int!', __( 'Form id; 0 creates a form.', 'flx-forms' ) ),
+			'name'      => flxf_gql_f( 'String!', __( 'Form name.', 'flx-forms' ) ),
+			'structure' => flxf_gql_f( 'FlxJSON!', __( 'Flux Forms structure.', 'flx-forms' ) ),
+			'hash'      => flxf_gql_f( 'String', __( 'Hash the builder read.', 'flx-forms' ) ),
+			'force'     => flxf_gql_f( 'Boolean', __( 'Save even when the form changed since.', 'flx-forms' ) ),
+		),
+		'output'      => array(
+			'id'   => flxf_gql_f( 'Int', __( 'Form id.', 'flx-forms' ) ),
+			'name' => flxf_gql_f( 'String', __( 'Form name as saved.', 'flx-forms' ) ),
+			'hash' => flxf_gql_f( 'String', __( 'New hash.', 'flx-forms' ) ),
+		),
+		'resolve'     => static function ( array $input ) {
+			if ( ! class_exists( 'FLXF_Blocks' ) ) {
+				return new WP_Error( 'flxf_builder', __( 'The form could not be saved.', 'flx-forms' ), array( 'status' => 500 ) );
+			}
+			$in = flx_gql_arr( $input );
+			return FLXF_Blocks::save(
+				flx_gql_int( $in['id'] ?? 0 ),
+				is_string( $in['name'] ?? null ) ? $in['name'] : '',
+				$in['structure'] ?? null,
+				is_string( $in['hash'] ?? null ) ? $in['hash'] : '',
+				! empty( $in['force'] )
+			);
+		},
+	)
+);
+
+flx_gql_type(
+	'FlxFormsBuilderTemplate',
+	array(
+		'description' => __( 'A ready form a new form can start from (filter flxf_builder_templates).', 'flx-forms' ),
+		'fields'      => array(
+			'key'         => flxf_gql_f( 'String!', __( 'Template key.', 'flx-forms' ) ),
+			'title'       => flxf_gql_f( 'String!', __( 'Title.', 'flx-forms' ) ),
+			'description' => flxf_gql_f( 'String!', __( 'One line on the template.', 'flx-forms' ) ),
+			'type'        => flxf_gql_f( 'String!', __( 'Form type.', 'flx-forms' ) ),
+			'structure'   => flxf_gql_f( 'FlxJSON!', __( 'Flux Forms structure.', 'flx-forms' ) ),
+		),
+	)
+);
+
+flx_gql_query(
+	'flxFormsBuilderTemplates',
+	array(
+		'type'        => '[FlxFormsBuilderTemplate!]!',
+		'description' => __( 'The templates a new form can start from, besides the blank form.', 'flx-forms' ),
+		'cap'         => flx_gql_any_cap( 'manage_options', 'Emsfb' ),
+		'resolve'     => static function () {
+			$out = array();
+			foreach ( (array) apply_filters( 'flxf_builder_templates', array() ) as $t ) {
+				if ( ! is_array( $t ) || ! is_string( $t['key'] ?? null ) || '' === $t['key'] || ! is_array( $t['structure'] ?? null ) || array() === $t['structure'] ) {
+					continue;
+				}
+				$first = $t['structure'][0] ?? null;
+				$type  = is_string( $t['type'] ?? null ) ? $t['type'] : ( is_array( $first ) && is_string( $first['type'] ?? null ) ? $first['type'] : 'form' );
+				$out[] = array(
+					'key'         => sanitize_key( $t['key'] ),
+					'title'       => is_string( $t['title'] ?? null ) ? $t['title'] : $t['key'],
+					'description' => is_string( $t['description'] ?? null ) ? $t['description'] : '',
+					'type'        => $type,
+					'structure'   => $t['structure'],
+				);
+			}
+			return $out;
+		},
+	)
+);
