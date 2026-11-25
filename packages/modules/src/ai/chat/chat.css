@@ -156,6 +156,7 @@ button.flxai-model:hover{color:var(--flux-text)}.flxai-k.is-warn{color:var(--flu
 .flxai-ws-tabs{display:flex;gap:2px;flex:1;min-width:0}
 .flxai-ws-tabs button{display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:var(--mut);font:inherit;font-size:13px;padding:5px 10px;border-radius:7px;cursor:pointer}
 .flxai-ws-tabs button.is-on{background:color-mix(in srgb,var(--flux-text) 8%,transparent);color:var(--flux-text)}
+html.flxa-dark .flxai-ws-tabs b,body.flx-dark .flxai-ws-tabs b{background:color-mix(in srgb,var(--flux-warning) 55%,#000)}
 .flxai-ws-tabs b{background:var(--flux-warning);color:#fff;border-radius:9px;font-size:11px;padding:0 6px;line-height:16px}
 .flxai-ws-body{flex:1;min-height:0;overflow:auto;padding:10px 12px}
 .flxai-ws-note{background:color-mix(in srgb,var(--flux-warning) 14%,transparent);border-radius:7px;padding:7px 10px;font-size:12.5px;margin-bottom:8px}
