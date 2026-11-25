@@ -289,6 +289,10 @@
 		// Submenu items first: a top-level item links to the same page as its first submenu item.
 		var links = [].slice.call(menu.querySelectorAll('.wp-submenu a[href]')).concat([].slice.call(menu.querySelectorAll('a.menu-top[href]')));
 		for (var i = 0; i < links.length; i++) {
+			// "#" links are in-page toggles (e.g. the "Other" row); they resolve to the current page and must never count as its menu link.
+			if ((links[i].getAttribute('href') || '').charAt(0) === '#') {
+				continue;
+			}
 			var x = match(links[i].href);
 			if (!x || x.page !== m.page) {
 				continue;
@@ -335,6 +339,10 @@
 				}
 			}
 		}
+		// Lets the admin chrome (Flux Admin) repaint, e.g. open the group of the new current item.
+		try {
+			d.dispatchEvent(new CustomEvent('flx:menu-marked'));
+		} catch (e) {}
 	}
 
 	var bar = null;
