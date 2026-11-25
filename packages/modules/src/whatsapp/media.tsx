@@ -1,7 +1,7 @@
 // Medya kaynağı: WP admin'de çerez + _wpnonce'lu adres doğrudan kullanılır (aralıklı akış, önbellek).
 // Uygulamada <img src> belirteç gönderemez; dosya istemciyle blob olarak çekilir ve nesne adresi verilir.
 import { useEffect, useRef, useState } from 'react';
-import { Pause, Play } from 'lucide-react';
+import { I } from './icons';
 import { useHost } from '../host';
 import { flxc } from '@fluxwp/core';
 import { duration } from './format';
@@ -69,26 +69,29 @@ export function AudioPlayer({ url, secs, ptt }: { url: string; secs: number; ptt
   };
 
   return (
-    <div className={'wa-audio' + (ptt ? ' ptt' : '')}>
-      <button type="button" className="wa-audio-btn" onClick={toggle} aria-label={on ? 'pause' : 'play'}>
-        {on ? <Pause size={18} /> : <Play size={18} />}
+    <div className={'flxc-au' + (ptt ? ' is-ptt' : '')}>
+      <span className="flxc-au-mic"><I n="mic" /></span>
+      <button type="button" className="flxc-au-play" onClick={toggle} aria-label={on ? 'pause' : 'play'}>
+        <I n={on ? 'pause' : 'play'} />
       </button>
-      <input
-        type="range"
-        min={0}
-        max={len || 1}
-        step={0.1}
-        value={pos}
-        onChange={(e) => {
-          const v = Number(e.target.value);
-          setPos(v);
-          if (ref.current) ref.current.currentTime = v;
-        }}
-      />
-      <span className="wa-audio-time">{duration(on || pos ? pos : len)}</span>
+      <div className="flxc-au-mid">
+        <input
+          type="range"
+          className="flxc-au-bar"
+          min={0}
+          max={1000}
+          value={len ? Math.round((pos / len) * 1000) : 0}
+          onChange={(e) => {
+            const v = (Number(e.target.value) / 1000) * (len || 0);
+            setPos(v);
+            if (ref.current) ref.current.currentTime = v;
+          }}
+        />
+        <span className="flxc-au-time">{duration(on || pos ? pos : len)}</span>
+      </div>
       <button
         type="button"
-        className="wa-audio-speed"
+        className="flxc-au-speed"
         onClick={() => {
           const n = SPEEDS[(SPEEDS.indexOf(speed) + 1) % SPEEDS.length]!;
           setSpeed(n);

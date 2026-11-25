@@ -1,272 +1,456 @@
-// Tek mesaj balonu: tüm türler, alıntı, tepkiler, tikler, başarısız + tekrar dene, mesaj menüsü.
+// Tek mesaj balonu, klasik Flux Chat işaretlemesi (flxc-m / flxc-b / flxc-c): tüm türler, alıntı, tepkiler, tikler,
+// silinen mesaj satırı, başarısız + tekrar dene, mesaj menüsü (sağ tık, ▾, uzun bas).
 import { memo, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  AlertCircle, Bot, Check, CheckCheck, ChevronDown, Clock, Copy, Download, FileText, MapPin,
-  Pencil, Reply, RotateCw, Smile, StickyNote, Trash2, UserRound, Video,
-} from 'lucide-react';
 import type { FlxcLinkPreview, FlxcMessage, FlxcStatus } from '@fluxwp/core';
-import { useOverlay } from '@fluxwp/ui';
 import { AudioPlayer, useMediaSrc } from './media';
-import { WaText, clock, emojiOnly, fileSize } from './format';
+import { I, Ticks } from './icons';
+import { fmt, fmtSecs, fmtSize, useL, waFormat, type L } from './ui';
 
-export const QUICK_REACTIONS = ['👍', '❤️', '😂', '😮', '😢', '🙏'];
+export const REACTS = ['👍', '❤️', '😂', '😮', '😢', '🤲'];
 
 export interface BubbleActions {
   quote: (m: FlxcMessage) => void;
   jump: (id: number) => void;
-  react: (m: FlxcMessage, emoji: string) => void;
+  menu: (m: FlxcMessage, anchor: HTMLElement, at?: { x: number; y: number }) => void;
   retry: (m: FlxcMessage) => void;
-  deleteNote: (m: FlxcMessage) => void;
-  openChatWith?: (phone: string) => void;
+  toggleDeleted: (m: FlxcMessage) => void;
+  lightbox: (src: string, kind: 'image' | 'video', m: FlxcMessage) => void;
+  openChatWith?: (phone: string, name: string) => void;
   linkPreview: (url: string) => Promise<FlxcLinkPreview | null>;
+  chatTitle: string;
+  meId: number;
 }
 
-function Ticks({ s }: { s: FlxcStatus }) {
-  if (s === 'pending') return <Clock size={12} />;
-  if (s === 'failed') return <AlertCircle size={12} className="text-danger" />;
-  if (s === 'read' || s === 'played') return <CheckCheck size={13} className="read" />;
-  if (s === 'delivered') return <CheckCheck size={13} />;
-  if (s === 'sent') return <Check size={13} />;
-  return null;
+export function statusLabel(s: FlxcStatus, L: L) {
+  return ({ pending: L('Gönderiliyor'), sent: L('Gönderildi'), delivered: L('İletildi'), read: L('Okundu'), played: L('Dinlendi'), failed: L('Gönderilemedi') } as Record<string, string>)[s] || '';
 }
 
-function Lightbox({ src, onClose }: { src: string; onClose: () => void }) {
-  useEffect(() => useOverlay.getState().pushOverlay(), []);
-  useEffect(() => {
-    const k = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    window.addEventListener('keydown', k);
-    return () => window.removeEventListener('keydown', k);
-  }, [onClose]);
+function sourceTag(m: FlxcMessage, L: L, meId: number) {
+  const map: Record<string, string> = { phone: L('Telefondan'), certificate: L('Sertifika'), cert: L('Sertifika'), record: L('Kayıt'), auto: L('Otomatik'), automation: L('Otomatik'), ai: L('Yapay zekâ önerisi'), bot: L('Asistan'), api: L('Sistem'), quick: '' };
+  const s = map[m.source];
+  if (m.dir === 'out' && m.user && m.userId !== meId) return m.user + (s ? ' · ' + s : '');
+  return s || '';
+}
+
+function Meta({ m }: { m: FlxcMessage }) {
+  const { L, lang } = useL();
+  const f = fmt(lang);
   return (
-    <div className="wa-lightbox" onClick={onClose}>
-      <img src={src} alt="" />
-    </div>
+    <span className="flxc-meta">
+      {m.edited && <span className="flxc-edited">{L('düzenlendi')}</span>}
+      <time dateTime={new Date(m.ts).toISOString()} title={f.long(m.ts) + ' ' + f.time(m.ts)}>{f.time(m.ts)}</time>
+      {m.dir === 'out' && <Ticks s={m.status} label={statusLabel(m.status, L)} />}
+    </span>
   );
 }
 
-function ImageMedia({ m }: { m: FlxcMessage }) {
+const ratio = (w?: number, h?: number) => (w && h ? Math.min(1.6, Math.max(0.5, h / w)) : 0.75);
+const thumbUrl = (t?: string) => (!t ? '' : /^(https?:|data:|blob:)/.test(t) ? t : 'data:image/jpeg;base64,' + t);
+
+function ImageMedia({ m, a }: { m: FlxcMessage; a: BubbleActions }) {
+  const { L } = useL();
   const md = m.media!;
   const { src } = useMediaSrc(md.url);
-  const [big, setBig] = useState(false);
-  const ratio = md.w && md.h ? md.w / md.h : undefined;
+  const [broken, setBroken] = useState(false);
   const sticker = m.type === 'sticker';
+  const th = thumbUrl(md.thumb);
   return (
-    <>
-      <button type="button" className={'wa-img' + (sticker ? ' sticker' : '')} onClick={() => src && setBig(true)} style={ratio ? { aspectRatio: String(ratio) } : undefined}>
-        {src ? <img src={src} alt={md.name} /> : md.thumb ? <img src={`data:image/jpeg;base64,${md.thumb}`} alt="" className="blur" /> : <span className="wa-img-ph" />}
-      </button>
-      {big && <Lightbox src={src} onClose={() => setBig(false)} />}
-    </>
+    <button
+      type="button"
+      className={'flxc-img' + (sticker ? ' flxc-sticker' : '') + (broken ? ' is-broken' : '')}
+      style={{ ...(sticker ? {} : { aspectRatio: '1 / ' + ratio(md.w, md.h) }), ...(th ? { backgroundImage: `url("${th}")` } : {}) }}
+      onClick={() => src && a.lightbox(src, 'image', m)}
+    >
+      {broken ? (
+        <span>
+          <I n="image" />
+          {L('Görsel yüklenemedi')}
+        </span>
+      ) : (
+        src && <img src={src} alt={m.body || L('Fotoğraf')} loading="lazy" onError={() => setBroken(true)} />
+      )}
+    </button>
   );
 }
 
-function VideoMedia({ m }: { m: FlxcMessage }) {
+function VideoMedia({ m, a }: { m: FlxcMessage; a: BubbleActions }) {
+  const { L } = useL();
+  const md = m.media!;
   const [want, setWant] = useState(false);
-  const { src } = useMediaSrc(m.media!.url, want);
-  if (!want) {
-    return (
-      <button type="button" className="wa-video-ph" onClick={() => setWant(true)}>
-        {m.media!.thumb && <img src={`data:image/jpeg;base64,${m.media!.thumb}`} alt="" />}
-        <Video size={28} />
-      </button>
-    );
-  }
-  return src ? <video className="wa-video" src={src} controls autoPlay /> : <span className="wa-img-ph" />;
+  const { src } = useMediaSrc(md.url, want);
+  const [ar, setAr] = useState(ratio(md.w, md.h));
+  const [secs, setSecs] = useState(md.secs || 0);
+  const th = thumbUrl(md.thumb);
+  useEffect(() => {
+    if (want && src) {
+      a.lightbox(src, 'video', m);
+      setWant(false);
+    }
+  }, [want, src]); // eslint-disable-line react-hooks/exhaustive-deps
+  return (
+    <button type="button" className="flxc-img flxc-vid" style={{ aspectRatio: '1 / ' + ar, ...(th ? { backgroundImage: `url("${th}")` } : {}) }} aria-label={L('Videoyu oynat')} onClick={() => (src ? a.lightbox(src, 'video', m) : setWant(true))}>
+      {src && !th && !src.startsWith('blob:') && (
+        <video
+          src={src + '#t=0.1'}
+          preload="metadata"
+          playsInline
+          muted
+          tabIndex={-1}
+          aria-hidden="true"
+          onLoadedMetadata={(e) => {
+            const v = e.currentTarget;
+            if (!(md.w && md.h) && v.videoWidth) setAr(Math.min(1.6, Math.max(0.5, v.videoHeight / v.videoWidth)));
+            if (!md.secs && Number.isFinite(v.duration) && v.duration > 0) setSecs(Math.round(v.duration));
+          }}
+        />
+      )}
+      <span className="flxc-vid-play"><I n="play" /></span>
+      <span className="flxc-vid-dur"><I n="video" /><em>{secs ? fmtSecs(secs) : ''}</em></span>
+    </button>
+  );
 }
 
 function DocMedia({ m }: { m: FlxcMessage }) {
+  const { L, lang } = useL();
   const md = m.media!;
   const [want, setWant] = useState(false);
   const { src } = useMediaSrc(md.url, want);
   useEffect(() => {
     if (want && src) {
-      const a = document.createElement('a');
-      a.href = src;
-      a.download = md.name || 'file';
-      a.target = '_blank';
-      a.click();
+      const el = document.createElement('a');
+      el.href = src + (src.startsWith('blob:') ? '' : (src.includes('?') ? '&' : '?') + 'download=1');
+      el.download = md.name || '';
+      document.body.appendChild(el);
+      el.click();
+      setTimeout(() => el.remove(), 1000);
       setWant(false);
     }
   }, [want, src, md.name]);
-  const ext = (md.name.split('.').pop() || md.mime.split('/').pop() || '').toUpperCase().slice(0, 5);
   return (
-    <button type="button" className="wa-doc" onClick={() => setWant(true)}>
-      <FileText size={26} />
-      <span className="grow ellipsis">
-        <strong className="ellipsis">{md.name || ext}</strong>
-        <span className="muted small">{[ext, fileSize(md.size)].filter(Boolean).join(' · ')}</span>
+    <a
+      className="flxc-doc"
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        setWant(true);
+      }}
+    >
+      <span className="flxc-doc-i">
+        <I n="doc" />
+        <em>{((md.name || '').split('.').pop() || 'file').slice(0, 4).toUpperCase()}</em>
       </span>
-      <Download size={16} />
-    </button>
-  );
-}
-
-const lpSeen = new Map<string, FlxcLinkPreview | null>();
-function LinkCard({ m, load }: { m: FlxcMessage; load: BubbleActions['linkPreview'] }) {
-  const url = typeof m.lp === 'object' && m.lp ? m.lp.url : '';
-  const [lp, setLp] = useState<FlxcLinkPreview | null>(typeof m.lp === 'object' && m.lp && m.lp.title ? m.lp : lpSeen.get(url) ?? null);
-  useEffect(() => {
-    if (lp || !url || lpSeen.has(url)) return;
-    let live = true;
-    void load(url).then((r) => {
-      lpSeen.set(url, r);
-      if (live) setLp(r);
-    });
-    return () => {
-      live = false;
-    };
-  }, [url, lp, load]);
-  if (!lp || !lp.title) return null;
-  return (
-    <a className="wa-lp" href={lp.url} target="_blank" rel="noreferrer noopener">
-      {lp.image && <img src={lp.image} alt="" />}
-      <span>
-        <strong>{lp.title}</strong>
-        {lp.desc && <span className="muted small clamp2">{lp.desc}</span>}
-        <span className="muted xsmall">{lp.domain || lp.site}</span>
+      <span className="flxc-doc-t">
+        <strong>{md.name || L('Belge')}</strong>
+        <small>{[fmtSize(md.size, lang), (md.mime || '').split('/').pop()].filter(Boolean).join(' · ')}</small>
       </span>
+      <I n="download" cls="flxc-doc-dl" />
     </a>
   );
 }
 
-function Menu({ m, a, onClose }: { m: FlxcMessage; a: BubbleActions; onClose: () => void }) {
-  const { t } = useTranslation();
+const lpSeen = new Map<string, FlxcLinkPreview | null>();
+const RX_URL = /(https?:\/\/[^\s<]+[^\s<.,:;"')\]!?*_~])/;
+function LpCard({ d }: { d: { url: string; title?: string; desc?: string; image?: string; thumb?: string; domain?: string } }) {
+  const [bad, setBad] = useState(false);
+  const img = d.image || d.thumb || '';
+  const wide = !!d.image && !bad;
+  let dom = d.domain || '';
+  if (!dom) {
+    try {
+      dom = new URL(d.url).hostname.replace(/^www\./, '');
+    } catch {
+      dom = '';
+    }
+  }
+  return (
+    <a className={'flxc-lp' + (wide ? ' is-wide' : '')} href={d.url} target="_blank" rel="noopener noreferrer">
+      {img && !bad && (
+        <span className="flxc-lp-img">
+          <img src={img} alt="" loading="lazy" referrerPolicy="no-referrer" onError={() => setBad(true)} />
+        </span>
+      )}
+      <span className="flxc-lp-t">
+        {d.title && <strong>{d.title}</strong>}
+        {d.desc && <small>{d.desc}</small>}
+        <em>{dom}</em>
+      </span>
+    </a>
+  );
+}
+function LpSlot({ m, text, load }: { m: FlxcMessage; text: string; load: BubbleActions['linkPreview'] }) {
+  const own = typeof m.lp === 'object' && m.lp ? m.lp : null;
+  const u = own?.url || RX_URL.exec(text)?.[1] || '';
+  const [d, setD] = useState<FlxcLinkPreview | null>(lpSeen.get(u) ?? null);
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const k = (e: MouseEvent) => !ref.current?.contains(e.target as Node) && onClose();
-    const esc = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    setTimeout(() => document.addEventListener('mousedown', k));
-    window.addEventListener('keydown', esc);
-    return () => (document.removeEventListener('mousedown', k), window.removeEventListener('keydown', esc));
-  }, [onClose]);
-  const canReact = !!m.wa && (m.dir === 'in' || m.dir === 'out');
-  const item = (icon: React.ReactNode, label: string, f: () => void) => (
-    <button type="button" onClick={() => (f(), onClose())}>{icon}{label}</button>
-  );
-  return (
-    <div className="wa-menu" ref={ref}>
-      {canReact && (
-        <div className="wa-menu-react">
-          {QUICK_REACTIONS.map((e) => (
-            <button key={e} type="button" onClick={() => (a.react(m, e), onClose())}>{e}</button>
-          ))}
-        </div>
-      )}
-      {m.dir !== 'system' && m.id > 0 && item(<Reply size={15} />, t('wa.reply'), () => a.quote(m))}
-      {m.body && item(<Copy size={15} />, t('wa.copy'), () => void navigator.clipboard?.writeText(m.body))}
-      {m.status === 'failed' && item(<RotateCw size={15} />, t('wa.retry'), () => a.retry(m))}
-      {m.dir === 'note' && m.type !== 'deleted' && item(<Trash2 size={15} />, t('wa.deleteNote'), () => a.deleteNote(m))}
-    </div>
-  );
+    if (!u || lpSeen.has(u)) return;
+    let live = true;
+    const go = () =>
+      void load(u).then((r) => {
+        lpSeen.set(u, r);
+        if (live) setD(r);
+      });
+    const el = ref.current;
+    if (el && typeof IntersectionObserver !== 'undefined') {
+      const ob = new IntersectionObserver(
+        (es) => {
+          if (es.some((e) => e.isIntersecting)) {
+            ob.disconnect();
+            go();
+          }
+        },
+        { rootMargin: '400px 0px' },
+      );
+      ob.observe(el);
+      return () => {
+        live = false;
+        ob.disconnect();
+      };
+    }
+    go();
+    return () => {
+      live = false;
+    };
+  }, [u, load]);
+  const card = d && d.title ? d : own && (own.title || own.desc) ? own : null;
+  if (!u || (!card && lpSeen.has(u))) return null;
+  return <div className="flxc-lp-slot" ref={ref}>{card && <LpCard d={card} />}</div>;
 }
 
-function sourceLabel(m: FlxcMessage, t: (k: string) => string): string {
-  if (m.dir !== 'out') return '';
-  if (m.source === 'bot') return t('wa.src.bot');
-  if (m.source === 'ai') return t('wa.src.ai');
-  if (m.source === 'phone') return t('wa.src.phone');
-  if (m.source === 'auto' || m.source === 'automation') return t('wa.src.auto');
-  if (m.source === 'api') return t('wa.src.api');
-  if (m.source === 'cert' || m.source === 'certificate') return t('wa.src.cert');
-  return '';
-}
-
-export const Bubble = memo(function Bubble({ m, a, first, group, highlight }: { m: FlxcMessage; a: BubbleActions; first: boolean; group: boolean; highlight: boolean }) {
-  const { t, i18n } = useTranslation();
-  const [menu, setMenu] = useState(false);
-  const lang = i18n.language;
-
-  if (m.dir === 'system') {
-    return <div className="wa-system"><span>{m.body}</span></div>;
-  }
-
-  const reacts = Object.values(m.react ?? {}).filter(Boolean);
-  const big = m.type === 'text' && emojiOnly(m.body);
-  const src = sourceLabel(m, t);
-  const cls = ['wa-bubble', m.dir, first ? 'first' : '', big ? 'big-emoji' : '', highlight ? 'flash' : '', m.source === 'bot' ? 'by-bot' : '', m.type === 'sticker' ? 'is-sticker' : ''].filter(Boolean).join(' ');
-
-  let content: React.ReactNode;
+function Content({ m, a }: { m: FlxcMessage; a: BubbleActions }) {
+  const { L } = useL();
+  const md = m.media;
+  let body: React.ReactNode = null;
   switch (m.type) {
+    case 'deleted':
+      body = <span className="flxc-deleted"><I n="close" />{L('Bu mesaj silindi')}</span>;
+      break;
     case 'image':
     case 'sticker':
-      content = m.media ? <ImageMedia m={m} /> : null;
+      body = md ? <ImageMedia m={m} a={a} /> : null;
       break;
     case 'video':
-      content = m.media ? <VideoMedia m={m} /> : null;
+      body = md ? <VideoMedia m={m} a={a} /> : null;
       break;
     case 'audio':
-      content = m.media ? <AudioPlayer url={m.media.url} secs={m.media.secs} ptt={m.media.ptt} /> : null;
+      body = md ? <AudioPlayer url={md.url} secs={md.secs} ptt={md.ptt} /> : null;
       break;
     case 'document':
-      content = m.media ? <DocMedia m={m} /> : null;
+      body = md ? <DocMedia m={m} /> : null;
       break;
-    case 'location':
-      content = m.loc ? (
-        <a className="wa-loc" href={`https://maps.google.com/?q=${m.loc.lat},${m.loc.lng}`} target="_blank" rel="noreferrer noopener">
-          <MapPin size={18} /> {m.loc.name || `${m.loc.lat.toFixed(5)}, ${m.loc.lng.toFixed(5)}`}
+    case 'location': {
+      const lq = m.loc ? m.loc.lat + ',' + m.loc.lng : '';
+      body = (
+        <a className="flxc-loc" href={'https://maps.google.com/?q=' + encodeURIComponent(lq)} target="_blank" rel="noopener">
+          <span className="flxc-loc-map"><I n="loc" /></span>
+          <span>
+            <strong>{m.loc?.name || L('Konum')}</strong>
+            <small>{lq}</small>
+          </span>
         </a>
-      ) : null;
+      );
       break;
+    }
     case 'contact':
-      content = (
-        <div className="wa-contact">
-          <UserRound size={18} /> <span className="grow">{m.body || m.vcardPhone}</span>
-          {m.vcardPhone && a.openChatWith && <button type="button" className="btn-ghost small" onClick={() => a.openChatWith!(m.vcardPhone!)}>{t('wa.message')}</button>}
+      body = (
+        <div className="flxc-vcard">
+          <span className="flxc-av flxc-av-sm" style={{ background: '#8696a0' }}><I n="person" /></span>
+          <span>
+            <strong>{m.body || L('Kişi kartı')}</strong>
+            {m.vcardPhone && <small>+{m.vcardPhone}</small>}
+          </span>
+          {m.vcardPhone && a.openChatWith && (
+            <button type="button" className="flxc-link" onClick={() => a.openChatWith!(m.vcardPhone!, m.body)}>
+              {L('Mesaj gönder')}
+            </button>
+          )}
         </div>
       );
       break;
-    case 'deleted':
-      content = <em className="muted">{t('wa.deletedMsg')}</em>;
-      break;
     case 'unknown':
     case 'poll':
-      content = <em className="muted">{m.type === 'poll' ? t('wa.poll') : t('wa.unsupported')}</em>;
+      body = <span className="flxc-deleted"><I n="warn" />{L('Bu mesaj türü burada gösterilemiyor. Telefondan bakın.')}</span>;
       break;
-    default:
-      content = null;
   }
-  const showBody = m.body && !['deleted', 'contact', 'location', 'unknown'].includes(m.type);
-
+  const text = m.type === 'contact' || m.type === 'deleted' || m.type === 'location' || m.type === 'unknown' || m.type === 'poll' ? '' : m.body;
+  const jumbo = !!text && m.type === 'text' && /^(\p{Extended_Pictographic}|️|‍|\s){1,6}$/u.test(text);
+  const over = !text && (m.type === 'image' || m.type === 'video' || m.type === 'sticker');
   return (
-    <div className={'wa-row ' + m.dir} id={`wa-m-${m.id}`}>
-      <div className={cls} onDoubleClick={() => m.id > 0 && a.quote(m)}>
-        {m.dir === 'note' && <span className="wa-by"><StickyNote size={11} /> {t('wa.note')} · {m.user}</span>}
-        {m.dir === 'in' && group && first && m.sender && <span className="wa-sender">{m.sender}</span>}
-        {m.dir === 'out' && first && !!(src || m.user) && (
-          <span className="wa-by">{m.source === 'bot' && <Bot size={11} />} {src || m.user}</span>
+    <div className="flxc-c">
+      {body}
+      {text && m.lp !== false && m.type === 'text' && <LpSlot m={m} text={text} load={a.linkPreview} />}
+      {text && (
+        <div className={'flxc-text' + (jumbo ? ' is-jumbo' : '')}>
+          <span dangerouslySetInnerHTML={{ __html: waFormat(text) }} />
+          <span className={'flxc-meta-sp' + (m.edited ? ' is-edited' : '')} />
+        </div>
+      )}
+      {over ? (
+        <span className="flxc-meta is-over">
+          <MetaInner m={m} />
+        </span>
+      ) : (
+        <Meta m={m} />
+      )}
+    </div>
+  );
+}
+function MetaInner({ m }: { m: FlxcMessage }) {
+  const { L, lang } = useL();
+  const f = fmt(lang);
+  return (
+    <>
+      {m.edited && <span className="flxc-edited">{L('düzenlendi')}</span>}
+      <time dateTime={new Date(m.ts).toISOString()} title={f.long(m.ts) + ' ' + f.time(m.ts)}>{f.time(m.ts)}</time>
+      {m.dir === 'out' && <Ticks s={m.status} label={statusLabel(m.status, L)} />}
+    </>
+  );
+}
+
+function delLabel(m: FlxcMessage, L: L) {
+  const d = m.del;
+  const what = ({ contact: L('Kişi bu mesajı sildi'), phone: L('Telefondan silindi'), everyone: L('Herkesten silindi'), panel: L('Panelde gizlendi') } as Record<string, string>)[d?.scope ?? ''] || L('Bu mesaj silindi');
+  return [what, d?.by, d?.ago].filter(Boolean).join(' · ');
+}
+
+function longPress(fn: () => void) {
+  let tm: ReturnType<typeof setTimeout> | undefined;
+  let moved = false;
+  return {
+    onTouchStart: () => {
+      moved = false;
+      tm = setTimeout(() => {
+        if (!moved) {
+          fn();
+          navigator.vibrate?.(15);
+        }
+      }, 520);
+    },
+    onTouchMove: () => {
+      moved = true;
+      clearTimeout(tm);
+    },
+    onTouchEnd: () => clearTimeout(tm),
+  };
+}
+
+export const Bubble = memo(function Bubble({ m, a, first, open, flash }: { m: FlxcMessage; a: BubbleActions; first: boolean; open: boolean; flash: boolean }) {
+  const { L, lang } = useL();
+  const bRef = useRef<HTMLDivElement>(null);
+  const f = fmt(lang);
+  if (m.dir === 'system') {
+    return (
+      <div className="flxc-sys" data-mid={m.id}>
+        <span>{m.body + ' · ' + f.time(m.ts)}</span>
+      </div>
+    );
+  }
+  const isNote = m.dir === 'note';
+  const dirCls = isNote ? 'note' : m.dir;
+  if (m.deleted && (!open || m.del?.empty)) {
+    const canOpen = !m.del?.empty;
+    const tip = [delLabel(m, L), m.del?.atText, L('Yapay zekâ bu mesajı okumaz.')].filter(Boolean).join('\n');
+    const inner = (
+      <>
+        <span className="flxc-deleted">
+          <I n="block" />
+          {L('Bu mesaj silindi')}
+          {canOpen && <small className="flxc-del-show">{L('Göster')}</small>}
+        </span>
+        <Meta m={m} />
+      </>
+    );
+    return (
+      <div className={'flxc-m flxc-m-' + dirCls + ' is-deleted is-folded'} data-mid={m.id} id={`wa-m-${m.id}`}>
+        {canOpen ? (
+          <button type="button" className="flxc-b flxc-b-folded" title={tip} aria-expanded="false" onClick={() => a.toggleDeleted(m)}>
+            {inner}
+          </button>
+        ) : (
+          <div className="flxc-b flxc-b-folded" title={tip}>
+            {inner}
+          </div>
         )}
-        {m.deleted && <span className="pill warn small">{t('wa.deletedBadge')}</span>}
-        {m.quoted && (
-          <button type="button" className={'wa-quote ' + m.quoted.dir} onClick={() => a.jump(m.quoted!.id)}>
-            <strong>{m.quoted.dir === 'in' ? t('wa.customer') : m.quoted.user || t('wa.you')}</strong>
-            <span className="ellipsis">{m.quoted.body}</span>
+      </div>
+    );
+  }
+  const tmp = !!m.local || m.id < 0;
+  const reacts = Object.values(m.react ?? {}).filter(Boolean);
+  const tag = isNote ? L('Dahili not · {n}', { n: m.user || '' }) : sourceTag(m, L, a.meId);
+  const media = !m.deleted && (m.type === 'image' || m.type === 'video') && !!m.media;
+  const hasLp = m.type === 'text' && m.lp !== false && !!m.body && (RX_URL.test(m.body) || (typeof m.lp === 'object' && !!m.lp));
+  const rowCls =
+    'flxc-m flxc-m-' + dirCls + (first ? ' is-first' : '') + (tmp ? ' is-tmp' : '') + (m.status === 'failed' ? ' is-failed' : '') + (m.type === 'sticker' ? ' is-sticker' : '') + (m.deleted ? ' is-deleted' : '') + (reacts.length ? ' has-react' : '') + (flash ? ' is-flash' : '');
+  const canMenu = !tmp && !m.deleted;
+  const lp = canMenu ? longPress(() => bRef.current && a.menu(m, bRef.current)) : {};
+  return (
+    <div className={rowCls} data-mid={m.id} id={`wa-m-${m.id}`}>
+      <div
+        ref={bRef}
+        className={'flxc-b' + (media ? ' has-media' : '') + (hasLp ? ' has-lp' : '')}
+        {...lp}
+        onContextMenu={(e) => {
+          if (!canMenu) return;
+          if (matchMedia('(hover: none)').matches) return e.preventDefault();
+          const sel = String(window.getSelection?.() ?? '');
+          if (sel || (e.target as HTMLElement).closest('a[href]')) return;
+          e.preventDefault();
+          a.menu(m, e.currentTarget, { x: e.clientX, y: e.clientY });
+        }}
+        onDoubleClick={(e) => {
+          if (canMenu && !(e.target as HTMLElement).closest('a,audio,video,button')) a.quote(m);
+        }}
+      >
+        {m.deleted && (
+          <button type="button" className="flxc-b-del" title={L('Gizle')} onClick={() => a.toggleDeleted(m)}>
+            <I n="block" />
+            {delLabel(m, L)}
+            <span className="flxc-b-del-x"><I n="down" /></span>
           </button>
         )}
-        {content}
-        {showBody && <div className="wa-text"><WaText text={m.body} /></div>}
-        {typeof m.lp === 'object' && m.lp && <LinkCard m={m} load={a.linkPreview} />}
-        {m.rcheck && <span className={'wa-rcheck ' + m.rcheck.v}>{m.rcheck.s}</span>}
-        <span className="wa-meta">
-          {m.edited && <span><Pencil size={10} /> {t('wa.edited')}</span>}
-          {clock(m.ts, lang)}
-          {m.dir === 'out' && <Ticks s={m.status} />}
-        </span>
-        <button type="button" className="wa-more" onClick={() => setMenu((x) => !x)} aria-label={t('wa.menu')}>
-          <ChevronDown size={16} />
-        </button>
-        {menu && <Menu m={m} a={a} onClose={() => setMenu(false)} />}
+        {tag && (
+          <div className="flxc-b-tag">
+            {isNote && <I n="note" />}
+            {tag}
+          </div>
+        )}
+        {m.sender && m.dir === 'in' && <div className="flxc-b-sender">{m.sender}</div>}
+        {m.quoted && (
+          <button type="button" className={'flxc-quote flxc-quote-' + m.quoted.dir} onClick={() => a.jump(m.quoted!.id)}>
+            <strong>{m.quoted.dir === 'in' ? a.chatTitle : L('Siz')}</strong>
+            <span>{m.quoted.body}</span>
+          </button>
+        )}
+        <Content m={m} a={a} />
+        {m.rcheck && m.dir === 'in' && (m.type === 'image' || m.type === 'document') && (
+          <div className={'flxc-rai is-' + m.rcheck.v} title={L('Yapay zekâ ön kontrolü. Son kontrol ekipte.')}>
+            <I n={m.rcheck.v === 'match' ? 'check' : 'warn'} />
+            <span>{'AI · ' + m.rcheck.s}</span>
+          </div>
+        )}
+        {canMenu && (
+          <button
+            type="button"
+            className="flxc-m-menu"
+            aria-label={L('Mesaj menüsü')}
+            onClick={(e) => {
+              e.stopPropagation();
+              a.menu(m, e.currentTarget);
+            }}
+          >
+            <I n="down" />
+          </button>
+        )}
       </div>
-      {reacts.length > 0 && (
-        <div className="wa-reacts">{reacts.join(' ')}</div>
-      )}
+      {reacts.length > 0 && <span className="flxc-react">{reacts.join('')}</span>}
       {m.status === 'failed' && (
-        <button type="button" className="wa-failed" onClick={() => a.retry(m)} title={m.error}>
-          <AlertCircle size={13} /> {t('wa.failed')} · {t('wa.retry')}
-        </button>
-      )}
-      {m.wa && m.id > 0 && (m.dir === 'in' || m.dir === 'out') && !menu && (
-        <button type="button" className="wa-react-btn" onClick={() => setMenu(true)} aria-label={t('wa.react')}><Smile size={15} /></button>
+        <>
+          <button type="button" className="flxc-retry" title={m.error || ''} onClick={() => a.retry(m)}>
+            <I n="reopen" />
+            {L('Tekrar dene')}
+          </button>
+          {m.error && <div className="flxc-err">{m.error}</div>}
+        </>
       )}
     </div>
   );

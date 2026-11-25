@@ -1,101 +1,155 @@
-// Yeni sohbet penceresi, emoji seçici, ses kaydı.
+// Yeni sohbet penceresi, sekmeli emoji seçici, ses kaydı çubuğu (klasik Flux Chat işaretlemesi).
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Mic, Square, Trash2 } from 'lucide-react';
-import { Modal } from '@fluxwp/ui';
 import type { WaEngine } from './engine';
-import { duration } from './format';
+import { I } from './icons';
+import { Ib, Modal, fmtSecs, store, useL } from './ui';
 
 /* ---------- yeni sohbet ---------- */
 
-export function NewChat({ engine, onClose, onOpen }: { engine: WaEngine; onClose: () => void; onOpen: (id: number) => void }) {
-  const { t } = useTranslation();
+export function NewChat({ engine, prefill, prefName, onClose, onOpen, toast }: { engine: WaEngine; prefill?: string; prefName?: string; onClose: () => void; onOpen: (id: number) => void; toast: (m: string, k?: 'err') => void }) {
+  const { L } = useL();
   const conns = engine.s.conns;
-  const [phone, setPhone] = useState('');
-  const [name, setName] = useState('');
+  const [phone, setPhone] = useState(prefill ?? '');
+  const [name, setName] = useState(prefName ?? '');
   const [conn, setConn] = useState(conns[0]?.id ?? '');
   const [chk, setChk] = useState<Awaited<ReturnType<WaEngine['api']['checkNumber']>> | null>(null);
+  const [checking, setChecking] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState('');
+  const ref = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    setTimeout(() => ref.current?.focus(), 50);
+  }, []);
 
   useEffect(() => {
     setChk(null);
-    if (phone.replace(/\D/g, '').length < 10) return;
-    const h = setTimeout(() => void engine.api.checkNumber(phone, conn).then(setChk, () => setChk(null)), 450);
+    if (phone.replace(/\D+/g, '').length < 10) return;
+    const h = setTimeout(() => {
+      setChecking(true);
+      void engine.api.checkNumber(phone, conns.length > 1 ? conn : '').then(
+        (r) => (setChk(r), setChecking(false)),
+        () => (setChk(null), setChecking(false)),
+      );
+    }, 450);
     return () => clearTimeout(h);
-  }, [phone, conn, engine]);
+  }, [phone, conn, engine]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const submit = async () => {
+  const short = phone.replace(/\D+/g, '').length < 10;
+  const disabled = busy || short || checking || (chk ? !chk.valid || chk.exists === false : false);
+  const go = async () => {
+    if (disabled) return;
     if (chk?.chat) return onOpen(chk.chat);
     setBusy(true);
-    setErr('');
     try {
-      const r = await engine.api.newChat({ phone, name: name || undefined, conn, check: true });
+      const r = await engine.api.newChat({ phone, name: name || undefined, conn: conns.length > 1 ? conn : '', check: true });
       engine.upsert(r.chat);
       onOpen(r.chat.id);
     } catch (e) {
-      setErr((e as Error).message);
-    } finally {
       setBusy(false);
+      toast((e as Error).message, 'err');
     }
   };
-
-  let state = '';
-  if (chk && !chk.valid) state = t('wa.new.invalid');
-  else if (chk?.chat) state = t('wa.new.exists', { name: chk.name || chk.phoneFmt });
-  else if (chk?.exists === true) state = t('wa.new.hasWa');
-  else if (chk?.exists === false) state = t('wa.new.noWa');
+  const enter = (e: React.KeyboardEvent) => e.key === 'Enter' && void go();
 
   return (
-    <Modal title={t('wa.new.title')} onClose={onClose}>
-      <form className="stack" onSubmit={(e) => (e.preventDefault(), void submit())}>
-        <label className="field">
-          {t('wa.new.phone')}
-          <input autoFocus value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+90 5xx xxx xx xx" inputMode="tel" />
+    <Modal title={L('Yeni sohbet')} cls="flxc-nc" onClose={onClose}>
+      <div className="flxc-nc-art"><I n="newchat" /></div>
+      <label className="flxc-lbl">
+        {L('Telefon numarası')}
+        <input ref={ref} type="tel" className="flxc-field flxc-field-lg" placeholder={L('+90 5xx xxx xx xx')} autoComplete="tel" inputMode="tel" value={phone} onChange={(e) => setPhone(e.target.value)} onKeyDown={enter} />
+      </label>
+      <div className="flxc-nc-status">
+        {checking && (
+          <span className="flxc-muted">
+            <span className="flxc-spin flxc-spin-sm" />
+            {L('Kontrol ediliyor…')}
+          </span>
+        )}
+        {chk && !checking && !chk.valid && <span className="is-err"><I n="warn" />{L('Geçersiz numara')}</span>}
+        {chk && !checking && chk.valid && chk.exists === true && <span className="is-ok"><I n="check" />{L('{p} WhatsApp kullanıyor', { p: chk.phoneFmt ?? '' })}</span>}
+        {chk && !checking && chk.valid && chk.exists === false && <span className="is-err"><I n="warn" />{L('{p} numarasında WhatsApp yok', { p: chk.phoneFmt ?? '' })}</span>}
+        {chk && !checking && chk.valid && chk.exists == null && <span className="flxc-muted">{L('{p} — WhatsApp kontrol edilemedi, yine de deneyebilirsiniz.', { p: chk.phoneFmt ?? '' })}</span>}
+        {chk && !checking && chk.chat && <span className="flxc-muted">{L('Bu kişiyle sohbet zaten var: {n}', { n: chk.name ?? '' })}</span>}
+      </div>
+      <label className="flxc-lbl">
+        {L('Kişi adı')}
+        <input type="text" className="flxc-field" placeholder={chk?.name || L('İsteğe bağlı')} value={name} onChange={(e) => setName(e.target.value)} onKeyDown={enter} />
+      </label>
+      {conns.length > 1 && (
+        <label className="flxc-lbl">
+          {L('Hangi hattan?')}
+          <select className="flxc-field" value={conn} onChange={(e) => setConn(e.target.value)}>
+            {conns.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.label}
+              </option>
+            ))}
+          </select>
         </label>
-        {state && <p className={'small ' + (chk?.exists === false || (chk && !chk.valid) ? 'text-danger' : 'accent')}>{state}</p>}
-        {!chk?.chat && (
-          <label className="field">
-            {t('wa.new.name')}
-            <input value={name} onChange={(e) => setName(e.target.value)} placeholder={chk?.name ?? ''} />
-          </label>
-        )}
-        {conns.length > 1 && (
-          <label className="field">
-            {t('wa.new.line')}
-            <select className="wa-select" value={conn} onChange={(e) => setConn(e.target.value)}>
-              {conns.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
-            </select>
-          </label>
-        )}
-        {err && <p className="error">{err}</p>}
-        <div className="row" style={{ justifyContent: 'flex-end' }}>
-          <button type="button" className="btn-ghost" onClick={onClose}>{t('common.cancel')}</button>
-          <button className="btn-primary" disabled={busy || !phone.trim() || chk?.valid === false || chk?.exists === false}>
-            {chk?.chat ? t('wa.new.go') : t('wa.new.start')}
-          </button>
-        </div>
-      </form>
+      )}
+      <button type="button" className="flxc-btn flxc-btn-block" disabled={disabled} onClick={() => void go()}>
+        <I n="newchat" />
+        {chk?.chat ? L('Sohbete git') : L('Sohbeti başlat')}
+      </button>
+      <p className="flxc-help">{L('Numarayı 0 ile, +90 ile ya da ülke koduyla yazabilirsiniz.')}</p>
     </Modal>
   );
 }
 
 /* ---------- emoji ---------- */
 
-const EMOJI = '😀 😁 😂 🤣 😊 😇 🙂 😉 😍 🥰 😘 😋 😎 🤗 🤔 😐 😴 😢 😭 😡 😮 😱 🥲 🙄 😅 🤩 🥳 😌 😬 🤝 👍 👎 👏 🙌 🙏 💪 👋 ✌️ 👌 ☝️ ❤️ 🧡 💛 💚 💙 💜 🤍 💔 ❣️ 💯 ✅ ❌ ⚠️ ❗ ❓ ⭐ 🔥 🎉 🎁 📌 📎 📄 📷 📞 📍 🕐 📅 💰 💳 🏦 🌱 🌳 🌲 🌿 🍃 🌍 ☀️ 🌧️ 🇹🇷'.split(' ');
+const EMOJI: Record<string, string> = {
+  '🕒': '',
+  '😀': '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 😉 😍 🥰 😘 😋 😜 🤗 🤭 🤔 🤐 😐 😏 😌 😴 😷 🤒 🥳 😎 🤓 😕 😟 😮 😲 😳 🥺 😢 😭 😱 😤 😡',
+  '👍': '👍 👎 👌 ✌️ 🤞 🤝 🤲 🙏 👏 🙌 👋 💪 👀 👉 👈 👆 👇 ☝️ ✍️ ✋ 🤚 🖐️ 🫶 🫡 🤙 💁 🙋 🙆 🙅 🤷 🤦 🧕 👨‍👩‍👧 👶 🧓',
+  '❤️': '❤️ 🧡 💛 💚 💙 💜 🤎 🖤 🤍 💔 ❤️‍🩹 💕 💞 💓 💗 💖 💝 💯 ✨ ⭐ 🌟 🔥 🎉 🎊 🎁 🎈 🏆 🥇 ✅ ☑️ ❌ ⚠️ ❓ ❗ ‼️ 📌 📍 🔔 🆗 🆕 ➡️ ⬅️ 🔝',
+  '🌱': '🌱 🌿 ☘️ 🍀 🌳 🌲 🌴 🌵 🌾 🍃 🍂 🍁 🌸 🌼 🌻 🌷 🌹 💐 🌍 🌎 🏞️ ⛰️ ☀️ 🌤️ ⛅ 🌧️ ❄️ 🌈 💧 🌊 🌙 ⭐ 🕊️ 🐝 🦋 🐦 🐑 🐄 🍎 🍞 🫖 ☕ 🍲 🥘 🍉 🥗',
+  '📞': '📞 ☎️ 📱 💬 🗨️ 📧 📨 📅 🗓️ 🕒 ⏰ ⏳ 📝 📄 📃 📑 📎 🔗 🖨️ 💳 💰 💵 💸 🏦 🧾 🏠 🏢 🕌 🏫 🏥 🚚 🚗 🚌 ✈️ 📦 🔒 🔑 💡 📢 📣 📷 🎥 🎤 🔍 ⚙️ 🛠️',
+};
+const EMO_KEYS = Object.keys(EMOJI);
+const emoRecentList = () => (store('emo_recent') || '').split(' ').filter(Boolean);
+export function emoRecent(e: string) {
+  const l = emoRecentList().filter((x) => x !== e);
+  l.unshift(e);
+  store('emo_recent', l.slice(0, 24).join(' '));
+}
 
-export function EmojiPicker({ onPick, onClose }: { onPick: (e: string) => void; onClose: () => void }) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const k = (e: MouseEvent) => !ref.current?.contains(e.target as Node) && onClose();
-    setTimeout(() => document.addEventListener('mousedown', k));
-    return () => document.removeEventListener('mousedown', k);
-  }, [onClose]);
+export function EmojiPicker({ onPick }: { onPick: (e: string) => void }) {
+  const { L } = useL();
+  const [cat, setCat] = useState(() => (emoRecentList().length ? '🕒' : EMO_KEYS[1]!));
+  const list = cat === '🕒' ? emoRecentList() : EMOJI[cat]!.split(' ');
   return (
-    <div className="wa-emoji" ref={ref}>
-      {EMOJI.map((e) => (
-        <button key={e} type="button" onClick={() => onPick(e)}>{e}</button>
-      ))}
+    <div className="flxc-emo">
+      <div className="flxc-emo-tabs">
+        {EMO_KEYS.map((k) => (
+          <button
+            key={k}
+            type="button"
+            className={k === cat ? 'is-on' : ''}
+            title={k === '🕒' ? L('Son kullanılanlar') : ''}
+            onClick={(ev) => {
+              ev.stopPropagation();
+              setCat(k);
+            }}
+          >
+            {k}
+          </button>
+        ))}
+      </div>
+      <div className="flxc-emo-grid">
+        {!list.length && <p className="flxc-emo-empty">{L('Son kullanılan emoji yok.')}</p>}
+        {list.map((e) => (
+          <button
+            key={e}
+            type="button"
+            onClick={(ev) => {
+              ev.stopPropagation();
+              onPick(e);
+            }}
+          >
+            {e}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
@@ -104,14 +158,14 @@ export function EmojiPicker({ onPick, onClose }: { onPick: (e: string) => void; 
 
 function pickMime(): string {
   const list = ['audio/ogg;codecs=opus', 'audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'];
-  return typeof MediaRecorder !== 'undefined' ? list.find((m) => MediaRecorder.isTypeSupported(m)) ?? '' : '';
+  return typeof MediaRecorder !== 'undefined' ? (list.find((m) => MediaRecorder.isTypeSupported(m)) ?? '') : '';
 }
 
 export const canRecord = () => typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia && typeof MediaRecorder !== 'undefined';
 
 /** Kayıt çubuğu; açılınca kayda başlar. Gönder → onDone(blob, ad). 0.7 sn'den kısa kayıt atılır. */
 export function Recorder({ onDone, onCancel, onTick, onError }: { onDone: (b: Blob, name: string) => void; onCancel: () => void; onTick: () => void; onError: (m: string) => void }) {
-  const { t } = useTranslation();
+  const { L } = useL();
   const [secs, setSecs] = useState(0);
   const rec = useRef<MediaRecorder | null>(null);
   const chunks = useRef<Blob[]>([]);
@@ -141,9 +195,9 @@ export function Recorder({ onDone, onCancel, onTick, onError }: { onDone: (b: Bl
         iv = setInterval(() => {
           setSecs((Date.now() - started.current) / 1000);
           onTick();
-        }, 500);
+        }, 250);
       },
-      () => (onError(t('wa.voice.denied')), onCancel()),
+      () => (onError(L('Mikrofon izni verilmedi.')), onCancel()),
     );
     return () => {
       clearInterval(iv);
@@ -156,12 +210,14 @@ export function Recorder({ onDone, onCancel, onTick, onError }: { onDone: (b: Bl
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="wa-recorder">
-      <button type="button" className="icon-btn" onClick={() => ((cancelled.current = true), rec.current?.stop() ?? onCancel())} aria-label={t('common.cancel')}><Trash2 size={18} /></button>
-      <span className="wa-rec-dot" /> <span className="grow">{t('wa.voice.recording')} {duration(secs)}</span>
-      <button type="button" className="btn-primary wa-send" onClick={() => rec.current?.stop()} aria-label={t('common.send')}><Square size={15} /></button>
+    <div className="flxc-rec">
+      <Ib n="trash" title={L('Kaydı sil')} cls="flxc-rec-del" onClick={() => ((cancelled.current = true), rec.current ? rec.current.stop() : onCancel())} />
+      <span className="flxc-rec-dot" />
+      <span className="flxc-rec-t">{fmtSecs(secs)}</span>
+      <span className="flxc-rec-l">{L('Kaydediliyor…')}</span>
+      <button type="button" className="flxc-send" aria-label={L('Gönder')} onClick={() => rec.current?.stop()}>
+        <I n="send" />
+      </button>
     </div>
   );
 }
-
-export { Mic };

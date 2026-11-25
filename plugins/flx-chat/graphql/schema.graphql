@@ -825,12 +825,16 @@ type FlxChatReceiptRef {
 type FlxChatReply {
   """Body."""
   body: String!
+  """Category."""
+  category: String!
   """Id."""
   databaseId: Int!
   """Shortcut."""
   shortcut: String!
   """Title."""
   title: String!
+  """Times used; the most used come first as chips."""
+  uses: Int!
 }
 
 """Input for the flxChatReplyUse mutation."""

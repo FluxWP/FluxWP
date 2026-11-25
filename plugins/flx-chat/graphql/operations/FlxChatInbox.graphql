@@ -5,7 +5,7 @@ query FlxChatInbox {
     agents { databaseId name }
     labels { id name color }
     connections { id label color state }
-    replies { databaseId shortcut title body }
+    replies { databaseId shortcut title body category uses }
     unread
     ai
     bot

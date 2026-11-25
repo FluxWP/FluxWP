@@ -215,7 +215,7 @@ export class WaEngine {
         agents: b.agents.map((a) => ({ id: a.databaseId, name: a.name })),
         labels: b.labels.map((l) => ({ id: l.id, name: l.name, color: l.color })),
         connections: b.connections.map(connOf),
-        replies: b.replies.map((q) => ({ id: q.databaseId, shortcut: q.shortcut, title: q.title, body: q.body, category: '', uses: 0 })),
+        replies: b.replies.map((q) => ({ id: q.databaseId, shortcut: q.shortcut, title: q.title, body: q.body, category: q.category, uses: q.uses })),
         unread: b.unread, ai: b.ai ? { id: 'ai', label: b.ai, auto: false } : null, bot: b.bot, records: {}, rev: num(b.rev),
       };
       this.since = b.rev;
