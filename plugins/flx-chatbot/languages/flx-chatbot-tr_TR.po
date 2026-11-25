@@ -919,6 +919,9 @@ msgstr "Bir soru sorun"
 msgid "Contact us"
 msgstr "Bize ulaşın"
 
+msgid "Chat on WhatsApp"
+msgstr "WhatsApp'tan yazın"
+
 msgid "Shop and products"
 msgstr "Mağaza ve ürünler"
 

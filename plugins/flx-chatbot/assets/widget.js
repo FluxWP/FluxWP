@@ -310,6 +310,9 @@
 				return '<a class="row" href="' + esc(safeUrl(l.url) || '#') + '" target="_blank" rel="noopener"><span class="ri' + (k === 'whatsapp' ? ' wa' : '') + '">' + ic(k) + '</span><span>' + esc(l.label) + '</span><span class="chev">' + ic('next') + '</span></a>';
 			}).join('') + '</div>' + (C.hours ? '<div class="hours">' + ic('clock') + '<span>' + esc(T.hours) + ': ' + esc(C.hours) + '</span></div>' : '') + '</div>'
 			: (C.hours ? '<div class="card"><div class="hours">' + ic('clock') + '<span>' + esc(T.hours) + ': ' + esc(C.hours) + '</span></div></div>' : '');
+		var wa = H.whatsapp && safeUrl(H.whatsapp.url)
+			? '<div class="card"><a class="wa-btn" href="' + esc(safeUrl(H.whatsapp.url)) + '" target="_blank" rel="noopener"><span class="ri wa">' + ic('whatsapp') + '</span><span class="t">' + esc(H.whatsapp.label) + '</span><span class="chev">' + ic('next') + '</span></a></div>'
+			: '';
 		var onDot = C.ai || S.online;
 		el.panel.innerHTML =
 			'<div class="view"><div class="home">' +
@@ -317,7 +320,7 @@
 			'<h2>' + esc(H.title) + '</h2><p>' + esc(H.text) + '</p></div>' +
 			'<div class="cards">' +
 			'<div class="card"><button class="start" type="button" data-act="chat">' + avatar('', onDot) + '<span class="t"><strong>' + esc(cont ? T.continueChat : T.startChat) + '</strong><small>' + (cont ? esc(lastPreview()) : '<i class="dot' + (onDot ? ' on' : '') + '"></i>' + esc(statusLine())) + '</small></span><span class="go">' + ic('send') + '</span></button></div>' +
-			quick + links +
+			wa + quick + links +
 			'</div></div>' + tabs('home') + footHtml(false) + '</div>';
 		bindView();
 	}

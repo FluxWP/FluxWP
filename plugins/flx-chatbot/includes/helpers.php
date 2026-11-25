@@ -58,6 +58,9 @@ function flxcb_defaults() {
 		'placeholder'      => '',
 		'quick_replies'    => '',
 		'links'            => '',
+		'whatsapp_number'  => '',
+		'whatsapp_message' => '',
+		'whatsapp_label'   => '',
 		'show_team'        => 1,
 		'teaser_enabled'   => 1,
 		'teaser_text'      => '',
@@ -163,6 +166,8 @@ function flxcb_default_text( $key ) {
 			return __( 'Hi! Is there anything I can help with?', 'flx-chatbot' );
 		case 'offline_text':
 			return __( 'No agents are online right now. Leave a message and we\'ll get back to you by email.', 'flx-chatbot' );
+		case 'whatsapp_label':
+			return __( 'Chat on WhatsApp', 'flx-chatbot' );
 		case 'launcher_label':
 			return '';
 		case 'privacy_text':
@@ -187,6 +192,26 @@ function flxcb_lines( $key ) {
 		}
 	}
 	return $out;
+}
+
+/** WhatsApp numarası: yalnız rakamlar (+, boşluk, tire atılır; başındaki 00 de). */
+function flxcb_whatsapp_digits( $raw ) {
+	$d = preg_replace( '/\D+/', '', (string) $raw );
+	$d = preg_replace( '/^00/', '', (string) $d );
+	return strlen( $d ) >= 7 && strlen( $d ) <= 15 ? $d : '';
+}
+
+/** Ana ekrandaki WhatsApp düğmesi; numara boşsa null (düğme çıkmaz). */
+function flxcb_whatsapp() {
+	$n = flxcb_whatsapp_digits( flxcb_setting( 'whatsapp_number' ) );
+	if ( '' === $n ) {
+		return null;
+	}
+	$text = trim( (string) flxcb_setting( 'whatsapp_message' ) );
+	return array(
+		'url'   => 'https://wa.me/' . $n . ( '' !== $text ? '?text=' . rawurlencode( $text ) : '' ),
+		'label' => flxcb_text( 'whatsapp_label' ),
+	);
 }
 
 /** Ana ekran bağlantıları: "Etiket | adres" satırları. */
