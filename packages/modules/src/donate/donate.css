@@ -146,17 +146,7 @@ html.flxa-dark .flxdn { --flxdn-mint: var(--flxa-accent-soft); --flxdn-dark: var
 .flxdn-stack > * + * { margin-top: 16px; }
 
 /* charts */
-.flxdn-chart { position: relative; width: 100%; min-width: 0; }
-.flxdn-chart svg { display: block; max-width: 100%; height: auto; overflow: visible; }
-.flxdn-chart text { font-family: var(--flxdn-font); }
-.flxdn-gl line { stroke: var(--flxdn-grid); stroke-width: 1; }
-.flxdn-gl line.is-base { stroke: #C9D6CE; }
-.flxdn-gl text, .flxdn-axis text { fill: var(--flxdn-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-.flxdn-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--flxdn-text); }
-.flxdn-legend span { display: inline-flex; align-items: center; gap: 6px; }
 .flxdn-sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; flex: 0 0 auto; }
-.flxdn-colhit { fill: transparent; cursor: default; }
-.flxdn-colhit:hover, .flxdn-colhit.is-hover { fill: color-mix(in srgb, var(--flxa-accent, #1F2937) 6%, transparent); }
 .flxdn-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .flxdn-bars li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: baseline; }
 .flxdn-bars__label { color: var(--flxdn-ink); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -175,19 +165,6 @@ html.flxa-dark .flxdn { --flxdn-mint: var(--flxa-accent-soft); --flxdn-dark: var
 .flxdn-paylegend__label { color: var(--flxdn-ink); font-weight: 700; }
 .flxdn-paylegend__n { color: var(--flxdn-text); font-variant-numeric: tabular-nums; text-align: right; }
 .flxdn-paylegend__amt { grid-column: 2 / 4; color: var(--flxdn-muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
-
-/* tooltip (appended to body) */
-.flxdn-tip {
-	position: fixed; z-index: 100100; pointer-events: none; max-width: 300px;
-	background: #111827; color: #fff; border-radius: 10px; padding: 9px 12px;
-	font: 12.5px/1.45 "Nunito Sans", "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-	box-shadow: 0 10px 30px rgba(10, 30, 45, .25);
-}
-.flxdn-tip[hidden] { display: none; }
-.flxdn-tip strong { display: block; margin-bottom: 4px; font-weight: 800; }
-.flxdn-tip__row { display: flex; align-items: center; gap: 8px; }
-.flxdn-tip__row b { margin-left: auto; padding-left: 12px; font-variant-numeric: tabular-nums; }
-.flxdn-tip .flxdn-sw { width: 10px; height: 10px; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .85); }
 
 /* tables */
 .flxdn-panel { background: var(--flxdn-surface); border: 1px solid var(--flxdn-line); border-radius: var(--flxdn-radius); margin: 0 0 16px; overflow: hidden; }

@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.8.0
+- Pano > Günlük üretim ve harcama grafikleri ortak etkileşimli grafiğe geçti (ipucu, legend'dan seri aç/kapa, koyu/açık tema). Ortak modül paketi yenilendi.
+
 ## 0.7.0
 - **Klasik ekran kaldırıldı.** Stüdyo yalnız React ekranıyla açılır; "Klasik görünüm" düğmesi, görünüm değiştirme (`flxst_ui`), eski istemci (assets/js, assets/css/app.css) ve includes/js-strings.php silindi.
 - Ekran açılamazsa (Flux GraphQL hazır değil, paket dosyası eksik, bundle yüklenmedi) boş sayfa yerine "Bu ekran yüklenemedi" kutusu ve **Sayfayı yenile** düğmesi çıkar.

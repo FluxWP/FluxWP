@@ -1,4 +1,4 @@
-.flxcrm-app{--c-bd:var(--flux-border);--c-bd2:color-mix(in srgb,var(--flux-border) 70%,var(--flux-text));--c-mut:var(--flux-text-muted);--c-tx:var(--flux-text);--c-ac:var(--flux-primary);--c-ac-soft:color-mix(in srgb,var(--flux-primary) 10%,transparent);--c-card:var(--flux-surface);--c-s2:var(--flux-surface2);--c-ok:var(--flux-success);--c-ok-s:color-mix(in srgb,var(--flux-success) 14%,transparent);--c-info:#0369a1;--c-info-s:color-mix(in srgb,#0369a1 12%,transparent);--c-warn:var(--flux-warning);--c-warn-s:color-mix(in srgb,var(--flux-warning) 16%,transparent);--c-bad:var(--flux-danger);--c-bad-s:color-mix(in srgb,var(--flux-danger) 12%,transparent);--c-r:12px;max-width:1280px;color:var(--c-tx);font-size:14px;line-height:1.5;padding-bottom:24px}
+.flxcrm-app{--c-bd:var(--flux-border);--c-bd2:color-mix(in srgb,var(--flux-border) 70%,var(--flux-text));--c-mut:var(--flux-text-muted);--c-tx:var(--flux-text);--c-ac:var(--flux-primary);--c-ac-soft:color-mix(in srgb,var(--flux-primary) 10%,transparent);--c-card:var(--flux-surface);--c-s2:var(--flux-surface2);--c-ok:var(--flux-success);--c-ok-s:color-mix(in srgb,var(--flux-success) 14%,transparent);--c-info:#0369a1;--c-info-s:color-mix(in srgb,#0369a1 12%,transparent);--c-warn:var(--flux-warning);--c-warn-s:color-mix(in srgb,var(--flux-warning) 16%,transparent);--c-bad:var(--flux-danger);--c-bad-s:color-mix(in srgb,var(--flux-danger) 12%,transparent);--c-r:12px;color:var(--c-tx);font-size:14px;line-height:1.5;padding-bottom:24px}
 .flxcrm-app a{color:var(--c-ac)}
 .flxcrm-app button{cursor:pointer;font:inherit;color:inherit}
 .flxcrm-app input,.flxcrm-app select,.flxcrm-app textarea{font:inherit;color:var(--c-tx);background:var(--flux-bg);border:1px solid var(--c-bd2);border-radius:8px;padding:6px 10px;min-height:34px;max-width:100%}
@@ -29,7 +29,7 @@
 .flxcrm-app *{box-sizing:border-box}
 .flxcrm-app .flxcrm-i{flex:none;vertical-align:-3px}
 .flxcrm-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin:8px 0 14px}
-.flxcrm-head h1{margin:0 0 2px;padding:0;font-size:23px;line-height:1.3}
+.flxcrm-head h2{margin:0 0 2px;padding:0;font-size:19px;line-height:1.3}
 .flxcrm-lead{margin:0;color:var(--c-mut);font-size:13.5px;max-width:760px}
 .flxcrm-head__actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .flxcrm-app .button{display:inline-flex;align-items:center;gap:6px}
@@ -111,11 +111,6 @@
 .flxcrm-list__main small{color:var(--c-mut)}
 .flxcrm-list__side{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex:none;font-variant-numeric:tabular-nums}
 .flxcrm-list--plain .flxcrm-i{color:var(--c-mut)}
-.flxcrm-bars{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.flxcrm-bars li{margin:0}
-.flxcrm-bars__top{display:flex;justify-content:space-between;gap:10px;font-size:13px}
-.flxcrm-bars__track{height:6px;background:var(--c-s2);border-radius:99px;margin:5px 0 0;overflow:hidden}
-.flxcrm-bars__track span{display:block;height:100%;background:var(--c-ac);border-radius:99px}
 /* RFM segmentleri */
 .flxcrm-segs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 18px;margin:0;padding:0;list-style:none}
 .flxcrm-segs li{margin:0;--sc:var(--c-mut)}

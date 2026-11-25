@@ -1,5 +1,13 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux CRM\n"
+
+msgid "Sees contacts, segments and the CRM overview"
+msgstr ""
+
+msgid "Edits contacts, segments, journeys and CRM settings"
+msgstr ""
 
 msgid "Settings"
 msgstr ""
@@ -94,6 +102,210 @@ msgstr ""
 msgid "Send message to contact"
 msgstr ""
 
+msgid "List journeys"
+msgstr ""
+
+msgid "Save journey draft"
+msgstr ""
+
+msgid "Turn journey on or pause it"
+msgstr ""
+
+msgid "Delete journey"
+msgstr ""
+
+msgid "CRM"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Paying"
+msgstr ""
+
+msgid "repeat"
+msgstr ""
+
+msgid "Churn risk"
+msgstr ""
+
+msgid "Total value"
+msgstr ""
+
+msgid "Contacts"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Segment"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "Name, e-mail or phone"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "Consent"
+msgstr ""
+
+msgid "SMS"
+msgstr ""
+
+msgid "WhatsApp"
+msgstr ""
+
+msgid "Ads"
+msgstr ""
+
+msgid "Last activity"
+msgstr ""
+
+msgid "Last payment"
+msgstr ""
+
+msgid "Added"
+msgstr ""
+
+msgid "Risk"
+msgstr ""
+
+msgid "No people"
+msgstr ""
+
+msgid "Contacts arrive on their own from gifts, orders and forms."
+msgstr ""
+
+msgid "Donation"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "City"
+msgstr ""
+
+msgid "Source"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Consents"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Full name"
+msgstr ""
+
+msgid "Organisation"
+msgstr ""
+
+msgid "E-mail consent"
+msgstr ""
+
+msgid "SMS consent"
+msgstr ""
+
+msgid "WhatsApp consent"
+msgstr ""
+
+msgid "Ad consent"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "An e-mail or phone number is required."
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Segments"
+msgstr ""
+
+msgid "No segments"
+msgstr ""
+
+msgid "Create segments by adding rules in the panel."
+msgstr ""
+
+msgid "Segment rules"
+msgstr ""
+
+msgid "New contact"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Open in the panel"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete this contact?"
+msgstr ""
+
+msgid "The timeline and tags are deleted too."
+msgstr ""
+
+msgid "Deleted"
+msgstr ""
+
+msgid "Add a note"
+msgstr ""
+
+msgid "Add an interaction"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Call"
+msgstr ""
+
+msgid "Meeting"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Add tag"
+msgstr ""
+
+msgid "Remove tag"
+msgstr ""
+
 msgid "Source: %s"
 msgstr ""
 
@@ -112,16 +324,10 @@ msgstr ""
 msgid "off"
 msgstr ""
 
-msgid "E-mail"
-msgstr ""
-
-msgid "SMS"
-msgstr ""
-
-msgid "WhatsApp"
-msgstr ""
-
 msgid "Ad audiences"
+msgstr ""
+
+msgid "This contact still has records in: %s. Merge it into another contact instead of deleting it."
 msgstr ""
 
 msgid "Choose other contacts to merge."
@@ -130,7 +336,180 @@ msgstr ""
 msgid "Up to 20 contacts can be merged at once."
 msgstr ""
 
-msgid "An e-mail or phone number is required."
+msgid "CRM event: %1$s (%2$s)"
+msgstr ""
+
+msgid "Event name"
+msgstr ""
+
+msgid "Event date"
+msgstr ""
+
+msgid "Event time"
+msgstr ""
+
+msgid "Event place"
+msgstr ""
+
+msgid "Event page"
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Event not found."
+msgstr ""
+
+msgid "Flux Mail is not active; messages are sent through it."
+msgstr ""
+
+msgid "Pick at least one channel."
+msgstr ""
+
+msgid "Write the message."
+msgstr ""
+
+msgid "Personal values (%s) need a newer Flux Mail that keeps a value for each recipient. Update Flux Mail or take them out of the text."
+msgstr ""
+
+msgid "No active connection for this channel in Flux Mail."
+msgstr ""
+
+msgid "No one to send to on this channel."
+msgstr ""
+
+msgid "%1$s · event message (%2$s)"
+msgstr ""
+
+msgid "Open the file"
+msgstr ""
+
+msgid "You are not allowed to do this."
+msgstr ""
+
+msgid "%d step"
+msgid_plural "%d steps"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Journey message"
+msgstr ""
+
+msgid "Journey step skipped"
+msgstr ""
+
+msgid "Enters a value group (RFM)"
+msgstr ""
+
+msgid "Gets a tag"
+msgstr ""
+
+msgid "Gets a role"
+msgstr ""
+
+msgid "Something happens (timeline event)"
+msgstr ""
+
+msgid "Is added to the CRM"
+msgstr ""
+
+msgid "Wait"
+msgstr ""
+
+msgid "Send e-mail"
+msgstr ""
+
+msgid "Send WhatsApp"
+msgstr ""
+
+msgid "Send SMS"
+msgstr ""
+
+msgid "Continue only if"
+msgstr ""
+
+msgid "Value group is"
+msgstr ""
+
+msgid "Has tag"
+msgstr ""
+
+msgid "Does not have tag"
+msgstr ""
+
+msgid "Has paid since the journey started"
+msgstr ""
+
+msgid "Has not paid since the journey started"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Give the journey a name."
+msgstr ""
+
+msgid "Pick what starts the journey."
+msgstr ""
+
+msgid "Pick the value group, tag, role or event that starts the journey."
+msgstr ""
+
+msgid "Every e-mail step needs a subject and a text."
+msgstr ""
+
+msgid "Every message step needs a text."
+msgstr ""
+
+msgid "Add at least one step that does something (message or tag)."
+msgstr ""
+
+msgid "Journey not found."
+msgstr ""
+
+msgid "Flux Mail is not active for this channel."
+msgstr ""
+
+msgid "No permission for this channel."
+msgstr ""
+
+msgid "No e-mail address."
+msgstr ""
+
+msgid "No phone number."
+msgstr ""
+
+msgid "Not sent."
+msgstr ""
+
+msgid "%1$s · %2$s skipped: %3$s"
+msgstr ""
+
+msgid "goal: %s"
+msgstr ""
+
+msgid "Welcome new donors"
+msgstr ""
+
+msgid "Thank you, {first_name}"
+msgstr ""
+
+msgid "Hello {first_name}, a short update from {site} on the work your donation supported. Thank you for being with us."
+msgstr ""
+
+msgid "Win back donors at risk"
+msgstr ""
+
+msgid "We miss you, {first_name}"
+msgstr ""
+
+msgid "Hello {first_name}, our new campaign at {site} has started. Would you like to support it again?"
+msgstr ""
+
+msgid "Win-back: no answer"
 msgstr ""
 
 msgid "The contact could not be saved."
@@ -145,40 +524,16 @@ msgstr ""
 msgid "Segment not found."
 msgstr ""
 
-msgid "Role"
-msgstr ""
-
-msgid "Tag"
-msgstr ""
-
 msgid "RFM segment"
-msgstr ""
-
-msgid "Total value"
 msgstr ""
 
 msgid "Days with a payment"
 msgstr ""
 
-msgid "Last payment"
-msgstr ""
-
-msgid "Last activity"
-msgstr ""
-
-msgid "Added"
-msgstr ""
-
 msgid "Churn risk (%)"
 msgstr ""
 
-msgid "Consent"
-msgstr ""
-
 msgid "First source"
-msgstr ""
-
-msgid "City"
 msgstr ""
 
 msgid "Has an e-mail"
@@ -277,6 +632,27 @@ msgstr ""
 msgid "Invalid color (use e.g. #16a34a)."
 msgstr ""
 
+msgid "Donors and donations"
+msgstr ""
+
+msgid "Customers and orders (donation orders excluded)"
+msgstr ""
+
+msgid "WhatsApp chats and every message"
+msgstr ""
+
+msgid "Form submissions (with an e-mail or phone field)"
+msgstr ""
+
+msgid "Site members"
+msgstr ""
+
+msgid "WordPress users with the customer or subscriber role"
+msgstr ""
+
+msgid "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
+msgstr ""
+
 msgid "Donor"
 msgstr ""
 
@@ -298,12 +674,6 @@ msgstr ""
 msgid "Beneficiary"
 msgstr ""
 
-msgid "Donation"
-msgstr ""
-
-msgid "Order"
-msgstr ""
-
 msgid "Form"
 msgstr ""
 
@@ -317,15 +687,6 @@ msgid "Chat started"
 msgstr ""
 
 msgid "Incoming e-mail"
-msgstr ""
-
-msgid "Note"
-msgstr ""
-
-msgid "Call"
-msgstr ""
-
-msgid "Meeting"
 msgstr ""
 
 msgid "Sign-up"
@@ -415,9 +776,6 @@ msgstr ""
 msgid "CRM role: %1$s (%2$s)"
 msgstr ""
 
-msgid "CRM"
-msgstr ""
-
 msgid "Sees contacts, segments and the timeline"
 msgstr ""
 
@@ -463,13 +821,10 @@ msgstr ""
 msgid "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
 msgstr ""
 
-msgid "Overview"
+msgid "Events"
 msgstr ""
 
-msgid "Contacts"
-msgstr ""
-
-msgid "Segments"
+msgid "Journeys"
 msgstr ""
 
 msgid "CRM settings"
@@ -485,6 +840,9 @@ msgid "Something went wrong. Please try again."
 msgstr ""
 
 msgid "Are you sure? This cannot be undone."
+msgstr ""
+
+msgid "Delete the selected contacts?"
 msgstr ""
 
 msgid "%s contacts match"
@@ -517,34 +875,10 @@ msgstr ""
 msgid "No contacts match."
 msgstr ""
 
-msgid "You are not allowed to do this."
+msgid "Type the contact's name exactly to delete it."
 msgstr ""
 
-msgid "Name"
-msgstr ""
-
-msgid "Phone"
-msgstr ""
-
-msgid "Roles"
-msgstr ""
-
-msgid "Segment"
-msgstr ""
-
-msgid "Churn risk"
-msgstr ""
-
-msgid "E-mail consent"
-msgstr ""
-
-msgid "SMS consent"
-msgstr ""
-
-msgid "WhatsApp consent"
-msgstr ""
-
-msgid "Tags"
+msgid "Back to %s"
 msgstr ""
 
 msgid "Saved."
@@ -562,11 +896,33 @@ msgstr ""
 msgid "A contact with this e-mail or phone already exists; their card is open."
 msgstr ""
 
+msgid "The send was cancelled."
+msgstr ""
+
+msgid "The send is paused."
+msgstr ""
+
+msgid "The send continues."
+msgstr ""
+
+msgid "%s messages queued in Flux Mail."
+msgstr ""
+
 msgid "%s contacts updated."
 msgstr ""
 
 msgid "Churn risk %s%%"
 msgstr ""
+
+msgid "%s donation"
+msgid_plural "%s donations"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s order"
+msgid_plural "%s orders"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "All"
 msgstr ""
@@ -581,12 +937,6 @@ msgid "Forms"
 msgstr ""
 
 msgid "Notes"
-msgstr ""
-
-msgid "Contact not found"
-msgstr ""
-
-msgid "Back to contacts"
 msgstr ""
 
 msgid "Archived"
@@ -604,6 +954,18 @@ msgstr ""
 msgid "CRM card"
 msgstr ""
 
+msgid "More actions"
+msgstr ""
+
+msgid "Donations and orders stay in their own plugins; only the CRM card is deleted."
+msgstr ""
+
+msgid "Delete contact"
+msgstr ""
+
+msgid "Delete permanently"
+msgstr ""
+
 msgid "First payment"
 msgstr ""
 
@@ -616,16 +978,7 @@ msgstr ""
 msgid "recency · frequency · value (1–5)"
 msgstr ""
 
-msgid "Delete contact"
-msgstr ""
-
-msgid "Donations and orders stay in their own plugins; only the CRM card is deleted."
-msgstr ""
-
 msgid "Add a note: talked on the phone, call again about the qurban…"
-msgstr ""
-
-msgid "Type"
 msgstr ""
 
 msgid "Add"
@@ -640,7 +993,10 @@ msgstr ""
 msgid "Answers"
 msgstr ""
 
-msgid "Delete"
+msgid "This timeline entry will be deleted."
+msgstr ""
+
+msgid "Delete entry"
 msgstr ""
 
 msgid "Pending"
@@ -661,10 +1017,7 @@ msgstr ""
 msgid "Partly refunded"
 msgstr ""
 
-msgid "Full name"
-msgstr ""
-
-msgid "Organisation"
+msgid "Roles"
 msgstr ""
 
 msgid "Contact consents"
@@ -688,6 +1041,15 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+msgid "Cancel"
+msgstr ""
+
+msgid "allowed"
+msgstr ""
+
+msgid "not allowed"
+msgstr ""
+
 msgid "No tags."
 msgstr ""
 
@@ -695,9 +1057,6 @@ msgid "Remove the %s tag"
 msgstr ""
 
 msgid "Add tags (comma for several)"
-msgstr ""
-
-msgid "Add tag"
 msgstr ""
 
 msgid "Sources"
@@ -709,365 +1068,2076 @@ msgstr ""
 msgid "First campaign"
 msgstr ""
 
-msgid "New contact"
+msgid "The entry could not be saved."
 msgstr ""
 
-msgid "An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens."
+msgid "The entry was not found."
 msgstr ""
 
-msgid "separate with commas"
+msgid "Only notes, calls and meetings you added can be deleted."
 msgstr ""
 
-msgid "Add contact"
+msgid "Unknown action."
 msgstr ""
 
-msgid "Cancel"
+msgid "Select at least one contact."
 msgstr ""
 
-msgid "%s donation"
-msgid_plural "%s donations"
+msgid "Too many contacts selected."
+msgstr ""
+
+msgid "Give a tag name."
+msgstr ""
+
+msgid "Pick a role."
+msgstr ""
+
+msgid "Pick the card to keep and at least one other card."
+msgstr ""
+
+msgid "In %s day"
+msgid_plural "In %s days"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "%s order"
-msgid_plural "%s orders"
-msgstr[0] ""
-msgstr[1] ""
+msgid "e.g. National Forestation Day"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Short description (on the site card and at the top of the page)"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Place"
+msgstr ""
+
+msgid "Location announced on"
+msgstr ""
+
+msgid "Address / directions"
+msgstr ""
+
+msgid "Map link or coordinates"
+msgstr ""
+
+msgid "Google Maps link or 41.1612, 28.9271"
+msgstr ""
+
+msgid "Page on the site"
+msgstr ""
+
+msgid "Internal note (not shown on the site)"
+msgstr ""
+
+msgid "Empty: 10 days before the event."
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Internal note"
+msgstr ""
+
+msgid "The event could not be saved."
+msgstr ""
+
+msgid "The event name cannot be empty."
+msgstr ""
+
+msgid "The page could not be created: the theme has no event post type."
+msgstr ""
+
+msgid "Install and turn on Flux Mail to send e-mail, WhatsApp and SMS to the people of this event."
+msgstr ""
+
+msgid "Sending"
+msgstr ""
+
+msgid "Planned"
+msgstr ""
+
+msgid "Waiting for reports"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "not found"
+msgstr ""
+
+msgid "No date"
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+msgid "Over, still open"
+msgstr ""
+
+msgid "Site name"
+msgstr ""
+
+msgid "Organisation phone"
+msgstr ""
+
+msgid "(no name)"
+msgstr ""
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr ""
+
+msgid "Unknown template."
+msgstr ""
+
+msgid "Unknown source."
+msgstr ""
+
+msgid "Open events are the working list. Closed events are the archive."
+msgstr ""
+
+msgid "On the working list."
+msgstr ""
+
+msgid "Archived. Its records stay."
+msgstr ""
+
+msgid "A channel Flux Mail can send an event message on."
+msgstr ""
+
+msgid "WhatsApp."
+msgstr ""
+
+msgid "E-mail."
+msgstr ""
+
+msgid "SMS."
+msgstr ""
+
+msgid "Whether an event message is information or marketing."
+msgstr ""
+
+msgid "Information. No marketing consent."
+msgstr ""
+
+msgid "Marketing. Consent is required."
+msgstr ""
+
+msgid "What to do with a send that is still going out."
+msgstr ""
+
+msgid "Pause."
+msgstr ""
+
+msgid "Resume."
+msgstr ""
+
+msgid "Cancel."
+msgstr ""
+
+msgid "Where a send is, across every channel."
+msgstr ""
+
+msgid "Sending."
+msgstr ""
+
+msgid "Paused."
+msgstr ""
+
+msgid "Planned."
+msgstr ""
+
+msgid "Waiting for reports."
+msgstr ""
+
+msgid "Needs a check."
+msgstr ""
+
+msgid "Sent."
+msgstr ""
+
+msgid "Cancelled."
+msgstr ""
+
+msgid "Not known."
+msgstr ""
+
+msgid "A link a package adds to an event card."
+msgstr ""
+
+msgid "Button label."
+msgstr ""
+
+msgid "Address."
+msgstr ""
+
+msgid "Link target. Empty stays in this tab."
+msgstr ""
+
+msgid "Shown as the main button."
+msgstr ""
+
+msgid "A number a package shows on an event card."
+msgstr ""
+
+msgid "What the number is."
+msgstr ""
+
+msgid "The number, already formatted."
+msgstr ""
+
+msgid "Short extra line."
+msgstr ""
+
+msgid "Bar from 0 to 100. Empty when there is no bar."
+msgstr ""
+
+msgid "Why people are on an event, grouped."
+msgstr ""
+
+msgid "Reason."
+msgstr ""
+
+msgid "People."
+msgstr ""
+
+msgid "Share of the largest group, 0–100."
+msgstr ""
+
+msgid "How far one channel of a send has got."
+msgstr ""
+
+msgid "Channel key."
+msgstr ""
+
+msgid "Channel name."
+msgstr ""
+
+msgid "Flux Mail has no campaign for this channel."
+msgstr ""
+
+msgid "Recipients."
+msgstr ""
+
+msgid "Failed."
+msgstr ""
+
+msgid "Skipped."
+msgstr ""
+
+msgid "Done, 0–100."
+msgstr ""
+
+msgid "Estimated finish. Empty when it is not running."
+msgstr ""
+
+msgid "Flux Mail campaign. Empty when there is none."
+msgstr ""
+
+msgid "One message queued for the people of an event."
+msgstr ""
+
+msgid "Event ID."
+msgstr ""
+
+msgid "Send key."
+msgstr ""
+
+msgid "Where the send is."
+msgstr ""
+
+msgid "Where the send is, in words."
+msgstr ""
+
+msgid "ok, info, warn or mute."
+msgstr ""
+
+msgid "Information or marketing."
+msgstr ""
+
+msgid "Message text (stored up to 300 characters)."
+msgstr ""
+
+msgid "When it was queued."
+msgstr ""
+
+msgid "Planned time in the site timezone. Empty sends now."
+msgstr ""
+
+msgid "Who queued it."
+msgstr ""
+
+msgid "Attached file. 0 when there is none."
+msgstr ""
+
+msgid "File address."
+msgstr ""
+
+msgid "The file is a picture."
+msgstr ""
+
+msgid "Picture preview."
+msgstr ""
+
+msgid "Progress of each channel."
+msgstr ""
+
+msgid "Latest estimated finish across channels."
+msgstr ""
+
+msgid "Delivered. Empty when no channel reports it."
+msgstr ""
+
+msgid "Read. Empty when no channel reports it."
+msgstr ""
+
+msgid "Replied. Empty when no channel reports it."
+msgstr ""
+
+msgid "Opted out. Empty when no channel reports it."
+msgstr ""
+
+msgid "Recipients across channels."
+msgstr ""
+
+msgid "Flux Mail can pause a send."
+msgstr ""
+
+msgid "The send can still be stopped."
+msgstr ""
+
+msgid "Who this send went to, on one channel."
+msgstr ""
+
+msgid "Channel key. Empty uses the first."
+msgstr ""
+
+msgid "sent, waiting, failed or other."
+msgstr ""
+
+msgid "One recipient of an event message."
+msgstr ""
+
+msgid "Name."
+msgstr ""
+
+msgid "Address or phone."
+msgstr ""
+
+msgid "Queue status."
+msgstr ""
+
+msgid "Why it failed."
+msgstr ""
+
+msgid "When it was sent (GMT storage)."
+msgstr ""
+
+msgid "When it is planned (GMT storage)."
+msgstr ""
+
+msgid "Delivered."
+msgstr ""
+
+msgid "Read."
+msgstr ""
+
+msgid "Replied."
+msgstr ""
+
+msgid "Opted out."
+msgstr ""
+
+msgid "This row knows about reads or replies."
+msgstr ""
+
+msgid "A page of recipients."
+msgstr ""
+
+msgid "Channel these recipients belong to."
+msgstr ""
+
+msgid "Channels this send used."
+msgstr ""
+
+msgid "Sent on this channel."
+msgstr ""
+
+msgid "Still waiting on this channel."
+msgstr ""
+
+msgid "Failed on this channel."
+msgstr ""
+
+msgid "Skipped or cancelled on this channel."
+msgstr ""
+
+msgid "An event: a planting day, a meeting or a training."
+msgstr ""
+
+msgid "Event name."
+msgstr ""
+
+msgid "Open or archived."
+msgstr ""
+
+msgid "Date and time, for the card."
+msgstr ""
+
+msgid "Place, or a short address."
+msgstr ""
+
+msgid "Today, in N days, archived, or no date."
+msgstr ""
+
+msgid "People the packages attach to this event."
+msgstr ""
+
+msgid "Cover picture."
+msgstr ""
+
+msgid "Day of the month."
+msgstr ""
+
+msgid "Month name."
+msgstr ""
+
+msgid "Year."
+msgstr ""
+
+msgid "Numbers from packages."
+msgstr ""
+
+msgid "First package bar, 0–100."
+msgstr ""
+
+msgid "Caption of that bar."
+msgstr ""
+
+msgid "Links from packages."
+msgstr ""
+
+msgid "Flux Mail can send."
+msgstr ""
+
+msgid "Page on the site. 0 when there is none."
+msgstr ""
+
+msgid "published, draft or none."
+msgstr ""
+
+msgid "Public page. Empty until it is published."
+msgstr ""
+
+msgid "Page title."
+msgstr ""
+
+msgid "The theme has an event post type."
+msgstr ""
+
+msgid "Site-local start. Empty when the event has no date."
+msgstr ""
+
+msgid "Short description. Empty on a list card."
+msgstr ""
+
+msgid "Internal note. Empty unless the viewer may edit events."
+msgstr ""
+
+msgid "Address. Empty on a list card."
+msgstr ""
+
+msgid "Map link."
+msgstr ""
+
+msgid "Messages delivered for this event. 0 on a list card."
+msgstr ""
+
+msgid "Sends. 0 on a list card."
+msgstr ""
+
+msgid "Why people are included. Empty on a list card."
+msgstr ""
+
+msgid "Newest sends (up to 3). Empty on a list card."
+msgstr ""
+
+msgid "A page of events."
+msgstr ""
+
+msgid "The Events screen: counts, the site tab, and one page of cards."
+msgstr ""
+
+msgid "Open events."
+msgstr ""
+
+msgid "Archived events."
+msgstr ""
+
+msgid "A package prints an On the site tab."
+msgstr ""
+
+msgid "That tab. Empty when no package hooks it."
+msgstr ""
+
+msgid "Event cards. Search is not on this list; open an event for its people."
+msgstr ""
+
+msgid "Open or archived (default open)."
+msgstr ""
+
+msgid "One event field. Packages add their own keys."
+msgstr ""
+
+msgid "Field key (name, event_date, …)."
+msgstr ""
+
+msgid "Posted value."
+msgstr ""
+
+msgid "A choice of a form field."
+msgstr ""
+
+msgid "Stored value."
+msgstr ""
+
+msgid "Label."
+msgstr ""
+
+msgid "One field of the event form."
+msgstr ""
+
+msgid "Field key."
+msgstr ""
+
+msgid "text, textarea, date, time, number, url, image or post."
+msgstr ""
+
+msgid "Placeholder."
+msgstr ""
+
+msgid "Help under the field."
+msgstr ""
+
+msgid "Required."
+msgstr ""
+
+msgid "Current value."
+msgstr ""
+
+msgid "Choices (page field)."
+msgstr ""
+
+msgid "A group of fields on the event form."
+msgstr ""
+
+msgid "Section key."
+msgstr ""
+
+msgid "Heading."
+msgstr ""
+
+msgid "Extra HTML a package prints in this section."
+msgstr ""
+
+msgid "Fields."
+msgstr ""
+
+msgid "The event form, blank or filled."
+msgstr ""
+
+msgid "Event ID. 0 for a new event."
+msgstr ""
+
+msgid "Field groups."
+msgstr ""
+
+msgid "HTML a package prints after the fields."
+msgstr ""
+
+msgid "Offer to create the site page."
+msgstr ""
+
+msgid "A person attached to an event by a package."
+msgstr ""
+
+msgid "Person ID."
+msgstr ""
+
+msgid "Phone."
+msgstr ""
+
+msgid "Why they are included."
+msgstr ""
+
+msgid "A page of people on an event."
+msgstr ""
+
+msgid "How many people a channel can reach."
+msgstr ""
+
+msgid "Flux Mail has a connection."
+msgstr ""
+
+msgid "People for an information message."
+msgstr ""
+
+msgid "People for a marketing message."
+msgstr ""
+
+msgid "A {token} the message composer can insert."
+msgstr ""
+
+msgid "person, event or site."
+msgstr ""
+
+msgid "Token without braces."
+msgstr ""
+
+msgid "What it is."
+msgstr ""
+
+msgid "Needs a newer Flux Mail, so the composer disables it."
+msgstr ""
+
+msgid "One sample value."
+msgstr ""
+
+msgid "Token."
+msgstr ""
+
+msgid "Value for this person."
+msgstr ""
+
+msgid "A person the composer can preview the message as."
+msgstr ""
+
+msgid "Token values."
+msgstr ""
+
+msgid "Composer and send history of one event."
+msgstr ""
+
+msgid "WhatsApp can take a file, not only a link."
+msgstr ""
+
+msgid "Site timezone."
+msgstr ""
+
+msgid "Suggested time: the event date at 20:00, if it is still ahead."
+msgstr ""
+
+msgid "Channels and how many people each reaches."
+msgstr ""
+
+msgid "Tokens."
+msgstr ""
+
+msgid "Up to 40 people for the preview."
+msgstr ""
+
+msgid "History, newest first."
+msgstr ""
+
+msgid "A channel that was not queued, and why."
+msgstr ""
+
+msgid "Why it was skipped."
+msgstr ""
+
+msgid "Events screen: counts and one page of cards."
+msgstr ""
+
+msgid "Which list the cards start on (default open)."
+msgstr ""
+
+msgid "One event. Empty when it does not exist."
+msgstr ""
+
+msgid "Event form. Empty id is a blank form. Unknown id is empty."
+msgstr ""
+
+msgid "Event ID. Empty for a new event."
+msgstr ""
+
+msgid "People of an event. Search matches name, phone and e-mail."
+msgstr ""
+
+msgid "Name, phone or e-mail."
+msgstr ""
+
+msgid "Composer and history. Empty when the event does not exist."
+msgstr ""
+
+msgid "One send, with its recipients. Empty when it does not exist."
+msgstr ""
+
+msgid "Creates an event, or updates one when an ID is given."
+msgstr ""
+
+msgid "Event ID. Empty creates one."
+msgstr ""
+
+msgid "Fields to write. Omitted keys stay as they are."
+msgstr ""
+
+msgid "Also create the page on the site."
+msgstr ""
+
+msgid "Upload id from flx-crm/event-image."
+msgstr ""
+
+msgid "The event after the change."
+msgstr ""
+
+msgid "Archives an event, or puts it back on the working list."
+msgstr ""
+
+msgid "Deletes an event. Package records stay; they detach themselves."
+msgstr ""
+
+msgid "True when it was deleted."
+msgstr ""
+
+msgid "Creates or publishes the site page of an event."
+msgstr ""
+
+msgid "Page ID."
+msgstr ""
+
+msgid "Queues an event message through Flux Mail."
+msgstr ""
+
+msgid "Channels."
+msgstr ""
+
+msgid "Information or marketing (default information)."
+msgstr ""
+
+msgid "Message."
+msgstr ""
+
+msgid "E-mail subject. Empty uses the event name."
+msgstr ""
+
+msgid "Already uploaded attachment."
+msgstr ""
+
+msgid "Upload id from flx-crm/event-file."
+msgstr ""
+
+msgid "Site time Y-m-dTH:i. Empty sends now."
+msgstr ""
+
+msgid "The queued send."
+msgstr ""
+
+msgid "Channels that were not queued."
+msgstr ""
+
+msgid "Pauses, resumes or cancels every channel of one send."
+msgstr ""
+
+msgid "Pause, resume or cancel."
+msgstr ""
+
+msgid "The send after the change."
+msgstr ""
+
+msgid "Whether a contact is in the working list or archived."
+msgstr ""
+
+msgid "In the working list."
+msgstr ""
+
+msgid "Hidden from the working list; the history stays."
+msgstr ""
+
+msgid "A channel a contact gives or withholds permission for."
+msgstr ""
+
+msgid "Ad audiences."
+msgstr ""
+
+msgid "What the contact list is sorted by."
+msgstr ""
+
+msgid "Total value."
+msgstr ""
+
+msgid "Last activity."
+msgstr ""
+
+msgid "Last payment."
+msgstr ""
+
+msgid "Date added."
+msgstr ""
+
+msgid "Churn risk."
+msgstr ""
+
+msgid "Sort direction of the contact list."
+msgstr ""
+
+msgid "Smallest first."
+msgstr ""
+
+msgid "Largest first."
+msgstr ""
+
+msgid "Kinds of timeline entry a person adds by hand."
+msgstr ""
+
+msgid "Note."
+msgstr ""
+
+msgid "Phone call."
+msgstr ""
+
+msgid "Meeting."
+msgstr ""
+
+msgid "E-mail sent."
+msgstr ""
+
+msgid "An action applied to many contacts at once."
+msgstr ""
+
+msgid "Add a tag (the value is the tag name)."
+msgstr ""
+
+msgid "Add a role (the value is the role key)."
+msgstr ""
+
+msgid "Archive."
+msgstr ""
+
+msgid "Take out of the archive."
+msgstr ""
+
+msgid "Delete (a contact a package still uses stays)."
+msgstr ""
+
+msgid "Whether a contact must meet all rules or any rule."
+msgstr ""
+
+msgid "All rules."
+msgstr ""
+
+msgid "Any rule."
+msgstr ""
+
+msgid "State of a journey. Only an active journey sends."
+msgstr ""
+
+msgid "Not started."
+msgstr ""
+
+msgid "Running."
+msgstr ""
+
+msgid "Stopped; people already inside wait."
+msgstr ""
+
+msgid "A key with its name in the user's language."
+msgstr ""
+
+msgid "Key."
+msgstr ""
+
+msgid "A value a rule or trigger can take, with its name."
+msgstr ""
+
+msgid "Value."
+msgstr ""
+
+msgid "A contact role (donor, customer, volunteer … or one added in the settings)."
+msgstr ""
+
+msgid "Role key."
+msgstr ""
+
+msgid "Hex colour."
+msgstr ""
+
+msgid "Comes with the package; cannot be deleted."
+msgstr ""
+
+msgid "Not shown in pickers."
+msgstr ""
+
+msgid "A customer value segment (champion, loyal, at risk …) the scoring assigns."
+msgstr ""
+
+msgid "Segment key."
+msgstr ""
+
+msgid "What it means."
+msgstr ""
+
+msgid "Colour tone: good, warn, bad or neutral."
+msgstr ""
+
+msgid "A kind of timeline entry."
+msgstr ""
+
+msgid "Type key."
+msgstr ""
+
+msgid "Icon key."
+msgstr ""
+
+msgid "A person can add this kind by hand."
+msgstr ""
+
+msgid "A person who can own contacts."
+msgstr ""
+
+msgid "User ID."
+msgstr ""
+
+msgid "Display name."
+msgstr ""
+
+msgid "Vocabulary the CRM screens share: roles, value segments, timeline types, sources and permissions."
+msgstr ""
+
+msgid "Contact roles."
+msgstr ""
+
+msgid "Value segments the scoring assigns."
+msgstr ""
+
+msgid "Kinds of timeline entry."
+msgstr ""
+
+msgid "Where contacts come from."
+msgstr ""
+
+msgid "Permission channels."
+msgstr ""
+
+msgid "Timeline filters (the empty key is \"All\")."
+msgstr ""
+
+msgid "Reporting currency (ISO 4217)."
+msgstr ""
+
+msgid "The viewer may change contacts."
+msgstr ""
+
+msgid "People who can own a contact."
+msgstr ""
+
+msgid "Other packages add sections (donations, certificates …) to the classic contact card; the classic card shows them."
+msgstr ""
+
+msgid "Which channels the contact gave permission for."
+msgstr ""
+
+msgid "Recency, frequency and monetary scores (1–5; 0 = not scored)."
+msgstr ""
+
+msgid "How recently they paid."
+msgstr ""
+
+msgid "How often they pay."
+msgstr ""
+
+msgid "How much they pay."
+msgstr ""
+
+msgid "A package record the contact came from."
+msgstr ""
+
+msgid "Source name."
+msgstr ""
+
+msgid "Admin page of the record; empty when there is none."
+msgstr ""
+
+msgid "When it was linked, for display."
+msgstr ""
+
+msgid "A label on contacts."
+msgstr ""
+
+msgid "Tag ID."
+msgstr ""
+
+msgid "Hex colour; empty for the default."
+msgstr ""
+
+msgid "Contacts with the tag (0 when not counted)."
+msgstr ""
+
+msgid "A question and its answer from a form entry."
+msgstr ""
+
+msgid "Question."
+msgstr ""
+
+msgid "Answer."
+msgstr ""
+
+msgid "One line of a contact's timeline: a payment, message, form entry, note …"
+msgstr ""
+
+msgid "Entry ID."
+msgstr ""
+
+msgid "Contact ID."
+msgstr ""
+
+msgid "Contact name; filled in the recent-events feed."
+msgstr ""
+
+msgid "Type key (see flxCrmMeta.eventTypes)."
+msgstr ""
+
+msgid "Name of the type."
+msgstr ""
+
+msgid "Source key."
+msgstr ""
+
+msgid "Title."
+msgstr ""
+
+msgid "Text (notes, messages)."
+msgstr ""
+
+msgid "Amount; empty for entries without one."
+msgstr ""
+
+msgid "The payment is complete."
+msgstr ""
+
+msgid "Payment status in words when it is not paid."
+msgstr ""
+
+msgid "Link to the record (absolute)."
+msgstr ""
+
+msgid "Who made it (user ID); empty for the system."
+msgstr ""
+
+msgid "Who made it."
+msgstr ""
+
+msgid "When."
+msgstr ""
+
+msgid "Answers of a form entry."
+msgstr ""
+
+msgid "A manual entry the viewer may delete."
+msgstr ""
+
+msgid "A page of timeline entries, newest first."
+msgstr ""
+
+msgid "A person in the shared people table with the CRM columns: donor, customer, volunteer, lead. Implements FlxPerson; other packages add their own fields with flx_gql_field( 'FlxContact', … )."
+msgstr ""
+
+msgid "Display name: the name, else the e-mail, else the phone."
+msgstr ""
+
+msgid "Name as saved (may be empty)."
+msgstr ""
+
+msgid "E-mail address (lower case)."
+msgstr ""
+
+msgid "Phone number."
+msgstr ""
+
+msgid "Picture address (from the e-mail address)."
+msgstr ""
+
+msgid "Organisation."
+msgstr ""
+
+msgid "City."
+msgstr ""
+
+msgid "ISO country code."
+msgstr ""
+
+msgid "First source key."
+msgstr ""
+
+msgid "First source name."
+msgstr ""
+
+msgid "First campaign source."
+msgstr ""
+
+msgid "First campaign."
+msgstr ""
+
+msgid "Linked WordPress user; empty when none."
+msgstr ""
+
+msgid "Owner (user ID); empty when none."
+msgstr ""
+
+msgid "Owner's name."
+msgstr ""
+
+msgid "Working list or archive."
+msgstr ""
+
+msgid "Short note."
+msgstr ""
+
+msgid "Role keys (flxCrmMeta.roles)."
+msgstr ""
+
+msgid "Value segment key (flxCrmMeta.rfm); empty before the first scoring."
+msgstr ""
+
+msgid "Name of the value segment."
+msgstr ""
+
+msgid "Total value in the reporting currency."
+msgstr ""
+
+msgid "Churn risk 0–100."
+msgstr ""
+
+msgid "The churn risk is at or above the threshold of the settings."
+msgstr ""
+
+msgid "Days with a payment."
+msgstr ""
+
+msgid "Number of donations."
+msgstr ""
+
+msgid "Number of orders."
+msgstr ""
+
+msgid "First payment."
+msgstr ""
+
+msgid "Average days between payments."
+msgstr ""
+
+msgid "Recency, frequency and monetary scores."
+msgstr ""
+
+msgid "Channel permissions."
+msgstr ""
+
+msgid "Last permission change."
+msgstr ""
+
+msgid "Last activity; empty when there is none yet."
+msgstr ""
+
+msgid "When the contact was added."
+msgstr ""
+
+msgid "The classic contact card in wp-admin (with the sections other packages add)."
+msgstr ""
+
+msgid "Tags on the contact."
+msgstr ""
+
+msgid "Package records the contact came from."
+msgstr ""
+
+msgid "Timeline, newest first."
+msgstr ""
+
+msgid "Timeline filter key (flxCrmMeta.timelineFilters); empty = all."
+msgstr ""
+
+msgid "A page of contacts."
+msgstr ""
+
+msgid "Narrows the contact list."
+msgstr ""
+
+msgid "Name, e-mail, phone or company contains."
+msgstr ""
+
+msgid "Value segment key."
+msgstr ""
+
+msgid "Only contacts who gave permission for the channel."
+msgstr ""
+
+msgid "Only contacts at or above the churn threshold."
+msgstr ""
+
+msgid "Working list (default) or archive."
+msgstr ""
+
+msgid "Only contacts that match a saved segment."
+msgstr ""
+
+msgid "Contacts, filtered and sorted."
+msgstr ""
+
+msgid "Filter."
+msgstr ""
+
+msgid "Sort field (default: last activity)."
+msgstr ""
+
+msgid "Sort direction (default: largest first)."
+msgstr ""
+
+msgid "One contact; empty when it does not exist."
+msgstr ""
+
+msgid "Global ID or contact ID."
+msgstr ""
+
+msgid "Every tag with its contact count."
+msgstr ""
+
+msgid "The newest timeline entries of every contact."
+msgstr ""
+
+msgid "Entries (1–50, default 10)."
+msgstr ""
+
+msgid "A card in a group of likely duplicates."
+msgstr ""
+
+msgid "The card."
+msgstr ""
+
+msgid "Packages that still use the card (donations, orders …)."
+msgstr ""
+
+msgid "Cards that are probably the same person."
+msgstr ""
+
+msgid "Why they match: name or phone."
+msgstr ""
+
+msgid "The cards (2–10)."
+msgstr ""
+
+msgid "Groups of likely duplicate contacts (at most 50 groups)."
+msgstr ""
+
+msgid "Channel permissions; channels you leave out stay as they are."
+msgstr ""
+
+msgid "E-mail address."
+msgstr ""
+
+msgid "Phone number (any format; saved as digits)."
+msgstr ""
+
+msgid "Owner (user ID); 0 clears it."
+msgstr ""
+
+msgid "Every role the contact should have (replaces the list)."
+msgstr ""
+
+msgid "Adds a contact by hand. A contact with the same e-mail or phone is not changed: it comes back with existed = true."
+msgstr ""
+
+msgid "Tag names to add (a new name creates the tag)."
+msgstr ""
+
+msgid "The new contact, or the existing one."
+msgstr ""
+
+msgid "A contact with this e-mail or phone already existed."
+msgstr ""
+
+msgid "Changes a contact. Fields you leave out stay as they are; an empty value clears the field."
+msgstr ""
+
+msgid "The contact after the change."
+msgstr ""
+
+msgid "Deletes a contact with its timeline, tags and links. Donations and orders stay in their packages; a contact a package still uses cannot be deleted."
+msgstr ""
+
+msgid "Global ID of the deleted contact."
+msgstr ""
+
+msgid "Adds a note, call, meeting or sent e-mail to the timeline."
+msgstr ""
+
+msgid "Kind of entry (default: note)."
+msgstr ""
+
+msgid "Text."
+msgstr ""
+
+msgid "The new entry."
+msgstr ""
+
+msgid "The contact (its last activity changed)."
+msgstr ""
+
+msgid "Deletes a timeline entry added by hand. Entries that come from a source (payments, messages) cannot be deleted."
+msgstr ""
+
+msgid "Entry ID (FlxContactEvent.databaseId)."
+msgstr ""
+
+msgid "ID of the deleted entry."
+msgstr ""
+
+msgid "The contact the entry belonged to."
+msgstr ""
+
+msgid "Puts a tag on a contact, by ID or by name (a new name creates the tag)."
+msgstr ""
+
+msgid "Tag name; used when there is no tag ID."
+msgstr ""
+
+msgid "The tag."
+msgstr ""
+
+msgid "Give a tag ID or a name."
+msgstr ""
+
+msgid "Takes a tag off a contact."
+msgstr ""
+
+msgid "Applies one action to up to 500 contacts: tag, role, archive, restore or delete."
+msgstr ""
+
+msgid "Global IDs or contact IDs."
+msgstr ""
+
+msgid "What to do."
+msgstr ""
+
+msgid "Tag name or role key (for TAG and ROLE)."
+msgstr ""
+
+msgid "Contacts that were changed."
+msgstr ""
+
+msgid "Merges duplicate cards into the one to keep; every package moves its records to it."
+msgstr ""
+
+msgid "The card to keep."
+msgstr ""
+
+msgid "Cards merged into it (they are deleted)."
+msgstr ""
+
+msgid "The kept card."
+msgstr ""
+
+msgid "Cards merged."
+msgstr ""
+
+msgid "Contacts per role."
+msgstr ""
+
+msgid "Contacts."
+msgstr ""
+
+msgid "Contacts and value per value segment."
+msgstr ""
+
+msgid "Colour tone."
+msgstr ""
+
+msgid "Total value of the segment."
+msgstr ""
+
+msgid "Contacts per first source."
+msgstr ""
+
+msgid "The CRM overview numbers and distributions."
+msgstr ""
+
+msgid "All contacts."
+msgstr ""
+
+msgid "Added in the last 30 days."
+msgstr ""
+
+msgid "Added in the 30 days before that."
+msgstr ""
+
+msgid "Active in the last \"active days\"."
+msgstr ""
+
+msgid "Contacts at or above the churn threshold."
+msgstr ""
+
+msgid "Total value of all contacts."
+msgstr ""
+
+msgid "Contacts who paid at least once."
+msgstr ""
+
+msgid "Contacts who paid more than once."
+msgstr ""
+
+msgid "Reporting currency."
+msgstr ""
+
+msgid "Days a contact counts as active."
+msgstr ""
+
+msgid "Churn risk at which a contact counts as at risk."
+msgstr ""
+
+msgid "Last scoring run."
+msgstr ""
+
+msgid "Last full import of past records."
+msgstr ""
+
+msgid "Past records have never been imported."
+msgstr ""
+
+msgid "Names of the sources the import reads."
+msgstr ""
+
+msgid "Contacts per value segment."
+msgstr ""
+
+msgid "Vocabulary the CRM screens share: roles, value segments, timeline types, sources."
+msgstr ""
+
+msgid "One slice of a scoring run."
+msgstr ""
+
+msgid "Contacts scored in this slice."
+msgstr ""
+
+msgid "Contacts whose score changed."
+msgstr ""
+
+msgid "The run is complete; otherwise call again."
+msgstr ""
+
+msgid "Contacts to score."
+msgstr ""
+
+msgid "One step of the import of past records."
+msgstr ""
+
+msgid "Source key, recalc or score."
+msgstr ""
+
+msgid "What the step does, in words."
+msgstr ""
+
+msgid "Records read so far in this step."
+msgstr ""
+
+msgid "Records in this step."
+msgstr ""
+
+msgid "Next step key; empty when this step is not finished."
+msgstr ""
+
+msgid "Page to ask for next within the step."
+msgstr ""
+
+msgid "Every step is complete."
+msgstr ""
+
+msgid "Recalculates the value scores and churn risk. Call again until done is true."
+msgstr ""
+
+msgid "Progress of the run."
+msgstr ""
+
+msgid "Imports past records one step at a time. Start with no step; follow next and page until finished."
+msgstr ""
+
+msgid "Step key from the previous result (empty = the first)."
+msgstr ""
+
+msgid "Page within the step (1 = first)."
+msgstr ""
+
+msgid "Progress of the import."
+msgstr ""
+
+msgid "One rule of a segment."
+msgstr ""
+
+msgid "Field key (flxSegmentEditor.fields)."
+msgstr ""
+
+msgid "Operator key."
+msgstr ""
+
+msgid "A saved list of contacts that match rules."
+msgstr ""
+
+msgid "Segment ID."
+msgstr ""
+
+msgid "Description."
+msgstr ""
+
+msgid "Matching contacts (counted when saved and scored)."
+msgstr ""
+
+msgid "The rules in words."
+msgstr ""
+
+msgid "All rules or any rule."
+msgstr ""
+
+msgid "Rules."
+msgstr ""
+
+msgid "A field a segment rule can test."
+msgstr ""
+
+msgid "Value type: number, days, role, tag, rfm, consent, source, text …"
+msgstr ""
+
+msgid "Operator keys the field accepts."
+msgstr ""
+
+msgid "The choices of one value type."
+msgstr ""
+
+msgid "Value type (role, tag, rfm, consent, source)."
+msgstr ""
+
+msgid "Choices."
+msgstr ""
+
+msgid "What the segment rule editor offers."
+msgstr ""
+
+msgid "Fields a rule can test."
+msgstr ""
+
+msgid "Operators with their names."
+msgstr ""
+
+msgid "Choices of each value type."
+msgstr ""
+
+msgid "A contact in a segment preview."
+msgstr ""
+
+msgid "Live result of a rule list while it is edited."
+msgstr ""
+
+msgid "Matching contacts."
+msgstr ""
+
+msgid "The five most valuable matches."
+msgstr ""
+
+msgid "Saved segments."
+msgstr ""
+
+msgid "One saved segment; empty when it does not exist."
+msgstr ""
+
+msgid "Fields, operators and choices of the segment rule editor."
+msgstr ""
+
+msgid "Counts the contacts a rule list would match, without saving it."
+msgstr ""
+
+msgid "All rules or any rule (default: all)."
+msgstr ""
+
+msgid "Creates a segment, or changes one when an ID is given."
+msgstr ""
+
+msgid "Segment ID; leave out to create."
+msgstr ""
+
+msgid "The saved segment."
+msgstr ""
+
+msgid "Deletes a segment. The contacts stay."
+msgstr ""
+
+msgid "ID of the deleted segment."
+msgstr ""
+
+msgid "One step of a journey: wait, e-mail, WhatsApp, tag or condition."
+msgstr ""
+
+msgid "Step type (flxJourneyConfig.stepTypes)."
+msgstr ""
+
+msgid "Days to wait."
+msgstr ""
+
+msgid "Hours to wait."
+msgstr ""
+
+msgid "E-mail subject."
+msgstr ""
+
+msgid "Message text."
+msgstr ""
+
+msgid "Condition key (flxJourneyConfig.conditions)."
+msgstr ""
+
+msgid "Value of the condition."
+msgstr ""
+
+msgid "Tag to add."
+msgstr ""
+
+msgid "Rules of a journey: goal, re-entry, quiet hours and the weekly message cap."
+msgstr ""
+
+msgid "Event that ends the journey for a person (flxJourneyConfig.goals); empty = none."
+msgstr ""
+
+msgid "Days before a person can enter again (0 = never)."
+msgstr ""
+
+msgid "Quiet hours start (hour, 0–23)."
+msgstr ""
+
+msgid "Quiet hours end (hour, 0–23)."
+msgstr ""
+
+msgid "Most messages a person gets per week from journeys."
+msgstr ""
+
+msgid "How a journey is doing."
+msgstr ""
+
+msgid "People who entered."
+msgstr ""
+
+msgid "People who went through every step."
+msgstr ""
+
+msgid "People who reached the goal."
+msgstr ""
+
+msgid "Messages sent."
+msgstr ""
+
+msgid "Messages skipped (quiet hours, cap, no permission)."
+msgstr ""
+
+msgid "People inside now."
+msgstr ""
+
+msgid "An automatic flow for contacts: a trigger, steps and rules."
+msgstr ""
+
+msgid "Journey ID."
+msgstr ""
+
+msgid "Draft, active or paused."
+msgstr ""
+
+msgid "Trigger, steps and goal in words."
+msgstr ""
+
+msgid "What starts the journey (flxJourneyConfig.triggers)."
+msgstr ""
+
+msgid "Segment, tag, role or event the trigger watches."
+msgstr ""
+
+msgid "Steps in order."
+msgstr ""
+
+msgid "Numbers."
+msgstr ""
+
+msgid "The values a trigger type can watch."
+msgstr ""
+
+msgid "Trigger type."
+msgstr ""
+
+msgid "What the journey editor offers."
+msgstr ""
+
+msgid "What can start a journey."
+msgstr ""
+
+msgid "Kinds of step."
+msgstr ""
+
+msgid "Conditions a step can test."
+msgstr ""
+
+msgid "States with their names."
+msgstr ""
+
+msgid "Events that can end a journey."
+msgstr ""
+
+msgid "Ready-made journeys."
+msgstr ""
+
+msgid "Rules a new journey starts with."
+msgstr ""
+
+msgid "Values each trigger type can watch."
+msgstr ""
 
-msgid "CSV"
+msgid "Flux Mail is active; without it e-mail steps cannot send."
 msgstr ""
 
-msgid "Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand."
+msgid "One step of a journey."
 msgstr ""
 
-msgid "Name, e-mail, phone, organisation, city"
+msgid "Step type."
 msgstr ""
 
-msgid "Search contacts"
+msgid "Condition key."
 msgstr ""
 
-msgid "All RFM segments"
+msgid "Rules of a journey; rules you leave out get the defaults."
 msgstr ""
 
-msgid "Saved segment"
+msgid "Goal event key; empty = none."
 msgstr ""
 
-msgid "All tags"
+msgid "Days before a person can enter again."
 msgstr ""
 
-msgid "Any consent"
+msgid "Quiet hours start (0–23)."
 msgstr ""
 
-msgid "Only high churn risk"
+msgid "Quiet hours end (0–23)."
 msgstr ""
 
-msgid "Archive"
+msgid "Most messages per person per week."
 msgstr ""
 
-msgid "Filter"
+msgid "Journeys with their numbers."
 msgstr ""
 
-msgid "No contacts match the filter."
+msgid "One journey; empty when it does not exist."
 msgstr ""
 
-msgid "No contacts yet."
+msgid "Triggers, step types, conditions and templates of the journey editor."
 msgstr ""
 
-msgid "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
+msgid "Creates a journey as a draft, or changes one when an ID is given (saving an active journey pauses it)."
 msgstr ""
 
-msgid "Add role"
+msgid "Journey ID; leave out to create."
 msgstr ""
 
-msgid "Unarchive"
+msgid "What starts the journey."
 msgstr ""
 
-msgid "Tag name"
+msgid "The saved journey."
 msgstr ""
 
-msgid "Apply"
+msgid "Turns a journey on, pauses it or puts it back to draft. Only an active journey sends."
 msgstr ""
 
-msgid "Select all"
+msgid "New state."
 msgstr ""
 
-msgid "Contact"
+msgid "The journey after the change."
 msgstr ""
 
-msgid "Role and segment"
+msgid "Deletes a journey and the progress of the people inside it."
 msgstr ""
 
-msgid "Value"
+msgid "ID of the deleted journey."
 msgstr ""
 
-msgid "Donors, customers, volunteers and leads in one place: who did what, who is drifting away, who should hear what."
+msgid "Adds a ready-made journey as a draft."
 msgstr ""
 
-msgid "Import your past data."
+msgid "Template key (flxJourneyConfig.templates)."
 msgstr ""
 
-msgid "New records arrive on their own. To link older ones to contacts too, sync: %s."
+msgid "The new draft."
 msgstr ""
 
-msgid "No source brings in contacts; you can add them by hand."
+msgid "A package Flux CRM reads people from."
 msgstr ""
 
-msgid "Sync everything"
+msgid "What it brings in."
 msgstr ""
 
-msgid "%s have paid"
+msgid "The package is active."
 msgstr ""
 
-msgid "New in the last 30 days"
+msgid "CRM reads from it."
 msgstr ""
 
-msgid "%s against the previous 30 days"
+msgid "The source gives its people a role."
 msgstr ""
 
-msgid "Active"
+msgid "Role key given to its people."
 msgstr ""
 
-msgid "with activity in the last %s days"
+msgid "Flux CRM settings."
 msgstr ""
 
-msgid "High churn risk"
+msgid "Chat messages appear on the timeline."
 msgstr ""
 
-msgid "risk %s%% and above"
+msgid "Flux AI and MCP may read CRM data."
 msgstr ""
 
-msgid "%s per contact"
+msgid "Flux AI and MCP may change CRM data."
 msgstr ""
 
-msgid "RFM segments"
+msgid "Flux AI and MCP may delete (with confirmation)."
 msgstr ""
 
-msgid "Calculated: %s"
+msgid "Churn risk at which a contact counts as at risk (10–100)."
 msgstr ""
 
-msgid "Recalculate"
+msgid "Days a contact counts as active (7–730)."
 msgstr ""
 
-msgid "Once contacts have paid, donors and customers are grouped here by frequency, recency and value."
+msgid "Reporting currency set here; empty = the store currency."
 msgstr ""
 
-msgid "Reach out"
+msgid "Reporting currency in use."
 msgstr ""
 
-msgid "No valuable contacts with a high churn risk."
+msgid "Sources CRM reads from."
 msgstr ""
 
-msgid "last payment %s"
+msgid "A CRM tool Flux AI and MCP can call."
 msgstr ""
 
-msgid "Donations, orders, forms and WhatsApp activity appear here."
+msgid "Tool name."
 msgstr ""
 
-msgid "Where they came from"
+msgid "What it does."
 msgstr ""
 
-msgid "New segment"
+msgid "read, write or destructive."
 msgstr ""
 
-msgid "Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail."
+msgid "Name of the kind."
 msgstr ""
 
-msgid "No segments yet."
+msgid "The tool is on under the current settings."
 msgstr ""
 
-msgid "Examples: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers with no purchase for 3 months\"."
+msgid "How Flux AI and MCP are connected to CRM."
 msgstr ""
 
-msgid "contacts"
+msgid "Flux AI is active."
 msgstr ""
 
-msgid "View contacts"
+msgid "The MCP server is available."
 msgstr ""
 
-msgid "Edit"
+msgid "The MCP server is on."
 msgstr ""
 
-msgid "Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it."
+msgid "MCP address."
 msgstr ""
 
-msgid "Send a campaign"
+msgid "MCP settings page (administrators only)."
 msgstr ""
 
-msgid "Edit segment"
+msgid "Tools that are on."
 msgstr ""
 
-msgid "Add rules; the number of matching contacts updates on the right as you go."
+msgid "Every tool."
 msgstr ""
 
-msgid "E.g. Donors drifting away"
+msgid "A change made with Flux AI, MCP or automation."
 msgstr ""
 
-msgid "Description"
+msgid "Who asked."
 msgstr ""
 
-msgid "Rules"
+msgid "What was done."
 msgstr ""
 
-msgid "all rules"
+msgid "What it was done to."
 msgstr ""
 
-msgid "at least one"
+msgid "It worked."
 msgstr ""
 
-msgid "Contact matches"
+msgid "How Flux AI and MCP are connected to CRM, and the tool list."
 msgstr ""
 
-msgid "Add rule"
+msgid "Recent changes made with Flux AI, MCP or automation."
 msgstr ""
 
-msgid "Matching contacts"
+msgid "Entries (1–50, default 15)."
 msgstr ""
 
-msgid "Where contacts come from, which role they get and how scoring works."
+msgid "Switches a source on or off and sets the role its people get."
 msgstr ""
 
-msgid "Not synced yet"
+msgid "CRM reads from the source."
 msgstr ""
 
-msgid "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
+msgid "Role key (empty = none)."
 msgstr ""
 
-msgid "Donors and donations"
+msgid "Changes a role."
 msgstr ""
 
-msgid "Customers and orders (donation orders excluded)"
+msgid "Name (1–40 characters)."
 msgstr ""
 
-msgid "WhatsApp chats and every message"
+msgid "Delete the role (not for built-in roles)."
 msgstr ""
 
-msgid "Form submissions (with an e-mail or phone field)"
+msgid "A new role."
 msgstr ""
 
-msgid "Site members"
+msgid "Saves the settings. Values you leave out stay as they are."
 msgstr ""
 
-msgid "WordPress users with the customer or subscriber role"
+msgid "Churn threshold (10–100)."
 msgstr ""
 
-msgid "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
+msgid "Active days (7–730)."
 msgstr ""
 
-msgid "Source"
+msgid "Reporting currency (3 letters); empty = the store currency."
 msgstr ""
 
-msgid "On"
+msgid "Sources to change."
 msgstr ""
 
-msgid "Role for new contacts"
+msgid "Roles to change; roles you leave out are deleted when they are not built in."
 msgstr ""
 
-msgid "not installed"
+msgid "A role to add."
 msgstr ""
 
-msgid "— no role —"
+msgid "Settings after the change."
 msgstr ""
 
-msgid "Write WhatsApp messages to the timeline (one line per message)"
+msgid "Where a package section sits on the person card."
 msgstr ""
 
-msgid "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
+msgid "Buttons in the header."
 msgstr ""
 
-msgid "The contact's relationship with you. A contact can have several roles, e.g. donor and volunteer."
+msgid "Main column, above the timeline."
 msgstr ""
 
-msgid "Colour"
+msgid "Main column, under the timeline."
 msgstr ""
 
-msgid "New role: Sponsor, Philanthropist, Dealer…"
+msgid "Side column."
 msgstr ""
 
-msgid "New role"
+msgid "How to draw one block of a person-card section."
 msgstr ""
 
-msgid "Scoring"
+msgid "Links."
 msgstr ""
 
-msgid "Churn risk threshold (%)"
+msgid "A list."
 msgstr ""
 
-msgid "Contacts above this value go to the \"Reach out\" list. Risk follows each person's own rhythm: a monthly donor is at risk after 45 days, a yearly one is not."
+msgid "A table."
 msgstr ""
 
-msgid "Active window (days)"
+msgid "A note."
 msgstr ""
 
-msgid "A contact with any activity within this many days counts as active."
+msgid "HTML, sanitized with wp_kses_post."
 msgstr ""
 
-msgid "Reporting currency"
+msgid "Buttons."
 msgstr ""
 
-msgid "Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given."
+msgid "One line of a stats, links, list or actions block."
 msgstr ""
 
-msgid "Save settings"
+msgid "Link. Empty when it is not a link."
 msgstr ""
 
-msgid "AI & MCP"
+msgid "Secondary line."
 msgstr ""
 
-msgid "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions."
+msgid "Drawn as the main action."
 msgstr ""
 
-msgid "connected"
+msgid "One row of a table block."
 msgstr ""
 
-msgid "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
+msgid "Cells, in column order."
 msgstr ""
 
-msgid "Flux AI & MCP is not installed"
+msgid "Row link."
 msgstr ""
 
-msgid "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."
+msgid "Accessible name of the row."
 msgstr ""
 
-msgid "MCP keys"
+msgid "One block inside a person-card section."
 msgstr ""
 
-msgid "AI and MCP tools on"
+msgid "How to draw it."
 msgstr ""
 
-msgid "Editing: contacts, tags, segments, notes, settings"
+msgid "Note or HTML."
 msgstr ""
 
-msgid "Approval actions: delete, merge, bulk actions, sending messages"
+msgid "Table headings."
 msgstr ""
 
-msgid "Tools: %1$d / %2$d on"
+msgid "Lines of a stats, links, list or actions block."
 msgstr ""
 
-msgid "Tool"
+msgid "Table rows."
 msgstr ""
 
-msgid "Recent changes made with AI"
+msgid "A block a package adds to the person card."
 msgstr ""
 
-msgid "No changes yet. Every change made with Flux AI or MCP shows up here."
+msgid "Stable id. legacy: plus the hook name is the unmigrated HTML."
 msgstr ""
 
-msgid "When"
+msgid "Where it sits."
 msgstr ""
 
-msgid "Who"
+msgid "Package slug. Empty for a legacy hook."
 msgstr ""
 
-msgid "Action"
+msgid "What to draw."
 msgstr ""
 
-msgid "Result"
+msgid "Sections other packages add. Hidden ones are left out."
 msgstr ""
 
-msgid "done"
+msgid "Caller context. Empty is the CRM card."
 msgstr ""
 
-msgid "error"
+msgid "Only this place. Empty is every place."
 msgstr ""
 
 msgid "WhatsApp chat opened"
@@ -1092,76 +3162,4 @@ msgid "WhatsApp notification"
 msgstr ""
 
 msgid "Created an account on the site"
-msgstr ""
-
-msgid "Name, e-mail or phone"
-msgstr ""
-
-msgid "Contacts arrive on their own from gifts, orders and forms."
-msgstr ""
-
-msgid "Status"
-msgstr ""
-
-msgid "Remove tag"
-msgstr ""
-
-msgid "Add an interaction"
-msgstr ""
-
-msgid "Saved"
-msgstr ""
-
-msgid "Delete this contact?"
-msgstr ""
-
-msgid "No people"
-msgstr ""
-
-msgid "Text"
-msgstr ""
-
-msgid "Add a note"
-msgstr ""
-
-msgid "Open in the panel"
-msgstr ""
-
-msgid "Ads"
-msgstr ""
-
-msgid "Ad consent"
-msgstr ""
-
-msgid "Risk"
-msgstr ""
-
-msgid "Segment rules"
-msgstr ""
-
-msgid "No segments"
-msgstr ""
-
-msgid "Create segments by adding rules in the panel."
-msgstr ""
-
-msgid "Deleted"
-msgstr ""
-
-msgid "Last 30 days"
-msgstr ""
-
-msgid "The timeline and tags are deleted too."
-msgstr ""
-
-msgid "repeat"
-msgstr ""
-
-msgid "Paying"
-msgstr ""
-
-msgid "Consents"
-msgstr ""
-
-msgid "People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI."
 msgstr ""

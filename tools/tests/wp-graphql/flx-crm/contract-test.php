@@ -491,9 +491,6 @@ if ( FLXCRM_Event_Messages::can_pause() ) {
 }
 // Classic: the real admin-post handler. wp_safe_redirect() ends in exit; the redirect filter turns that into an exception.
 class FlxcrmRedirect extends RuntimeException {}
-if ( ! function_exists( 'flxcrm_events_url' ) ) {
-	require_once FLXCRM_DIR . 'includes/admin/page-events.php'; // The classic screen is admin-only; its handlers are plain static methods.
-}
 wp_set_current_user( $editor );
 $_POST    = array( 'id' => $rid, 'send' => $key_a, 'do' => 'cancel' );
 $_REQUEST = array( '_wpnonce' => wp_create_nonce( 'flxcrm_event_msg_control' ) );
@@ -519,17 +516,6 @@ flxt_same( 'CANCELLED', $by_key[ $key_a ] ?? null, 'gathering control: GraphQL r
 $gql_cancel = $ctl( $key_b, 'CANCEL', $editor )['data']['flxGatheringSendControl'] ?? array();
 flxt_same( array( array(), 'CANCELLED', 'cancelled' ), array( $gql_cancel['errors'] ?? null, $gql_cancel['send']['overall'] ?? null, (string) ( flxi_get_campaign( $cid_b )['status'] ?? '' ) ), 'gathering control: GraphQL cancel is what the classic code reads', $gql_cancel );
 flxt_same( 'cancelled', (string) ( $wpdb->get_var( $wpdb->prepare( "SELECT status FROM {$queue_t} WHERE campaign_id = %d LIMIT 1", $cid_b ) ) ), 'gathering control: the queue rows are cancelled' ); // phpcs:ignore
-// Classic save keeps its redirect message exactly.
-$_POST    = array( 'id' => 0, 'name' => '' );
-$_REQUEST = array( '_wpnonce' => wp_create_nonce( 'flxcrm_gathering_save' ) );
-$flxcrm_redirect = '';
-try {
-	FLXCRM_Page_Events::post_save();
-} catch ( FlxcrmRedirect $e ) {
-	unset( $e );
-}
-$_POST = $_REQUEST = array();
-flxt_ok( false !== strpos( $flxcrm_redirect, 'flxcrm_err=' . rawurlencode( 'The event name cannot be empty.' ) ), 'classic save: the redirect message is unchanged', $flxcrm_redirect );
 remove_filter( 'flx_event_people', $flxcrm_people, 10 );
 remove_filter( 'pre_wp_mail', '__return_true' );
 
@@ -690,4 +676,15 @@ flxt_same( array( array(), null ), array( $de['errors'] ?? null, FLXCRM_Contacts
 flxt_same( null, flxcrm_field( flxcrm_t( 'FlxCrmContact', array( 'id' => $c['id'] ), $admin ), 'flxContact' ), 'delete: the card is gone' );
 flxt_same( 'NOT_FOUND', flxt_code( flxcrm_t( 'FlxCrmContactDelete', array( 'input' => array( 'id' => '99999' ) ), $editor ) ), 'delete: unknown contact → NOT_FOUND' );
 
+if ( ! function_exists( 'flxcrm_preload_for' ) ) {
+	require_once FLXCRM_DIR . 'includes/admin/flux-ui.php';
+}
+// 0.12.0: the shell preloads the first queries of the start route (same variables as the screen).
+flxt_same( array( array( 'FlxCrmShell', array() ), array( 'FlxCrmOverview', array() ) ), flxcrm_preload_for( 'overview' ), 'preload: overview' );
+flxt_same( array( 'FlxCrmContacts', array( 'filter' => array( 'status' => 'ACTIVE' ), 'orderBy' => 'LAST_ACTIVITY', 'order' => 'DESC', 'first' => 25, 'after' => null ) ), flxcrm_preload_for( 'contacts' )[1], 'preload: contacts' );
+flxt_same( array( 'FlxCrmContact', array( 'id' => '12' ) ), flxcrm_preload_for( 'contact/12' )[1], 'preload: a contact card' );
+flxt_same( array( 'FlxCrmGatherings', array( 'status' => 'CLOSED', 'first' => 24 ) ), flxcrm_preload_for( 'events?status=closed' )[1], 'preload: closed events' );
+flxt_same( array( 'FlxCrmGathering', array( 'id' => 3 ) ), flxcrm_preload_for( 'event/3' )[1], 'preload: an event' );
+flxt_same( 1, count( flxcrm_preload_for( 'event/3?view=people' ) ), 'preload: an event sub page only the shell' );
+flxt_same( array( 'FlxCrmSettings', array() ), flxcrm_preload_for( 'settings' )[1], 'preload: settings' );
 flxt_done();

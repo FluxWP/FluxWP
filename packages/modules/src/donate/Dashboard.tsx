@@ -7,6 +7,7 @@ import { useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxDonateDashboard } from '@fluxwp/graphql/operations';
 import type { FlxDonateDashboardQuery, FlxDonationRange } from '@fluxwp/graphql/types';
 import { DatePicker, Loading, Screen } from '@fluxwp/ui';
+import { Chart } from '@fluxwp/ui/chart';
 import { useHost } from '../host';
 import { Go, Ico, useDonate } from './shared';
 
@@ -42,12 +43,6 @@ function second(c1: string): string {
   if (d) h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
   h = (h * 60 + 360) % 360;
   return d > 0.08 && h >= 180 && h <= 260 ? '#E0A526' : '#2F6FA3';
-}
-
-function niceStep(x: number): number {
-  const p = Math.pow(10, Math.floor(Math.log10(x)));
-  const f = x / p;
-  return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p;
 }
 
 export function Dashboard({ notice }: { notice: ReactNode }) {
@@ -257,17 +252,19 @@ function Body({ d, fmt, c1, c2 }: { d: D; fmt: Fmt; c1: string; c2: string }) {
       </div>
       <div className="flxdn-grid flxdn-grid--2-1">
         <Card title={t('Donations per day')} hint={t('Received amount, one-time and recurring')}>
-          <div className="flxdn-legend" style={{ marginBottom: 10 }}>
-            <span>
-              <i className="flxdn-sw" style={{ background: c1 }} />
-              {t('One-time')}
-            </span>
-            <span>
-              <i className="flxdn-sw" style={{ background: c2 }} />
-              {t('Recurring')}
-            </span>
-          </div>
-          <Daily series={d.series} fmt={fmt} c1={c1} c2={c2} />
+<Chart
+            kind="bar"
+            stacked
+            height={260}
+            labels={d.series.map((r) => r.label)}
+            series={[
+              { label: t('One-time'), data: d.series.map((r) => r.oneTime), color: c1 },
+              { label: t('Recurring'), data: d.series.map((r) => r.recurring), color: c2 },
+            ]}
+            format={(v) => fmt.money(v)}
+            formatTick={(v) => fmt.short(v)}
+            label={t('Donations per day')}
+          />
         </Card>
         <Card title={t('One-time vs recurring')} hint={`${d.fromLabel} – ${d.toLabel}`}>
           <Split a={d.oneTime} b={d.recurring} fmt={fmt} c1={c1} c2={c2} gifts={gifts} />
@@ -406,123 +403,3 @@ function Split({ a, b, fmt, c1, c2, gifts }: { a: D['oneTime']; b: D['recurring'
   );
 }
 
-type Day = D['series'][number];
-/** Stacked daily columns with a tooltip; redrawn for the box width. */
-function Daily({ series, fmt, c1, c2 }: { series: Day[]; fmt: Fmt; c1: string; c2: string }) {
-  const { t } = useDonate();
-  const box = useRef<HTMLDivElement>(null);
-  const [W, setW] = useState(640);
-  const [tip, setTip] = useState<{ i: number; x: number; y: number } | null>(null);
-  useEffect(() => {
-    const el = box.current;
-    if (!el) return;
-    const measure = () => setW(Math.max(320, el.clientWidth || 640));
-    measure();
-    if (typeof ResizeObserver === 'undefined') return;
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-  const H = W < 500 ? 220 : 260;
-  const pl = 44;
-  const pr = 8;
-  const pt = 10;
-  const pb = 26;
-  const iw = W - pl - pr;
-  const ih = H - pt - pb;
-  const max = series.reduce((m, r) => Math.max(m, r.oneTime + r.recurring), 0);
-  const step = niceStep(max / 4 || 1);
-  const top = Math.max(step * 4, step);
-  const n = series.length || 1;
-  const bw = iw / n;
-  const gap = Math.min(6, bw * 0.25);
-  const every = Math.ceil(n / (W < 500 ? 5 : 10));
-  const cur = tip ? series[tip.i] : undefined;
-  return (
-    <div className="flxdn-chart" ref={box} onMouseLeave={() => setTip(null)}>
-      <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} role="img" aria-label={t('Donations per day')}>
-        <g className="flxdn-gl">
-          {[0, 1, 2, 3, 4].map((i) => {
-            const v = step * i;
-            const y = pt + ih - (v / top) * ih;
-            return (
-              <g key={i}>
-                <line x1={pl} x2={W - pr} y1={y} y2={y} className={i === 0 ? 'is-base' : undefined} />
-                <text x={pl - 6} y={y + 4} textAnchor="end">
-                  {fmt.short(v)}
-                </text>
-              </g>
-            );
-          })}
-        </g>
-        <g>
-          {series.map((r, i) => {
-            const x = pl + i * bw + gap / 2;
-            const w = Math.max(1, bw - gap);
-            const h1 = (r.oneTime / top) * ih;
-            const h2 = (r.recurring / top) * ih;
-            const y1 = pt + ih - h1;
-            const rx = Math.min(3, w / 3);
-            const on = (cx: number, cy: number) => setTip({ i, x: cx, y: cy });
-            return (
-              <g key={r.day}>
-                {h1 > 0 ? <rect x={x} y={y1} width={w} height={h1} rx={rx} fill={c1} /> : null}
-                {h2 > 0 ? <rect x={x} y={y1 - h2} width={w} height={h2} rx={rx} fill={c2} /> : null}
-                {i % every === 0 || i === n - 1 ? (
-                  <text className="flxdn-axis-t" x={x + w / 2} y={H - 8} textAnchor="middle" fill="#6B7C86" fontSize="11">
-                    {r.label}
-                  </text>
-                ) : null}
-                <rect
-                  className={'flxdn-colhit' + (tip?.i === i ? ' is-hover' : '')}
-                  x={pl + i * bw}
-                  y={pt}
-                  width={bw}
-                  height={ih}
-                  onMouseMove={(e) => on(e.clientX, e.clientY)}
-                  onTouchStart={(e) => {
-                    const p = e.touches[0];
-                    if (p) on(p.clientX, p.clientY);
-                  }}
-                />
-              </g>
-            );
-          })}
-        </g>
-      </svg>
-      {tip && cur ? <Tip x={tip.x} y={tip.y} d={cur} fmt={fmt} c1={c1} c2={c2} /> : null}
-    </div>
-  );
-}
-
-function Tip({ x, y, d, fmt, c1, c2 }: { x: number; y: number; d: Day; fmt: Fmt; c1: string; c2: string }) {
-  const { t } = useDonate();
-  const el = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState({ left: x + 14, top: y - 80 });
-  useLayoutEffect(() => {
-    const w = el.current?.offsetWidth ?? 160;
-    const h = el.current?.offsetHeight ?? 70;
-    setPos({ left: Math.min(window.innerWidth - w - 8, Math.max(8, x + 14)), top: y - h - 12 < 8 ? y + 16 : y - h - 12 });
-  }, [x, y]);
-  return (
-    <div className="flxdn-tip" role="tooltip" ref={el} style={{ position: 'fixed', left: pos.left, top: pos.top }}>
-      <strong>{d.label}</strong>
-      <div className="flxdn-tip__row">
-        <i className="flxdn-sw" style={{ background: c1 }} />
-        {t('One-time')}
-        <b>{fmt.money(d.oneTime)}</b>
-      </div>
-      <div className="flxdn-tip__row">
-        <i className="flxdn-sw" style={{ background: c2 }} />
-        {t('Recurring')}
-        <b>{fmt.money(d.recurring)}</b>
-      </div>
-      <div className="flxdn-tip__row">
-        {t('Total')}
-        <b>
-          {fmt.money(d.oneTime + d.recurring)} · {fmt.num(d.gifts)}
-        </b>
-      </div>
-    </div>
-  );
-}

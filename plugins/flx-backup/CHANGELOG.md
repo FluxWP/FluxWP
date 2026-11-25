@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.0
+- Depolama geçmişi ve türe göre halka grafiği ortak etkileşimli grafiğe geçti: yığılmış alan, kota kesikli çizgi, ipucunda toplam, legend'dan seri aç/kapa. Ortak modül paketi yenilendi.
+
 ## 1.7.4
 - Telefonda Yedekleme listesi kart düzeninde: önceden 8 sütunluk tablo dar ekranda harf harf kırılıyordu. Seçim kutusu, ad, tür, tarih, boyut, saklama ve düğmeler okunur.
 

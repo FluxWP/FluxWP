@@ -478,10 +478,19 @@ final class FLXU_WP {
 				return self::fail( __( 'Package not found.', 'flx-setup' ) );
 			}
 			$name     = (string) $all[ $id ]['Name'];
+			$before   = (string) $all[ $id ]['Version'];
+			self::ensure_update_data( 'plugin', $id );
 			$guard->ensure_batch( 'plugin', dirname( $id ) );
 			$upgrader = new Plugin_Upgrader( $skin );
 			$res      = $upgrader->bulk_upgrade( array( $id ) );
 			$res      = is_array( $res ) ? ( $res[ $id ] ?? null ) : $res;
+			if ( $res && ! is_wp_error( $res ) ) {
+				wp_clean_plugins_cache( false );
+				$now = get_plugins();
+				if ( isset( $now[ $id ] ) && (string) $now[ $id ]['Version'] === $before ) {
+					$res = false; // WordPress reported success but nothing changed.
+				}
+			}
 		} elseif ( 'wp_theme' === $kind ) {
 			$theme = wp_get_theme( $id );
 			if ( ! current_user_can( 'update_themes' ) ) {
@@ -491,6 +500,7 @@ final class FLXU_WP {
 				return self::fail( __( 'Package not found.', 'flx-setup' ) );
 			}
 			$name     = (string) $theme->get( 'Name' );
+			self::ensure_update_data( 'theme', $id );
 			$guard->ensure_batch( 'theme', $id );
 			$upgrader = new Theme_Upgrader( $skin );
 			$res      = $upgrader->bulk_upgrade( array( $id ) );
@@ -500,6 +510,7 @@ final class FLXU_WP {
 				return self::fail( __( 'You are not allowed to do this.', 'flx-setup' ) );
 			}
 			$name = __( 'Translations', 'flx-setup' );
+			self::ensure_translation_data();
 			if ( ! wp_get_translation_updates() ) {
 				return array(
 					'ok'    => true,
@@ -581,6 +592,99 @@ final class FLXU_WP {
 			),
 			'lines' => $lines,
 		);
+	}
+
+	/**
+	 * Makes sure WordPress still knows the update of a plugin or theme. An earlier step (translations, another
+	 * update) can clear the update data; the update would then be skipped silently. Asks wordpress.org again.
+	 *
+	 * @param string $type 'plugin' or 'theme'.
+	 * @param string $id   Plugin file or theme folder.
+	 */
+	private static function ensure_update_data( string $type, string $id ): void {
+		$key = 'plugin' === $type ? 'update_plugins' : 'update_themes';
+		$has = static function () use ( $key, $id ): bool {
+			$t = get_site_transient( $key );
+			return is_object( $t ) && ! empty( $t->response ) && isset( ( (array) $t->response )[ $id ] );
+		};
+		foreach ( array( 'check', 'refresh', 'restore' ) as $stage ) {
+			if ( $has() ) {
+				return;
+			}
+			if ( 'refresh' === $stage ) {
+				delete_site_transient( $key );
+				if ( 'plugin' === $type ) {
+					wp_update_plugins();
+				} else {
+					wp_update_themes();
+				}
+			} elseif ( 'restore' === $stage ) {
+				// wordpress.org did not answer: put back what the plan saw.
+				$snap = get_site_transient( 'flxu_update_snapshot' );
+				$item = is_array( $snap ) ? ( $snap[ $key ][ $id ] ?? null ) : null;
+				if ( null !== $item ) {
+					$t = get_site_transient( $key );
+					$t = is_object( $t ) ? $t : new stdClass();
+					if ( empty( $t->response ) || ! is_array( $t->response ) ) {
+						$t->response = array();
+					}
+					$t->response[ $id ] = $item;
+					set_site_transient( $key, $t );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Saves the update data of the given plugin files and theme folders (the plan's steps), so a step can
+	 * restore it when an earlier step made WordPress drop it.
+	 *
+	 * @param list<array{kind:string,id:string}> $steps Plan steps.
+	 */
+	public static function snapshot( array $steps ): void {
+		$snap = array( 'update_plugins' => array(), 'update_themes' => array(), 'translations' => array() );
+		$pu   = get_site_transient( 'update_plugins' );
+		$tu   = get_site_transient( 'update_themes' );
+		foreach ( $steps as $st ) {
+			$id = (string) $st['id'];
+			if ( 'wp_plugin' === $st['kind'] && is_object( $pu ) && isset( ( (array) ( $pu->response ?? array() ) )[ $id ] ) ) {
+				$snap['update_plugins'][ $id ] = ( (array) $pu->response )[ $id ];
+			} elseif ( 'wp_theme' === $st['kind'] && is_object( $tu ) && isset( ( (array) ( $tu->response ?? array() ) )[ $id ] ) ) {
+				$snap['update_themes'][ $id ] = ( (array) $tu->response )[ $id ];
+			}
+		}
+		foreach ( array( 'update_core', 'update_plugins', 'update_themes' ) as $key ) {
+			$t = get_site_transient( $key );
+			if ( is_object( $t ) && ! empty( $t->translations ) && is_array( $t->translations ) ) {
+				$snap['translations'][ $key ] = $t->translations;
+			}
+		}
+		set_site_transient( 'flxu_update_snapshot', $snap, HOUR_IN_SECONDS );
+	}
+
+	/**
+	 * Translation updates of the plan, when plugin or theme updates made WordPress drop them: asks wordpress.org
+	 * again, then puts back what the plan saw.
+	 */
+	private static function ensure_translation_data(): void {
+		foreach ( array( 'check', 'refresh', 'restore' ) as $stage ) {
+			if ( wp_get_translation_updates() ) {
+				return;
+			}
+			if ( 'refresh' === $stage ) {
+				wp_update_plugins();
+				wp_update_themes();
+			} elseif ( 'restore' === $stage ) {
+				$snap = get_site_transient( 'flxu_update_snapshot' );
+				foreach ( is_array( $snap ) ? (array) ( $snap['translations'] ?? array() ) : array() as $key => $items ) {
+					$t = get_site_transient( $key );
+					$t = is_object( $t ) ? $t : new stdClass();
+					$t->translations = $items;
+					set_site_transient( $key, $t );
+				}
+			}
+		}
+		FLXU_Translations::flush();
 	}
 
 	private static function fail( string $text ): array {

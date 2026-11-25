@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.12.0
+- CRM sayfaları (Genel bakış, Kişiler, kişi kartı, Segmentler, Olaylar, Yolculuklar, Kopyalar, Ayarlar) Flux GraphQL ekran kabuğunda; ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
+- Ortak ekran başlığı ve sekmeler kullanılır.
+- Klasik görünüm ve "Yeni görünüm / Klasik görünüm" geçişi kaldırıldı. Flux GraphQL yoksa uyarı gösterilir.
+- Diğer eklentilerin kullandığı kişi kartı (`flxcrm_person_card`) ve kart üzerindeki kayıt işlemleri korunur; klasik segment, ayar, CSV ve toplu işlem işleyicileri kaldırıldı.
+
 ## 0.11.0
 - GraphQL: etkinlikler (`FlxGathering`, `flxGatherings` / `flxGathering` / form, kişiler, mesajlar, gönderim) ve kişi kartı bölümleri (`FlxContact.sections`). 12 yeni işlem; toplam 40.
 - Olaylar sayfası React ekranı: Açık, Arşiv, Sitede sekmeleri; pano, kişiler, mesaj yazma ve gönderim detayı klasikle aynı. wp-admin'de varsayılan.

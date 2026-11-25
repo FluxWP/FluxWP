@@ -7,25 +7,16 @@
 
 defined( 'ABSPATH' ) || exit;
 
-require_once FLXCRM_DIR . 'includes/admin/page-overview.php';
-require_once FLXCRM_DIR . 'includes/admin/page-contacts.php';
 require_once FLXCRM_DIR . 'includes/admin/page-contact.php';
-require_once FLXCRM_DIR . 'includes/admin/page-segments.php';
-require_once FLXCRM_DIR . 'includes/admin/page-events.php';
-require_once FLXCRM_DIR . 'includes/admin/page-duplicates.php';
-require_once FLXCRM_DIR . 'includes/admin/page-journeys.php';
-require_once FLXCRM_DIR . 'includes/admin/page-settings.php';
 require_once FLXCRM_DIR . 'includes/admin/flux-ui.php';
 
 final class FLXCRM_Admin {
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 55 );
-		FLXCRM_Page_Events::init();
-		FLXCRM_Page_Duplicates::init();
-		FLXCRM_Page_Journeys::init();
+		add_filter( 'flx_event_fields', array( 'FLXCRM_Gathering_Service', 'field_labels' ), 5 ); // core field labels (the shared module has no text domain)
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
-		foreach ( array( 'contact_save', 'contact_delete', 'event_add', 'event_delete', 'tag_add', 'tag_remove', 'segment_save', 'segment_delete', 'settings_save', 'csv', 'bulk' ) as $a ) {
+		foreach ( array( 'contact_save', 'contact_delete', 'event_add', 'event_delete', 'tag_add', 'tag_remove' ) as $a ) {
 			add_action( 'admin_post_flxcrm_' . $a, array( __CLASS__, 'post_' . $a ) );
 		}
 		add_action( 'wp_ajax_flxcrm_score', array( __CLASS__, 'ajax_score' ) );
@@ -45,28 +36,21 @@ final class FLXCRM_Admin {
 		return current_user_can( 'manage_options' ) ? 'manage_options' : FLXCRM_CAP_MANAGE;
 	}
 
-	public static function menu() {
-		$view = self::cap_view();
-		add_menu_page( __( 'CRM', 'flx-crm' ), __( 'CRM', 'flx-crm' ), $view, 'flx-crm', flxcrm_flux_page( array( 'FLXCRM_Page_Overview', 'render' ) ), self::menu_icon(), 57 );
-		add_submenu_page( 'flx-crm', __( 'Overview', 'flx-crm' ), __( 'Overview', 'flx-crm' ), $view, 'flx-crm', flxcrm_flux_page( array( 'FLXCRM_Page_Overview', 'render' ) ) );
-		add_submenu_page( 'flx-crm', __( 'Contacts', 'flx-crm' ), __( 'Contacts', 'flx-crm' ), $view, 'flx-crm-contacts', flxcrm_flux_page( array( __CLASS__, 'route_contacts' ) ) );
-		add_submenu_page( 'flx-crm', __( 'Segments', 'flx-crm' ), __( 'Segments', 'flx-crm' ), $view, 'flx-crm-segments', flxcrm_flux_page( array( 'FLXCRM_Page_Segments', 'render' ) ) );
-		add_submenu_page( 'flx-crm', __( 'Events', 'flx-crm' ), __( 'Events', 'flx-crm' ), $view, 'flx-crm-events', flxcrm_flux_page( array( 'FLXCRM_Page_Events', 'render' ) ) );
-		add_submenu_page( 'flx-crm', __( 'Journeys', 'flx-crm' ), __( 'Journeys', 'flx-crm' ), $view, 'flx-crm-journeys', flxcrm_flux_page( array( 'FLXCRM_Page_Journeys', 'render' ) ) );
-		add_submenu_page( 'flx-crm', __( 'CRM settings', 'flx-crm' ), __( 'Settings', 'flx-crm' ), self::cap_manage(), 'flx-crm-settings', flxcrm_flux_page( array( 'FLXCRM_Page_Settings', 'render' ) ) );
+	/** The menu icon as a URL (the screen header uses it too). */
+	public static function menu_icon_url() {
+		return self::menu_icon();
 	}
 
-	public static function route_contacts() {
-		if ( isset( $_GET['view'] ) && 'duplicates' === $_GET['view'] ) { // phpcs:ignore WordPress.Security.NonceVerification
-			FLXCRM_Page_Duplicates::render();
-			return;
-		}
-		// phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! empty( $_GET['id'] ) || ( isset( $_GET['action'] ) && 'new' === $_GET['action'] ) ) {
-			FLXCRM_Page_Contact::render();
-			return;
-		}
-		FLXCRM_Page_Contacts::render();
+	public static function menu() {
+		$view = self::cap_view();
+		$cb   = 'flxcrm_screen_page';
+		add_menu_page( __( 'CRM', 'flx-crm' ), __( 'CRM', 'flx-crm' ), $view, 'flx-crm', $cb, self::menu_icon(), 57 );
+		add_submenu_page( 'flx-crm', __( 'Overview', 'flx-crm' ), __( 'Overview', 'flx-crm' ), $view, 'flx-crm', $cb );
+		add_submenu_page( 'flx-crm', __( 'Contacts', 'flx-crm' ), __( 'Contacts', 'flx-crm' ), $view, 'flx-crm-contacts', $cb );
+		add_submenu_page( 'flx-crm', __( 'Segments', 'flx-crm' ), __( 'Segments', 'flx-crm' ), $view, 'flx-crm-segments', $cb );
+		add_submenu_page( 'flx-crm', __( 'Events', 'flx-crm' ), __( 'Events', 'flx-crm' ), $view, 'flx-crm-events', $cb );
+		add_submenu_page( 'flx-crm', __( 'Journeys', 'flx-crm' ), __( 'Journeys', 'flx-crm' ), $view, 'flx-crm-journeys', $cb );
+		add_submenu_page( 'flx-crm', __( 'CRM settings', 'flx-crm' ), __( 'Settings', 'flx-crm' ), self::cap_manage(), 'flx-crm-settings', $cb );
 	}
 
 	public static function is_screen() {
@@ -75,13 +59,7 @@ final class FLXCRM_Admin {
 	}
 
 	public static function assets() {
-		if ( flxcrm_flux_screen() ) {
-			flxcrm_flux_assets();
-			return;
-		}
-		if ( self::is_screen() ) {
-			self::enqueue();
-		}
+		// 0.12.0: the CRM pages are the React screen (flux-ui.php); the classic styles stay for the person card.
 	}
 
 	/** Stil ve betik; başka eklentinin sayfasında kişi kartı gösterilirken de çağrılır. */
@@ -260,164 +238,6 @@ final class FLXCRM_Admin {
 		self::back( self::card_url( $id ) );
 	}
 
-	public static function post_segment_save() {
-		self::guard( 'segment_save' );
-		$id    = absint( self::post( 'id', 0 ) );
-		$rules = json_decode( (string) self::post( 'rules_json' ), true );
-		$res   = FLXCRM_Segments::save(
-			array(
-				'name'        => (string) self::post( 'name' ),
-				'description' => (string) self::post( 'description' ),
-				'rules'       => is_array( $rules ) ? $rules : array(),
-			),
-			$id
-		);
-		if ( is_wp_error( $res ) ) {
-			self::back( flxcrm_admin_url( 'segments', array( 'edit' => $id ? $id : 'new' ) ), '', $res->get_error_message() );
-		}
-		self::back( flxcrm_admin_url( 'segments' ), 'saved' );
-	}
-
-	public static function post_segment_delete() {
-		self::guard( 'segment_delete' );
-		FLXCRM_Segments::delete( absint( self::post( 'id', 0 ) ) );
-		self::back( flxcrm_admin_url( 'segments' ), 'deleted' );
-	}
-
-	public static function post_settings_save() {
-		self::guard( 'settings_save' );
-		$v = array();
-		foreach ( array( 'chat_events', 'ai_tools', 'ai_write', 'ai_destructive' ) as $k ) {
-			$v[ $k ] = self::post( $k ) ? 1 : 0;
-		}
-		$known = flxcrm_roles();
-		foreach ( flxcrm_registered_sources() as $sk => $sd ) {
-			$v[ 'src_' . $sk ] = self::post( 'src_' . $sk ) ? 1 : 0;
-			if ( null !== $sd['role'] ) {
-				$r                  = sanitize_key( (string) self::post( 'role_' . $sk ) );
-				$v[ 'role_' . $sk ] = isset( $known[ $r ] ) ? $r : '';
-			}
-		}
-		$v['risk_threshold'] = min( 100, max( 10, absint( self::post( 'risk_threshold', 70 ) ) ) );
-		$v['active_days']    = min( 730, max( 7, absint( self::post( 'active_days', 90 ) ) ) );
-		$cur                 = strtoupper( preg_replace( '/[^A-Za-z]/', '', (string) self::post( 'base_currency' ) ) );
-		$v['base_currency']  = 3 === strlen( $cur ) ? $cur : '';
-		/* Roller: yerleşiklerin adı/rengi değişebilir; yeni rol eklenebilir; kendi rolü silinebilir. */
-		$roles = array();
-		$in    = (array) self::post( 'roles', array() );
-		foreach ( $in as $k => $r ) {
-			$key   = sanitize_key( is_array( $r ) && ! empty( $r['key'] ) ? $r['key'] : $k );
-			$label = is_array( $r ) ? trim( sanitize_text_field( (string) ( $r['label'] ?? '' ) ) ) : '';
-			if ( '' === $key || ! empty( $r['delete'] ) || ( '' === $label && ! isset( $known[ $key ] ) ) ) {
-				continue;
-			}
-			$color          = sanitize_hex_color( (string) ( $r['color'] ?? '' ) );
-			$roles[ $key ] = array( 'label' => mb_substr( $label, 0, 40 ), 'color' => $color ? $color : '#64748b' );
-		}
-		$new_label = trim( sanitize_text_field( (string) self::post( 'new_role_label' ) ) );
-		if ( '' !== $new_label ) {
-			$key = sanitize_key( remove_accents( $new_label ) );
-			$key = '' !== $key ? substr( str_replace( '-', '_', $key ), 0, 24 ) : 'role' . wp_rand( 100, 999 );
-			if ( ! isset( $roles[ $key ] ) && ! isset( $known[ $key ] ) ) {
-				$color         = sanitize_hex_color( (string) self::post( 'new_role_color' ) );
-				$roles[ $key ] = array( 'label' => mb_substr( $new_label, 0, 40 ), 'color' => $color ? $color : '#64748b' );
-			}
-		}
-		$v['roles'] = $roles;
-		flxcrm_save_settings( $v );
-		FLXCRM_Contacts::flush_stats();
-		self::back( flxcrm_admin_url( 'settings' ), 'saved' );
-	}
-
-	/** Seçili kişilere toplu işlem: etiket ekle, rol ekle, arşivle, sil. */
-	public static function post_bulk() {
-		self::guard( 'bulk' );
-		$ids    = array_filter( array_map( 'absint', (array) self::post( 'ids', array() ) ) );
-		$action = sanitize_key( (string) self::post( 'bulk_action' ) );
-		$value  = (string) self::post( 'bulk_value' );
-		$back   = esc_url_raw( (string) self::post( 'back', flxcrm_admin_url( 'contacts' ) ) );
-		$n      = 0;
-		foreach ( $ids as $id ) {
-			if ( ! FLXCRM_Contacts::get( $id ) ) {
-				continue;
-			}
-			switch ( $action ) {
-				case 'tag':
-					if ( '' !== trim( $value ) ) {
-						FLXCRM_Tags::attach( $id, $value );
-						++$n;
-					}
-					break;
-				case 'role':
-					FLXCRM_Contacts::add_roles( $id, array( sanitize_key( $value ) ) );
-					++$n;
-					break;
-				case 'archive':
-					FLXCRM_Contacts::update( $id, array( 'status' => 'archived' ) );
-					++$n;
-					break;
-				case 'restore':
-					FLXCRM_Contacts::update( $id, array( 'status' => 'active' ) );
-					++$n;
-					break;
-				case 'delete':
-					if ( true === FLXCRM_Contacts::delete( $id ) ) { // a contact still used by a package stays
-						++$n;
-					}
-					break;
-			}
-		}
-		FLXCRM_Contacts::flush_stats();
-		self::back( $back, 'bulk' . $n );
-	}
-
-	/** CSV: kişi listesi (filtre ya da segment). */
-	public static function post_csv() {
-		check_admin_referer( 'flxcrm_csv' );
-		if ( ! flxcrm_can( true ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
-		}
-		$f   = FLXCRM_Page_Contacts::filters_from( wp_unslash( $_POST ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		$sid = absint( self::post( 'segment_id', 0 ) );
-		if ( $sid && ( $s = FLXCRM_Segments::get( $sid ) ) ) { // phpcs:ignore
-			$f['rules'] = $s['rules'];
-		}
-		$ids = FLXCRM_Contacts::ids( $f );
-		flx_csv_stream(
-			'crm-' . gmdate( 'Ymd-His' ) . '.csv',
-			array( 'id', __( 'Name', 'flx-crm' ), __( 'E-mail', 'flx-crm' ), __( 'Phone', 'flx-crm' ), __( 'Roles', 'flx-crm' ), __( 'Segment', 'flx-crm' ), __( 'Total value', 'flx-crm' ), __( 'Donation', 'flx-crm' ), __( 'Order', 'flx-crm' ), __( 'Last payment', 'flx-crm' ), __( 'Churn risk', 'flx-crm' ), __( 'City', 'flx-crm' ), __( 'E-mail consent', 'flx-crm' ), __( 'SMS consent', 'flx-crm' ), __( 'WhatsApp consent', 'flx-crm' ), __( 'Tags', 'flx-crm' ) ),
-			( static function () use ( $ids ) {
-				global $wpdb;
-				foreach ( array_chunk( $ids, 500 ) as $chunk ) {
-					$batch = $wpdb->get_results( 'SELECT * FROM ' . flxcrm_table( 'contacts' ) . ' WHERE id IN (' . implode( ',', $chunk ) . ') ORDER BY id', ARRAY_A ); // phpcs:ignore WordPress.DB
-					$tags  = FLXCRM_Tags::of_many( $chunk );
-					foreach ( (array) $batch as $r ) {
-						$roles = array_map( 'flxcrm_role_label', flxcrm_unpack_roles( $r['roles'] ) );
-						yield array(
-							$r['id'],
-							$r['name'],
-							$r['email'],
-							'' !== $r['phone'] ? '+' . $r['phone'] : '',
-							implode( ', ', $roles ),
-							'' !== $r['segment'] ? flxcrm_segment_label( $r['segment'] ) : '',
-							$r['ltv'],
-							$r['donations'],
-							$r['orders'],
-							$r['last_paid_at'] ? get_date_from_gmt( $r['last_paid_at'], 'Y-m-d' ) : '',
-							$r['churn'],
-							$r['city'],
-							$r['consent_email'],
-							$r['consent_sms'],
-							$r['consent_whatsapp'],
-							implode( ', ', wp_list_pluck( $tags[ (int) $r['id'] ] ?? array(), 'name' ) ),
-						);
-					}
-				}
-			} )()
-		);
-		exit;
-	}
-
 	/** Zaman tünelinin devamı (aşağı kaydırınca). */
 	public static function ajax_timeline() {
 		check_ajax_referer( 'flxcrm_admin' );
@@ -456,9 +276,6 @@ final class FLXCRM_Admin {
 			echo '<a class="flxcrm-backbtn" href="' . esc_url( $back[0] ) . '" title="' . esc_attr( $back[1] ) . '" aria-label="' . esc_attr( sprintf( /* translators: %s: page name */ __( 'Back to %s', 'flx-crm' ), $back[1] ) ) . '">' . flxcrm_icon( 'back', 18 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '<div class="flxcrm-head__text"><h1>' . esc_html( $title ) . '</h1>';
-		if ( flxcrm_flux_available() && ! flxcrm_flux_ui() ) {
-			echo '<p><a class="button button-small" href="' . esc_url( flxcrm_ui_switch_url( 'flux' ) ) . '">' . esc_html__( 'New view', 'flx-crm' ) . '</a> <span class="flxcrm-muted">' . esc_html__( 'Open the new view (same features, works in the FluxWP app too).', 'flx-crm' ) . '</span></p>';
-		}
 		if ( '' !== $lead ) {
 			echo '<p class="flxcrm-lead">' . esc_html( $lead ) . '</p>';
 		}
