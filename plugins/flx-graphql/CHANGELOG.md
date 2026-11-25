@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.8.1
+- Düz kalıcı bağlantı (permalink) kullanan sitelerde Flux ekranlarındaki işlemler (kaydet, etkinleştir, sil) çalışıyor: ekran adresi `/index.php?rest_route=/` biçiminden doğru çıkarılıyor (önceden istek hiç gitmiyordu) ve ekranlar GraphQL'e `/?graphql=1` ile ulaşıyor (web sunucusunda `/graphql` yönlendirmesi gerekmiyor). Runtime yeniden derlendi.
+
 ## 0.8.0
 - `FlxDateTime` iki yeni alan: `short` (tablolar için kısa tarih-saat, Türkçede 24.11.2026 23:52) ve `day` (yalnız tarih).
 - Eklenti ekranlarına paket açıklaması (`appDesc`) gider; alt başlığı olmayan ekran klasik başlıktaki açıklamayı gösterir.
