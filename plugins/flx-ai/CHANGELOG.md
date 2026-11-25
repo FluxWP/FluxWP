@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.35.0
+- **Sesten metne:** sohbetteki mikrofon düğmesi artık sesi kaydedip sitede yazıya çevirir (OpenAI, Gemini ya da OpenRouter anahtarı varsa; `POST flx-ai/v1/transcribe`). Tarayıcının kendi konuşma tanıması olmayan ortamlarda (WebView, Tauri, Firefox) da çalışır; anahtar yoksa eski tarayıcı yöntemi kalır. Hem klasik sohbet (ajan görev penceresi dahil) hem React sohbet ekranı.
+
 ## 0.34.2
 - **Düzeltme:** Claude "Invalid `signature` in `thinking` block … bound to a different conversation" (400) hatası. Sistem metni ya da araç listesi turlar arasında değişince eski düşünme imzası geçersiz oluyordu (ör. ajan görevleri). İstek artık `block_binding.prefix_mismatch_behavior = drop_block` ile gider (geçersiz blok düşer); yine de 400 gelirse düşünme blokları atılıp düşünmesiz bir kez yeniden denenir.
 

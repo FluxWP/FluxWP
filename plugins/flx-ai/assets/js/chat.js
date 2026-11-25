@@ -22,6 +22,9 @@
 		function tf(s) { var a = arguments, i = 1; return t(s).replace(/%(\d\$)?[sd]/g, function () { return a[i++]; }); }
 
 		var Rec = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+		// Sunucuda yazıya çevirme (OpenAI/Gemini/OpenRouter anahtarı varsa): tarayıcı SpeechRecognition'ı olmayan ortamlarda da çalışır.
+		var Srv = !!(C.stt && window.MediaRecorder && navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+		var CanMic = Srv || !!Rec;
 		var KEY = 'flxai-ui';
 		var DOCK_MIN = 340, FLOAT_MIN_W = 320, FLOAT_MIN_H = 380;
 		var ui = loadUi();
@@ -454,7 +457,7 @@
 				'<button class="cb attach" type="button" title="' + esc(t('Dosya ekle')) + '" aria-label="' + esc(t('Dosya ekle')) + '">' + ic('clip') + '</button>' +
 				'<input class="file-in" type="file" multiple hidden accept="' + esc(C.accept || '') + '">' +
 				'<textarea rows="1" placeholder="' + esc(t('Bir şey sorun ya da bir iş verin…')) + '"></textarea>' +
-				(Rec ? '<button class="cb mic" type="button" title="' + esc(t('Sesle yaz')) + '" aria-label="' + esc(t('Sesle yaz')) + '">' + ic('mic') + '</button>' : '') +
+				(CanMic ? '<button class="cb mic" type="button" title="' + esc(t('Sesle yaz')) + '" aria-label="' + esc(t('Sesle yaz')) + '">' + ic('mic') + '</button>' : '') +
 				'<button class="send" type="button" aria-label="' + esc(t('Gönder')) + '">' + ic('up') + '</button></div></div>' +
 				'<div class="hint"></div></footer></div><aside class="ws" hidden></aside></section>';
 			els.bwrap = els.wrap.querySelector('.bwrap');
@@ -909,8 +912,38 @@
 			return p.then(function () { return out; });
 		}
 		/* Sesle yazma: tarayıcının konuşma tanıma özelliği (Chrome, Edge, Safari). Metin imlecin olduğu yere eklenir. */
+		// Kaydı 16 kHz mono WAV'a çevirir (her sağlayıcı kabul eder); olmazsa özgün kayıt gider.
+		function toWav(blob) {
+			var AC = window.AudioContext || window.webkitAudioContext, OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+			if (!AC || !OAC || !blob.arrayBuffer) return Promise.resolve(blob);
+			return blob.arrayBuffer().then(function (buf) {
+				var ctx = new AC();
+				return new Promise(function (ok, no) { ctx.decodeAudioData(buf, ok, no); }).then(function (ab) {
+					try { ctx.close(); } catch (e) {}
+					var oc = new OAC(1, Math.max(1, Math.ceil(ab.duration * 16000)), 16000), src = oc.createBufferSource();
+					src.buffer = ab; src.connect(oc.destination); src.start();
+					return oc.startRendering();
+				}).then(function (r) {
+					var d = r.getChannelData(0), n = d.length, v = new DataView(new ArrayBuffer(44 + n * 2)), i;
+					function w(o, str) { for (var k = 0; k < str.length; k++) v.setUint8(o + k, str.charCodeAt(k)); }
+					w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+					v.setUint32(24, 16000, true); v.setUint32(28, 32000, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+					for (i = 0; i < n; i++) { var x = Math.max(-1, Math.min(1, d[i])); v.setInt16(44 + i * 2, x < 0 ? x * 0x8000 : x * 0x7fff, true); }
+					return new Blob([v], { type: 'audio/wav' });
+				});
+			}).catch(function () { return blob; });
+		}
+		function sttPost(blob) {
+			var fd = new FormData(), ext = /wav/.test(blob.type) ? 'wav' : (/mp4/.test(blob.type) ? 'm4a' : 'webm');
+			fd.append('file', blob, 'audio.' + ext);
+			fd.append('lang', C.locale || document.documentElement.lang || '');
+			var url = C.rest + (C.rest.indexOf('?') < 0 ? 'transcribe?' : 'transcribe&') + '_locale=user';
+			return fetch(url, { method: 'POST', credentials: 'same-origin', headers: { 'X-WP-Nonce': C.nonce, Accept: 'application/json' }, body: fd })
+				.then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error((j && j.message) || ('HTTP ' + r.status)); return j; }); });
+		}
 		function dictate(ta, btn, onChange) {
-			if (!Rec || !ta || !btn) return;
+			if (!CanMic || !ta || !btn) return;
+			if (Srv) return dictateServer(ta, btn, onChange);
 			var rec = null, base = '';
 			btn.addEventListener('click', function () {
 				if (rec) { rec.stop(); return; }
@@ -927,6 +960,40 @@
 				rec.onend = function () { rec = null; btn.classList.remove('on'); btn.setAttribute('aria-pressed', 'false'); if (onChange) onChange(); };
 				rec.onerror = function (e) { if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { S.err = t('Mikrofon izni verilmedi.'); if (els.body) renderBody(); } };
 				try { rec.start(); btn.classList.add('on'); btn.setAttribute('aria-pressed', 'true'); ta.focus(); } catch (er) { rec = null; }
+			});
+		}
+		function dictateServer(ta, btn, onChange) {
+			var mr = null, stream = null, chunks = [], timer = 0;
+			function release() { clearTimeout(timer); if (stream) stream.getTracks().forEach(function (k) { k.stop(); }); stream = null; }
+			function fail(msg) { S.err = msg; if (els.body) renderBody(); }
+			btn.addEventListener('click', function () {
+				if (btn.disabled) return;
+				if (mr && mr.state === 'recording') { mr.stop(); return; }
+				navigator.mediaDevices.getUserMedia({ audio: true }).then(function (st) {
+					stream = st; chunks = [];
+					var types = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'], mt = '';
+					for (var i = 0; i < types.length; i++) if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(types[i])) { mt = types[i]; break; }
+					mr = mt ? new MediaRecorder(st, { mimeType: mt }) : new MediaRecorder(st);
+					mr.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+					mr.onstop = function () {
+						release();
+						btn.classList.remove('on'); btn.setAttribute('aria-pressed', 'false');
+						var blob = new Blob(chunks, { type: mr.mimeType || mt || 'audio/webm' });
+						if (blob.size < 1200) return;
+						btn.disabled = true; btn.classList.add('busy');
+						toWav(blob).then(sttPost).then(function (j) {
+							var txt = String((j && j.text) || '').trim();
+							if (txt) { ta.value = (ta.value ? ta.value.replace(/\s*$/, ' ') : '') + txt; if (onChange) onChange(); }
+							ta.focus();
+						}).catch(function (e) { fail(e && e.message ? e.message : String(e)); }).then(function () { btn.disabled = false; btn.classList.remove('busy'); });
+					};
+					mr.start();
+					btn.classList.add('on'); btn.setAttribute('aria-pressed', 'true'); ta.focus();
+					timer = setTimeout(function () { if (mr && mr.state === 'recording') mr.stop(); }, 150000);
+				}).catch(function (e) {
+					release();
+					fail(e && /NotAllowed|Permission/i.test(e.name + e.message) ? t('Mikrofon izni verilmedi.') : String((e && e.message) || e));
+				});
 			});
 		}
 		function handle(r) {
@@ -2092,7 +2159,7 @@
 				return true;
 			},
 			dictate: function (ta, btn, onChange) { dictate(ta, btn, onChange); },
-			canDictate: !!Rec
+			canDictate: CanMic
 		};
 
 		if (E) {

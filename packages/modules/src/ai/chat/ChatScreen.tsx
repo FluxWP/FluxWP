@@ -487,6 +487,7 @@ export function ChatScreen() {
           canPickModel={!!boot?.canManage}
           onPickModel={() => setModels(true)}
           locale={lang}
+          stt={!!boot?.stt}
           openFilePicker={filePicker}
         />
       </section>

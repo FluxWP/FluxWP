@@ -125,6 +125,7 @@ function flxai_rest_boot() {
 		'budget'     => flxai_can_manage() ? flxai_budget_status() : null,
 		'commands'   => flxai_slash_commands(),
 		'maxBytes'   => flxai_attach_max_bytes(),
+		'stt'        => '' !== flxai_stt_provider(),
 		'widgets'    => (bool) flxai_setting( 'chat_widgets', 1 ),
 		'mermaid'    => FLXAI_URL . 'assets/vendor/mermaid/mermaid.min.js?ver=12.2.0',
 		'suggestions' => flxai_chat_suggestions( flxai_can_manage() ),
