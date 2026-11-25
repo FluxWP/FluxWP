@@ -1,0 +1,7 @@
+query FlxFormsEntries($first: Int, $after: String, $form: Int, $status: String, $search: String) {
+  flxFormsEntries(first: $first, after: $after, form: $form, status: $status, search: $search) {
+    totalCount
+    pageInfo { hasNextPage endCursor }
+    nodes { ...FlxFormsEntryRow }
+  }
+}

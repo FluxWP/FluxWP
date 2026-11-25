@@ -1,0 +1,3 @@
+query FlxFormsDashboard($from: String, $to: String, $form: Int) {
+  flxFormsDashboard(from: $from, to: $to, form: $form)
+}

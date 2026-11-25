@@ -173,6 +173,256 @@ enum FlxFormType {
   SURVEY
 }
 
+"""A form in the panel list."""
+type FlxFormsAdminForm {
+  """When the form was made."""
+  createdAt: FlxDateTime!
+  """Form id."""
+  databaseId: Int!
+  """Form builder address."""
+  editUrl: String!
+  """form, survey, subscribe, payment, register or login."""
+  formType: String!
+  """Latest response."""
+  lastResponseAt: FlxDateTime
+  """Responses."""
+  responses: Int!
+  """Shortcode that prints the form."""
+  shortcode: String!
+  """Form name."""
+  title: String!
+  """Unread responses."""
+  unread: Int!
+}
+
+"""A page of forms."""
+type FlxFormsAdminFormConnection {
+  """Records with their cursors."""
+  edges: [FlxFormsAdminFormEdge!]!
+  """Records of this page."""
+  nodes: [FlxFormsAdminForm!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxFormsAdminForm in a list, with its cursor."""
+type FlxFormsAdminFormEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxFormsAdminForm!
+}
+
+"""Input for the flxFormsEntriesDelete mutation."""
+input FlxFormsEntriesDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Response ids."""
+  ids: [Int!]!
+}
+
+"""The payload for the flxFormsEntriesDelete mutation."""
+type FlxFormsEntriesDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Responses deleted."""
+  deleted: Int!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxFormsEntriesMark mutation."""
+input FlxFormsEntriesMarkInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Response ids."""
+  ids: [Int!]!
+  """Read."""
+  read: Boolean!
+}
+
+"""The payload for the flxFormsEntriesMark mutation."""
+type FlxFormsEntriesMarkPayload {
+  """Responses changed."""
+  changed: Int!
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""A response to a form."""
+type FlxFormsEntry {
+  """The thread is closed. Only on one response."""
+  closed: Boolean
+  """When it was sent."""
+  createdAt: FlxDateTime!
+  """Response id."""
+  databaseId: Int!
+  """Answers. Only on one response."""
+  fields: [FlxFormsEntryField!]
+  """Form id."""
+  formId: Int!
+  """Form name."""
+  formTitle: String!
+  """Sender IP. Only on one response."""
+  ip: String
+  """First answers, short."""
+  preview: String!
+  """Read."""
+  read: Boolean!
+  """Replies, oldest first. Only on one response."""
+  replies: [FlxFormsEntryReply!]
+  """Tracking code."""
+  trackCode: String!
+}
+
+"""A page of responses."""
+type FlxFormsEntryConnection {
+  """Records with their cursors."""
+  edges: [FlxFormsEntryEdge!]!
+  """Records of this page."""
+  nodes: [FlxFormsEntry!]!
+  """Paging information."""
+  pageInfo: FlxPageInfo!
+  """All matching records (null when counting would be slow)."""
+  totalCount: Int
+}
+
+"""One FlxFormsEntry in a list, with its cursor."""
+type FlxFormsEntryEdge {
+  """Opaque cursor of this record."""
+  cursor: String!
+  """The record."""
+  node: FlxFormsEntry!
+}
+
+"""One answer on a response."""
+type FlxFormsEntryField {
+  """The answer is an address (file, page)."""
+  isLink: Boolean!
+  """Field label."""
+  label: String!
+  """Answer as text."""
+  value: String!
+}
+
+"""One reply on a response."""
+type FlxFormsEntryReply {
+  """File addresses."""
+  attachments: [String!]!
+  """Staff member name. Empty for the visitor."""
+  author: String!
+  """Reply text."""
+  body: String!
+  """Written by staff."""
+  byStaff: Boolean!
+  """When the reply was stored."""
+  createdAt: FlxDateTime!
+  """Reply id."""
+  databaseId: Int!
+  """closed or opened when the reply changed the thread. Empty otherwise."""
+  state: String!
+}
+
+"""Input for the flxFormsEntryReply mutation."""
+input FlxFormsEntryReplyInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """true closes the thread, false opens it again. Left out: no change."""
+  close: Boolean
+  """Response id."""
+  id: Int!
+  """Reply text."""
+  message: String!
+}
+
+"""The payload for the flxFormsEntryReply mutation."""
+type FlxFormsEntryReplyPayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The response after the reply."""
+  entry: FlxFormsEntry
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxFormsFormDelete mutation."""
+input FlxFormsFormDeleteInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Form id."""
+  id: Int!
+}
+
+"""The payload for the flxFormsFormDelete mutation."""
+type FlxFormsFormDeletePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """The form was deleted."""
+  deleted: Boolean!
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+}
+
+"""Input for the flxFormsFormDuplicate mutation."""
+input FlxFormsFormDuplicateInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """Form id."""
+  id: Int!
+}
+
+"""The payload for the flxFormsFormDuplicate mutation."""
+type FlxFormsFormDuplicatePayload {
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+  """
+  Input problems to show next to the form fields. Empty when the mutation succeeded.
+  """
+  errors: [FlxUserError!]!
+  """The copy."""
+  form: FlxFormsAdminForm
+}
+
+"""A form for a filter."""
+type FlxFormsFormOption {
+  """Form id."""
+  databaseId: Int!
+  """Form name."""
+  title: String!
+}
+
 extend type RootMutation {
   """Sends a form, survey or subscribe form."""
   flxFormSubmit(
@@ -184,6 +434,33 @@ extend type RootMutation {
     """Input for the flxFormTrackReply mutation"""
     input: FlxFormTrackReplyInput!
   ): FlxFormTrackReplyPayload
+  """Deletes responses and their replies."""
+  flxFormsEntriesDelete(
+    """Input for the flxFormsEntriesDelete mutation"""
+    input: FlxFormsEntriesDeleteInput!
+  ): FlxFormsEntriesDeletePayload
+  """Marks responses read or unread."""
+  flxFormsEntriesMark(
+    """Input for the flxFormsEntriesMark mutation"""
+    input: FlxFormsEntriesMarkInput!
+  ): FlxFormsEntriesMarkPayload
+  """
+  Staff reply on a response. The visitor gets the usual reply notification.
+  """
+  flxFormsEntryReply(
+    """Input for the flxFormsEntryReply mutation"""
+    input: FlxFormsEntryReplyInput!
+  ): FlxFormsEntryReplyPayload
+  """Deletes a form and its responses."""
+  flxFormsFormDelete(
+    """Input for the flxFormsFormDelete mutation"""
+    input: FlxFormsFormDeleteInput!
+  ): FlxFormsFormDeletePayload
+  """Copies a form. Responses are not copied."""
+  flxFormsFormDuplicate(
+    """Input for the flxFormsFormDuplicate mutation"""
+    input: FlxFormsFormDuplicateInput!
+  ): FlxFormsFormDuplicatePayload
 }
 
 extend type RootQuery {
@@ -197,4 +474,46 @@ extend type RootQuery {
     """Tracking code."""
     code: String!
   ): FlxFormTrack
+  """Forms, newest first."""
+  flxFormsAdminForms(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Records per page (at most 50)."""
+    first: Int
+    """Name or id."""
+    search: String
+    """Form type."""
+    type: String
+  ): FlxFormsAdminFormConnection!
+  """
+  Dashboard numbers: responses per day, views, conversion, payments, busy hours, forms and latest responses.
+  """
+  flxFormsDashboard(
+    """Only this form."""
+    form: Int
+    """First day (Y-m-d). Default 29 days before the last."""
+    from: String
+    """Last day (Y-m-d). Default today."""
+    to: String
+  ): FlxJSON!
+  """Responses, newest first. Drafts waiting for a payment are left out."""
+  flxFormsEntries(
+    """Cursor to continue after (pageInfo.endCursor)."""
+    after: String
+    """Records per page (at most 50)."""
+    first: Int
+    """Only this form."""
+    form: Int
+    """Tracking code or a word in the answers."""
+    search: String
+    """unread or read."""
+    status: String
+  ): FlxFormsEntryConnection!
+  """One response with its answers and replies. Null when it is missing."""
+  flxFormsEntry(
+    """Response id."""
+    id: Int!
+  ): FlxFormsEntry
+  """Every form, by name, for filters."""
+  flxFormsFormOptions: [FlxFormsFormOption!]!
 }

@@ -6,6 +6,13 @@
 
 Plan: 1 public okuma + gönderim (`flxForm`, `flxFormSubmit`, `flxFormTrack`, `flxFormTrackReply`), 2 Panel yanıtlar + ayarlar, 3 Pano + sistem kontrolü, 4 Ödemeler, 5 Otomasyonlar, 6 Eklentiler. Bu dal 1'i yazar; ekran yok; paylaşım etkileri (mail/SMS/webhook/anket önbelleği), klasik kayıt biçimi ve form önbellek temizliği (`flx-forms:form:{id}`) eklendi (`Emsfb*` cap kataloğu kit isteğiyle dilim 2'ye bırakıldı). Gönderim klasik hattan geçer (`_Public::flxf_*` ortak yöntemleri: koşullu mantık, zorunlu ve alan doğrulaması, form captcha'sı, Human Shield, `insert_message_db`, alıcılar). Takip yanıtı klasik izleme sınırlarını ve başarısız arama sayacını kullanır. Klasik açık: `femail` gönderen adresi klasik gönderimde `$setttting` yazım hatası yüzünden hiç atanmaz; GraphQL aynı davranır ve düzeltilmedi. Kit notu: karışık harfli `Emsfb*` yetkileri `plugins/flx-graphql/includes/kit/caps.php:85` düzenli ifadesi yüzünden kit kataloğundan düşer (alan denetimleri çalışır); yönetici dilimlerinden önce kit kararı gerekir. Oluştur (fork form oluşturucu) klasik kalır. Eşleme `docs/graphql/ESLEME/flx-forms.md`. Ayrıntı `docs/flx-forms/GRAPHQL.md`. Blok formu AJAX istisnası (`fxb_process_ajax_submit`, `fxb_process_advanced_form_submit`) `ISTISNALAR.md` ortak dosyasında; silinmesi ayrı PR.
 
+## 2.6.0: yönetim ekranı (dilim 1)
+
+- Pano, Tüm formlar, Yanıtlar React ekranı (`packages/modules/src/forms`, `flxf-forms`), kabuk `includes/flx/flux-ui.php` (sayfalar `flxf-dashboard`, `flxf-forms`, `flxf-responses`; preload başlangıç rotasına göre).
+- Sorgular: `flxFormsDashboard` (klasik pano yükü, FlxJSON), `flxFormsAdminForms`, `flxFormsFormOptions`, `flxFormsEntries`, `flxFormsEntry`. Mutasyonlar: `flxFormsEntriesMark`, `flxFormsEntriesDelete`, `flxFormsEntryReply` (boş metinle yalnız kapat/aç), `flxFormsFormDelete`, `flxFormsFormDuplicate`. Hepsi `manage_options` ya da `Emsfb`.
+- Servis `includes/services/class-flxf-admin-service.php`; sözleşme testi `tools/tests/wp-graphql/flx-forms/contract-test.php` (admin bölümü).
+- Sıradaki dilimler: 2 Ayarlar, 3 Ödemeler/Otomasyonlar/Sistem/Eklentiler, 4 Form oluşturucu. O zamana kadar bu sayfalar sekmeden kendi sayfası olarak açılır.
+
 ## İstisnalar
 
 | Uç / akış | Paket | Neden | GraphQL tarafı |

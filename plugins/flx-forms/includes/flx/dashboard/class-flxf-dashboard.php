@@ -9,7 +9,7 @@
  * - {prefix}emsfb_stts_  one row per form page view (session); pruned after ~8 days by EFB
  * - {prefix}emsfb_pay_   Stripe payments (created by vendor/stripe), created_at in UTC
  *
- * Charts are drawn by dashboard.js as hand-written SVG; nothing is loaded from a CDN.
+ * The numbers feed the React Dashboard (flxFormsDashboard, includes/graphql/admin-schema.php).
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -32,16 +32,12 @@ class FLXF_Dashboard {
 		'refunded' => array( 'refunded', 'partially_refunded' ),
 	);
 
-	/** @var string */
-	private static $hook = '';
-
 	/** @var array<string,bool> */
 	private static $tables = array();
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 99 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
-		add_action( 'wp_ajax_flxf_dash_stats', array( __CLASS__, 'ajax_stats' ) );
 		add_action( 'admin_post_flxf_dash_csv', array( __CLASS__, 'csv' ) );
 	}
 
@@ -51,19 +47,14 @@ class FLXF_Dashboard {
 	}
 
 	/* ------------------------------------------------------------------
-	 * Menu + assets
+	 * Menu (the pages are the React screen: includes/flx/flux-ui.php)
 	 * ------------------------------------------------------------------ */
 
 	public static function menu() {
-		self::$hook = (string) add_submenu_page(
-			'Emsfb',
-			__( 'Dashboard', 'flx-forms' ),
-			__( 'Dashboard', 'flx-forms' ),
-			'Emsfb',
-			self::SLUG,
-			array( __CLASS__, 'render' ),
-			0
-		);
+		$cb = function_exists( 'flxf_screen_page' ) ? 'flxf_screen_page' : '__return_null';
+		add_submenu_page( 'Emsfb', __( 'Dashboard', 'flx-forms' ), __( 'Dashboard', 'flx-forms' ), 'Emsfb', self::SLUG, $cb, 0 );
+		add_submenu_page( 'Emsfb', __( 'Forms', 'flx-forms' ), __( 'All forms', 'flx-forms' ), 'Emsfb', 'flxf-forms', $cb, 1 );
+		add_submenu_page( 'Emsfb', __( 'Responses', 'flx-forms' ), __( 'Responses', 'flx-forms' ), 'Emsfb', 'flxf-responses', $cb, 2 );
 	}
 
 	private static function asset_ver( $file ) {
@@ -75,184 +66,7 @@ class FLXF_Dashboard {
 		if ( 'toplevel_page_Emsfb' === $hook ) {
 			/* Deep links from the dashboard (?flxf_form=ID&flxf_msg=ID) into EFB's own panel. */
 			wp_enqueue_script( 'flxf-panel-bridge', plugins_url( 'panel-bridge.js', __FILE__ ), array( 'jquery' ), self::asset_ver( 'panel-bridge.js' ), true );
-			return;
 		}
-		if ( '' === self::$hook || $hook !== self::$hook ) {
-			return;
-		}
-		wp_enqueue_style( 'flxf-dashboard', plugins_url( 'dashboard.css', __FILE__ ), array(), self::asset_ver( 'dashboard.css' ) );
-		$fonts = self::theme_font_faces();
-		if ( '' !== $fonts ) {
-			wp_add_inline_style( 'flxf-dashboard', $fonts );
-		}
-		wp_enqueue_script( 'flxf-dashboard', plugins_url( 'dashboard.js', __FILE__ ), array(), self::asset_ver( 'dashboard.js' ), true );
-		wp_add_inline_script( 'flxf-dashboard', 'window.FLXF_DASH = ' . wp_json_encode( self::boot_data() ) . ';', 'before' );
-	}
-
-	/**
-	 * The site theme ships Nunito / Nunito Sans as local files. When they are there, reuse them
-	 * (no third-party request); otherwise the CSS falls back to system fonts.
-	 */
-	private static function theme_font_faces() {
-		$css   = '';
-		$faces = array(
-			'Nunito'      => array( 'nunito-latin.woff2', 'nunito-latin-ext.woff2' ),
-			'Nunito Sans' => array( 'nunitosans-latin.woff2', 'nunitosans-latin-ext.woff2' ),
-		);
-		foreach ( array( get_stylesheet_directory(), get_template_directory() ) as $i => $dir ) {
-			$uri = 0 === $i ? get_stylesheet_directory_uri() : get_template_directory_uri();
-			foreach ( $faces as $family => $files ) {
-				foreach ( $files as $file ) {
-					if ( is_readable( $dir . '/assets/fonts/' . $file ) && false === strpos( $css, $file ) ) {
-						$css .= '@font-face{font-family:"' . $family . '";src:url("' . esc_url( $uri . '/assets/fonts/' . $file ) . '") format("woff2");font-weight:200 1000;font-style:normal;font-display:swap}';
-					}
-				}
-			}
-		}
-		return $css;
-	}
-
-	private static function js_locale() {
-		$l = str_replace( '_', '-', (string) get_user_locale() );
-		return preg_replace( '/[^A-Za-z0-9\-]/', '', $l );
-	}
-
-	private static function boot_data() {
-		$forms = array();
-		foreach ( self::forms() as $f ) {
-			$forms[] = array(
-				'id'       => $f['id'],
-				'title'    => $f['title'],
-				'currency' => $f['currency'],
-			);
-		}
-		return array(
-			'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
-			'nonce'       => wp_create_nonce( self::NONCE ),
-			'csvUrl'      => add_query_arg( array( 'action' => 'flxf_dash_csv', '_wpnonce' => wp_create_nonce( self::CSV_NONCE ) ), admin_url( 'admin-post.php' ) ),
-			'panelUrl'    => admin_url( 'admin.php?page=Emsfb' ),
-			'createUrl'   => current_user_can( 'Emsfb_create' ) || current_user_can( 'manage_options' ) ? admin_url( 'admin.php?page=Emsfb_create' ) : '',
-			'locale'      => self::js_locale(),
-			'today'       => wp_date( 'Y-m-d' ),
-			'weekStart'   => (int) get_option( 'start_of_week', 1 ),
-			'forms'       => $forms,
-			'i18n'        => self::strings(),
-		);
-	}
-
-	private static function strings() {
-		return array(
-			'd7'             => __( '7 days', 'flx-forms' ),
-			'd30'            => __( '30 days', 'flx-forms' ),
-			'd90'            => __( '90 days', 'flx-forms' ),
-			'custom'         => __( 'Custom', 'flx-forms' ),
-			'range'          => __( 'Date range', 'flx-forms' ),
-			'from'           => __( 'From', 'flx-forms' ),
-			'to'             => __( 'To', 'flx-forms' ),
-			'apply'          => __( 'Apply', 'flx-forms' ),
-			'allForms'       => __( 'All forms', 'flx-forms' ),
-			'formFilter'     => __( 'Form', 'flx-forms' ),
-			'csv'            => __( 'Export CSV', 'flx-forms' ),
-			'csvHint'        => __( 'Download the responses in the selected range and form as a spreadsheet file.', 'flx-forms' ),
-			'responses'      => __( 'Responses', 'flx-forms' ),
-			'unread'         => __( 'Unread', 'flx-forms' ),
-			'unreadAll'      => __( '%s unread in total', 'flx-forms' ),
-			'views'          => __( 'Form views', 'flx-forms' ),
-			'viewsNone'      => __( 'No view data', 'flx-forms' ),
-			/* translators: %s: a date */
-			'viewsSince'     => __( 'Recorded since %s', 'flx-forms' ),
-			'viewsKept'      => __( 'View data is kept for about 8 days', 'flx-forms' ),
-			'conversion'     => __( 'Conversion rate', 'flx-forms' ),
-			'convHint'       => __( 'Responses per form view', 'flx-forms' ),
-			/* translators: %s: a date */
-			'convSince'      => __( 'Responses per view since %s', 'flx-forms' ),
-			'payments'       => __( 'Payments received', 'flx-forms' ),
-			/* translators: %s: number of payments */
-			'paidCount'      => __( '%s paid', 'flx-forms' ),
-			/* translators: %s: list of other currency totals */
-			'otherCur'       => __( 'Also %s', 'flx-forms' ),
-			'noPayments'     => __( 'No payments in this range', 'flx-forms' ),
-			/* translators: %d: number of days */
-			'vsPrev'         => __( 'vs previous %d days', 'flx-forms' ),
-			'newVal'         => __( 'new', 'flx-forms' ),
-			'noChange'       => __( 'no change', 'flx-forms' ),
-			'up'             => __( 'up', 'flx-forms' ),
-			'down'           => __( 'down', 'flx-forms' ),
-			'daily'          => __( 'Daily responses', 'flx-forms' ),
-			'thisPeriod'     => __( 'Selected period', 'flx-forms' ),
-			'prevPeriod'     => __( 'Previous period', 'flx-forms' ),
-			'byForm'         => __( 'Responses by form', 'flx-forms' ),
-			'payStatus'      => __( 'Payment status', 'flx-forms' ),
-			'heat'           => __( 'When responses arrive', 'flx-forms' ),
-			'heatHint'       => __( 'Day of week and hour of day', 'flx-forms' ),
-			'heatLess'       => __( 'Less', 'flx-forms' ),
-			'heatMore'       => __( 'More', 'flx-forms' ),
-			'recent'         => __( 'Recent responses', 'flx-forms' ),
-			'topForms'       => __( 'Top forms', 'flx-forms' ),
-			'colForm'        => __( 'Form', 'flx-forms' ),
-			'colDate'        => __( 'Date', 'flx-forms' ),
-			'colPreview'     => __( 'Preview', 'flx-forms' ),
-			'colStatus'      => __( 'Status', 'flx-forms' ),
-			'colResponses'   => __( 'Responses', 'flx-forms' ),
-			'colTotal'       => __( 'All time', 'flx-forms' ),
-			'colViews'       => __( 'Views', 'flx-forms' ),
-			'colConv'        => __( 'Conversion', 'flx-forms' ),
-			'colLast'        => __( 'Last response', 'flx-forms' ),
-			'colShare'       => __( 'Share', 'flx-forms' ),
-			'statusUnread'   => __( 'New', 'flx-forms' ),
-			'statusRead'     => __( 'Read', 'flx-forms' ),
-			'open'           => __( 'Open', 'flx-forms' ),
-			'openResponses'  => __( 'View responses', 'flx-forms' ),
-			'viewAll'        => __( 'Open panel', 'flx-forms' ),
-			'pay_paid'       => __( 'Paid', 'flx-forms' ),
-			'pay_pending'    => __( 'Pending', 'flx-forms' ),
-			'pay_failed'     => __( 'Failed or canceled', 'flx-forms' ),
-			'pay_refunded'   => __( 'Refunded', 'flx-forms' ),
-			/* translators: %s: number of payments */
-			'payN'           => __( '%s payments', 'flx-forms' ),
-			'noData'         => __( 'No responses in this range yet.', 'flx-forms' ),
-			'noForms'        => __( 'You have not created a form yet.', 'flx-forms' ),
-			'createForm'     => __( 'Create a form', 'flx-forms' ),
-			'loading'        => __( 'Loading…', 'flx-forms' ),
-			'error'          => __( 'The dashboard data could not be loaded.', 'flx-forms' ),
-			'retry'          => __( 'Try again', 'flx-forms' ),
-			'never'          => __( 'Never', 'flx-forms' ),
-			'noPreview'      => __( '(empty response)', 'flx-forms' ),
-			'total'          => __( 'Total', 'flx-forms' ),
-			'responsesOn'    => __( 'responses', 'flx-forms' ),
-			'tableView'      => __( 'Show as table', 'flx-forms' ),
-			'chartView'      => __( 'Show as chart', 'flx-forms' ),
-			'deleted'        => __( 'Deleted form', 'flx-forms' ),
-			/* translators: %s: number of forms */
-			'otherForms'     => __( '%s other forms', 'flx-forms' ),
-		);
-	}
-
-	public static function render() {
-		if ( ! self::can() ) {
-			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'flx-forms' ), 403 );
-		}
-		?>
-		<div class="wrap flxfd">
-			<div class="flxfd-head">
-				<div>
-					<h1 class="flxfd-title"><?php esc_html_e( 'Dashboard', 'flx-forms' ); ?></h1>
-					<p class="flxfd-sub"><?php esc_html_e( 'Responses, form views, conversion and payments at a glance.', 'flx-forms' ); ?></p>
-				</div>
-				<div class="flxfd-head__actions">
-					<a class="flxfd-btn" href="<?php echo esc_url( admin_url( 'admin.php?page=Emsfb' ) ); ?>"><?php esc_html_e( 'Open panel', 'flx-forms' ); ?></a>
-					<?php if ( current_user_can( 'Emsfb_create' ) || current_user_can( 'manage_options' ) ) : ?>
-						<a class="flxfd-btn flxfd-btn--primary" href="<?php echo esc_url( admin_url( 'admin.php?page=Emsfb_create' ) ); ?>"><?php esc_html_e( 'New form', 'flx-forms' ); ?></a>
-					<?php endif; ?>
-				</div>
-			</div>
-			<hr class="wp-header-end">
-			<div id="flxfd-app" class="flxfd-app" aria-live="polite">
-				<div class="flxfd-card flxfd-loading"><?php esc_html_e( 'Loading…', 'flx-forms' ); ?></div>
-			</div>
-			<noscript><div class="flxfd-card"><?php esc_html_e( 'The dashboard needs JavaScript.', 'flx-forms' ); ?></div></noscript>
-		</div>
-		<?php
 	}
 
 	/* ------------------------------------------------------------------
@@ -327,7 +141,7 @@ class FLXF_Dashboard {
 	}
 
 	/** @return array{0:string,1:string,2:int} from, to, form id */
-	private static function request_filters( $src ) {
+	public static function request_filters( $src ) {
 		$today = wp_date( 'Y-m-d' );
 		$to    = isset( $src['to'] ) ? sanitize_text_field( wp_unslash( $src['to'] ) ) : '';
 		$from  = isset( $src['from'] ) ? sanitize_text_field( wp_unslash( $src['from'] ) ) : '';
@@ -347,7 +161,7 @@ class FLXF_Dashboard {
 		return gmdate( 'Y-m-d', strtotime( $day . ' 12:00:00 UTC' ) + $n * DAY_IN_SECONDS );
 	}
 
-	private static function is_unread( $read ) {
+	public static function is_unread( $read ) {
 		$read = (int) $read;
 		return 0 === $read || 3 === $read;
 	}
@@ -360,22 +174,6 @@ class FLXF_Dashboard {
 			}
 		}
 		return 'pending';
-	}
-
-	/* ------------------------------------------------------------------
-	 * Stats endpoint
-	 * ------------------------------------------------------------------ */
-
-	public static function ajax_stats() {
-		if ( ! check_ajax_referer( self::NONCE, 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Your session has expired. Reload the page.', 'flx-forms' ) ), 403 );
-		}
-		if ( ! self::can() ) {
-			wp_send_json_error( array( 'message' => __( 'Sorry, you are not allowed to do that.', 'flx-forms' ) ), 403 );
-		}
-		list( $from, $to, $form ) = self::request_filters( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification -- verified above.
-		nocache_headers();
-		wp_send_json_success( self::stats( $from, $to, $form ) );
 	}
 
 	public static function stats( $from, $to, $form ) {
@@ -816,7 +614,7 @@ class FLXF_Dashboard {
 		return strlen( $s ) > $len ? rtrim( substr( $s, 0, $len - 1 ) ) . '…' : $s;
 	}
 
-	private static function preview( $items ) {
+	public static function preview( $items ) {
 		$skip  = array( __( 'Page URL', 'flx-forms' ), __( 'Payment ID', 'flx-forms' ), __( 'Payment method', 'flx-forms' ) );
 		$parts = array();
 		foreach ( self::flatten( $items ) as $label => $v ) {

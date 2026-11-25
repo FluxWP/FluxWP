@@ -1,0 +1,6 @@
+mutation FlxFormsFormDuplicate($input: FlxFormsFormDuplicateInput!) {
+  flxFormsFormDuplicate(input: $input) {
+    form { ...FlxFormsAdminForm }
+    errors { code message field }
+  }
+}

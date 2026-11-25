@@ -1,0 +1,43 @@
+fragment FlxFormsDate on FlxDateTime {
+  iso
+  label
+  relative
+}
+
+fragment FlxFormsAdminForm on FlxFormsAdminForm {
+  databaseId
+  title
+  formType
+  createdAt { ...FlxFormsDate }
+  responses
+  unread
+  lastResponseAt { ...FlxFormsDate }
+  shortcode
+  editUrl
+}
+
+fragment FlxFormsEntryRow on FlxFormsEntry {
+  databaseId
+  formId
+  formTitle
+  trackCode
+  createdAt { ...FlxFormsDate }
+  read
+  preview
+}
+
+fragment FlxFormsEntryFull on FlxFormsEntry {
+  ...FlxFormsEntryRow
+  ip
+  closed
+  fields { label value isLink }
+  replies {
+    databaseId
+    body
+    createdAt { ...FlxFormsDate }
+    attachments
+    byStaff
+    author
+    state
+  }
+}

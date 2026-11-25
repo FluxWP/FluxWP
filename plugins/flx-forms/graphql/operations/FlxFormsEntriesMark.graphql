@@ -1,0 +1,6 @@
+mutation FlxFormsEntriesMark($input: FlxFormsEntriesMarkInput!) {
+  flxFormsEntriesMark(input: $input) {
+    changed
+    errors { code message field }
+  }
+}

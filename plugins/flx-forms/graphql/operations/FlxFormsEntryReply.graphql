@@ -1,0 +1,6 @@
+mutation FlxFormsEntryReply($input: FlxFormsEntryReplyInput!) {
+  flxFormsEntryReply(input: $input) {
+    entry { ...FlxFormsEntryFull }
+    errors { code message field }
+  }
+}

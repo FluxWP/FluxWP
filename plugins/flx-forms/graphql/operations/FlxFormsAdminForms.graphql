@@ -1,0 +1,7 @@
+query FlxFormsAdminForms($first: Int, $after: String, $search: String, $type: String) {
+  flxFormsAdminForms(first: $first, after: $after, search: $search, type: $type) {
+    totalCount
+    pageInfo { hasNextPage endCursor }
+    nodes { ...FlxFormsAdminForm }
+  }
+}
