@@ -14,7 +14,7 @@ Create contact, survey, payment, and login forms with drag-and-drop, free email 
 
  Easy Form Builder is a comprehensive WordPress form plugin designed to help website owners create, manage, and maintain a wide variety of forms using a visual drag-and-drop form builder interface. The plugin is suitable for users who want to build professional forms without writing code, while still keeping full control over form data, submissions, and communication workflows, including free custom email notification templates with a built-in visual editor.
 
-This form builder plugin can be used to create contact forms, support request forms, survey and feedback forms, payment forms using Stripe, subscription forms and custom login or registration forms for WordPress users. All form data is stored directly on your WordPress website, ensuring transparency, data ownership, and predictable behavior.
+This form builder plugin can be used to create contact forms, support request forms, survey and feedback forms, payment forms (through Flux POS), subscription forms and custom login or registration forms for WordPress users. All form data is stored directly on your WordPress website, ensuring transparency, data ownership, and predictable behavior.
 
 [youtube https://www.youtube.com/watch?v=m92rq2X1Rv4]
 
@@ -28,7 +28,7 @@ With Easy Form Builder, you can use a single form plugin to build and manage mul
 - Contact forms for general inquiries
 - Support and feedback forms with message tracking
 - Survey and poll forms with structured results
-- Stripe payment forms for online payments
+- Payment forms for online card payments through Flux POS
 - PayPal payment forms for collecting online payments
 - Login (sign-in) forms for WordPress users
 - Registration (sign-up) forms for new users
@@ -123,11 +123,11 @@ Conditions support text, choice, numeric, and date comparisons (is, is not, cont
 Conditional logic is available at no cost in the Free Plus version: up to 3 logic rules per form, up to 2 conditions per rule, and up to 2 conditional email notification rules, with an in-builder Test mode. The Pro version removes these limits and adds nested AND/OR groups, calculations, rule priority, conditional thank-you messages and redirects, conditional webhooks, rule export/import, and the logic Inspector (debugger).
 
 
-== Payment Forms with Stripe ==
+== Payment Forms ==
 
- Easy Form Builder supports Stripe payment fields, allowing you to collect online payments securely through your WordPress forms.
+Payment forms take card payments through the Flux POS plugin (3D Secure, amount checked on the server). Forms that take no payment do not need it.
 
-You can use Stripe payment fields to create:
+You can use the payment box to create:
 
 - Donation forms
 - Order forms
@@ -185,8 +185,6 @@ Easy Form Builder lets you add audio recording, video recording, and screen reco
 - Conditional Logic add-on for building smart forms - show or hide fields and steps, send conditional email notifications, and (in Pro) trigger conditional redirects and webhooks based on user answers. Included at no cost with the Free Plus version
 
 - SMS notification add-on for sending text messages on form submission
-
-- Stripe add-on for extended payment workflows
 
 - PayPal add-on for creating payment forms and managing transactions through PayPal
 
@@ -269,8 +267,8 @@ Yes. Form entries and responses can be downloaded in PDF and CSV formats.
 = Does the form plugin support file uploads? =
 Yes. Users can upload files through forms, and administrators can attach files in replies.
 
-= Can I create payment forms with Stripe? =
-Yes. Stripe payment fields are supported.
+= Can I create payment forms? =
+Yes. Payment forms take card payments through the Flux POS plugin.
 [How to Create a payment form to collect online payments in Easy Form Builder](https://whitestudio.team/document/how-to-create-a-payment-form-in-easy-form-builder/)
 
 = Does Easy Form Builder support PayPal payments? =
@@ -323,7 +321,7 @@ Yes. With Auto-Populate Dataset, you upload a CSV file (UTF-8 with column header
 Yes. Auto-Populate Integrations connects a form to an external API endpoint and fills fields with real-time data. It supports API Key, Bearer Token, and Basic Auth authentication, lets you map API response fields to your form fields, includes a built-in test tool to verify the connection, and offers caching and timeout settings so forms keep loading fast.
 
 = Does Easy Form Builder support recurring payments? =
-Yes. The payment fields support one-time, daily, weekly, monthly, and yearly billing options for subscription and recurring payment forms. You can create payment forms using Stripe or PayPal to accept online payments directly through your WordPress forms. Both payment gateways are available as add-ons and can be configured from the Easy Form Builder settings.
+Payment forms take one-time card payments through Flux POS. Recurring donations are handled by Flux Donate.
 [How to Create a payment form to collect online payments in Easy Form Builder](https://whitestudio.team/document/how-to-create-a-payment-form-in-easy-form-builder/)
 
 = Can I send WordPress form submissions to Google Sheets? =

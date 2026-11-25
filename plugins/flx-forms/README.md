@@ -28,7 +28,7 @@ Flux Forms is our fork of Easy Form Builder with every feature unlocked and noth
 
 Form plugins usually lock the useful parts (payments, conditional logic, file uploads) behind a licence and call home to check it. We needed one that is fully ours, runs on shared hosting and works with our donation and certificate packages. Flux Forms is that:
 
-- 🔓 **Everything unlocked.** No licence checks, remote add-on downloads or telemetry; Stripe, conditional logic and offline country/city lists rewritten.
+- 🔓 **Everything unlocked.** No licence checks, remote add-on downloads or telemetry; conditional logic and offline country/city lists rewritten.
 - 🎨 **Looks like the site.** Forms use the theme's colours, fonts and dark mode automatically; the builder shows the form exactly as it will appear.
 - 📈 **Know what works.** Responses, form views, conversion rate and payments per form, compared with the previous period.
 - 🌱 **Donation to certificate, automatically.** A paid sapling donation creates a certificate (Flux Certificate), sends it by WhatsApp and e-mail and shows it on the thank-you screen.
@@ -52,7 +52,7 @@ Form plugins usually lock the useful parts (payments, conditional logic, file up
 - Daily responses chart, payment status, responses per form, a day-and-hour heat map and the latest responses; filter by form and period, CSV export.
 
 ### Payments and automations
-- With Flux Donation, the **Pay** step puts the chosen amount into the WooCommerce checkout (card, bank transfer, monthly donation); without it, built-in Stripe with server-side amount checks and webhooks.
+- With Flux Donation, the **Pay** step puts the chosen amount into the WooCommerce checkout (card, bank transfer, monthly donation); without it, the card payment goes through Flux POS (3D Secure, server-side amount checks). Forms that take no payment need nothing.
 - **Automations**: when a form is submitted or a payment completes, run steps such as *Create certificate*, *Send certificate*, *Show on thank-you screen*, *Send e-mail* and *Webhook*. A ready-made "Sapling donation → Certificate" flow is one click away.
 
 ## Screenshots

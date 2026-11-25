@@ -108,11 +108,6 @@ class Panel_edit  {
 						$download_addons = true;
 					}
 			}
-			if(isset($ac->AdnSPF) && $ac->AdnSPF==1){
-					if(!is_dir(EMSFB_PLUGIN_DIRECTORY."/vendor/stripe")) {
-						$download_addons = true;
-					}
-			}
 			if(isset($ac->AdnTLG) && $ac->AdnTLG==1){
 					if(!is_dir(EMSFB_PLUGIN_DIRECTORY."/vendor/telegram")) {
 						$download_addons = true;

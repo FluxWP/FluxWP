@@ -115,11 +115,6 @@ class Create {
 				$download_addons = true;
 			}
 		}
-		if(isset($settings->AdnSPF) && $settings->AdnSPF==1){
-			if(!is_dir(EMSFB_PLUGIN_DIRECTORY."/vendor/stripe")) {
-				$download_addons = true;
-			}
-		}
 		if(isset($settings->AdnTLG) && $settings->AdnTLG==1){
 			if(!is_dir(EMSFB_PLUGIN_DIRECTORY."/vendor/telegram")) {
 				$download_addons = true;

@@ -227,19 +227,14 @@ class FLXF_Automations_Engine {
 	}
 
 	/**
-	 * Verified amount for a payment submission. Never the browser's numbers: the Stripe add-on's
-	 * own payment row (written server-side, settled by the gateway guard), else the payment row EFB
-	 * stored server-side when the payment was created.
+	 * Verified amount for a payment submission. Never the browser's numbers: the payment record (written
+	 * server-side, settled by Flux POS), else the payment row EFB stored server-side when the payment was created.
 	 */
 	private static function payment_info( $track, array $rows, array $structure ) {
-		$file = defined( 'EMSFB_PLUGIN_DIRECTORY' ) ? EMSFB_PLUGIN_DIRECTORY . 'vendor/stripe/class-Emsfb-stripe-payment.php' : '';
-		if ( ! class_exists( '\Emsfb\StripePayment' ) && $file && file_exists( $file ) ) {
-			require_once $file;
-		}
-		if ( class_exists( '\Emsfb\StripePayment' ) ) {
-			$row = \Emsfb\StripePayment::get_by_track( $track );
+		if ( class_exists( 'FLXF_Payment_Records' ) ) {
+			$row = FLXF_Payment_Records::get_by_track( $track );
 			if ( $row && in_array( (string) $row->status, array( 'completed', 'active', 'trialing' ), true ) ) {
-				return array( 'amount' => (float) $row->amount, 'currency' => strtoupper( (string) $row->currency ), 'source' => 'stripe', 'reference' => (string) $row->transaction_id );
+				return array( 'amount' => (float) $row->amount, 'currency' => strtoupper( (string) $row->currency ), 'source' => (string) $row->gateway, 'reference' => (string) $row->transaction_id );
 			}
 		}
 		foreach ( $rows as $r ) {

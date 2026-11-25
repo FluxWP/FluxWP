@@ -298,7 +298,7 @@ fun_pay_valid_price = () => {
     get: function (id) { return providers[id] || null; },
     /** A provider that cannot start (no key, script failed) hands over here: friendly message, Pay off. */
     unavailable: function (form_id) { flxf_pay_unavailable_efb(form_id); },
-    providerId: function () { return cfg().provider || 'stripe'; },
+    providerId: function () { return cfg().provider || ''; },
     current: function () { return providers[FLXFPay.providerId()] || null; },
 
     /** Called by the core when a payment form is shown (through post_api_stripe_apay_efb). */
@@ -335,11 +335,9 @@ fun_pay_valid_price = () => {
           flxf_pay_btn_sync_efb();
         }
       };
-      if (id !== 'stripe') {
-        /* EFB renders Stripe's card markup on the server: hand a clean box to other providers. */
-        if (ctx.section) ctx.section.innerHTML = '';
-        if (ctx.poweredBy && cfg().label) ctx.poweredBy.textContent = cfg().label;
-      }
+      /* The box comes with placeholder card markup: hand a clean section to the provider. */
+      if (ctx.section) ctx.section.innerHTML = '';
+      if (ctx.poweredBy) ctx.poweredBy.textContent = cfg().label || '';
       const bind = function () {
         if (btn.dataset.flxfPayBound) return;
         btn.dataset.flxfPayBound = '1';

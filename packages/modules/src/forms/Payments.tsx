@@ -1,31 +1,25 @@
-// Forms › Payments: providers with their webhook address (Stripe: the signing secret) and the latest payments,
-// over flxFormsPayments / flxFormsStripeWebhookSecret. Keys and the active provider stay in the panel settings.
-import { useState } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+// Forms › Payments: Flux POS (which takes the payments of payment forms) and the latest payments, over
+// flxFormsPayments. Flux Forms has no payment gateway of its own; forms that take no payment need nothing.
 import type { FlxFormsPaymentsAllFragment } from '@fluxwp/graphql/types';
-import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
-import { FlxFormsPayments, FlxFormsStripeWebhookSecret } from '@fluxwp/graphql/operations';
-import { Check, Loading } from '@fluxwp/ui';
-import { copyText, errorText, payloadError, useForms } from './common';
+import { useFlxQuery } from '@fluxwp/graphql/react';
+import { FlxFormsPayments } from '@fluxwp/graphql/operations';
+import { Loading } from '@fluxwp/ui';
+import { useHost } from '../host';
+import { errorText, useForms } from './common';
 
-type Provider = FlxFormsPaymentsAllFragment['providers'][number];
+type Pos = FlxFormsPaymentsAllFragment['pos'];
 
 export function PaymentsPage() {
-  const { t, toast } = useForms();
+  const { t } = useForms();
   const q = useFlxQuery(FlxFormsPayments, {});
   const d = q.data?.flxFormsPayments;
   if (q.isError) return <p className="flxfrm-bad">{errorText(q.error, t('Something went wrong.'))}</p>;
   if (!d) return <Loading />;
-  if (!d.available) return <p className="flxfrm-empty">{t('Flux Donate handles payments: see Donations › Payments.')}</p>;
   return (
     <div>
-      <p className="flxfrm-muted flxfrm-lead">{t('Payments taken through your forms, from every payment provider. API keys and the active provider are set on the plugin Settings page, Payment tab.')}</p>
-      <h2>{t('Providers and webhooks')}</h2>
-      <div className="flxfrm-grid2">
-        {d.providers.map((p) => (
-          <ProviderCard key={p.id} p={p} onCopy={(text) => void copyText(text, toast, t)} />
-        ))}
-      </div>
+      <p className="flxfrm-muted flxfrm-lead">{t('Payment forms take payments through Flux POS. Forms that take no payment need nothing.')}</p>
+      <PosCard pos={d.pos} />
+      {!d.available ? <p className="flxfrm-muted">{t('Flux Donate keeps the payment records: see Donations › Payments.')}</p> : null}
       <h2>{t('Recent payments')}</h2>
       <div className="flxfrm-card is-flush">
         {d.payments.length ? (
@@ -78,71 +72,27 @@ export function PaymentsPage() {
   );
 }
 
-function ProviderCard({ p, onCopy }: { p: Provider; onCopy: (text: string) => void }) {
-  const { t, toast } = useForms();
-  const qc = useQueryClient();
-  const { scope } = useGraphQL();
-  const [secret, setSecret] = useState('');
-  const [clear, setClear] = useState(false);
-  const save = useFlxMutation(FlxFormsStripeWebhookSecret);
-  const submit = async () => {
-    try {
-      const r = (await save.mutateAsync({ input: clear ? { clear: true } : { secret } })).flxFormsStripeWebhookSecret;
-      const err = payloadError(r?.errors);
-      if (err) throw new Error(err);
-      if (r?.payments) qc.setQueryData(flxQueryKey(scope, FlxFormsPayments, {}), { flxFormsPayments: r.payments });
-      setSecret('');
-      setClear(false);
-      toast(t('Settings saved.'));
-    } catch (e) {
-      toast(errorText(e, t('Something went wrong.')), 'error');
-    }
-  };
+function PosCard({ pos }: { pos: Pos }) {
+  const { t } = useForms();
+  const host = useHost();
+  const [tone, label, text] = !pos.active
+    ? (['is-pending', pos.installed ? t('Not active') : t('Not installed'), t('Flux POS is needed to take payments. Until it is active, the payment box of payment forms says online payment is not available.')] as const)
+    : !pos.configured
+      ? (['is-pending', t('No account'), t('Flux POS is active but has no active POS account yet. Add an account in Flux POS.')] as const)
+      : (['is-ok', t('Ready'), t('Payment forms take card payments through Flux POS (3D Secure). Currencies: {list}.', { list: pos.currencies.join(', ') })] as const);
   return (
-    <section className={'flxfrm-card' + (p.active ? ' is-active' : '')}>
+    <section className={'flxfrm-card' + (pos.active && pos.configured ? ' is-active' : '')}>
       <div className="flxfrm-card__head">
-        <h3>{p.label}</h3>
-        {p.active ? <span className="flxfrm-pill is-ok">{t('Active')}</span> : null}
-        <span className={'flxfrm-pill ' + (p.configured ? 'is-soft' : 'is-pending')}>{p.configured ? t('Configured') : t('Not configured')}</span>
+        <h3>{t('Flux POS')}</h3>
+        <span className={'flxfrm-pill ' + tone}>{label}</span>
+        {pos.test ? <span className="flxfrm-pill is-warning">{t('Test mode')}</span> : null}
       </div>
-      <p className="flxfrm-muted">{p.hint}</p>
+      <p className="flxfrm-muted">{text}</p>
       <p>
-        <button type="button" className="flxfrm-code" title={t('Copy')} onClick={() => onCopy(p.webhookUrl)}>
-          {p.webhookUrl}
+        <button type="button" className="flxfrm-btn" onClick={() => host.openUrl(pos.url)}>
+          {pos.active ? t('Open Flux POS') : t('Plugins')}
         </button>
       </p>
-      {p.secretOption ? (
-        p.secretFixed ? (
-          <p className="flxfrm-muted">{t('The signing secret is set in wp-config.php.')}</p>
-        ) : (
-          <div className="flxfrm-form">
-            <div className="flxfrm-field">
-              <label className="flxfrm-field__label" htmlFor={'flxfrm-secret-' + p.id}>
-                {t('Webhook signing secret')}
-              </label>
-              <div className="flxfrm-inline">
-                <input
-                  id={'flxfrm-secret-' + p.id}
-                  type="password"
-                  autoComplete="off"
-                  value={secret}
-                  disabled={clear}
-                  placeholder={p.secretSet ? t('Saved - leave empty to keep it') : 'whsec_...'}
-                  onChange={(e) => setSecret(e.target.value)}
-                />
-                <button type="button" className="flxfrm-btn is-primary" disabled={save.isPending || (!secret && !clear)} onClick={() => void submit()}>
-                  {t('Save')}
-                </button>
-              </div>
-            </div>
-            {p.secretSet ? (
-              <Check checked={clear} onChange={setClear}>
-                {t('Remove the saved secret')}
-              </Check>
-            ) : null}
-          </div>
-        )
-      ) : null}
     </section>
   );
 }

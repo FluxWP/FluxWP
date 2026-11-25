@@ -338,15 +338,6 @@ class Emsfb {
                 }
             }
 
-            $stripe_exists = isset($ac->AdnSPF) ? (int) $ac->AdnSPF : 0;
-            if ($stripe_exists === 1 && emsfb_is_addon_compatible_efb( 'AdnSPF' )) {
-                $stripe_file_path = $this->plugin_path . 'vendor/stripe/class-Emsfb-stripe-payment.php';
-                if (file_exists($stripe_file_path)) {
-                    require_once $stripe_file_path;
-                    new \Emsfb\StripePayment();
-                }
-            }
-
             $sms_exists = isset($ac->AdnSS) ? (int) $ac->AdnSS : 0;
             if ($sms_exists === 1 && emsfb_is_addon_compatible_efb( 'AdnSS' )) {
                 $sms_file_path = EMSFB_PLUGIN_DIRECTORY . '/vendor/smssended/class-Emsfb-sms.php';
@@ -451,13 +442,6 @@ class Emsfb {
 
 			if ( ! empty( $ac_routes->AdnPAP ) && emsfb_is_addon_compatible_efb( 'AdnPAP' ) ) {
 				$f = $this->plugin_path . 'vendor/paypal/routes-efb.php';
-				if ( file_exists( $f ) ) {
-					require_once $f;
-				}
-			}
-
-			if ( ! empty( $ac_routes->AdnSPF ) && emsfb_is_addon_compatible_efb( 'AdnSPF' ) ) {
-				$f = $this->plugin_path . 'vendor/stripe/routes-efb.php';
 				if ( file_exists( $f ) ) {
 					require_once $f;
 				}
@@ -1001,10 +985,11 @@ class Emsfb {
             $decoded = self::get_default_settings_efb();
         }
 
-        // Flux Forms: tam sürüm ve yerel ülke listeleri her zaman açık.
+        // Flux Forms: tam sürüm ve yerel ülke listeleri her zaman açık. Kartlı ödeme kutusu (AdnSPF) yalnız Flux POS açıksa.
         if (is_object($decoded)) {
             $decoded->package_type = 1;
-            $decoded->AdnOF = 1; $decoded->AdnSPF = 1; $decoded->AdnSMF = 1;
+            $decoded->AdnOF = 1; $decoded->AdnSMF = 1;
+            $decoded->AdnSPF = function_exists('flxpos_charge') ? 1 : 0;
         }
 
         $result = null;
@@ -1019,7 +1004,7 @@ class Emsfb {
                     'trackingCode' => $decoded->trackingCode ?? '',
                     'siteKey' => $decoded->siteKey ?? '',
                     'mapKey' => $decoded->apiKeyMap ?? '',
-                    'paymentKey' => $decoded->stripePKey ?? '',
+                    'paymentKey' => '',
                     'version' => $decoded->efb_version ?? '1.0.0',
                     'osLocationPicker' => $decoded->osLocationPicker ?? false,
                     'scaptcha' => $decoded->scaptcha ?? false,

@@ -12,19 +12,16 @@ defined( 'ABSPATH' ) || exit;
 /* ------------------------------------------------------------ Payments */
 
 flx_gql_type(
-	'FlxFormsPaymentProvider',
+	'FlxFormsPos',
 	array(
-		'description' => __( 'A payment provider of the forms.', 'flx-forms' ),
+		'description' => __( 'Flux POS, which takes the payments of payment forms.', 'flx-forms' ),
 		'fields'      => array(
-			'id'           => flxf_gql_f( 'ID!', __( 'Provider id.', 'flx-forms' ) ),
-			'label'        => flxf_gql_f( 'String!', __( 'Name.', 'flx-forms' ) ),
-			'active'       => flxf_gql_f( 'Boolean!', __( 'Forms take payments with this provider.', 'flx-forms' ) ),
-			'configured'   => flxf_gql_f( 'Boolean!', __( 'Its keys are set.', 'flx-forms' ) ),
-			'webhookUrl'   => flxf_gql_f( 'String!', __( 'Address the provider sends payment notifications to.', 'flx-forms' ) ),
-			'hint'         => flxf_gql_f( 'String!', __( 'How to set the webhook up.', 'flx-forms' ) ),
-			'secretOption' => flxf_gql_f( 'Boolean!', __( 'A webhook signing secret can be saved here.', 'flx-forms' ) ),
-			'secretSet'    => flxf_gql_f( 'Boolean!', __( 'A webhook signing secret is saved.', 'flx-forms' ) ),
-			'secretFixed'  => flxf_gql_f( 'Boolean!', __( 'The secret comes from wp-config.php and cannot be changed here.', 'flx-forms' ) ),
+			'active'     => flxf_gql_f( 'Boolean!', __( 'Flux POS is active.', 'flx-forms' ) ),
+			'installed'  => flxf_gql_f( 'Boolean!', __( 'Flux POS is installed (active or not).', 'flx-forms' ) ),
+			'configured' => flxf_gql_f( 'Boolean!', __( 'Flux POS has an active account.', 'flx-forms' ) ),
+			'currencies' => flxf_gql_f( '[String!]!', __( 'Currencies a POS account takes.', 'flx-forms' ) ),
+			'test'       => flxf_gql_f( 'Boolean!', __( 'An account is in test mode.', 'flx-forms' ) ),
+			'url'        => flxf_gql_f( 'String!', __( 'Where to set Flux POS up (its screen, or Plugins when it is not active).', 'flx-forms' ) ),
 		),
 	)
 );
@@ -59,8 +56,8 @@ flx_gql_type(
 	array(
 		'description' => __( 'Forms › Payments.', 'flx-forms' ),
 		'fields'      => array(
-			'available' => flxf_gql_f( 'Boolean!', __( 'Flux Forms takes payments itself (not Flux Donate).', 'flx-forms' ) ),
-			'providers' => flxf_gql_f( '[FlxFormsPaymentProvider!]!', __( 'Providers.', 'flx-forms' ) ),
+			'available' => flxf_gql_f( 'Boolean!', __( 'The payment records of the forms are kept here (not by Flux Donate).', 'flx-forms' ) ),
+			'pos'       => flxf_gql_f( 'FlxFormsPos!', __( 'Flux POS state.', 'flx-forms' ) ),
 			'payments'  => flxf_gql_f( '[FlxFormsPayment!]!', __( 'Latest payments, newest first.', 'flx-forms' ) ),
 			'limit'     => flxf_gql_f( 'Int!', __( 'How many payments are listed at most.', 'flx-forms' ) ),
 		),
@@ -71,27 +68,9 @@ flx_gql_query(
 	'flxFormsPayments',
 	array(
 		'type'        => 'FlxFormsPayments!',
-		'description' => __( 'Payment providers, webhooks and the latest payments.', 'flx-forms' ),
+		'description' => __( 'Flux POS state and the latest payments of the forms.', 'flx-forms' ),
 		'cap'         => 'manage_options',
 		'resolve'     => static fn() => FLXF_Tools_Service::payments(),
-	)
-);
-
-flx_gql_mutation(
-	'flxFormsStripeWebhookSecret',
-	array(
-		'description' => __( 'Saves or removes the Stripe webhook signing secret.', 'flx-forms' ),
-		'cap'         => 'manage_options',
-		'input'       => array(
-			'secret' => flxf_gql_f( 'String', __( 'New secret (whsec_…). Empty keeps the saved one.', 'flx-forms' ) ),
-			'clear'  => flxf_gql_f( 'Boolean', __( 'Removes the saved secret.', 'flx-forms' ) ),
-		),
-		'output'      => array( 'payments' => flxf_gql_f( 'FlxFormsPayments', __( 'Payments after the change.', 'flx-forms' ) ) ),
-		'resolve'     => static function ( array $input ) {
-			$in = flx_gql_arr( $input );
-			$r  = FLXF_Tools_Service::stripe_secret( flx_gql_str( $in['secret'] ?? '' ), ! empty( $in['clear'] ) );
-			return $r instanceof WP_Error ? $r : array( 'payments' => FLXF_Tools_Service::payments() );
-		},
 	)
 );
 

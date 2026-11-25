@@ -9973,3 +9973,100 @@ msgstr "Bir yanıt yazın."
 
 msgid "reCAPTCHA token when Flux reCAPTCHA protects form submission."
 msgstr "Flux reCAPTCHA form gönderimini korurken reCAPTCHA belirteci."
+
+msgid "An account is in test mode."
+msgstr "Bir hesap test modunda."
+
+msgid "Card number"
+msgstr "Kart numarası"
+
+msgid "Card payment"
+msgstr "Kartla ödeme"
+
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "Ödemeyi açılan pencerede tamamlayın. Bitince bu sayfa devam eder."
+
+msgid "Currencies a POS account takes."
+msgstr "Bir POS hesabının aldığı para birimleri."
+
+msgid "Expiry (MM/YY)"
+msgstr "Son kullanma (AA/YY)"
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments through Flux POS."
+msgstr "Flux Donate etkin ama ödemeleri devralmadı (flxb_own_payments filtresi kapalı mı?). Flux Forms ödemeyi Flux POS üstünden alır."
+
+msgid "Flux POS"
+msgstr "Flux POS"
+
+msgid "Flux POS has an active account."
+msgstr "Flux POS’ta etkin bir hesap var."
+
+msgid "Flux POS is active."
+msgstr "Flux POS etkin."
+
+msgid "Flux POS is installed (active or not)."
+msgstr "Flux POS kurulu (etkin ya da değil)."
+
+msgid "Flux POS state and the latest payments of the forms."
+msgstr "Flux POS durumu ve formların son ödemeleri."
+
+msgid "Flux POS state."
+msgstr "Flux POS durumu."
+
+msgid "Flux POS, which takes the payments of payment forms."
+msgstr "Ödeme formlarının ödemesini alan Flux POS."
+
+msgid "Name on card"
+msgstr "Kart üzerindeki ad"
+
+msgid "No payment form exists. Flux POS is needed only to take payments."
+msgstr "Ödeme formu yok. Flux POS yalnız ödeme almak için gerekir."
+
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "Ödeme tamamlandı. Bu pencereyi kapatıp forma dönebilirsiniz."
+
+msgid "Payment forms take payments through Flux POS (%s)."
+msgstr "Ödeme formları ödemeyi Flux POS üstünden alır (%s)."
+
+msgid "Security code (CVC)"
+msgstr "Güvenlik kodu (CVC)"
+
+msgid "Test mode: no money is taken."
+msgstr "Test modu: para çekilmez."
+
+msgid "The payment records of the forms are kept here (not by Flux Donate)."
+msgstr "Formların ödeme kayıtları burada tutulur (Flux Donate'te değil)."
+
+msgid "The payment was not completed. Please check your card details and try again."
+msgstr "Ödeme tamamlanmadı. Kart bilgilerinizi kontrol edip yeniden deneyin."
+
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "Ödeme tamamlanmadı. Bu pencereyi kapatıp formda yeniden deneyebilirsiniz."
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "Ödeme penceresi engellendi. Bu site için açılır pencerelere izin verip yeniden deneyin."
+
+msgid "The payment window was closed before the payment was completed."
+msgstr "Ödeme penceresi ödeme tamamlanmadan kapatıldı."
+
+msgid "To take online payments with a payment form, install and activate Flux POS and add a POS account."
+msgstr "Ödeme formuyla online ödeme almak için Flux POS'u kurup etkinleştirin ve bir POS hesabı ekleyin."
+
+msgid "Where to set Flux POS up (its screen, or Plugins when it is not active)."
+msgstr "Flux POS'un kurulacağı yer (kendi ekranı, etkin değilse Eklentiler)."
+
+msgid "You will complete the payment on the secure payment page."
+msgstr "Ödemeyi güvenli ödeme sayfasında tamamlayacaksınız."
+
+msgid "Your card is checked by your bank (3D Secure) and is not stored on this site."
+msgstr "Kartınız bankanızca doğrulanır (3D Secure) ve bu sitede saklanmaz."
+
+msgid "Flux POS has no active account: %d payment form shows \"Online payment is not available\"."
+msgid_plural "Flux POS has no active account: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "Flux POS’ta etkin hesap yok: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
+msgstr[1] "Flux POS’ta etkin hesap yok: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
+
+msgid "Flux POS is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "Flux POS is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "Flux POS etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
+msgstr[1] "Flux POS etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."

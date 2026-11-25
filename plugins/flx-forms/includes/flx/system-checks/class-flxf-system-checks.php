@@ -162,30 +162,31 @@ final class FLXF_System_Checks {
 			return array(
 				$delegated
 					? self::c( 'handoff', 'Payments', __( 'Payment hand-off', 'flx-forms' ), 'ok', __( 'Flux Donate handles payments (providers, keys, webhooks): Donations › Payments.', 'flx-forms' ) )
-					: self::c( 'handoff', 'Payments', __( 'Payment hand-off', 'flx-forms' ), 'warning', __( 'Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms uses its own Stripe settings.', 'flx-forms' ) ),
+					: self::c( 'handoff', 'Payments', __( 'Payment hand-off', 'flx-forms' ), 'warning', __( 'Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments through Flux POS.', 'flx-forms' ) ),
 			);
 		}
-		if ( ! function_exists( 'flxf_payment_active_provider' ) ) {
-			return array();
+		$pos = class_exists( 'FLXF_Payment_POS' ) && FLXF_Payment_POS::available();
+		$url = $pos && function_exists( 'flxpos_admin_url' ) ? (string) flxpos_admin_url() : admin_url( 'plugins.php' );
+		if ( $pos && array() !== FLXF_Payment_POS::currencies() ) {
+			/* translators: %s: currency codes */
+			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'ok', sprintf( __( 'Payment forms take payments through Flux POS (%s).', 'flx-forms' ), implode( ', ', array_keys( FLXF_Payment_POS::currencies() ) ) ) ) );
 		}
-		$p   = flxf_payment_active_provider();
-		$url = admin_url( 'admin.php?page=Emsfb' );
-		if ( $p && $p->is_configured() ) {
-			/* translators: %s: provider name */
-			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'ok', sprintf( __( 'Flux Donate is not active; Flux Forms takes payments itself with %s.', 'flx-forms' ), $p->label() ) ) );
+		if ( ! $pay ) {
+			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'info', __( 'No payment form exists. Flux POS is needed only to take payments.', 'flx-forms' ) ) );
 		}
 		return array(
 			self::c(
 				'handoff',
 				'Payments',
 				__( 'Payments', 'flx-forms' ),
-				$pay ? 'error' : 'info',
-				( $pay
+				'error',
+				$pos
 					/* translators: %d: number of payment forms */
-					? sprintf( _n( 'Flux Donate is not active and the Stripe keys are missing: %d payment form shows "Online payment is unavailable".', 'Flux Donate is not active and the Stripe keys are missing: %d payment forms show "Online payment is unavailable".', $pay, 'flx-forms' ), $pay )
-					: __( 'Flux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected.', 'flx-forms' ) ),
+					? sprintf( _n( 'Flux POS has no active account: %d payment form shows "Online payment is not available".', 'Flux POS has no active account: %d payment forms show "Online payment is not available".', $pay, 'flx-forms' ), $pay )
+					/* translators: %d: number of payment forms */
+					: sprintf( _n( 'Flux POS is not active: %d payment form shows "Online payment is not available".', 'Flux POS is not active: %d payment forms show "Online payment is not available".', $pay, 'flx-forms' ), $pay ),
 				$url,
-				__( 'Panel › Settings › Payment', 'flx-forms' )
+				$pos ? __( 'Flux POS', 'flx-forms' ) : __( 'Plugins', 'flx-forms' )
 			),
 		);
 	}

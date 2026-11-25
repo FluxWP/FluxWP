@@ -1,20 +1,21 @@
 <?php
 /**
- * Flux Forms: provider-agnostic payments.
+ * Flux Forms: payments of payment forms. Flux Forms has no gateway of its own: the money is taken by Flux POS
+ * (providers/class-flxf-payment-pos.php, flxpos_charge). Without Flux POS a payment form cannot take payments;
+ * other forms need nothing.
  *
  *  - Contract: FLXF_Payment_Provider (interface-flxf-payment-provider.php), base class
  *    FLXF_Payment_Provider_Base, normalized FLXF_Payment_Result.
- *  - Registry: flxf_payment_providers() + filter `flxf_payment_providers`.
- *  - Active provider: Settings › Payments ("flxfPayProvider" in the plugin settings row), default Stripe.
+ *  - Registry: flxf_payment_providers() + filter `flxf_payment_providers` (Flux POS registers "flxpos").
+ *  - Form side: FLXF_Payment_Core (stored form, row checks, server price).
  *  - REST (all under Emsfb/v1):
- *      POST forms/payment/quote              server-authoritative amount (vendor/stripe handler)
+ *      POST forms/payment/quote              server-authoritative amount
  *      POST forms/payment/start              start a payment with the active provider
- *      POST forms/payment/stripe/card/add    legacy Stripe start; dispatches to start for other providers
  *      POST forms/payment/confirm            verify a stored payment with its provider
  *      POST forms/payment/webhook/{provider} provider webhooks (provider authenticates)
  *  - Front: assets/flxf-pay.js (window.FLXFPay) holds the quote + Pay button gating;
- *    provider scripts register into it (Stripe: public/assets/js/stripe_pay-efb.js).
- *  - Records: {$wpdb->prefix}emsfb_pay_ (gateway = provider id), same as Stripe payments.
+ *    the provider script registers into it (Flux POS: assets/flxf-pay-pos.js).
+ *  - Records: {$wpdb->prefix}emsfb_pay_ (gateway = provider id), FLXF_Payment_Records.
  *
  * Developer guide: docs/PAYMENT-PROVIDERS.md
  *
@@ -31,12 +32,9 @@ require_once __DIR__ . '/interface-flxf-payment-provider.php';
 require_once __DIR__ . '/class-flxf-payment-result.php';
 require_once __DIR__ . '/class-flxf-payment-provider-base.php';
 require_once __DIR__ . '/class-flxf-payment-records.php';
-require_once __DIR__ . '/providers/class-flxf-payment-stripe.php';
-require_once __DIR__ . '/providers/class-flxf-payment-test.php';
+require_once __DIR__ . '/class-flxf-payment-core.php';
+require_once __DIR__ . '/providers/class-flxf-payment-pos.php';
 require_once __DIR__ . '/admin-page.php';
-
-/** Settings key that stores the active provider id. */
-const FLXF_PAY_PROVIDER_SETTING = 'flxfPayProvider';
 
 /* ======================================================================
  * Registry
@@ -58,7 +56,7 @@ function flxf_payment_providers() {
 	if ( null !== $cache ) {
 		return $cache;
 	}
-	$raw = apply_filters( 'flxf_payment_providers', array( 'stripe' => 'FLXF_Payment_Stripe' ) );
+	$raw = apply_filters( 'flxf_payment_providers', array() );
 	$out = array();
 	foreach ( (array) $raw as $item ) {
 		if ( is_string( $item ) && class_exists( $item ) ) {
@@ -114,13 +112,10 @@ function flxf_payment_setting( $key, $default = '' ) {
 	return $default;
 }
 
-/** Id of the active provider (falls back to Stripe when the saved one is gone). */
+/** Id of the provider that takes payments: Flux POS when it is active ('' when none). */
 function flxf_payment_active_provider_id() {
 	$all = flxf_payment_providers();
-	$id  = sanitize_key( flxf_payment_setting( FLXF_PAY_PROVIDER_SETTING, 'stripe' ) );
-	if ( ! isset( $all[ $id ] ) ) {
-		$id = isset( $all['stripe'] ) ? 'stripe' : (string) key( $all );
-	}
+	$id  = isset( $all['flxpos'] ) ? 'flxpos' : (string) key( $all );
 	return (string) apply_filters( 'flxf_payment_active_provider', $id );
 }
 
@@ -146,6 +141,14 @@ function flxf_payments_register_routes( $public ) {
 		return;
 	}
 	$nonce_cb = method_exists( $public, 'check_nonce_permission_efb' ) ? array( $public, 'check_nonce_permission_efb' ) : 'flxf_payments_nonce_permission';
+	/* Server-side price quote: the browser shows this amount, never its own sum. */
+	register_rest_route( 'Emsfb/v1', 'forms/payment/quote', array(
+		'methods'             => 'POST',
+		'callback'            => function ( $request ) use ( $public ) {
+			return FLXF_Payment_Core::quote( $request, $public );
+		},
+		'permission_callback' => $nonce_cb,
+	) );
 	register_rest_route( 'Emsfb/v1', 'forms/payment/start', array(
 		'methods'             => 'POST',
 		'callback'            => function ( $request ) use ( $public ) {
@@ -194,7 +197,7 @@ function flxf_payment_rate_limited( $bucket, $default ) {
 function flxf_payment_rest_start( $request, $public ) {
 	$provider = flxf_payment_active_provider();
 	if ( ! $provider ) {
-		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'No payment provider is available on this site. Please contact the site administrator.', 'flx-forms' ) ) );
+		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'Online payment is not available at the moment. Please try again later or contact us.', 'flx-forms' ) ) );
 	}
 	if ( $provider instanceof FLXF_Payment_Provider_Custom_Start ) {
 		return $provider->start_request( $request, $public );
@@ -202,14 +205,11 @@ function flxf_payment_rest_start( $request, $public ) {
 	if ( flxf_payment_rate_limited( 'start', 20 ) ) {
 		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'Too many payment attempts. Please wait a few minutes and try again.', 'flx-forms' ) ), 429 );
 	}
-	if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) && is_readable( EMSFB_PLUGIN_DIRECTORY . 'vendor/stripe/class-Emsfb-stripe-handler.php' ) ) {
-		require_once EMSFB_PLUGIN_DIRECTORY . 'vendor/stripe/class-Emsfb-stripe-handler.php';
-	}
-	if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) || ! is_object( $public ) || ! method_exists( $public, 'insert_message_db' ) ) {
+	if ( ! is_object( $public ) || ! method_exists( $public, 'insert_message_db' ) ) {
 		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'Invalid payment data. Please refresh the page and try again.', 'flx-forms' ) ) );
 	}
 	$params = $request->get_json_params();
-	$check  = \Emsfb\StripeHandlerEfb::validate_card_add( $params, false, $provider->id() );
+	$check  = FLXF_Payment_Core::validate( $params, $provider );
 	if ( true !== $check ) {
 		return flxf_payment_reply( array( 'success' => false, 'm' => $check ) );
 	}
@@ -218,14 +218,17 @@ function flxf_payment_rest_start( $request, $public ) {
 	}
 
 	$form_id = absint( $params['id'] );
-	$fs      = \Emsfb\StripeHandlerEfb::load_form_structure( $form_id );
+	$fs      = FLXF_Payment_Core::load_form_structure( $form_id );
 	$rows    = json_decode( str_replace( '\\', '', sanitize_text_field( $params['value'] ) ), true );
-	$obj     = \Emsfb\StripeHandlerEfb::server_amount( $public, is_array( $rows ) ? $rows : array(), $fs, false, $form_id );
+	$obj     = FLXF_Payment_Core::server_amount( $public, is_array( $rows ) ? $rows : array(), $fs, false, $form_id );
+	if ( ! empty( $obj['error'] ) && is_string( $obj['error'] ) ) {
+		return flxf_payment_reply( array( 'success' => false, 'm' => $obj['error'] ) );
+	}
 	$amount  = round( (float) ( $obj['price_total'] ?? 0 ), 2 );
 	if ( ! is_finite( $amount ) || $amount <= 0 ) {
 		return flxf_payment_reply( array( 'success' => false, 'm' => __( 'No payment amount detected. Please review your selected items and try again. If the problem persists, contact support.', 'flx-forms' ) ) );
 	}
-	$currency = isset( $fs[0]['currency'] ) && strlen( (string) $fs[0]['currency'] ) > 2 ? strtoupper( (string) $fs[0]['currency'] ) : 'USD';
+	$currency = FLXF_Payment_Core::currency( $fs );
 	$method   = isset( $fs[0]['paymentmethod'] ) ? (string) $fs[0]['paymentmethod'] : 'charge';
 	$user     = wp_get_current_user();
 	$uid      = $user->exists() ? $user->user_nicename : esc_html__( 'Guest', 'flx-forms' );
@@ -364,8 +367,8 @@ function flxf_payment_rest_webhook( $request ) {
 }
 
 /**
- * Final submit guard for payments taken by a provider other than Stripe (Stripe
- * keeps its own guard in vendor/stripe). Runs after the route's permission check.
+ * Final submit guard: a payment form entry is finalised only when its payment is verified with its provider.
+ * Runs after the route's permission check.
  */
 function flxf_payment_guard_final_submit( $result, $request, $route, $handler ) {
 	if ( null !== $result || ! is_string( $route ) || 0 !== strcasecmp( rtrim( $route, '/' ), '/Emsfb/v1/forms/message/add' ) ) {
@@ -380,16 +383,8 @@ function flxf_payment_guard_final_submit( $result, $request, $route, $handler ) 
 		return $result;
 	}
 	$row = FLXF_Payment_Records::get_by_track( $track );
-	if ( $row ) {
-		$gateway = (string) $row->gateway;
-	} else {
-		/* No record: only our business when a non-Stripe provider is active. */
-		$gateway = flxf_payment_active_provider_id();
-	}
-	if ( 'stripe' === $gateway || '' === $gateway ) {
-		return $result;
-	}
-	$provider = flxf_payment_provider( $gateway );
+	$gateway  = $row ? (string) $row->gateway : flxf_payment_active_provider_id();
+	$provider = '' !== $gateway ? flxf_payment_provider( $gateway ) : null;
 	if ( ! $provider ) {
 		/* A record from a provider that is no longer installed. */
 		return flxf_payment_block_submit();
@@ -469,10 +464,6 @@ function flxf_payments_wire_scripts() {
 	if ( is_admin() || ! $provider ) {
 		return;
 	}
-	if ( 'stripe' !== $id ) {
-		/* Another provider is active: no request to js.stripe.com. */
-		wp_dequeue_script( 'stripe-js' );
-	}
 	$assets = (array) $provider->front_assets();
 	foreach ( (array) ( $assets['styles'] ?? array() ) as $handle => $spec ) {
 		if ( ! empty( $spec['src'] ) ) {
@@ -497,54 +488,3 @@ function flxf_payments_wire_scripts() {
 /* Footer scripts print at priority 10 of these hooks. */
 add_action( 'wp_print_footer_scripts', 'flxf_payments_wire_scripts', 1 );
 add_action( 'admin_print_footer_scripts', 'flxf_payments_wire_scripts', 1 );
-
-/** Settings › Payments: provider choice + each provider's settings fields. */
-function flxf_payments_admin_settings_assets() {
-	if ( ! wp_script_is( 'Emsfb-list_form-efb-js', 'enqueued' ) || ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-	$providers = array();
-	foreach ( flxf_payment_providers() as $id => $p ) {
-		$fields = array();
-		foreach ( (array) $p->settings_fields() as $f ) {
-			if ( empty( $f['key'] ) || ! preg_match( '/^[A-Za-z][A-Za-z0-9_]*$/', (string) $f['key'] ) ) {
-				continue;
-			}
-			$type     = in_array( $f['type'] ?? 'text', array( 'text', 'password', 'select', 'checkbox' ), true ) ? $f['type'] : 'text';
-			$value    = flxf_payment_setting( $f['key'] );
-			$fields[] = array(
-				'key'      => $f['key'],
-				'label'    => (string) ( $f['label'] ?? $f['key'] ),
-				'type'     => $type,
-				'options'  => 'select' === $type ? (array) ( $f['options'] ?? array() ) : array(),
-				'help'     => (string) ( $f['help'] ?? '' ),
-				'required' => ! empty( $f['required'] ),
-				/* Secrets are never echoed back; an empty password input keeps the saved value. */
-				'value'    => 'password' === $type ? '' : $value,
-				'saved'    => '' !== $value,
-			);
-		}
-		$providers[] = array(
-			'id'         => $id,
-			'label'      => $p->label(),
-			'configured' => (bool) $p->is_configured(),
-			'fields'     => $fields,
-		);
-	}
-	wp_enqueue_script( 'flxf-pay-admin', plugins_url( 'assets/flxf-pay-admin.js', __FILE__ ), array( 'Emsfb-list_form-efb-js' ), flxf_payments_asset_ver( 'flxf-pay-admin.js' ), true );
-	wp_localize_script( 'flxf-pay-admin', 'flxfPayAdmin', array(
-		'settingKey' => FLXF_PAY_PROVIDER_SETTING,
-		'active'     => flxf_payment_active_provider_id(),
-		'providers'  => $providers,
-		'i18n'       => array(
-			'activeProvider' => __( 'Active payment provider', 'flx-forms' ),
-			'activeHelp'     => __( 'Payment forms take card payments through this provider. Only installed providers are listed.', 'flx-forms' ),
-			'configured'     => __( 'Configured', 'flx-forms' ),
-			'notConfigured'  => __( 'Not configured', 'flx-forms' ),
-			'active'         => __( 'Active', 'flx-forms' ),
-			'savedSecret'    => __( 'Saved — leave empty to keep', 'flx-forms' ),
-			'settingsOf'     => __( '%s settings', 'flx-forms' ),
-		),
-	) );
-}
-add_action( 'admin_print_footer_scripts', 'flxf_payments_admin_settings_assets', 1 );

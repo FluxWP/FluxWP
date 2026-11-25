@@ -24,9 +24,9 @@ if ( ! defined( 'EFB_Path_IR' ) ) {
 	define( 'EFB_Path_IR', false );
 }
 
-/** Eklentiyle birlikte gelen (vendor/ içinde dosyası olan) eklentiler. */
+/** Eklentiyle birlikte gelen (vendor/ içinde dosyası olan) eklentiler. Ödeme kutusu (AdnSPF) eklenti değil: Flux POS açıksa açık. */
 function flxf_fork_bundled_addons() {
-	return array( 'AdnSPF', 'AdnSMF', 'AdnOF' );
+	return array( 'AdnSMF', 'AdnOF' );
 }
 
 /* ---------- Pro: her zaman açık ---------- */

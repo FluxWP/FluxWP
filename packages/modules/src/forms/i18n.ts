@@ -402,6 +402,19 @@ const tr: Record<string, string> = {
   'These add-ons ship with Flux Forms and are always on. Nothing is downloaded.': 'Bu eklentiler Flux Forms ile gelir ve hep açıktır. Hiçbir şey indirilmez.',
   'Files missing': 'Dosyalar eksik',
   Paused: 'Duraklatıldı',
+  Plugins: 'Eklentiler',
+  'Flux Donate keeps the payment records: see Donations › Payments.': 'Ödeme kayıtlarını Flux Donate tutar: Bağışlar › Ödemeler.',
+  'Flux POS': 'Flux POS',
+  'Flux POS is active but has no active POS account yet. Add an account in Flux POS.': 'Flux POS etkin ama henüz etkin POS hesabı yok. Flux POS’ta bir hesap ekleyin.',
+  'Flux POS is needed to take payments. Until it is active, the payment box of payment forms says online payment is not available.': 'Ödeme almak için Flux POS gerekir. Etkin olana kadar ödeme formlarının ödeme kutusu online ödemenin kullanılamadığını söyler.',
+  'No account': 'Hesap yok',
+  'Not active': 'Etkin değil',
+  'Not installed': 'Kurulu değil',
+  'Open Flux POS': 'Flux POS’u aç',
+  'Payment forms take card payments through Flux POS (3D Secure). Currencies: {list}.': 'Ödeme formları kart ödemesini Flux POS üstünden alır (3D Secure). Para birimleri: {list}.',
+  'Payment forms take payments through Flux POS. Forms that take no payment need nothing.': 'Ödeme formları ödemeyi Flux POS üstünden alır. Ödeme almayan formlar için bir şey gerekmez.',
+  Ready: 'Hazır',
+  'Test mode': 'Test modu',
 };
 
 export type Translate = (source: string, params?: Record<string, string | number>) => string;

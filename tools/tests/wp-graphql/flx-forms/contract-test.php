@@ -17,7 +17,7 @@ foreach ( (array) json_decode( (string) file_get_contents( $manifest ), true ) a
 		$GLOBALS['flxf_ops'][ $m[1] ] = $doc;
 	}
 }
-flxt_same( 31, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 31 persisted operations' );
+flxt_same( 30, count( $GLOBALS['flxf_ops'] ), 'Flux Forms ships 30 persisted operations' );
 
 /**
  * @param array<string,mixed> $vars Variables.
@@ -950,29 +950,48 @@ foreach ( array( 'FlxFormsPayments' => 'flxFormsPayments', 'FlxFormsSystem' => '
 }
 $r   = flxf_t_op( 'FlxFormsPayments', array(), $adm_id );
 $pay = $r['data']['flxFormsPayments'] ?? array();
+flxt_same( array( 'active', 'installed', 'configured', 'currencies', 'test', 'url' ), array_keys( (array) ( $pay['pos'] ?? array() ) ), 'payments: Flux POS state is listed', $pay );
+flxt_ok( false === strpos( (string) wp_json_encode( $GLOBALS['flxf_ops'] ), 'Stripe' ), 'payments: no Stripe operation is left' );
 if ( ! FLXF_Tools_Service::payments_available() ) {
-	// Flux Donate owns the payment layer: the page says so and the secret cannot be set here.
-	flxt_same( array( false, array(), array() ), array( $pay['available'] ?? null, $pay['providers'] ?? null, $pay['payments'] ?? null ), 'payments: with Flux Donate the page is empty', $pay );
-	$r = flxf_t_op( 'FlxFormsStripeWebhookSecret', array( 'input' => array( 'secret' => 'whsec_contract' ) ), $adm_id );
-	flxt_same( array( array( 'INVALID_INPUT', 'secret' ) ), flxf_t_errs( $r, 'flxFormsStripeWebhookSecret' ), 'payments: with Flux Donate the secret is refused' );
+	// Flux Donate keeps the payment layer and its records.
+	flxt_same( array( false, array() ), array( $pay['available'] ?? null, $pay['payments'] ?? null ), 'payments: with Flux Donate no records are listed here', $pay );
 } else {
-	flxt_ok( ! empty( $pay['available'] ) && in_array( 'stripe', array_column( (array) ( $pay['providers'] ?? array() ), 'id' ), true ), 'payments: Stripe is listed', $pay );
-	$r = flxf_t_op( 'FlxFormsStripeWebhookSecret', array( 'input' => array( 'secret' => 'nope' ) ), $adm_id );
-	flxt_same( array( array( 'INVALID_INPUT', 'secret' ) ), flxf_t_errs( $r, 'flxFormsStripeWebhookSecret' ), 'payments: secret must start with whsec_' );
-	$r = flxf_t_op( 'FlxFormsStripeWebhookSecret', array( 'input' => array( 'secret' => 'whsec_contract' ) ), $adm_id );
-	$stripe = array_values( array_filter( (array) ( $r['data']['flxFormsStripeWebhookSecret']['payments']['providers'] ?? array() ), static fn( $p ) => 'stripe' === ( $p['id'] ?? '' ) ) )[0] ?? array();
-	flxt_same( array( true, 'whsec_contract' ), array( $stripe['secretSet'] ?? null, get_option( 'emsfb_stripe_webhook_secret' ) ), 'payments: secret saved', $r );
-	flxt_ok( false === strpos( (string) wp_json_encode( $r ), 'whsec_contract' ), 'payments: secret is not returned' );
-	$r = flxf_t_op( 'FlxFormsStripeWebhookSecret', array( 'input' => array( 'clear' => true ) ), $adm_id );
-	flxt_same( false, get_option( 'emsfb_stripe_webhook_secret', false ), 'payments: secret removed' );
 	global $wpdb;
-	if ( class_exists( '\Emsfb\StripePayment' ) ) {
-		\Emsfb\StripePayment::maybe_install_table();
-		$wpdb->insert( \Emsfb\StripePayment::table_name(), array( 'form_id' => 7, 'track' => 'CTRK1', 'gateway' => 'stripe', 'payment_type' => 'one-time', 'transaction_id' => 'pi_contract', 'amount' => 12.5, 'currency' => 'usd', 'status' => 'mismatch', 'payer_email' => 'payer@example.com', 'form_name' => 'Pay form', 'created_at' => gmdate( 'Y-m-d H:i:s' ) ) );
+	FLXF_Payment_Records::maybe_install_table();
+	$wpdb->insert( FLXF_Payment_Records::table_name(), array( 'form_id' => 7, 'track' => 'CTRK1', 'gateway' => 'stripe', 'payment_type' => 'one-time', 'transaction_id' => 'pi_contract', 'amount' => 12.5, 'currency' => 'usd', 'status' => 'mismatch', 'payer_email' => 'payer@example.com', 'form_name' => 'Pay form', 'created_at' => gmdate( 'Y-m-d H:i:s' ) ) );
+	$r   = flxf_t_op( 'FlxFormsPayments', array(), $adm_id );
+	$row = array_values( array_filter( (array) ( $r['data']['flxFormsPayments']['payments'] ?? array() ), static fn( $p ) => 'CTRK1' === ( $p['track'] ?? '' ) ) )[0] ?? array();
+	flxt_same( array( 'failed', 'pi_contract', 'USD', 'Stripe', 12.5 ), array( $row['tone'] ?? null, $row['reference'] ?? null, $row['currency'] ?? null, $row['provider'] ?? null, $row['amount'] ?? null ), 'payments: an old record is still listed', $row );
+	$wpdb->delete( FLXF_Payment_Records::table_name(), array( 'track' => 'CTRK1' ) );
+
+	if ( FLXF_Payment_POS::available() ) {
+		flxt_same( array( 'flxpos' ), array_keys( flxf_payment_providers() ), 'pos: Flux POS is the only provider' );
+		$acc = FLXPOS_Accounts::save( array( 'provider' => 'isbank', 'enabled' => 1, 'test' => 1, 'currencies' => array( 'TRY' ), 'creds' => array( 'client_id' => '700655000200', 'username' => 'u', 'password' => 'p', 'store_key' => 'TRPS0200' ) ) );
 		$r   = flxf_t_op( 'FlxFormsPayments', array(), $adm_id );
-		$row = array_values( array_filter( (array) ( $r['data']['flxFormsPayments']['payments'] ?? array() ), static fn( $p ) => 'CTRK1' === ( $p['track'] ?? '' ) ) )[0] ?? array();
-		flxt_same( array( 'failed', 'pi_contract', 'USD', 'Stripe', 12.5 ), array( $row['tone'] ?? null, $row['reference'] ?? null, $row['currency'] ?? null, $row['provider'] ?? null, $row['amount'] ?? null ), 'payments: a record is listed with tone and reference', $row );
-		$wpdb->delete( \Emsfb\StripePayment::table_name(), array( 'track' => 'CTRK1' ) );
+		$pos = $r['data']['flxFormsPayments']['pos'] ?? array();
+		flxt_same( array( true, true, array( 'TRY' ), true ), array( $pos['active'] ?? null, $pos['configured'] ?? null, $pos['currencies'] ?? null, $pos['test'] ?? null ), 'pos: a test account takes TRY', $pos );
+		$prov = flxf_payment_provider( 'flxpos' );
+		flxt_same( array( true, false, false ), array( $prov->supports( 'TRY', 'charge' ), $prov->supports( 'TRY', 'month' ), $prov->supports( 'JPY', 'charge' ) ), 'pos: one-time charges in an account currency only' );
+		$bad = $prov->create_payment( 10, 'TRY', array( 'reference' => 'flxf_ct', 'params' => array( 'card' => array( 'pan' => '4111111111111112', 'name' => 'A B', 'exp' => '12/30', 'cvc' => '123' ) ) ) );
+		flxt_same( 'failed', $bad->status, 'pos: a bad card number is refused before the bank' );
+		$res = $prov->create_payment( 10, 'TRY', array( 'reference' => 'flxf_ct', 'form_id' => 7, 'description' => 'Contract', 'params' => array( 'card' => array( 'pan' => '4111 1111 1111 1111', 'name' => 'Ada Test', 'exp' => '12 / 30', 'cvc' => '123' ) ) ) );
+		flxt_ok( 'redirect' === $res->status && '' !== $res->reference && false !== strpos( (string) ( $res->client['redirect_url'] ?? '' ), 'flxpos=bridge' ), 'pos: start opens the POS bridge', $res );
+		$txn = flxpos_txn( $res->reference );
+		flxt_same( array( 10.0, 'TRY', 'flxf_ct', '411111******1111' ), array( (float) $txn['amount'], $txn['currency'], $txn['data']['meta']['flxf_ref'] ?? '', $txn['card'] ), 'pos: the transaction has the server amount and a masked card' );
+		$rid = FLXF_Payment_Records::insert( array( 'form_id' => 7, 'track' => 'CTRK2', 'gateway' => 'flxpos', 'transaction_id' => $res->reference, 'amount' => 10, 'currency' => 'TRY' ) );
+		$rec = FLXF_Payment_Records::get_by_track( 'CTRK2' );
+		flxt_same( 'pending', $prov->verify( $rec )->status, 'pos: an unsettled transaction is pending' );
+		FLXPOS_Txn::settle( (int) $txn['id'], 'paid' );
+		do_action( 'flxpos_txn_settled', flxpos_txn( $res->reference ), 'paid', array() );
+		$rec = FLXF_Payment_Records::get_by_track( 'CTRK2' );
+		flxt_same( array( 'completed', 'completed' ), array( $rec->status, $prov->verify( $rec )->status ), 'pos: a paid transaction completes the record' );
+		$wpdb->update( FLXF_Payment_Records::table_name(), array( 'amount' => 11 ), array( 'id' => $rid ) );
+		flxt_same( 'failed', $prov->verify( FLXF_Payment_Records::get_by_track( 'CTRK2' ) )->status, 'pos: a different amount is not paid' );
+		$wpdb->delete( FLXF_Payment_Records::table_name(), array( 'track' => 'CTRK2' ) );
+		$wpdb->delete( FLXPOS_Txn::table(), array( 'id' => (int) $txn['id'] ) );
+		if ( is_string( $acc ) ) {
+			FLXPOS_Accounts::delete( $acc );
+		}
 	}
 }
 
@@ -983,7 +1002,7 @@ flxt_ok( '' !== (string) ( $checks[0]['groupLabel'] ?? '' ), 'system: rows have 
 
 $r    = flxf_t_op( 'FlxFormsAddons', array(), $adm_id );
 $keys = array_column( (array) ( $r['data']['flxFormsAddons'] ?? array() ), 'key' );
-flxt_same( array( 'AdnSPF', 'AdnOF', 'AdnSMF' ), $keys, 'addons: the bundled add-ons are listed', $r );
+flxt_same( array( 'AdnOF', 'AdnSMF' ), $keys, 'addons: the bundled add-ons are listed (no Stripe add-on)', $r );
 flxt_ok( ! in_array( false, array_column( (array) ( $r['data']['flxFormsAddons'] ?? array() ), 'enabled' ), true ), 'addons: the bundled add-ons are always on' );
 
 $r    = flxf_t_op( 'FlxFormsAutomationEditor', array( 'id' => 0 ), $adm_id );
