@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.7.4
+- Eklenti ekranları runtime'ı (`assets/runtime/`) güncel paketlerle yeniden derlendi: ortak ekran kabuğu (`Screen`, `Tabs`) ve stilleri artık runtime'da. `@fluxwp/plugin-kit` 0.1.2 ile derlenen ekranların (Flux Extras: Qurban, Agents…) başlık ve sekmeleri diğer FluxWP ekranlarıyla aynı görünür; eski runtime'da sekmeler stilsiz kalıyordu.
+
 ## 0.7.3
 - Sayfa yenilemeden ekran geçişinde sol menü: `#` ile başlayan bağlantılar (ör. alt menüdeki "Diğer" düğmesi) geçerli sayfa sayılmaz. Menü işaretlenince `flx:menu-marked` olayı yayınlanır; Flux Admin yeni sayfanın grubunu açar.
 
