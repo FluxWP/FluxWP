@@ -1,7 +1,7 @@
 <?php
 /**
  * Flux Forms: payment records ({$wpdb->prefix}emsfb_pay_). One row per payment a form started; `gateway` holds the
- * provider id ("flxpos" for Flux POS), `transaction_id` the provider's reference, `track` the entry's confirmation code.
+ * provider id ("woocommerce" for the WooCommerce checkout), `transaction_id` the provider's reference, `track` the entry's confirmation code.
  *
  * Part of Flux Forms (GPL v2 or later), a fork of Easy Form Builder 4.2.0 by WhiteStudio.
  *
@@ -45,45 +45,7 @@ final class FLXF_Payment_Records {
 	}
 
 	public static function maybe_install_table() {
-		if ( get_option( self::DB_VERSION_OPTION ) === self::DB_VERSION ) {
-			return;
-		}
-		global $wpdb;
-		$table   = self::table_name();
-		$charset = $wpdb->get_charset_collate();
-		$sql     = "CREATE TABLE {$table} (
-  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  form_id bigint(20) unsigned NOT NULL DEFAULT 0,
-  track varchar(64) NOT NULL DEFAULT '',
-  gateway varchar(32) NOT NULL DEFAULT '',
-  payment_type varchar(32) NOT NULL DEFAULT 'one-time',
-  transaction_id varchar(191) NOT NULL DEFAULT '',
-  capture_id varchar(191) NOT NULL DEFAULT '',
-  subscription_id varchar(191) NOT NULL DEFAULT '',
-  plan_id varchar(191) NOT NULL DEFAULT '',
-  product_id varchar(191) NOT NULL DEFAULT '',
-  interval_unit varchar(16) NOT NULL DEFAULT '',
-  amount decimal(20,4) NOT NULL DEFAULT 0,
-  currency varchar(8) NOT NULL DEFAULT '',
-  status varchar(32) NOT NULL DEFAULT 'pending',
-  payer_email varchar(191) NOT NULL DEFAULT '',
-  uid varchar(191) NOT NULL DEFAULT '',
-  ip varchar(64) NOT NULL DEFAULT '',
-  form_name varchar(255) NOT NULL DEFAULT '',
-  meta longtext NULL,
-  created_at datetime NULL DEFAULT NULL,
-  updated_at datetime NULL DEFAULT NULL,
-  PRIMARY KEY  (id),
-  KEY transaction_id (transaction_id),
-  KEY track (track),
-  KEY subscription_id (subscription_id),
-  KEY form_id (form_id)
-) {$charset};";
-		if ( ! function_exists( 'dbDelta' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		}
-		dbDelta( $sql );
-		update_option( self::DB_VERSION_OPTION, self::DB_VERSION, false );
+		flxf_payment_install_table();
 	}
 
 	/** Keep only known columns and build the matching formats. */

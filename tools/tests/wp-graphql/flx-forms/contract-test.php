@@ -950,7 +950,7 @@ foreach ( array( 'FlxFormsPayments' => 'flxFormsPayments', 'FlxFormsSystem' => '
 }
 $r   = flxf_t_op( 'FlxFormsPayments', array(), $adm_id );
 $pay = $r['data']['flxFormsPayments'] ?? array();
-flxt_same( array( 'active', 'installed', 'configured', 'currencies', 'test', 'url' ), array_keys( (array) ( $pay['pos'] ?? array() ) ), 'payments: Flux POS state is listed', $pay );
+flxt_same( array( 'active', 'installed', 'configured', 'currency', 'gateways', 'url' ), array_keys( (array) ( $pay['checkout'] ?? array() ) ), 'payments: WooCommerce state is listed', $pay );
 flxt_ok( false === strpos( (string) wp_json_encode( $GLOBALS['flxf_ops'] ), 'Stripe' ), 'payments: no Stripe operation is left' );
 if ( ! FLXF_Tools_Service::payments_available() ) {
 	// Flux Donate keeps the payment layer and its records.
@@ -964,36 +964,52 @@ if ( ! FLXF_Tools_Service::payments_available() ) {
 	flxt_same( array( 'failed', 'pi_contract', 'USD', 'Stripe', 12.5 ), array( $row['tone'] ?? null, $row['reference'] ?? null, $row['currency'] ?? null, $row['provider'] ?? null, $row['amount'] ?? null ), 'payments: an old record is still listed', $row );
 	$wpdb->delete( FLXF_Payment_Records::table_name(), array( 'track' => 'CTRK1' ) );
 
-	if ( FLXF_Payment_POS::available() ) {
-		flxt_same( array( 'flxpos' ), array_keys( flxf_payment_providers() ), 'pos: Flux POS is the only provider' );
-		$acc = FLXPOS_Accounts::save( array( 'provider' => 'isbank', 'enabled' => 1, 'test' => 1, 'currencies' => array( 'TRY' ), 'creds' => array( 'client_id' => '700655000200', 'username' => 'u', 'password' => 'p', 'store_key' => 'TRPS0200' ) ) );
-		$r   = flxf_t_op( 'FlxFormsPayments', array(), $adm_id );
-		$pos = $r['data']['flxFormsPayments']['pos'] ?? array();
-		flxt_same( array( true, true, array( 'TRY' ), true ), array( $pos['active'] ?? null, $pos['configured'] ?? null, $pos['currencies'] ?? null, $pos['test'] ?? null ), 'pos: a test account takes TRY', $pos );
-		$prov = flxf_payment_provider( 'flxpos' );
-		flxt_same( array( true, false, false ), array( $prov->supports( 'TRY', 'charge' ), $prov->supports( 'TRY', 'month' ), $prov->supports( 'JPY', 'charge' ) ), 'pos: one-time charges in an account currency only' );
-		$bad = $prov->create_payment( 10, 'TRY', array( 'reference' => 'flxf_ct', 'params' => array( 'card' => array( 'pan' => '4111111111111112', 'name' => 'A B', 'exp' => '12/30', 'cvc' => '123' ) ) ) );
-		flxt_same( 'failed', $bad->status, 'pos: a bad card number is refused before the bank' );
-		$res = $prov->create_payment( 10, 'TRY', array( 'reference' => 'flxf_ct', 'form_id' => 7, 'description' => 'Contract', 'params' => array( 'card' => array( 'pan' => '4111 1111 1111 1111', 'name' => 'Ada Test', 'exp' => '12 / 30', 'cvc' => '123' ) ) ) );
-		flxt_ok( 'redirect' === $res->status && '' !== $res->reference && false !== strpos( (string) ( $res->client['redirect_url'] ?? '' ), 'flxpos=bridge' ), 'pos: start opens the POS bridge', $res );
-		$txn = flxpos_txn( $res->reference );
-		flxt_same( array( 10.0, 'TRY', 'flxf_ct', '411111******1111' ), array( (float) $txn['amount'], $txn['currency'], $txn['data']['meta']['flxf_ref'] ?? '', $txn['card'] ), 'pos: the transaction has the server amount and a masked card' );
-		$rid = FLXF_Payment_Records::insert( array( 'form_id' => 7, 'track' => 'CTRK2', 'gateway' => 'flxpos', 'transaction_id' => $res->reference, 'amount' => 10, 'currency' => 'TRY' ) );
-		$rec = FLXF_Payment_Records::get_by_track( 'CTRK2' );
-		flxt_same( 'pending', $prov->verify( $rec )->status, 'pos: an unsettled transaction is pending' );
-		FLXPOS_Txn::settle( (int) $txn['id'], 'paid' );
-		do_action( 'flxpos_txn_settled', flxpos_txn( $res->reference ), 'paid', array() );
-		$rec = FLXF_Payment_Records::get_by_track( 'CTRK2' );
-		flxt_same( array( 'completed', 'completed' ), array( $rec->status, $prov->verify( $rec )->status ), 'pos: a paid transaction completes the record' );
-		$wpdb->update( FLXF_Payment_Records::table_name(), array( 'amount' => 11 ), array( 'id' => $rid ) );
-		flxt_same( 'failed', $prov->verify( FLXF_Payment_Records::get_by_track( 'CTRK2' ) )->status, 'pos: a different amount is not paid' );
-		$wpdb->delete( FLXF_Payment_Records::table_name(), array( 'track' => 'CTRK2' ) );
-		$wpdb->delete( FLXPOS_Txn::table(), array( 'id' => (int) $txn['id'] ) );
-		if ( is_string( $acc ) ) {
-			FLXPOS_Accounts::delete( $acc );
+	if ( FLXF_Payment_WC::available() ) {
+		flxt_same( array( 'woocommerce' ), array_keys( flxf_payment_providers() ), 'wc: WooCommerce is the only provider' );
+		$cur  = get_woocommerce_currency();
+		$bacs = get_option( 'woocommerce_bacs_settings' );
+		update_option( 'woocommerce_bacs_settings', array_merge( is_array( $bacs ) ? $bacs : array(), array( 'enabled' => 'yes' ) ) );
+		WC()->payment_gateways()->init();
+		$r  = flxf_t_op( 'FlxFormsPayments', array(), $adm_id );
+		$wc = $r['data']['flxFormsPayments']['checkout'] ?? array();
+		flxt_ok( true === ( $wc['active'] ?? null ) && true === ( $wc['configured'] ?? null ) && $cur === ( $wc['currency'] ?? '' ) && array() !== ( $wc['gateways'] ?? array() ), 'wc: an enabled payment method makes it ready', $wc );
+		$prov = flxf_payment_provider( 'woocommerce' );
+		flxt_same( array( true, false, false ), array( $prov->supports( $cur, 'charge' ), $prov->supports( $cur, 'month' ), $prov->supports( 'JPY' === $cur ? 'EUR' : 'JPY', 'charge' ) ), 'wc: one-time payments in the store currency only' );
+		$res = $prov->create_payment( 10, $cur, array( 'reference' => 'flxf_ct', 'form_id' => 7, 'form_name' => 'Contract', 'email' => 'payer@example.com' ) );
+		$order = 'redirect' === $res->status ? wc_get_order( (int) $res->reference ) : false;
+		flxt_ok( $order instanceof WC_Order && false !== strpos( (string) ( $res->client['redirect_url'] ?? '' ), 'order-pay' ), 'wc: start makes an order and opens its payment page', $res );
+		if ( $order instanceof WC_Order ) {
+			flxt_same( array( 10.0, $cur, 'pending', 'flxf_ct', 'payer@example.com' ), array( (float) $order->get_total(), $order->get_currency(), $order->get_status(), $order->get_meta( '_flxf_track' ), $order->get_billing_email() ), 'wc: the order has the server amount' );
+			flxt_ok( false !== strpos( $order->get_checkout_order_received_url(), 'flxf_pay_return=1' ), 'wc: after paying the window comes back to the form' );
+			$rid = FLXF_Payment_Records::insert( array( 'form_id' => 7, 'track' => 'CTRK2', 'gateway' => 'woocommerce', 'transaction_id' => (string) $order->get_id(), 'amount' => 10, 'currency' => $cur ) );
+			flxt_same( 'pending', $prov->verify( FLXF_Payment_Records::get_by_track( 'CTRK2' ) )->status, 'wc: an unpaid order is pending' );
+			$order->payment_complete( 'ct-1' );
+			$rec = FLXF_Payment_Records::get_by_track( 'CTRK2' );
+			flxt_same( array( 'completed', 'completed' ), array( $rec->status, $prov->verify( $rec )->status ), 'wc: a paid order completes the record' );
+			$wpdb->update( FLXF_Payment_Records::table_name(), array( 'amount' => 11 ), array( 'id' => $rid ) );
+			flxt_same( 'failed', $prov->verify( FLXF_Payment_Records::get_by_track( 'CTRK2' ) )->status, 'wc: a different amount is not paid' );
+			$wpdb->delete( FLXF_Payment_Records::table_name(), array( 'track' => 'CTRK2' ) );
+			$order->delete( true );
 		}
+		update_option( 'woocommerce_bacs_settings', $bacs );
 	}
 }
+
+/* Flux Donate's form payments still call the old class names (they lived in the removed Stripe add-on). */
+flxt_ok( class_exists( '\\Emsfb\\StripeHandlerEfb' ) && class_exists( '\\Emsfb\\StripePayment' ), 'payments: old class names Flux Donate calls are there' );
+$cfid = flxf_t_form( 'Compat pay', 'payment', array(
+	array( 'type' => 'payment', 'getway' => 'stripe', 'currency' => 'try', 'paymentmethod' => 'charge' ),
+	array( 'id_' => 'r1', 'type' => 'payRadio', 'name' => 'Fidan', 'step' => '1' ),
+	array( 'id_' => 'o1', 'parent' => 'r1', 'type' => 'option', 'value' => '1 fidan', 'price' => '150' ),
+	array( 'id_' => 'b1', 'type' => 'stripe', 'step' => '1' ),
+) );
+$cval = (string) wp_json_encode( array( array( 'id_' => 'r1', 'type' => 'payRadio', 'value' => '1 fidan', 'price' => 150 ) ) );
+flxt_same( array( true, true, 'Invalid payment data. Please refresh the page and try again.' ), array(
+	\Emsfb\StripeHandlerEfb::is_stripe_form( \Emsfb\StripeHandlerEfb::load_form_structure( $cfid ) ),
+	\Emsfb\StripeHandlerEfb::validate_card_add( array( 'id' => $cfid, 'value' => $cval ), false, 'stripe' ),
+	\Emsfb\StripeHandlerEfb::validate_card_add( array( 'id' => $cfid, 'value' => '[{"price":-1}]' ), false, 'stripe' ),
+), 'payments: the old rows check still answers' );
+$wpdb->delete( $wpdb->prefix . 'emsfb_form', array( 'form_id' => $cfid ) );
 
 $r      = flxf_t_op( 'FlxFormsSystem', array(), $adm_id );
 $checks = (array) ( $r['data']['flxFormsSystem']['checks'] ?? array() );

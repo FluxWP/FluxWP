@@ -1801,7 +1801,7 @@ class efbFunction {
 			"upDMsg" => $state  &&  isset($ac->text->upDMsg) ? $ac->text->upDMsg : esc_html__('Please update Flux Forms before trying again.','flx-forms'),
 			"AfLnFrm" => $state  &&  isset($ac->text->AfLnFrm) ? $ac->text->AfLnFrm : esc_html__('Activation of offline form mode.','flx-forms'),
 			"IMAddons" => $state  &&  isset($ac->text->IMAddons) ? $ac->text->IMAddons : esc_html__('Before activating this option, install','flx-forms'),
-			"IMAddonP" => $state  &&  isset($ac->text->IMAddonP) ? $ac->text->IMAddonP : esc_html__('To take online payments with a payment form, install and activate Flux POS and add a POS account.','flx-forms'),
+			"IMAddonP" => $state  &&  isset($ac->text->IMAddonP) ? $ac->text->IMAddonP : esc_html__('To take online payments with a payment form, install and activate WooCommerce and enable a payment method.','flx-forms'),
 			"allformat" => $state  &&  isset($ac->text->allformat) ? $ac->text->allformat : esc_html__('All formats','flx-forms'),
 			"AdnSST" => $state  &&  isset($ac->text->AdnSST) ? $ac->text->AdnSST : esc_html__('EFB SMS Add-on','flx-forms'),
 			"AdnSSD" => $state  &&  isset($ac->text->AdnSSD) ? $ac->text->AdnSSD : esc_html__('Enable SMS functionality in your forms with the EFB SMS add-on, allowing you to validate mobile numbers and send confirmation codes via SMS, as well as receive notifications through SMS service.','flx-forms'),

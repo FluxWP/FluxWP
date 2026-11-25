@@ -228,7 +228,7 @@ class FLXF_Automations_Engine {
 
 	/**
 	 * Verified amount for a payment submission. Never the browser's numbers: the payment record (written
-	 * server-side, settled by Flux POS), else the payment row EFB stored server-side when the payment was created.
+	 * server-side, settled by the WooCommerce order), else the payment row EFB stored server-side when the payment was created.
 	 */
 	private static function payment_info( $track, array $rows, array $structure ) {
 		if ( class_exists( 'FLXF_Payment_Records' ) ) {

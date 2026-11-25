@@ -25,13 +25,13 @@ Plan: 1 public okuma + gönderim (`flxForm`, `flxFormSubmit`, `flxFormTrack`, `f
 - Sorgular: `flxFormsPayments` (sağlayıcılar + son 50 ödeme; Flux Donate ödemeleri üstlenince `available: false`), `flxFormsSystem` (`flx_system_checks` satırları; Flux Donate/Speed ekranı taşıyınca `available: false`), `flxFormsAddons`, `flxFormsAutomations`, `flxFormsAutomationRuns`, `flxFormsAutomationEditor(id)` (FlxJSON). Mutasyonlar: `flxFormsStripeWebhookSecret` (yalnız yazılır, `whsec_`), `flxFormsAutomationSave/Toggle/Delete/Duplicate/Default/DonationForm/RunsClear`.
 - Servisler `class-flxf-tools-service.php`, `class-flxf-automations-service.php`. Eklentiler salt okunur: paketle gelen add-on'lar (`AdnSPF`, `AdnOF`, `AdnSMF`) `get_setting_Emsfb` tarafından hep açık tutulur, kapatma düğmesi yok.
 
-## 2.9.0: ödeme yalnız Flux POS
+## 2.9.0: ödeme WooCommerce ödeme sayfasında
 
-- Flux Forms'un kendi ödeme sağlayıcıları (Stripe add-on'u `vendor/stripe`, test sağlayıcısı, Stripe ayar sekmesi) silindi. Tek sağlayıcı `flxpos` (`providers/class-flxf-payment-pos.php`), Flux POS etkin ve hesap varken kayıtlı. Ödeme almayan formlar Flux POS istemez.
-- Akış: ödeme kutusu kart alanları (ya da barındırılan sayfa notu) → `forms/payment/start` → `flxpos_charge()` → pencerede POS köprüsü (3D Secure) → `?flxf_pay_return=1` opener'a `postMessage` → `forms/payment/confirm` → `flxpos_txn()` (paid + aynı tutar/para birimi). `flxpos_txn_settled` kaydı pencere kapansa da işaretler.
-- Ortak çekirdek `class-flxf-payment-core.php` (form yapısı, satır doğrulama, sunucu tutarı, `forms/payment/quote`), kayıt tablosu `FLXF_Payment_Records` (`emsfb_pay_`).
-- `flxFormsPayments`: `pos { active installed configured currencies test url }` + son 50 ödeme; `flxFormsStripeWebhookSecret` kaldırıldı. Eklentiler listesinde `AdnSPF` yok (`AdnOF`, `AdnSMF`).
-- Flux Donate kuruluyken ödeme katmanını Donate tanımlar (Forms'unki yüklenmez); onun POS'a geçişi ayrı Donate işi.
+- Flux Forms'un kendi ödeme sağlayıcıları (Stripe add-on'u `vendor/stripe`, test sağlayıcısı, Stripe ayar sekmesi) silindi. Tek sağlayıcı `woocommerce` (`providers/class-flxf-payment-wc.php`), WooCommerce etkinken kayıtlı. Ödeme almayan formlar WooCommerce istemez.
+- Akış: `forms/payment/start` (sunucu tutarı) → bekleyen WC siparişi (tek ücret satırı, meta `_flxf_track`, `_flxf_form_id`) → siparişin ödeme sayfası pencerede (her WC gateway'i, Flux POS kart dahil) → `woocommerce_get_checkout_order_received_url` bizim siparişlerde `?flxf_pay_return=1&order&key` → opener'a `postMessage` + `BroadcastChannel` + storage event → `forms/payment/confirm` → sipariş `is_paid()` + aynı tutar/para birimi. `woocommerce_payment_complete` / `order_status_changed` kaydı pencere kapansa da işaretler.
+- Ortak çekirdek `class-flxf-payment-core.php` (form yapısı, satır doğrulama, sunucu tutarı, `forms/payment/quote`), kayıt tablosu `FLXF_Payment_Records` (`emsfb_pay_`). `compat.php` Flux Donate'in çağırdığı `\Emsfb\StripeHandlerEfb` / `\Emsfb\StripePayment` adlarını Donate kuruluyken de sağlar.
+- `flxFormsPayments`: `checkout { active installed configured currency gateways url }` + son 50 ödeme; `flxFormsStripeWebhookSecret` kaldırıldı (`graphql-breaking`). Eklentiler listesinde `AdnSPF` yok (`AdnOF`, `AdnSMF`).
+- Flux Donate kuruluyken ödeme katmanını Donate tanımlar (değişmedi).
 
 ## İstisnalar
 

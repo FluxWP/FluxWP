@@ -10070,3 +10070,73 @@ msgid "Flux POS is not active: %d payment form shows \"Online payment is not ava
 msgid_plural "Flux POS is not active: %d payment forms show \"Online payment is not available\"."
 msgstr[0] "Flux POS etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
 msgstr[1] "Flux POS etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
+
+msgid "WooCommerce checkout"
+msgstr "WooCommerce ödeme sayfası"
+
+msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
+msgstr "Nasıl ödeyeceğinizi (kart, havale…) güvenli ödeme sayfasında seçeceksiniz."
+
+msgid "The payment was not completed. You can try again."
+msgstr "Ödeme tamamlanmadı. Yeniden deneyebilirsiniz."
+
+msgid "The order is received; the payment is confirmed when it arrives."
+msgstr "Sipariş alındı; ödeme ulaşınca onaylanır."
+
+msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
+msgstr "Sipariş alındı; ödeme ulaşınca onaylanır. Bu pencereyi kapatıp forma dönebilirsiniz."
+
+msgid "WooCommerce, where payment forms are paid."
+msgstr "Ödeme formlarının ödendiği WooCommerce."
+
+msgid "WooCommerce is active."
+msgstr "WooCommerce etkin."
+
+msgid "WooCommerce is installed (active or not)."
+msgstr "WooCommerce kurulu (etkin ya da değil)."
+
+msgid "WooCommerce has an enabled payment method."
+msgstr "WooCommerce'te açık bir ödeme yöntemi var."
+
+msgid "Store currency; payment forms must use it."
+msgstr "Mağaza para birimi; ödeme formları bunu kullanmalı."
+
+msgid "Enabled payment methods."
+msgstr "Açık ödeme yöntemleri."
+
+msgid "Where to set payments up (WooCommerce › Payments, or Plugins when it is not active)."
+msgstr "Ödemelerin ayarlandığı yer (WooCommerce › Ödemeler, etkin değilse Eklentiler)."
+
+msgid "WooCommerce state."
+msgstr "WooCommerce durumu."
+
+msgid "WooCommerce state and the latest payments of the forms."
+msgstr "WooCommerce durumu ve formların son ödemeleri."
+
+msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
+msgstr "Ödeme formları WooCommerce ödeme sayfasında ödenir (%1$s; %2$s)."
+
+msgid "No payment form exists. WooCommerce is needed only to take payments."
+msgstr "Ödeme formu yok. WooCommerce yalnız ödeme almak için gerekir."
+
+msgid "Payment methods"
+msgstr "Ödeme yöntemleri"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "Flux Donate etkin ama ödemeleri devralmadı (flxb_own_payments filtresi kapalı mı?). Flux Forms ödemeyi WooCommerce ödeme sayfasında alır."
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "Ödeme formuyla online ödeme almak için WooCommerce'i kurup etkinleştirin ve bir ödeme yöntemi açın."
+
+msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
+msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
+msgstr[0] "WooCommerce'te açık ödeme yöntemi yok: %d ödeme formu ödeme alamıyor."
+msgstr[1] "WooCommerce'te açık ödeme yöntemi yok: %d ödeme formu ödeme alamıyor."
+
+msgid "WooCommerce is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "WooCommerce etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
+msgstr[1] "WooCommerce etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."

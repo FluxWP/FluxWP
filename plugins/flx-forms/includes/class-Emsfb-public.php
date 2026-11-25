@@ -1553,7 +1553,7 @@ public function check_nonce_permission_efb($request) {
 
 							if ($valj_efb[$i]->type =='stripe' ){
 
-									/* The card payment box: the payment runs through Flux POS (includes/flx/payments). */
+									/* The payment box: the order is paid on the WooCommerce checkout (includes/flx/payments). */
 									wp_register_script('stripe_js',  EMSFB_PLUGIN_URL .'/public/assets/js/stripe_pay-efb.js', array('jquery'),EMSFB_PLUGIN_VERSION,true);
 									wp_enqueue_script('stripe_js');
 									$ar_core = array_merge($ar_core , array(
@@ -5496,7 +5496,7 @@ public function check_nonce_permission_efb($request) {
 				}
 
 				if (isset($c['type']) && $c['type']==='payment'){
-					if (in_array(($c['paymentGateway'] ?? ''), array('stripe', 'flxpos'), true)){
+					if (in_array(($c['paymentGateway'] ?? ''), array('stripe', 'flxpos', 'woocommerce'), true)){
 						$numberformat = $this->email_format_price_efb(floatval($c['paymentAmount'] ?? 0), ($c['paymentcurrency'] ?? $currency));
 						$addPair($lanText['payment'].' '.$lanText['id'], '<span>'.($c['paymentIntent'] ?? '').'</span>');
 						$addPair($lanText['methodPayment'], '<span>'.($c['paymentmethod'] ?? '').'</span>');

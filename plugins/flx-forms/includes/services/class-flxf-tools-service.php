@@ -1,6 +1,6 @@
 <?php
 /**
- * Forms › Payments, System check and Add-ons for the Forms screen (GraphQL): Flux POS state and the payment
+ * Forms › Payments, System check and Add-ons for the Forms screen (GraphQL): WooCommerce state and the payment
  * records (includes/flx/payments), the shared flx_system_checks rows (includes/flx/system-checks) and the bundled
  * add-ons (Flux Forms keeps them always on: Emsfb::get_setting_Emsfb sets AdnOF and AdnSMF).
  *
@@ -27,31 +27,26 @@ final class FLXF_Tools_Service {
 	}
 
 	/**
-	 * Flux POS state.
+	 * WooCommerce state (payment forms are paid on its checkout).
 	 *
 	 * @return array<string,mixed>
 	 */
-	public static function pos(): array {
-		$active    = class_exists( 'FLXF_Payment_POS' ) && FLXF_Payment_POS::available();
-		$installed = $active || file_exists( WP_PLUGIN_DIR . '/flx-pos/flx-pos.php' );
-		$curs      = $active ? FLXF_Payment_POS::currencies() : array();
-		$test      = false;
-		foreach ( $curs as $c ) {
-			$test = $test || ! empty( $c['test'] );
-		}
-		$url = $active && function_exists( 'flxpos_admin_url' ) ? self::str( flxpos_admin_url() ) : admin_url( 'plugins.php' );
+	public static function checkout(): array {
+		$active    = class_exists( 'FLXF_Payment_WC' ) ? FLXF_Payment_WC::available() : function_exists( 'wc_create_order' );
+		$installed = $active || file_exists( WP_PLUGIN_DIR . '/woocommerce/woocommerce.php' );
+		$gateways  = $active && class_exists( 'FLXF_Payment_WC' ) ? FLXF_Payment_WC::gateways() : array();
 		return array(
 			'active'     => $active,
 			'installed'  => $installed,
-			'configured' => $active && array() !== $curs,
-			'currencies' => array_map( 'strval', array_keys( $curs ) ),
-			'test'       => $test,
-			'url'        => $url,
+			'configured' => $active && array() !== $gateways,
+			'currency'   => $active && class_exists( 'FLXF_Payment_WC' ) ? FLXF_Payment_WC::currency() : '',
+			'gateways'   => $gateways,
+			'url'        => $active ? admin_url( 'admin.php?page=wc-settings&tab=checkout' ) : admin_url( 'plugins.php' ),
 		);
 	}
 
 	/**
-	 * Flux POS and the latest payments.
+	 * WooCommerce state and the latest payments.
 	 *
 	 * @return array<string,mixed>
 	 */
@@ -59,7 +54,7 @@ final class FLXF_Tools_Service {
 		$ok = self::payments_available();
 		return array(
 			'available' => $ok,
-			'pos'       => self::pos(),
+			'checkout'  => self::checkout(),
 			'payments'  => $ok ? self::payment_rows() : array(),
 			'limit'     => self::PAYMENTS_LIMIT,
 		);

@@ -91,7 +91,7 @@ fragment FlxFormsSettingsAll on FlxFormsSettings {
 fragment FlxFormsPaymentsAll on FlxFormsPayments {
   available
   limit
-  pos { active installed configured currencies test url }
+  checkout { active installed configured currency gateways url }
   payments {
     id
     date { iso label relative }

@@ -1,8 +1,8 @@
 <?php
 /**
  * Flux Forms: the form side of a payment. Reads the stored form, checks the visitor's rows and prices them on the
- * server (the same code prices the quote and the charge). The money itself is taken by Flux POS
- * (providers/class-flxf-payment-pos.php); Flux Forms has no payment gateway of its own.
+ * server (the same code prices the quote and the charge). The money itself is taken on the WooCommerce checkout
+ * (providers/class-flxf-payment-wc.php); Flux Forms has no payment gateway of its own.
  *
  * Part of Flux Forms (GPL v2 or later), a fork of Easy Form Builder 4.2.0 by WhiteStudio.
  *
@@ -66,9 +66,10 @@ final class FLXF_Payment_Core {
 	 *
 	 * @param mixed                      $params   Request JSON params ({id, value}).
 	 * @param FLXF_Payment_Provider|null $provider The provider that would take the payment.
+	 * @param bool                       $any      Skip the provider's currency/method check (only the method must be known).
 	 * @return true|string True or an error message.
 	 */
-	public static function validate( $params, $provider ) {
+	public static function validate( $params, $provider, $any = false ) {
 		$invalid = __( 'Invalid payment data. Please refresh the page and try again.', 'flx-forms' );
 		if ( ! is_array( $params ) ) {
 			return $invalid;
@@ -86,10 +87,13 @@ final class FLXF_Payment_Core {
 		}
 		$method   = isset( $fs[0]['paymentmethod'] ) ? (string) $fs[0]['paymentmethod'] : 'charge';
 		$currency = self::currency( $fs );
-		if ( ! $provider ) {
+		if ( $any ) {
+			if ( ! in_array( $method, self::METHODS, true ) ) {
+				return __( 'The payment method of this form is not supported.', 'flx-forms' );
+			}
+		} elseif ( ! $provider ) {
 			return __( 'Online payment is not available at the moment. Please try again later or contact us.', 'flx-forms' );
-		}
-		if ( ! $provider->supports( $currency, $method ) ) {
+		} elseif ( ! $provider->supports( $currency, $method ) ) {
 			return in_array( $method, self::METHODS, true ) && $provider->supports( $currency, 'charge' )
 				? __( 'The payment method of this form is not supported.', 'flx-forms' )
 				: __( 'The currency of this form is not supported.', 'flx-forms' );

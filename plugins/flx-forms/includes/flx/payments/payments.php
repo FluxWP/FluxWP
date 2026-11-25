@@ -1,12 +1,12 @@
 <?php
 /**
- * Flux Forms: payments of payment forms. Flux Forms has no gateway of its own: the money is taken by Flux POS
- * (providers/class-flxf-payment-pos.php, flxpos_charge). Without Flux POS a payment form cannot take payments;
+ * Flux Forms: payments of payment forms. Flux Forms has no gateway of its own: the order is paid on the WooCommerce
+ * checkout (providers/class-flxf-payment-wc.php, any gateway). Without WooCommerce a payment form cannot take payments;
  * other forms need nothing.
  *
  *  - Contract: FLXF_Payment_Provider (interface-flxf-payment-provider.php), base class
  *    FLXF_Payment_Provider_Base, normalized FLXF_Payment_Result.
- *  - Registry: flxf_payment_providers() + filter `flxf_payment_providers` (Flux POS registers "flxpos").
+ *  - Registry: flxf_payment_providers() + filter `flxf_payment_providers` (WooCommerce registers "woocommerce").
  *  - Form side: FLXF_Payment_Core (stored form, row checks, server price).
  *  - REST (all under Emsfb/v1):
  *      POST forms/payment/quote              server-authoritative amount
@@ -14,7 +14,7 @@
  *      POST forms/payment/confirm            verify a stored payment with its provider
  *      POST forms/payment/webhook/{provider} provider webhooks (provider authenticates)
  *  - Front: assets/flxf-pay.js (window.FLXFPay) holds the quote + Pay button gating;
- *    the provider script registers into it (Flux POS: assets/flxf-pay-pos.js).
+ *    the provider script registers into it (WooCommerce: assets/flxf-pay-wc.js).
  *  - Records: {$wpdb->prefix}emsfb_pay_ (gateway = provider id), FLXF_Payment_Records.
  *
  * Developer guide: docs/PAYMENT-PROVIDERS.md
@@ -31,9 +31,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/interface-flxf-payment-provider.php';
 require_once __DIR__ . '/class-flxf-payment-result.php';
 require_once __DIR__ . '/class-flxf-payment-provider-base.php';
+require_once __DIR__ . '/compat.php';
 require_once __DIR__ . '/class-flxf-payment-records.php';
 require_once __DIR__ . '/class-flxf-payment-core.php';
-require_once __DIR__ . '/providers/class-flxf-payment-pos.php';
+require_once __DIR__ . '/providers/class-flxf-payment-wc.php';
 require_once __DIR__ . '/admin-page.php';
 
 /* ======================================================================
@@ -112,10 +113,10 @@ function flxf_payment_setting( $key, $default = '' ) {
 	return $default;
 }
 
-/** Id of the provider that takes payments: Flux POS when it is active ('' when none). */
+/** Id of the provider that takes payments: WooCommerce when it is active ('' when none). */
 function flxf_payment_active_provider_id() {
 	$all = flxf_payment_providers();
-	$id  = isset( $all['flxpos'] ) ? 'flxpos' : (string) key( $all );
+	$id  = isset( $all['woocommerce'] ) ? 'woocommerce' : (string) key( $all );
 	return (string) apply_filters( 'flxf_payment_active_provider', $id );
 }
 

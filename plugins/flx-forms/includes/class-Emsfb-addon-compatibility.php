@@ -32,7 +32,7 @@ class Emsfb_Addon_Compatibility {
 	 */
 	public static function addon_requirements() {
 		$requirements = array(
-			'AdnSPF' => array( 'name' => 'Payment (Flux POS)', 'functions' => array() ),
+			'AdnSPF' => array( 'name' => 'Payment (WooCommerce checkout)', 'functions' => array() ),
 			'AdnOF'  => array( 'name' => 'Offline Forms', 'functions' => array() ),
 			'AdnPPF' => array(
 				'name'      => 'Persia Payment',

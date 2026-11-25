@@ -14,7 +14,7 @@ Create contact, survey, payment, and login forms with drag-and-drop, free email 
 
  Easy Form Builder is a comprehensive WordPress form plugin designed to help website owners create, manage, and maintain a wide variety of forms using a visual drag-and-drop form builder interface. The plugin is suitable for users who want to build professional forms without writing code, while still keeping full control over form data, submissions, and communication workflows, including free custom email notification templates with a built-in visual editor.
 
-This form builder plugin can be used to create contact forms, support request forms, survey and feedback forms, payment forms (through Flux POS), subscription forms and custom login or registration forms for WordPress users. All form data is stored directly on your WordPress website, ensuring transparency, data ownership, and predictable behavior.
+This form builder plugin can be used to create contact forms, support request forms, survey and feedback forms, payment forms (paid on the WooCommerce checkout), subscription forms and custom login or registration forms for WordPress users. All form data is stored directly on your WordPress website, ensuring transparency, data ownership, and predictable behavior.
 
 [youtube https://www.youtube.com/watch?v=m92rq2X1Rv4]
 
@@ -28,7 +28,7 @@ With Easy Form Builder, you can use a single form plugin to build and manage mul
 - Contact forms for general inquiries
 - Support and feedback forms with message tracking
 - Survey and poll forms with structured results
-- Payment forms for online card payments through Flux POS
+- Payment forms paid on the WooCommerce checkout
 - PayPal payment forms for collecting online payments
 - Login (sign-in) forms for WordPress users
 - Registration (sign-up) forms for new users
@@ -125,7 +125,7 @@ Conditional logic is available at no cost in the Free Plus version: up to 3 logi
 
 == Payment Forms ==
 
-Payment forms take card payments through the Flux POS plugin (3D Secure, amount checked on the server). Forms that take no payment do not need it.
+Payment forms are paid on the WooCommerce checkout with any enabled payment method (amount checked on the server). Forms that take no payment do not need WooCommerce.
 
 You can use the payment box to create:
 
@@ -268,7 +268,7 @@ Yes. Form entries and responses can be downloaded in PDF and CSV formats.
 Yes. Users can upload files through forms, and administrators can attach files in replies.
 
 = Can I create payment forms? =
-Yes. Payment forms take card payments through the Flux POS plugin.
+Yes. Payment forms are paid on the WooCommerce checkout.
 [How to Create a payment form to collect online payments in Easy Form Builder](https://whitestudio.team/document/how-to-create-a-payment-form-in-easy-form-builder/)
 
 = Does Easy Form Builder support PayPal payments? =
@@ -321,7 +321,7 @@ Yes. With Auto-Populate Dataset, you upload a CSV file (UTF-8 with column header
 Yes. Auto-Populate Integrations connects a form to an external API endpoint and fills fields with real-time data. It supports API Key, Bearer Token, and Basic Auth authentication, lets you map API response fields to your form fields, includes a built-in test tool to verify the connection, and offers caching and timeout settings so forms keep loading fast.
 
 = Does Easy Form Builder support recurring payments? =
-Payment forms take one-time card payments through Flux POS. Recurring donations are handled by Flux Donate.
+Payment forms take one-time payments on the WooCommerce checkout. Recurring donations are handled by Flux Donate.
 [How to Create a payment form to collect online payments in Easy Form Builder](https://whitestudio.team/document/how-to-create-a-payment-form-in-easy-form-builder/)
 
 = Can I send WordPress form submissions to Google Sheets? =

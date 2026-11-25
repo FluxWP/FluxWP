@@ -162,17 +162,17 @@ final class FLXF_System_Checks {
 			return array(
 				$delegated
 					? self::c( 'handoff', 'Payments', __( 'Payment hand-off', 'flx-forms' ), 'ok', __( 'Flux Donate handles payments (providers, keys, webhooks): Donations › Payments.', 'flx-forms' ) )
-					: self::c( 'handoff', 'Payments', __( 'Payment hand-off', 'flx-forms' ), 'warning', __( 'Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments through Flux POS.', 'flx-forms' ) ),
+					: self::c( 'handoff', 'Payments', __( 'Payment hand-off', 'flx-forms' ), 'warning', __( 'Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout.', 'flx-forms' ) ),
 			);
 		}
-		$pos = class_exists( 'FLXF_Payment_POS' ) && FLXF_Payment_POS::available();
-		$url = $pos && function_exists( 'flxpos_admin_url' ) ? (string) flxpos_admin_url() : admin_url( 'plugins.php' );
-		if ( $pos && array() !== FLXF_Payment_POS::currencies() ) {
-			/* translators: %s: currency codes */
-			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'ok', sprintf( __( 'Payment forms take payments through Flux POS (%s).', 'flx-forms' ), implode( ', ', array_keys( FLXF_Payment_POS::currencies() ) ) ) ) );
+		$wc  = class_exists( 'FLXF_Payment_WC' ) && FLXF_Payment_WC::available();
+		$url = $wc ? admin_url( 'admin.php?page=wc-settings&tab=checkout' ) : admin_url( 'plugins.php' );
+		if ( $wc && array() !== FLXF_Payment_WC::gateways() ) {
+			/* translators: 1: payment method names, 2: store currency */
+			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'ok', sprintf( __( 'Payment forms are paid on the WooCommerce checkout (%1$s; %2$s).', 'flx-forms' ), implode( ', ', FLXF_Payment_WC::gateways() ), FLXF_Payment_WC::currency() ) ) );
 		}
 		if ( ! $pay ) {
-			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'info', __( 'No payment form exists. Flux POS is needed only to take payments.', 'flx-forms' ) ) );
+			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'info', __( 'No payment form exists. WooCommerce is needed only to take payments.', 'flx-forms' ) ) );
 		}
 		return array(
 			self::c(
@@ -180,13 +180,13 @@ final class FLXF_System_Checks {
 				'Payments',
 				__( 'Payments', 'flx-forms' ),
 				'error',
-				$pos
+				$wc
 					/* translators: %d: number of payment forms */
-					? sprintf( _n( 'Flux POS has no active account: %d payment form shows "Online payment is not available".', 'Flux POS has no active account: %d payment forms show "Online payment is not available".', $pay, 'flx-forms' ), $pay )
+					? sprintf( _n( 'WooCommerce has no enabled payment method: %d payment form cannot take payments.', 'WooCommerce has no enabled payment method: %d payment forms cannot take payments.', $pay, 'flx-forms' ), $pay )
 					/* translators: %d: number of payment forms */
-					: sprintf( _n( 'Flux POS is not active: %d payment form shows "Online payment is not available".', 'Flux POS is not active: %d payment forms show "Online payment is not available".', $pay, 'flx-forms' ), $pay ),
+					: sprintf( _n( 'WooCommerce is not active: %d payment form shows "Online payment is not available".', 'WooCommerce is not active: %d payment forms show "Online payment is not available".', $pay, 'flx-forms' ), $pay ),
 				$url,
-				$pos ? __( 'Flux POS', 'flx-forms' ) : __( 'Plugins', 'flx-forms' )
+				$wc ? __( 'Payment methods', 'flx-forms' ) : __( 'Plugins', 'flx-forms' )
 			),
 		);
 	}

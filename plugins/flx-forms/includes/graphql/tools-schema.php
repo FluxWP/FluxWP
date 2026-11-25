@@ -12,16 +12,16 @@ defined( 'ABSPATH' ) || exit;
 /* ------------------------------------------------------------ Payments */
 
 flx_gql_type(
-	'FlxFormsPos',
+	'FlxFormsCheckout',
 	array(
-		'description' => __( 'Flux POS, which takes the payments of payment forms.', 'flx-forms' ),
+		'description' => __( 'WooCommerce, where payment forms are paid.', 'flx-forms' ),
 		'fields'      => array(
-			'active'     => flxf_gql_f( 'Boolean!', __( 'Flux POS is active.', 'flx-forms' ) ),
-			'installed'  => flxf_gql_f( 'Boolean!', __( 'Flux POS is installed (active or not).', 'flx-forms' ) ),
-			'configured' => flxf_gql_f( 'Boolean!', __( 'Flux POS has an active account.', 'flx-forms' ) ),
-			'currencies' => flxf_gql_f( '[String!]!', __( 'Currencies a POS account takes.', 'flx-forms' ) ),
-			'test'       => flxf_gql_f( 'Boolean!', __( 'An account is in test mode.', 'flx-forms' ) ),
-			'url'        => flxf_gql_f( 'String!', __( 'Where to set Flux POS up (its screen, or Plugins when it is not active).', 'flx-forms' ) ),
+			'active'     => flxf_gql_f( 'Boolean!', __( 'WooCommerce is active.', 'flx-forms' ) ),
+			'installed'  => flxf_gql_f( 'Boolean!', __( 'WooCommerce is installed (active or not).', 'flx-forms' ) ),
+			'configured' => flxf_gql_f( 'Boolean!', __( 'WooCommerce has an enabled payment method.', 'flx-forms' ) ),
+			'currency'   => flxf_gql_f( 'String!', __( 'Store currency; payment forms must use it.', 'flx-forms' ) ),
+			'gateways'   => flxf_gql_f( '[String!]!', __( 'Enabled payment methods.', 'flx-forms' ) ),
+			'url'        => flxf_gql_f( 'String!', __( 'Where to set payments up (WooCommerce › Payments, or Plugins when it is not active).', 'flx-forms' ) ),
 		),
 	)
 );
@@ -57,7 +57,7 @@ flx_gql_type(
 		'description' => __( 'Forms › Payments.', 'flx-forms' ),
 		'fields'      => array(
 			'available' => flxf_gql_f( 'Boolean!', __( 'The payment records of the forms are kept here (not by Flux Donate).', 'flx-forms' ) ),
-			'pos'       => flxf_gql_f( 'FlxFormsPos!', __( 'Flux POS state.', 'flx-forms' ) ),
+			'checkout'  => flxf_gql_f( 'FlxFormsCheckout!', __( 'WooCommerce state.', 'flx-forms' ) ),
 			'payments'  => flxf_gql_f( '[FlxFormsPayment!]!', __( 'Latest payments, newest first.', 'flx-forms' ) ),
 			'limit'     => flxf_gql_f( 'Int!', __( 'How many payments are listed at most.', 'flx-forms' ) ),
 		),
@@ -68,7 +68,7 @@ flx_gql_query(
 	'flxFormsPayments',
 	array(
 		'type'        => 'FlxFormsPayments!',
-		'description' => __( 'Flux POS state and the latest payments of the forms.', 'flx-forms' ),
+		'description' => __( 'WooCommerce state and the latest payments of the forms.', 'flx-forms' ),
 		'cap'         => 'manage_options',
 		'resolve'     => static fn() => FLXF_Tools_Service::payments(),
 	)

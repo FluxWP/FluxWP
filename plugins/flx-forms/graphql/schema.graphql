@@ -467,6 +467,24 @@ type FlxFormsAutomations {
   runCount: Int!
 }
 
+"""WooCommerce, where payment forms are paid."""
+type FlxFormsCheckout {
+  """WooCommerce is active."""
+  active: Boolean!
+  """WooCommerce has an enabled payment method."""
+  configured: Boolean!
+  """Store currency; payment forms must use it."""
+  currency: String!
+  """Enabled payment methods."""
+  gateways: [String!]!
+  """WooCommerce is installed (active or not)."""
+  installed: Boolean!
+  """
+  Where to set payments up (WooCommerce › Payments, or Plugins when it is not active).
+  """
+  url: String!
+}
+
 """Input for the flxFormsClearFiles mutation."""
 input FlxFormsClearFilesInput {
   """
@@ -737,30 +755,12 @@ type FlxFormsPayment {
 type FlxFormsPayments {
   """The payment records of the forms are kept here (not by Flux Donate)."""
   available: Boolean!
+  """WooCommerce state."""
+  checkout: FlxFormsCheckout!
   """How many payments are listed at most."""
   limit: Int!
   """Latest payments, newest first."""
   payments: [FlxFormsPayment!]!
-  """Flux POS state."""
-  pos: FlxFormsPos!
-}
-
-"""Flux POS, which takes the payments of payment forms."""
-type FlxFormsPos {
-  """Flux POS is active."""
-  active: Boolean!
-  """Flux POS has an active account."""
-  configured: Boolean!
-  """Currencies a POS account takes."""
-  currencies: [String!]!
-  """Flux POS is installed (active or not)."""
-  installed: Boolean!
-  """An account is in test mode."""
-  test: Boolean!
-  """
-  Where to set Flux POS up (its screen, or Plugins when it is not active).
-  """
-  url: String!
 }
 
 """Forms settings."""
@@ -1144,7 +1144,7 @@ extend type RootQuery {
   ): FlxFormsEntry
   """Every form, by name, for filters."""
   flxFormsFormOptions: [FlxFormsFormOption!]!
-  """Flux POS state and the latest payments of the forms."""
+  """WooCommerce state and the latest payments of the forms."""
   flxFormsPayments: FlxFormsPayments!
   """Forms settings."""
   flxFormsSettings: FlxFormsSettings!

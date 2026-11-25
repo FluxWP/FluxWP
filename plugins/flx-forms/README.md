@@ -52,7 +52,7 @@ Form plugins usually lock the useful parts (payments, conditional logic, file up
 - Daily responses chart, payment status, responses per form, a day-and-hour heat map and the latest responses; filter by form and period, CSV export.
 
 ### Payments and automations
-- With Flux Donation, the **Pay** step puts the chosen amount into the WooCommerce checkout (card, bank transfer, monthly donation); without it, the card payment goes through Flux POS (3D Secure, server-side amount checks). Forms that take no payment need nothing.
+- With Flux Donation, the **Pay** step puts the chosen amount into the WooCommerce checkout (card, bank transfer, monthly donation); without it, the order is paid on the WooCommerce checkout (any payment method, server-side amount checks). Forms that take no payment need nothing.
 - **Automations**: when a form is submitted or a payment completes, run steps such as *Create certificate*, *Send certificate*, *Show on thank-you screen*, *Send e-mail* and *Webhook*. A ready-made "Sapling donation → Certificate" flow is one click away.
 
 ## Screenshots

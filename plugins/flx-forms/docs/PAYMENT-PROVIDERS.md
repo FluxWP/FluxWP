@@ -1,17 +1,17 @@
-# Ödeme sağlayıcısı (Flux Forms + Flux POS)
+# Ödeme sağlayıcısı (Flux Forms + WooCommerce)
 
-> **Flux Forms'un kendi ödeme altyapısı yoktur; ödeme formları ödemeyi Flux POS (`flx-pos`) üstünden alır** (2.9.0).
-> Tek sağlayıcı `flxpos` (`includes/flx/payments/providers/class-flxf-payment-pos.php`): Flux POS etkin ve bir POS
-> hesabı varken kaydolur; para birimi o hesabın aldıklarıdır. Ödeme almayan formlar Flux POS istemez. Flux POS yoksa
-> ödeme kutusu "online ödeme kullanılamıyor" der, Sistem kontrolü hata gösterir.
+> **Flux Forms'un kendi ödeme altyapısı yoktur; ödeme formları WooCommerce ödeme sayfasında ödenir** (2.9.0).
+> Tek sağlayıcı `woocommerce` (`includes/flx/payments/providers/class-flxf-payment-wc.php`): WooCommerce etkinken kaydolur;
+> form tutarıyla bekleyen bir sipariş açar, ödeme WooCommerce'te açık herhangi bir yöntemle alınır (Flux POS kart, havale…).
+> Form para birimi mağaza para birimi olmalı. Ödeme almayan formlar WooCommerce istemez. WooCommerce yoksa ödeme kutusu
+> "online ödeme kullanılamıyor" der, Sistem kontrolü hata gösterir.
 >
 > Flux Donate etkinse ödeme katmanını Donate tanımlar (`flxf_payment_*` fonksiyonları onda), Forms'unki yüklenmez.
 >
-> Sözleşme aşağıda; başka bir sağlayıcı yine `FLXF_Payment_Provider_Base` + `flxf_payment_providers` filtresiyle eklenebilir,
-> ama FluxWP'de kart ödemesi her zaman Flux POS'tan geçer (yeni banka/sanal POS Flux POS'a eklenir, Forms'a değil).
+> Yeni banka/sanal POS Forms'a değil, WooCommerce gateway'i olarak (Flux POS) eklenir.
 
 Kod: `includes/flx/payments/` (sözleşme, çekirdek `class-flxf-payment-core.php`, kayıt `FLXF_Payment_Records`, genel REST
-akışı). Ön yüz: `flxf-pay.js` (`window.FLXFPay`) + `flxf-pay-pos.js` (kart alanları, POS penceresi, dönüş `?flxf_pay_return=1`).
+akışı, `compat.php`). Ön yüz: `flxf-pay.js` (`window.FLXFPay`) + `flxf-pay-wc.js` (ödeme sayfası penceresi, dönüş `?flxf_pay_return=1`).
 
 ## Akış
 
@@ -114,7 +114,7 @@ sağlayıcısı** listesinden seçin.
 
 - Sözleşme: `flx-donate/providers/contract.php` (yedek: `includes/flx/payments/interface-flxf-payment-provider.php`)
   (`id, label, supports, settings_fields, is_configured, front_assets, create_payment, verify, handle_webhook, refund`).
-- Ayarlar: Flux Forms'ta ödeme ayarı yok; POS hesapları, anahtarlar ve test modu Flux POS'ta. Flux Donate etkinken
+- Ayarlar: Flux Forms'ta ödeme ayarı yok; ödeme yöntemleri WooCommerce › Ayarlar › Ödemeler'de. Flux Donate etkinken
   Donate'in kendi ayarları (`flxb_payments`) geçerlidir.
 - Bağış formu bir bağış türüne bağlıysa tutarı türün fiyatları belirler (filtre `flxf_payment_server_amount`,
   Flux Donate). Sağlayıcıya gelen `$amount` her zaman bu sunucu tutarıdır.

@@ -52,7 +52,7 @@ Form eklentileri genelde işe yarayan kısımları (ödeme, koşullu mantık, do
 - Günlük yanıt grafiği, ödeme durumu, forma göre yanıtlar, gün-saat ısı haritası ve son yanıtlar; form ve döneme göre süzgeç, CSV.
 
 ### Ödeme ve otomasyonlar
-- Flux Donate varsa **Öde** adımı seçilen tutarı WooCommerce ödeme sayfasına taşır (kart, havale, aylık bağış); yoksa kart ödemesi Flux POS üstünden (3D Secure, sunucuda tutar doğrulama). Ödeme almayan formlar için bir şey gerekmez.
+- Flux Donate varsa **Öde** adımı seçilen tutarı WooCommerce ödeme sayfasına taşır (kart, havale, aylık bağış); yoksa sipariş WooCommerce ödeme sayfasında ödenir (her ödeme yöntemi, sunucuda tutar doğrulama). Ödeme almayan formlar için bir şey gerekmez.
 - **Otomasyonlar:** form gönderilince ya da ödeme tamamlanınca *Sertifika oluştur*, *Sertifika gönder*, *Teşekkür ekranında göster*, *E-posta gönder*, *Webhook* gibi adımlar çalışır. Hazır "Fidan bağışı → Sertifika" akışı tek tıkla kurulur.
 
 ## Ekran görüntüleri

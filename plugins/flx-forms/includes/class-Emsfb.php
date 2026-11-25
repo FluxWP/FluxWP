@@ -985,11 +985,11 @@ class Emsfb {
             $decoded = self::get_default_settings_efb();
         }
 
-        // Flux Forms: tam sürüm ve yerel ülke listeleri her zaman açık. Kartlı ödeme kutusu (AdnSPF) yalnız Flux POS açıksa.
+        // Flux Forms: tam sürüm ve yerel ülke listeleri her zaman açık. Ödeme kutusu (AdnSPF) yalnız WooCommerce açıksa.
         if (is_object($decoded)) {
             $decoded->package_type = 1;
             $decoded->AdnOF = 1; $decoded->AdnSMF = 1;
-            $decoded->AdnSPF = function_exists('flxpos_charge') ? 1 : 0;
+            $decoded->AdnSPF = function_exists('wc_create_order') ? 1 : 0;
         }
 
         $result = null;

@@ -1,5 +1,5 @@
-// Forms › Payments: Flux POS (which takes the payments of payment forms) and the latest payments, over
-// flxFormsPayments. Flux Forms has no payment gateway of its own; forms that take no payment need nothing.
+// Forms › Payments: WooCommerce (payment forms are paid on its checkout, with any of its payment methods) and the
+// latest payments, over flxFormsPayments. Flux Forms has no payment gateway of its own; other forms need nothing.
 import type { FlxFormsPaymentsAllFragment } from '@fluxwp/graphql/types';
 import { useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxFormsPayments } from '@fluxwp/graphql/operations';
@@ -7,7 +7,7 @@ import { Loading } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { errorText, useForms } from './common';
 
-type Pos = FlxFormsPaymentsAllFragment['pos'];
+type Checkout = FlxFormsPaymentsAllFragment['checkout'];
 
 export function PaymentsPage() {
   const { t } = useForms();
@@ -17,8 +17,8 @@ export function PaymentsPage() {
   if (!d) return <Loading />;
   return (
     <div>
-      <p className="flxfrm-muted flxfrm-lead">{t('Payment forms take payments through Flux POS. Forms that take no payment need nothing.')}</p>
-      <PosCard pos={d.pos} />
+      <p className="flxfrm-muted flxfrm-lead">{t('Payment forms are paid on the WooCommerce checkout. Forms that take no payment need nothing.')}</p>
+      <CheckoutCard wc={d.checkout} />
       {!d.available ? <p className="flxfrm-muted">{t('Flux Donate keeps the payment records: see Donations › Payments.')}</p> : null}
       <h2>{t('Recent payments')}</h2>
       <div className="flxfrm-card is-flush">
@@ -72,25 +72,24 @@ export function PaymentsPage() {
   );
 }
 
-function PosCard({ pos }: { pos: Pos }) {
+function CheckoutCard({ wc }: { wc: Checkout }) {
   const { t } = useForms();
   const host = useHost();
-  const [tone, label, text] = !pos.active
-    ? (['is-pending', pos.installed ? t('Not active') : t('Not installed'), t('Flux POS is needed to take payments. Until it is active, the payment box of payment forms says online payment is not available.')] as const)
-    : !pos.configured
-      ? (['is-pending', t('No account'), t('Flux POS is active but has no active POS account yet. Add an account in Flux POS.')] as const)
-      : (['is-ok', t('Ready'), t('Payment forms take card payments through Flux POS (3D Secure). Currencies: {list}.', { list: pos.currencies.join(', ') })] as const);
+  const [tone, label, text] = !wc.active
+    ? (['is-pending', wc.installed ? t('Not active') : t('Not installed'), t('WooCommerce is needed to take payments. Until it is active, the payment box of payment forms says online payment is not available.')] as const)
+    : !wc.configured
+      ? (['is-pending', t('No payment method'), t('WooCommerce is active but has no enabled payment method. Enable one (for example Flux POS card or bank transfer).')] as const)
+      : (['is-ok', t('Ready'), t('Payment methods: {list}. Payment forms must use the store currency ({currency}).', { list: wc.gateways.join(', '), currency: wc.currency })] as const);
   return (
-    <section className={'flxfrm-card' + (pos.active && pos.configured ? ' is-active' : '')}>
+    <section className={'flxfrm-card' + (wc.active && wc.configured ? ' is-active' : '')}>
       <div className="flxfrm-card__head">
-        <h3>{t('Flux POS')}</h3>
+        <h3>WooCommerce</h3>
         <span className={'flxfrm-pill ' + tone}>{label}</span>
-        {pos.test ? <span className="flxfrm-pill is-warning">{t('Test mode')}</span> : null}
       </div>
       <p className="flxfrm-muted">{text}</p>
       <p>
-        <button type="button" className="flxfrm-btn" onClick={() => host.openUrl(pos.url)}>
-          {pos.active ? t('Open Flux POS') : t('Plugins')}
+        <button type="button" className="flxfrm-btn" onClick={() => host.openUrl(wc.url)}>
+          {wc.active ? t('Payment methods') : t('Plugins')}
         </button>
       </p>
     </section>
