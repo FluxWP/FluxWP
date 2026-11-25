@@ -653,3 +653,10 @@ a.flxcrm-more__item{text-decoration:none}
 .flxcrm-app .flxcrm-seclist{margin:0;padding:0;list-style:none}
 .flxcrm-app .flxcrm-seclist li{padding:8px 0;border-top:1px solid var(--c-bd)}
 .flxcrm-app .flxcrm-html{overflow:auto}
+.flxcrm-bars{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.flxcrm-bars li{margin:0}
+.flxcrm-bars__top{display:flex;justify-content:space-between;gap:10px;font-size:13px}
+.flxcrm-bars__track{height:6px;background:var(--c-s2);border-radius:99px;margin:5px 0 0;overflow:hidden}
+.flxcrm-bars__track span{display:block;height:100%;background:var(--c-ac);border-radius:99px}
+/* Kişi kartı: klasikteki gibi sayfa başlığı ve sekmeler yok, yalnız "← Kişiler" düğmesi. */
+.flxcrm-app.is-bare>.flx-page__head,.flxcrm-app.is-bare>.flx-tabs{display:none}

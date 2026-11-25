@@ -711,6 +711,8 @@ type FlxCrmMeta {
   sources: [FlxCrmChoice!]!
   """Timeline filters (the empty key is &quot;All&quot;)."""
   timelineFilters: [FlxCrmChoice!]!
+  """Site timezone (IANA name or offset such as +03:00), for showing times as the site does."""
+  timezone: String!
 }
 
 """A new role."""

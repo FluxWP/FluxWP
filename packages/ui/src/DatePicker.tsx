@@ -567,6 +567,8 @@ export function DatePicker({ value, onChange, placeholder, disabled, id, name, c
     };
   }, [open, close, place]);
   const text = value ? formatDate(value, locale) : placeholder ?? s.pick;
+  // Flux Admin (body.flxa) içinde klasik ekrandaki tarih düğmesiyle aynı görünüm: .flxa-date (beyaz zemin, ok).
+  const flxa = typeof document !== 'undefined' && document.body.classList.contains('flxa');
   return (
     <span ref={wrap} className="flx-dt-wrap">
       <button
@@ -574,7 +576,7 @@ export function DatePicker({ value, onChange, placeholder, disabled, id, name, c
         type="button"
         id={id}
         name={name}
-        className={['flx-dt', !value ? 'is-empty' : '', open ? 'is-open' : '', className ?? ''].filter(Boolean).join(' ')}
+        className={['flx-dt', flxa ? 'flxa-date' : '', !value ? 'is-empty' : '', open ? 'is-open' : '', className ?? ''].filter(Boolean).join(' ')}
         disabled={disabled}
         aria-haspopup="dialog"
         aria-expanded={open}
@@ -591,11 +593,11 @@ export function DatePicker({ value, onChange, placeholder, disabled, id, name, c
         }}
       >
         {icon && (
-          <span className="flx-dt__ico">
+          <span className="flx-dt__ico flxa-date-ico">
             <Ico d={I_CAL} />
           </span>
         )}
-        <span className="flx-dt__val">{text}</span>
+        <span className="flx-dt__val flxa-date-val">{text}</span>
       </button>
       {open && (
         <>

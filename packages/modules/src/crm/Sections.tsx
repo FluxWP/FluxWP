@@ -28,13 +28,22 @@ export function PersonSections({ sections, placement }: { sections: ReadonlyArra
   }
   return (
     <div className="flxcrm-sections">
-      {list.map((s) => (
+      {list.map((s) =>
+        // A package that sends its own card markup (one HTML block, no title) is shown as is, like the classic page.
+        !s.title && s.blocks.length > 0 && s.blocks.every((b) => b.kind === 'HTML') ? (
+          <div key={s.id} className="flxcrm-html">
+            {s.blocks.map((b, i) => (
+              <BlockView key={i} block={b} />
+            ))}
+          </div>
+        ) : (
         <Card key={s.id} title={s.title || undefined}>
           {s.blocks.map((b, i) => (
             <BlockView key={i} block={b} />
           ))}
         </Card>
-      ))}
+        ),
+      )}
     </div>
   );
 }

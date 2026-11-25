@@ -477,6 +477,13 @@ function flx_admin_screen_options( string $page, array $s, array $extra = array(
 		$extra
 	);
 	$o['module'] = $s['module'];
+	// Classic page head logo (Flux Admin package logo, accent tile): the React header shows the same one.
+	if ( function_exists( 'flxa_page_head_info' ) && function_exists( 'flxa_enabled' ) && flxa_enabled() ) {
+		$head = flxa_page_head_info( $page );
+		if ( ! empty( $head['logo'] ) ) {
+			$o['appIcon'] = (string) $head['logo'];
+		}
+	}
 	return $o;
 }
 

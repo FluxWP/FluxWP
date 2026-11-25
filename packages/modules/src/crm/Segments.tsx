@@ -50,7 +50,7 @@ function SegmentList({ go }: { go: (to: string) => void }) {
         }
       />
       {list.length === 0 ? (
-        <Empty icon="chart" title={t('No segments yet.')} hint={t('Examples: "Gave a qurban donation last year but not this year", "Donors who allowed WhatsApp".')} />
+        <Empty icon="layers" title={t('No segments yet.')} hint={t('Examples: "Gave a qurban donation last year but not this year", "Volunteers in Istanbul", "Customers with no purchase for 3 months".')} />
       ) : (
         <div className="flxcrm-seglist">
           {list.map((s) => (
@@ -178,14 +178,15 @@ function SegmentEditor({ id, go }: { id: string; go: (to: string) => void }) {
           </div>
           <Card
             title={t('Rules')}
-            icon="chart"
+            icon="filter"
             aside={
               <label className="flxcrm-match">
                 {t('Contact')}{' '}
                 <select value={match} onChange={(x) => setMatch(x.currentTarget.value as FlxSegmentMatch)}>
                   <option value="ALL">{t('all rules')}</option>
-                  <option value="ANY">{t('any rule')}</option>
-                </select>
+                  <option value="ANY">{t('at least one')}</option>
+                </select>{' '}
+                {t('Contact matches')}
               </label>
             }
           >
@@ -223,7 +224,7 @@ function SegmentEditor({ id, go }: { id: string; go: (to: string) => void }) {
                       <input type={type === 'number' || type === 'days' ? 'number' : 'text'} min={type === 'number' || type === 'days' ? 0 : undefined} value={r.value} aria-label={t('Value')} onChange={(x) => patch(i, { value: x.currentTarget.value })} />
                     )}
                     <button type="button" className="button-link" aria-label={t('Remove rule')} onClick={() => setRules((rs) => rs.filter((_, j) => j !== i))}>
-                      ×
+                      <Ic n="x" size={16} />
                     </button>
                   </li>
                 );
@@ -234,7 +235,7 @@ function SegmentEditor({ id, go }: { id: string; go: (to: string) => void }) {
             </button>
           </Card>
           <p className="flxcrm-actions">
-            <button className="button button-primary" disabled={save.isPending || !name.trim() || rules.length === 0}>
+            <button className="button button-primary" disabled={save.isPending}>
               {t('Save segment')}
             </button>
             <a className="button" href={href('segments')}>

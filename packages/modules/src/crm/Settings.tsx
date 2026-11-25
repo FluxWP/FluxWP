@@ -120,7 +120,7 @@ export function Settings() {
   return (
     <>
       <Head title={t('CRM settings')} lead={t('Where contacts come from, which role they get and how scoring works.')} />
-      <Card title={t('Sync')} icon="refresh" aside={<span className="flxcrm-muted">{s.syncedAt ? t('Last full sync: %s', s.syncedAt.label) : ''}</span>}>
+      <Card title={t('Sync')} icon="refresh" aside={<span className="flxcrm-muted">{s.syncedAt ? t('Last full sync: %s', s.syncedAt.label) : t('Not synced yet')}</span>}>
         <p>{t('New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice.')}</p>
         <p>
           <button type="button" className="button button-primary" disabled={busy} onClick={() => void syncAll()}>
@@ -216,7 +216,7 @@ export function Settings() {
             <label>
               <span>{t('Churn risk threshold (%)')}</span>
               <input type="number" min={10} max={100} value={d.riskThreshold} onChange={(e) => set({ riskThreshold: e.currentTarget.value })} />
-              <small>{t('Contacts above this value go to the "Reach out" list. Risk follows each person\'s own giving rhythm.')}</small>
+              <small>{t('Contacts above this value go to the "Reach out" list. Risk follows each person\'s own rhythm: a monthly donor is at risk after 45 days, a yearly one is not.')}</small>
             </label>
             <label>
               <span>{t('Active window (days)')}</span>
@@ -226,16 +226,17 @@ export function Settings() {
             <label>
               <span>{t('Reporting currency')}</span>
               <input type="text" maxLength={3} value={d.baseCurrency} placeholder={s.currency} onChange={(e) => set({ baseCurrency: e.currentTarget.value })} />
-              <small>{t('Empty means the store currency.')}</small>
+              <small>{t("Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given.")}</small>
             </label>
           </div>
         </Card>
 
-        <Card title={t('AI & MCP')} icon="message">
+        <Card title={t('AI & MCP')} icon="sparkles">
           <p className="flxcrm-muted">{t("Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions.")}</p>
           <ul className="flxcrm-ai__status">
             <li>
               <strong>Flux AI &amp; MCP</strong> {ai.aiInstalled ? <span className="flxcrm-badge is-ok">{t('connected')}</span> : <span className="flxcrm-badge">{t('not installed')}</span>}
+              <small className="flxcrm-muted">{t('CRM tools in the admin chat. Every tool that changes something waits on an approval card.')}</small>
             </li>
             <li>
               <strong>MCP</strong>{' '}

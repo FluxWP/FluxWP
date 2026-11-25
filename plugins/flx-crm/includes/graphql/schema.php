@@ -374,6 +374,11 @@ flx_gql_type(
 			'timelineFilters'     => array( 'type' => '[FlxCrmChoice!]!', 'description' => __( 'Timeline filters (the empty key is "All").', 'flx-crm' ) ),
 			'currency'            => array( 'type' => 'String!', 'description' => __( 'Reporting currency (ISO 4217).', 'flx-crm' ) ),
 			'canWrite'            => array( 'type' => 'Boolean!', 'description' => __( 'The viewer may change contacts.', 'flx-crm' ) ),
+			'timezone'            => array(
+				'type'        => 'String!',
+				'description' => __( 'Site timezone (IANA name or offset such as +03:00), for showing times as the site does.', 'flx-crm' ),
+				'resolve'     => static fn(): string => wp_timezone_string(),
+			),
 			'owners'              => array(
 				'type'        => '[FlxCrmOwner!]!',
 				'description' => __( 'People who can own a contact.', 'flx-crm' ),
@@ -515,7 +520,11 @@ flx_gql_type(
 				'description' => __( 'Phone number.', 'flx-crm' ),
 				'resolve'     => static function ( $s ): ?array {
 					$p = flxcrm_gql_c( $s )->phone;
-					return '' === $p ? null : flx_gql_phone( '+' . $p );
+					$v = '' === $p ? null : flx_gql_phone( '+' . $p );
+					if ( $v ) {
+						$v['display'] = flxcrm_phone_display( $p ); // Klasik listeyle aynı: +90 530 111 22 33.
+					}
+					return $v;
 				},
 			),
 			'avatar'         => array(

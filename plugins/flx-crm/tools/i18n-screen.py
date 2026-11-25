@@ -16,7 +16,7 @@ LANG = os.path.join(PKG, 'languages')
 SCREEN = os.path.join(REPO, 'packages/modules/src/crm')
 LOCALES = {'en': 'en_US', 'tr': 'tr_TR', 'de': 'de_DE', 'es': 'es_ES', 'fr': 'fr_FR', 'pt-br': 'pt_BR', 'ja': 'ja', 'zh': 'zh_CN', 'ar': 'ar', 'ru': 'ru_RU'}
 STR = r"""(?:'((?:[^'\\]|\\.)*)'|"((?:[^"\\\n]|\\.)*)")"""
-T = re.compile(r"(?<![\w.])t\(\s*" + STR)
+T = re.compile(r"(?:(?<![\w.])|(?<=\bcrm\.))t\(\s*" + STR)
 TN = re.compile(r"\btn\(\s*" + STR + r"\s*,\s*" + STR)
 
 
