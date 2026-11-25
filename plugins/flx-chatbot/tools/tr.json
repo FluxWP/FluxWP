@@ -145,5 +145,11 @@
  "How long does shipping take?\nHow do returns work?\nWhere is my order?": "Kargo ne kadar sürer?\nİade nasıl yapılır?\nSiparişim nerede?",
  "Shipping: 1-3 business days, free over $50.\nReturns: within 14 days with the invoice.\nQ: Do you have a store?\nA: We sell online only.": "Kargo: 1-3 iş günü, 50 $ üzeri ücretsiz.\nİade: faturayla 14 gün içinde.\nS: Mağazanız var mı?\nC: Yalnız online satış yapıyoruz.",
  "From": "Başlangıç",
- "To": "Bitiş"
+ "To": "Bitiş",
+ "Chat on WhatsApp": "WhatsApp'tan yazın",
+ "WhatsApp number": "WhatsApp numarası",
+ "With country code, digits only (e.g. 905301234567). Shows a WhatsApp button under the chat card; leave empty to hide it.": "Ülke koduyla, yalnız rakam (örn. 905301234567). Sohbet kartının altında WhatsApp düğmesi gösterir; boş bırakırsanız düğme çıkmaz.",
+ "WhatsApp button text": "WhatsApp düğmesi yazısı",
+ "WhatsApp ready-made message": "WhatsApp hazır mesajı",
+ "The text the visitor's WhatsApp chat opens with. Optional.": "Ziyaretçinin WhatsApp sohbeti bu metinle açılır. İsteğe bağlı."
 }

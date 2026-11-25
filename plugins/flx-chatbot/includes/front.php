@@ -196,6 +196,7 @@ function flxcb_widget_config() {
 			'text'    => flxcb_text( 'home_text' ),
 			'team'    => $s['show_team'] && '' !== $target ? flxcb_team() : array(),
 			'links'   => flxcb_links(),
+			'whatsapp' => flxcb_whatsapp(),
 		),
 		'quick'      => array_slice( flxcb_lines( 'quick_replies' ), 0, 6 ),
 		'welcome'    => 'live' === $s['mode'] ? '' : flxcb_text( 'welcome' ),

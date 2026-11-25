@@ -602,6 +602,14 @@ type FlxSettingsChatbot {
   uploads: Boolean
   """The assistant&#039;s first message. Empty uses the default."""
   welcome: String
+  """Text of the WhatsApp button. Empty uses the default."""
+  whatsappLabel: String
+  """Ready-made text the WhatsApp chat opens with. Empty sends nothing."""
+  whatsappMessage: String
+  """
+  WhatsApp number with country code (digits, e.g. 905301234567). Shows a WhatsApp button under the chat card on the home screen; empty hides it.
+  """
+  whatsappNumber: String
   """Window width, px (320-480)."""
   width: Int
 }
@@ -832,6 +840,14 @@ input FlxSettingsChatbotInput {
   uploads: Boolean
   """The assistant's first message. Empty uses the default."""
   welcome: String
+  """Text of the WhatsApp button. Empty uses the default."""
+  whatsappLabel: String
+  """Ready-made text the WhatsApp chat opens with. Empty sends nothing."""
+  whatsappMessage: String
+  """
+  WhatsApp number with country code (digits, e.g. 905301234567). Shows a WhatsApp button under the chat card on the home screen; empty hides it.
+  """
+  whatsappNumber: String
   """Window width, px (320-480)."""
   width: Int
 }

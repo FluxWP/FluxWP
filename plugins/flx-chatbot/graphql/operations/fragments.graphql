@@ -27,6 +27,9 @@ fragment FlxChatbotSettingsFields on FlxSettingsChatbot {
   placeholder
   quickReplies
   links
+  whatsappNumber
+  whatsappMessage
+  whatsappLabel
   showTeam
   teaserEnabled
   teaserText

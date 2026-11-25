@@ -67,7 +67,7 @@ final class FLXCB_Settings_Service {
 	 */
 	public static function default_texts(): array {
 		$out = array();
-		foreach ( array( 'bot_name', 'home_title', 'home_text', 'welcome', 'placeholder', 'teaser_text', 'offline_text' ) as $k ) {
+		foreach ( array( 'bot_name', 'home_title', 'home_text', 'welcome', 'placeholder', 'teaser_text', 'offline_text', 'whatsapp_label' ) as $k ) {
 			$out[ $k ] = flxcb_default_text( $k );
 		}
 		return $out;

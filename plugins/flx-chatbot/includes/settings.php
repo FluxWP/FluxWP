@@ -42,6 +42,9 @@ function flxcb_fields() {
 		'placeholder'     => array( 'text', 'texts' ),
 		'quick_replies'   => array( 'textarea', 'texts' ),
 		'links'           => array( 'textarea', 'texts' ),
+		'whatsapp_number' => array( 'text', 'texts' ),
+		'whatsapp_message' => array( 'text', 'texts' ),
+		'whatsapp_label'  => array( 'text', 'texts' ),
 		'show_team'       => array( 'bool', 'texts' ),
 		'teaser_enabled'  => array( 'bool', 'texts' ),
 		'teaser_text'     => array( 'text', 'texts' ),
@@ -131,6 +134,9 @@ function flxcb_sanitize( array $in ) {
 	if ( isset( $out['privacy_text'] ) ) {
 		$out['privacy_text'] = wp_kses( wp_unslash( (string) ( $in['privacy_text'] ?? '' ) ), array( 'a' => array( 'href' => array(), 'target' => array(), 'rel' => array() ) ) );
 	}
+	if ( isset( $out['whatsapp_number'] ) ) {
+		$out['whatsapp_number'] = flxcb_whatsapp_digits( $out['whatsapp_number'] );
+	}
 	if ( isset( $out['notify_email'] ) && '' !== $out['notify_email'] && ! is_email( $out['notify_email'] ) ) {
 		$out['notify_email'] = '';
 	}
@@ -178,6 +184,9 @@ add_filter(
 			'home_text'       => 'Home screen subtitle. Empty uses the default.',
 			'welcome'         => 'The assistant\'s first message. Empty uses the default.',
 			'placeholder'     => 'Hint in the message field. Empty uses the default.',
+			'whatsapp_number' => 'WhatsApp number with country code (digits, e.g. 905301234567). Shows a WhatsApp button under the chat card on the home screen; empty hides it.',
+			'whatsapp_message' => 'Ready-made text the WhatsApp chat opens with. Empty sends nothing.',
+			'whatsapp_label'  => 'Text of the WhatsApp button. Empty uses the default.',
 			'show_team'       => 'Show photos of agents who replied recently on the home screen.',
 			'teaser_enabled'  => 'Pop a short message above the button after the visitor stays a while.',
 			'teaser_text'     => 'Message of the teaser bubble. Empty uses the default.',

@@ -68,6 +68,14 @@ function lines(v: string | null): string[] {
   return (v ?? '').split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
 }
 
+/** Same rule as flxcb_whatsapp() in the plugin: digits only, 7-15 long, empty hides the button. */
+function whatsapp(d: { whatsappNumber?: string | null; whatsappMessage?: string | null }, label: string): { url: string; label: string } | null {
+  const n = (d.whatsappNumber ?? '').replace(/\D+/g, '').replace(/^00/, '');
+  if (n.length < 7 || n.length > 15) return null;
+  const text = (d.whatsappMessage ?? '').trim();
+  return { url: 'https://wa.me/' + n + (text ? '?text=' + encodeURIComponent(text) : ''), label };
+}
+
 function links(v: string | null): Array<{ label: string; url: string; kind: string }> {
   const out: Array<{ label: string; url: string; kind: string }> = [];
   for (const l of lines(v)) {
@@ -493,6 +501,11 @@ function Texts({ t, a, d, set }: AdminPaneProps) {
           <Area label={t('Suggested questions')} help={t('One question per line (up to 6). Clickable on the home screen and at the start of a chat.')} rows={5} value={d.quickReplies} placeholder={t('How long does shipping take?\nHow do returns work?\nWhere is my order?')} onChange={(v) => set('quickReplies', v)} />
           <Area label={t('Contact links')} help={t('One per line: Label | address. https, mailto:, tel: and wa.me are supported.')} rows={5} value={d.links} placeholder={'WhatsApp | https://wa.me/905xxxxxxxxx\n' + t('Email') + ' | mailto:info@example.com\n' + t('Phone') + ' | tel:+90212xxxxxxx'} onChange={(v) => set('links', v)} />
         </div>
+        <div className="flxcb-grid3">
+          <Text label={t('WhatsApp number')} help={t('With country code, digits only (e.g. 905301234567). Shows a WhatsApp button under the chat card; leave empty to hide it.')} value={d.whatsappNumber} placeholder="905301234567" onChange={(v) => set('whatsappNumber', v)} />
+          <Text label={t('WhatsApp button text')} value={d.whatsappLabel} placeholder={def('whatsapp_label')} onChange={(v) => set('whatsappLabel', v)} />
+          <Text label={t('WhatsApp ready-made message')} help={t('The text the visitor\'s WhatsApp chat opens with. Optional.')} value={d.whatsappMessage} onChange={(v) => set('whatsappMessage', v)} />
+        </div>
       </Card>
 
       <Card id="flxcb-msgs" icon={<MessageCircle size={16} />} title={t('Chat texts')}>
@@ -707,6 +720,7 @@ function previewConfig(a: Admin, d: S, avatarUrl: string | null): Record<string,
       text: txt(d.homeText, 'home_text'),
       team: d.showTeam && mode !== 'ai' ? base.home?.team ?? [] : [],
       links: links(d.links),
+      whatsapp: whatsapp(d, txt(d.whatsappLabel, 'whatsapp_label')),
     },
     quick: lines(d.quickReplies).slice(0, 6),
     welcome: mode === 'live' ? '' : txt(d.welcome, 'welcome'),
