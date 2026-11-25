@@ -1,7 +1,6 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-require_once FLXC_DIR . 'includes/js-strings.php';
 require_once FLXC_DIR . 'includes/studio-strings.php';
 require_once FLXC_DIR . 'includes/mp-strings.php';
 
@@ -65,67 +64,55 @@ function flxc_is_app_screen() {
 }
 
 /**
- * Yeni arayüz (deneysel, 1.35.0): Sohbetler sayfası eski app.js yerine FluxWP ile ortak React ekranını
- * (assets/flux/, tools/fluxapp/embed-sync.sh üretir) açar. Dosyalar yoksa eski arayüz.
- * 1.38.2: chunks.json mode=chunks ise giriş ES modülü olarak yüklenir; manifest yoksa klasik tek dosya.
+ * 1.53.0: the Chats page is the React screen (packages/modules/src/whatsapp, assets/flux/ via
+ * tools/fluxapp/embed-sync.sh flx-chat) on the Flux GraphQL screen shell, full height beside the WordPress
+ * menu (the WordPress menu and admin bar stay). The classic interface (app.js) is gone. Without Flux GraphQL the page says so.
  */
-function flxc_flux_ui() {
-	return (bool) flxc_setting( 'ui_flux' ) && file_exists( FLXC_DIR . 'assets/flux/flux-modules.js' ) && (bool) apply_filters( 'flxc_flux_ui', true );
+add_action(
+	'admin_menu',
+	static function () {
+		if ( ! function_exists( 'flx_admin_screen' ) ) {
+			return;
+		}
+		flx_admin_screen(
+			'flx-chat',
+			array(
+				'module'       => 'flxc-inbox',
+				'assets_dir'   => FLXC_DIR . 'assets/flux/',
+				'assets_url'   => FLXC_URL . 'assets/flux/',
+				'version'      => FLXC_VERSION,
+				'options'      => 'flxc_screen_options',
+				'container_id' => 'flxc-flux',
+				'body_class'   => 'flxc-page',
+				'enqueue'      => 'flxc_screen_enqueue',
+			)
+		);
+	},
+	5
+);
+
+/** The screen fills the content area below the admin bar, as the classic app did. */
+function flxc_screen_enqueue() {
+	wp_register_style( 'flxc-screen', false, array(), FLXC_VERSION );
+	wp_enqueue_style( 'flxc-screen' );
+	wp_add_inline_style( 'flxc-screen', 'body.flxc-page #wpcontent{padding-left:0}body.flxc-page #wpbody-content{padding-bottom:0}body.flxc-page #wpfooter{display:none}body.flxc-page .flx-screen-wrap{margin:0;max-width:none}body.flxc-page #flxc-flux{height:calc(100vh - var(--wp-admin--admin-bar--height,32px));min-height:480px}' );
 }
 
 /**
- * Parça derlemesinin manifesti. Yoksa veya mode başka bir şeyse null (klasik kuyruk).
+ * Mount options besides what the shell adds.
  *
- * @return array<string,mixed>|null
+ * @return array<string,mixed>
  */
-function flxc_flux_chunk_manifest() {
-	static $read = false;
-	static $manifest = null;
-	if ( $read ) {
-		return $manifest;
-	}
-	$read = true;
-	$file = FLXC_DIR . 'assets/flux/chunks.json';
-	if ( ! is_readable( $file ) ) {
-		return null;
-	}
-	$data = json_decode( (string) file_get_contents( $file ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-	if ( is_array( $data ) && isset( $data['mode'] ) && 'chunks' === $data['mode'] ) {
-		$manifest = $data;
-	}
-	return $manifest;
-}
-
-/**
- * WP 6.4'te script module API yok (6.5+). Bu tutamağa type=module eklenir; filtre yalnız flxc-flux için.
- *
- * @param string $tag
- * @param string $handle
- * @return string
- */
-function flxc_flux_module_tag( $tag, $handle ) {
-	if ( 'flxc-flux' !== $handle ) {
-		return $tag;
-	}
-	// $tag satır içi "before" betiğini de taşır; yalnız src'li etiket modül olur, var olan type değişir.
-	return (string) preg_replace_callback(
-		'/<script\b[^>]*\ssrc=[^>]*>/',
-		static function ( $m ) {
-			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-		},
-		$tag,
-		1
+function flxc_screen_options() {
+	$accent = sanitize_hex_color( (string) flxc_setting( 'accent' ) );
+	$accent = $accent ? $accent : '#00a884';
+	return array(
+		'colors'  => array(
+			'primary'         => $accent,
+			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
+		),
+		'appIcon' => FLXC_URL . 'assets/icon.svg',
 	);
-}
-
-/**
- * Seçenekler modül çalışmadan window'da durur. Giriş önce veya sonra gelse de bağlama bir kez olur.
- *
- * @param array<string,mixed> $opts
- */
-function flxc_flux_module_boot( $opts ) {
-	return '(function(){var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxc-flux";slot.opts=' . wp_json_encode( $opts ) . ';function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();';
 }
 
 /* WP emoji betiği dinamik mesajlardaki emojileri <img>'ye çeviriyor, bazı ağlarda kırık simge çıkıyordu. Uygulamada sistem emojisi kullanılır. */
@@ -141,68 +128,13 @@ add_action(
 	}
 );
 
-add_action( 'admin_enqueue_scripts', 'flxc_admin_assets' );
-function flxc_admin_assets() {
-	if ( ! flxc_is_app_screen() ) {
-		return;
-	}
-	if ( flxc_flux_ui() ) {
-		$ver = FLXC_VERSION . '-' . (int) filemtime( FLXC_DIR . 'assets/flux/flux-modules.js' );
-		wp_enqueue_style( 'flxc-flux', FLXC_URL . 'assets/flux/flux-modules.css', array(), $ver );
-		wp_enqueue_script( 'flxc-flux', FLXC_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-		// Renkler uygulamayla aynı olsun diye marka (brand.json) renkleri kullanılır.
-		$opts = array(
-			'module' => 'flxc-inbox',
-			'rest'   => rest_url(),
-			'nonce'  => wp_create_nonce( 'wp_rest' ),
-			'locale' => get_user_locale(),
-		);
-		if ( flxc_flux_chunk_manifest() ) {
-			// Sürüm sorgusu yalnız girişte (yukarıdaki wp_enqueue_script). Parça adları hash taşır.
-			add_filter( 'script_loader_tag', 'flxc_flux_module_tag', 10, 2 );
-			wp_add_inline_script( 'flxc-flux', flxc_flux_module_boot( $opts ), 'before' );
-			return;
-		}
-		wp_add_inline_script(
-			'flxc-flux',
-			'(function(){var el=document.getElementById("flxc-flux");if(el&&window.FluxModules){try{window.FluxModules.mount(el,' . wp_json_encode( $opts ) . ');}catch(e){el.textContent=String(e&&e.message||e);}}})();'
-		);
-		return;
-	}
-	wp_enqueue_style( 'flxc-app', FLXC_URL . 'assets/css/app.css', array(), FLXC_VERSION );
-	wp_enqueue_script( 'flxc-app', FLXC_URL . 'assets/js/app.js', array(), FLXC_VERSION, true );
-	$accent = sanitize_hex_color( (string) flxc_setting( 'accent' ) );
-	wp_localize_script(
-		'flxc-app',
-		'FLXC_BOOT',
-		array(
-			'rest'        => trailingslashit( rest_url( 'flx-chat/v1' ) ),
-			'nonce'       => wp_create_nonce( 'wp_rest' ),
-			'locale'      => str_replace( '_', '-', get_user_locale() ),
-			'brand'       => flxc_brand_name(),
-			'accent'      => $accent ? $accent : '#00a884',
-			'poll'        => max( 3, (int) flxc_setting( 'poll_interval' ) ),
-			'adminUrl'    => admin_url(),
-			'settingsUrl' => admin_url( 'admin.php?page=flx-chat-ayarlar' ),
-			'exportUrl'   => wp_nonce_url( admin_url( 'admin-post.php?action=flxc_export' ), 'flxc_export' ),
-			'icon'        => get_site_icon_url( 128 ),
-			'i18n'        => flxc_js_strings(),
-		)
-	);
-}
-
-/* Uygulama tam ekran: WP menüsü/çubuğu üstünde kendi arayüzü. */
+/* The Chats page: the shell prints the React screen. */
 function flxc_render_app() {
-	if ( flxc_flux_ui() ) {
-		// WP menüsü ve üst çubuk kalır; ekran içerik alanının kalanını kaplar.
-		echo '<style>#wpcontent{padding-left:0}#wpbody-content{padding-bottom:0}#wpfooter{display:none}#flxc-flux{height:calc(100vh - var(--wp-admin--admin-bar--height,32px));min-height:480px}</style>';
-		echo '<div id="flxc-flux"><noscript>' . esc_html__( 'JavaScript is required for the Call Center.', 'flx-chat' ) . '</noscript></div>';
+	if ( function_exists( 'flx_admin_screen_page' ) ) {
+		flx_admin_screen_page();
 		return;
 	}
-	echo '<script>document.documentElement.classList.add("flxc-lock");</script>';
-	echo '<div id="flxc-app" class="flxc" data-theme="auto"><noscript>' . esc_html__( 'JavaScript is required for the Call Center.', 'flx-chat' ) . '</noscript></div>';
-	// Kayıtlı tema (açık / koyu / otomatik) ilk boyamadan önce; app.js yüklenene kadar yanlış tema görünmesin.
-	echo "<script>(function(d,w){var m;try{m=localStorage.getItem('flxc_theme')}catch(e){}m=m||'auto';d.getElementById('flxc-app').setAttribute('data-theme',m);d.documentElement.classList.toggle('flxc-dark-doc',m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches))})(document,window)</script>";
+	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'Error', 'flx-chat' ) . ': Flux GraphQL</p></div></div>';
 }
 
 /* Uygulama ekranında tarayıcı çubuğu rengi ve ana ekrana ekleme. */
@@ -216,9 +148,6 @@ add_action(
 		echo '<meta name="theme-color" content="#202c33" media="(prefers-color-scheme: dark)">' . "\n";
 		echo '<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">' . "\n";
 		echo '<meta name="apple-mobile-web-app-title" content="' . esc_attr__( 'Call Center', 'flx-chat' ) . '">' . "\n";
-		if ( ! flxc_flux_ui() ) {
-			echo '<style>html.wp-toolbar{padding-top:0!important}</style>' . "\n";
-		}
 	}
 );
 
