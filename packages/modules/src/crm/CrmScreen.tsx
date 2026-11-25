@@ -7,10 +7,10 @@ import { useQueryClient } from '@tanstack/react-query';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxCrmShell } from '@fluxwp/graphql/operations';
-import { Loading } from '@fluxwp/ui';
+import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
-import { CrmCtx, Ic, href, useRoute, type Crm, type Notice } from './ui';
+import { CrmCtx, Ic, useRoute, type Crm, type Notice } from './ui';
 import { Overview } from './Overview';
 import { Contacts } from './Contacts';
 import { ContactCard, ContactNew } from './ContactCard';
@@ -61,8 +61,8 @@ function Crm() {
         return nf.format(n);
       }
     };
-    return { t, tn, lang: i18n.language, shell: q.data, can: q.data.flxCrmMeta.canWrite, tell, fail, reloadShell, short, num: (n) => nf.format(n), classicUrl: host.classicUrl, adminUrl: host.adminUrl };
-  }, [q.data, t, tn, i18n.language, tell, fail, reloadShell, host.classicUrl, host.adminUrl]);
+    return { t, tn, lang: i18n.language, shell: q.data, can: q.data.flxCrmMeta.canWrite, tell, fail, reloadShell, short, num: (n) => nf.format(n), adminUrl: host.adminUrl };
+  }, [q.data, t, tn, i18n.language, tell, fail, reloadShell, host.adminUrl]);
 
   if (q.isLoading) return <Loading />;
   if (q.isError || !crm) return <div className="flxcrm-app"><div className="flxcrm-notice is-bad">{q.error?.message || t('The action could not be completed.')}</div></div>;
@@ -104,32 +104,29 @@ function Crm() {
       body = <Overview go={go} />;
   }
 
+  const box = notice ? (
+    <div className={'flxcrm-notice is-' + notice.kind} role={notice.kind === 'bad' ? 'alert' : 'status'}>
+      <Ic n={notice.kind === 'ok' ? 'check' : 'alert'} />
+      <span style={{ flex: 1 }}>{notice.text}</span>
+      <button type="button" className="button-link" aria-label={t('Close')} onClick={() => setNotice(null)}>
+        ×
+      </button>
+    </div>
+  ) : null;
   return (
     <CrmCtx.Provider value={crm}>
-      <div className="flxcrm-app">
-        <nav className="flxcrm-tabs" aria-label={t('CRM')}>
-          {tabs.map(([k, label]) => (
-            <a key={k} className={'flxcrm-tab' + (k === active ? ' is-on' : '')} href={href(k)} aria-current={k === active ? 'page' : undefined}>
-              {label}
-            </a>
-          ))}
-          {host.classicUrl && (
-            <a className="flxcrm-tab" href={host.classicUrl} style={{ marginLeft: 'auto' }}>
-              {t('Classic view')}
-            </a>
-          )}
-        </nav>
-        {notice && (
-          <div className={'flxcrm-notice is-' + notice.kind} role={notice.kind === 'bad' ? 'alert' : 'status'}>
-            <Ic n={notice.kind === 'ok' ? 'check' : 'alert'} />
-            <span style={{ flex: 1 }}>{notice.text}</span>
-            <button type="button" className="button-link" aria-label={t('Close')} onClick={() => setNotice(null)}>
-              ×
-            </button>
-          </div>
-        )}
+      <Screen<string>
+        className="flxcrm-app"
+        width="wide"
+        icon={host.appIcon}
+        title={t('CRM')}
+        notice={box}
+        tabs={tabs.map(([id, label]) => ({ id, label }))}
+        tab={active}
+        onTab={(k) => go(k)}
+      >
         {body}
-      </div>
+      </Screen>
     </CrmCtx.Provider>
   );
 }

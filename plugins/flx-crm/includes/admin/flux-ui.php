@@ -1,44 +1,14 @@
 <?php
 /**
- * New view (0.10.0, GraphQL): the CRM pages open the same React screen as the FluxWP app (assets/flux/,
- * tools/fluxapp/embed-sync.sh flx-crm). It is the default and has every feature of the classic pages; a user
- * can switch back to the classic pages from the screen header for now. Needs Flux GraphQL.
- * Events and the person-card sections other plugins add are part of this screen.
+ * The CRM pages are one React screen (packages/modules/src/crm, assets/flux/ via tools/fluxapp/embed-sync.sh
+ * flx-crm) on the Flux GraphQL shell (flx_admin_screen): 0.12.0 preloads the first queries of the page, so it
+ * opens at once, and the classic pages are gone. Events and the person-card sections other plugins add are
+ * part of this screen. Without Flux GraphQL the page says so (the recovery page is Flux Setup's).
  *
  * @package FLX_CRM
  */
 
 defined( 'ABSPATH' ) || exit;
-
-function flxcrm_flux_available() {
-	return file_exists( FLXCRM_DIR . 'assets/flux/flux-modules.js' ) && function_exists( 'flx_gql_ready' ) && function_exists( 'flx_gql_all_caps' ) && flx_gql_ready();
-}
-
-function flxcrm_flux_ui() {
-	return flxcrm_flux_available() && 'classic' !== get_user_meta( get_current_user_id(), 'flxcrm_ui', true );
-}
-
-/** Link that switches the current user between the views. */
-function flxcrm_ui_switch_url( $ui ) {
-	return wp_nonce_url( add_query_arg( array( 'flxcrm_ui' => 'flux' === $ui ? 'flux' : 'classic' ), flxcrm_admin_url() ), 'flxcrm_ui' );
-}
-
-add_action(
-	'admin_init',
-	function () {
-		if ( ! isset( $_GET['flxcrm_ui'], $_GET['page'] ) || 0 !== strpos( sanitize_key( wp_unslash( $_GET['page'] ) ), 'flx-crm' ) || ! flxcrm_can() ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return;
-		}
-		check_admin_referer( 'flxcrm_ui' );
-		if ( 'classic' === $_GET['flxcrm_ui'] ) {
-			update_user_meta( get_current_user_id(), 'flxcrm_ui', 'classic' );
-		} else {
-			delete_user_meta( get_current_user_id(), 'flxcrm_ui' );
-		}
-		wp_safe_redirect( flxcrm_admin_url() );
-		exit;
-	}
-);
 
 /** The screen the current admin page starts on (hash route inside the React screen). */
 function flxcrm_flux_start() {
@@ -87,69 +57,121 @@ function flxcrm_flux_start() {
 	return $map[ $page ] ?? 'overview';
 }
 
-/** Classic render callback or the React screen, whichever the user has on. */
-function flxcrm_flux_page( $classic ) {
-	return static function () use ( $classic ) {
-		if ( ! flxcrm_can() ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
-		}
-		if ( ! flxcrm_flux_ui() ) {
-			call_user_func( $classic );
-			return;
-		}
-		echo '<style>#flxcrm-app.flux-root{height:auto;background:transparent;font-family:inherit}</style>';
-		echo '<div class="wrap flxcrm-wrap"><div id="flxcrm-app"><noscript>' . esc_html__( 'JavaScript is required for this screen.', 'flx-crm' ) . '</noscript></div></div>';
-	};
+/** The CRM admin pages and the route each one starts on. */
+function flxcrm_screen_pages() {
+	return array( 'flx-crm', 'flx-crm-contacts', 'flx-crm-segments', 'flx-crm-events', 'flx-crm-journeys', 'flx-crm-settings' );
 }
 
-/** True on the CRM pages that show the React screen. */
-function flxcrm_flux_screen() {
-	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-	return flxcrm_flux_ui() && 0 === strpos( $page, 'flx-crm' );
-}
-
-/** The chunked bundle loads as an ES module. */
-function flxcrm_flux_module_tag( $tag, $handle ) {
-	if ( 'flxcrm-flux' !== $handle ) {
-		return $tag;
+/** Registers the pages on the shell (before the menu, admin_menu 55). */
+function flxcrm_register_screens() {
+	if ( ! function_exists( 'flx_admin_screen' ) ) {
+		return;
 	}
-	return (string) preg_replace_callback(
-		'/<script\b[^>]*\ssrc=[^>]*>/',
-		static function ( $m ) {
-			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
-			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
-		},
-		$tag,
-		1
-	);
+	foreach ( flxcrm_screen_pages() as $page ) {
+		flx_admin_screen(
+			$page,
+			array(
+				'module'       => 'crm',
+				'assets_dir'   => FLXCRM_DIR . 'assets/flux/',
+				'assets_url'   => FLXCRM_URL . 'assets/flux/',
+				'version'      => FLXCRM_VERSION,
+				'enabled'      => '__return_true',
+				'options'      => 'flxcrm_screen_options',
+				'start'        => 'overview',
+				'container_id' => 'flxcrm-app',
+				'preload'      => 'flxcrm_screen_preload',
+				'enqueue'      => 'flxcrm_screen_enqueue',
+			)
+		);
+	}
+}
+add_action( 'admin_menu', 'flxcrm_register_screens', 20 );
+
+/** Event image and message file: the Events tab is on every CRM page. */
+function flxcrm_screen_enqueue() {
+	wp_enqueue_media();
 }
 
-function flxcrm_flux_assets() {
-	$ver    = FLXCRM_VERSION . '-' . (int) filemtime( FLXCRM_DIR . 'assets/flux/flux-modules.js' );
+/**
+ * Mount options besides what the shell adds.
+ *
+ * @param string $page Page slug.
+ * @return array<string,mixed>
+ */
+function flxcrm_screen_options( $page = '' ) {
+	unset( $page );
 	$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#be185d';
-	$opts   = array(
-		'module'     => 'crm',
-		'rest'       => rest_url(),
-		'nonce'      => wp_create_nonce( 'wp_rest' ),
-		'locale'     => get_user_locale(),
-		'siteName'   => get_bloginfo( 'name' ),
-		'adminUrl'   => admin_url(),
-		'theme'      => 'light',
-		'startPage'  => flxcrm_flux_start(),
-		'colors'     => array(
+	return array(
+		'startPage' => flxcrm_flux_start(),
+		'colors'    => array(
 			'primary'         => $accent,
 			'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 		),
-		'classicUrl' => flxcrm_ui_switch_url( 'classic' ),
+		'appIcon'   => FLXCRM_Admin::menu_icon_url(),
 	);
-	wp_enqueue_media(); // Event image and message file; the Events tab is a hash route on every CRM page.
-	wp_enqueue_style( 'flxcrm-flux', FLXCRM_URL . 'assets/flux/flux-modules.css', array(), $ver );
-	wp_enqueue_script( 'flxcrm-flux', FLXCRM_URL . 'assets/flux/flux-modules.js', array(), $ver, true );
-	add_filter( 'script_loader_tag', 'flxcrm_flux_module_tag', 10, 2 );
-	// Light / dark follows Flux Admin (html.flxa-dark), also when the user switches it on the page.
-	wp_add_inline_script(
-		'flxcrm-flux',
-		'(function(){var h=document.documentElement,o=' . wp_json_encode( $opts ) . ';o.theme=h.classList.contains("flxa-dark")?"dark":"light";var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxcrm-app";slot.opts=o;function sync(){var el=document.getElementById("flxcrm-app");if(el)el.dataset.theme=h.classList.contains("flxa-dark")?"dark":"light";}new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:["class"]});function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();',
-		'before'
-	);
+}
+
+/**
+ * The first queries of the start route, with the variables the screen sends (same store key).
+ *
+ * @param mixed $query Query arguments of the page (unused: the start route comes from the address).
+ * @return list<array{0:string,1:array<string,mixed>}>
+ */
+function flxcrm_screen_preload( $query = array() ) {
+	unset( $query );
+	return flxcrm_preload_for( flxcrm_flux_start() );
+}
+
+/**
+ * @param string $start Start route (contacts, contact/12, event/3, …).
+ * @return list<array{0:string,1:array<string,mixed>}>
+ */
+function flxcrm_preload_for( $start ) {
+	$out  = array( array( 'FlxCrmShell', array() ) );
+	$path = explode( '?', (string) $start, 2 );
+	$q    = array();
+	parse_str( $path[1] ?? '', $q );
+	$part = explode( '/', $path[0], 2 );
+	$name = $part[0];
+	$id   = $part[1] ?? '';
+	if ( 'overview' === $name ) {
+		$out[] = array( 'FlxCrmOverview', array() );
+	} elseif ( 'contacts' === $name && '' === $id ) {
+		$out[] = array(
+			'FlxCrmContacts',
+			array(
+				'filter'  => array( 'status' => 'ACTIVE' ),
+				'orderBy' => 'LAST_ACTIVITY',
+				'order'   => 'DESC',
+				'first'   => 25,
+				'after'   => null,
+			),
+		);
+		$out[] = array( 'FlxCrmOverview', array() );
+	} elseif ( 'contact' === $name && '' !== $id ) {
+		$out[] = array( 'FlxCrmContact', array( 'id' => $id ) );
+	} elseif ( 'duplicates' === $name ) {
+		$out[] = array( 'FlxCrmDuplicates', array() );
+	} elseif ( 'journeys' === $name && '' === $id ) {
+		$out[] = array( 'FlxCrmJourneys', array() );
+	} elseif ( 'events' === $name && '' === $id ) {
+		$out[] = array( 'FlxCrmGatherings', array( 'status' => 'closed' === ( $q['status'] ?? '' ) ? 'CLOSED' : 'OPEN', 'first' => 24 ) );
+	} elseif ( 'event' === $name && absint( $id ) && ! $q ) {
+		$out[] = array( 'FlxCrmGathering', array( 'id' => absint( $id ) ) );
+	} elseif ( 'settings' === $name ) {
+		$out[] = array( 'FlxCrmSettings', array() );
+	}
+	return $out;
+}
+
+/** The menu callback: the shell prints the screen. */
+function flxcrm_screen_page() {
+	if ( ! flxcrm_can() ) {
+		wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
+	}
+	if ( function_exists( 'flx_admin_screen_page' ) ) {
+		flx_admin_screen_page();
+		return;
+	}
+	echo '<div class="wrap"><div class="notice notice-error"><p>' . esc_html__( 'Something went wrong. Please try again.', 'flx-crm' ) . ' (Flux GraphQL)</p></div></div>';
 }

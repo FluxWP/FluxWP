@@ -50,7 +50,6 @@ export interface Crm {
   /** Money in the site currency, short (12.4K). */
   short: (n: number) => string;
   num: (n: number) => string;
-  classicUrl?: string;
   adminUrl?: string;
 }
 
@@ -202,7 +201,7 @@ export function Head({ title, lead, actions, back }: { title: string; lead?: str
         </a>
       )}
       <div className="flxcrm-head__text">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         {lead && <p className="flxcrm-lead">{lead}</p>}
       </div>
       {actions && <div className="flxcrm-head__actions">{actions}</div>}
