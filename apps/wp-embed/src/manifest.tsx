@@ -2,10 +2,11 @@
 import { useMemo, useState } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
-import { createClient, memoryStore, setPlatform, trimEnd, type Account } from '@fluxwp/core';
+import { createClient, memoryStore, setPlatform, type Account } from '@fluxwp/core';
 import type { ScreenType } from '@fluxwp/manifest';
 import { AccountScope, appResources, normalizeLocale, type Renderer } from '@fluxwp/runtime';
 import i18next from 'i18next';
+import { siteFromRest } from './site';
 import { ManifestScreen, RenderOverlays, webUI } from '@fluxwp/render-web';
 import '@fluxwp/ui/src/styles.css';
 import '@fluxwp/render-web/styles.css';
@@ -20,10 +21,6 @@ export interface ManifestMountOptions {
 }
 
 const SCREENS: ReadonlySet<ScreenType> = new Set(['list', 'detail', 'form', 'dashboard', 'settings', 'content', 'tabs', 'native', 'web']);
-
-function siteFromRest(rest: string): string {
-  return trimEnd(rest.replace(/\/wp-json\/?$/, '')) || location.origin;
-}
 
 function EmbedHost({ o }: { o: ManifestMountOptions }) {
   const [stack, setStack] = useState([{ module: o.module, screen: o.screen, params: o.params ?? {} }]);
