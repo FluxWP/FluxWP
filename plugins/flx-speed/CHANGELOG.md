@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.12.0
+- Performans ekranı klasik ekranla birebir: Sistem Kontrolü yine durum çipleri (filtreli), "Kontrol: SS:DD", grup başına özet ve Durum/Kontrol/Ayrıntı/Kaynak/İşlem tablosu (ortak bileşen, Forms ve Mail de kullanacak).
+- Özet: kartların uyarı/hata renkleri, "Öneriler" kutusu, "Son 24 saat" çevirisi, tablolar klasik widefat görünümünde, sayılar sola hizalı.
+- Sunucu, PageSpeed, Önbellek ve Ayarlar sekmelerinde kutu, rozet, düğme ve alt seçenek görünümü eski ekranla aynı; cron saatleri saniyesiz.
+
 ## 0.11.8
 - Redis tanımlı (WP_REDIS_HOST) ama object-cache.php yoksa Önbellek ekranı bunu çakışma olarak gösterir: "Redis tanımlı ama object-cache.php yok". **Onar** düğmesi Redis Object Cache'i kurar/etkinleştirir ve drop-in'i geri yazar. Bu durumda SQLite'a "önerilen" rozeti konmaz. Sistem Kontrolü de hata olarak gösterir.
 

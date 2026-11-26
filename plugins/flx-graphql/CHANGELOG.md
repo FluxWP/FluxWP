@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.3
+- Düz kalıcı bağlantı (permalink) kullanan sitelerde Flux ekranlarındaki işlemler (kaydet, etkinleştir, sil) çalışıyor: ekran adresi `/index.php?rest_route=/` biçiminden doğru çıkarılıyor (önceden istek hiç gitmiyordu) ve ekranlar GraphQL'e `/?graphql=1` ile ulaşıyor (web sunucusunda `/graphql` yönlendirmesi gerekmiyor). Runtime yeniden derlendi.
+
+## 0.8.2
+- Ortak arayüz paketi yenilendi: ortak Sistem Kontrolü ekranı (`SystemChecks`) ve stili.
+
 ## 0.8.1
 - Ortak arayüz paketi yenilendi: klasik WordPress editörü React ekranlarında (`WpEditor`).
 

@@ -286,6 +286,7 @@
     "Modal",
     "Screen",
     "ScreenDefaults",
+    "SystemChecks",
     "Tabs",
     "WpEditor",
     "formatDate",

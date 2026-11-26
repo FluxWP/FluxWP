@@ -573,5 +573,8 @@
   "Fix": "Düzeltme",
   "Before → After": "Önce → Sonra",
   "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on.": "Bu sitede Redis tanımlı ama object-cache.php yok, hiçbir şey önbelleğe alınmıyor. Onar, Redis Object Cache'i yeniden açar.",
-  "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable.": "Redis Object Cache etkin ama object-cache.php yazılamadı (wp-content yazılabilir olmayabilir). Ayarlar › Redis'i açıp Etkinleştir'e basın."
+  "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable.": "Redis Object Cache etkin ama object-cache.php yazılamadı (wp-content yazılabilir olmayabilir). Ayarlar › Redis'i açıp Etkinleştir'e basın.",
+  "Last hour": "Son 1 saat",
+  "Last 24 hours": "Son 24 saat",
+  "Last 7 days": "Son 7 gün"
 }
