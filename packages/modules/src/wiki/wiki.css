@@ -1,8 +1,8 @@
 /* Wiki screen on FluxWP tokens. */
 .flxw-app{--flxw-bd:var(--flux-border);--flxw-mut:var(--flux-text-muted);--flxw-ac:var(--flux-primary);--flxw-card:var(--flux-surface);color:var(--flux-text);font-size:14px;line-height:1.5}
-.flxw-app h2{font-size:16px;font-weight:600;margin:0 0 8px;display:block}
-.flxw-app a{color:var(--flxw-ac)}
-.flxw-app code{background:none;border:0;padding:0;font-family:var(--flux-font-mono,monospace);font-size:12px}
+.flxw-app h2:where(:not(.flx-raw *)){font-size:16px;font-weight:600;margin:0 0 8px;display:block}
+.flxw-app a:where(:not(.flx-raw *)){color:var(--flxw-ac)}
+.flxw-app code:where(:not(.flx-raw *)){background:none;border:0;padding:0;font-family:var(--flux-font-mono,monospace);font-size:12px}
 .flxw-links{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .flxw-notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:var(--flxw-card);border:1px solid var(--flxw-bd);border-left:4px solid var(--flux-success);border-radius:6px;padding:10px 12px;margin:12px 0}
 .flxw-notice.is-error{border-left-color:var(--flux-danger)}
@@ -14,10 +14,10 @@
 .flxw-form{display:flex;flex-direction:column;gap:14px}
 .flxw-field{display:grid;grid-template-columns:220px 1fr;gap:12px;align-items:start;margin:0 0 14px}
 .flxw-field>label{font-weight:600;padding-top:6px}
-.flxw-app select,.flxw-app input[type=text],.flxw-app input[type=number],.flxw-app input:not([type]),.flxw-app input[type=search],.flxw-app textarea{border:1px solid var(--flxw-bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit;font-size:14px;max-width:100%}
-.flxw-app select,.flxw-app input[type=text],.flxw-app input[type=number],.flxw-app input:not([type]),.flxw-app input[type=search]{height:34px;padding:0 10px}
-.flxw-app textarea{padding:8px 10px}
-.flxw-app input:focus,.flxw-app select:focus,.flxw-app textarea:focus{outline:2px solid color-mix(in srgb,var(--flxw-ac) 45%,transparent);outline-offset:0;border-color:var(--flxw-ac)}
+.flxw-app select:where(:not(.flx-raw *)),.flxw-app input[type=text]:where(:not(.flx-raw *)),.flxw-app input[type=number]:where(:not(.flx-raw *)),.flxw-app input:not([type]):where(:not(.flx-raw *)),.flxw-app input[type=search]:where(:not(.flx-raw *)),.flxw-app textarea:where(:not(.flx-raw *)){border:1px solid var(--flxw-bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit;font-size:14px;max-width:100%}
+.flxw-app select:where(:not(.flx-raw *)),.flxw-app input[type=text]:where(:not(.flx-raw *)),.flxw-app input[type=number]:where(:not(.flx-raw *)),.flxw-app input:not([type]):where(:not(.flx-raw *)),.flxw-app input[type=search]:where(:not(.flx-raw *)){height:34px;padding:0 10px}
+.flxw-app textarea:where(:not(.flx-raw *)){padding:8px 10px}
+.flxw-app input:focus:where(:not(.flx-raw *)),.flxw-app select:focus:where(:not(.flx-raw *)),.flxw-app textarea:focus:where(:not(.flx-raw *)){outline:2px solid color-mix(in srgb,var(--flxw-ac) 45%,transparent);outline-offset:0;border-color:var(--flxw-ac)}
 .flxw-text{width:100%;max-width:560px}
 .flxw-num{width:90px}
 .flxw-limit,.flxw-width{width:110px}
@@ -97,3 +97,4 @@
 .flxw-rowactions>*{margin:0 12px 0 0}
 .flxw-inline{margin-left:0}
 }
+.flxw-app .flx-page__actions .flxw-btn{min-height:36px;padding:0 12px;border-radius:8px;background:var(--flux-surface);font-weight:600}

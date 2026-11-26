@@ -428,6 +428,11 @@ input:is([type=checkbox],[type=radio])[type=checkbox][role=switch][aria-invalid=
 .flx-tabs--sm{border-bottom:0;gap:4px;margin:0 0 12px}
 .flx-tabs.flx-tabs--sm>.flx-tab{padding:5px 12px;border:1px solid var(--flux-border);border-radius:999px;margin:0;font-size:13px;font-weight:500}
 .flx-tabs.flx-tabs--sm>.flx-tab.is-active{background:var(--flux-text);border-color:var(--flux-text);color:var(--flux-bg)}
+.flx-tabs--seg{gap:4px;padding:4px;margin:0;border:1px solid var(--flux-border);border-radius:12px;background:var(--flux-surface2);scrollbar-width:none;max-width:100%}
+.flx-tabs--seg::-webkit-scrollbar{display:none}
+.flx-tabs.flx-tabs--seg>.flx-tab{padding:6px 12px;margin:0;border:0;border-radius:9px;font-size:13px;font-weight:500}
+.flx-tabs.flx-tabs--seg>.flx-tab:hover{background:transparent}
+.flx-tabs.flx-tabs--seg>.flx-tab.is-active{background:var(--flux-surface);color:var(--flux-text);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)}
 @media (max-width:640px){.flx-page{--flx-page-pad:2px}.flx-page__head{gap:10px}.flx-page__title h1{font-size:20px}.flx-page__icon{width:34px;height:34px}.flx-page__actions{width:100%;margin-left:0}.flx-tabs>.flx-tab{padding:8px 11px}}
 
 /* Ortak grafik (Chart.tsx): kap yüksekliği sabit, canvas kabı doldurur; mobilde yatay taşma yok. */

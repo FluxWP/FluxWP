@@ -15,10 +15,12 @@ import {
   FlxSetupOverview,
   FlxSetupPackages,
   FlxSetupPlan,
+  FlxSetupSettingsScreen,
   FlxSetupStepRun,
 } from '@fluxwp/graphql/operations';
 import type { FlxSetupOverviewQuery, FlxSetupPackagesQuery, FlxSetupPackageTab, FlxSetupPlanQuery, FlxSetupStepKind } from '@fluxwp/graphql/types';
 import { Loading, Modal, Screen, Tabs } from '@fluxwp/ui';
+import { ConnectionForm } from './ConnectionForm';
 import { useHost } from '../host';
 import { History } from './History';
 import { errorText, NoticeBar, SetupProvider, Switch, useSetup, type Notice } from './shared';
@@ -130,10 +132,8 @@ function Packages() {
   };
 
   const check = useFlxMutation(FlxSetupCheck, {
-    onSuccess: (r) => {
-      const p = r.flxSetupCheck;
-      // The check the page runs by itself stays quiet when all is well: the header already says so.
-      if (p && !(autoRun.current && p.ok)) setNotice({ kind: p.ok ? 'success' : 'warning', text: p.summary || t('Updates checked.') });
+    // The result is shown under the button (classic "Last check: … · result" line), not as a notice.
+    onSuccess: () => {
       autoRun.current = false;
       void afterChange();
     },
@@ -152,6 +152,9 @@ function Packages() {
   const rows = useMemo(() => rowsQ.data ?? [], [rowsQ.data]);
   const byKey = useMemo(() => new Map(rows.map((r) => [r.key, r])), [rows]);
   const o = overview.data?.flxSetupOverview;
+  // Classic: with no connection and no FluxWP package listed, the connection form is shown on the page.
+  const showForm = !!o && o.connection.state !== 'CONNECTED' && !!o.settingsUrl && !(o.tabs.find((x) => x.tab === 'FLUX')?.count ?? 0);
+  const settingsQ = useFlxQuery(FlxSetupSettingsScreen, {}, { enabled: showForm });
 
   // Keep only the selection that is still in the table.
   useEffect(() => {
@@ -184,7 +187,6 @@ function Packages() {
     const r = byKey.get(k);
     return r && (r.canUpdate || r.canInstall);
   });
-
 
   /** Steps that failed in the last run, for "Retry failed ones". */
   const [retry, setRetry] = useState<{ title: string; steps: PlanStep[] } | null>(null);
@@ -302,7 +304,13 @@ function Packages() {
           .then((res) => {
             const p = res.flxSetupStepRun;
             const ok = !!p && p.ok && !p.errors.length;
-            setRun({ title: t('Changing the version of %s (backup first)…', r.name), steps: [{ kind: 'VERSION', name: `${r.name} ${version}`, state: ok ? 'ok' : 'err', lines: p?.lines ?? [] }], finished: true, hidden: false, failed: ok ? 0 : 1 });
+            setRun({
+              title: t('Changing the version of %s (backup first)…', r.name),
+              steps: [{ kind: 'VERSION', name: `${r.name} ${version}`, state: ok ? 'ok' : 'err', lines: p?.lines ?? [] }],
+              finished: true,
+              hidden: false,
+              failed: ok ? 0 : 1,
+            });
             setNotice({ kind: ok ? 'success' : 'warning', text: t('Done: %1$d succeeded, %2$d failed.', ok ? 1 : 0, ok ? 0 : 1) });
           })
           .catch(fail)
@@ -326,6 +334,10 @@ function Packages() {
   }
 
   const updateTotal = o?.updateCount ?? 0;
+  const checked = check.isPending ? null : check.data?.flxSetupCheck;
+  // Classic: the FluxWP list could not be fetched → a note row on top of the table (WordPress rows still listed).
+  const fluxMissing = !!o && o.connection.state !== 'CONNECTED' && !query && !onlyUpdates && (tab === 'ALL' || tab === 'FLUX') && !(o.tabs.find((x) => x.tab === 'FLUX')?.count ?? 0);
+  const canManage = [...selected].some((k) => byKey.get(k)?.canManage);
   const tabLabel = (c: Overview['tabs'][number]) => c.label;
 
   return (
@@ -334,26 +346,20 @@ function Packages() {
       width="wide"
       icon={host.appIcon}
       title={t('Packages')}
+      subtitle={t('Setup wizard, presets and FluxWP package updates')}
       actions={
-        <div className="flxk-top">
-          <div className="flxk-top__check">
-            <button type="button" className="flxk-btn" disabled={check.isPending || busy} onClick={() => check.mutate({})}>
-              {check.isPending && <span className="flxk-spin" aria-hidden="true" />}
-              {check.isPending ? t('Checking…') : t('Check for updates')}
-            </button>
-            <span className="flxk-muted flxk-top__when">{check.data?.flxSetupCheck?.checkedLabel || o?.connection.checkedLabel}</span>
-          </div>
-          {updateTotal > 0 ? (
-            <button type="button" className="flxk-btn is-primary flxk-updall" disabled={busy} onClick={() => void updateAll()}>
-              {t('Update all (%s)', count(updateTotal))}
-            </button>
-          ) : (
-            o?.connection.state === 'CONNECTED' && <span className="flxk-allgood">{t('All up to date ✓')}</span>
-          )}
+        <div className="flxk-head">
+          <button type="button" className="flxk-btn flxk-head__check" disabled={check.isPending || busy} onClick={() => check.mutate({})}>
+            {check.isPending && <span className="flxk-spin" aria-hidden="true" />}
+            {check.isPending ? t('Checking…') : t('Check for updates')}
+          </button>
+          <span className={'flxk-checked' + (checked ? (checked.ok ? ' is-ok' : ' is-err') : '')}>
+            {checked?.checkedLabel || o?.connection.checkedLabel}
+            {checked?.summary ? ' · ' + checked.summary : ''}
+          </span>
         </div>
       }
     >
-
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
       <GoogleCards t={t} />
 
@@ -370,18 +376,20 @@ function Packages() {
         />
       )}
 
-      {o && o.connection.state !== 'CONNECTED' && <StatusCard o={o} t={t} />}
+      {o && o.connection.state !== 'CONNECTED' && <StatusCard o={o} t={t} checking={check.isPending || busy} onCheck={() => check.mutate({})} />}
       {o?.failingSources.map((f) => (
         <div key={f.name} className="flxk-strip is-err">
+          <span className="dashicons dashicons-warning" aria-hidden="true" />
           <span>{t('Could not reach %1$s: %2$s Its packages are shown from the last known data.', f.name, f.error.replace(/\.$/, '') + '.')}</span>
-          {o.settingsUrl && (
-            <a href={o.settingsUrl + '#flxu-sources'}>{t('Sources')}</a>
-          )}
+          {o.settingsUrl && <a href={o.settingsUrl + '#flxu-sources'}>{t('Sources')}</a>}
         </div>
       ))}
 
+      {showForm && settingsQ.data && <ConnectionForm s={settingsQ.data.flxSetupSettings} onNotice={setNotice} />}
+
       <div className="flxk-filter">
         <Tabs
+          size="seg"
           label={t('Filter packages')}
           current={tab}
           onChange={setTab}
@@ -404,55 +412,49 @@ function Packages() {
           })}
         />
         <div className="flxk-filter__find">
-          <input
-            type="search"
-            className="flxk-search"
-            value={search}
-            placeholder={t('Search plugins and themes…')}
-            aria-label={t('Search plugins and themes')}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => e.key === 'Escape' && setSearch('')}
-          />
+          <label className="flxk-search">
+            <span className="dashicons dashicons-search" aria-hidden="true" />
+            <input
+              type="search"
+              value={search}
+              placeholder={t('Search plugins and themes…')}
+              aria-label={t('Search plugins and themes')}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => e.key === 'Escape' && setSearch('')}
+            />
+          </label>
           <label className="flxk-check-label">
             <input type="checkbox" checked={onlyUpdates} onChange={(e) => setOnlyUpdates(e.target.checked)} /> {t('Only updates')}
           </label>
         </div>
       </div>
 
-      {selected.size > 0 && (
-        <div className="flxk-selbar" role="region" aria-label={t('Bulk actions')}>
-          <strong>{tn('%s selected', '%s selected', selected.size, count(selected.size))}</strong>
-          <button type="button" className="flxk-linkbtn" onClick={() => setSelected(new Set())}>
-            {t('Clear selection')}
+      <div className="flxk-toolbar">
+        <h2>{t('Plugins, themes and updates')}</h2>
+        <span className="flxk-spacer" />
+        <label className="flxk-act">
+          <input type="checkbox" checked={activate} onChange={(e) => setActivate(e.target.checked)} /> {t('Activate installed')}
+        </label>
+        <button type="button" className="flxk-btn" disabled={busy || !todo.length} onClick={installSelected}>
+          {t('Install / update selected')}
+        </button>
+        <span className="flxk-bulk">
+          <select value={bulkOp} aria-label={t('Bulk action')} onChange={(e) => setBulkOp(e.target.value)}>
+            <option value="">{t('Bulk actions')}</option>
+            <option value="activate">{t('Activate')}</option>
+            <option value="deactivate">{t('Deactivate')}</option>
+            <option value="delete">{t('Delete')}</option>
+            <option value="auto_on">{t('Turn on automatic updates')}</option>
+            <option value="auto_off">{t('Turn off automatic updates')}</option>
+          </select>
+          <button type="button" className="flxk-btn" disabled={!bulkOp || !canManage || manage.isPending} onClick={applyBulk}>
+            {t('Apply')}
           </button>
-          <span className="flxk-spacer" />
-          {todo.length > 0 && (
-            <>
-              <label className="flxk-check-label">
-                <input type="checkbox" checked={activate} onChange={(e) => setActivate(e.target.checked)} /> {t('Activate installed')}
-              </label>
-              <button type="button" className="flxk-btn is-primary" disabled={busy} onClick={installSelected}>
-                {t('Install / update selected')}
-              </button>
-            </>
-          )}
-          {[...selected].some((k) => byKey.get(k)?.canManage) && (
-            <span className="flxk-bulk">
-              <select value={bulkOp} aria-label={t('Bulk action')} onChange={(e) => setBulkOp(e.target.value)}>
-                <option value="">{t('Bulk actions')}</option>
-                <option value="activate">{t('Activate')}</option>
-                <option value="deactivate">{t('Deactivate')}</option>
-                <option value="delete">{t('Delete')}</option>
-                <option value="auto_on">{t('Turn on automatic updates')}</option>
-                <option value="auto_off">{t('Turn off automatic updates')}</option>
-              </select>
-              <button type="button" className="flxk-btn" disabled={!bulkOp || manage.isPending} onClick={applyBulk}>
-                {t('Apply')}
-              </button>
-            </span>
-          )}
-        </div>
-      )}
+        </span>
+        <button type="button" className="flxk-btn is-primary" disabled={busy || !updateTotal} onClick={() => void updateAll()}>
+          {t('Update all (%s)', count(updateTotal))}
+        </button>
+      </div>
 
       <div className="flxk-card flxk-table-wrap">
         <table className="flxk-table">
@@ -474,6 +476,14 @@ function Packages() {
             </tr>
           </thead>
           <tbody>
+            {fluxMissing && (
+              <tr>
+                <td />
+                <td colSpan={5} className="flxk-empty-msg">
+                  {t('The package list could not be fetched. Check the server address and key (if any) in Settings and press "Test connection".')}
+                </td>
+              </tr>
+            )}
             {rows.map((r) => (
               <PackageRow
                 key={r.key}
@@ -489,15 +499,11 @@ function Packages() {
                 onAuto={(on) => r.autoUpdate.type && r.autoUpdate.id && auto.mutate({ input: { type: r.autoUpdate.type, id: r.autoUpdate.id, on } })}
               />
             ))}
-            {!rows.length && (
+            {!rows.length && !fluxMissing && (
               <tr>
                 <td />
                 <td colSpan={5} className="flxk-muted flxk-empty">
-                  {rowsQ.isFetching && !rowsQ.data
-                    ? t('Checking…')
-                    : tab === 'ALL' && !query && !onlyUpdates && o?.connection.state !== 'CONNECTED'
-                      ? t('The package list could not be fetched. Check the server address and key (if any) in Settings and press "Test connection".')
-                      : t('Nothing matches this filter.')}
+                  {rowsQ.isFetching && !rowsQ.data ? t('Checking…') : fluxMissing ? null : t('Nothing matches this filter.')}
                 </td>
               </tr>
             )}
@@ -537,24 +543,19 @@ function Packages() {
   );
 }
 
-function StatusCard({ o, t }: { o: Overview; t: ReturnType<typeof useSetup>['t'] }) {
+function StatusCard({ o, t, checking, onCheck }: { o: Overview; t: ReturnType<typeof useSetup>['t']; checking: boolean; onCheck: () => void }) {
   const c = o.connection;
   return (
     <div className={'flxk-status is-' + c.state.toLowerCase()}>
       <span className="flxk-dot" aria-hidden="true" />
       <div className="flxk-status__body">
-        <strong>{c.title}</strong>
+        <strong className="flxk-status__title">{c.title}</strong>
         <span>{c.message}</span>
-        <small className="flxk-muted">
-          {c.checkedLabel}
-          {c.packageCount > 0 && ' · ' + t('%1$d packages, %2$d updates', c.packageCount, c.updateCount)}
-        </small>
+        {c.checked && <small className="flxk-muted">{t('Last check: %s', c.checked.relative)}</small>}
       </div>
-      {o.settingsUrl && (
-        <a className="flxk-btn" href={o.settingsUrl}>
-          {t('Settings')}
-        </a>
-      )}
+      <button type="button" className="flxk-btn flxk-head__check" disabled={checking} onClick={onCheck}>
+        {t('Test connection')}
+      </button>
     </div>
   );
 }
@@ -569,25 +570,27 @@ function GoogleCards({ t }: { t: ReturnType<typeof useSetup>['t'] }) {
   return (
     <>
       {cards.map((c) => (
-        <div key={c.id} className="flxk-gcard">
-          <div className="flxk-gcard__body">
-            <h2>{c.title}</h2>
-            <p>{c.text}</p>
-          </div>
-          <div className="flxk-gcard__act">
-            <button
-              type="button"
-              className="flxk-btn is-ghost"
-              onClick={() => {
-                setClosed((x) => [...x, c.id]);
-                dismiss.mutate({ input: { id: c.id } });
-              }}
-            >
-              {t('Not needed')}
-            </button>
-            <a className="flxk-btn is-primary" href={c.installUrl}>
-              {c.button}
-            </a>
+        <div key={c.id} className="flx-raw">
+          <div className="notice flxk-gcard">
+            <div className="flxk-gcard__body">
+              <h2>{c.title}</h2>
+              <p>{c.text}</p>
+            </div>
+            <div className="flxk-gcard__act">
+              <button
+                type="button"
+                className="button flxk-gcard__skip"
+                onClick={() => {
+                  setClosed((x) => [...x, c.id]);
+                  dismiss.mutate({ input: { id: c.id } });
+                }}
+              >
+                {t('Not needed')}
+              </button>
+              <a className="button button-primary" href={c.installUrl}>
+                {c.button}
+              </a>
+            </div>
           </div>
         </div>
       ))}
@@ -596,35 +599,34 @@ function GoogleCards({ t }: { t: ReturnType<typeof useSetup>['t'] }) {
 }
 
 function BackupStrip({ o, t, onInstall, onActivate }: { o: Overview; t: ReturnType<typeof useSetup>['t']; onInstall: () => void; onActivate: () => void }) {
-  const wp = (
-    <a href={o.wordpressUpdatesUrl} className="flxk-strip__end">
-      {t('WordPress updates')}
-    </a>
-  );
-  if (o.backup.ready) {
-    return (
-      <div className="flxk-strip is-ok">
-        <span>{t('A backup is taken before every update (Flux Backup).')}</span>
-        <a href={o.backupUrl}>{t('Backups')}</a>
-        {wp}
-      </div>
-    );
-  }
   return (
-    <div className="flxk-strip is-warn">
-      <span>{t('No backup before updates: the Flux Backup plugin is not installed or active.')}</span>
-      {o.backup.activatable && (
-        <button type="button" className="flxk-linkbtn" onClick={onActivate}>
-          {t('Activate')}
-        </button>
+    <>
+      <p className="flxk-wplink">
+        <a href={o.wordpressUpdatesUrl}>{t('WordPress updates')}</a>
+      </p>
+      {o.backup.ready ? (
+        <div className="flxk-strip is-ok">
+          <span className="dashicons dashicons-shield" aria-hidden="true" />
+          <span>{t('A backup is taken before every update (Flux Backup).')}</span>
+          <a href={o.backupUrl}>{t('Backups')}</a>
+        </div>
+      ) : (
+        <div className="flxk-strip is-warn">
+          <span className="dashicons dashicons-warning" aria-hidden="true" />
+          <span>{t('No backup before updates: the Flux Backup plugin is not installed or active.')}</span>
+          {o.backup.activatable && (
+            <button type="button" className="flxk-linkbtn" onClick={onActivate}>
+              {t('Activate')}
+            </button>
+          )}
+          {!o.backup.activatable && o.backup.installable && (
+            <button type="button" className="flxk-linkbtn" onClick={onInstall}>
+              {t('Install Flux Backup')}
+            </button>
+          )}
+        </div>
       )}
-      {!o.backup.activatable && o.backup.installable && (
-        <button type="button" className="flxk-linkbtn" onClick={onInstall}>
-          {t('Install Flux Backup')}
-        </button>
-      )}
-      {wp}
-    </div>
+    </>
   );
 }
 
@@ -732,13 +734,7 @@ function PackageRow({
       </th>
       <td className="flxk-c-pkg">
         <div className="flxk-pkg">
-          {r.iconUrl && !iconBad ? (
-            <img src={r.iconUrl} width={40} height={40} alt="" onError={() => setIconBad(true)} />
-          ) : (
-            <span className="flxk-pkg__ph" style={{ ['--flxk-h' as string]: hue }} aria-hidden="true">
-              {r.name.charAt(0)}
-            </span>
-          )}
+          {r.iconUrl && !iconBad ? <img src={r.iconUrl} width={40} height={40} alt="" onError={() => setIconBad(true)} /> : <PkgPlaceholder row={r} hue={hue} />}
           <div className="flxk-pkg__main">
             <strong>
               <button type="button" className="flxk-name" onClick={onPreview} aria-haspopup="dialog">
@@ -754,7 +750,7 @@ function PackageRow({
                 ))}
               </span>
             )}
-            {r.subtitle && r.group !== 'FLUX' && <small className="flxk-muted">{r.subtitle}</small>}
+            {r.subtitle && r.kind === 'WP_TRANSLATIONS' && r.state === 'UPDATE' && <small className="flxk-muted">{r.subtitle}</small>}
             {r.showSource && (
               <small className="flxk-muted">
                 {t('Source: %s', r.sourceName)}
@@ -920,5 +916,16 @@ function Preview({ row: r, t, onClose }: { row: Row; t: ReturnType<typeof useSet
         </div>
       </div>
     </Modal>
+  );
+}
+
+/** Classic placeholders: WordPress logo, translation icon, plugin / theme icon for FluxWP packages, a letter for the rest. */
+function PkgPlaceholder({ row: r, hue }: { row: Row; hue: number }) {
+  const dash = r.kind === 'WP_CORE' ? 'wordpress' : r.kind === 'WP_TRANSLATIONS' ? 'translation' : r.group === 'FLUX' ? (r.kind === 'FLUX_THEME' ? 'admin-appearance' : 'admin-plugins') : '';
+  if (dash) return <span className={'flxk-pkg__ph is-icon dashicons dashicons-' + dash} aria-hidden="true" />;
+  return (
+    <span className="flxk-pkg__ph" style={{ ['--flxk-h' as string]: hue }} aria-hidden="true">
+      {r.name.charAt(0)}
+    </span>
   );
 }
