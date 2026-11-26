@@ -407,7 +407,7 @@ input:is([type=checkbox],[type=radio])[type=checkbox][role=switch][aria-invalid=
 .flx-page--wide{max-width:1440px}
 .flx-page--full{max-width:none}
 .flx-page__head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:6px 0 14px;min-width:0}
-.flx-page__icon{width:40px;height:40px;border-radius:10px;flex:none;object-fit:contain}
+.flx-page__backbtn{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--flux-border);background:var(--flux-surface);color:var(--flux-text);text-decoration:none;cursor:pointer;transition:background .15s,border-color .15s,color .15s}.flx-page__backbtn:hover,.flx-page__backbtn:focus-visible{background:var(--flux-surface2);border-color:var(--flux-primary);color:var(--flux-primary);outline:0}.flx-page__icon{width:40px;height:40px;border-radius:10px;flex:none;object-fit:contain}
 .flx-page__title{flex:1 1 220px;min-width:0}
 .flx-page__title h1{font-family:var(--flux-font-heading);font-size:23px;font-weight:700;line-height:1.25;margin:0;padding:0;color:var(--flux-text)}
 .flx-page__title p{margin:2px 0 0;color:var(--flux-text-muted);font-size:13px}
@@ -433,7 +433,7 @@ input:is([type=checkbox],[type=radio])[type=checkbox][role=switch][aria-invalid=
 .flx-tabs.flx-tabs--seg>.flx-tab{padding:6px 12px;margin:0;border:0;border-radius:9px;font-size:13px;font-weight:500}
 .flx-tabs.flx-tabs--seg>.flx-tab:hover{background:transparent}
 .flx-tabs.flx-tabs--seg>.flx-tab.is-active{background:var(--flux-surface);color:var(--flux-text);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)}
-@media (max-width:640px){.flx-page{--flx-page-pad:2px}.flx-page__head{gap:10px}.flx-page__title h1{font-size:20px}.flx-page__icon{width:34px;height:34px}.flx-page__actions{width:100%;margin-left:0}.flx-tabs>.flx-tab{padding:8px 11px}}
+@media (max-width:640px){.flx-page{--flx-page-pad:2px}.flx-page__head{gap:10px}.flx-page__title h1{font-size:20px}.flx-page__icon,.flx-page__backbtn{width:34px;height:34px}.flx-page__actions{width:100%;margin-left:0}.flx-tabs>.flx-tab{padding:8px 11px}}
 
 /* Ortak grafik (Chart.tsx): kap yüksekliği sabit, canvas kabı doldurur; mobilde yatay taşma yok. */
 .flx-chart{position:relative;width:100%;min-width:0;max-width:100%}

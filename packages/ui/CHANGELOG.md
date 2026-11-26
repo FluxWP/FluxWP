@@ -1,5 +1,8 @@
 # @fluxwp/ui
 
+## 0.9.0
+- `Screen`: yeni `backButton` ({ label, href?, onClick? }). Alt/düzenleme ekranlarında geri düğmesi başlıktaki modül simgesinin yerine geçer (`flx-page__backbtn`); içerikte ayrı geri bağlantısı yazılmaz. `back` (içerik üstü bağlantı) eski ekranlar için durur.
+
 ## 0.8.1
 - `Screen`: ürün adıyla verilen başlık ("Flux Performance") `ScreenDefaults.title` (paketin sol menüdeki adı, ör. "Performans") ile gösterilir; kayıt ve alt sayfa başlıkları aynen kalır.
 

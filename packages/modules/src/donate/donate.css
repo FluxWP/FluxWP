@@ -48,7 +48,6 @@ html.flxa-dark .flxdn { --flxdn-mint: var(--flxa-accent-soft); --flxdn-dark: var
 .flxdn-head { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: flex-end; justify-content: space-between; margin: 14px 0 6px; }
 .flxdn .flxdn-title { font-family: var(--flxdn-font-head); font-size: 26px; line-height: 1.2; font-weight: 800; color: var(--flxdn-ink); margin: 0; padding: 0; }
 .flxdn-sub { margin: 4px 0 0; max-width: 780px; }
-.flxdn-back { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 13px; text-decoration: none; margin: 12px 0 0; }
 .flxdn-head__actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .flxdn .flxdn-h2 { font-family: var(--flxdn-font-head); margin: 22px 0 10px; font-size: 16px; font-weight: 800; color: var(--flxdn-ink); }
 
