@@ -647,17 +647,6 @@ final class FLXB_Admin_Detail_Service {
 		if ( ! empty( $meta['reference'] ) && is_scalar( $meta['reference'] ) ) {
 			$facts[] = self::fact( __( 'Payment reference', 'flx-donate' ), self::s( $meta['reference'] ) );
 		}
-		$iz = self::arr( $meta['iyzico'] ?? null );
-		if ( ! empty( $iz['paymentId'] ) ) {
-			$facts[] = self::fact( __( 'Card payment', 'flx-donate' ), 'iyzico ' . self::s( $iz['paymentId'] ) . ( ! empty( $iz['card'] ) ? ' · ' . self::s( $iz['card'] ) : '' ), 'code' );
-			if ( ! empty( $iz['refunds'] ) ) {
-				$sum     = array_sum( array_map( static fn( $r ): float => self::f( self::arr( $r )['amount'] ?? 0 ), self::arr( $iz['refunds'] ) ) );
-				$facts[] = self::fact( __( 'Refunded', 'flx-donate' ), self::money( $sum, $cur, 2 ) );
-			}
-			if ( ! empty( $iz['canceled_at'] ) ) {
-				$facts[] = self::fact( __( 'Canceled', 'flx-donate' ), self::date( self::s( $iz['canceled_at'] ) ) );
-			}
-		}
 		$certs = array();
 		if ( '' !== self::s( $d['certificate_code'] ?? '' ) ) {
 			$codes = array_values( array_unique( array_filter( array_map( array( __CLASS__, 's' ), self::arr( $meta['certificates'] ?? array() ) ) ) ) );
@@ -846,12 +835,6 @@ final class FLXB_Admin_Detail_Service {
 		);
 	}
 
-	/** Payment record of Flux Donate's payment layer (loaded only when it owns payments). */
-	private static function payment_record( int $id ): mixed {
-		$cb = apply_filters( 'flxb_payment_record_getter', 'FLXB_Payment_Records::get' );
-		return is_callable( $cb ) ? call_user_func( $cb, $id ) : null;
-	}
-
 	/**
 	 * Statuses an admin may set by hand (FLXB_Page_Donations::manual_statuses()).
 	 *
@@ -969,18 +952,6 @@ final class FLXB_Admin_Detail_Service {
 				'col'   => 'side' === ( $b['col'] ?? '' ) ? 'side' : 'main',
 				'html'  => self::s( FLXB_Boxes::card( $b ) ),
 			);
-		}
-		// The payment plugin's refund / void form (Flux POS money form) when there is no WooCommerce menu.
-		$wcm = class_exists( 'FLXB_WC_Admin' ) && FLXB_WC::ready() ? FLXB_WC_Admin::donation_menu( $d ) : null;
-		if ( ! $wcm && function_exists( 'flxb_owns_payments' ) && flxb_owns_payments() && class_exists( 'FLXB_Page_Payments' ) ) {
-			$m   = self::arr( FLXB_Donations::meta( $d ) );
-			$row = self::i( $d['pay_id'] ?? 0 ) && empty( $m['renewal'] ) ? self::payment_record( self::i( $d['pay_id'] ) ) : null;
-			ob_start();
-			FLXB_Page_Payments::money_form( $row, $d, $back );
-			$html = trim( (string) ob_get_clean() );
-			if ( '' !== $html ) {
-				$out[] = array( 'id' => 'money', 'title' => __( 'Refund', 'flx-donate' ), 'col' => 'side', 'html' => '<section class="flxb-card flxb-xbox">' . $html . '</section>' );
-			}
 		}
 		$tabs = self::s( FLXB_Detail_Tabs::render( 'donation', $d, self::can_manage() ) );
 		if ( '' !== $tabs ) {

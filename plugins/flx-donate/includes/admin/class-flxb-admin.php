@@ -15,7 +15,6 @@ require_once __DIR__ . '/page-donors.php';
 require_once __DIR__ . '/page-subscriptions.php';
 require_once __DIR__ . '/page-types.php';
 require_once __DIR__ . '/page-settings.php';
-require_once __DIR__ . '/page-payments.php';
 require_once __DIR__ . '/page-add.php';
 require_once __DIR__ . '/page-track.php';
 require_once __DIR__ . '/page-partners.php';
@@ -59,15 +58,6 @@ final class FLXB_Admin {
 		add_action( 'admin_post_flxb_items_save', array( 'FLXB_Page_Donations', 'items_save' ) );
 		add_action( 'admin_post_flxb_ref_save', array( 'FLXB_Page_Donations', 'ref_save' ) );
 		add_action( 'admin_page_access_denied', array( __CLASS__, 'own_home' ) );
-		add_action(
-			'plugins_loaded',
-			function () {
-				if ( flxb_owns_payments() ) {
-					FLXB_Page_Payments::init();
-				}
-			},
-			2
-		);
 	}
 
 	/** Colour menu logo (shared FluxWP logos). One swap point: replace assets/icon.svg or filter `flxb_menu_icon_url`. */
@@ -136,9 +126,6 @@ final class FLXB_Admin {
 		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Donors', 'flx-donate' ), __( 'Donors', 'flx-donate' ), $cap, 'flxb-donors', array( 'FLXB_Page_Donors', 'render' ) );
 		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Recurring donations', 'flx-donate' ), __( 'Recurring donations', 'flx-donate' ), $cap, 'flxb-subscriptions', array( 'FLXB_Page_Subscriptions', 'render' ) );
 		self::$hooks[] = add_submenu_page( self::SLUG, __( 'Donation types', 'flx-donate' ), __( 'Donation types', 'flx-donate' ), $cap, 'flxb-types', array( 'FLXB_Page_Types', 'render' ) );
-		if ( flxb_owns_payments() ) {
-			self::$hooks[] = add_submenu_page( self::SLUG, __( 'Payments', 'flx-donate' ), __( 'Payments', 'flx-donate' ), 'manage_options', 'flxb-payments', array( 'FLXB_Page_Payments', 'render' ) );
-		}
 		if ( flxb_track_enabled() ) {
 			self::$hooks[] = add_submenu_page( self::SLUG, __( 'Partners', 'flx-donate' ), __( 'Partners', 'flx-donate' ), $cap, FLXB_Page_Partners::SLUG, array( 'FLXB_Page_Partners', 'render' ) );
 		}
@@ -339,8 +326,8 @@ final class FLXB_Admin {
 		if ( $p && $p->is_configured() ) {
 			return;
 		}
-		$link = current_user_can( 'manage_options' ) ? ' <a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-payments' ) ) . '">' . esc_html__( 'Set up a payment provider', 'flx-donate' ) . '</a>' : '';
-		echo '<div class="flxb-notice flxb-notice--warn" role="status">' . esc_html__( 'No payment provider is set up, so forms cannot take online payments. Visitors see "Online payment is not available at the moment."', 'flx-donate' ) . $link . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$link = current_user_can( 'manage_options' ) ? ' <a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-settings', array( 'tab' => 'woocommerce' ) ) ) . '">' . esc_html__( 'Settings', 'flx-donate' ) . '</a>' : '';
+		echo '<div class="flxb-notice flxb-notice--warn" role="status">' . esc_html__( 'Payment forms are paid on the WooCommerce checkout, which is not available: activate WooCommerce and turn on "Flux Forms payment forms continue on the WooCommerce checkout". Visitors see "Online payment is not available at the moment."', 'flx-donate' ) . $link . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public static function footer() {
@@ -374,7 +361,7 @@ final class FLXB_Admin {
 			'saved'    => array( 'ok', __( 'Saved.', 'flx-donate' ) ),
 			'deleted'  => array( 'ok', __( 'Deleted.', 'flx-donate' ) ),
 			'refunded' => array( 'ok', __( 'The refund was sent to the payment provider.', 'flx-donate' ) ),
-			'canceled' => array( 'ok', __( 'The recurring donation was canceled at the payment provider.', 'flx-donate' ) ),
+			'canceled' => array( 'ok', __( 'The recurring donation was canceled. No further charges will be made.', 'flx-donate' ) ),
 			'voided'   => array( 'ok', __( 'The payment was canceled at the payment provider.', 'flx-donate' ) ),
 			'imported' => array( 'ok', '' ),
 			'error'    => array( 'error', __( 'Something went wrong. Please check the form and try again.', 'flx-donate' ) ),

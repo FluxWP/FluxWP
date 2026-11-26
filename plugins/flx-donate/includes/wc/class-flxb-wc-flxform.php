@@ -6,12 +6,13 @@
  * "woocommerce". Pay on a form → the server prices the rows as before (donation type prices) →
  * the priced lines are kept on the server under a one-time token → the browser goes to
  * /?flxb_wc_handoff=<token>, the lines are put in the cart and the donor continues on the checkout
- * (any gateway: official iyzico, bank transfer, Flux Donate iyzico for monthly). When the order is
+ * (any WooCommerce payment method: Flux POS card, bank transfer). When the order is
  * paid, the form's entry is completed with the submitted fields, its payment record is marked
  * completed and Flux Forms runs its "payment completed" automations (action `flxf_external_payment`,
  * Flux Forms 2.1.0+). The ledger records the donation from the order (one row per line).
  *
- * Forms without payment are not touched. Without WooCommerce Flux Donate' own providers stay in use.
+ * Forms without payment are not touched. Flux Donate takes no card itself: the WooCommerce checkout is the
+ * only payment provider of a form.
  *
  * GPL v2 or later.
  *

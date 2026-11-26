@@ -26,7 +26,7 @@ final class FLXB_Install {
 
 	public static function deactivate() {
 		wp_clear_scheduled_hook( self::CRON_HOOK );
-		wp_clear_scheduled_hook( 'flxb_iyzico_renewals' );
+		wp_clear_scheduled_hook( 'flxb_renewals' );
 	}
 
 	/**

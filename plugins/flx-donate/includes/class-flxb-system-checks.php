@@ -3,8 +3,8 @@
  * Flux Donate: system checks (Donations › Settings › System check).
  *
  * Registers Flux Donate's own checks on the shared `flx_system_checks` filter (see
- * includes/flx-system-checks.php) and runs the "Test" buttons: iyzico connection (one signed
- * BIN lookup), cron spawn (one request to wp-cron.php) and a test e-mail. Nothing here calls
+ * includes/flx-system-checks.php) and runs the "Test" buttons: cron spawn (one request to wp-cron.php)
+ * and a test e-mail. Nothing here calls
  * out unless an admin clicks one of those; every other check reads options and constants.
  *
  * GPL v2 or later.
@@ -131,7 +131,7 @@ final class FLXB_System_Checks {
 		);
 	}
 
-	/** Cron heartbeat: called at the start of every flxb_iyzico_renewals run. */
+	/** Cron heartbeat: called at the start of every flxb_renewals run. */
 	public static function beat() {
 		update_option( self::HEARTBEAT, time(), false );
 	}
@@ -213,10 +213,10 @@ final class FLXB_System_Checks {
 			);
 		}
 
-		$next = wp_next_scheduled( FLXB_Iyzico_Recurring::HOOK );
+		$next = wp_next_scheduled( FLXB_Renewals::HOOK );
 		if ( $fresh ) {
 			/* translators: %s: last run */
-			$out[] = self::c( 'cron.heartbeat', 'Cron', __( 'Flux Donate hourly task', 'flx-donate' ), 'ok', sprintf( __( 'Last run: %s. Recurring iyzico charges are checked every hour.', 'flx-donate' ), self::when( $beat ) ) );
+			$out[] = self::c( 'cron.heartbeat', 'Cron', __( 'Flux Donate hourly task', 'flx-donate' ), 'ok', sprintf( __( 'Last run: %s. Recurring card charges are checked every hour.', 'flx-donate' ), self::when( $beat ) ) );
 		} elseif ( ! $beat && $next && $next > time() && (int) get_option( 'flxb_cron_first_seen', 0 ) > time() - 2 * HOUR_IN_SECONDS ) {
 			/* translators: %s: date */
 			$out[] = self::c( 'cron.heartbeat', 'Cron', __( 'Flux Donate hourly task', 'flx-donate' ), 'info', sprintf( __( 'Not run yet; the first run is scheduled for %s.', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) ) );
@@ -268,76 +268,11 @@ final class FLXB_System_Checks {
 	}
 
 	private static function payments() {
-		$out = array();
-		if ( ! function_exists( 'flxb_owns_payments' ) || ! flxb_owns_payments() || ! function_exists( 'flxf_payment_active_provider_id' ) ) {
-			return $out;
-		}
-		$page   = FLXB_Admin_Url::page( 'flxb-payments' );
-		$active = flxf_payment_active_provider_id();
-		$p      = flxf_payment_provider( $active );
-		if ( ! $p ) {
-			$out[] = self::c( 'pay.provider', 'Payments', __( 'Card payment provider', 'flx-donate' ), 'error', __( 'No payment provider is available.', 'flx-donate' ), $page, __( 'Payment settings', 'flx-donate' ) );
-			return $out;
-		}
-		$out[] = $p->is_configured()
-			/* translators: %s: provider name */
-			? self::c( 'pay.provider', 'Payments', __( 'Card payment provider', 'flx-donate' ), 'ok', sprintf( __( 'Card payments are taken with %s.', 'flx-donate' ), $p->label() ), $page, __( 'Payment settings', 'flx-donate' ) )
-			/* translators: %s: provider name */
-			: self::c( 'pay.provider', 'Payments', __( 'Card payment provider', 'flx-donate' ), 'error', sprintf( __( '%s is the active provider but its keys are missing, so donation forms show "Online payment is unavailable".', 'flx-donate' ), $p->label() ), $page, __( 'Enter keys', 'flx-donate' ) );
-
-		$iyz = flxf_payment_provider( 'iyzico' );
-		if ( $iyz && ( 'iyzico' === $active || $iyz->is_configured() ) ) {
-			$c      = FLXB_Iyzico_Api::credentials();
-			$src    = array(
-				'woocommerce'              => __( 'Keys are read from the iyzico WooCommerce plugin settings.', 'flx-donate' ),
-				'woocommerce-subscription' => __( 'Keys are read from the iyzico Subscription plugin settings.', 'flx-donate' ),
-				'own'                      => __( 'Keys are entered in Donations › Payments › iyzico.', 'flx-donate' ),
-			);
-			$r      = self::result( 'iyzico' );
-			$failed = $r && ! $r['ok'] && ( $r['sig'] ?? '' ) === self::key_sig( $c );
-			if ( '' === $c['source'] ) {
-				$st  = 'iyzico' === $active ? 'error' : 'warning';
-				$msg = __( 'No iyzico API key and secret key found (neither in the iyzico WooCommerce plugin nor in Flux Donate).', 'flx-donate' );
-			} else {
-				$st  = $failed ? 'error' : ( $c['sandbox'] && 'iyzico' === $active ? 'warning' : 'ok' );
-				$msg = ( $src[ $c['source'] ] ?? '' ) . ' ' . ( $c['sandbox']
-					? __( 'Mode: sandbox (test). No real money is collected; switch to live keys before launch.', 'flx-donate' )
-					: __( 'Mode: live. Real payments are taken.', 'flx-donate' ) );
-				if ( ! $r ) {
-					$msg .= ' ' . __( 'Use "Test connection" to check the keys with iyzico.', 'flx-donate' );
-				}
-			}
-			$out[] = self::c( 'pay.iyzico', 'Payments', __( 'iyzico keys', 'flx-donate' ), $st, $msg . self::result_line( $r ), '' === $c['source'] ? $page : self::test_url( 'iyzico' ), '' === $c['source'] ? __( 'Enter keys', 'flx-donate' ) : __( 'Test connection', 'flx-donate' ) );
-			$last  = get_option( FLXB_Iyzico_Notify::LAST_OPT );
-			$hit   = is_array( $last ) && ! empty( $last['at'] ) && time() - (int) $last['at'] <= 30 * DAY_IN_SECONDS ? (int) $last['at'] : 0;
-			/* translators: %s: notification URL */
-			$msg   = sprintf( __( 'Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url): %s. Subscription notification URLs are not needed.', 'flx-donate' ), FLXB_Iyzico_Notify::url() );
-			$msg  .= ' ' . ( $hit
-				/* translators: %s: date */
-				? sprintf( __( 'Last notification received: %s.', 'flx-donate' ), self::when( $hit ) )
-				: __( 'No notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made).', 'flx-donate' ) );
-			if ( '' !== FLXB_Iyzico_Notify::woo_key() ) {
-				$msg .= ' ' . __( 'Notifications for WooCommerce orders are forwarded to the iyzico WooCommerce plugin.', 'flx-donate' );
-			}
-			$out[] = self::c( 'pay.iyzico.notify', 'Payments', __( 'iyzico notification URL', 'flx-donate' ), $hit ? 'ok' : 'info', $msg, ( self::external() ? FLXB_Admin_Url::page( 'flxb-settings' ) : self::url() ) . '#flxb-iyzico-addresses', __( 'Show addresses', 'flx-donate' ) );
-			$failed_subs = (array) get_option( FLXB_Iyzico_Recurring::NOTICE_OPT, array() );
-			if ( $failed_subs ) {
-				/* translators: %d: number of recurring donations */
-				$out[] = self::c( 'pay.iyzico.pastdue', 'Payments', __( 'Failed recurring charges', 'flx-donate' ), 'warning', sprintf( _n( '%d recurring donation stopped after its card was declined 3 times.', '%d recurring donations stopped after their cards were declined 3 times.', count( $failed_subs ), 'flx-donate' ), count( $failed_subs ) ), FLXB_Admin_Url::page( 'flxb-subscriptions', array( 'status' => 'past_due' ) ), __( 'Recurring donations', 'flx-donate' ) );
-			}
-		}
-
-		$stripe = flxf_payment_provider( 'stripe' );
-		if ( $stripe && ( 'stripe' === $active || $stripe->is_configured() ) ) {
-			if ( ! $stripe->is_configured() ) {
-				$out[] = self::c( 'pay.stripe', 'Payments', __( 'Stripe keys', 'flx-donate' ), 'error', __( 'The Stripe publishable key and secret key are missing.', 'flx-donate' ), $page, __( 'Enter keys', 'flx-donate' ) );
-			} else {
-				$live  = 0 === strpos( (string) $stripe->publishable_key(), 'pk_live_' );
-				$hook  = '' !== $stripe->webhook_secret();
-				$msg   = ( $live ? __( 'Mode: live.', 'flx-donate' ) : __( 'Mode: test (pk_test_). No real money is collected.', 'flx-donate' ) ) . ' '
-					. ( $hook ? __( 'Webhook signing secret is set.', 'flx-donate' ) : __( 'Webhook signing secret is missing: refunds and renewals made in Stripe will not show up in Flux Donate.', 'flx-donate' ) );
-				$out[] = self::c( 'pay.stripe', 'Payments', __( 'Stripe keys', 'flx-donate' ), $hook && ( $live || 'stripe' !== $active ) ? 'ok' : 'warning', $msg, $page, __( 'Payment settings', 'flx-donate' ) );
-			}
+		$out         = array();
+		$failed_subs = (array) get_option( FLXB_Renewals::NOTICE_OPT, array() );
+		if ( $failed_subs ) {
+			/* translators: %d: number of recurring donations */
+			$out[] = self::c( 'pay.pastdue', 'Payments', __( 'Failed recurring charges', 'flx-donate' ), 'warning', sprintf( _n( '%d recurring donation stopped after its card was declined on every attempt.', '%d recurring donations stopped after their cards were declined on every attempt.', count( $failed_subs ), 'flx-donate' ), count( $failed_subs ) ), FLXB_Admin_Url::page( 'flxb-subscriptions', array( 'status' => 'past_due' ) ), __( 'Recurring donations', 'flx-donate' ) );
 		}
 		return $out;
 	}
@@ -386,8 +321,6 @@ final class FLXB_System_Checks {
 		}
 
 		$wc     = class_exists( 'WooCommerce' ) || self::plugin_active( 'woocommerce.php' );
-		$iyz_wc = self::plugin_active( 'woocommerce-gateway-iyzico.php' );
-		$iyz_s  = self::plugin_active( 'iyzico-subscription.php' );
 		if ( ! $wc || ! class_exists( 'FLXB_WC' ) || ! FLXB_WC::active() ) {
 			$out[] = self::c( 'plugin.wc', 'Plugins', 'WooCommerce', 'error', $wc
 				/* translators: %s: version */
@@ -397,14 +330,6 @@ final class FLXB_System_Checks {
 		if ( defined( 'FLXWB_VERSION' ) ) {
 			$out[] = self::c( 'plugin.flxwb', 'Plugins', 'Flux WooCommerce Bağış', 'error', __( 'The old Flux WooCommerce Bağış plugin is still active. Flux Donate 2.0 replaces it: deactivate and delete it, otherwise orders get two certificates and two messages.', 'flx-donate' ), $plugins, __( 'Plugins', 'flx-donate' ) );
 		}
-		$msg    = $wc ? __( 'WooCommerce is active.', 'flx-donate' ) : __( 'WooCommerce is not active.', 'flx-donate' );
-		$msg   .= ' ' . ( $iyz_wc
-			? __( 'The iyzico WooCommerce plugin is active: it takes one-time card payments, and Flux Donate reads its iyzico keys for monthly donations.', 'flx-donate' )
-			: ( get_option( 'woocommerce_iyzico_settings' ) ? __( 'The iyzico WooCommerce plugin is not active, but its saved keys are still used.', 'flx-donate' ) : __( 'The iyzico WooCommerce plugin is not active; Flux Donate uses its own iyzico keys.', 'flx-donate' ) ) );
-		if ( $iyz_s ) {
-			$msg .= ' ' . __( 'The iyzico Subscription plugin is active; it renews WooCommerce subscriptions only. Flux Donate recurring donations use their own hourly task.', 'flx-donate' );
-		}
-		$out[] = self::c( 'plugin.woo', 'Plugins', __( 'WooCommerce and iyzico plugins', 'flx-donate' ), 'info', $msg );
 		return $out;
 	}
 
@@ -453,10 +378,6 @@ final class FLXB_System_Checks {
 		$st    = 'ok';
 		/* translators: %s: currency code */
 		$msg   = sprintf( __( 'Default currency: %s.', 'flx-donate' ), $cur );
-		if ( function_exists( 'flxf_payment_active_provider_id' ) && 'iyzico' === flxf_payment_active_provider_id() && ( $iyz = flxf_payment_provider( 'iyzico' ) ) && ! in_array( $cur, (array) $iyz->currencies(), true ) ) {
-			$st   = 'warning';
-			$msg .= ' ' . __( 'iyzico is not set up for this currency (Donations › Payments › iyzico › currencies).', 'flx-donate' );
-		}
 		$out[] = self::c( 'cfg.currency', 'Config', __( 'Currency', 'flx-donate' ), $st, $msg, self::settings_url( 'general' ), __( 'Settings', 'flx-donate' ) );
 
 		$banks = flxb_bank_accounts();
@@ -505,8 +426,8 @@ final class FLXB_System_Checks {
 		}
 		$out[] = $weak
 			/* translators: %s: constant names */
-			? self::c( 'sec.salts', 'Security', __( 'WordPress security keys (salts)', 'flx-donate' ), 'warning', sprintf( __( 'Missing or weak in wp-config.php: %s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working.', 'flx-donate' ), implode( ', ', $weak ) ) )
-			: self::c( 'sec.salts', 'Security', __( 'WordPress security keys (salts)', 'flx-donate' ), 'ok', __( 'Set in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working.', 'flx-donate' ) );
+			? self::c( 'sec.salts', 'Security', __( 'WordPress security keys (salts)', 'flx-donate' ), 'warning', sprintf( __( 'Missing or weak in wp-config.php: %s. The donors\' cancel links of recurring donations are signed with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or links already sent stop working.', 'flx-donate' ), implode( ', ', $weak ) ) )
+			: self::c( 'sec.salts', 'Security', __( 'WordPress security keys (salts)', 'flx-donate' ), 'ok', __( 'Set in wp-config.php. The donors\' cancel links of recurring donations are signed with them: do not change them, or links already sent stop working.', 'flx-donate' ) );
 
 		$db    = (string) get_option( FLXB_Install::DB_OPTION, '' );
 		$out[] = version_compare( $db, FLXB_Install::DB_VERSION, '>=' )
@@ -521,18 +442,13 @@ final class FLXB_System_Checks {
 		return FLXB_Admin_Url::page( 'flxb-settings', array( 'tab' => $tab ) );
 	}
 
-	/** Fingerprint of the keys a test ran with (never the key itself). */
-	private static function key_sig( array $c ) {
-		return substr( hash( 'sha256', (string) $c['api_key'] . '|' . (string) $c['base'] ), 0, 12 );
-	}
-
 	/* ------------------------------------------------------------------
 	 * Test buttons
 	 * ------------------------------------------------------------------ */
 
 	public static function test() {
 		$what = isset( $_GET['test'] ) ? sanitize_key( wp_unslash( $_GET['test'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		if ( ! in_array( $what, array( 'iyzico', 'cron', 'mail' ), true ) ) {
+		if ( ! in_array( $what, array( 'cron', 'mail' ), true ) ) {
 			wp_die( '', 400 );
 		}
 		check_admin_referer( 'flxb_syscheck_' . $what );
@@ -545,30 +461,9 @@ final class FLXB_System_Checks {
 		$all        = is_array( $all ) ? $all : array();
 		$all[ $what ] = $r;
 		update_option( self::TESTS, $all, false );
-		$anchor = array( 'iyzico' => 'flxsc-flxb.pay.iyzico', 'cron' => 'flxsc-flxb.cron.spawn', 'mail' => 'flxsc-flxb.mail' );
+		$anchor = array( 'cron' => 'flxsc-flxb.cron.spawn', 'mail' => 'flxsc-flxb.mail' );
 		wp_safe_redirect( self::url( array( 'flxb_test' => $what, 'flxb_ok' => $r['ok'] ? 1 : 0 ) ) . '#' . $anchor[ $what ] );
 		exit;
-	}
-
-	/** One signed, harmless request (BIN lookup) proves the keys and the environment match. */
-	private static function test_iyzico() {
-		$c   = FLXB_Iyzico_Api::credentials();
-		$api = FLXB_Iyzico_Api::make();
-		if ( ! $api ) {
-			return array( 'ok' => false, 'message' => __( 'No iyzico keys to test.', 'flx-donate' ), 'sig' => '' );
-		}
-		$env = $c['sandbox'] ? __( 'sandbox', 'flx-donate' ) : __( 'live', 'flx-donate' );
-		try {
-			$res = $api->bin_check( '554960' );
-		} catch ( Throwable $e ) {
-			return array( 'ok' => false, 'message' => $e->getMessage(), 'sig' => self::key_sig( $c ) );
-		}
-		if ( FLXB_Iyzico_Api::ok( $res ) ) {
-			/* translators: %s: sandbox or live */
-			return array( 'ok' => true, 'message' => sprintf( __( 'Connected; iyzico accepted the keys (%s).', 'flx-donate' ), $env ), 'sig' => self::key_sig( $c ) );
-		}
-		/* translators: 1: sandbox or live, 2: iyzico error */
-		return array( 'ok' => false, 'message' => sprintf( __( 'iyzico refused the keys (%1$s): %2$s. Check that the keys belong to this environment.', 'flx-donate' ), $env, FLXB_Iyzico_Api::error_text( $res ) ), 'sig' => self::key_sig( $c ) );
 	}
 
 	private static function test_cron() {
@@ -620,13 +515,5 @@ final class FLXB_System_Checks {
 			echo '<div class="flxb-notice ' . ( $r['ok'] ? 'flxb-notice--ok' : 'flxb-notice--warn' ) . '" role="status">' . esc_html( (string) $r['message'] ) . '</div>';
 		}
 		flx_system_checks_render( array( 'recheck_url' => self::url() ) );
-		self::iyzico_box();
-	}
-
-	/** Notification addresses to enter in the iyzico panel (when Flux Donate takes iyzico payments). */
-	public static function iyzico_box() {
-		if ( function_exists( 'flxb_owns_payments' ) && flxb_owns_payments() && function_exists( 'flxf_payment_provider' ) && ( $iyz = flxf_payment_provider( 'iyzico' ) ) && ( 'iyzico' === flxf_payment_active_provider_id() || $iyz->is_configured() ) ) {
-			echo '<div id="flxb-iyzico-addresses" style="max-width:1180px">' . FLXB_Iyzico_Notify::admin_box() . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside.
-		}
 	}
 }
