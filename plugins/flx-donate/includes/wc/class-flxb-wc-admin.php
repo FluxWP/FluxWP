@@ -74,6 +74,25 @@ class FLXB_WC_Admin {
 		return '<label class="flxb-check"><input type="checkbox" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '"' . checked( $on, true, false ) . '> ' . esc_html( $label ) . '</label>';
 	}
 
+	/** Payment methods that are not offline (bank transfer, cheque, cash on delivery). */
+	const OFFLINE = array( 'flxb_havale', 'bacs', 'cheque', 'cod' );
+
+	/**
+	 * Titles of the enabled card (online) WooCommerce payment methods.
+	 *
+	 * @return list<string>
+	 */
+	public static function card_methods() {
+		$out = array();
+		$gws = function_exists( 'WC' ) && WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
+		foreach ( $gws as $id => $gw ) {
+			if ( 'yes' === $gw->enabled && ! in_array( (string) $id, self::OFFLINE, true ) ) {
+				$out[] = wp_strip_all_tags( (string) $gw->get_method_title() );
+			}
+		}
+		return $out;
+	}
+
 	/** Status lines (also used by the system check). */
 	public static function status() {
 		$gws  = WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
@@ -83,13 +102,10 @@ class FLXB_WC_Admin {
 		$page = (int) FLXB_WC::setting( 'page_id' );
 		$tpls = FLXB_WC::certificates_available() && function_exists( 'flxs_list_templates' ) ? flxs_list_templates( true ) : array();
 		$out  = array();
-		$out[] = $on( FLXB_WC_Iyzico::OFFICIAL )
-			? array( 'ok', __( 'Card payments: the official iyzico plugin is enabled.', 'flx-donate' ) )
-			: ( FLXB_WC_Iyzico::usable() ? array( 'ok', __( 'Card payments: Flux Donate iyzico (the official iyzico plugin is not enabled).', 'flx-donate' ) ) : ( FLXB_WC_Gateways::third_party_enabled()
-				/* translators: %s: payment methods */
-				? array( 'ok', sprintf( __( 'Card payments: %s.', 'flx-donate' ), implode( ', ', FLXB_WC_Gateways::third_party_enabled() ) ) )
-				: array( 'warn', __( 'No card method is enabled (WooCommerce › Settings › Payments).', 'flx-donate' ) ) ) );
-		$out[] = FLXB_WC_Iyzico::usable() ? array( 'ok', __( 'Monthly donations: Flux Donate iyzico is ready.', 'flx-donate' ) ) : array( 'warn', __( 'Monthly donations are off: enable "Card (iyzico) - Flux Donate" and enter iyzico keys.', 'flx-donate' ) );
+		$cards = self::card_methods();
+		/* translators: %s: payment methods */
+		$out[] = $cards ? array( 'ok', sprintf( __( 'Card payments: %s.', 'flx-donate' ), implode( ', ', $cards ) ) ) : array( 'warn', __( 'No card method is enabled (WooCommerce › Settings › Payments).', 'flx-donate' ) );
+		$out[] = FLXB_WC_Cart::monthly_available() ? array( 'ok', __( 'Monthly donations: Flux POS stores the card.', 'flx-donate' ) ) : array( 'warn', __( 'Monthly donations are off: they need a Flux POS card account that can store cards (Stripe today).', 'flx-donate' ) );
 		$out[] = $on( FLXB_WC_Havale::ID ) ? array( 'ok', __( 'Bank transfer (donations) is enabled.', 'flx-donate' ) ) : array( 'warn', __( 'Bank transfer (donations) is disabled.', 'flx-donate' ) );
 		$out[] = FLXB_WC::certificates_available() ? ( $tpls ? array( 'ok', __( 'Flux Certificates is connected.', 'flx-donate' ) ) : array( 'warn', __( 'Flux Certificates is active but has no active template.', 'flx-donate' ) ) ) : array( 'warn', __( 'Flux Certificates is not active: no certificate is made after payment.', 'flx-donate' ) );
 		$out[] = $page && 'publish' === get_post_status( $page ) ? array( 'ok', __( 'Donation page:', 'flx-donate' ) . ' ' . get_the_title( $page ) ) : array( 'warn', __( 'The donation options are not on a page yet.', 'flx-donate' ) );
@@ -108,7 +124,6 @@ class FLXB_WC_Admin {
 		$chans  = array( 'whatsapp' => 'WhatsApp', 'sms' => 'SMS', 'email' => __( 'E-mail', 'flx-donate' ) );
 		$page   = (int) $s['page_id'];
 
-		FLXB_WC_Gateways::render();
 		echo '<div class="flxb-grid flxb-grid--2-1"><div class="flxb-stack">';
 		echo '<form class="flxb-form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxb_wc_save">';
 		wp_nonce_field( 'flxb_wc_save' );
@@ -167,29 +182,7 @@ class FLXB_WC_Admin {
 		echo '<div class="flxb-field"><label for="page_id">' . esc_html__( 'Donation page', 'flx-donate' ) . '</label>';
 		wp_dropdown_pages( array( 'name' => 'page_id', 'id' => 'page_id', 'selected' => $page, 'show_option_none' => __( '— Choose —', 'flx-donate' ), 'option_none_value' => 0 ) );
 		echo '<p class="flxb-help">' . esc_html__( '"Donate" links and the hidden product pages go here.', 'flx-donate' ) . '</p></div>';
-		echo '<div class="flxb-field"><label for="flxbwc-cm">' . esc_html__( 'Card payment method', 'flx-donate' ) . '</label><select id="flxbwc-cm" name="card_method">';
-		$cms = array( 'auto' => __( 'Automatic: another virtual POS if one is enabled (e.g. EsnekPOS), otherwise iyzico', 'flx-donate' ), 'iyzico' => __( 'iyzico', 'flx-donate' ) );
-		foreach ( FLXB_WC_Gateways::third_party_enabled() as $gid => $gname ) {
-			$cms[ $gid ] = $gname;
-		}
-		$cms['all'] = __( 'Show every enabled card method', 'flx-donate' );
-		foreach ( $cms as $k => $l ) {
-			echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) $s['card_method'], $k, false ) . '>' . esc_html( $l ) . '</option>';
-		}
-		/* translators: %s: payment method */
-		echo '</select><p class="flxb-help">' . esc_html( sprintf( __( 'Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown.', 'flx-donate' ), 'iyzico' === FLXB_WC_Gateways::card_method() ? 'iyzico' : ( 'all' === FLXB_WC_Gateways::card_method() ? __( 'all', 'flx-donate' ) : ( FLXB_WC_Gateways::third_party_enabled()[ FLXB_WC_Gateways::card_method() ] ?? FLXB_WC_Gateways::card_method() ) ) ) ) . '</p></div>';
-		echo '<div class="flxb-field">' . self::check( 'block_fallback', (bool) $s['block_fallback'], __( 'Show other payment plugins on the checkout block', 'flx-donate' ) ) . '<p class="flxb-help">' . esc_html__( 'Virtual POS plugins that take the card on their own page but have no checkout block support (for example EsnekPOS) are added to the Checkout block. Plugins with their own card fields need the classic checkout.', 'flx-donate' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="flxb-field">' . self::check( 'forms_checkout', (bool) $s['forms_checkout'], __( 'Flux Forms payment forms continue on the WooCommerce checkout', 'flx-donate' ) ) . '<p class="flxb-help">' . esc_html__( 'The donor picks card or bank transfer there; the form entry, the certificate automation and the donation record are completed when the order is paid.', 'flx-donate' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxbwc-card">' . esc_html__( 'Card payment screen', 'flx-donate' ) . '</label><select id="flxbwc-card" name="card_ui">';
-		foreach ( array( 'fields' => __( 'Our own card fields on the checkout (3D Secure, installments, saved cards)', 'flx-donate' ), 'form' => __( 'iyzico payment page (as before)', 'flx-donate' ), 'official' => __( 'Official iyzico plugin for one-time donations', 'flx-donate' ) ) as $k => $l ) {
-			echo '<option value="' . esc_attr( $k ) . '"' . selected( FLXB_WC_Iyzico::ui(), $k, false ) . '>' . esc_html( $l ) . '</option>';
-		}
-		echo '</select><p class="flxb-help">' . esc_html__( 'Card numbers go straight to iyzico and are never stored on this site. Monthly donations always use Flux Donate iyzico (it stores the card).', 'flx-donate' ) . '</p></div>';
-		echo '<div class="flxb-field"><label for="flxbwc-inst">' . esc_html__( 'Most installments', 'flx-donate' ) . '</label><select id="flxbwc-inst" name="card_installments">';
-		foreach ( array( 1, 2, 3, 6, 9, 12 ) as $n ) {
-			echo '<option value="' . (int) $n . '"' . selected( (int) $s['card_installments'], $n, false ) . '>' . esc_html( 1 === $n ? __( 'Single payment only', 'flx-donate' ) : number_format_i18n( $n ) ) . '</option>';
-		}
-		echo '</select><p class="flxb-help">' . esc_html__( 'With our own card fields. The options and any interest come from iyzico for each card.', 'flx-donate' ) . '</p></div></div>';
 		echo '</section>';
 		echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Save', 'flx-donate' ) . '</button></div></form></div>';
 
@@ -238,11 +231,7 @@ class FLXB_WC_Admin {
 			'receipt_max_mb'  => min( 50, max( 1, absint( $in['receipt_max_mb'] ?? 8 ) ) ),
 			'receipt_notify'  => sanitize_email( (string) ( $in['receipt_notify'] ?? '' ) ),
 			'forms_checkout'  => empty( $in['forms_checkout'] ) ? 0 : 1,
-			'card_ui'         => in_array( $in['card_ui'] ?? '', array( 'fields', 'form', 'official' ), true ) ? $in['card_ui'] : 'fields',
-			'card_installments' => min( 12, max( 1, absint( $in['card_installments'] ?? 12 ) ) ),
-			'block_fallback'  => empty( $in['block_fallback'] ) ? 0 : 1,
 			'currencies'      => array_values( array_diff( array_intersect( array_map( 'strtoupper', array_map( 'sanitize_text_field', (array) ( $in['currencies'] ?? array() ) ) ), array_keys( FLXB_WC_Currency::known() ) ), array( FLXB_WC_Currency::base() ) ) ),
-			'card_method'     => preg_match( '/^[a-z0-9_-]{1,60}$/', (string) ( $in['card_method'] ?? '' ) ) ? (string) $in['card_method'] : 'auto',
 		);
 		/* Same as the default text: keep it empty so a language change shows the translation. */
 		foreach ( array( 'notify_wa' => 'whatsapp', 'notify_sms' => 'sms' ) as $k => $ch ) {

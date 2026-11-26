@@ -114,13 +114,12 @@ Bağışçı detayı CRM kartı: `page-donors.php:215` `flxcrm_person_card()`. G
 | `class-flxb-admin.php:54` | `admin_post_flxb_bulk` (`trash` / `restore` / `delete`) | `flxb_can_manage()` ve `FLXB_Refs::own_only()` değil (`page-donations.php:385`, `:399`). Kalıcı silme listede yalnız `manage_options` (`:389`). WooCommerce siparişine bağlı satırda ayrıca `delete_shop_orders` veya `manage_woocommerce` (`:419`); yoksa o sipariş atlanır | `flxDonationsBulk` | `ids, do: FlxDonationBulk` → `{ donations, errors }` |
 | `class-flxb-admin.php:39` | `admin_post_flxb_receipt` (yazdırılan makbuz, dekont değil) | `flx_bagis_view` veya owner | `flxDonationReceiptDocument` | `id` → `FlxDonationReceiptDocument` |
 | `class-flxb-admin.php:59` | `admin_post_flxb_ref_save` | `flxb_manage` | `flxDonationReferralSet` | `id, userId` → `{ donation, errors }` |
-| `includes/admin/page-payments.php:22` | `admin_post_flxb_sub_cancel` | `flxb_manage` | `flxSubscriptionCancel` | `id` → `{ subscription, errors }` |
+| `includes/class-flxb-renewals.php:41` | `admin_post_flxb_sub_cancel` | `flxb_manage` | `flxSubscriptionCancel` | `id` → `{ subscription, errors }` |
 | `includes/admin/class-flxb-admin.php:128` | `page=flxb-dashboard` | `flxb_dashboard` | `flxDonationDashboard` | Aralık 7/30/90/özel (`page-dashboard.php:34`). CSV linki istisna `flxb_csv` |
 | `class-flxb-admin.php:130` | `page=flxb-donations` liste | `flx_bagis_view` / `flxb_view_own` | `flxDonations` | Filtre `s, from, to, status` (+ `receipt`/`payment` aşaması), `type, dtype, form, donor_id, ref` (`page-donations.php:17`). Toplu: çöp / geri al / kalıcı sil. Çöp görünümü `status=trash` |
 | `page-donations.php:80` | `page=flxb-donations&donation=` detay (okuma) | aynı | `flxDonation` | Kardeş satırlar bir bağış. `person` yok; bağışçı `FlxDonor` |
 | `class-flxb-admin.php:135` | `page=flxb-donors` + `&donor=` | `flx_bagis_view` / `flxb_donors_own` | `flxDonors`, `flxDonor` | Filtre `s, kind` (all/recurring/consent), sıralama (`page-donors.php:39`) |
 | `class-flxb-admin.php:136` | `page=flxb-subscriptions` | `flx_bagis_view` | `flxSubscriptions` | Filtre `status, s` (`page-subscriptions.php:20`) |
-| `class-flxb-admin.php:139` | `page=flxb-payments` kayıt tablosu | `manage_options` | `flxPayments` | Sayfalı kayıt; filtre yok (`page-payments.php:149`). Sağlayıcı kartları (d) |
 | `includes/mcp.php:28` | `flx_mcp_tools` → `flxb_donation_summary` | `flxb_manage` | `flxDonationPeriodSummary` | `period \| date \| from/to`, `compare` → `FlxDonationPeriodSummary!`. Araç kalır; kişisel veri yok |
 | `class-flxb-admin.php:58` → `page-donations.php:1201` | `admin_post_flxb_items_save` | `flxb_can_manage()` (`:1203`). `flxb_track` değil | `flxDonationItemsSave` | Kalem adları. Detay sayfası |
 | `class-flxb-admin.php:56` → `page-donations.php:1146` | `admin_post_flxb_cert_remake` | `edit_shop_orders` (`:1151`). `flxb_manage` değil | `flxDonationCertificatesRemake` | Sipariş başına |
@@ -144,7 +143,6 @@ Dekont dosyası medya kitaplığına girmez. `POST flxb-wc/v1/receipt` istisnad�
 | `includes/wc/class-flxb-wc-admin.php:31` | `admin_post_flxb_approve` (sipariş kutusu) | `edit_shop_orders` | `flxDonationApprove` | |
 | `includes/admin/class-flxb-admin.php:55` | `admin_post_flxb_status` | `flxb_can_manage()` ve own-only değil (`page-donations.php:899`). Siparişe bağlıysa ayrıca `edit_shop_orders` veya `manage_woocommerce` (`:909`) | `flxDonationStatus` | `id, status: FlxDonationStatus!` → `{ donation, errors }` |
 | `class-flxb-wc-admin.php:33` → `refund` `:554` | `admin_post_flxb_wc_refund` | `flxb_can_manage()` ve `edit_shop_orders` (`:557`). İkisi birden; `flx_gql_all_caps` yetmez çünkü yönetme cap'i `flxb_manage_capability` filtresinden gelir — çözümleyici `flxb_can_manage()` çağırır | `flxDonationRefund` | `id, amount` → `{ donation, errors }` |
-| `page-payments.php:21` → `refund` `:312` | `admin_post_flxb_refund` | `flxb_can_manage()` (`:313`), menü cap'i `manage_options` değil. Hedef bağış id veya ödeme id (`id` / `pay`). İşlem `refund` veya aynı gün `cancel` (`op`, `:319`). Sağlayıcı çağrısı senkron. WC siparişi olmayan bağış detayından da kullanılır. Çift tıklama: durum kontrolü / kilit; tekrar çağrı ikinci iadeyi yapmaz (sözleşme testi (c)) | `flxPaymentMoney` | `donationId` veya `paymentId`, `op: REFUND\|CANCEL`, `amount` → `{ payment, donation, errors }` |
 | `class-flxb-approval.php` kartı + `page-donations.php:141` | Onay alt görünümü | onay cap'i | `flxDonationApprovals` | Dekont önizleme `?flxb_dekont` istisna |
 | `includes/wc/class-flxb-wc-receipts.php:281` | `rest_upload` işi (dosya istisna) | sipariş anahtarı | `flxDonationReceiptAdd` | `orderId, token` — token REST yüklemenin imzalı, kısa ömürlü cevabı. Medya `uploadId` yok |
 
@@ -162,56 +160,35 @@ Gizli alan yazılır, okunmaz. Boş gönderim saklananı tutar, `"__clear__"` si
 | `class-flxb-wc-admin.php:27` | `admin_post_flxb_wc_setup_page` | `flxb_manage` + `publish_pages` | `flxDonatePageCreate` | Bağış sayfası açar |
 | `class-flxb-lookup.php:46` | `admin_post_flxb_lookup_save` | `flxb_manage` | `flxDonateLookupSettingsSave` | `flxb_lookup`: `on, page_id, channels`. Gizli alan yok |
 | `class-flxb-admin.php:44` | `admin_post_flxb_backfill` | `flxb_manage` | `flxDonatePaymentImport` | Adım adım (saatlik cron'un elle hali). Uzun iş |
-| `page-payments.php:20` | `admin_post_flxb_pay_save` | `manage_options` | `flxDonatePaymentSettingsSave` | Yaz-yalnız gizliler aşağıda |
 | `class-flxb-system-checks.php:47` | `admin_post_flxb_syscheck_test` | `flxb_manage` | `flxDonateSystemTest` | Dış HTTP yalnız bu mutation'da |
-| `providers/class-flxb-payment-iyzico.php:65` | `iyzicoApiKey` | yaz-yalnız | gizli | maske |
-| `class-flxb-payment-iyzico.php:66` | `iyzicoSecretKey` **gizli** | yaz-yalnız | gizli | |
-| `providers/class-flxb-payment-stripe.php:43` | `stripeSKey` **gizli** | yaz-yalnız | gizli | |
-| `class-flxb-payment-stripe.php:44` | `stripeWebhookSecret` **gizli** | yaz-yalnız | gizli | |
-| `class-flxb-payment-stripe.php:42` | `stripePKey` | okunur | `FlxDonatePaymentSettings.publishableKey` | Yayın anahtarı; tarayıcıya gider, gizli değil. Aynı tipte gizli olmayanlar: `iyzicoSandbox` (`class-flxb-payment-iyzico.php:67`), aktif sağlayıcı `flxf_payment_active_provider_id` (`providers/payments.php:138`). Havale ayarı `holder, iban, bank, ref_format, ref_prefix` (`class-flxb-wc-havale.php:60`, seçenek `woocommerce_flxb_havale_settings`) (d)'nin ayar mutation'ındadır; gizli değildir. Yeni kök sayılmaz |
-| `includes/wc/class-flxb-wc-esnekpos.php:100` | `esnekpos_password` (merchant key) **gizli** | yaz-yalnız | `flxDonateGatewaySettingsSave` | WC formunda durur; GraphQL düz metin döndürmez |
-| `class-flxb-wc-esnekpos-direct.php:89` | `flxb_public_token` **gizli** | yaz-yalnız | `flxDonateGatewaySettingsSave` | EsnekPOS `MERCHANT_PUBLIC_TOKEN` (`:285`). `class-flxb-app.php` değil. Hiçbir çıktıda dönmez |
 
-Sahip kararı: gizli alan GraphQL ile yazılır, yaz-yalnız girdi. Boş veya atlanmış değer saklananı tutar, `"__clear__"` siler. Değer hiçbir çıktıda dönmez. Okuma yalnız durum: `set`, klasik ekran maske gösteriyorsa maske, sabitten geliyorsa `fromConstant`. Kalıp `plugins/flx-ads` ve `plugins/flx-social`. `flxb_public_token` bearer sırdır, hiç dönmez. (d) bu kararla yazılır; (a) değişmez.
+Sahip kararı: gizli alan GraphQL ile yazılır, yaz-yalnız girdi. Boş veya atlanmış değer saklananı tutar, `"__clear__"` siler. Değer hiçbir çıktıda dönmez. Okuma yalnız durum: `set`, klasik ekran maske gösteriyorsa maske, sabitten geliyorsa `fromConstant`. Kalıp `plugins/flx-ads` ve `plugins/flx-social`. (d) bu kararla yazılır; (a) değişmez.
 
-Kart `cardUserKey` / `cardToken` abonelik metasında mühürlü (`providers/class-flxb-iyzico-recurring.php:203`). PAN, CVV, son kullanma saklanmaz. Hiçbir sorguda dönmez. GraphQL'de yalnız marka + son 4 (varsa meta'daki etiket).
+2.48.0: Flux Donate'ta gizli ödeme anahtarı yok (iyzico/Stripe/EsnekPOS kaldırıldı, anahtarlar Flux POS'ta). Abonelik `meta.card` yalnız Flux POS hesap + sürücü müşteri/ödeme yöntemi kimliği + etiket tutar. PAN, CVV, son kullanma saklanmaz. Hiçbir sorguda dönmez. GraphQL'de yalnız marka + son 4 (varsa meta'daki etiket).
 
 `flxDonateAppearance` alanları `class-flxb-wc-look.php:350` şemasındaki alanlar (gizli yok): `formStyle, payStyle, primary, accent, radius, order, typeLabel, optionLabel, sharePhone, optView, feeOn, feeChecked, feeRates, checkout, signup, hero, notes, quick, quickStar, periodTabs, otherAmount, minAmount, minAmounts, coupons, stickyBar, cardFirst, addresses`.
 
-## İstisnalar — 32
+## İstisnalar — 19
 
 GraphQL tarafı durum dosyasıyla aynı gerekçe. Ortak listedeki ödeme webhook / Store API satırları burada pakete indirilir.
 
 | Kaynak | Uç | Neden | GraphQL tarafı |
 |---|---|---|---|
-| `providers/class-flxb-payment-iyzico.php:402` | `POST\|GET flxb/v1/iyzico/callback` | iyzico token POST | `flxDonation` durumu |
-| `providers/class-flxb-iyzico-recurring.php:356` | `GET\|POST flxb/v1/iyzico/cancel?s&k` | E-postadaki imzalı link | `flxSubscriptionCancel` (girişli) |
-| `providers/class-flxb-iyzico-notify.php:39` | `POST flxb/v1/iyzico/notify` | İşyeri bildirim URL'si, imza | durum sorgusu |
-| `includes/wc/class-flxb-wc-iyzico.php:174` | `GET\|POST flxb/v1/wc/iyzico/callback` | Banka dönüşü | durum sorgusu |
-| `includes/wc/class-flxb-wc-iyzico-card.php:102` | `POST\|GET flxb/v1/wc/iyzico/3ds` | Banka 3DS POST | durum sorgusu |
-| `class-flxb-wc-iyzico-card.php:111` | `POST flxb/v1/wc/iyzico/installments` | Checkout BIN; ödeme GraphQL'de değil | Checkout Store API |
-| `includes/wc/class-flxb-wc-esnekpos-direct.php:168` | `GET flxb/v1/esnekpos/installments` | Checkout BIN | Checkout |
-| `class-flxb-wc-esnekpos-direct.php:181` | `POST flxb/v1/esnekpos/status` | 3DS penceresi sonucu | Checkout |
-| `class-flxb-wc-esnekpos-direct.php:33` | `woocommerce_rest_checkout_process_payment_with_context` | EsnekPOS `PaymentContext`; kart saklanmaz | Checkout `POST /wc/store/v1/checkout` |
-| `includes/wc/class-flxb-wc-esnekpos.php:41` | `woocommerce_api_flxb_esnekpos` ve eski `WC_Gateway_Esnekpospos` | EsnekPOS dönüş POST'u (`callback` `:386`) | durum sorgusu |
+| `includes/class-flxb-renewals.php:230` | `GET\|POST flxb/v1/recurring/cancel?s&k` | E-postadaki imzalı link | `flxSubscriptionCancel` (girişli) |
 | `includes/wc/class-flxb-wc-receipts.php:270` | `POST flxb-wc/v1/receipt` | Dosyanın kendisi: MIME, boyut, `uploads/flxb-dekont/`. Medya kitaplığı yok | REST token döner; mutation `flxDonationReceiptAdd(orderId, token)` |
 | `class-flxb-wc-receipts.php:306` | `form_post` (`flxb_action=receipt`, JS'siz) | Teşekkür sayfası formu, sipariş anahtarı | Aynı REST; form kalır |
-| `class-flxb-wc-iyzico-card.php:470` | `/?flxb_3ds=<key>` tek kullanımlık banka sayfası | Bankanın 3DS HTML'i; transient silinir | Checkout; durum sorgusu |
 | `class-flxb-wc-receipts.php:326` | `?flxb_dekont=` | Dosya baytı | metadata + aynı imzalı URL |
 | `providers/payments.php:197` | `POST Emsfb/v1/forms/payment/start` | Flux Forms ödeme kutusu | Form ödemesi flx-forms işi |
 | `providers/payments.php:204` | `POST …/confirm` | Aynı | |
 | `providers/payments.php:209` | `POST …/webhook/{provider}` | Sağlayıcı imzası | durum sorgusu |
-| `providers/payments.php:178` | `…/stripe/card/add` yakalama | Eski Forms adresi | |
-| `providers/payments.php:180` | `…/stripe/confirm` | Aynı | |
-| `providers/payments.php:181` | `…/stripe/pkey` | Yayın anahtarı bu protokolden | `publishableKey` (d) |
-| `providers/payments.php:182` | `…/stripe/webhook` | Stripe imzası | durum sorgusu |
+| `providers/payments.php:141` | `…/stripe/card/add` yakalama | Eski Forms adresi | |
 | `includes/admin/class-flxb-admin.php:38` | `admin_post_flxb_csv` | CSV akışı, PHP süresi | `flxDonations` sayfaları |
 | `includes/admin/page-reports.php:19` | `admin_post_flxb_report_csv` | Aynı | `flxDonationReport` sayfaları ((e)) |
 | `includes/admin/page-partners.php:20` | `admin_post_flxb_partner_settle_csv` | Aynı | `flxPartnerSettlement` ((e)) |
 | `includes/class-flxb-install.php:17` | cron `flxb_sync_payments` | Hostinger WP cron tetiklemez. İş `class-flxb-flxform-bridge.php:645` | `flxDonatePaymentImport` adım adım |
-| `providers/class-flxb-iyzico-recurring.php:32` | cron `flxb_iyzico_renewals` (`:48` saatlik) | Hostinger cron'u tetiklemez. Siparişsiz tahsil yalnız Flux Forms aboneliği. WC checkout aboneliğinde `FLXB_WC_Recurring::handles()` önce yenileme siparişi açar (`created_via=flxb-renewal`, `class-flxb-wc-recurring.php:183`) | durum `flxSubscriptions`; tahsilat mutation'ı yok |
+| `includes/class-flxb-renewals.php:36` | cron `flxb_renewals` (`:48` saatlik) | Hostinger cron'u tetiklemez. Yenileme siparişi açar (`created_via=flxb-renewal`), kayıtlı kartı Flux POS `flxpos_charge_saved_order()` çeker | durum `flxSubscriptions`; tahsilat mutation'ı yok |
 | `includes/wc/class-flxb-wc-flxform.php:124` | `?flxb_wc_handoff=` | Tek kullanımlık sepet yönlendirmesi | `flxDonationCartAdd` |
-| `includes/wc/class-flxb-wc-feed.php:21` | `/bagis-urunleri.xml` | iyzico/Google XML | `flxDonationTypes` |
+| `includes/wc/class-flxb-wc-feed.php:21` | `/bagis-urunleri.xml` | Google XML | `flxDonationTypes` |
 | `includes/wc/class-flxb-wc-account.php:15` | Hesabım `bekleyen-bagislar` | WooCommerce hesap şablonu | `flxMyDonations` |
 | `includes/flx-system-checks.php:378` | `admin_post_flx_system_checks_dismiss` | Ortak sistem çubuğu | Flux Speed / Admin ekranı |
 | `includes/flx-brand/core.php:134` | `[flx_credit]` + blok `flx/credit` (`:149`) | Marka kopyası, bağış verisi değil | Bu paketin şemasına girmez |
@@ -258,9 +235,9 @@ Nopriv AJAX yok. `flx_job_kick` (`includes/flx-brand/core.php:878`) tanımlı, D
 | `page-import.php:18` | `admin_post_flxb_import_save` | `flxb_manage` | `flxDonationImportMap` |
 | `page-import.php:19` | `admin_post_flxb_import_delete` | `flxb_manage` | `flxDonationImportDelete` |
 | `page-import.php:20` | `wp_ajax_flxb_import_step` (12 satır) | `flxb_manage` | `flxDonationImportStep` |
-| `providers/class-flxb-iyzico-recurring.php:41` | `admin_post_flxb_iyzico_notice` | `flxb_manage` | `flxDonateNoticeDismiss` |
+| `includes/class-flxb-renewals.php:40` | `admin_post_flxb_renewals_notice` | `flxb_manage` | `flxDonateNoticeDismiss` |
 
-Eski `page=flxb-kurban` `flxb-track`'e yönlenir (`page-track.php:26`). `page=flxf_payments` ve `emsfb_stripe` `flxb-payments`'a (`page-payments.php:28`).
+Eski `page=flxb-kurban` `flxb-track`'e yönlenir (`page-track.php:26`).
 
 Personel menüsü aynı sayfaların alt kümesi (`class-flxb-admin.php:88`): pano, kendi bağışları, talep, kendi bağışçıları, takip. Ayrı sayfa değil; `owner` / ayrı cap.
 
@@ -291,13 +268,10 @@ Hepsi serviste kalır. Checkout kancaları Store API'de çalışmaya devam eder 
 | `class-flxb-wc-look.php:37` | `woocommerce_coupons_enabled` | Bağış sepetinde kupon | (d) |
 | `class-flxb-wc-look.php:38` | `option_woocommerce_gateway_order` | Kart önce | (d) |
 | `class-flxb-wc-currency.php:35` | `woocommerce_currency` | Ön yüz para birimi | (a) |
-| `class-flxb-wc-gateways.php:45` | blok ödeme kaydı | Gateway | istisna checkout |
-| `class-flxb-wc-esnekpos.php:43` | `template_redirect` order-pay | EsnekPOS sayfasına gidiş | istisna |
 | `class-flxb-wc-products.php:25` | gizli ürün yönlendirmesi | Tür sayfası | (a) |
 | `includes/wc/gateways/class-flxb-wc-gateway-havale.php:95` | `flxb_wc_preregistered` | Havale siparişi | (c) |
 | `class-flxb-wc-receipts.php:132` | `flxb_wc_receipt_uploaded` | Dekont kancası | (c) |
 | `class-flxb-wc-certificates.php:172` | `flxb_wc_certificates_issued` | Sertifika kancası | atanmamış / certificates |
-| `class-flxb-wc-esnekpos.php:476` | `flxb_wc_esnekpos_paid` | Doğrulanmış ödeme | istisna |
 
 ## Dış paketin güvendiği kancalar — imza değişmez
 
@@ -365,7 +339,7 @@ Liste sorguları `no-store` (bugün `class-flxb-app-admin.php:48`, lookup `class
 ## Kararlar (sahip, kapandı)
 
 1. (e) takip, iş ortağı, rapor, Excel, tür yönetimi, talep. Sertifika yeniden üretimi ve kalem adı (b)'de, detay sayfasında. (e) (d)'den sonra.
-2. `flxb_iyzico_renewals` davranışı durur. Tahsilat mutation'ı yok. Cron istisna. Commerce'e taşıma bu geçiş değil. WC checkout aboneliği sipariş açar; Forms aboneliği açmaz (`charge_locked` `:230`).
+2. `flxb_renewals` (2.48.0, eski `flxb_iyzico_renewals`) davranışı durur. Tahsilat mutation'ı yok. Cron istisna. Commerce'e taşıma bu geçiş değil. WC checkout aboneliği sipariş açar; Forms aboneliği açmaz (`charge_locked` `:230`).
 3. CSV ekranı connection okur. İndirme admin-post istisna.
 4. `FlxPerson` #333'ten önce nullable. Liste kartsız açılır. Bölümler `flxcrm_register_person_section()` ile #333 merge olunca.
 
@@ -375,10 +349,10 @@ Gizli yazma: sahip onayladı. Yaz-yalnız girdi (boş tutar, `"__clear__"` siler
 
 ## Kodun brief ile farkı
 
-- REST: brief "~16 `flxb/v1`". Kodda `register_rest_route` 31 (flxb/v1 27, `flxb-wc/v1` 1, Donate'in kaydettiği `Emsfb/v1` 3) + 4 Stripe legacy yakalama (`providers/payments.php:178`).
+- REST: brief "~16 `flxb/v1`". Kodda `register_rest_route` 31 (flxb/v1 27, `flxb-wc/v1` 1, Donate'in kaydettiği `Emsfb/v1` 3) + 1 legacy yakalama (`providers/payments.php:141`, 2.48.0).
 - Admin sayfası: brief "8". Menüde 12 slug (`class-flxb-admin.php:128`): pano, bağışlar, takip, ekle, bağışçılar, abonelik, türler, ödemeler, iş ortakları, içe aktarma, raporlar, ayarlar. Takip, iş ortağı, içe aktarma, raporlar koşullu.
 - AJAX: brief "2". Kodda 2 (`flxb_stats`, `flxb_import_step`), nopriv yok. Doğru.
-- Abonelik: brief Flux Commerce. `flxb_iyzico_renewals` Forms aboneliğini sipariş açmadan tahsil eder. WC checkout aboneliği (`FLXB_WC_Recurring::handles`) önce `created_via=flxb-renewal` siparişi açar (`class-flxb-wc-recurring.php:183`, `charge_locked` `:230`).
+- Abonelik: brief Flux Commerce. 2.48.0: `flxb_renewals` (`class-flxb-renewals.php`) yenileme siparişi açar (`created_via=flxb-renewal`), kartı Flux POS çeker.
 - "kes-/kesim": bağışçı metninde yok. Yalnız içe aktarma takma adları (`class-flxb-import.php:193`).
 - PHPStan: `FLXB_WC_READY` `includes/wc/class-flxb-wc.php:181`. Sabit `tools/phpstan/packages/flx-donate.bootstrap.php` içinde.
 

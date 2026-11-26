@@ -6,9 +6,6 @@
  *  - filter `flxf_submit_response` (event_type = payment): the final submit of a paid form, after the
  *    payment guard verified it. Gives the form rows (name, phone, e-mail, consents) and the
  *    confirmation code; the amount comes from the server-side payment record (emsfb_pay_).
- *  - action `efb_stripe_webhook_event`: Stripe webhooks verified by Flux Forms (refunds, subscription
- *    changes, renewals = invoice.paid). When Flux Donate owns the payment layer the same handler is
- *    called by its own webhook route.
  *  - option `flxf_automation_runs`: certificate codes created by Flux Forms automations (Flux Certificates).
  *  - hourly cron + an admin backfill: import completed rows of {prefix}emsfb_pay_ that were not
  *    seen yet (e.g. the visitor paid but closed the page before the final submit).
@@ -30,7 +27,6 @@ final class FLXB_FLXForm_Bridge {
 
 	public static function init() {
 		add_filter( 'flxf_submit_response', array( __CLASS__, 'on_submit' ), 20, 2 );
-		add_action( 'efb_stripe_webhook_event', array( __CLASS__, 'on_stripe_event' ), 10, 1 );
 		add_action( FLXB_Install::CRON_HOOK, array( __CLASS__, 'sync' ) );
 		add_action( 'shutdown', array( __CLASS__, 'fill_certificates' ), 20 );
 		add_filter( 'flxf_payment_server_amount', array( __CLASS__, 'server_amount' ), 10, 4 );
@@ -456,135 +452,6 @@ final class FLXB_FLXForm_Bridge {
 		return $obj;
 	}
 
-	/* ------------------------------------------------------------------
-	 * Stripe events (verified by whoever received the webhook)
-	 * ------------------------------------------------------------------ */
-
-	public static function stripe_major( $minor, $currency ) {
-		$zero = array( 'BIF', 'CLP', 'DJF', 'GNF', 'JPY', 'KMF', 'KRW', 'MGA', 'PYG', 'RWF', 'UGX', 'VND', 'VUV', 'XAF', 'XOF', 'XPF' );
-		return in_array( strtoupper( (string) $currency ), $zero, true ) ? (float) $minor : (float) $minor / 100;
-	}
-
-	public static function on_stripe_event( $event ) {
-		try {
-			if ( ! is_array( $event ) || empty( $event['type'] ) || ! isset( $event['data']['object'] ) || ! is_array( $event['data']['object'] ) ) {
-				return;
-			}
-			$o    = $event['data']['object'];
-			$type = (string) $event['type'];
-			switch ( $type ) {
-				case 'payment_intent.succeeded':
-					$row = self::pay_row_by_ref( 'stripe', (string) ( $o['id'] ?? '' ) );
-					if ( $row && 'completed' === $row->status ) {
-						self::record_pay_row( $row, self::contact_for_track( $row ), 'webhook' );
-					}
-					break;
-
-				case 'charge.refunded':
-					$pi = isset( $o['payment_intent'] ) && is_string( $o['payment_intent'] ) ? $o['payment_intent'] : '';
-					if ( '' !== $pi ) {
-						$full = ! empty( $o['refunded'] ) || ( isset( $o['amount_refunded'], $o['amount'] ) && (int) $o['amount_refunded'] >= (int) $o['amount'] );
-						FLXB_Donations::set_status_by_uniq( FLXB_Donations::uniq( 'stripe', $pi ), $full ? 'refunded' : 'partially_refunded' );
-					}
-					break;
-
-				case 'customer.subscription.created':
-				case 'customer.subscription.updated':
-				case 'customer.subscription.deleted':
-					$sid = (string) ( $o['id'] ?? '' );
-					if ( '' === $sid ) {
-						break;
-					}
-					$extra = array();
-					$end   = $o['current_period_end'] ?? ( $o['items']['data'][0]['current_period_end'] ?? null );
-					if ( $end ) {
-						$extra['next_charge_at'] = gmdate( 'Y-m-d H:i:s', (int) $end );
-					}
-					if ( ! empty( $o['canceled_at'] ) ) {
-						$extra['canceled_at'] = gmdate( 'Y-m-d H:i:s', (int) $o['canceled_at'] );
-					}
-					$status = 'customer.subscription.deleted' === $type ? 'canceled' : (string) ( $o['status'] ?? 'active' );
-					if ( ! FLXB_Subscriptions::get_by_ref( 'stripe', $sid ) ) {
-						$row = self::pay_row_by_ref( 'stripe', $sid, 'subscription_id' );
-						if ( $row ) {
-							self::record_pay_row( $row, self::contact_for_track( $row ), 'webhook', $extra );
-						}
-					}
-					FLXB_Subscriptions::set_status( 'stripe', $sid, $status, $extra );
-					break;
-
-				case 'invoice.paid':
-				case 'invoice.payment_succeeded':
-					self::stripe_invoice_paid( $o );
-					break;
-
-				case 'invoice.payment_failed':
-					$sid = self::invoice_subscription( $o );
-					if ( '' !== $sid ) {
-						FLXB_Subscriptions::set_status( 'stripe', $sid, 'past_due' );
-					}
-					break;
-			}
-		} catch ( \Throwable $e ) {
-			self::log( 'stripe event: ' . $e->getMessage() );
-		}
-	}
-
-	private static function invoice_subscription( array $o ) {
-		$sid = $o['subscription'] ?? ( $o['parent']['subscription_details']['subscription'] ?? '' );
-		return is_string( $sid ) ? $sid : '';
-	}
-
-	/** A renewal of a recurring donation. */
-	private static function stripe_invoice_paid( array $o ) {
-		$sid = self::invoice_subscription( $o );
-		if ( '' === $sid || empty( $o['id'] ) ) {
-			return;
-		}
-		$sub = FLXB_Subscriptions::get_by_ref( 'stripe', $sid );
-		if ( ! $sub ) {
-			$row = self::pay_row_by_ref( 'stripe', $sid, 'subscription_id' );
-			if ( $row ) {
-				self::record_pay_row( $row, self::contact_for_track( $row ), 'webhook' );
-				$sub = FLXB_Subscriptions::get_by_ref( 'stripe', $sid );
-			}
-		}
-		if ( ! $sub ) {
-			return;
-		}
-		$period_end = $o['lines']['data'][0]['period']['end'] ?? null;
-		FLXB_Subscriptions::upsert(
-			array(
-				'provider'       => 'stripe',
-				'provider_ref'   => $sid,
-				'status'         => 'active',
-				'next_charge_at' => $period_end ? gmdate( 'Y-m-d H:i:s', (int) $period_end ) : FLXB_Subscriptions::next_charge( $sub['interval_unit'] ),
-			)
-		);
-		/* The first invoice is the gift recorded when the subscription started. */
-		if ( 'subscription_create' === ( $o['billing_reason'] ?? '' ) ) {
-			return;
-		}
-		$currency = strtoupper( (string) ( $o['currency'] ?? $sub['currency'] ) );
-		FLXB_Donations::record(
-			array(
-				'provider'        => 'stripe',
-				'provider_ref'    => (string) $o['id'],
-				'amount'          => self::stripe_major( (int) ( $o['amount_paid'] ?? 0 ), $currency ),
-				'currency'        => $currency,
-				'type'            => 'recurring',
-				'status'          => 'completed',
-				'form_id'         => (int) $sub['form_id'],
-				'donor_id'        => (int) $sub['donor_id'],
-				'subscription_id' => (int) $sub['id'],
-				'type_id'     => (int) $sub['type_id'],
-				'source'          => 'webhook',
-				'created_at'      => ! empty( $o['status_transitions']['paid_at'] ) ? gmdate( 'Y-m-d H:i:s', (int) $o['status_transitions']['paid_at'] ) : flxb_now(),
-				'meta'            => array( 'renewal' => true, 'subscription' => $sid ),
-			)
-		);
-	}
-
 	private static function contact_for_track( $row ) {
 		return self::contact_from_rows( self::message_rows( (string) $row->track ), self::form_structure( (int) $row->form_id ) );
 	}
@@ -629,7 +496,7 @@ final class FLXB_FLXForm_Bridge {
 				$mrows = self::message_rows( (string) $row->track );
 				$cmeta = ! empty( $row->meta ) ? json_decode( (string) $row->meta, true ) : null;
 				$cont  = self::contact_from_rows( $mrows, self::form_structure( (int) $row->form_id ) );
-				/* Providers that asked for the donor's details at the start (iyzico) kept them. */
+				/* Providers that asked for the donor's details at the start kept them. */
 				if ( is_array( $cmeta ) && ! empty( $cmeta['contact'] ) && is_array( $cmeta['contact'] ) ) {
 					$cont = array_merge( $cont, array_filter( $cmeta['contact'] ) );
 				}

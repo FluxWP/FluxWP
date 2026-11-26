@@ -25,13 +25,9 @@ function flxc_pay_card_gateway() {
 	if ( ! flxc_pay_wc_on() ) {
 		return '';
 	}
-	if ( class_exists( 'FLXB_WC_Iyzico' ) && FLXB_WC_Iyzico::usable() ) {
-		return FLXB_WC_Iyzico::ID;
-	}
-	if ( class_exists( 'FLXB_WC_Iyzico' ) && FLXB_WC_Iyzico::official_enabled() ) {
-		return FLXB_WC_Iyzico::OFFICIAL;
-	}
-	return (string) apply_filters( 'flxc_pay_card_gateway', '' );
+	$gws = WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
+	$id  = isset( $gws['flxpos_card'] ) && 'yes' === $gws['flxpos_card']->enabled ? 'flxpos_card' : ''; // Flux POS card method
+	return (string) apply_filters( 'flxc_pay_card_gateway', $id );
 }
 
 /** Bağış kaydının siparişi. */

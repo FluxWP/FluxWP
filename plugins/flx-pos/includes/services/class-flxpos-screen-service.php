@@ -74,10 +74,6 @@ final class FLXPOS_Screen_Service {
 		return $out;
 	}
 
-	private static function donate(): bool {
-		return class_exists( 'FLXB_WC_Gateways' ) && class_exists( 'FLXB_WC' );
-	}
-
 	/**
 	 * Logo addresses inside the method's icon HTML.
 	 *
@@ -100,10 +96,9 @@ final class FLXPOS_Screen_Service {
 
 	/** @return list<FLXPOS_Cap> */
 	private static function caps( WC_Payment_Gateway $gw ): array {
-		$donate = self::donate();
-		$labels = self::a( $donate ? FLXB_WC_Gateways::cap_labels() : FLXPOS_Methods::cap_labels() );
-		$help   = self::a( $donate ? FLXB_WC_Gateways::cap_help() : FLXPOS_Methods::cap_help() );
-		$caps   = self::a( $donate ? FLXB_WC_Gateways::caps( $gw ) : FLXPOS_Methods::caps( $gw ) );
+		$labels = self::a( FLXPOS_Methods::cap_labels() );
+		$help   = self::a( FLXPOS_Methods::cap_help() );
+		$caps   = self::a( FLXPOS_Methods::caps( $gw ) );
 		$out    = array();
 		foreach ( $labels as $k => $l ) {
 			$c     = self::a( $caps[ $k ] ?? array() );
@@ -114,9 +109,6 @@ final class FLXPOS_Screen_Service {
 	}
 
 	private static function hidden( string $id ): bool {
-		if ( self::donate() ) {
-			return (bool) FLXB_WC_Gateways::hidden_by_card_method( $id );
-		}
 		return (bool) FLXPOS_Methods::hidden( $id );
 	}
 
@@ -142,26 +134,18 @@ final class FLXPOS_Screen_Service {
 				self::caps( $gw )
 			);
 		}
-		$donate  = self::donate();
-		$current = $donate ? self::s( FLXB_WC::setting( 'card_method' ) ) : self::s( flxpos_setting( 'card_method' ) );
-		$choices = array( new FLXPOS_Option( 'auto', __( 'Otomatik', 'flx-pos' ) ) );
-		if ( $donate ) {
-			$choices[] = new FLXPOS_Option( 'iyzico', 'iyzico' );
-			foreach ( self::a( FLXB_WC_Gateways::third_party_enabled() ) as $k => $l ) {
-				$choices[] = new FLXPOS_Option( (string) $k, self::s( $l ) );
-			}
-		} else {
-			$choices[] = new FLXPOS_Option( 'flxpos', 'Flux POS' );
-			foreach ( self::a( FLXPOS_Methods::third_party_cards() ) as $k => $l ) {
-				$choices[] = new FLXPOS_Option( (string) $k, self::s( $l ) );
-			}
+		$current   = self::s( flxpos_setting( 'card_method' ) );
+		$choices   = array( new FLXPOS_Option( 'auto', __( 'Otomatik', 'flx-pos' ) ) );
+		$choices[] = new FLXPOS_Option( 'flxpos', 'Flux POS' );
+		foreach ( self::a( FLXPOS_Methods::third_party_cards() ) as $k => $l ) {
+			$choices[] = new FLXPOS_Option( (string) $k, self::s( $l ) );
 		}
 		$choices[] = new FLXPOS_Option( 'all', __( 'Hepsini göster', 'flx-pos' ) );
 		return new FLXPOS_Methods_Info(
 			$list,
-			$donate ? (bool) FLXB_WC_Gateways::block_checkout() : (bool) FLXPOS_Methods::block_checkout(),
+			(bool) FLXPOS_Methods::block_checkout(),
 			'' !== $current ? $current : 'auto',
-			$donate ? 'donate' : 'pos',
+			'pos',
 			$choices,
 			function_exists( 'wc_get_checkout_url' ) ? self::s( wc_get_checkout_url() ) : '',
 			function_exists( 'get_woocommerce_currency' ) ? self::s( get_woocommerce_currency() ) : 'TRY'
@@ -202,13 +186,9 @@ final class FLXPOS_Screen_Service {
 		}
 		if ( null !== $card ) {
 			$card = preg_match( '/^[a-z0-9_-]{1,60}$/', $card ) ? $card : 'auto';
-			if ( self::donate() ) {
-				FLXB_WC::save_settings( array( 'card_method' => $card ) );
-			} else {
-				$s                = self::a( flxpos_settings() );
-				$s['card_method'] = $card;
-				update_option( 'flxpos_settings', $s, false );
-			}
+			$s                = self::a( flxpos_settings() );
+			$s['card_method'] = $card;
+			update_option( 'flxpos_settings', $s, false );
 		}
 		if ( function_exists( 'WC' ) ) {
 			WC()->payment_gateways()->init(); // reload so the payload shows the new order and switches

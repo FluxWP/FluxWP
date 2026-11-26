@@ -539,6 +539,18 @@ msgstr "Installments by card"
 msgid "Sunucu bildirimi"
 msgstr "Server notification"
 
+msgid "Önceki çekimin sonucu bekleniyor."
+msgstr "The result of the previous charge is not in yet."
+
+msgid "Sonuç gelmedi."
+msgstr "No result came back."
+
+msgid "Sipariş #%s"
+msgstr "Order #%s"
+
+msgid "Kart çekilemedi."
+msgstr "The card was not charged."
+
 msgid "Öde"
 msgstr "Pay"
 

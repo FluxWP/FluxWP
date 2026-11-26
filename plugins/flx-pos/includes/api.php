@@ -190,3 +190,45 @@ function flxpos_charge_saved( array $args ) {
 function flxpos_txn( $ref ) {
 	return FLXPOS_Txn::by_ref( (string) $ref );
 }
+
+/**
+ * Bu para biriminde kartı saklayıp sonraki ayları ödeyen sitede olmadan çekebilen kartlı hesap var mı?
+ * (aylık bağış, abonelik). Bugün yalnız Stripe hesabı.
+ */
+function flxpos_can_save_card( $currency = '' ) {
+	$cur = strtoupper( '' !== (string) $currency ? (string) $currency : ( function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : 'TRY' ) );
+	return FLXPOS_Saved_Cards::account_saves( FLXPOS_Accounts::for_card( $cur ) );
+}
+
+/**
+ * Siparişin ödemesinde saklanan kart. Kartı saklatmak için sipariş ödenmeden önce `_flxpos_save` = yes yazılır.
+ *
+ * @param WC_Order|int $order Sipariş.
+ * @return array{account:string,customer:string,payment_method:string,label:string}|null
+ */
+function flxpos_saved_card( $order ) {
+	return FLXPOS_Saved_Cards::of_order( $order );
+}
+
+/**
+ * Kayıtlı kartı bir WooCommerce siparişine çek; ödenirse Flux POS siparişi öder. Önceki çekimin sonucu
+ * beklemedeyse yeniden çekmez (uncertain döner).
+ *
+ * @return array{result:string, txn?:string, error?:string} result paid|failed|uncertain
+ */
+function flxpos_charge_saved_order( WC_Order $order, array $card, $description = '' ) {
+	return FLXPOS_Saved_Cards::charge_order( $order, $card, $description );
+}
+
+/* Temanın ve Flux Donate'in "Ödemeler … ile güvenle alınır" rozeti: kart hesabının sağlayıcı adı. */
+add_filter(
+	'flx_secure_badge_provider',
+	static function ( $name ) {
+		if ( '' !== (string) $name || ! function_exists( 'get_woocommerce_currency' ) ) {
+			return $name;
+		}
+		$acc = FLXPOS_Accounts::for_card( get_woocommerce_currency() );
+		$p   = $acc && ! empty( $acc['enabled'] ) ? FLXPOS_Providers::get( $acc['provider'] ) : null;
+		return $p ? (string) $p['name'] : $name;
+	}
+);

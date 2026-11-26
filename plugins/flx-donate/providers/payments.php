@@ -10,13 +10,13 @@
  *    flxf_payment_active_provider_id(), flxf_payment_active_provider(), flxf_payment_track_gateway(),
  *    flxf_payment_rest_start(); filters `flxf_payment_providers`, `flxf_payment_active_provider`;
  *  - REST (Emsfb/v1): forms/payment/start, forms/payment/confirm, forms/payment/webhook/{id};
- *    Flux Forms's Stripe routes (stripe/card/add, stripe/confirm, stripe/pkey, stripe/webhook)
- *    are answered here too, with the same request and response shapes;
+ *    Flux Forms's stripe/card/add route starts the payment here too;
  *  - the final submit of a paid form is refused until its provider verified the payment;
  *  - front: window.FLXFPay (providers/assets/flxf-pay.js) and the active provider's scripts.
  *
- * Records stay in Flux Forms's {prefix}emsfb_pay_ table. When Flux Donate is deactivated, Flux Forms
- * uses its own built-in layer again (Stripe only), nothing to migrate.
+ * Flux Donate takes no card itself: the only provider is "woocommerce" (FLXB_WC_FLXForm, the form is paid on
+ * the WooCommerce checkout with any payment method there, e.g. Flux POS). Records stay in Flux Forms's
+ * {prefix}emsfb_pay_ table. When Flux Donate is deactivated, Flux Forms uses its own built-in layer again.
  *
  * GPL v2 or later.
  *
@@ -29,33 +29,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/contract.php';
 require_once __DIR__ . '/class-flxb-payment-records.php';
-require_once __DIR__ . '/class-flxb-stripe-api.php';
-require_once __DIR__ . '/class-flxb-payment-stripe.php';
-require_once __DIR__ . '/class-flxb-payment-test.php';
-require_once __DIR__ . '/class-flxb-iyzico-api.php';
-require_once __DIR__ . '/class-flxb-iyzico-recurring.php';
-require_once __DIR__ . '/class-flxb-payment-iyzico.php';
 
 if ( ! defined( 'FLXF_PAY_PROVIDER_SETTING' ) ) {
 	define( 'FLXF_PAY_PROVIDER_SETTING', 'flxfPayProvider' );
 }
 
-/** Option holding the active provider and every provider's settings. */
-const FLXB_PAY_OPTION = 'flxb_payments';
-
 /* ======================================================================
  * Settings and registry
  * ==================================================================== */
-
-/** @return array{provider:string, fields:array} */
-function flxb_payment_options() {
-	$o = get_option( FLXB_PAY_OPTION, array() );
-	$o = is_array( $o ) ? $o : array();
-	return array(
-		'provider' => isset( $o['provider'] ) ? sanitize_key( (string) $o['provider'] ) : '',
-		'fields'   => isset( $o['fields'] ) && is_array( $o['fields'] ) ? $o['fields'] : array(),
-	);
-}
 
 /** Flux Forms's own settings row (fallback for keys saved before Flux Donate took over). */
 function flxb_flxform_settings() {
@@ -77,15 +58,8 @@ function flxb_flxform_settings() {
 	return $rows;
 }
 
-/** A provider setting: Donations › Payments first, then Flux Forms's settings ('' when missing). */
+/** A setting from Flux Forms's settings ('' when missing). */
 function flxf_payment_setting( $key, $default = '' ) {
-	$o = flxb_payment_options();
-	if ( FLXF_PAY_PROVIDER_SETTING === $key && '' !== $o['provider'] ) {
-		return $o['provider'];
-	}
-	if ( isset( $o['fields'][ $key ] ) && is_scalar( $o['fields'][ $key ] ) && '' !== trim( (string) $o['fields'][ $key ] ) ) {
-		return trim( (string) $o['fields'][ $key ] );
-	}
 	foreach ( flxb_flxform_settings() as $s ) {
 		if ( is_object( $s ) && isset( $s->$key ) && is_scalar( $s->$key ) ) {
 			$v = trim( (string) $s->$key );
@@ -108,7 +82,7 @@ function flxf_payment_providers() {
 	if ( null !== $cache ) {
 		return $cache;
 	}
-	$raw = apply_filters( 'flxf_payment_providers', array( 'stripe' => 'FLXB_Payment_Stripe', 'iyzico' => 'FLXB_Payment_Iyzico' ) );
+	$raw = apply_filters( 'flxf_payment_providers', array() );
 	$out = array();
 	foreach ( (array) $raw as $item ) {
 		if ( is_string( $item ) && class_exists( $item ) ) {
@@ -137,9 +111,9 @@ function flxf_payment_provider( $id ) {
 
 function flxf_payment_active_provider_id() {
 	$all = flxf_payment_providers();
-	$id  = sanitize_key( flxf_payment_setting( FLXF_PAY_PROVIDER_SETTING, 'stripe' ) );
+	$id  = sanitize_key( flxf_payment_setting( FLXF_PAY_PROVIDER_SETTING, '' ) );
 	if ( ! isset( $all[ $id ] ) ) {
-		$id = isset( $all['stripe'] ) ? 'stripe' : (string) key( $all );
+		$id = (string) key( $all );
 	}
 	return (string) apply_filters( 'flxf_payment_active_provider', $id );
 }
@@ -154,18 +128,6 @@ function flxf_payment_track_gateway( $track ) {
 	return $row ? (string) $row->gateway : '';
 }
 
-/* Development-only test provider. */
-add_filter(
-	'flxf_payment_providers',
-	function ( $providers ) {
-		if ( ( defined( 'FLXF_PAYMENTS_TEST_PROVIDER' ) && FLXF_PAYMENTS_TEST_PROVIDER ) || apply_filters( 'flxf_payments_enable_test_provider', false ) ) {
-			$providers['flxf_test'] = 'FLXB_Payment_Test';
-		}
-		return $providers;
-	},
-	100
-);
-
 /* ======================================================================
  * REST
  * ==================================================================== */
@@ -177,9 +139,6 @@ final class FLXB_Payments_Rest {
 
 	const LEGACY = array(
 		'/Emsfb/v1/forms/payment/stripe/card/add' => 'card_add',
-		'/Emsfb/v1/forms/payment/stripe/confirm'  => 'stripe_confirm',
-		'/Emsfb/v1/forms/payment/stripe/pkey'     => 'stripe_pkey',
-		'/Emsfb/v1/forms/payment/stripe/webhook'  => 'stripe_webhook',
 	);
 
 	public static function init() {
@@ -284,7 +243,7 @@ final class FLXB_Payments_Rest {
 		$ip       = function_exists( 'flxf_client_ip' ) ? flxf_client_ip() : $public->get_ip_address();
 		$email    = isset( $obj['email'] ) ? sanitize_email( (string) $obj['email'] ) : '';
 		$extra    = is_array( $params ) ? array_diff_key( $params, array_flip( array( 'value', 'nonce', 'action', 'amount', 'price', 'total' ) ) ) : array();
-		/* Donor details (name, e-mail, phone, consents) for providers that need a buyer (iyzico). */
+		/* Donor details (name, e-mail, phone, consents) for the order. */
 		$contact  = class_exists( 'FLXB_FLXForm_Bridge' ) && is_array( $rows ) ? FLXB_FLXForm_Bridge::contact_from_rows( $rows, is_array( $fs ) ? $fs : array() ) : array();
 		if ( '' === (string) ( $contact['email'] ?? '' ) && '' !== $email ) {
 			$contact['email'] = $email;
@@ -432,7 +391,7 @@ final class FLXB_Payments_Rest {
 		return $res instanceof WP_REST_Response ? $res : new WP_REST_Response( array( 'received' => true ), 200 );
 	}
 
-	/** Flux Forms's Stripe routes, answered by Flux Donate (same shapes). Runs after the permission check. */
+	/** Flux Forms's old start route (stripe/card/add), answered by Flux Donate. Runs after the permission check. */
 	public static function legacy( $result, $request, $route, $handler ) {
 		if ( null !== $result || ! is_string( $route ) ) {
 			return $result;
@@ -447,31 +406,8 @@ final class FLXB_Payments_Rest {
 		if ( null === $fn ) {
 			return $result;
 		}
-		$stripe = flxf_payment_provider( 'stripe' );
-		switch ( $fn ) {
-			case 'card_add':
-				if ( ! is_object( self::$public ) ) {
-					return $result; // Flux Forms answers itself
-				}
-				return self::start( $request, self::$public, flxf_payment_active_provider() );
-			case 'stripe_confirm':
-				$p     = (array) $request->get_json_params();
-				$pi    = isset( $p['paymentIntentId'] ) && is_string( $p['paymentIntentId'] ) ? sanitize_text_field( $p['paymentIntentId'] ) : '';
-				$track = isset( $p['trackid'] ) && is_scalar( $p['trackid'] ) ? sanitize_text_field( (string) $p['trackid'] ) : '';
-				if ( ! preg_match( '/^pi_[A-Za-z0-9_]+$/', $pi ) ) {
-					return self::reply( array( 'success' => false, 'm' => __( 'Payment Intent ID is missing', 'flx-donate' ) ), 400 );
-				}
-				/* Only the PaymentIntent created for this entry counts. */
-				$row = FLXB_Payment_Records::get_by_reference( 'stripe', $pi );
-				if ( ! $row || ! $stripe || ( '' !== $track && (string) $row->track !== $track ) ) {
-					return self::reply( array( 'success' => false, 'm' => __( 'Payment not found.', 'flx-donate' ) ), 404 );
-				}
-				$ok = $stripe->verify( $row )->is_paid();
-				return self::reply( array( 'success' => $ok, 'paymentIntentId' => $pi, 'trackid' => $row->track, 'm' => $ok ? '' : __( 'The payment could not be verified yet.', 'flx-donate' ) ) );
-			case 'stripe_pkey':
-				return self::reply( array( 'key' => $stripe instanceof FLXB_Payment_Stripe ? $stripe->publishable_key() : '' ) );
-			case 'stripe_webhook':
-				return $stripe ? $stripe->handle_webhook( $request ) : new WP_REST_Response( array( 'error' => 'webhook_not_configured' ), 503 );
+		if ( 'card_add' === $fn && is_object( self::$public ) ) {
+			return self::start( $request, self::$public, flxf_payment_active_provider() );
 		}
 		return $result;
 	}
@@ -583,15 +519,7 @@ function flxb_payments_wire_scripts() {
 	if ( is_admin() || ! $provider ) {
 		return;
 	}
-	if ( 'stripe' !== $id ) {
-		wp_dequeue_script( 'stripe-js' ); // no request to js.stripe.com
-	} elseif ( $provider instanceof FLXB_Payment_Stripe ) {
-		/* A publishable key saved on Donations › Payments wins over the one in Flux Forms's settings. */
-		$o = flxb_payment_options();
-		if ( ! empty( $o['fields']['stripePKey'] ) ) {
-			wp_add_inline_script( 'stripe_js', '(function(k){function s(){if(window.ajax_object_efm){window.ajax_object_efm.paymentKey=k;}}s();document.addEventListener("DOMContentLoaded",s);})(' . wp_json_encode( (string) $o['fields']['stripePKey'] ) . ');', 'before' );
-		}
-	}
+	wp_dequeue_script( 'stripe-js' ); // Flux Donate takes no card: no request to js.stripe.com
 	$assets = (array) $provider->front_assets();
 	foreach ( (array) ( $assets['styles'] ?? array() ) as $handle => $spec ) {
 		if ( ! empty( $spec['src'] ) ) {

@@ -136,9 +136,13 @@ final class FLXB_WC_Cart {
 		return ! empty( FLXB_Types::meta( $t, 'certificate', false ) );
 	}
 
-	/** Can a monthly gift be taken now (Flux Donate iyzico gateway ready)? */
+	/** Can a monthly gift be taken now (Flux POS card method on, with an account that stores cards)? */
 	public static function monthly_available() {
-		return class_exists( 'FLXB_WC_Iyzico' ) && FLXB_WC_Iyzico::usable();
+		if ( ! class_exists( 'FLXB_Renewals' ) || ! FLXB_Renewals::ready() || ! function_exists( 'WC' ) || ! WC()->payment_gateways() ) {
+			return false;
+		}
+		$gw = WC()->payment_gateways()->payment_gateways();
+		return isset( $gw[ FLXB_Renewals::GATEWAY ] ) && 'yes' === $gw[ FLXB_Renewals::GATEWAY ]->enabled;
 	}
 
 	/* ------------------------------------------------------------------
@@ -913,7 +917,7 @@ final class FLXB_WC_Cart {
 	}
 
 	/**
-	 * Payment providers (iyzico) need a buyer address and city. When the checkout did not ask for them,
+	 * Payment providers (iyzico, banks) need a buyer address and city. When the checkout did not ask for them,
 	 * fill in the organisation's address (WooCommerce store address) so the payment is not refused.
 	 */
 	public static function fill_address( $order ) {

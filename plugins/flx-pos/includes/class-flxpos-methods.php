@@ -31,14 +31,6 @@ final class FLXPOS_Methods {
 	private static $fallback = array();
 
 	public static function init() {
-		/*
-		 * 0.2.0: Flux Donate (2.13.0+) already runs the one-card rule, the block fallback and the payment logos
-		 * for every gateway (flxpos_card counts as a third-party card POS there). With Donate active Flux POS
-		 * keeps only the list (screen) and does not hook a second copy.
-		 */
-		if ( class_exists( 'FLXB_WC_Gateways' ) ) {
-			return;
-		}
 		add_action( 'woocommerce_blocks_payment_method_type_registration', array( __CLASS__, 'blocks' ), 99 );
 		add_filter( 'flx_pay_logos_builtin', array( __CLASS__, 'pay_logos' ), 20 );
 		add_filter( 'woocommerce_available_payment_gateways', array( __CLASS__, 'one_card' ), 60 );

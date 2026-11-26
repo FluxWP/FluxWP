@@ -1,5 +1,11 @@
 # Flux POS Entegrator
 
+## 0.4.0
+- Flux Donate artık kendi kart ödeme sistemini taşımıyor; tek kart kuralı, blok ödemede gösterim, ödeme logoları ve ödeme yöntemleri ekranı Donate kurulu olsa da Flux POS'ta çalışır.
+- Kayıtlı kartla sonraki çekimler için ortak API: `flxpos_can_save_card( $currency )`, `flxpos_saved_card( $order )`, `flxpos_charge_saved_order( $order, $card )`. Siparişte `_flxpos_save` = yes ise kart saklanır. Önceki çekimin cevabı gelmediyse (işlem beklemede) yeniden çekilmez.
+- Flux Commerce aboneliğinde kartla otomatik yenileme: `flxcm_card_providers` sağlayıcısı "Flux POS"; abonelikli siparişte kart saklanır, yenileme siparişi kayıtlı karttan çekilir (şimdilik Stripe hesabı).
+- "Ödemeler … ile güvenle alınır" rozeti için `flx_secure_badge_provider` kart hesabının sağlayıcı adını verir.
+
 ## 0.3.0
 - Yeni sağlayıcı: Stripe. Kart alanları ödeme sayfasında Stripe'ın Payment Element'i (klasik ve blok ödeme); kart bilgisi siteye hiç gelmez. Apple Pay / Google Pay / Link, Stripe hesabında açıksa aynı alanda görünür.
 - PaymentIntent sunucudan oluşturulup onaylanır; 3D Secure gerekirse Stripe'ın doğrulama sayfasına gidilir, dönüşte durum Stripe'tan okunur. Yenilenen/geri dönülen ödeme sayfası aynı PaymentIntent'i sürdürür, tekrar deneme anahtarıyla (idempotency) çift çekim olmaz.
