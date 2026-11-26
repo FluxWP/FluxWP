@@ -30,9 +30,11 @@ add_filter(
 		$r = $GLOBALS['flxt_routes'][ $req['method'] . ' ' . $path ] ?? array( 'error' => array( 'message' => 'no route ' . $path ) );
 		$r = is_callable( $r ) ? $r( $body ) : $r;
 		return array( 'response' => array( 'code' => 200 ), 'body' => json_encode( $r ), 'headers' => array() );
-	}
+	},
+	10,
+	3
 );
-$fail = 0;
+$GLOBALS['fail'] = 0;
 function flxt_ok( $cond, $name ) { global $fail; echo ( $cond ? "  ok   " : "  FAIL " ) . $name . "\n"; if ( ! $cond ) { $fail++; } }
 
 $provider = array( 'id' => 'stripe', 'name' => 'Stripe', 'driver' => 'stripe', 'modes' => array( 'elements' => '' ), 'endpoints' => array( 'live' => array( 'api' => 'https://api.stripe.com' ) ), 'opts' => array() );
@@ -148,5 +150,6 @@ $GLOBALS['flxt_routes']['POST /v1/payment_intents'] = array( 'error' => array( '
 $r = $d->charge_saved( flxt_pay(), 'cus_1', 'pm_save' );
 flxt_ok( 'failed' === $r['status'] && 1 === $r['data']['needs_auth'], '3DS isterse needs_auth' );
 
-echo $fail ? "\n$fail test başarısız\n" : "\nHepsi geçti\n";
-exit( $fail ? 1 : 0 );
+$failed = (int) $GLOBALS['fail'];
+echo $failed > 0 ? "\n$failed test başarısız\n" : "\nHepsi geçti\n";
+exit( $failed > 0 ? 1 : 0 );
