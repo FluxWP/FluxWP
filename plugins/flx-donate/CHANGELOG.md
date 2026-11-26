@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.47.0
+- **Sade ödeme sayfası (Görünüm › "Sade ödeme").** Ad, telefon ve e-posta en üstte tek kartta; telefon ve e-posta ikisi de zorunlu, bu yüzden kart formu telefonu altta bir daha sormaz. Kart formunun altında yalnız 3D Secure satırı kalır: taksit bekleme notu (taksit varsa kutu görünür), "şifreli gönderilir" satırları ve "Kart ödemesi için telefon gerekir" notu ile "Güvenli ödeme" rozetindeki sağlayıcı adı kalktı. Kapalıyken (varsayılan) hiçbir şey değişmez.
+- Kupon kutusu ve adres defteri zaten Görünüm'de ayrı anahtarlar; bu sürümle sade ödeme bunlarla birlikte kullanılır.
+
 ## 2.46.0
 - Bağışlar, Bağışçılar, Düzenli bağışlar ve Takip listeleri klasik ekranla aynı: ortak filtre çubuğu (filtre değişince hemen uygulanır, kalanlar "Filtreler" altında), sayfa numaraları ve "Sayfa başı" seçimi (varsayılan 20).
 - Tablolarda tarih yine 24.11.2026 23:52 biçiminde; Bağışçılar'da son bağış yalnız tarih.

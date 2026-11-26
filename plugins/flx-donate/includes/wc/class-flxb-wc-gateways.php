@@ -53,6 +53,9 @@ class FLXB_WC_Gateways {
 	 * (EsnekPOS, iyzico…); '' when several card methods are shown or none is enabled.
 	 */
 	public static function badge_provider( $name ) {
+		if ( class_exists( 'FLXB_WC_Look' ) && FLXB_WC_Look::get( 'lean' ) ) {
+			return is_string( $name ) ? $name : ''; // 2.47.0: short checkout, no provider name in the badge
+		}
 		if ( '' !== (string) $name || FLXB_WC_Iyzico::context_monthly() ) {
 			return '' !== (string) $name ? $name : 'iyzico';
 		}

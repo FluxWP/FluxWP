@@ -163,7 +163,7 @@
 		var addr = billing.billingAddress || {};
 		var total = billing.cartTotal ? billing.cartTotal.value / Math.pow(10, (billing.currency && billing.currency.minorUnit) || 2) : 0;
 		var cur = (billing.currency && billing.currency.code) || 'TRY';
-		var needPhone = !phoneOk(addr.phone || '');
+		var needPhone = !phoneOk(addr.phone || '') && !(data.lean && document.querySelector('.flxb-ct')); /* 2.47.0: short checkout asks the phone at the top */
 		var defName = ((addr.first_name || '') + ' ' + (addr.last_name || '')).trim().toLocaleUpperCase('tr-TR');
 
 		var s = {
@@ -249,7 +249,8 @@
 
 		var opts = v('opts');
 		var instBox = null;
-		if (data.installments) {
+		/* 2.47.0 (short checkout): the installment box only shows when the card has installments. */
+		if (data.installments && !(data.lean && (opts === null || !opts.length))) {
 			instBox = el('div', { className: 'flxb-cc__inst' },
 				el('div', { className: 'flxb-cc__inst-h' }, t.inst),
 				opts === null ? el('p', { className: 'flxb-cc__muted' }, t.instWait)
@@ -276,13 +277,13 @@
 			}),
 			el(Field, { label: t.name, icon: 'user', value: v('name'), autoComplete: 'cc-name', wide: true, onChange: change('name', function (x) { return x.toLocaleUpperCase('tr-TR'); }), onBlur: blur('name'), error: errOf('name') }),
 			needPhone ? el(Field, { label: t.phone, icon: 'phone', value: v('phone'), type: 'tel', inputMode: 'tel', autoComplete: 'tel', placeholder: '0532 123 45 67', wide: true, onChange: change('phone'), onBlur: blur('phone'), error: errOf('phone') || '' }) : null,
-			needPhone && !errOf('phone') ? el('p', { className: 'flxb-cc__muted flxb-cc__hint' }, t.phoneHelp) : null,
+			needPhone && !errOf('phone') && !data.lean ? el('p', { className: 'flxb-cc__muted flxb-cc__hint' }, t.phoneHelp) : null,
 			instBox,
 			el('div', { className: 'flxb-cc__3ds' },
 				el('span', { className: 'flxb-cc__3ds-ico', 'aria-hidden': 'true' }),
 				el('span', { className: 'flxb-cc__3ds-t' }, el('strong', null, '3D Secure'), ' ', t.sec)
 			),
-			el('p', { className: 'flxb-cc__muted flxb-cc__safe' }, t.secShort)
+			data.lean ? null : el('p', { className: 'flxb-cc__muted flxb-cc__safe' }, t.secShort)
 		);
 	};
 
