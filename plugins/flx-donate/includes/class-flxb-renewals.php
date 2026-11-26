@@ -130,7 +130,7 @@ final class FLXB_Renewals {
 		FLXB_Subscriptions::update( $id, array( 'period_due' => $period ) );
 		$name = '' !== (string) ( $m['form_name'] ?? '' ) ? (string) $m['form_name'] : __( 'Recurring donation', 'flx-donate' );
 		$r    = (array) flxpos_charge_saved_order( $order, $card, $name );
-		$res  = (string) ( $r['result'] ?? 'failed' );
+		$res  = (string) $r['result'];
 		if ( 'paid' === $res ) {
 			return self::paid( $s, $m, $period );
 		}

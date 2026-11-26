@@ -84,7 +84,7 @@ class FLXB_WC_Admin {
 	 */
 	public static function card_methods() {
 		$out = array();
-		$gws = function_exists( 'WC' ) && WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
+		$gws = WC()->payment_gateways()->payment_gateways();
 		foreach ( $gws as $id => $gw ) {
 			if ( 'yes' === $gw->enabled && ! in_array( (string) $id, self::OFFLINE, true ) ) {
 				$out[] = wp_strip_all_tags( (string) $gw->get_method_title() );
@@ -95,7 +95,7 @@ class FLXB_WC_Admin {
 
 	/** Status lines (also used by the system check). */
 	public static function status() {
-		$gws  = WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
+		$gws  = WC()->payment_gateways()->payment_gateways();
 		$on   = static function ( $id ) use ( $gws ) {
 			return isset( $gws[ $id ] ) && 'yes' === $gws[ $id ]->enabled;
 		};

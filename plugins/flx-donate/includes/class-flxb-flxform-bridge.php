@@ -452,10 +452,6 @@ final class FLXB_FLXForm_Bridge {
 		return $obj;
 	}
 
-	private static function contact_for_track( $row ) {
-		return self::contact_from_rows( self::message_rows( (string) $row->track ), self::form_structure( (int) $row->form_id ) );
-	}
-
 	/* ------------------------------------------------------------------
 	 * Sync / backfill
 	 * ------------------------------------------------------------------ */

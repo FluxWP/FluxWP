@@ -138,10 +138,7 @@ final class FLXB_WC_Cart {
 
 	/** Can a monthly gift be taken now (Flux POS card method on, with an account that stores cards)? */
 	public static function monthly_available() {
-		if ( ! class_exists( 'FLXB_Renewals' ) || ! FLXB_Renewals::ready() || ! function_exists( 'WC' ) || ! WC()->payment_gateways() ) {
-			return false;
-		}
-		$gw = WC()->payment_gateways()->payment_gateways();
+		$gw = FLXB_Renewals::ready() ? WC()->payment_gateways()->payment_gateways() : array();
 		return isset( $gw[ FLXB_Renewals::GATEWAY ] ) && 'yes' === $gw[ FLXB_Renewals::GATEWAY ]->enabled;
 	}
 

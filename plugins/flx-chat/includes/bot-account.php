@@ -25,7 +25,7 @@ function flxc_pay_card_gateway() {
 	if ( ! flxc_pay_wc_on() ) {
 		return '';
 	}
-	$gws = WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
+	$gws = WC()->payment_gateways()->payment_gateways();
 	$id  = isset( $gws['flxpos_card'] ) && 'yes' === $gws['flxpos_card']->enabled ? 'flxpos_card' : ''; // Flux POS card method
 	return (string) apply_filters( 'flxc_pay_card_gateway', $id );
 }

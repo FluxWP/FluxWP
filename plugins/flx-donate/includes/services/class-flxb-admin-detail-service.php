@@ -835,12 +835,6 @@ final class FLXB_Admin_Detail_Service {
 		);
 	}
 
-	/** Payment record of Flux Donate's payment layer (loaded only when it owns payments). */
-	private static function payment_record( int $id ): mixed {
-		$cb = apply_filters( 'flxb_payment_record_getter', 'FLXB_Payment_Records::get' );
-		return is_callable( $cb ) ? call_user_func( $cb, $id ) : null;
-	}
-
 	/**
 	 * Statuses an admin may set by hand (FLXB_Page_Donations::manual_statuses()).
 	 *

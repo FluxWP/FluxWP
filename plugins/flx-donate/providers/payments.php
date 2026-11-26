@@ -406,7 +406,7 @@ final class FLXB_Payments_Rest {
 		if ( null === $fn ) {
 			return $result;
 		}
-		if ( 'card_add' === $fn && is_object( self::$public ) ) {
+		if ( is_object( self::$public ) ) { // Only card_add is left in LEGACY.
 			return self::start( $request, self::$public, flxf_payment_active_provider() );
 		}
 		return $result;

@@ -117,7 +117,7 @@ final class FLXPOS_Saved_Cards {
 		if ( is_wp_error( $r ) ) {
 			return array( 'result' => 'failed', 'error' => $r->get_error_message() );
 		}
-		$order->update_meta_data( '_flxpos_saved_txn', (int) $r['id'] );
+		$order->update_meta_data( '_flxpos_saved_txn', (string) (int) $r['id'] );
 		$order->save_meta_data();
 		if ( FLXPOS_Txn::PAID === $r['status'] ) {
 			return array( 'result' => 'paid', 'txn' => (string) $r['ref'] );

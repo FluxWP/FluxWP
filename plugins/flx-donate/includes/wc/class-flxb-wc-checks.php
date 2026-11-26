@@ -50,7 +50,7 @@ class FLXB_WC_Checks {
 		$out  = array();
 		$set  = FLXB_WC_Admin::url();
 		$pay  = admin_url( 'admin.php?page=wc-settings&tab=checkout' );
-		$gws  = WC()->payment_gateways() ? WC()->payment_gateways()->payment_gateways() : array();
+		$gws  = WC()->payment_gateways()->payment_gateways();
 		$on   = static function ( $id ) use ( $gws ) {
 			return isset( $gws[ $id ] ) && 'yes' === $gws[ $id ]->enabled;
 		};
