@@ -14,9 +14,9 @@ for($d=59;$d>=0;$d--){ $day=$now-$d*DAY_IN_SECONDS; $cnt=mt_rand(2,6)+((int)date
   if($tid==$fid){ $o=[[ 'k'=>'1-fidan','l'=>'1 fidan','p'=>150,'q'=>mt_rand(1,4)],['k'=>'5-fidan','l'=>'5 fidan','p'=>700,'q'=>1],['k'=>'10-fidan','l'=>'10 fidan','p'=>1400,'q'=>1]][mt_rand(0,2)]; }
   elseif($tid==$hid){ $o=[['k'=>'1-fidan','l'=>'1 fidan','p'=>150,'q'=>mt_rand(1,3)],['k'=>'aile-paketi-7-fidan','l'=>'Aile paketi (7 fidan)','p'=>1000,'q'=>1]][mt_rand(0,1)]; }
   else { $a=[250,500,1000,300,2000][mt_rand(0,4)]; $o=['k'=>'','l'=>'Serbest tutar','p'=>$a,'q'=>1]; }
-  $amt=$o['p']*$o['q']; $prov=mt_rand(1,10)<=6?'flxb_iyzico':'flxb_havale'; $st='completed'; if($prov=='flxb_havale' && $d<3 && mt_rand(0,1)) $st='pending'; if(mt_rand(1,80)==1) $st='refunded';
+  $amt=$o['p']*$o['q']; $prov=mt_rand(1,10)<=6?'flxpos_card':'flxb_havale'; $st='completed'; if($prov=='flxb_havale' && $d<3 && mt_rand(0,1)) $st='pending'; if(mt_rand(1,80)==1) $st='refunded';
   $rec=($tid!=$hid && mt_rand(1,9)==1)?'recurring':'one_time'; $don=$donors[array_rand($donors)];
   $id=FLXB_Donations::record(['provider'=>$prov,'provider_ref'=>'seed-'.(++$n),'amount'=>$amt,'currency'=>'TRY','type'=>$rec,'status'=>$st,'donor_id'=>$don,'type_id'=>$tid,'option_key'=>$o['k'],'option_label'=>$o['l'],'quantity'=>$o['q'],'unit_price'=>$o['p'],'source'=>'woocommerce','ref_user_id'=>$refs[array_rand($refs)],'created_at'=>$utc,'track'=>'FluxWP'.mt_rand(10,99)]);
-  if($rec=='recurring' && mt_rand(0,1)) FLXB_Subscriptions::upsert(['provider'=>'flxb_iyzico','provider_ref'=>'sub-'.$n,'donor_id'=>$don,'amount'=>$amt,'type_id'=>$tid,'status'=>mt_rand(1,6)==1?'canceled':'active','started_at'=>$utc,'next_charge_at'=>gmdate('Y-m-d H:i:s',strtotime($utc.' +1 month'))]);
+  if($rec=='recurring' && mt_rand(0,1)) FLXB_Subscriptions::upsert(['provider'=>'flxpos','provider_ref'=>'sub-'.$n,'donor_id'=>$don,'amount'=>$amt,'type_id'=>$tid,'status'=>mt_rand(1,6)==1?'canceled':'active','started_at'=>$utc,'next_charge_at'=>gmdate('Y-m-d H:i:s',strtotime($utc.' +1 month'))]);
  }}
 echo "donations $n types ".implode(',',$types)."\n";

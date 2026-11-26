@@ -157,7 +157,7 @@ class FLXB_WC_Terms {
 				array( 'h', __( 'Your donation', 'flx-donate' ) ),
 				array( 'p', __( 'A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose.', 'flx-donate' ) ),
 				array( 'h', __( 'Payment', 'flx-donate' ) ),
-				array( 'p', __( 'Card payments are processed by the licensed payment institution iyzico with 3D Secure. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account.', 'flx-donate' ) ),
+				array( 'p', __( 'Card payments are processed with 3D Secure by a licensed bank or payment institution. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account.', 'flx-donate' ) ),
 				array( 'h', __( 'Monthly donations', 'flx-donate' ) ),
 				array( 'p', __( 'A monthly donation is charged to the same card every month until you cancel it. You can cancel it at any time from your account page or by writing to us.', 'flx-donate' ) ),
 				array( 'h', __( 'Certificates', 'flx-donate' ) ),

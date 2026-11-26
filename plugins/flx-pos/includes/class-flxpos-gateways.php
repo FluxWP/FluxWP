@@ -49,6 +49,20 @@ final class FLXPOS_Gateways {
 		wp_enqueue_style( 'flxpos-checkout', FLXPOS_URL . 'assets/checkout.css', array(), FLXPOS_VERSION );
 		wp_enqueue_script( 'flxpos-checkout', FLXPOS_URL . 'assets/checkout.js', array(), FLXPOS_VERSION, true );
 		wp_localize_script( 'flxpos-checkout', 'FLXPOS', self::js_config() );
+		if ( self::stripe_active() ) {
+			FLXPOS_Stripe::register();
+			wp_enqueue_script( 'flxpos-stripe' );
+		}
+	}
+
+	/** Açık bir Stripe hesabı var mı (betikler yalnız o zaman)? */
+	public static function stripe_active() {
+		foreach ( FLXPOS_Accounts::active() as $a ) {
+			if ( FLXPOS_Stripe::is( $a ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/** Ön yüz ayarları (klasik ve blok). */
@@ -150,7 +164,7 @@ final class FLXPOS_Gateways {
 	 *
 	 * @return array|WP_Error WooCommerce process_payment yanıtı.
 	 */
-	public static function start_order( WC_Order $order, array $account, $card = null ) {
+	public static function start_order( WC_Order $order, array $account, $card = null, $token = '' ) {
 		$amount = round( (float) $order->get_total(), 2 );
 		if ( $amount <= 0 ) {
 			return new WP_Error( 'flxpos_amount', __( 'Tutar sıfırdan büyük olmalı.', 'flx-pos' ) );
@@ -180,6 +194,7 @@ final class FLXPOS_Gateways {
 				'installment' => $inst,
 				'card'        => $card ? substr( $card['pan'], 0, 6 ) . '******' . substr( $card['pan'], -4 ) : '',
 				'card_brand'  => $card ? flxpos_card_brand( $card['pan'] ) : '',
+				'data'        => '' !== (string) $token ? array( 'pm_in' => (string) $token ) : array(),
 			)
 		);
 		if ( ! $txn ) {

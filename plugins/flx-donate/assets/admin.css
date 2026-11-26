@@ -437,10 +437,7 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 .flxb-help--inherited { color: var(--flxb-primary, #1F2937); font-weight: 600; }
 .flxb-receipts, .flxb-audit { margin-bottom: 12px; }
 
-/* iyzico panel addresses + copy fields (1.2.4) */
-.flxb-iyzurls { margin-top: 14px; padding: 14px; border: 1px solid var(--flxb-line); border-radius: 12px; background: var(--flxb-soft); }
-.flxb-iyzurls__title { margin: 0 0 6px; font-size: 14px; color: var(--flxb-ink); }
-.flxb-iyzurls .flxb-help { margin: 8px 0 0; }
+/* Copy fields (1.2.4) */
 .flxb-copy { margin-top: 10px; }
 .flxb-copy__row { display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; }
 .flxb-copy__input { flex: 1 1 240px; min-width: 0; min-height: 38px; resize: none; overflow: hidden; word-break: break-all; line-height: 1.45; padding: 6px 10px; border: 1px solid var(--flxb-line); border-radius: 9px; background: var(--flxb-surface); color: var(--flxb-ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; }

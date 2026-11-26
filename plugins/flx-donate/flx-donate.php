@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Flux Donate
- * Description:       Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.
- * Version:           2.47.1
+ * Description:       Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (any WooCommerce payment method, e.g. Flux POS; bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.
+ * Version:           2.48.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce, flx-crm, flx-graphql
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXB_VERSION', '2.47.1' );
+define( 'FLXB_VERSION', '2.48.0' );
 define( 'FLXB_FILE', __FILE__ );
 define( 'FLXB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXB_URL', plugin_dir_url( __FILE__ ) );
@@ -92,12 +92,9 @@ FLXB_Mail::init();
 /* 2.0: WooCommerce layer (cart, checkout, gateways, ledger, certificates). Boots on plugins_loaded:15. */
 require_once FLXB_DIR . 'includes/wc/class-flxb-wc.php';
 FLXB_WC::init();
-/* iyzico renewals run from cron whether or not the payment layer is loaded in that request. */
-require_once FLXB_DIR . 'providers/class-flxb-iyzico-api.php';
-require_once FLXB_DIR . 'providers/class-flxb-iyzico-recurring.php';
-FLXB_Iyzico_Recurring::init();
-require_once FLXB_DIR . 'providers/class-flxb-iyzico-notify.php';
-FLXB_Iyzico_Notify::init();
+/* Monthly donations: renewal cron charges the card Flux POS stored at the first payment. */
+require_once FLXB_DIR . 'includes/class-flxb-renewals.php';
+FLXB_Renewals::init();
 /* System check (Donations › Settings › System check); the shared screen is in flx-system-checks.php. */
 require_once FLXB_DIR . 'includes/flx-system-checks.php';
 require_once FLXB_DIR . 'includes/class-flxb-system-checks.php';
