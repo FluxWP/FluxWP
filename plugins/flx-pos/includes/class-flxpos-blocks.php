@@ -56,7 +56,8 @@ final class FLXPOS_Blocks extends AbstractPaymentMethodType {
 		$cur  = get_woocommerce_currency();
 		$acc  = $g ? $g->account( $cur ) : null;
 		$card = $acc && FLXPOS_Accounts::takes_card( $acc );
-		$cart = WC()->cart ? (float) WC()->cart->get_total( 'edit' ) : 0.0;
+		$wcc  = function_exists( 'WC' ) ? WC()->cart : null;
+		$cart = $wcc ? (float) $wcc->get_total( 'edit' ) : 0.0;
 		$strp = $acc && FLXPOS_Stripe::is( $acc ) && ! is_admin() ? FLXPOS_Stripe::config( $acc, $cart, $cur ) : null;
 		return array(
 			'title'       => $g ? wp_strip_all_tags( (string) $g->get_title() ) : $this->name,
