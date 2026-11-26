@@ -4,11 +4,12 @@ import { Component, StrictMode, useEffect, useState, type ComponentType, type Re
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { I18nextProvider } from 'react-i18next';
-import { brand, createClient, createI18n, setPlatform, memoryStore, trimEnd } from '@fluxwp/core';
+import { brand, createClient, createI18n, setPlatform, memoryStore } from '@fluxwp/core';
 import type { BrandColors } from '@fluxwp/tokens';
 import { toCssVars } from '@fluxwp/tokens';
 import { ModuleHostProvider, type ModuleHost } from '@fluxwp/modules/src/host';
 import { flxStoreRecord } from '@fluxwp/graphql';
+import { siteFromRest, withGraphQLEndpoint } from './site';
 
 /** Where the mount finds screens: FluxWP's own (index.tsx) or the ones plugins register (runtime.tsx). */
 export interface ScreenSource {
@@ -30,6 +31,8 @@ export interface MountOptions {
   module: string;
   /** REST kökü (rest_url()), ör. https://site.org/wp-json/ */
   rest: string;
+  /** GraphQL URL of the site (`/graphql`; `/?graphql=1` on plain permalinks). Empty: next to `/wp-json/`. */
+  graphql?: string;
   /** wp_create_nonce('wp_rest') */
   nonce: string;
   locale?: string;
@@ -143,10 +146,6 @@ export function createEmbed(screens: ScreenSource): EmbedApi {
   }
   const screensNav = (): FlxScreensNav | undefined => (window as { FlxScreens?: FlxScreensNav }).FlxScreens;
 
-  function siteFromRest(rest: string): string {
-    return trimEnd(rest.replace(/\/wp-json\/?$/, '')) || location.origin;
-  }
-
   function Themed({ el, theme }: { el: HTMLElement; theme: NonNullable<MountOptions['theme']> }) {
     const mq = matchMedia('(prefers-color-scheme: dark)');
     const [dark, setDark] = useState(mq.matches);
@@ -211,13 +210,16 @@ export function createEmbed(screens: ScreenSource): EmbedApi {
         throw new Error('oauth_unsupported');
       },
     });
-    const client = createClient({
-      siteUrl: site,
-      fetchImpl: o.fetchImpl,
-      credentials: 'same-origin',
-      getCredentials: async () => null,
-      extraHeaders: () => ({ 'X-WP-Nonce': nonce }),
-    });
+    const client = withGraphQLEndpoint(
+      createClient({
+        siteUrl: site,
+        fetchImpl: o.fetchImpl,
+        credentials: 'same-origin',
+        getCredentials: async () => null,
+        extraHeaders: () => ({ 'X-WP-Nonce': nonce }),
+      }),
+      o.graphql,
+    );
     const host: ModuleHost = {
       mode: 'wp',
       client,

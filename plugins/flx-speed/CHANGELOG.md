@@ -1,7 +1,7 @@
 # Değişiklikler
 
 ## 0.12.1
-- Sistem Kontrolü: "Communication", "Integrations" ve "AI" grupları Türkçe (İletişim, Entegrasyonlar, Yapay zekâ). Satırlar site dili farklı olsa da kullanıcının dilinde (Flux GraphQL 0.8.3).
+- Sistem Kontrolü: "Communication", "Integrations" ve "AI" grupları Türkçe (İletişim, Entegrasyonlar, Yapay zekâ). Satırlar site dili farklı olsa da kullanıcının dilinde (Flux GraphQL 0.8.4).
 - Ekran başlığı sol menüdeki ad: "Performans".
 
 ## 0.12.0

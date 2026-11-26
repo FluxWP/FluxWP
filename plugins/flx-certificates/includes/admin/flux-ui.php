@@ -99,6 +99,9 @@ function flxs_flux_start(): string {
 		}
 		return ! empty( $_GET['add'] ) ? 'people:add' : 'people';
 	}
+	if ( ! empty( $_GET['person'] ) ) {
+		return 'records:' . absint( $_GET['person'] );
+	}
 	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	return 'records';
 }

@@ -27,6 +27,9 @@
 .flxas-check input{margin-top:3px}
 .flxas-row{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin:0 0 8px}
 .flxas-row label{display:inline-flex;gap:6px;align-items:center}
+/* Classic: field label above its control (old .flxapp-row). */
+.flxas-row:has(>label>select,>label>input:not([type=checkbox])){align-items:flex-end;gap:12px}
+.flxas-row>label:not(:has(input[type=checkbox])){flex-direction:column;align-items:flex-start;gap:4px}
 .flxas-app select,.flxas-app input[type=text],.flxas-app input[type=number],.flxas-app input[type=url],.flxas-app input[type=password],.flxas-app textarea{border:1px solid var(--flxas-bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit;font-size:14px;max-width:100%}
 .flxas-app select,.flxas-app input[type=text],.flxas-app input[type=number],.flxas-app input[type=url],.flxas-app input[type=password]{height:34px;padding:0 10px}
 .flxas-app textarea{padding:8px 10px}
@@ -114,3 +117,18 @@
 .flxas-colors{display:block;overflow-x:auto}
 .flxas-phone{width:calc(50% - 6px)}
 }
+/* App access, classic layout */
+.flxas-headbtn{margin-top:6px;min-height:32px;background:var(--flux-surface);font-weight:600;border-radius:8px}
+.flxas-card .flxas-row .flxas-btn,.flxas-keyform .flxas-btn{min-height:36px;padding:0 14px;border-radius:8px;font-weight:600}
+.flxas-card.flxas-keyform{align-items:flex-end;max-width:1100px}
+.flxas-keyform label{flex-direction:column;align-items:flex-start;gap:4px}
+.flxas-card{max-width:1100px;box-sizing:border-box}
+.flxas-card.flxas-form{background:transparent;border:0;padding:0;border-radius:0}
+/* App settings, classic spacing (old form-table: 200px label column, roomier rows) */
+.flxas-form{gap:28px}
+.flxas-field{grid-template-columns:200px 1fr}
+.flxas-tabs select{max-width:240px}
+.flxas-tabs input{width:110px}
+.flxas-table-wrap{max-width:1100px}
+.flxas-table th,.flxas-table td{padding:7px 10px;vertical-align:middle}
+.flxas-table td code{background:color-mix(in srgb,var(--flux-text) 7%,transparent);padding:2px 6px;border-radius:4px;color:var(--flux-text);font-size:12.5px}

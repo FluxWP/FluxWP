@@ -53,6 +53,7 @@ export function History({ t, tn, locale, notify }: { t: Tr; tn: Tn; locale: stri
       <h2>{t('History')}</h2>
       {ret.available && (
         <div className="flxk-keep">
+          <span className="dashicons dashicons-backup" aria-hidden="true" />
           <span className="flxk-keep__text">
             {ret.days ? (
               <>
@@ -65,14 +66,13 @@ export function History({ t, tn, locale, notify }: { t: Tr; tn: Tn; locale: stri
                   ))}
                 </select>
                 {t('.')}
-                <button type="button" className="flxk-btn is-small" disabled={keep.isPending || sel === ret.days} onClick={() => keep.mutate({ input: { days: sel } })}>
+                <button type="button" className="flxk-btn is-small" disabled={keep.isPending} onClick={() => keep.mutate({ input: { days: sel } })}>
                   {t('Save')}
                 </button>
               </>
             ) : (
               <span>
-                {t('Update backup retention is set on the Flux Backup settings page (with Flux Backup 1.2.0 you can also change it here).')}{' '}
-                {ret.settingsUrl && <a href={ret.settingsUrl}>{t('Flux Backup settings')}</a>}
+                {t('Update backup retention is set on the Flux Backup settings page (with Flux Backup 1.2.0 you can also change it here).')} {ret.settingsUrl && <a href={ret.settingsUrl}>{t('Flux Backup settings')}</a>}
               </span>
             )}
             <small className="flxk-muted">{tn('Currently %1$d update backup, %2$s.', 'Currently %1$d update backups, %2$s.', ret.count, ret.count, ret.size)}</small>

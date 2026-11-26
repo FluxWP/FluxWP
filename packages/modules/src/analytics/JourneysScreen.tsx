@@ -46,7 +46,10 @@ function Journeys() {
   const psub = (x: { count: number; pct: number } | null | undefined) => (x ? t('%1$s visits · %2$s', n(x.count), pf(x.pct) + '%') : t('No data'));
 
   return (
-    <Shell title={t('Journeys')} busy={q.isFetching && !d} head={<FilterBar f={f} set={set} />}>
+    <Shell title={t('Journeys')} busy={q.isFetching && !d}>
+      <div className="flxan-tools flxan-tools--bar">
+        <FilterBar f={f} set={set} />
+      </div>
       <div className="flxan-jbar">
         <label className="flxan-switch">
           <input type="checkbox" checked={cmp} onChange={(e) => setParam('cmp', e.target.checked ? null : '0')} />

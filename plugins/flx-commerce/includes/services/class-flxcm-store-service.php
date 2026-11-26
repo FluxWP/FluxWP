@@ -170,26 +170,88 @@ final class FLXCM_Store_Service {
 		$pack['days'] = $days;
 		$pack['awaiting'] = flxcm_wc_ready() && function_exists( 'wc_orders_count' ) ? FLXCM_Val::int(FLXCM_Stats::awaiting_count()) : 0;
 		$pack['lowStock'] = self::low_stock();
+		$pack['lowStockThreshold'] = max( 0, FLXCM_Val::int( flxcm_setting( 'low_stock' ) ) );
+		$pack['awaitingOrders']    = self::awaiting_orders();
+		$from                      = FLXCM_Val::str( $pack['from'] ?? '' );
+		$to                        = FLXCM_Val::str( $pack['to'] ?? '' );
+		$prev                      = self::pair( FLXCM_Stats::previous_range( $from, $to ) );
+		$pack['period']            = sprintf(
+			/* translators: 1: from, 2: to, 3: previous from, 4: previous to */
+			__( '%1$s – %2$s · compared with %3$s – %4$s', 'flx-commerce' ),
+			FLXCM_Val::str( flxcm_date( FLXCM_Val::int( FLXCM_Stats::ts( $from ) ) + 2 * HOUR_IN_SECONDS ) ),
+			FLXCM_Val::str( flxcm_date( FLXCM_Val::int( FLXCM_Stats::ts( $to ) ) + 2 * HOUR_IN_SECONDS ) ),
+			FLXCM_Val::str( flxcm_date( FLXCM_Val::int( FLXCM_Stats::ts( $prev[0] ) ) + 2 * HOUR_IN_SECONDS, 'short' ) ),
+			FLXCM_Val::str( flxcm_date( FLXCM_Val::int( FLXCM_Stats::ts( $prev[1] ) ) + 2 * HOUR_IN_SECONDS, 'short' ) )
+		);
 		return $pack;
 	}
 
 	/**
-	 * @return list<array{id:int,name:string,stock:int,url:string}>
+	 * Up to six orders waiting for payment, as the classic Overview listed them.
+	 *
+	 * @return list<array{id:int,number:string,name:string,method:string,ago:string,total:string,receiptIn:bool,statusLabel:string,url:string}>
+	 */
+	public static function awaiting_orders(): array {
+		if ( ! flxcm_wc_ready() || ! function_exists( 'wc_get_orders' ) ) {
+			return array();
+		}
+		$out = array();
+		foreach ( FLXCM_Val::arr( FLXCM_Stats::awaiting( 6 ) ) as $o ) {
+			if ( ! $o instanceof WC_Order ) {
+				continue;
+			}
+			$rec     = FLXCM_Bank::ID === $o->get_payment_method() ? count( FLXCM_Val::arr( FLXCM_Receipts::of( $o ) ) ) : 0;
+			$created = $o->get_date_created();
+			$method  = $o->get_payment_method_title();
+			$out[]   = array(
+				'id'          => $o->get_id(),
+				'number'      => FLXCM_Val::str( $o->get_order_number() ),
+				'name'        => $o->get_formatted_billing_full_name(),
+				'method'      => '' !== $method ? $method : '—',
+				'ago'         => $created ? FLXCM_Val::str( flxcm_ago( $created->getTimestamp() ) ) : '',
+				'total'       => FLXCM_Val::str( flxcm_money( $o->get_total(), $o->get_currency() ) ),
+				'receiptIn'   => $rec > 0,
+				'statusLabel' => FLXCM_Val::str( flxcm_status_label( $o->get_status() ) ),
+				'url'         => $o->get_edit_order_url(),
+			);
+		}
+		return $out;
+	}
+
+	/**
+	 * How the store writes money, so a screen can shorten amounts the way the classic screens did.
+	 *
+	 * @return array{symbol:string,position:string,decimal:string,thousand:string}
+	 */
+	public static function money_format(): array {
+		return array(
+			'symbol'   => function_exists( 'get_woocommerce_currency_symbol' ) ? html_entity_decode( FLXCM_Val::str( get_woocommerce_currency_symbol() ), ENT_QUOTES, 'UTF-8' ) : '',
+			'position' => FLXCM_Val::str( get_option( 'woocommerce_currency_pos', 'left' ) ),
+			'decimal'  => function_exists( 'wc_get_price_decimal_separator' ) ? FLXCM_Val::str( wc_get_price_decimal_separator() ) : '.',
+			'thousand' => function_exists( 'wc_get_price_thousand_separator' ) ? FLXCM_Val::str( wc_get_price_thousand_separator() ) : ',',
+		);
+	}
+
+	/**
+	 * @return list<array{id:int,name:string,sku:string,stock:int,url:string}>
 	 */
 	public static function low_stock(): array {
 		if ( ! function_exists( 'wc_get_product' ) ) {
 			return array();
 		}
 		$out = array();
-		foreach ( FLXCM_Val::arr( FLXCM_Stats::low_stock( 8 ) ) as $p ) {
+		foreach ( FLXCM_Val::arr( FLXCM_Stats::low_stock( 6 ) ) as $p ) {
 			if ( ! $p instanceof WC_Product ) {
 				continue;
 			}
+			$pid   = $p->get_parent_id() ? $p->get_parent_id() : $p->get_id();
+			$sku   = $p->get_sku();
 			$out[] = array(
 				'id'    => $p->get_id(),
 				'name'  => $p->get_name(),
-				'stock' => FLXCM_Val::int($p->get_stock_quantity()),
-				'url'   => get_edit_post_link( $p->get_id(), 'raw' ) ? FLXCM_Val::str(get_edit_post_link( $p->get_id(), 'raw' )) : '',
+				'sku'   => '' !== $sku ? $sku : '—',
+				'stock' => FLXCM_Val::int( $p->get_stock_quantity() ),
+				'url'   => FLXCM_Val::str( get_edit_post_link( $pid, 'raw' ) ),
 			);
 		}
 		return $out;

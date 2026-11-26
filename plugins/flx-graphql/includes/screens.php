@@ -494,6 +494,7 @@ function flx_admin_screen_options( string $page, array $s, array $extra = array(
 	$o = array_merge(
 		array(
 			'rest'     => rest_url(),
+			'graphql'  => flx_gql_http_endpoint(),
 			'nonce'    => flx_admin_screen_nonce(),
 			'locale'   => get_user_locale(),
 			'siteName' => get_bloginfo( 'name' ),
@@ -848,7 +849,7 @@ function flx_admin_screen_print_routes( string $current, string $el ): void {
 		'current' => $current,
 		'el'      => $el,
 		'admin'   => admin_url(),
-		'graphql' => function_exists( 'graphql_get_endpoint_url' ) ? (string) graphql_get_endpoint_url() : trailingslashit( home_url() ) . 'graphql',
+		'graphql' => flx_gql_http_endpoint(),
 		'nonce'   => flx_admin_screen_nonce(),
 		'routes'  => (object) $routes,
 		'i18n'    => array(

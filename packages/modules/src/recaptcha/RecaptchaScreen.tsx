@@ -9,15 +9,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxRecaptchaKeysTest, FlxRecaptchaScreen, FlxRecaptchaSettingsUpdate } from '@fluxwp/graphql/operations';
-import type {
-  FlxRecaptchaDomain,
-  FlxRecaptchaSettingsUpdateInput,
-  FlxRecaptchaFormGroup,
-  FlxRecaptchaScreenQuery,
-  FlxRecaptchaSize,
-  FlxRecaptchaTheme,
-  FlxRecaptchaVersion,
-} from '@fluxwp/graphql/types';
+import type { FlxRecaptchaDomain, FlxRecaptchaSettingsUpdateInput, FlxRecaptchaFormGroup, FlxRecaptchaScreenQuery, FlxRecaptchaSize, FlxRecaptchaTheme, FlxRecaptchaVersion } from '@fluxwp/graphql/types';
 import { Icon, Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
@@ -141,7 +133,12 @@ function Recaptcha() {
   const keysTest = useFlxMutation(FlxRecaptchaKeysTest);
 
   if (q.isLoading || (!draft && !q.isError)) return <Loading />;
-  if (q.isError || !q.data || !draft) return <div className="flxrc-app"><div className="flxrc-notice is-bad">{q.error?.message || t('The action could not be completed.')}</div></div>;
+  if (q.isError || !q.data || !draft)
+    return (
+      <div className="flxrc-app">
+        <div className="flxrc-notice is-bad">{q.error?.message || t('The action could not be completed.')}</div>
+      </div>
+    );
 
   const d = q.data;
   const s = d.flxRecaptchaSettings;
@@ -274,8 +271,13 @@ function Recaptcha() {
         : { value: t('Awaiting test'), cls: 'is-warn', hint: t('Test your keys') };
 
   return (
-    <Screen className="flxrc-app" width="md" icon={host.appIcon} title={t('reCAPTCHA')} subtitle={t('Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect.')}>
-
+    <Screen
+      className="flxrc-app"
+      width="md"
+      icon={host.appIcon}
+      title={t('reCAPTCHA')}
+      subtitle={t('Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect.')}
+    >
       {notice && (
         <div className={'flxrc-notice is-' + (notice.kind === 'success' ? 'ok' : notice.kind === 'warn' ? 'warn' : 'bad')} role={notice.kind === 'error' ? 'alert' : 'status'}>
           <Icon name={notice.kind === 'success' ? 'check' : 'warning'} size={16} />
@@ -293,8 +295,7 @@ function Recaptcha() {
       ) : (
         st.state === 'AWAITING_TEST' && (
           <Callout kind="info" icon="info">
-            <strong>{t('Protection is not running yet.')}</strong>{' '}
-            {t('Enter your keys and press "Test". No form is checked until the test passes, so a wrong key can never lock you out of the login screen.')}
+            <strong>{t('Protection is not running yet.')}</strong> {t('Enter your keys and press "Test". No form is checked until the test passes, so a wrong key can never lock you out of the login screen.')}
           </Callout>
         )
       )}
@@ -306,10 +307,10 @@ function Recaptcha() {
       )}
 
       <div className="flxrc-kpis">
-        <Kpi icon="shield" label={t('Protection')} value={stateCard.value} hint={stateCard.hint} cls={stateCard.cls} />
-        <Kpi icon="check" label={t('Protected forms')} value={t('%1$s / %2$s', st.formsOn.toLocaleString(i18n.language), st.formsAvailable.toLocaleString(i18n.language))} hint={t('forms of installed plugins')} />
+        <Kpi icon="shield-check" label={t('Protection')} value={stateCard.value} hint={stateCard.hint} cls={stateCard.cls} />
+        <Kpi icon="list-checks" label={t('Protected forms')} value={t('%1$s / %2$s', st.formsOn.toLocaleString(i18n.language), st.formsAvailable.toLocaleString(i18n.language))} hint={t('forms of installed plugins')} />
         <Kpi icon="user" label={t('Passed')} value={st.passed.toLocaleString(i18n.language)} hint={t('last 30 days')} />
-        <Kpi icon="warning" label={t('Blocked')} value={st.blocked.toLocaleString(i18n.language)} hint={t('last 30 days')} cls={st.blocked ? 'is-warn' : ''} />
+        <Kpi icon="bot" label={t('Blocked')} value={st.blocked.toLocaleString(i18n.language)} hint={t('last 30 days')} cls={st.blocked ? 'is-warn' : ''} />
       </div>
 
       <form onSubmit={submit}>
@@ -317,7 +318,7 @@ function Recaptcha() {
           <section className="flxrc-card" id="flxrc-keys">
             <div className="flxrc-card__head">
               <h2>
-                <Icon name="lock" size={16} />
+                <Icon name="key-plain" size={16} />
                 {t('Keys')}
               </h2>
               {s.keysVerified ? (
@@ -330,7 +331,11 @@ function Recaptcha() {
               )}
             </div>
             <p className="flxrc-muted">
-              <Linked text={t('Get your keys <a>from the Google reCAPTCHA console</a>: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry.')} href="https://www.google.com/recaptcha/admin/create" external />
+              <Linked
+                text={t('Get your keys <a>from the Google reCAPTCHA console</a>: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry.')}
+                href="https://www.google.com/recaptcha/admin/create"
+                external
+              />
             </p>
             <fieldset className="flxrc-choice">
               <legend className="flxrc-sr">{t('reCAPTCHA type')}</legend>
@@ -382,6 +387,7 @@ function Recaptcha() {
             <div className="flxrc-test">
               <div className="flxrc-test__row">
                 <button type="button" className="flxrc-btn is-primary" disabled={testing || keysTest.isPending} onClick={() => void runTest()}>
+                  <Icon name="play" size={14} />
                   {t('Test and save')}
                 </button>
                 <span className="flxrc-muted">{t('Runs a real check with Google; if it passes, the keys are saved and protection turns on.')}</span>
@@ -399,7 +405,7 @@ function Recaptcha() {
           <section className="flxrc-card flxrc-span-2" id="flxrc-forms">
             <div className="flxrc-card__head">
               <h2>
-                <Icon name="check" size={16} />
+                <Icon name="list-checks" size={16} />
                 {t('Protected forms')}
               </h2>
               <span className="flxrc-muted">{t('Last 30 days: passed / blocked')}</span>
@@ -429,7 +435,7 @@ function Recaptcha() {
           <section className="flxrc-card flxrc-span-3" id="flxrc-settings">
             <div className="flxrc-card__head">
               <h2>
-                <Icon name="settings" size={16} />
+                <Icon name="sliders" size={16} />
                 {t('Settings')}
               </h2>
             </div>
@@ -472,10 +478,25 @@ function Recaptcha() {
               </label>
             </div>
             <div className="flxrc-checks">
-              <Check checked={draft.skipLoggedIn} onChange={(v) => edit({ skipLoggedIn: v })} label={t('Skip signed-in users')} help={t('Members are not checked on comments, checkout, donations and forms. Login and registration forms are always protected.')} />
-              <Check checked={draft.failOpen} onChange={(v) => edit({ failOpen: v })} label={t('Let submissions through if Google is unreachable')} help={t('Recommended. When off, no protected form can be sent during a Google outage (admin login included).')} />
+              <Check
+                checked={draft.skipLoggedIn}
+                onChange={(v) => edit({ skipLoggedIn: v })}
+                label={t('Skip signed-in users')}
+                help={t('Members are not checked on comments, checkout, donations and forms. Login and registration forms are always protected.')}
+              />
+              <Check
+                checked={draft.failOpen}
+                onChange={(v) => edit({ failOpen: v })}
+                label={t('Let submissions through if Google is unreachable')}
+                help={t('Recommended. When off, no protected form can be sent during a Google outage (admin login included).')}
+              />
               {draft.version === 'V3' && (
-                <Check checked={draft.hideBadge} onChange={(v) => edit({ hideBadge: v })} label={t('Hide the v3 badge')} help={t('The reCAPTCHA badge in the bottom corner is hidden; the notice Google requires is added under protected forms.')} />
+                <Check
+                  checked={draft.hideBadge}
+                  onChange={(v) => edit({ hideBadge: v })}
+                  label={t('Hide the v3 badge')}
+                  help={t('The reCAPTCHA badge in the bottom corner is hidden; the notice Google requires is added under protected forms.')}
+                />
               )}
             </div>
             <label className="flxrc-ips">
@@ -568,6 +589,7 @@ function Linked({ text, href, external = false }: { text: string; href: string; 
       {m[1]}
       <a href={href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
         {m[2]}
+        {external && <Icon name="external" size={12} />}
       </a>
       {m[3]}
     </>

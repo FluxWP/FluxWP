@@ -475,6 +475,14 @@ type FlxCertificateProviderOption {
   name: String!
 }
 
+"""The connection to send one channel with."""
+input FlxCertificateProviderPick {
+  """Channel."""
+  channel: FlxCertificateChannel!
+  """Provider id. 0 is the channel default."""
+  id: Int!
+}
+
 """Filters for the records screen."""
 type FlxCertificateRecordsMeta {
   """The viewer may use bulk send."""
@@ -513,6 +521,10 @@ input FlxCertificateSendInput {
   clientMutationId: String
   """Certificate ID."""
   id: Int!
+  """Connection to use per channel. A missing channel uses its default."""
+  providers: [FlxCertificateProviderPick!]
+  """Where the send started: manual (default) or create."""
+  source: String
 }
 
 """The payload for the flxCertificateSend mutation."""
@@ -647,6 +659,8 @@ type FlxCertificateTemplateOption {
   id: Int!
   """Name."""
   name: String!
+  """Preview image URL. Empty until the template is saved once."""
+  thumb: String!
 }
 
 """Input for the flxCertificateUpdate mutation."""

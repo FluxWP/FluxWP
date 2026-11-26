@@ -1,5 +1,8 @@
 # Flux Wiki
 
+## 0.5.0
+- wp-admin "Wiki ayarları" sayfası klasik sayfayla birebir: başlık ve alt başlık, "Yeni sayfa" WordPress düzenleyicisine gider, form içinde Genel / Görünüm / AI sekmeleri, form-table alanları, altında Adresler ve Hazır rehberler panelleri, WordPress bildirimleri. Sayfa listesi ve düzenleyici FluxWP uygulamasında aynen kalır.
+
 ## 0.4.3
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

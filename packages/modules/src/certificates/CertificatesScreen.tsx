@@ -1,46 +1,33 @@
-// Records, new certificate and people. Same screens in wp-admin; reads and writes go through
-// plugins/flx-certificates/graphql/operations. Pages that have not moved stay on the classic UI.
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import { Screen } from '@fluxwp/ui';
+// Records, new certificate and people: the classic pages' layout (page-certificates.php, page-create.php,
+// page-people.php) with the classic markup, so the plugin's assets/css/admin.css styles them as before.
+// Reads and writes go through plugins/flx-certificates/graphql/operations. The other pages are PHP islands.
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { ListBar, ListPages, Screen, listPerPage } from '@fluxwp/ui';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
-import type { ApiClient } from '@fluxwp/core';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxCan, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import {
-  FlxCertificateAttachFiles,
   FlxCertificateBulk,
-  FlxCertificateCreate,
-  FlxCertificateCreateConfig,
   FlxCertificateDirectory,
-  FlxCertificateOne,
   FlxCertificatePerson,
   FlxCertificatePersonDelete,
   FlxCertificatePersonMessages,
   FlxCertificatePersonSave,
   FlxCertificateRecords,
   FlxCertificateSend,
-  FlxCertificateSendTo,
   FlxCertificateSetReferrer,
   FlxCertificateSetStatus,
-  FlxCertificateUpdate,
 } from '@fluxwp/graphql/operations';
-import type {
-  FlxCertificateBulkAction,
-  FlxCertificateChannel,
-  FlxCertificateCreateConfigQuery,
-  FlxCertificateDirectoryQuery,
-  FlxCertificateFilterInput,
-  FlxCertificateRecordsQuery,
-  FlxCertificateStatus,
-} from '@fluxwp/graphql/types';
+import type { FlxCertificateBulkAction, FlxCertificateDirectoryQuery, FlxCertificateFilterInput, FlxCertificateRecordsQuery, FlxCertificateStatus } from '@fluxwp/graphql/types';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
-import { bytesToBlob, ensureRenderer, mergePdfs, type FlxsRenderApi } from './render';
+import { Create } from './Create';
+import { CHANNEL_ICON, Forward, ask, HeadActions, HeadCtx, Modal, SlotCtx, admin, useHead, type Head, type Notice } from './shared';
 import './certificates.css';
 
 type Island = 'dashboard' | 'events' | 'queue' | 'bulk' | 'templates' | 'logs' | 'settings' | 'system';
-type Route = { page: 'records' } | { page: 'new'; id?: number } | { page: 'people' } | { page: 'add' } | { page: 'person'; id: number } | { page: Island };
+type Route = { page: 'records'; person?: number } | { page: 'new'; id?: number } | { page: 'people' } | { page: 'add' } | { page: 'person'; id: number } | { page: Island };
 
 /** PHP pages the screen shows under its header (flux-ui.php prints the open one hidden): wp-admin slug. */
 const ISLANDS: Record<Island, string> = {
@@ -65,9 +52,7 @@ const ISLAND_LABELS: Record<Island, string> = {
 };
 const isIsland = (p: string): p is Island => p in ISLANDS;
 type Row = FlxCertificateRecordsQuery['flxCertificates']['nodes'][number];
-type Meta = FlxCertificateRecordsQuery['flxCertificateRecordsMeta'];
 type PersonRow = FlxCertificateDirectoryQuery['flxCertificateDirectory']['nodes'][number];
-type Notice = { kind: 'ok' | 'err'; text: string };
 
 interface ListFilter {
   search: string;
@@ -76,9 +61,10 @@ interface ListFilter {
   template: string;
   ref: string;
   by: string;
+  person: number;
 }
 
-const emptyFilter = (): ListFilter => ({ search: '', status: '', event: '', template: '', ref: '', by: '' });
+const emptyFilter = (person = 0): ListFilter => ({ search: '', status: '', event: '', template: '', ref: '', by: '', person });
 
 function routeOf(start?: string): Route {
   if (start === 'new') return { page: 'new' };
@@ -86,6 +72,7 @@ function routeOf(start?: string): Route {
   if (start === 'people') return { page: 'people' };
   if (start === 'people:add') return { page: 'add' };
   if (start?.startsWith('person:')) return { page: 'person', id: Number(start.slice(7)) || 0 };
+  if (start?.startsWith('records:')) return { page: 'records', person: Number(start.slice(8)) || undefined };
   if (start && isIsland(start)) return { page: start };
   return { page: 'records' };
 }
@@ -98,13 +85,12 @@ function toFilter(f: ListFilter): FlxCertificateFilterInput {
   if (f.template) out.templateId = Number(f.template);
   if (f.ref !== '') out.referrerId = Number(f.ref);
   if (f.by) out.createdBy = Number(f.by);
+  if (f.person) out.personId = f.person;
   return out;
 }
 
-function admin(base: string | undefined, query: string): string {
-  const root = (base || '').replace(/\/?$/, '/');
-  return root + 'admin.php?' + query;
-}
+/** Cursor of the row before an offset (flx_gql_cursor). */
+const afterOf = (offset: number) => (offset > 0 ? btoa('flxo:' + (offset - 1)) : null);
 
 function bulkChannel(value: string): string {
   if (value === 'whatsapp') return 'whatsapp';
@@ -134,6 +120,9 @@ function Certificates() {
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
   const [route, setRoute] = useState<Route>(() => routeOf(host.startPage));
   const [notice, setNotice] = useState<Notice | null>(null);
+  const [slot, setSlot] = useState<HTMLDivElement | null>(null);
+  const [head, setHeadState] = useState<Head>({});
+  const setHead = useCallback((h: Head) => setHeadState((cur) => (cur.title === h.title && cur.sub === h.sub ? cur : h)), []);
   // The island tabs this user has (wp-admin only; flux-ui.php lists them on the page).
   const islands = useMemo<Island[]>(() => {
     try {
@@ -150,46 +139,60 @@ function Certificates() {
     if (island && host.mode === 'wp' && !document.querySelector(`[data-flxs-island="${island}"]`)) location.assign(admin(host.adminUrl, 'page=' + ISLANDS[island]));
   }, [island, host.mode, host.adminUrl]);
   const tab = route.page === 'add' || route.page === 'person' ? 'people' : route.page;
-  const tabs = [
-    { id: 'records', label: t('Certificates') },
-    { id: 'new', label: t('New certificate') },
-    { id: 'people', label: t('People') },
-    ...islands.map((i) => ({ id: i as string, label: t(ISLAND_LABELS[i]) })),
-  ];
+  const tabs = [{ id: 'records', label: t('Certificates') }, { id: 'new', label: t('New certificate') }, { id: 'people', label: t('People') }, ...islands.map((i) => ({ id: i as string, label: t(ISLAND_LABELS[i]) }))];
   const go = (id: string) => {
     setNotice(null);
     if (isIsland(id)) host.openUrl(admin(host.adminUrl, 'page=' + ISLANDS[id]));
     else setRoute(id === 'new' ? { page: 'new' } : id === 'people' ? { page: 'people' } : { page: 'records' });
   };
+  const open = (r: Route) => {
+    setNotice(null);
+    setRoute(r);
+    window.scrollTo({ top: 0 });
+  };
   return (
-    <Screen<string>
-      className="flxs-app"
-      width="wide"
-      icon={host.appIcon}
-      title={t('Certificates')}
-      notice={
-        notice ? (
-          <div className={'flxs-notice' + (notice.kind === 'err' ? ' is-error' : '')}>
-            {notice.text} <button type="button" onClick={() => setNotice(null)}>{t('Close')}</button>
+    <HeadCtx.Provider value={setHead}>
+      <SlotCtx.Provider value={slot}>
+        <Screen<string>
+          className="flxs-app"
+          width="wide"
+          icon={host.appIcon}
+          title={head.title || t('Certificates')}
+          subtitle={head.sub || undefined}
+          actions={<div className="flxs-head__actions" ref={setSlot} />}
+          notice={
+            notice ? (
+              <div className={'flxs-notice' + (notice.kind === 'err' ? ' is-error' : '')}>
+                {notice.text}{' '}
+                <button type="button" className="button-link" onClick={() => setNotice(null)}>
+                  {t('Close')}
+                </button>
+              </div>
+            ) : null
+          }
+          tabs={tabs}
+          tab={tab}
+          onTab={go}
+        >
+          <div className="flxs-wrap flx-raw">
+            {island ? <IslandNode id={island} slot={slot} onHead={setHead} /> : null}
+            {route.page === 'records' && <Records key={route.person ?? 0} t={t} tn={tn} person={route.person} onNotice={setNotice} onEdit={(id) => open({ page: 'new', id })} onNew={() => open({ page: 'new' })} />}
+            {route.page === 'new' && <Create key={route.id ?? 0} t={t} id={route.id} onNotice={setNotice} onNew={() => open({ page: 'new' })} />}
+            {route.page === 'people' && <People t={t} onNotice={setNotice} onOpen={(id) => open({ page: 'person', id })} onAdd={() => open({ page: 'add' })} onCerts={(id) => open({ page: 'records', person: id })} />}
+            {route.page === 'add' && <AddPerson t={t} onNotice={setNotice} onSaved={(id) => open({ page: 'person', id })} />}
+            {route.page === 'person' && <PersonDetail t={t} id={route.id} onNotice={setNotice} onBack={() => open({ page: 'people' })} onCert={() => open({ page: 'new' })} />}
           </div>
-        ) : null
-      }
-      tabs={tabs}
-      tab={tab}
-      onTab={go}
-    >
-      {island ? <IslandNode id={island} /> : null}
-      {route.page === 'records' && <Records t={t} tn={tn} onNotice={setNotice} onEdit={(id) => setRoute({ page: 'new', id })} onNew={() => setRoute({ page: 'new' })} onPerson={(id) => setRoute({ page: 'person', id })} />}
-      {route.page === 'new' && <Create t={t} id={route.id} onNotice={setNotice} onDone={() => setRoute({ page: 'records' })} />}
-      {route.page === 'people' && <People t={t} onNotice={setNotice} onOpen={(id) => setRoute({ page: 'person', id })} onAdd={() => setRoute({ page: 'add' })} />}
-      {route.page === 'add' && <PersonForm t={t} onNotice={setNotice} onSaved={(id) => setRoute({ page: 'person', id })} />}
-      {route.page === 'person' && <PersonDetail t={t} id={route.id} onNotice={setNotice} onBack={() => setRoute({ page: 'people' })} onCert={() => setRoute({ page: 'new' })} />}
-    </Screen>
+        </Screen>
+      </SlotCtx.Provider>
+    </HeadCtx.Provider>
   );
 }
 
-/** Moves the page's hidden island (flux-ui.php) into the screen while it is open. */
-function IslandNode({ id }: { id: string }) {
+/**
+ * Moves the page's hidden island (flux-ui.php) into the screen while it is open. Its header
+ * (flxs_admin_header: title, subtitle, buttons) goes to the screen header, as on the classic page.
+ */
+function IslandNode({ id, slot, onHead }: { id: string; slot: HTMLElement | null; onHead: (h: Head) => void }) {
   const ref = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const el = document.querySelector<HTMLElement>(`[data-flxs-island="${CSS.escape(id)}"]`);
@@ -197,22 +200,57 @@ function IslandNode({ id }: { id: string }) {
     const box = ref.current;
     if (!el || !box) return;
     box.appendChild(el);
+    const hd = el.querySelector<HTMLElement>('.flxs-head--island');
+    const acts = hd?.querySelector<HTMLElement>('.flxs-head__actions') ?? null;
+    if (hd) onHead({ title: hd.dataset.title || undefined, sub: hd.dataset.sub || undefined });
+    if (acts && slot) slot.appendChild(acts);
     return () => {
+      if (acts && hd && acts.parentElement !== hd) hd.appendChild(acts);
       if (home && el.parentElement === box) home.appendChild(el);
     };
-  }, [id]);
+  }, [id, slot, onHead]);
   return <div ref={ref} className="flxs-islandslot" />;
 }
 
-function Records({ t, tn, onNotice, onEdit, onNew, onPerson }: { t: Translate; tn: (a: string, b: string, n: number) => string; onNotice: (n: Notice) => void; onEdit: (id: number) => void; onNew: () => void; onPerson: (id: number) => void }) {
+/** One action in the classic "Actions" menu: a link, as page-certificates.php printed it. */
+function MenuAction({ onClick, children }: { onClick: () => void; children: string }) {
+  return (
+    <a
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+        (e.currentTarget.closest('details') as HTMLDetailsElement | null)?.removeAttribute('open');
+        onClick();
+      }}
+    >
+      {children}
+    </a>
+  );
+}
+
+function Records({
+  t,
+  tn,
+  person,
+  onNotice,
+  onEdit,
+  onNew,
+}: {
+  t: Translate;
+  tn: (a: string, b: string, n: number) => string;
+  person?: number;
+  onNotice: (n: Notice) => void;
+  onEdit: (id: number) => void;
+  onNew: () => void;
+}) {
   const host = useHost();
   const qc = useQueryClient();
   const { scope } = useGraphQL();
   const canManageCap = useFlxCan('flxs_manage');
-  const [draft, setDraft] = useState<ListFilter>(emptyFilter);
-  const [applied, setApplied] = useState<ListFilter>(emptyFilter);
-  const [after, setAfter] = useState<string | null>(null);
-  const [stack, setStack] = useState<Array<string | null>>([null]);
+  const [draft, setDraft] = useState<ListFilter>(() => emptyFilter(person));
+  const [applied, setApplied] = useState<ListFilter>(() => emptyFilter(person));
+  const [per, setPer] = useState(() => listPerPage('flxs-certs', 20));
+  const [page, setPage] = useState(1);
   const [picked, setPicked] = useState<number[]>([]);
   const [action, setAction] = useState<FlxCertificateBulkAction | ''>('');
   const [eventId, setEventId] = useState(0);
@@ -220,22 +258,31 @@ function Records({ t, tn, onNotice, onEdit, onNew, onPerson }: { t: Translate; t
   const [forward, setForward] = useState<Row | null>(null);
   const [refRow, setRefRow] = useState<Row | null>(null);
   const filter = useMemo(() => toFilter(applied), [applied]);
-  const q = useFlxQuery(FlxCertificateRecords, { first: 20, after, filter });
+  const q = useFlxQuery(FlxCertificateRecords, { first: per, after: afterOf((page - 1) * per), filter }, { placeholderData: (old) => old });
   const bulk = useFlxMutation(FlxCertificateBulk);
   const status = useFlxMutation(FlxCertificateSetStatus);
   const referrer = useFlxMutation(FlxCertificateSetReferrer);
   const send = useFlxMutation(FlxCertificateSend);
   const data = q.data;
-  const meta: Meta | undefined = data?.flxCertificateRecordsMeta;
+  const meta = data?.flxCertificateRecordsMeta;
   const rows = data?.flxCertificates.nodes ?? [];
+  const total = data?.flxCertificates.totalCount ?? 0;
   const refresh = () => qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxCertificateRecords) });
+  useHead(t('Certificates'));
+  const apply = (next: ListFilter) => {
+    setDraft(next);
+    setApplied(next);
+    setPage(1);
+    setPicked([]);
+  };
+  const more = (applied.template ? 1 : 0) + (applied.ref !== '' ? 1 : 0) + (applied.by ? 1 : 0);
 
   const applyBulk = async () => {
     if (!picked.length || !action) {
       onNotice({ kind: 'err', text: t('Nothing selected.') });
       return;
     }
-    if (!window.confirm(t('Apply to the selected items?'))) return;
+    if (!(await ask(t('Apply to the selected items?')))) return;
     const res = await bulk.mutateAsync({ input: { ids: picked, action, eventId, referrerId } });
     const payload = res.flxCertificateBulk;
     if (payload?.errors.length) {
@@ -248,587 +295,595 @@ function Records({ t, tn, onNotice, onEdit, onNew, onPerson }: { t: Translate; t
     }
     onNotice({ kind: 'ok', text: payload?.queued ? t('Queued.') : t('Updated.') });
     setPicked([]);
-    refresh();
+    void refresh();
   };
 
   const setStat = async (row: Row, next: FlxCertificateStatus) => {
-    if (next === 'REVOKED' && !window.confirm(t('Revoke this certificate? The link will show "revoked".'))) return;
+    const msg = t('Revoke this certificate? The link will show "revoked".');
+    if (next === 'REVOKED' && !(await ask(msg, true))) return;
     const res = await status.mutateAsync({ input: { id: row.databaseId, status: next } });
     if (res.flxCertificateSetStatus?.errors.length) onNotice({ kind: 'err', text: res.flxCertificateSetStatus.errors.map((e) => e.message).join(' ') });
-    else refresh();
+    else void refresh();
   };
+  const quick = (row: Row, ch: 'WHATSAPP' | 'SMS' | 'EMAIL') =>
+    void send.mutateAsync({ input: { id: row.databaseId, channels: [ch] } }).then((res) => {
+      const p = res.flxCertificateSend;
+      const bad = p?.results.find((r) => !r.ok);
+      if (p?.errors.length || bad) onNotice({ kind: 'err', text: p?.errors.map((e) => e.message).join(' ') || bad?.message || '' });
+      else onNotice({ kind: 'ok', text: t('Queued.') });
+      void refresh();
+    });
 
   return (
-    <div>
-      <div className="flxs-acts" style={{ marginBottom: 12 }}>
-        {meta?.exportUrl && <a className="flxs-btn" href={meta.exportUrl}>{t('Download Excel')}{data?.flxCertificates.totalCount ? ` (${data.flxCertificates.totalCount})` : ''}</a>}
-        <button type="button" className="is-primary" onClick={onNew}>+ {t('New certificate')}</button>
-      </div>
-      <form className="flxs-filters" onSubmit={(e) => { e.preventDefault(); setAfter(null); setStack([null]); setApplied(draft); }}>
-        <input type="search" value={draft.search} placeholder={t('Name, phone, email, certificate no…')} onChange={(e) => setDraft({ ...draft, search: e.target.value })} />
-        <select aria-label={t('Status')} value={draft.status} onChange={(e) => setDraft({ ...draft, status: e.target.value as ListFilter['status'] })}>
-          <option value="">{t('All statuses')}</option>
-          <option value="ACTIVE">{t('Valid')}</option>
-          <option value="REVOKED">{t('Cancelled')}</option>
-        </select>
-        <select aria-label={t('Event')} value={draft.event} onChange={(e) => setDraft({ ...draft, event: e.target.value })}>
-          <option value="">{t('All events')}</option>
-          <option value="0">{t('No event (%d)', meta?.noEventCount ?? 0)}</option>
-          {meta?.events.map((ev) => <option key={ev.id} value={ev.id}>{ev.name}{ev.status === 'CLOSED' ? ' · ' + t('archived') : ''} ({ev.count ?? 0})</option>)}
-        </select>
-        <select aria-label={t('Template')} value={draft.template} onChange={(e) => setDraft({ ...draft, template: e.target.value })}>
-          <option value="">{t('All templates')}</option>
-          {meta?.templates.map((tp) => <option key={tp.id} value={tp.id}>{tp.name}</option>)}
-        </select>
-        <select aria-label={t('Referrer')} value={draft.ref} onChange={(e) => setDraft({ ...draft, ref: e.target.value })}>
-          <option value="">{t('All referrers')}</option>
-          <option value="0">{t('No referrer (%d)', meta?.noReferrerCount ?? 0)}</option>
-          {meta?.referrers.map((u) => <option key={u.id} value={u.id}>{u.name} ({u.count ?? 0})</option>)}
-        </select>
-        {!meta?.scoped && (
-          <select aria-label={t('Created by: anyone')} value={draft.by} onChange={(e) => setDraft({ ...draft, by: e.target.value })}>
-            <option value="">{t('Created by: anyone')}</option>
-            {meta?.referrers.map((u) => <option key={u.id} value={u.id}>{u.name}</option>)}
+    <>
+      <HeadActions>
+        {meta?.exportUrl ? (
+          <a href={meta.exportUrl} className="button flxs-export">
+            {t('Download Excel')}
+            {total ? ` (${new Intl.NumberFormat(document.documentElement.lang || undefined).format(total)})` : ''}
+          </a>
+        ) : null}{' '}
+        <a
+          href="#"
+          className="button button-primary"
+          onClick={(e) => {
+            e.preventDefault();
+            onNew();
+          }}
+        >
+          + {t('New certificate')}
+        </a>
+      </HeadActions>
+      <ListBar
+        id="flxs-certs"
+        className="flxs-filters"
+        onSubmit={() => apply(draft)}
+        onClear={more || applied.search || applied.status || applied.event !== '' ? () => apply(emptyFilter(person)) : undefined}
+        moreActive={more}
+        search={<input type="search" value={draft.search} placeholder={t('Name, phone, email, certificate no…')} onChange={(e) => setDraft({ ...draft, search: e.target.value })} />}
+        primary={
+          <>
+            <select aria-label={t('Status')} value={draft.status} onChange={(e) => apply({ ...draft, status: e.target.value as ListFilter['status'] })}>
+              <option value="">{t('All statuses')}</option>
+              <option value="ACTIVE">{t('Valid')}</option>
+              <option value="REVOKED">{t('Cancelled')}</option>
+            </select>
+            <select aria-label={t('Event')} value={draft.event} onChange={(e) => apply({ ...draft, event: e.target.value })}>
+              <option value="">{t('All events')}</option>
+              <option value="0">{t('No event (%d)', meta?.noEventCount ?? 0)}</option>
+              {meta?.events.map((ev) => (
+                <option key={ev.id} value={ev.id}>
+                  {ev.name}
+                  {ev.status === 'CLOSED' ? ' · ' + t('archived') : ''} ({ev.count ?? 0})
+                </option>
+              ))}
+            </select>
+          </>
+        }
+        more={
+          <>
+            <select aria-label={t('Template')} value={draft.template} onChange={(e) => apply({ ...draft, template: e.target.value })}>
+              <option value="">{t('All templates')}</option>
+              {meta?.templates.map((tp) => (
+                <option key={tp.id} value={tp.id}>
+                  {tp.name}
+                </option>
+              ))}
+            </select>
+            <select aria-label={t('Referrer')} value={draft.ref} onChange={(e) => apply({ ...draft, ref: e.target.value })}>
+              <option value="">{t('All referrers')}</option>
+              <option value="0">{t('No referrer (%d)', meta?.noReferrerCount ?? 0)}</option>
+              {meta?.referrers.map((u) => (
+                <option key={u.id} value={u.id}>
+                  {u.name} ({u.count ?? 0})
+                </option>
+              ))}
+            </select>
+            {!meta?.scoped && (
+              <select aria-label={t('Created by')} value={draft.by} onChange={(e) => apply({ ...draft, by: e.target.value })}>
+                <option value="">{t('Created by: anyone')}</option>
+                {meta?.referrers.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.name}
+                  </option>
+                ))}
+              </select>
+            )}
+          </>
+        }
+      />
+      <form className={picked.length ? 'flxs-has-sel' : undefined} onSubmit={(e) => e.preventDefault()}>
+        <div className="flxs-bulkbar">
+          <select value={action} onChange={(e) => setAction(e.target.value as FlxCertificateBulkAction | '')}>
+            <option value="">{t('Bulk actions…')}</option>
+            <option value="SEND_WHATSAPP">{t('Send via WhatsApp')}</option>
+            <option value="SEND_SMS">{t('Send via SMS')}</option>
+            <option value="SEND_EMAIL">{t('Send via email')}</option>
+            <option value="REVOKE">{t('Revoke')}</option>
+            <option value="RESTORE">{t('Make valid')}</option>
+            <option value="EVENT">{t('Assign to event…')}</option>
+            <option value="REFERRER">{t('Assign referrer…')}</option>
+            {(meta?.canManage || canManageCap) && <option value="DELETE">{t('Delete permanently')}</option>}
           </select>
-        )}
-        <button type="submit">{t('Filter')}</button>
-      </form>
-      <div className="flxs-bulk">
-        <select value={action} onChange={(e) => setAction(e.target.value as FlxCertificateBulkAction | '')}>
-          <option value="">{t('Bulk actions…')}</option>
-          <option value="SEND_WHATSAPP">{t('Send via WhatsApp')}</option>
-          <option value="SEND_SMS">{t('Send via SMS')}</option>
-          <option value="SEND_EMAIL">{t('Send via email')}</option>
-          <option value="REVOKE">{t('Revoke')}</option>
-          <option value="RESTORE">{t('Make valid')}</option>
-          <option value="EVENT">{t('Assign to event…')}</option>
-          <option value="REFERRER">{t('Assign referrer…')}</option>
-          {(meta?.canManage || canManageCap) && <option value="DELETE">{t('Delete permanently')}</option>}
-        </select>
-        {action === 'EVENT' && (
-          <select value={eventId} onChange={(e) => setEventId(Number(e.target.value))}>
-            <option value={0}>{t('— No event —')}</option>
-            {meta?.events.filter((ev) => ev.status === 'OPEN').map((ev) => <option key={ev.id} value={ev.id}>{ev.name}</option>)}
-          </select>
-        )}
-        {action === 'REFERRER' && (
-          <select value={referrerId} onChange={(e) => setReferrerId(Number(e.target.value))}>
-            <option value={0}>{t('— No referrer —')}</option>
-            {meta?.referrers.map((u) => <option key={u.id} value={u.id}>{u.name}</option>)}
-          </select>
-        )}
-        <button type="button" onClick={() => void applyBulk()}>{t('Apply')}</button>
-      </div>
-      {q.isError && <p className="flxs-notice is-error">{q.error.message}</p>}
-      <table className="flxs-table">
-        <thead>
-          <tr>
-            <th className="check"><input type="checkbox" checked={rows.length > 0 && picked.length === rows.length} onChange={(e) => setPicked(e.target.checked ? rows.map((r) => r.databaseId) : [])} /></th>
-            <th>{t('Certificate')}</th><th>{t('Person')}</th><th>{t('Event / Template')}</th><th>{t('Deliveries')}</th><th>{t('Referrer / Created by')}</th><th>{t('Status')}</th><th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {!rows.length && !q.isLoading && (
-            <tr><td colSpan={8} className="flxs-empty">{t('No certificates yet.')} <button type="button" onClick={onNew}>{t('Create the first certificate')}</button></td></tr>
+          {action === 'EVENT' && (
+            <select value={eventId} onChange={(e) => setEventId(Number(e.target.value))}>
+              <option value={0}>{t('— No event —')}</option>
+              {meta?.events
+                .filter((ev) => ev.status === 'OPEN')
+                .map((ev) => (
+                  <option key={ev.id} value={ev.id}>
+                    {ev.name}
+                  </option>
+                ))}
+            </select>
           )}
-          {rows.map((row) => {
-            const who = personBits(row);
-            const shown = row.holderName && who.name && row.holderName !== who.name;
-            return (
-              <tr key={row.id}>
-                <th className="check"><input type="checkbox" checked={picked.includes(row.databaseId)} onChange={(e) => setPicked(e.target.checked ? [...picked, row.databaseId] : picked.filter((id) => id !== row.databaseId))} /></th>
-                <td>
-                  <div className="flxs-cell">
-                    {row.imageUrl && <a href={row.pageUrl} target="_blank" rel="noreferrer"><img className="flxs-thumb" src={row.imageUrl} alt="" /></a>}
-                    <div>
-                      <strong><a href={row.pageUrl} target="_blank" rel="noreferrer">{row.number}</a></strong>
-                      <div className="flxs-mut">{row.createdAt?.label}{row.backdated ? ' ' + t('backdated') : ''} · {tn('%d view', '%d views', row.views)}</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <button type="button" onClick={() => row.person && onPerson(row.person.databaseId)}>{row.holderName || who.name}</button>
-                  {shown && <div className="flxs-mut">{t('Registered person: %s', who.name)}</div>}
-                  <div className="flxs-mut">{[who.phone, who.email].filter(Boolean).join(' · ')}</div>
-                </td>
-                <td>{row.eventName && <strong>{row.eventName}</strong>}<div className="flxs-mut">{row.templateName}</div></td>
-                <td>
-                  {!row.deliveries.length && <span className="flxs-mut">–</span>}
-                  {row.deliveries.map((d) => (
-                    <a key={d.channel} className="flxs-chip" href={admin(host.adminUrl, 'page=flxs-kuyruk&cert=' + row.databaseId)}>
-                      {d.channel} {d.sent ? d.sent + '✓' : ''}{d.waiting ? ' ' + d.waiting + '…' : ''}{d.failed ? ' ' + d.failed + '✕' : ''}
-                    </a>
-                  ))}
-                </td>
-                <td>{row.referrerName || <span className="flxs-mut">–</span>}<div className="flxs-mut">{t('created by: %s', row.createdByName)}</div></td>
-                <td><span className={'flxs-pill' + (row.status === 'REVOKED' ? ' is-off' : '')}>{row.status === 'REVOKED' ? t('Cancelled') : t('Valid')}</span></td>
-                <td>
-                  <details className="flxs-menu">
-                    <summary className="flxs-btn">{t('Actions')}</summary>
-                    <div className="flxs-menu__list">
-                      <a href={row.pageUrl} target="_blank" rel="noreferrer">{t('Open page')}</a>
-                      <button type="button" onClick={() => void navigator.clipboard.writeText(row.pageUrl).then(() => onNotice({ kind: 'ok', text: t('Copied.') }))}>{t('Copy link')}</button>
-                      {row.pdfUrl && <a href={row.pdfUrl} target="_blank" rel="noreferrer">{t('PDF')}</a>}
-                      {row.status === 'ACTIVE' && (
-                        <>
-                          <button type="button" onClick={() => void send.mutateAsync({ input: { id: row.databaseId, channels: ['WHATSAPP'] } }).then(refresh)}>{t('Send via WhatsApp')}</button>
-                          <button type="button" onClick={() => void send.mutateAsync({ input: { id: row.databaseId, channels: ['SMS'] } }).then(refresh)}>{t('Send via SMS')}</button>
-                          <button type="button" onClick={() => void send.mutateAsync({ input: { id: row.databaseId, channels: ['EMAIL'] } }).then(refresh)}>{t('Send via email')}</button>
-                          <button type="button" onClick={() => setForward(row)}>{t('Send to someone else…')}</button>
-                          {row.canEdit && <button type="button" onClick={() => setRefRow(row)}>{t('Update referrer…')}</button>}
-                        </>
-                      )}
-                      {row.canEdit && <button type="button" onClick={() => onEdit(row.databaseId)}>{t('Edit')}</button>}
-                      {row.canEdit && row.status === 'ACTIVE' && <button type="button" onClick={() => void setStat(row, 'REVOKED')}>{t('Revoke')}</button>}
-                      {row.canEdit && row.status === 'REVOKED' && <button type="button" onClick={() => void setStat(row, 'ACTIVE')}>{t('Make valid')}</button>}
-                      <a href={admin(host.adminUrl, 'page=flxs-kuyruk&cert=' + row.databaseId)}>{t('Delivery history')}</a>
-                    </div>
-                  </details>
+          {action === 'REFERRER' && (
+            <select value={referrerId} onChange={(e) => setReferrerId(Number(e.target.value))}>
+              <option value={0}>{t('— No referrer —')}</option>
+              {meta?.referrers.map((u) => (
+                <option key={u.id} value={u.id}>
+                  {u.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button type="button" className="button" onClick={() => void applyBulk()}>
+            {t('Apply')}
+          </button>
+        </div>
+        {q.isError && <p className="flxs-notice is-error">{q.error.message}</p>}
+        <table className="widefat flxs-table flxs-table--certs">
+          <thead>
+            <tr>
+              <td className="check-column">
+                <input type="checkbox" checked={rows.length > 0 && picked.length === rows.length} onChange={(e) => setPicked(e.target.checked ? rows.map((r) => r.databaseId) : [])} />
+              </td>
+              <th>{t('Certificate')}</th>
+              <th>{t('Person')}</th>
+              <th>{t('Event / Template')}</th>
+              <th>{t('Deliveries')}</th>
+              <th>{t('Referrer / Created by')}</th>
+              <th>{t('Status')}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {!rows.length && !q.isLoading && (
+              <tr>
+                <td colSpan={8} className="flxs-empty">
+                  {t('No certificates yet.')}{' '}
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNew();
+                    }}
+                  >
+                    {t('Create the first certificate')}
+                  </a>
                 </td>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <div className="flxs-acts" style={{ marginTop: 12 }}>
-        <button type="button" disabled={stack.length < 2} onClick={() => { const next = stack.slice(0, -1); setStack(next); setAfter(next[next.length - 1] ?? null); }}>{t('Previous')}</button>
-        <button type="button" disabled={!data?.flxCertificates.pageInfo.hasNextPage} onClick={() => { const cur = data?.flxCertificates.pageInfo.endCursor; if (!cur) return; setStack([...stack, cur]); setAfter(cur); }}>{t('Next')}</button>
-      </div>
-      {forward && meta && <Forward t={t} row={forward} providers={meta.providers} onClose={() => setForward(null)} onNotice={onNotice} />}
+            )}
+            {rows.map((row) => {
+              const who = personBits(row);
+              const shown = row.holderName || who.name;
+              const queue = admin(host.adminUrl, 'page=flxs-kuyruk&cert=' + row.databaseId);
+              return (
+                <tr key={row.id}>
+                  <th className="check-column">
+                    <input type="checkbox" checked={picked.includes(row.databaseId)} onChange={(e) => setPicked(e.target.checked ? [...picked, row.databaseId] : picked.filter((id) => id !== row.databaseId))} />
+                  </th>
+                  <td data-label={t('Certificate')}>
+                    <div className="flxs-cert-cell">
+                      {row.imageUrl ? (
+                        <a href={row.pageUrl} target="_blank" rel="noreferrer" className="flxs-thumb">
+                          <img src={row.imageUrl} alt="" loading="lazy" />
+                        </a>
+                      ) : null}
+                      <div>
+                        <strong>
+                          <a href={row.pageUrl} target="_blank" rel="noreferrer">
+                            {row.number}
+                          </a>
+                        </strong>
+                        <div className="flxs-muted">
+                          {row.createdAt?.short || '–'}
+                          {row.backdated ? (
+                            <>
+                              {' '}
+                              <span className="flxs-pill flxs-pill--muted">{t('backdated')}</span>
+                            </>
+                          ) : null}{' '}
+                          · {tn('%d view', '%d views', row.views)}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td data-label={t('Person')}>
+                    <a href={admin(host.adminUrl, 'page=flxs-kisiler&person=' + (row.person?.databaseId ?? 0))}>{shown}</a>
+                    {who.name && shown !== who.name ? <div className="flxs-muted">{t('Registered person: %s', who.name)}</div> : null}
+                    <div className="flxs-muted">{[who.phone, who.email].filter(Boolean).join(' · ')}</div>
+                  </td>
+                  <td data-label={t('Event')}>
+                    {row.eventName ? (
+                      <>
+                        <strong>{row.eventName}</strong>
+                        <br />
+                      </>
+                    ) : null}
+                    <span className="flxs-muted">{row.templateName}</span>
+                  </td>
+                  <td className="flxs-c-sends" data-label={t('Deliveries')}>
+                    {!row.deliveries.length && <span className="flxs-muted flxs-c-none">–</span>}
+                    {row.deliveries.map((d) => {
+                      const ch = d.channel.toLowerCase();
+                      const cls = d.failed && !d.sent ? 'failed' : d.waiting ? 'queued' : 'sent';
+                      return (
+                        <span key={d.channel}>
+                          <a className={'flxs-chip flxs-chip--' + cls} href={queue}>
+                            <span className={'dashicons ' + (CHANNEL_ICON[ch] ?? 'dashicons-format-chat')} title={ch === 'email' ? t('E-mail') : ch === 'sms' ? 'SMS' : 'WhatsApp'}></span>
+                            {d.sent ? d.sent + '✓' : ''}
+                            {d.waiting ? ' ' + d.waiting + '…' : ''}
+                            {d.failed ? ' ' + d.failed + '✕' : ''}
+                          </a>{' '}
+                        </span>
+                      );
+                    })}
+                  </td>
+                  <td className="flxs-c-ref" data-label={t('Referrer')}>
+                    {row.referrerName ? <strong>{row.referrerName}</strong> : <span className="flxs-muted flxs-c-none">–</span>}
+                    <div className="flxs-muted">{t('created by: %s', row.createdByName)}</div>
+                  </td>
+                  <td className="flxs-c-status" data-label={t('Status')}>
+                    <span className={'flxs-pill flxs-pill--' + (row.status === 'REVOKED' ? 'revoked' : 'active')}>{row.status === 'REVOKED' ? t('Cancelled') : t('Valid')}</span>
+                  </td>
+                  <td className="flxs-actions-cell">
+                    <details className="flxs-menu">
+                      <summary className="button button-small">{t('Actions')}</summary>
+                      <div className="flxs-menu__list">
+                        <a href={row.pageUrl} target="_blank" rel="noreferrer">
+                          {t('Open page')}
+                        </a>
+                        <MenuAction onClick={() => void navigator.clipboard.writeText(row.pageUrl).then(() => onNotice({ kind: 'ok', text: t('Copied.') }))}>{t('Copy link')}</MenuAction>
+                        {row.pdfUrl ? (
+                          <a href={row.pdfUrl} target="_blank" rel="noreferrer">
+                            {t('PDF')}
+                          </a>
+                        ) : null}
+                        {row.status === 'ACTIVE' && (
+                          <>
+                            <MenuAction onClick={() => quick(row, 'WHATSAPP')}>{t('Send via WhatsApp')}</MenuAction>
+                            <MenuAction onClick={() => quick(row, 'SMS')}>{t('Send via SMS')}</MenuAction>
+                            <MenuAction onClick={() => quick(row, 'EMAIL')}>{t('Send via email')}</MenuAction>
+                            <MenuAction onClick={() => setForward(row)}>{t('Send to someone else…')}</MenuAction>
+                            {row.canEdit && <MenuAction onClick={() => setRefRow(row)}>{t('Update referrer…')}</MenuAction>}
+                          </>
+                        )}
+                        {row.canEdit && <MenuAction onClick={() => onEdit(row.databaseId)}>{t('Edit')}</MenuAction>}
+                        {row.canEdit && row.status === 'ACTIVE' && <MenuAction onClick={() => void setStat(row, 'REVOKED')}>{t('Revoke')}</MenuAction>}
+                        {row.canEdit && row.status === 'REVOKED' && <MenuAction onClick={() => void setStat(row, 'ACTIVE')}>{t('Make valid')}</MenuAction>}
+                        <a href={queue}>{t('Delivery history')}</a>
+                      </div>
+                    </details>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </form>
+      <ListPages
+        id="flxs-certs"
+        total={total}
+        per={per}
+        page={page}
+        onPage={setPage}
+        onPer={(n) => {
+          setPer(n);
+          setPage(1);
+        }}
+      />
+      {forward && meta && <Forward t={t} id={forward.databaseId} providers={meta.providers} onClose={() => setForward(null)} onNotice={onNotice} />}
       {refRow && meta && (
         <Modal t={t} title={t('Update referrer…')} onClose={() => setRefRow(null)}>
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            const id = Number(new FormData(e.currentTarget).get('ref'));
-            void referrer.mutateAsync({ input: { id: refRow.databaseId, referrerId: id } }).then((res) => {
-              if (res.flxCertificateSetReferrer?.errors.length) onNotice({ kind: 'err', text: res.flxCertificateSetReferrer.errors.map((er) => er.message).join(' ') });
-              else { setRefRow(null); refresh(); }
-            });
-          }}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const id = Number(new FormData(e.currentTarget).get('ref'));
+              void referrer.mutateAsync({ input: { id: refRow.databaseId, referrerId: id } }).then((res) => {
+                if (res.flxCertificateSetReferrer?.errors.length) onNotice({ kind: 'err', text: res.flxCertificateSetReferrer.errors.map((er) => er.message).join(' ') });
+                else {
+                  setRefRow(null);
+                  void refresh();
+                }
+              });
+            }}
+          >
             <select name="ref" defaultValue={refRow.referrerId}>
               <option value={0}>{t('— No referrer —')}</option>
-              {meta.referrers.map((u) => <option key={u.id} value={u.id}>{u.name}</option>)}
+              {meta.referrers.map((u) => (
+                <option key={u.id} value={u.id}>
+                  {u.name}
+                </option>
+              ))}
             </select>
-            <button className="is-primary" type="submit">{t('Save')}</button>
+            <button className="button button-primary" type="submit">
+              {t('Save')}
+            </button>
           </form>
         </Modal>
       )}
-    </div>
+    </>
   );
 }
 
-function Forward({ t, row, providers, onClose, onNotice }: { t: Translate; row: Row; providers: Meta['providers']; onClose: () => void; onNotice: (n: Notice) => void }) {
-  const sendTo = useFlxMutation(FlxCertificateSendTo);
-  const [channel, setChannel] = useState<FlxCertificateChannel>('WHATSAPP');
-  return (
-    <Modal t={t} title={t('Send to someone else…')} onClose={onClose}>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        const fd = new FormData(e.currentTarget);
-        void sendTo.mutateAsync({
-          input: {
-            id: row.databaseId,
-            channel,
-            to: String(fd.get('to') || ''),
-            name: String(fd.get('name') || ''),
-            subject: String(fd.get('subject') || '') || undefined,
-            body: String(fd.get('body') || '') || undefined,
-            provider: Number(fd.get('provider') || 0) || undefined,
-            save: fd.get('save') === 'on',
-          },
-        }).then((res) => {
-          const errs = res.flxCertificateSendTo?.errors ?? [];
-          const bad = res.flxCertificateSendTo?.results.find((r) => !r.ok);
-          if (errs.length || bad) onNotice({ kind: 'err', text: errs.map((er) => er.message).join(' ') || bad?.message || '' });
-          else { onNotice({ kind: 'ok', text: t('Queued.') }); onClose(); }
-        });
-      }}>
-        <select value={channel} onChange={(e) => setChannel(e.target.value as FlxCertificateChannel)}>
-          <option value="WHATSAPP">WhatsApp</option>
-          <option value="SMS">SMS</option>
-          <option value="EMAIL">{t('E-mail')}</option>
-        </select>
-        <label className="flxs-field">{t('Recipient')}<input name="to" required /></label>
-        <label className="flxs-field">{t('Full name')}<input name="name" /></label>
-        {channel === 'EMAIL' && <label className="flxs-field">{t('E-mail')}<input name="subject" /></label>}
-        <label className="flxs-field">{t('Note')}<textarea name="body" rows={3} /></label>
-        <select name="provider">
-          <option value="0">{t('— No referrer —')}</option>
-          {providers.filter((p) => p.channel === channel).map((p) => <option key={p.channel + p.id} value={p.id}>{p.name}</option>)}
-        </select>
-        <label><input type="checkbox" name="save" defaultChecked /> {t('Remember in the directory')}</label>
-        <button className="is-primary" type="submit">{t('Send')}</button>
-      </form>
-    </Modal>
-  );
-}
-
-function Modal({ t, title, onClose, children }: { t: Translate; title: string; onClose: () => void; children: ReactNode }) {
-  return (
-    <div className="flxs-modal" role="dialog" aria-modal="true">
-      <div>
-        <strong>{title}</strong>
-        {children}
-        <button type="button" onClick={onClose}>{t('Close')}</button>
-      </div>
-    </div>
-  );
-}
-
-interface Draft {
-  key: number;
-  personId: number;
-  name: string;
-  phone: string;
-  email: string;
-  values: Record<string, string>;
-}
-
-interface TplField { key: string; label: string; type: string; required?: boolean; placeholder?: string }
-
-function fieldsOf(config: string): TplField[] {
-  try {
-    const parsed = JSON.parse(config) as { fields?: TplField[] };
-    return (parsed.fields ?? []).filter((f) => !['static', 'qr', 'number_auto'].includes(f.type));
-  } catch {
-    return [];
-  }
-}
-
-function Create({ t, id, onNotice, onDone }: { t: Translate; id?: number; onNotice: (n: Notice) => void; onDone: () => void }) {
-  const host = useHost();
-  const cfg = useFlxQuery(FlxCertificateCreateConfig, { certificateId: id ?? null });
-  const existing = useFlxQuery(FlxCertificateOne, { id: id ?? 0 }, { enabled: !!id });
-  const create = useFlxMutation(FlxCertificateCreate);
-  const update = useFlxMutation(FlxCertificateUpdate);
-  const attach = useFlxMutation(FlxCertificateAttachFiles);
-  const send = useFlxMutation(FlxCertificateSend);
-  const [tplId, setTplId] = useState(0);
-  const [eventId, setEventId] = useState(0);
-  const [referrerId, setReferrerId] = useState(0);
-  const [backdate, setBackdate] = useState(false);
-  const [issued, setIssued] = useState('');
-  const [channels, setChannels] = useState<FlxCertificateChannel[]>([]);
-  const [rows, setRows] = useState<Draft[]>([{ key: 1, personId: 0, name: '', phone: '', email: '', values: {} }]);
-  const [paste, setPaste] = useState('');
-  const [showPaste, setShowPaste] = useState(false);
-  const [busy, setBusy] = useState('');
-  const [results, setResults] = useState<Array<{ name: string; url: string; pdf: string | null; bytes: Uint8Array }>>([]);
-  const [active, setActive] = useState(0);
-  const canvasId = 'flxs-canvas';
-  const config: FlxCertificateCreateConfigQuery['flxCertificateCreateConfig'] | undefined = cfg.data?.flxCertificateCreateConfig;
-  const tpl = config?.templates.find((item) => item.id === tplId) ?? config?.templates[0];
-  const fields = tpl ? fieldsOf(tpl.config) : [];
-
-  useEffect(() => {
-    if (!config) return;
-    setTplId((cur) => cur || existing.data?.flxCertificate?.templateId || config.lastTemplateId || config.templates[0]?.id || 0);
-    setIssued(config.today);
-    if (existing.data?.flxCertificate) {
-      const row = existing.data.flxCertificate;
-      const who = personBits(row);
-      let values: Record<string, string> = {};
-      try { values = JSON.parse(row.values) as Record<string, string>; } catch { values = {}; }
-      setEventId(row.eventId);
-      setReferrerId(row.referrerId);
-      setRows([{ key: 1, personId: row.person?.databaseId ?? 0, name: who.name || row.holderName, phone: who.phone, email: who.email, values }]);
-    }
-  }, [config, existing.data]);
-
-  useEffect(() => {
-    if (!config?.rendererScripts.length || !tpl) return;
-    let stop = false;
-    const row = rows[active] ?? rows[0];
-    void ensureRenderer(config.rendererScripts, config.rendererConfig).then(async (api) => {
-      if (stop || !row) return;
-      const canvas = document.getElementById(canvasId) as HTMLCanvasElement | null;
-      if (!canvas) return;
-      const values = { ...row.values, ad_soyad: row.name };
-      const bytes = await api.renderPdf(JSON.parse(tpl.config), values, { number: '—', link: '', code: '', created: backdate ? issued : config.today }, { preview: true });
-      await api.renderToCanvas(bytes, canvas, 900);
-    }).catch(() => undefined);
-    return () => { stop = true; };
-  }, [config, tpl, rows, active, backdate, issued]);
-
-  const submit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!tpl || !config) return;
-    const missing = rows.some((r) => !r.name.trim());
-    if (missing) { onNotice({ kind: 'err', text: t('Name is required.') }); return; }
-    let api: FlxsRenderApi;
-    try {
-      setBusy(t('Drawing the PDF…'));
-      api = await ensureRenderer(config.rendererScripts, config.rendererConfig);
-    } catch {
-      onNotice({ kind: 'err', text: t('The PDF library could not be loaded.') });
-      setBusy('');
-      return;
-    }
-    const made: Array<{ name: string; url: string; pdf: string | null; bytes: Uint8Array }> = [];
-    for (const row of id ? rows.slice(0, 1) : rows) {
-      const values = JSON.stringify({ ...row.values, ad_soyad: row.name });
-      const person = { id: row.personId || undefined, name: row.name, phone: row.phone, email: row.email };
-      setBusy(t('Saving…'));
-      const saved = id
-        ? await update.mutateAsync({ input: { id, person, values, eventId, referrerId } })
-        : await create.mutateAsync({ input: { templateId: tpl.id, person, values, eventId, referrerId, issued: backdate ? issued : undefined } });
-      const payload = id ? saved && 'flxCertificateUpdate' in saved ? saved.flxCertificateUpdate : null : 'flxCertificateCreate' in saved ? saved.flxCertificateCreate : null;
-      if (!payload || payload.errors.length || !payload.certificate) {
-        onNotice({ kind: 'err', text: payload?.errors.map((er) => er.message).join(' ') || t('Required.') });
-        setBusy('');
-        return;
-      }
-      const cert = payload.certificate;
-      setBusy(t('Drawing the PDF…'));
-      const bytes = await api.renderPdf(JSON.parse(tpl.config), { ...row.values, ad_soyad: row.name }, { number: cert.number, link: cert.pageUrl, code: cert.code, created: backdate ? issued : config.today });
-      const jpeg = await api.toJpeg(bytes, 1600, 0.82);
-      let ogId = '';
-      try {
-        const og = await api.toShareImage(bytes, { title: cert.title, name: row.name, org: String((window.FLXS_RENDER?.org as string) || '') });
-        setBusy(t('Uploading…'));
-        ogId = await uploadFile(host.client, og.blob, 'paylasim.jpg');
-      } catch { ogId = ''; }
-      setBusy(t('Uploading…'));
-      const pdfId = await uploadFile(host.client, bytesToBlob(bytes, 'application/pdf'), 'sertifika.pdf');
-      const imageId = await uploadFile(host.client, jpeg.blob, 'sertifika.jpg');
-      const attached = await attach.mutateAsync({ input: { id: cert.databaseId, pdfUploadId: pdfId, imageUploadId: imageId, ogUploadId: ogId || undefined, width: jpeg.w, height: jpeg.h } });
-      if (channels.length && !id) {
-        setBusy(t('Queueing…'));
-        await send.mutateAsync({ input: { id: cert.databaseId, channels } });
-      }
-      made.push({ name: row.name, url: cert.pageUrl, pdf: attached.flxCertificateAttachFiles?.certificate?.pdfUrl ?? cert.pdfUrl, bytes });
-    }
-    setResults(made);
-    setBusy(t('Done.'));
-    onNotice({ kind: 'ok', text: t('Done.') });
-  };
-
-  if (cfg.isLoading) return <p className="flxs-mut">{t('Saving…')}</p>;
-  if (!config?.templates.length) return <p className="flxs-notice">{t('No active template.')}</p>;
-
-  return (
-    <form className="flxs-two" onSubmit={(e) => void submit(e)}>
-      <div>
-        <section className="flxs-card">
-          <h2>{t('Template')}</h2>
-          <div className="flxs-acts">
-            {config.templates.map((item) => <button type="button" key={item.id} className={item.id === tpl?.id ? 'is-primary' : ''} onClick={() => setTplId(item.id)}>{item.name}</button>)}
-          </div>
-        </section>
-        <section className="flxs-card">
-          <div className="flxs-head">
-            <h2>{t('People on this certificate')}</h2>
-            {!id && (
-              <span className="flxs-acts">
-                <button type="button" onClick={() => setRows([{ key: Date.now(), personId: 0, name: '', phone: '', email: '', values: {} }])}>{t('Clear')}</button>
-                <button type="button" onClick={() => setShowPaste((v) => !v)}>{t('Paste a list')}</button>
-              </span>
-            )}
-          </div>
-          {showPaste && !id && (
-            <div>
-              <p className="flxs-mut">{t('Each line is one person: Name; phone; e-mail')}</p>
-              <textarea rows={4} value={paste} onChange={(e) => setPaste(e.target.value)} />
-              <button type="button" onClick={() => {
-                const next = paste.split(/\r?\n/).map((line) => line.trim()).filter(Boolean).map((line, i) => {
-                  const parts = line.split(/[;\t]/).map((p) => p.trim());
-                  return { key: Date.now() + i, personId: 0, name: parts[0] || '', phone: parts[1] || '', email: parts[2] || '', values: {} };
-                });
-                if (next.length) setRows(next);
-              }}>{t('Add to the list')}</button>
-            </div>
-          )}
-          <label className="flxs-field">{t('Event')}
-            <select value={eventId} onChange={(e) => setEventId(Number(e.target.value))}>
-              <option value={0}>{t('— No event —')}</option>
-              {config.events.map((ev) => <option key={ev.id} value={ev.id} disabled={ev.status === 'CLOSED' && ev.id !== eventId}>{ev.name}</option>)}
-            </select>
-          </label>
-          <label className="flxs-field">{t('Referrer')}
-            <select value={referrerId} onChange={(e) => setReferrerId(Number(e.target.value))}>
-              <option value={0}>{t('— No referrer —')}</option>
-              {config.referrers.map((u) => <option key={u.id} value={u.id}>{u.name}</option>)}
-            </select>
-          </label>
-          {!id && config.canManage && (
-            <label><input type="checkbox" checked={backdate} onChange={(e) => setBackdate(e.target.checked)} /> {t('Backdate')}
-              {backdate && <input type="date" value={issued} max={config.today} min="2015-01-01" onChange={(e) => setIssued(e.target.value)} />}
-            </label>
-          )}
-          <div className="flxs-rows">
-            {rows.map((row, index) => (
-              <div className="flxs-row" key={row.key} onFocus={() => setActive(index)}>
-                <label className="flxs-field">{t('Full name')}<input required value={row.name} onChange={(e) => setRows(rows.map((r) => r.key === row.key ? { ...r, name: e.target.value } : r))} /></label>
-                <label className="flxs-field">{t('Phone')}<input value={row.phone} onChange={(e) => setRows(rows.map((r) => r.key === row.key ? { ...r, phone: e.target.value } : r))} /></label>
-                <label className="flxs-field">{t('E-mail')}<input value={row.email} onChange={(e) => setRows(rows.map((r) => r.key === row.key ? { ...r, email: e.target.value } : r))} /></label>
-                {fields.filter((f) => f.key !== 'ad_soyad').map((f) => (
-                  <label className="flxs-field" key={f.key}>{f.label}
-                    <input required={!!f.required} placeholder={f.placeholder} value={row.values[f.key] ?? ''} onChange={(e) => setRows(rows.map((r) => r.key === row.key ? { ...r, values: { ...r.values, [f.key]: e.target.value } } : r))} />
-                  </label>
-                ))}
-              </div>
-            ))}
-          </div>
-          {!id && <button type="button" onClick={() => setRows([...rows, { key: Date.now(), personId: 0, name: '', phone: '', email: '', values: {} }])}>{t('Add a row')}</button>}
-        </section>
-        {!id && (
-          <section className="flxs-card">
-            <h2>{t('Sending')} <small className="flxs-mut">{t('optional')}</small></h2>
-            {(['WHATSAPP', 'SMS', 'EMAIL'] as FlxCertificateChannel[]).map((ch) => (
-              <label key={ch}><input type="checkbox" checked={channels.includes(ch)} onChange={(e) => setChannels(e.target.checked ? [...channels, ch] : channels.filter((c) => c !== ch))} /> {ch === 'EMAIL' ? t('Send via email') : ch === 'SMS' ? t('Send via SMS') : t('Send via WhatsApp')}</label>
-            ))}
-          </section>
-        )}
-        <button className="is-primary" type="submit" disabled={!!busy && busy !== t('Done.')}>{id ? t('Save and refresh the PDF') : t('Create certificates')}</button>
-        {busy && <span className="flxs-mut"> {busy}</span>}
-        {!!results.length && (
-          <section className="flxs-card">
-            <h2>{t('Created')}</h2>
-            <div className="flxs-acts">
-              <button type="button" onClick={() => void navigator.clipboard.writeText(results.map((r) => r.name + ': ' + r.url).join('\n'))}>{t('Copy links')}</button>
-              <button type="button" onClick={() => void mergePdfs(results.map((r) => r.bytes)).then((blob) => {
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = 'sertifikalar.pdf';
-                a.click();
-              })}>{t('Download one PDF')}</button>
-              <button type="button" onClick={onDone}>{t('New list')}</button>
-            </div>
-            {results.map((r) => <div key={r.url}><a href={r.url} target="_blank" rel="noreferrer">{r.name}</a> {r.pdf && <a href={r.pdf}>{t('PDF')}</a>}</div>)}
-          </section>
-        )}
-      </div>
-      <aside className="flxs-card flxs-preview">
-        <strong>{t('Live preview')}</strong>
-        <canvas id={canvasId} />
-      </aside>
-    </form>
-  );
-}
-
-async function uploadFile(client: ApiClient, blob: Blob, name: string): Promise<string> {
-  const fd = new FormData();
-  fd.append('context', 'flx-certificates/file');
-  fd.append('file', blob, name);
-  const res = await client<{ uploadId: string }>('flx/v1/upload', { method: 'POST', formData: fd });
-  return res.uploadId;
-}
-
-function People({ t, onNotice, onOpen, onAdd }: { t: Translate; onNotice: (n: Notice) => void; onOpen: (id: number) => void; onAdd: () => void }) {
+function People({ t, onNotice, onOpen, onAdd, onCerts }: { t: Translate; onNotice: (n: Notice) => void; onOpen: (id: number) => void; onAdd: () => void; onCerts: (id: number) => void }) {
   const host = useHost();
   const canBulk = useFlxCan('flxs_bulk');
   const [search, setSearch] = useState('');
   const [applied, setApplied] = useState('');
-  const [after, setAfter] = useState<string | null>(null);
+  const [per, setPer] = useState(() => listPerPage('flxs-people', 30));
+  const [page, setPage] = useState(1);
   const [picked, setPicked] = useState<number[]>([]);
-  const [channel, setChannel] = useState('sms');
-  const q = useFlxQuery(FlxCertificateDirectory, { search: applied, first: 30, after });
+  const [channel, setChannel] = useState('whatsapp');
+  const q = useFlxQuery(FlxCertificateDirectory, { search: applied, first: per, after: afterOf((page - 1) * per) }, { placeholderData: (old) => old });
   const rows: PersonRow[] = q.data?.flxCertificateDirectory.nodes ?? [];
+  useHead(
+    t('People'),
+    t('Everyone who received a certificate is listed here. A new certificate with the same phone or e-mail is linked to that person; people entered without contact details get a record of their own.'),
+  );
+  const link = (e: React.MouseEvent, fn: () => void) => {
+    e.preventDefault();
+    fn();
+  };
   return (
-    <div>
-      <p className="flxs-mut">{t('Everyone who receives a certificate is listed here. The same phone or e-mail links to the existing person.')}</p>
-      <div className="flxs-acts" style={{ margin: '8px 0' }}><button type="button" className="is-primary" onClick={onAdd}>+ {t('Add person')}</button></div>
-      <form className="flxs-filters" onSubmit={(e) => { e.preventDefault(); setAfter(null); setApplied(search); }}>
-        <input type="search" value={search} placeholder={t('Name, phone or e-mail…')} onChange={(e) => setSearch(e.target.value)} />
-        <button type="submit">{t('Search')}</button>
-      </form>
-      {canBulk && (
-        <div className="flxs-bulk">
-          <select value={channel} onChange={(e) => setChannel(bulkChannel(e.target.value))}>
-            <option value="whatsapp">WhatsApp</option>
-            <option value="sms">SMS</option>
-            <option value="email">{t('E-mail')}</option>
-          </select>
-          <button type="button" onClick={() => {
-            if (!picked.length) { onNotice({ kind: 'err', text: t('Nothing selected.') }); return; }
-            const people = picked.filter((id) => Number.isInteger(id) && id > 0).join(',');
-            window.location.href = admin(host.adminUrl, 'page=flxs-toplu&people=' + people + '&channel=' + bulkChannel(channel));
-          }}>{t('Message selected')}</button>
-        </div>
-      )}
-      <table className="flxs-table">
-        <thead><tr><th></th><th>{t('Full name')}</th><th>{t('Phone')}</th><th>{t('E-mail')}</th><th>{t('Certificates count')}</th><th>{t('Added')}</th></tr></thead>
-        <tbody>
-          {!rows.length && !q.isLoading && <tr><td colSpan={6} className="flxs-empty">{t('No people yet.')}</td></tr>}
-          {rows.map((p) => (
-            <tr key={p.id}>
-              <th><input type="checkbox" checked={picked.includes(p.databaseId)} onChange={(e) => setPicked(e.target.checked ? [...picked, p.databaseId] : picked.filter((id) => id !== p.databaseId))} /></th>
-              <td><button type="button" onClick={() => onOpen(p.databaseId)}>{p.name}</button></td>
-              <td>{p.phone?.display}</td>
-              <td>{p.email}</td>
-              <td>{p.certificateCount}</td>
-              <td className="flxs-mut">{p.createdAt?.label} · {p.createdByName}</td>
+    <>
+      <HeadActions>
+        <a href="#" className="button button-primary" onClick={(e) => link(e, onAdd)}>
+          + {t('Add person')}
+        </a>
+      </HeadActions>
+      <ListBar
+        id="flxs-people"
+        className="flxs-filters"
+        onSubmit={() => {
+          setApplied(search);
+          setPage(1);
+        }}
+        search={<input type="search" value={search} placeholder={t('Name, phone or e-mail…')} onChange={(e) => setSearch(e.target.value)} />}
+      />
+      <form className={picked.length ? 'flxs-has-sel' : undefined} onSubmit={(e) => e.preventDefault()}>
+        {canBulk && (
+          <div className="flxs-bulkbar">
+            <select value={channel} onChange={(e) => setChannel(bulkChannel(e.target.value))}>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="sms">SMS</option>
+              <option value="email">{t('E-mail')}</option>
+            </select>
+            <button
+              type="button"
+              className="button"
+              onClick={() => {
+                if (!picked.length) {
+                  onNotice({ kind: 'err', text: t('Nothing selected.') });
+                  return;
+                }
+                const people = picked.filter((id) => Number.isInteger(id) && id > 0).join(',');
+                window.location.href = admin(host.adminUrl, 'page=flxs-toplu&people=' + people + '&channel=' + bulkChannel(channel));
+              }}
+            >
+              {t('Message selected')}
+            </button>
+          </div>
+        )}
+        <table className="widefat flxs-table">
+          <thead>
+            <tr>
+              <td className="check-column">
+                <input type="checkbox" checked={rows.length > 0 && picked.length === rows.length} onChange={(e) => setPicked(e.target.checked ? rows.map((r) => r.databaseId) : [])} />
+              </td>
+              <th>{t('Full name')}</th>
+              <th>{t('Phone')}</th>
+              <th>{t('E-mail')}</th>
+              <th>{t('Certificates count')}</th>
+              <th>{t('Added')}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="flxs-acts" style={{ marginTop: 12 }}>
-        <button type="button" disabled={!q.data?.flxCertificateDirectory.pageInfo.hasNextPage} onClick={() => setAfter(q.data?.flxCertificateDirectory.pageInfo.endCursor ?? null)}>{t('Next')}</button>
-      </div>
-    </div>
+          </thead>
+          <tbody>
+            {!rows.length && !q.isLoading && (
+              <tr>
+                <td colSpan={6} className="flxs-empty">
+                  {t('No records.')}
+                </td>
+              </tr>
+            )}
+            {rows.map((p) => (
+              <tr key={p.id}>
+                <th className="check-column">
+                  <input type="checkbox" checked={picked.includes(p.databaseId)} onChange={(e) => setPicked(e.target.checked ? [...picked, p.databaseId] : picked.filter((id) => id !== p.databaseId))} />
+                </th>
+                <td data-label={t('Full name')}>
+                  <strong>
+                    <a href={admin(host.adminUrl, 'page=flxs-kisiler&person=' + p.databaseId)} onClick={(e) => link(e, () => onOpen(p.databaseId))}>
+                      {p.name}
+                    </a>
+                  </strong>
+                </td>
+                <td data-label={t('Phone')}>{p.phone?.display}</td>
+                <td data-label={t('E-mail')}>{p.email}</td>
+                <td data-label={t('Certificates count')}>
+                  <a href={admin(host.adminUrl, 'page=flxs&person=' + p.databaseId)} onClick={(e) => link(e, () => onCerts(p.databaseId))}>
+                    {p.certificateCount}
+                  </a>
+                </td>
+                <td data-label={t('Added')}>
+                  {(p.createdAt?.short || '').slice(0, 10)} · {p.createdByName}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </form>
+      <ListPages
+        id="flxs-people"
+        total={q.data?.flxCertificateDirectory.totalCount ?? 0}
+        per={per}
+        page={page}
+        onPage={setPage}
+        onPer={(n) => {
+          setPer(n);
+          setPage(1);
+        }}
+      />
+    </>
   );
 }
 
-function PersonForm({ t, id, initial, onNotice, onSaved }: { t: Translate; id?: number; initial?: { name: string; phone: string; email: string; note: string }; onNotice: (n: Notice) => void; onSaved: (id: number) => void }) {
+/** Classic flxs_person_form(): name, phone, e-mail on one row, the note below. */
+function PersonForm({
+  t,
+  id,
+  initial,
+  onNotice,
+  onSaved,
+}: {
+  t: Translate;
+  id?: number;
+  initial?: { name: string; phone: string; email: string; note: string };
+  onNotice: (n: Notice) => void;
+  onSaved: (id: number) => void;
+}) {
   const save = useFlxMutation(FlxCertificatePersonSave);
   return (
-    <form className="flxs-card" onSubmit={(e) => {
-      e.preventDefault();
-      const fd = new FormData(e.currentTarget);
-      void save.mutateAsync({ input: { id, name: String(fd.get('name') || ''), phone: String(fd.get('phone') || ''), email: String(fd.get('email') || ''), note: String(fd.get('note') || '') } }).then((res) => {
-        const payload = res.flxCertificatePersonSave;
-        if (payload?.errors.length || !payload?.person) onNotice({ kind: 'err', text: payload?.errors.map((er) => er.message).join(' ') || t('Required.') });
-        else onSaved(payload.person.databaseId);
-      });
-    }}>
-      <label className="flxs-field">{t('Full name')}<input name="name" required defaultValue={initial?.name} /></label>
-      <label className="flxs-field">{t('Phone')}<input name="phone" defaultValue={initial?.phone} /></label>
-      <label className="flxs-field">{t('E-mail')}<input name="email" type="email" defaultValue={initial?.email} /></label>
-      <label className="flxs-field">{t('Note')}<textarea name="note" rows={2} defaultValue={initial?.note} /></label>
-      <button className="is-primary" type="submit">{t('Save')}</button>
+    <form
+      className="flxs-card flxs-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const fd = new FormData(e.currentTarget);
+        void save.mutateAsync({ input: { id, name: String(fd.get('name') || ''), phone: String(fd.get('phone') || ''), email: String(fd.get('email') || ''), note: String(fd.get('note') || '') } }).then((res) => {
+          const payload = res.flxCertificatePersonSave;
+          if (payload?.errors.length || !payload?.person) onNotice({ kind: 'err', text: payload?.errors.map((er) => er.message).join(' ') || t('Required.') });
+          else onSaved(payload.person.databaseId);
+        });
+      }}
+    >
+      <div className="flxs-grid">
+        <label className="flxs-field">
+          <span>{t('Full name')} *</span>
+          <input type="text" name="name" required defaultValue={initial?.name} />
+        </label>
+        <label className="flxs-field">
+          <span>{t('Phone')}</span>
+          <input type="tel" name="phone" defaultValue={initial?.phone} placeholder="0532 123 45 67" />
+        </label>
+        <label className="flxs-field">
+          <span>{t('E-mail')}</span>
+          <input type="email" name="email" defaultValue={initial?.email} />
+        </label>
+      </div>
+      <label className="flxs-field">
+        <span>{t('Note')}</span>
+        <textarea name="note" rows={2} defaultValue={initial?.note} />
+      </label>
+      <p>
+        <button className="button button-primary" type="submit">
+          {t('Save')}
+        </button>
+      </p>
     </form>
   );
 }
 
+function AddPerson({ t, onNotice, onSaved }: { t: Translate; onNotice: (n: Notice) => void; onSaved: (id: number) => void }) {
+  useHead(t('Add person'));
+  return <PersonForm t={t} onNotice={onNotice} onSaved={onSaved} />;
+}
+
+const STATUS_PILL: Record<string, string> = { ACTIVE: 'active', REVOKED: 'revoked' };
+const MSG_STATUS: Record<string, string> = { queued: 'Queued', processing: 'Sending now', sent: 'Sent', failed: 'Failed', cancelled: 'Cancelled' };
+
 function PersonDetail({ t, id, onNotice, onBack, onCert }: { t: Translate; id: number; onNotice: (n: Notice) => void; onBack: () => void; onCert: () => void }) {
-  const host = useHost();
   const q = useFlxQuery(FlxCertificatePerson, { id });
   const msgs = useFlxQuery(FlxCertificatePersonMessages, { personId: id });
   const del = useFlxMutation(FlxCertificatePersonDelete);
   const canManage = useFlxCan('flxs_manage');
   const person = q.data?.flxCertificatePerson;
   const certs = q.data?.flxCertificates;
-  if (q.isLoading) return <p className="flxs-mut">{t('Saving…')}</p>;
-  if (!person) return <p className="flxs-notice is-error">{t('No people yet.')}</p>;
+  useHead(person?.name, person ? t('Registered: %s', [person.createdAt?.short, person.createdByName].filter(Boolean).join(' · ')) : undefined);
+  const link = (e: React.MouseEvent, fn: () => void) => {
+    e.preventDefault();
+    fn();
+  };
+  if (q.isLoading) return null;
+  if (!person) return <p className="flxs-notice is-error">{t('Person not found.')}</p>;
+  const list = msgs.data?.flxCertificatePersonMessages ?? [];
   return (
-    <div className="flxs-two">
-      <div>
-        <div className="flxs-acts">
-          <button type="button" onClick={onBack}>{t('Back to people')}</button>
-          <button type="button" className="is-primary" onClick={onCert}>{t('Certificate for this person')}</button>
+    <>
+      <HeadActions>
+        <a href="#" className="button button-primary" onClick={(e) => link(e, onCert)}>
+          + {t('Certificate for this person')}
+        </a>{' '}
+        <a href="#" className="button" onClick={(e) => link(e, onBack)}>
+          ← {t('People')}
+        </a>
+      </HeadActions>
+      <div className="flxs-two">
+        <div>
+          <PersonForm
+            t={t}
+            id={person.databaseId}
+            initial={{ name: person.name, phone: person.phone?.display ?? '', email: person.email ?? '', note: person.note ?? '' }}
+            onNotice={onNotice}
+            onSaved={() => onNotice({ kind: 'ok', text: t('Updated.') })}
+          />
+          {canManage && (
+            <button
+              type="button"
+              className="button-link flxs-danger"
+              onClick={async () => {
+                const msg = t('Delete this person? A person with certificates cannot be deleted.');
+                if (!(await ask(msg, true))) return;
+                const res = await del.mutateAsync({ input: { id: person.databaseId } });
+                if (res.flxCertificatePersonDelete?.errors.length) onNotice({ kind: 'err', text: res.flxCertificatePersonDelete.errors.map((e) => e.message).join(' ') });
+                else onBack();
+              }}
+            >
+              {t('Delete person')}
+            </button>
+          )}
         </div>
-        <PersonForm t={t} id={person.databaseId} initial={{ name: person.name, phone: person.phone?.display ?? '', email: person.email ?? '', note: person.note ?? '' }} onNotice={onNotice} onSaved={() => onNotice({ kind: 'ok', text: t('Updated.') })} />
-        {canManage && <button type="button" onClick={() => {
-          if (!window.confirm(t('Delete this person? A person with certificates cannot be deleted.'))) return;
-          void del.mutateAsync({ input: { id: person.databaseId } }).then((res) => {
-            if (res.flxCertificatePersonDelete?.errors.length) onNotice({ kind: 'err', text: res.flxCertificatePersonDelete.errors.map((e) => e.message).join(' ') });
-            else onBack();
-          });
-        }}>{t('Delete person')}</button>}
+        <div>
+          <div className="flxs-card">
+            <h2 className="flxs-card__title">
+              {t('Certificates')} ({certs?.totalCount ?? 0})
+            </h2>
+            {!certs?.nodes.length && <p className="flxs-muted">{t('No certificates.')}</p>}
+            {certs?.nodes.map((c) => (
+              <div className="flxs-li" key={c.id}>
+                <a href={c.pageUrl} target="_blank" rel="noreferrer">
+                  <strong>{c.number}</strong>
+                </a>{' '}
+                · {c.templateName} · {(c.createdAt?.short || '').slice(0, 10)} <span className={'flxs-pill flxs-pill--' + (STATUS_PILL[c.status] ?? 'active')}>{c.status === 'REVOKED' ? t('Cancelled') : t('Valid')}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flxs-card">
+            <h2 className="flxs-card__title">
+              {t('Messages sent')} ({list.length})
+            </h2>
+            {!list.length && <p className="flxs-muted">{t('No messages.')}</p>}
+            {list.map((m, i) => {
+              const ch = m.channel.toLowerCase();
+              return (
+                <div className="flxs-li" key={i}>
+                  <span className={'dashicons ' + (CHANNEL_ICON[ch] ?? 'dashicons-format-chat')}></span> {m.recipient} · <span className={'flxs-pill flxs-pill--' + m.status}>{t(MSG_STATUS[m.status] ?? m.status)}</span> ·{' '}
+                  {m.at?.short} <span className="flxs-muted">{m.createdByName}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
-      <div>
-        <section className="flxs-card">
-          <h2>{t('Certificates')} ({certs?.totalCount ?? 0})</h2>
-          {!certs?.nodes.length && <p className="flxs-mut">{t('No certificates.')}</p>}
-          {certs?.nodes.map((c) => <div key={c.id}><a href={c.pageUrl} target="_blank" rel="noreferrer">{c.number}</a> · {c.templateName} · {c.createdAt?.label}</div>)}
-        </section>
-        <section className="flxs-card">
-          <h2>{t('Messages')} ({msgs.data?.flxCertificatePersonMessages.length ?? 0})</h2>
-          {!msgs.data?.flxCertificatePersonMessages.length && <p className="flxs-mut">{t('No messages.')}</p>}
-          {msgs.data?.flxCertificatePersonMessages.map((m, i) => <div key={i}>{m.channel} {m.recipient} · {m.status} · {m.at?.label} <span className="flxs-mut">{m.createdByName}</span></div>)}
-          <p><a href={admin(host.adminUrl, 'page=flxs-kuyruk')}>{t('Delivery history')}</a></p>
-        </section>
-      </div>
-    </div>
+    </>
   );
 }

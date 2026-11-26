@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.16.0
+- SEO ekranı eski klasik ekranla birebir: Genel ve Kurum ve sosyal sekmeleri WordPress ayar tablosu düzeninde (onay kutuları, alan genişlikleri, açıklamalar, "Değişiklikleri kaydet"), başlık altında açıklama satırı.
+- SEO kontrolü: klasik tablo; giriş cümlesinde sayılar kalın, öneri olan içerik sayısı 100 ile sınırlı değil.
+- Site denetimi ve Ayarlar: klasik kartlar, puan halkaları, öneri listesi, rapor geçmişi (yığılmış öneri grafiği, mobil/masaüstü seçmeli puan grafiği, değişiklik açılır listesi); Ayarlar iki sütun (ayarlar + Yeni site yapım rehberi).
+- IndexNow "Tüm siteyi şimdi bildir" düğmesi her zaman basılabilir.
+
 ## 1.15.0
 - **AI/MCP:** var olan içeriği konumlu düzenleme: `flxseo_content_blocks` (üst düzey blokların sıralı dökümü) ve `flxseo_insert_image` (medya kütüphanesinden görseli bloğun sonrasına, başlığın altına ya da en başa/sona ekler; gövdenin kalanına dokunmaz). Ajan ve sohbet "şu taslağa aralara resim ekle" işini bununla yapar.
 

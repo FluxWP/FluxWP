@@ -168,7 +168,7 @@ export function Settings() {
         {group('provider').map((s) => (
           <KeyRow key={s.name} name={s.name} />
         ))}
-        <Field label={t('Anthropic workspace')} hint={t('Only needed when the key is not tied to a workspace (if the error asks for "anthropic-workspace-id").')}>
+        <Field label={t('Anthropic workspace ID')} hint={t('Only needed when the key is not tied to a workspace (if the error asks for "anthropic-workspace-id").')}>
           <input className="flxai-input" value={form.anthropicWorkspace} placeholder="wrkspc_…" onChange={(e) => set('anthropicWorkspace', e.target.value)} />
         </Field>
       </Card>

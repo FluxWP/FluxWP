@@ -384,5 +384,17 @@
  "PageSpeed not run": "PageSpeed çalışmadı",
  "No change": "Değişiklik yok",
  "new": "yeni",
- "resolved": "çözüldü"
+ "resolved": "çözüldü",
+ "Alternative:": "Alternatif:",
+ "Save Changes": "Değişiklikleri kaydet",
+ "Phone": "Telefon",
+ "email": "e-posta",
+ "Organization (Organization)": "Kurum (Organization)",
+ "Meta tags, schema, sitemap and SEO audit": "Meta etiketler, schema, site haritası ve SEO denetimi",
+ "@username": "@kullanici",
+ "Suggestions": "Öneriler",
+ "%1$s published items were checked; %2$s have recommendations. To fix one, open the item and use the %3$s panel on the right or tell the AI assistant (MCP) \"fix the SEO gaps\".": "Yayındaki %1$s içerik kontrol edildi; %2$s içerikte öneri var. Düzeltmek için içeriği açıp sağdaki %3$s panelini kullanın ya da yapay zekâ asistanına (MCP) \"SEO eksiklerini düzelt\" deyin.",
+ "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab.": "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde.",
+ "On-site audit: %1$s · %2$s": "Site içi denetim: %1$s · %2$s",
+ "Device": "Cihaz"
 }

@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 0.8.0
+- Mağaza ekranları klasik görünümle birebir: her sekmenin kendi başlığı ve açıklaması, düğmeler (CSV indir, Yeniden oluştur, dönem seçici) başlığın sağında.
+- Tutarlar klasik kısa biçimde (₺318, ₺12,5 K); dönem satırı ve grafik tarihleri yazıyla ("28 Ekim 2026 · karşılaştırma: 28 Eyl – 27 Eki").
+- Genel bakış: "Ödeme bekleyenler" yine son 6 ödeme bekleyen sipariş (dekont geldiyse "Dekont geldi"); düşük stokta eşik ve SKU.
+- Satış raporu: ortak tarih seçici, ürün adları düzenleme sayfasına bağlı, altta sayılan sipariş durumları.
+- Müşteriler / Abonelikler: arama kutusu araç çubuğunda (Enter ile), son sipariş tarihi ve sipariş numaraları bağlantılı, yenileme metni ("30 Aralık 2027 tarihinde yenilenir").
+- Ayarlar: anahtarlar ortak anahtar bileşeni, sayı alanları dar, Kaydet altta sabit, Havale/EFT kartında ödeme yöntemi bağlantısı.
+- Ekran metinleri eklentinin dil paketlerinden (10 dil); Türkçe klasik ekranla aynı.
+
 ## 0.7.0
 - Mağaza sayfaları (Genel bakış, Müşteriler, müşteri kartı, Abonelikler, Satış raporu, Ayarlar) Flux GraphQL ekran kabuğunda; ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
 - Ortak ekran başlığı ve sekmeler kullanılır.

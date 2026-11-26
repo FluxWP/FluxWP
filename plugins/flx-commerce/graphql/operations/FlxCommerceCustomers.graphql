@@ -5,4 +5,5 @@ query FlxCommerceCustomers($first: Int = 25, $after: String, $search: String, $s
     totalCount
   }
   flxCommerceCustomerCounts { all repeat vip lapsed new built builtAt { ...FlxCommerceWhen } spent { ...FlxCommerceMoney } ltv { ...FlxCommerceMoney } }
+  flxCommerceMoneyFormat { symbol position decimal thousand }
 }

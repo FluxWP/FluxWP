@@ -15,7 +15,7 @@ import {
 import type { FlxAiConnectionFieldsFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { Loading, Modal } from '@fluxwp/ui';
-import { Card, NoticeBar, Pill, errText, useAi, type AiT, type Notice } from './common';
+import { Card, NoticeBar, Pill, errText, useAi, type AiT, type Notice, Lead } from './common';
 import { Field, firstError } from './Skills';
 
 type Conn = FlxAiConnectionFieldsFragment;
@@ -75,7 +75,7 @@ export function Connections() {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
-      <p className="flxai-lead">{t('Connect external MCP servers (for example a CRM, a project tool or another site). Their tools become available in chat, scheduled tasks and agents. Only remote servers over HTTPS work here; local (stdio) servers need a computer that runs them.')}</p>
+      <Lead text={t('Connect external MCP servers (for example a CRM, a project tool or another site). Their tools become available in chat, scheduled tasks and agents. Only remote servers over HTTPS work here; local (stdio) servers need a computer that runs them.')} />
       {view === null ? (
         <List {...common} />
       ) : view === 'new' || conn ? (

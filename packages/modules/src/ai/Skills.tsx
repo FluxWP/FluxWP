@@ -19,7 +19,7 @@ import {
 import type { FlxAiSkillDetailFieldsFragment, FlxAiSkillFieldsFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { Loading, Modal, Tabs } from '@fluxwp/ui';
-import { Card, NoticeBar, Pill, errText, useAi, type AiT, type Notice } from './common';
+import { Card, NoticeBar, Pill, errText, useAi, type AiT, type Notice, Lead } from './common';
 import { Brand, ImportSkills } from './SkillsExtra';
 
 type Skill = FlxAiSkillFieldsFragment;
@@ -107,7 +107,7 @@ function SkillList({ go }: { go: (v: View) => void }) {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
-      <p className="flxai-lead">{t('Instruction folders the assistant follows, in the open Agent Skills format (the same SKILL.md folders Claude uses). Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version.')}</p>
+      <Lead text={t('Instruction folders the assistant follows, in the open Agent Skills format (the same SKILL.md folders Claude uses). Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version.')} />
       <Card
         title={
           <span className="flxai-card-head">

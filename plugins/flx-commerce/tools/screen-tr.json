@@ -1,0 +1,23 @@
+{
+ "Something went wrong.": "Bir şeyler ters gitti.",
+ "Scanning %1$s / %2$s": "Taranıyor: %1$s / %2$s",
+ "Done": "Tamamlandı",
+ "No customers.": "Müşteri yok.",
+ "Page %s": "Sayfa %s",
+ "Previous": "Önceki",
+ "Next": "Sonraki",
+ "Back": "Geri",
+ "Recent orders": "Son siparişler",
+ "Save note": "Notu kaydet",
+ "No subscriptions.": "Abonelik yok.",
+ "Cancel": "İptal",
+ "The IBAN and the method switch are the same values WooCommerce Payments stores.": "IBAN ve yöntem anahtarı WooCommerce Ödemeler ekranındaki değerlerdir.",
+ "Description": "Açıklama",
+ "Account holder": "Hesap sahibi",
+ "IBAN": "IBAN",
+ "Reference format": "Referans biçimi",
+ "Reference prefix": "Referans öneki",
+ "Last renewal pass": "Son yenileme turu",
+ "Not run yet.": "Henüz çalışmadı.",
+ "Run renewals now": "Yenilemeleri şimdi çalıştır"
+}

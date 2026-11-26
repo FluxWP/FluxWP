@@ -96,10 +96,10 @@ function flxs_admin_assets( $hook ) {
 	if ( 0 !== strpos( $page, 'flxs' ) ) {
 		return;
 	}
-	if ( isset( flxs_react_pages()[ $page ] ) && function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
-		return; // 2.3.0: the Flux GraphQL screen shell loads the React screen; the island pages keep the classic styles and scripts.
-	}
 	wp_enqueue_style( 'flxs-admin', FLXS_URL . 'assets/css/admin.css', array(), FLXS_VERSION );
+	if ( isset( flxs_react_pages()[ $page ] ) && function_exists( 'flx_admin_screen_current' ) && '' !== flx_admin_screen_current() ) {
+		return; // The React pages use the classic markup and styles; their scripts are the screen's own.
+	}
 	wp_enqueue_script( 'flxs-admin', FLXS_URL . 'assets/js/admin.js', array(), FLXS_VERSION, true );
 	wp_localize_script(
 		'flxs-admin',
@@ -142,14 +142,12 @@ function flxs_admin_assets( $hook ) {
 
 function flxs_admin_header( $title, $actions = array(), $sub = '' ) {
 	if ( flxs_is_island() ) {
-		// 2.3.0: the screen draws the title and tabs around the island; the page's own buttons stay.
-		if ( $actions ) {
-			echo '<div class="flxs-head flxs-head--island"><div class="flxs-head__actions">';
-			foreach ( $actions as $a ) {
-				printf( '<a href="%s" class="button %s">%s</a> ', esc_url( $a['url'] ), esc_attr( $a['class'] ?? '' ), esc_html( $a['label'] ) );
-			}
-			echo '</div></div>';
+		// The screen shows this title, subtitle and buttons in its own header, as the classic page did.
+		echo '<div class="flxs-head flxs-head--island" data-title="' . esc_attr( $title ) . '" data-sub="' . esc_attr( wp_strip_all_tags( $sub ) ) . '"><div class="flxs-head__actions">';
+		foreach ( $actions as $a ) {
+			printf( '<a href="%s" class="button %s">%s</a> ', esc_url( $a['url'] ), esc_attr( $a['class'] ?? '' ), esc_html( $a['label'] ) );
 		}
+		echo '</div></div>';
 		flxs_admin_notices();
 		return;
 	}

@@ -6,7 +6,7 @@ import { useFlxQuery } from '@fluxwp/graphql/react';
 import { Loading } from '@fluxwp/ui';
 import { Chart } from '@fluxwp/ui/chart';
 import { useHost } from '../host';
-import { Card, Pill, dayLabel, useAi, type AiT } from './common';
+import { Card, Pill, dayLabel, useAi, type AiT, Kpi } from './common';
 import { Meters } from './Meters';
 
 const DAYS = [1, 7, 30, 90];
@@ -36,6 +36,8 @@ export function Overview() {
           {t('No API key entered yet.')} <a href={settingsUrl}>{t('Settings')}</a>
         </div>
       )}
+      <Meters budget={d.flxAiBudget} ai={ai} />
+
       <div className="flxai-filters">
         <div className="flxai-seg" role="group">
           {DAYS.map((x) => (
@@ -57,8 +59,6 @@ export function Overview() {
         </label>
       </div>
 
-      <Meters budget={d.flxAiBudget} ai={ai} />
-
       <div className="flxai-kpis">
         <Kpi label={t('Cost')} value={usd(tt.cost)} sub={t('Cache savings %s', usd(tt.saved))} />
         <Kpi label={t('Model requests')} value={num(tt.calls)} sub={t('%s tool calls', num(tt.tools))} />
@@ -69,44 +69,57 @@ export function Overview() {
 
       <div className="flxai-grid">
         <Card title={t('Daily cost (USD)')} wide>
-          <Chart
-            kind="bar"
-            labels={days1.map((r) => r.date)}
-            formatLabel={dayLabel}
-            series={[
-              { label: t('Cost'), data: days1.map((r) => r.cost), color: 'var(--flux-primary)' },
-              { label: t('Model requests'), data: days1.map((r) => r.calls), kind: 'line', axis: 'y2', color: 'var(--flux-warning)' },
-            ]}
-            format={(v) => usd(v)}
-            format2={(v) => num(v)}
-            label={t('Daily cost (USD)')}
-          />
+          {!days1.some((r) => r.cost > 0) ? (
+            <p className="flxai-chart-empty">{t('No data in this range.')}</p>
+          ) : (
+            <Chart
+              kind="bar"
+              labels={days1.map((r) => r.date)}
+              formatLabel={dayLabel}
+              series={[
+                { label: t('Cost'), data: days1.map((r) => r.cost), color: 'var(--flux-primary)' },
+                { label: t('Model requests'), data: days1.map((r) => r.calls), kind: 'line', axis: 'y2', color: 'var(--flux-warning)' },
+              ]}
+              format={(v) => usd(v)}
+              format2={(v) => num(v)}
+              label={t('Daily cost (USD)')}
+            />
+          )}
         </Card>
         <Card title={t('Where time goes: model/thinking vs tools')} wide>
-          <Chart
-            kind="bar"
-            stacked
-            labels={days1.map((r) => r.date)}
-            formatLabel={dayLabel}
-            series={[
-              { label: t('Model/thinking'), data: days1.map((r) => r.modelMs), color: 'var(--flux-primary)' },
-              { label: t('Tools'), data: days1.map((r) => r.toolMs), color: 'var(--flux-warning)' },
-            ]}
-            format={(v) => ms(v)}
-          />
+          {!days1.some((r) => r.modelMs > 0 || r.toolMs > 0) ? (
+            <p className="flxai-chart-empty">{t('No data in this range.')}</p>
+          ) : (
+            <Chart
+              kind="bar"
+              stacked
+              labels={days1.map((r) => r.date)}
+              formatLabel={dayLabel}
+              series={[
+                { label: t('Model/thinking'), data: days1.map((r) => r.modelMs), color: 'var(--flux-primary)' },
+                { label: t('Tools'), data: days1.map((r) => r.toolMs), color: 'var(--flux-warning)' },
+              ]}
+              format={(v) => ms(v)}
+            />
+          )}
         </Card>
         <Card title={t('Daily tokens')}>
-          <Chart
-            kind="area"
-            labels={days1.map((r) => r.date)}
-            formatLabel={dayLabel}
-            series={[
-              { label: t('Input'), data: days1.map((r) => r.inTokens), color: 'var(--flux-primary)' },
-              { label: t('Output'), data: days1.map((r) => r.outTokens), color: 'var(--flux-info, #1D5FA8)' },
-              { label: t('From cache'), data: days1.map((r) => r.cacheRead), color: 'var(--flux-success)', hidden: true },
-            ]}
-            format={(v) => num(v)}
-          />
+          {!days1.some((r) => r.inTokens > 0 || r.outTokens > 0) ? (
+            <p className="flxai-chart-empty">{t('No data in this range.')}</p>
+          ) : (
+            <Chart
+              kind="bar"
+              stacked
+              labels={days1.map((r) => r.date)}
+              formatLabel={dayLabel}
+              series={[
+                { label: t('Input'), data: days1.map((r) => r.inTokens), color: 'var(--flux-primary)' },
+                { label: t('Output'), data: days1.map((r) => r.outTokens), color: 'var(--flux-info, #1D5FA8)' },
+                { label: t('From cache'), data: days1.map((r) => r.cacheRead), color: 'var(--flux-success)', hidden: true },
+              ]}
+              format={(v) => num(v)}
+            />
+          )}
         </Card>
         <Card title={t('Average time per tool')}>
           {rep.byTool.length === 0 ? (
@@ -186,16 +199,6 @@ function Share({ rows, ai }: { rows: Breakdown; ai: AiT }) {
     data.push(rest);
   }
   return <Chart kind="doughnut" height={240} labels={labels} series={[{ label: t('Cost'), data }]} format={(v) => usd(v)} />;
-}
-
-function Kpi({ label, value, sub }: { label: string; value: string; sub: string }) {
-  return (
-    <div className="flxai-card flxai-kpi">
-      <div className="flxai-muted">{label}</div>
-      <div className="flxai-big">{value}</div>
-      <div className="flxai-muted">{sub}</div>
-    </div>
-  );
 }
 
 export function BreakdownTable({ ai, title, rows }: { ai: AiT; title: string; rows: Breakdown }) {

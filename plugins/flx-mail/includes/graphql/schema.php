@@ -504,7 +504,9 @@ function flxi_gql_register(): void {
 			'description' => __( 'One system-check row from this package.', 'flx-mail' ),
 			'fields'      => array(
 				'id'          => flxi_gql_f( 'ID!', __( 'Check id.', 'flx-mail' ) ),
+				'source'      => flxi_gql_f( 'String!', __( 'Package that added the row.', 'flx-mail' ) ),
 				'group'       => flxi_gql_f( 'String!', __( 'Group.', 'flx-mail' ) ),
+				'groupLabel'  => flxi_gql_f( 'String!', __( 'Group name.', 'flx-mail' ) ),
 				'label'       => flxi_gql_f( 'String!', __( 'Label.', 'flx-mail' ) ),
 				'status'      => flxi_gql_f( 'String!', __( 'ok, warning, error or info.', 'flx-mail' ) ),
 				'message'     => flxi_gql_f( 'String!', __( 'What was found.', 'flx-mail' ) ),

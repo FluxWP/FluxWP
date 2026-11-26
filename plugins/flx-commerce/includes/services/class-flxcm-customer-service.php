@@ -83,13 +83,24 @@ final class FLXCM_Customer_Service {
 	}
 
 	/**
+	 * WooCommerce order list (HPOS or posts screen).
+	 */
+	private static function orders_list_url(): string {
+		$hpos = class_exists( '\\Automattic\\WooCommerce\\Utilities\\OrderUtil' ) && \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
+		return admin_url( $hpos ? 'admin.php?page=wc-orders' : 'edit.php?post_type=shop_order' );
+	}
+
+	/**
 	 * GraphQL customer. Card blocks are not on this row.
 	 * Times are GMT mysql strings from the summary table, passed through flx_gql_datetime().
 	 *
 	 * @param array<string,mixed> $r Customer row.
-	 * @return array{id:string,name:string,email:string,phone:string,city:string,orders:int,total:array{amount:float,currency:string,formatted:string},note:string,firstAt:array{iso:string,timestamp:int,label:string,relative:string}|null,lastAt:array{iso:string,timestamp:int,label:string,relative:string}|null,userId:int,guest:bool}
+	 * @return array{id:string,name:string,email:string,phone:string,city:string,orders:int,total:array{amount:float,currency:string,formatted:string},note:string,firstAt:array{iso:string,timestamp:int,label:string,relative:string}|null,lastAt:array{iso:string,timestamp:int,label:string,relative:string}|null,lastDay:string,lastOrderUrl:string,userId:int,guest:bool}
 	 */
 	public static function map( array $r ): array {
+		$last_at  = FLXCM_Val::str( $r['last_at'] ?? '' );
+		$last_id  = FLXCM_Val::int( $r['last_order'] ?? 0 );
+		$last_ord = $last_id && function_exists( 'wc_get_order' ) ? wc_get_order( $last_id ) : null;
 		return array(
 			'id'     => FLXCM_Val::str( FLXCM_Val::int( $r['id'] ) ),
 			'name'   => FLXCM_Val::str($r['name']),
@@ -101,6 +112,8 @@ final class FLXCM_Customer_Service {
 			'note'   => FLXCM_Val::str(( $r['note'] ?? '' )),
 			'firstAt' => flxcm_gql_time( $r['first_at'] ?? '' ),
 			'lastAt'  => flxcm_gql_time( $r['last_at'] ?? '' ),
+			'lastDay' => '' !== $last_at ? FLXCM_Val::str( get_date_from_gmt( $last_at, 'd.m.Y' ) ) : '',
+			'lastOrderUrl' => $last_ord instanceof WC_Order ? $last_ord->get_edit_order_url() : ( '' !== $last_at ? self::orders_list_url() : '' ),
 			'userId'  => FLXCM_Val::int(( $r['user_id'] ?? 0 )),
 			'guest'   => ! FLXCM_Val::int(( $r['user_id'] ?? 0 )),
 		);
