@@ -86,7 +86,7 @@ export function ModulesTab() {
                         {m.errors.length > 0 && <div className="flxas-bad">{t('Manifest error: %s', m.errors.slice(0, 6).join(', '))}</div>}
                       </td>
                       <td data-label={t('In the app')}>
-                        <span className="flxas-pf is-on">{kinds[kind] ?? kind}</span>
+                        <span className="flxas-pf">{kinds[kind] ?? kind}</span>
                         {kind === 'manifest' && m.screens > 0 && <span className="flxas-muted"> {tn('%d screen', '%d screens', m.screens, m.screens)}</span>}
                       </td>
                       <td data-label={t('Menu')}>{m.menu ? <code>{m.menu}</code> : <span className="flxas-muted">{t('Separate item')}</span>}</td>
