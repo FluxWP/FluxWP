@@ -11,7 +11,7 @@ fragment FlxCertificateRow on FlxCertificate {
   imageUrl
   views
   backdated
-  createdAt { label }
+  createdAt { label short }
   eventId
   eventName
   templateId
@@ -64,7 +64,7 @@ query FlxCertificateCreateConfig($certificateId: Int) {
     lastTemplateId
     rendererScripts
     rendererConfig
-    templates { id name active config }
+    templates { id name active config thumb }
     events { id name status }
     referrers { id name }
     providers { channel id name }
@@ -77,7 +77,7 @@ query FlxCertificatePeople($search: String) {
     databaseId
     name
     email
-    phone { display }
+    phone { digits display }
   }
 }
 
@@ -91,7 +91,7 @@ query FlxCertificateDirectory($search: String, $first: Int!, $after: String) {
       phone { e164 digits display }
       note
       certificateCount
-      createdAt { label }
+      createdAt { label short }
       createdByName
     }
     pageInfo { hasNextPage endCursor }
@@ -108,7 +108,7 @@ query FlxCertificatePerson($id: Int!) {
     phone { display }
     note
     certificateCount
-    createdAt { label }
+    createdAt { label short }
     createdByName
   }
   flxCertificates(first: 50, filter: { personId: $id }) {
@@ -122,7 +122,7 @@ query FlxCertificatePersonMessages($personId: Int!) {
     channel
     recipient
     status
-    at { label }
+    at { label short }
     createdByName
   }
 }
