@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux AI & MCP
  * Description:       Tüm FluxWP eklentileri için ortak yapay zekâ merkezi: OpenRouter ve Anthropic anahtarları, model kataloğu ve fiyatlar, prompt önbelleği, araç kaydı, ortak MCP sunucusu, kullanım raporları, faturalandırma ve harcama sınırı; yetkili kullanıcılar için admin ve sitede ortak AI sohbeti.
- * Version:           0.35.2
+ * Version:           0.36.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -22,7 +22,7 @@ if ( defined( 'FLXAI_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXAI_VERSION', '0.35.2' );
+define( 'FLXAI_VERSION', '0.36.0' );
 define( 'FLXAI_DB_VERSION', '7' );
 define( 'FLXAI_CAP_MCP', 'flxai_mcp' );
 define( 'FLXAI_FILE', __FILE__ );
@@ -32,6 +32,7 @@ define( 'FLXAI_URL', plugin_dir_url( __FILE__ ) );
 require_once FLXAI_DIR . 'includes/helpers.php';
 require_once FLXAI_DIR . 'includes/install.php';
 require_once FLXAI_DIR . 'includes/models.php';
+require_once FLXAI_DIR . 'includes/cloud.php';
 require_once FLXAI_DIR . 'includes/providers.php';
 require_once FLXAI_DIR . 'includes/budget.php';
 require_once FLXAI_DIR . 'includes/api.php';

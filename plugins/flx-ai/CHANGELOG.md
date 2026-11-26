@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.36.0
+- Flux Cloud AI kredisi: site bir FluxWP hesabına bağlıysa (Flux Setup › FluxWP hesabı) AI anahtar girmeden hesabın aylık AI kredisiyle çalışır (Flux Cloud 0.3.0+). İstek OpenRouter biçiminde hesabın Flux Cloud proxy'sine sitenin Flux Cloud token'ıyla gider; akış (streaming) ve araç çağrıları aynen çalışır. Kendi anahtarı olan site eskisi gibi kendi anahtarını kullanır (mevcuta ek).
+- Ayarlar › "Flux Cloud AI kredisi" kartı: bu ay kullanılan / aylık / kalan kredi, bu sitenin kullanımı, yenilenme tarihi, "Kredi al ya da planı değiştir" bağlantısı, plan yalnız temel modelliyse uyarı. Seçim (`cloud_ai`): kendi anahtarı yoksa (varsayılan), her zaman, hiçbir zaman.
+- Claude modelleri Flux Cloud üzerinden OpenRouter kimliğiyle gider (`claude:claude-haiku-4-5` → `anthropic/claude-haiku-4.5`, filtre `flxai_cloud_model_id`). Model seçilmemişse Flux Cloud'un önerdiği model kullanılır.
+- Kredi bitince, plan modeli içermiyorsa ya da dakikalık sınır aşılınca Flux Cloud'un açık mesajı olduğu gibi gösterilir. Kayıtlarda sağlayıcı `cloud`.
+- GraphQL: `FlxAiSettings.cloudAi`, `FlxAiSettingsOptions.cloud` (`FlxAiCloud`).
+
 ## 0.35.2
 - OpenRouter'ın "Provider returned error" hatası sebebine çevrilir: hata gövdesindeki sağlayıcı adı ve ham metinden hız sınırı (429), kota dolması ve geçici kesinti (5xx) ayrıştırılır ("Google AI Studio hız sınırına ulaşıldı: aynı anda çok fazla istek var. Bir dakika sonra tekrar deneyin."). Özgün metin hata verisinde `orig` olarak kalır.
 

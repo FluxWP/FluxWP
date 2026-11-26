@@ -188,10 +188,21 @@ function flxai_http_stream( $url, array $headers, $body, $timeout, callable $on_
  * OpenRouter
  * ------------------------------------------------------------------------- */
 
-function flxai_openrouter_request( array $messages, array $opts, $model ) {
-	$key = flxai_setting( 'key_openrouter' );
+/**
+ * OpenRouter-format request. $provider: whose model it is (anthropic models come here only through Flux Cloud);
+ * with no own key and a connected FluxWP account the request goes to Flux Cloud (includes/cloud.php).
+ */
+function flxai_openrouter_request( array $messages, array $opts, $model, $provider = 'openrouter' ) {
+	$conn = flxai_openrouter_conn( $provider, ! empty( $opts['_cloud_retry'] ) );
+	if ( is_wp_error( $conn ) ) {
+		return $conn;
+	}
+	$key = $conn['key'];
 	if ( '' === $key ) {
 		return new WP_Error( 'flxai_key', __( 'No OpenRouter API key entered (Flux AI & MCP › Settings).', 'flx-ai' ) );
+	}
+	if ( $conn['cloud'] ) {
+		$model = flxai_cloud_model_id( $provider, $model );
 	}
 	$body = array(
 		'model'      => $model,
@@ -215,7 +226,7 @@ function flxai_openrouter_request( array $messages, array $opts, $model ) {
 	if ( ! empty( $opts['thinking'] ) ) {
 		$body['reasoning'] = array( 'effort' => (string) ( $opts['effort'] ?? 'low' ) );
 	}
-	$url     = flxai_openrouter_base() . '/chat/completions';
+	$url     = $conn['base'] . '/chat/completions';
 	$headers = array(
 		'Authorization' => 'Bearer ' . $key,
 		'Content-Type'  => 'application/json',
@@ -235,6 +246,10 @@ function flxai_openrouter_request( array $messages, array $opts, $model ) {
 			function ( $j ) use ( &$acc, $emit ) {
 				if ( isset( $j['error'] ) ) {
 					$acc['error'] = $j['error'];
+					return;
+				}
+				if ( isset( $j['flx_cloud'] ) ) {
+					flxai_cloud_note( $j['flx_cloud'] );
 					return;
 				}
 				if ( ! empty( $j['model'] ) ) {
@@ -323,9 +338,20 @@ function flxai_openrouter_request( array $messages, array $opts, $model ) {
 		$code = (int) wp_remote_retrieve_response_code( $r );
 		$json = json_decode( (string) wp_remote_retrieve_body( $r ), true );
 	}
+	if ( $conn['cloud'] && 401 === $code && empty( $opts['_cloud_retry'] ) ) {
+		// Token expired between the check and the call: renew once.
+		return flxai_openrouter_request( $messages, array( '_cloud_retry' => 1 ) + $opts, $model, $provider );
+	}
 	if ( $code < 200 || $code >= 300 || ! is_array( $json ) || isset( $json['error'] ) ) {
 		$msg = is_array( $json ) ? (string) ( $json['error']['message'] ?? '' ) : '';
+		if ( $conn['cloud'] ) {
+			// Flux Cloud messages (credits used up, model not in the plan) are written for people: show as they are.
+			return new WP_Error( 'flxai_cloud', '' !== $msg ? $msg : __( 'Flux Cloud did not answer.', 'flx-ai' ), array( 'provider' => 'cloud', 'status' => $code, 'buy_url' => (string) ( $json['error']['buy_url'] ?? '' ) ) );
+		}
 		return flxai_api_error( 'openrouter', $code ? $code : 500, $msg, $key, $json );
+	}
+	if ( $conn['cloud'] && isset( $json['flx_cloud'] ) ) {
+		flxai_cloud_note( $json['flx_cloud'] );
 	}
 	$msg = $json['choices'][0]['message'] ?? null;
 	if ( ! is_array( $msg ) ) {
@@ -350,7 +376,7 @@ function flxai_openrouter_request( array $messages, array $opts, $model ) {
 	}
 	$out_msg['_finish'] = (string) ( $json['choices'][0]['finish_reason'] ?? '' );
 	$out_msg['_usage']  = array(
-		'provider' => 'openrouter',
+		'provider' => $conn['cloud'] ? 'cloud' : 'openrouter',
 		'model'    => (string) ( $json['model'] ?? $model ),
 		'in'       => $in,
 		'out'      => $out,

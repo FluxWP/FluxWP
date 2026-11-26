@@ -52,15 +52,23 @@ function flxai_provider_labels() {
 	);
 }
 
-/** Anahtarı girilmiş sağlayıcılar. */
+/** Anahtarı girilmiş sağlayıcılar; anahtar yoksa ve site Flux Cloud'a bağlıysa "cloud" (hesabın AI kredisi). */
 function flxai_providers_ready() {
 	$on = array();
 	foreach ( flxai_provider_labels() as $id => $label ) {
-		if ( '' !== flxai_provider_key( $id ) ) {
+		if ( '' !== flxai_provider_key( $id ) && ! ( 'always' === flxai_cloud_mode() && flxai_cloud_ready() ) ) {
 			$on[ $id ] = $label;
 		}
 	}
+	if ( flxai_cloud_ready() && ( ! $on || 'always' === flxai_cloud_mode() || '' === flxai_provider_key( 'anthropic' ) || '' === flxai_provider_key( 'openrouter' ) ) ) {
+		$on['cloud'] = __( 'Flux Cloud (account AI credits)', 'flx-ai' );
+	}
 	return $on;
+}
+
+/** Bir sağlayıcının modeli çağrılabilir mi (kendi anahtarı ya da Flux Cloud). */
+function flxai_provider_usable( $provider ) {
+	return '' !== flxai_provider_key( $provider ) || flxai_cloud_for( $provider );
 }
 
 /**
@@ -82,6 +90,9 @@ function flxai_model_for( $source = '', $given = '' ) {
 			$m = 'claude:claude-haiku-5-5';
 		} elseif ( isset( $ready['openrouter'] ) ) {
 			$m = 'google/gemini-2.5-flash';
+		} elseif ( isset( $ready['cloud'] ) ) {
+			$c = flxai_cloud_status();
+			$m = is_array( $c ) && ! empty( $c['default'] ) ? (string) $c['default'] : 'google/gemini-2.5-flash';
 		}
 	}
 	return (string) apply_filters( 'flxai_model_for', $m, $source );
@@ -94,7 +105,7 @@ function flxai_ready( $source = '' ) {
 		return false;
 	}
 	$p = flxai_parse_model( $m );
-	return '' !== flxai_provider_key( $p['provider'] );
+	return flxai_provider_usable( $p['provider'] );
 }
 
 /* ---------------------------------------------------------------------------
@@ -317,6 +328,11 @@ function flxai_models( $fresh = false ) {
 		return $c;
 	}
 	$ready = flxai_providers_ready();
+	if ( isset( $ready['cloud'] ) ) {
+		// Flux Cloud serves OpenRouter models.
+		unset( $ready['cloud'] );
+		$ready['openrouter'] = 'OpenRouter';
+	}
 	if ( ! $ready ) {
 		$ready = array( 'openrouter' => 'OpenRouter' );
 	}

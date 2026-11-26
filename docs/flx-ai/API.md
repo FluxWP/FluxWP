@@ -538,3 +538,13 @@ Mesaj alanı `_show`: modele giden metinden farklı görünen metin (kullanıcı
 - `flxai_tool_result( $data, $name, $args, $ctx )`: başarılı araç sonucunu değiştirir. Flux AI kendisi `flxseo_*_content` sonuçlarına `preview_url` + `edit_url` ekler.
 - `flxai_image_generate` (prompt, aspect, title, alt): varsayılan görsel modeliyle üretir, medya kütüphanesine ekler, `images[].attachment_id/url` döner. Ayar `image_tool_on`.
 - `flxai_page_screenshot` (post_id | url, width): Gotenberg (`render_url`) ile PNG. Taslaklar `flxai_preview_link( $post_id, $ttl )` imzalı süreli bağlantısıyla çekilir.
+
+## Flux Cloud AI kredisi (0.36.0)
+
+Site Flux Cloud'a bağlıysa (Flux Setup `FLXK_Cloud::connected()`) ve ilgili sağlayıcının anahtarı yoksa (`cloud_ai` = `auto`) ya da `cloud_ai` = `always` ise istek `flxai_openrouter_request()` içinden hesabın proxy'sine gider: `<ai.base>/chat/completions`, `Authorization: Bearer <Flux Cloud access token>`. Sözleşme: wp-extras `plugins/flx-cloud/docs/API.md` (3b).
+
+- `flxai_cloud_status( $fresh )`: hesap kredisi (`on, base, models, basic, default, monthly, used, bonus, left, site_used, resets, buy_url`), 5 dk önbellek (`flxai_cloud_ai`); her cevaptaki `flx_cloud` sayılarıyla güncellenir.
+- `flxai_cloud_ready()`, `flxai_cloud_for( $provider )`, `flxai_provider_usable( $provider )`.
+- `flxai_providers_ready()` anahtar yoksa `cloud` => "Flux Cloud (account AI credits)" döner; model kataloğu OpenRouter listesidir.
+- Claude kimliği OpenRouter'a çevrilir: filtre `flxai_cloud_model_id( $id, $provider )`.
+- Hata (402 kredi bitti, 403 plan modeli içermiyor, 429 sınır): `WP_Error( 'flxai_cloud', <Flux Cloud mesajı>, { provider: 'cloud', status, buy_url } )`.

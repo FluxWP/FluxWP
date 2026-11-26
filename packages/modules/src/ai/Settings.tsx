@@ -164,6 +164,40 @@ export function Settings() {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
+      {o.cloud && (
+        <Card title={t('Flux Cloud AI credits')}>
+          <p className="flxai-hint">
+            {t('This site is connected to a FluxWP account. Without your own key, AI runs on the account\'s monthly AI credits (1 credit = $0.001 of model cost).')}
+          </p>
+          {!o.cloud.on ? (
+            <div className="flxai-notice is-warn">{t('Flux Cloud does not offer AI credits right now; enter your own key below.')}</div>
+          ) : (
+            <>
+              <div className={'flxai-notice is-' + (o.cloud.left === 0 ? 'error' : 'success')} role="status">
+                {o.cloud.monthly < 0
+                  ? t('Unlimited credits. This site used %s this month.', num(o.cloud.siteUsed))
+                  : t('%s of %s monthly credits used, %s left. This site used %s.', num(o.cloud.used), num(o.cloud.monthly), num(o.cloud.left), num(o.cloud.siteUsed))}
+                {o.cloud.bonus > 0 && ' ' + t('Bought credits left: %s.', num(o.cloud.bonus))}
+                {o.cloud.resets > 0 && ' ' + t('Renews on %s.', new Date(o.cloud.resets * 1000).toLocaleDateString())}{' '}
+                {o.cloud.buyUrl && (
+                  <a href={o.cloud.buyUrl} target="_blank" rel="noopener noreferrer">
+                    {t('Buy credits or change plan')}
+                  </a>
+                )}
+              </div>
+              {o.cloud.basic && <p className="flxai-hint">{t('Your plan includes basic models only (such as Haiku and Gemini Flash).')}</p>}
+            </>
+          )}
+          <Field label={t('Use the account credits')} hint={o.cloud.active ? t('The default model runs on the account credits now.') : t('The default model runs on your own key now.')}>
+            <select className="flxai-input" value={form.cloudAi} onChange={(e) => set('cloudAi', e.target.value)}>
+              <option value="auto">{t('When this site has no key of its own (recommended)')}</option>
+              <option value="always">{t('Always, even when a key is entered')}</option>
+              <option value="off">{t('Never, only my own keys')}</option>
+            </select>
+          </Field>
+        </Card>
+      )}
+
       <Card title={t('Providers')}>
         {group('provider').map((s) => (
           <KeyRow key={s.name} name={s.name} />

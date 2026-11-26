@@ -120,7 +120,8 @@ final class FLXAI_Settings_Service {
 			FLXAI_Cast::int( $s['log_days'] ?? 0 ),
 			FLXAI_Cast::bool( $s['log_bodies'] ?? true ),
 			FLXAI_Cast::int( $s['log_body_days'] ?? 0 ),
-			FLXAI_Cast::bool( $s['delete_data'] ?? false )
+			FLXAI_Cast::bool( $s['delete_data'] ?? false ),
+			FLXAI_Cast::str( flxai_cloud_mode() )
 		);
 	}
 
@@ -160,7 +161,30 @@ final class FLXAI_Settings_Service {
 			FLXAI_Cast::str( flxai_model_for( '' ) ),
 			FLXAI_Cast::str( flxai_widget_renderer() ),
 			FLXAI_Cast::int( flxai_web_month_count() ),
-			array() !== FLXAI_Cast::arr( flxai_providers_ready() )
+			array() !== FLXAI_Cast::arr( flxai_providers_ready() ),
+			self::cloud()
+		);
+	}
+
+	/** Flux Cloud credits for the settings page; null when the site is not connected to a FluxWP account. */
+	public static function cloud(): ?FLXAI_Cloud {
+		$c = flxai_cloud_status();
+		if ( ! is_array( $c ) ) {
+			return null;
+		}
+		$p = flxai_parse_model( FLXAI_Cast::str( flxai_model_for( '' ) ) );
+		return new FLXAI_Cloud(
+			FLXAI_Cast::bool( $c['on'] ?? false ),
+			flxai_cloud_for( FLXAI_Cast::str( $p['provider'] ?? 'openrouter' ) ),
+			'basic' === FLXAI_Cast::str( $c['models'] ?? 'all' ),
+			FLXAI_Cast::int( $c['monthly'] ?? 0 ),
+			FLXAI_Cast::int( $c['used'] ?? 0 ),
+			FLXAI_Cast::int( $c['bonus'] ?? 0 ),
+			FLXAI_Cast::int( $c['left'] ?? 0 ),
+			FLXAI_Cast::int( $c['site_used'] ?? 0 ),
+			FLXAI_Cast::int( $c['resets'] ?? 0 ),
+			esc_url_raw( FLXAI_Cast::str( $c['buy_url'] ?? '' ) ),
+			FLXAI_Cast::str( $c['default'] ?? '' )
 		);
 	}
 
@@ -269,6 +293,13 @@ final class FLXAI_Settings_Service {
 				return self::invalid( 'web_provider', __( 'Choose a search provider from the list.', 'flx-ai' ) );
 			}
 			$new['web_provider'] = $w;
+		}
+		if ( array_key_exists( 'cloud_ai', $in ) ) {
+			$v = FLXAI_Cast::str( $in['cloud_ai'] );
+			if ( ! in_array( $v, array( 'auto', 'always', 'off' ), true ) ) {
+				return self::invalid( 'cloud_ai', __( 'Flux Cloud use must be auto, always or off.', 'flx-ai' ) );
+			}
+			$new['cloud_ai'] = $v;
 		}
 		if ( array_key_exists( 'web_search_month', $in ) ) {
 			$new['web_search_month'] = max( 0, min( 1000000, FLXAI_Cast::int( $in['web_search_month'] ) ) );

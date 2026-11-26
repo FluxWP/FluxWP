@@ -4014,3 +4014,15 @@ msgstr "%s hız sınırına ulaşıldı: aynı anda çok fazla istek var. Bir da
 
 msgid "%s is temporarily unavailable."
 msgstr "%s geçici olarak kullanılamıyor."
+
+msgid "Flux Cloud session could not be renewed: %s"
+msgstr "Flux Cloud oturumu yenilenemedi: %s"
+
+msgid "Flux Cloud did not answer."
+msgstr "Flux Cloud cevap vermedi."
+
+msgid "Flux Cloud (account AI credits)"
+msgstr "Flux Cloud (hesap AI kredisi)"
+
+msgid "Flux Cloud use must be auto, always or off."
+msgstr "Flux Cloud kullanımı otomatik, her zaman ya da kapalı olmalı."
