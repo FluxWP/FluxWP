@@ -394,11 +394,13 @@ export function BarChart({ items, group, height = 260 }: { items: { date: string
       tickLabel={(d) => label(d, true)}
       series={[
         { label: t('Visitors'), data: items.map((i) => i.visitors), color: 'var(--flxan-accent)' },
-        { label: t('Page views'), data: items.map((i) => i.pageviews), kind: 'area', color: 'var(--flxan-accent-2)' },
+        { label: t('Views'), data: items.map((i) => i.pageviews), kind: 'area', color: 'var(--flxan-accent-2)' },
       ]}
       format={(v) => n(v)}
       formatTick={(v) => compact(v)}
       label={t('Visitors and page views chart')}
+      legend={false}
+      points={false}
     />
   );
 }
