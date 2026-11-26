@@ -179,3 +179,10 @@
 
 .flxads .flxads-row__del{position:absolute;top:8px;right:10px;font-size:20px;line-height:1;color:var(--c-mut);cursor:pointer;background:none;border:0}
 .flxads .flxads-row__del:hover{color:var(--c-bad)}
+.flxads-hidelead .flxads-lead{display:none}
+/* Classic field widths: inputs and date pickers fill the column; lead under the title wraps like the classic page */
+.flxads-field>input[type=number],.flxads-field>.flx-dt-wrap{width:100%}
+.flxads-field>.flx-dt-wrap>.flx-dt{width:100%;justify-content:flex-start}
+.flxads-field>.flx-dt-wrap .flx-dt__val{flex:1;text-align:left}
+.flxads.flx-page .flx-page__title>p{max-width:720px}
+.flxads .flxads-builder .flxads-field.is-wide{grid-column:1/-1}

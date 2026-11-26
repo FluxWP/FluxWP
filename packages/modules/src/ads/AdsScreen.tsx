@@ -14,7 +14,7 @@ import { translator } from './i18n';
 import { EnvContext, Btn, type Env } from './common';
 import { LinksTab, LogTab, ReportTab, SpendTab, ValueTab } from './ReportTabs';
 import { CampaignsTab, ExperimentsTab, SuggestionsTab } from './MetaTabs';
-import { AudiencesTab, PlannerTab, StudioTab } from './StudioTabs';
+import { AudiencesTab, LEADS, PlannerTab, StudioTab } from './StudioTabs';
 import { SettingsTab } from './SettingsTab';
 import './ads.css';
 
@@ -133,6 +133,17 @@ function Ads() {
     settings: t('Settings'),
   };
   const current = ctx.tabs.includes(tab) ? tab : 'report';
+  // wp-admin: each tab is its own submenu page (classic): no tab bar, the page lead sits under the title.
+  const classic = host.mode === 'wp';
+  const leads: Record<string, string> = {
+    campaigns: t('Your Meta campaigns, ad sets and ads with spend and the donations they brought on this site. Pause, turn on or change the daily budget here; every change goes to Meta at once and is written to the change history.'),
+    suggestions: t('Flux Ads checks your active Meta campaigns every day against what they brought on this site, and suggests what to change. Nothing changes until you press Apply; every change goes to the change history under Campaigns.'),
+    studio: t(LEADS.studio),
+    planner: t(LEADS.planner),
+    experiments: t('Find out what really works. A/B: two ads in the same campaign, compared by donations per click on this site. Holdout: a fixed share of an audience does not see the ads; comparing the two groups shows how many donations the ads really added.'),
+    value: t('What the people an ad brought in gave in total, not only their first payment. A campaign whose first gifts are cheap but never come back shows up here.'),
+    audiences: t(LEADS.audiences),
+  };
   const Body = TABS[current] ?? ReportTab;
   const env: Env = {
     t,
@@ -149,12 +160,12 @@ function Ads() {
   return (
     <EnvContext.Provider value={env}>
       <Screen
-        className="flxads flxads-app"
         width="wide"
         icon={host.appIcon}
+        className={'flxads flxads-app' + (classic && leads[current] ? ' flxads-hidelead' : '')}
         title={current === 'report' ? t('Ad conversions') : names[current]}
-        subtitle={current === 'report' ? t('Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved.') : undefined}
-        tabs={ctx.tabs.map((k) => ({ id: k, label: names[k] ?? k, badge: k === 'suggestions' ? ctx.openSuggestions : null }))}
+        subtitle={current === 'report' ? t('Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved.') : classic ? leads[current] : undefined}
+        tabs={classic ? undefined : ctx.tabs.map((k) => ({ id: k, label: names[k] ?? k, badge: k === 'suggestions' ? ctx.openSuggestions : null }))}
         tab={current}
         onTab={go}
       >

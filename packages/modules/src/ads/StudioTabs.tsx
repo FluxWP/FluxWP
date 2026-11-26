@@ -23,7 +23,7 @@ import { DatePicker, Loading } from '@fluxwp/ui';
 import { Btn, Card, Empty, Field, Muted, Notice, Pill, Td, num, useAct, useEnv } from './common';
 import { Fail } from './AdsScreen';
 
-const LEADS = {
+export const LEADS = {
   studio:
     'Flux AI writes a campaign draft from your brief and this site\'s numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. "Send to Meta" creates everything paused; nothing is shown or spent until you turn it on under Campaigns.',
   planner:

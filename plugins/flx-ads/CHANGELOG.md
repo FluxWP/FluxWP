@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.10.4
+- wp-admin'de sayfalar eski klasik düzende: her bölüm kendi alt menü sayfası, üstte sekme çubuğu yok; bölüm açıklaması başlığın altında. Tarih seçiciler ve bütçe alanı sütunu dolduruyor, Ayarlar'daki kimlik alanları eski genişlikte, Reklam bağlantısı'nda Sayfa alanı tam satır.
+
 ## 0.10.3
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 
