@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.54.3
+- Asistan kişinin dilinde kalır: sohbet sitenin dilinden farklıysa (ör. İngilizce) talimata "yalnız bu dilde yaz; belirsiz ya da çok kısa mesajda ("no", "ok") da bu dilde kal; site dilinde kelime ya da parantez içinde karşılık ekleme" satırı eklendi. Model "no no no" gibi mesajda Türkçeye dönüyor ve "tree donations (fidan bağışı)" yazıyordu.
+
 ## 1.54.2
 - Sesli mesaja çift cevap giderdi: dil tespiti tur başında okunmuş eski sohbet kaydını geri yazıp "son işlenen mesaj" işaretini geri sarıyordu, aynı mesaj ikinci kez cevaplanıyordu ("mesajınızın tamamı ulaşmadı"). Dil artık güncel kayıttan okunur; ayrıca bir çalıştırma aynı gelen mesajı iki kez işlemez.
 - Ses çevirisi hız sınırında (429) ve geçici sağlayıcı hatasında (5xx) en fazla 2 kez yeniden denenir (1 sn, 2 sn bekleyerek); düzelmezse yedek ses modeline geçer. Toplam süre ~35 sn ile sınırlı.
