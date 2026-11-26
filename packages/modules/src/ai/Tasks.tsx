@@ -7,7 +7,7 @@ import type { FlxAiRecipientFieldsFragment, FlxAiTaskFieldsFragment, FlxAiTaskOv
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { DatePicker, Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
-import { Card, NoticeBar, Pill, errText, useAi, type AiT, type Notice } from './common';
+import { Card, NoticeBar, Pill, errText, useAi, type AiT, type Notice, Lead } from './common';
 
 type Task = FlxAiTaskFieldsFragment;
 type Overview = FlxAiTaskOverviewFieldsFragment;
@@ -113,7 +113,7 @@ export function Tasks() {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
-      <p className="flxai-lead">{t("Instructions the assistant runs on its own at set times: a daily briefing, a weekly donor review, a site performance check. Each task runs with its owner's permissions and writes its report to its own chat; changes wait for approval.")}</p>
+      <Lead text={t("Instructions the assistant runs on its own at set times: a daily briefing, a weekly donor review, a site performance check. Each task runs with its owner's permissions and writes its report to its own chat; changes wait for approval.")} />
       <div className="flxai-kpis">
         <Kpi label={t('Active')} value={num(active.length)} sub={t('%s in total', num(o.tasks.length))} />
         <Kpi label={t('Next run')} value={o.nextRun?.label ?? '—'} />

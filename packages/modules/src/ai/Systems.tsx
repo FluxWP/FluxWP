@@ -6,7 +6,7 @@ import { FlxAiSystems, FlxAiSystemsUpdate } from '@fluxwp/graphql/operations';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { Loading } from '@fluxwp/ui';
 import { useHost } from '../host';
-import { Card, NoticeBar, Pill, Switch, errText, useAi, type Notice } from './common';
+import { Card, NoticeBar, Pill, errText, useAi, type Notice, Lead } from './common';
 import { SystemSettings } from './SystemSettings';
 
 export function Systems() {
@@ -35,45 +35,57 @@ function SystemList() {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
-      <p className="flxai-lead">{t('Plugins that use Flux AI. Turn AI off for a system and its requests are refused; the last 30 days of use are shown.')}</p>
+      <Lead text={t('Plugins that use Flux AI. A system switched off here cannot send AI requests; its own settings stay as they are.')} />
       <Card>
         <div className="flxai-tscroll">
-          <table className="flxai-table">
+          <table className="flxai-table flxai-systems">
             <thead>
               <tr>
-                <th>{t('AI')}</th>
+                <th>{t('On')}</th>
                 <th>{t('System')}</th>
+                <th>{t('Status')}</th>
                 <th>{t('Model')}</th>
-                <th className="num">{t('Requests')}</th>
-                <th className="num">{t('Tool calls')}</th>
+                <th className="num">{t('Requests (30 days)')}</th>
                 <th className="num">{t('Tokens')}</th>
                 <th className="num">{t('Cost')}</th>
+                <th className="num">{t('Errors')}</th>
                 <th>{t('Last used')}</th>
                 <th />
               </tr>
             </thead>
             <tbody>
               {q.data.flxAiSystems.map((s) => (
-                <tr key={s.source} className={s.active ? '' : 'is-off'}>
+                <tr key={s.source}>
                   <td>
-                    <Switch checked={s.on} label={t('%s on', s.label)} disabled={update.isPending} onChange={(on) => update.mutate({ input: { systems: [{ source: s.source, on }] } })} />
+                    <input type="checkbox" className="flxai-syscheck" checked={s.on} aria-label={s.label} disabled={update.isPending} onChange={(e) => update.mutate({ input: { systems: [{ source: s.source, on: e.target.checked }] } })} />
                   </td>
                   <td>
                     <strong>{s.label}</strong>
-                    {!s.installed && <Pill>{t('not installed')}</Pill>}
-                    {s.errors > 0 && <Pill kind="err">{t('%s errors', num(s.errors))}</Pill>}
+                    <br />
+                    <code>{s.source}</code>
                   </td>
-                  <td>{s.modelLabel || s.model || '—'}</td>
-                  <td className="num">{num(s.calls)}</td>
-                  <td className="num">{num(s.tools)}</td>
+                  <td>
+                    {!s.installed ? <Pill>{t('not installed')}</Pill> : !s.active ? <Pill>{t('plugin inactive')}</Pill> : !s.on ? <Pill kind="err">{t('AI off')}</Pill> : <Pill>{t('working')}</Pill>}
+                  </td>
+                  <td className="flxai-nowrap">{s.modelLabel || s.model || '—'}</td>
+                  <td className="num">{num(s.calls) + (s.tools ? ' + ' + num(s.tools) : '')}</td>
                   <td className="num">{num(s.tokens)}</td>
                   <td className="num">{usd(s.cost)}</td>
+                  <td className="num">{num(s.errors)}</td>
                   <td>{s.lastUsed?.label ?? '—'}</td>
-                  <td>
+                  <td className="flxai-syslinks">
+                    <a href={adminUrl + 'admin.php?page=flx-ai-log&days=30&source=' + encodeURIComponent(s.source)}>{t('Logs')}</a>
                     {s.hasAiSettings && (
-                      <a className="flxai-btn is-small" href={adminUrl + s.settingsPage.replace(/^\//, '')}>
-                        {t('AI settings')}
-                      </a>
+                      <>
+                        {' · '}
+                        <a href={adminUrl + 'admin.php?page=flx-ai-systems&system=' + encodeURIComponent(s.source)}>{t('AI settings')}</a>
+                      </>
+                    )}
+                    {s.settingsPage && s.active && (
+                      <>
+                        {' · '}
+                        <a href={adminUrl + s.settingsPage.replace(/^\//, '')}>{t('Its settings')}</a>
+                      </>
                     )}
                   </td>
                 </tr>
@@ -81,6 +93,7 @@ function SystemList() {
             </tbody>
           </table>
         </div>
+        <p className="flxai-note">{t('The Model column is the model that system uses. Change it under Settings › Per-plugin model. Requests to a disabled system are rejected and show as "Disabled" in the log.')}</p>
       </Card>
     </>
   );
