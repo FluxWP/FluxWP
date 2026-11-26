@@ -218,7 +218,13 @@ function flxc_bot_lang_turn( $chat ) {
 /** Talimatın "Bilinenler" kısmına: kişinin dili. */
 function flxc_bot_lang_known( array $state ) {
 	$c = flxc_bot_state_lang( $state );
-	return 'Kişinin dili: ' . flxc_lang_name( $c ) . ' (' . $c . ')' . ( empty( $state['lang'] ) ? ' (henüz belli değil, sitenin dili)' : '' ) . '. Kişi hangi dilde yazıyorsa o dilde cevap ver.';
+	$out = 'Kişinin dili: ' . flxc_lang_name( $c ) . ' (' . $c . ')' . ( empty( $state['lang'] ) ? ' (henüz belli değil, sitenin dili)' : '' ) . '. Kişi hangi dilde yazıyorsa o dilde cevap ver.';
+	if ( ! empty( $state['lang'] ) && $c !== flxc_lang_site() ) {
+		// 1.54.3: talimat ve kayıtlar site dilinde olduğundan model "no no no" gibi belirsiz mesajda site diline kayıyor,
+		// tür adının site dilindeki karşılığını parantez içinde ekliyordu.
+		$out .= ' Cevabın tamamını YALNIZ ' . flxc_lang_name( $c ) . ' yaz; belirsiz ya da çok kısa mesajda ("no", "ok") da bu dilde kal. Site dilinde kelime ya da parantez içinde karşılık ekleme; tür ve ürün adlarını bu dilde yaz.';
+	}
+	return $out;
 }
 
 /** Talimatın sabit kısmına (önbellekli): dil kuralı. */
