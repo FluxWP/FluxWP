@@ -95,7 +95,7 @@ function flx_gql_registration_errors(): array {
  * it is `/?graphql=1`, which WPGraphQL serves on any server; otherwise the endpoint URL.
  */
 function flx_gql_http_endpoint(): string {
-	if ( '' === (string) get_option( 'permalink_structure' ) ) {
+	if ( '' === flx_gql_str( get_option( 'permalink_structure' ) ) ) {
 		return add_query_arg( 'graphql', '1', home_url( '/' ) );
 	}
 	return flx_gql_endpoint();
