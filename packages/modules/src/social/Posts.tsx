@@ -1,18 +1,20 @@
 // Posts list and the approvals queue: tabs, search and filters, bulk actions, row actions, load more.
 import { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxSocialPostBulkAct, FlxSocialPostDelete, FlxSocialPostDuplicate, FlxSocialPosts } from '@fluxwp/graphql/operations';
 import type { FlxSocialBulkAction, FlxSocialPostStatus } from '@fluxwp/graphql/types';
-import { Loading, Tabs } from '@fluxwp/ui';
+import { Icon, Loading } from '@fluxwp/ui';
 import { NetDot, StatusBadge, STATUS_KEYS, errorText, excerpt, payloadError, postTime, useSocial, type Post, type Query } from './common';
 
 const PAGE = 20;
 const TABS: { id: string; label: string; status: FlxSocialPostStatus[] }[] = [
   { id: 'all', label: 'All', status: [] },
   { id: 'draft', label: 'Drafts', status: ['DRAFT'] },
+  { id: 'pending', label: 'Awaiting approval', status: ['PENDING'] },
   { id: 'scheduled', label: 'Scheduled', status: ['SCHEDULED', 'PUBLISHING'] },
-  { id: 'published', label: 'Published', status: ['PUBLISHED'] },
-  { id: 'failed', label: 'Errors', status: ['FAILED', 'PARTIAL'] },
+  { id: 'published', label: 'Published', status: ['PUBLISHED', 'PARTIAL'] },
+  { id: 'failed', label: 'Failed', status: ['FAILED', 'PARTIAL'] },
 ];
 
 const ALL_STATUS = Object.keys(STATUS_KEYS) as FlxSocialPostStatus[];
@@ -68,8 +70,6 @@ export function PostsPage({ approvals, initial }: { approvals: boolean; initial:
   const dup = useFlxMutation(FlxSocialPostDuplicate);
 
   const rows = list.data?.flxSocialPosts.nodes ?? [];
-  const total = list.data?.flxSocialPosts.totalCount ?? 0;
-  const allOn = rows.length > 0 && rows.every((p) => sel.includes(p.id));
 
   const runBulk = (action: FlxSocialBulkAction) => {
     const go = () =>
@@ -87,7 +87,8 @@ export function PostsPage({ approvals, initial }: { approvals: boolean; initial:
           onError: (e) => s.toast(errorText(e, t('Something went wrong.')), 'error'),
         },
       );
-    if (action === 'DELETE') s.confirm({ title: t('Delete posts'), text: t('{n} posts will be deleted from the panel. Posts already shared stay on the networks.', { n: sel.length }), action: t('Delete'), danger: true, run: go });
+    if (action === 'DELETE')
+      s.confirm({ title: t('Delete posts'), text: t('{n} posts will be deleted from the panel. Posts already shared stay on the networks.', { n: sel.length }), action: t('Delete'), danger: true, run: go });
     else go();
   };
 
@@ -143,32 +144,50 @@ export function PostsPage({ approvals, initial }: { approvals: boolean; initial:
     { action: 'DELETE', label: t('Delete'), show: true, danger: true },
   ];
 
+  const head = s.topSlot
+    ? createPortal(
+        <label className="flxsm-searchbox">
+          <Icon name="search" size={16} />
+          <input type="search" className="flxsm-search" value={search} placeholder={t('Search text, title or tag')} aria-label={t('Search posts')} onChange={(e) => setSearch(e.target.value)} />
+        </label>,
+        s.topSlot,
+      )
+    : null;
+
   return (
     <div className="flxsm-posts">
-      {approvals ? <p className="flxsm-lead">{t('Posts waiting for someone who can publish to approve them.')}</p> : (
-        <Tabs items={TABS.map((x) => ({ id: x.id, label: t(x.label) }))} current={tab} onChange={setTab} />
+      {head}
+      {approvals ? (
+        <p className="flxsm-muted flxsm-lead">{t('Posts waiting for someone who can publish to approve them.')}</p>
+      ) : (
+        <div className="flxsm-toolbar">
+          <div className="flxsm-tabs" role="tablist">
+            {TABS.map((x) => (
+              <button key={x.id} type="button" role="tab" aria-selected={tab === x.id} className={'flxsm-tab' + (tab === x.id ? ' is-on' : '')} onClick={() => setTab(x.id)}>
+                {t(x.label)}
+              </button>
+            ))}
+          </div>
+          <div className="flxsm-row">
+            <select className="flxsm-sel" value={account} aria-label={t('Account')} onChange={(e) => setAccount(e.target.value)}>
+              <option value="">{t('All accounts')}</option>
+              {s.accounts.map((a) => (
+                <option key={a.id} value={a.databaseId}>
+                  {(s.net(a.provider)?.label ?? a.provider) + ' › ' + a.name}
+                </option>
+              ))}
+            </select>
+            <label className="flxsm-chk">
+              <input type="checkbox" checked={mine} onChange={(e) => setMine(e.target.checked)} />
+              <span>{t('Only mine')}</span>
+            </label>
+          </div>
+        </div>
       )}
-      <div className="flxsm-filters">
-        <input type="search" value={search} placeholder={t('Search posts')} aria-label={t('Search posts')} onChange={(e) => setSearch(e.target.value)} />
-        <select value={account} aria-label={t('Account')} onChange={(e) => setAccount(e.target.value)}>
-          <option value="">{t('All accounts')}</option>
-          {s.accounts.map((a) => (
-            <option key={a.id} value={a.databaseId}>
-              {a.name} · {s.net(a.provider)?.label ?? a.provider}
-            </option>
-          ))}
-        </select>
-        <label className="flxsm-chk">
-          <input type="checkbox" checked={mine} onChange={(e) => setMine(e.target.checked)} />
-          <span>{t('Only mine')}</span>
-        </label>
-        <span className="flxsm-grow" />
-        <span className="flxsm-muted">{t('{n} posts', { n: total })}</span>
-      </div>
 
       {sel.length > 0 && (
         <div className="flxsm-bulk" role="toolbar">
-          <strong>{t('{n} selected', { n: sel.length })}</strong>
+          <span>{t('{n} selected', { n: sel.length })}</span>
           {bulkActions
             .filter((b) => b.show)
             .map((b) => (
@@ -176,7 +195,7 @@ export function PostsPage({ approvals, initial }: { approvals: boolean; initial:
                 {b.label}
               </button>
             ))}
-          <button type="button" className="flxsm-btn is-ghost" onClick={() => setSel([])}>
+          <button type="button" className="flxsm-link" onClick={() => setSel([])}>
             {t('Clear')}
           </button>
         </div>
@@ -188,87 +207,120 @@ export function PostsPage({ approvals, initial }: { approvals: boolean; initial:
         <div className="flxsm-notice is-error">{errorText(list.error, t('Something went wrong.'))}</div>
       ) : !rows.length ? (
         <div className="flxsm-empty">
-          <h2>{approvals ? t('Nothing waiting for approval') : t('No posts here')}</h2>
+          <Icon name={approvals ? 'check' : 'inbox'} size={28} />
+          <h3>{approvals ? t('Nothing waiting for approval') : t('No posts')}</h3>
+          {!approvals && <p>{t('Create your first post; you can share to several accounts at once, with a separate text for each.')}</p>}
           {!approvals && (
             <button type="button" className="flxsm-btn is-primary" onClick={() => s.edit(null)}>
-              + {t('New post')}
+              <Icon name="plus-alt" size={15} /> {t('New post')}
             </button>
           )}
         </div>
       ) : (
-        <div className="flxsm-card flxsm-table-wrap">
-          <table className="flxsm-table">
-            <thead>
-              <tr>
-                <th className="flxsm-c-chk">
-                  <input type="checkbox" aria-label={t('Select all')} checked={allOn} onChange={(e) => setSel(e.target.checked ? rows.map((p) => p.id) : [])} />
-                </th>
-                <th>{t('Post')}</th>
-                <th>{t('Accounts')}</th>
-                <th>{t('Status')}</th>
-                <th>{t('Time')}</th>
-                <th aria-label={t('Actions')} />
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((p) => {
-                const thumb = p.media[0]?.thumb || (p.media[0]?.kind === 'image' ? p.media[0].url : '');
-                const ts = postTime(p);
-                return (
-                  <tr key={p.id} className={sel.includes(p.id) ? 'is-sel' : ''}>
-                    <td className="flxsm-c-chk">
-                      <input type="checkbox" aria-label={t('Select')} checked={sel.includes(p.id)} onChange={(e) => setSel(e.target.checked ? [...sel, p.id] : sel.filter((x) => x !== p.id))} />
-                    </td>
-                    <td>
-                      <button type="button" className="flxsm-post" onClick={() => s.detail(p)}>
-                        {thumb ? <img src={thumb} alt="" width={44} height={44} loading="lazy" /> : <span className="flxsm-thumb-empty" aria-hidden />}
-                        <span>
-                          <strong>{excerpt(p, t)}</strong>
-                          <small className="flxsm-muted">
-                            {p.author}
-                            {p.source === 'ai' ? ' · AI' : p.source === 'app' ? ' · ' + t('Automatic') : ''}
-                          </small>
-                        </span>
-                      </button>
-                    </td>
-                    <td>
-                      <span className="flxsm-nets">
-                        {p.targets.map((x) => (
-                          <span key={x.id} className={'flxsm-tg is-' + x.status.toLowerCase()} title={x.account + ' · ' + x.status}>
-                            <NetDot provider={x.provider} size={20} />
-                          </span>
-                        ))}
+        <div className="flxsm-plist">
+          {rows.map((p) => {
+            const m = p.media[0];
+            const thumb = m ? m.thumb || (m.kind === 'image' ? m.url : '') : '';
+            const ts = postTime(p);
+            return (
+              <div key={p.id} className={'flxsm-prow' + (sel.includes(p.id) ? ' is-sel' : '')} onClick={() => s.detail(p)}>
+                <label className="flxsm-pck" onClick={(e) => e.stopPropagation()}>
+                  <input type="checkbox" aria-label={t('Select')} checked={sel.includes(p.id)} onChange={(e) => setSel(e.target.checked ? [...sel, p.id] : sel.filter((x) => x !== p.id))} />
+                </label>
+                <div className={'flxsm-pthumb' + (thumb ? '' : ' is-text')}>
+                  {thumb ? <img src={thumb} alt="" loading="lazy" /> : <Icon name="comment" size={18} />}
+                  {m?.kind === 'video' && (
+                    <span className="flxsm-pplay">
+                      <Icon name="play" size={12} />
+                    </span>
+                  )}
+                </div>
+                <div className="flxsm-pbody">
+                  <div className="flxsm-ptext">{excerpt(p, t)}</div>
+                  <div className="flxsm-pmeta">
+                    <StatusBadge status={p.status} label={t(STATUS_KEYS[p.status])} />
+                    {ts > 0 && (
+                      <span>
+                        <Icon name="clock" size={13} />
+                        {s.fmt(ts)}
                       </span>
-                    </td>
-                    <td>
-                      <StatusBadge status={p.status} label={t(STATUS_KEYS[p.status])} />
-                    </td>
-                    <td className="flxsm-nowrap">{ts ? s.fmt(ts) : '—'}</td>
-                    <td className="flxsm-c-act">
-                      <button type="button" className="flxsm-btn is-ghost" onClick={() => s.edit(p)}>
-                        {t('Edit')}
-                      </button>
-                      <button type="button" className="flxsm-btn is-ghost" onClick={() => rowDup(p)}>
-                        {t('Duplicate')}
-                      </button>
-                      <button type="button" className="flxsm-btn is-ghost is-danger-text" onClick={() => rowDelete(p)}>
-                        {t('Delete')}
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                    )}
+                    {p.author && <span>{p.author}</span>}
+                    {p.repeatDays > 0 && (
+                      <span>
+                        <Icon name="update" size={13} />
+                        {t('Every {n} days', { n: p.repeatDays })}
+                      </span>
+                    )}
+                    {p.note && p.status === 'DRAFT' && (
+                      <span className="flxsm-pnote">
+                        <Icon name="comment" size={13} />
+                        {p.note}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <span className="flxsm-nets">
+                  {p.targets.map((x) => (
+                    <span key={x.id} className={'flxsm-tg is-' + x.status.toLowerCase()} title={x.account + ' · ' + x.status}>
+                      <NetDot provider={x.provider} size={20} />
+                    </span>
+                  ))}
+                </span>
+                <RowMenu
+                  label={t('Actions')}
+                  items={[
+                    { label: t('Edit'), run: () => s.edit(p) },
+                    { label: t('Duplicate'), run: () => rowDup(p) },
+                    { label: t('Delete'), run: () => rowDelete(p), danger: true },
+                  ]}
+                />
+              </div>
+            );
+          })}
         </div>
       )}
       {list.data?.flxSocialPosts.pageInfo.hasNextPage && (
-        <div className="flxsm-more">
-          <button type="button" className="flxsm-btn" disabled={list.isFetching} onClick={() => setLimit((n) => n + PAGE)}>
-            {list.isFetching ? t('Loading…') : t('Load more')}
-          </button>
-        </div>
+        <button type="button" className="flxsm-btn flxsm-more" disabled={list.isFetching} onClick={() => setLimit((n) => n + PAGE)}>
+          {list.isFetching ? t('Loading…') : t('Load more')}
+        </button>
       )}
     </div>
+  );
+}
+
+/** Row "…" menu (classic dots button with a small popover). */
+function RowMenu({ label, items }: { label: string; items: { label: string; run: () => void; danger?: boolean }[] }) {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const close = () => setOpen(false);
+    document.addEventListener('click', close);
+    return () => document.removeEventListener('click', close);
+  }, [open]);
+  return (
+    <span className="flxsm-rmenu" onClick={(e) => e.stopPropagation()}>
+      <button type="button" className="flxsm-iconbtn" aria-label={label} title={label} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+        <span aria-hidden="true">⋯</span>
+      </button>
+      {open && (
+        <span className="flxsm-rmenu-pop" role="menu">
+          {items.map((it) => (
+            <button
+              key={it.label}
+              type="button"
+              role="menuitem"
+              className={it.danger ? 'is-danger' : ''}
+              onClick={() => {
+                setOpen(false);
+                it.run();
+              }}
+            >
+              {it.label}
+            </button>
+          ))}
+        </span>
+      )}
+    </span>
   );
 }

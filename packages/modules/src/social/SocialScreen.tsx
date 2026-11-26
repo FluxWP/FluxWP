@@ -68,6 +68,8 @@ function Social() {
   const [route, setRoute] = useState<Route>(() => parseHash(host.startPage));
   const [composer, setComposer] = useState<{ post: Post | null; scheduledAt?: number } | null>(null);
   const [detail, setDetail] = useState<Post | null>(null);
+  // Right side of the page header; a page puts its own controls there (classic top bar).
+  const [topSlot, setTopSlot] = useState<HTMLElement | null>(null);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [confirm, setConfirm] = useState<ConfirmState | null>(null);
   const [menu, setMenu] = useState(false);
@@ -146,8 +148,9 @@ function Social() {
       },
       openUrl: host.openUrl,
       appMode: host.mode === 'app',
+      topSlot,
     };
-  }, [data, cfg, t, go, toast, reloadBoot, refreshPosts, i18n.language, host.openUrl, host.mode]);
+  }, [data, cfg, t, go, toast, reloadBoot, refreshPosts, i18n.language, host.openUrl, host.mode, topSlot]);
 
   if (boot.isLoading) return <Loading />;
   if (boot.isError || !ctx || !cfg) {
@@ -210,6 +213,7 @@ function Social() {
               ☰
             </button>
             <h1>{nav.find((n) => n.page === page)?.label}</h1>
+            <div className="flxsm-top-acts" ref={setTopSlot} />
           </header>
           {page === 'dashboard' && <Dashboard />}
           {(page === 'posts' || page === 'approvals') && <PostsPage key={page + (route.query.status ?? '')} approvals={page === 'approvals'} initial={route.query} />}
