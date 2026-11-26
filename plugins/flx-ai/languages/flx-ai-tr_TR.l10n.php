@@ -1733,5 +1733,9 @@ return array(
   '%s quota is used up for now (daily or monthly limit).' => '%s kotası şimdilik doldu (günlük ya da aylık sınır).',
   '%s rate limit reached: too many requests at once. Try again in a minute.' => '%s hız sınırına ulaşıldı: aynı anda çok fazla istek var. Bir dakika sonra tekrar deneyin.',
   '%s is temporarily unavailable.' => '%s geçici olarak kullanılamıyor.',
+  'Flux Cloud session could not be renewed: %s' => 'Flux Cloud oturumu yenilenemedi: %s',
+  'Flux Cloud did not answer.' => 'Flux Cloud cevap vermedi.',
+  'Flux Cloud (account AI credits)' => 'Flux Cloud (hesap AI kredisi)',
+  'Flux Cloud use must be auto, always or off.' => 'Flux Cloud kullanımı otomatik, her zaman ya da kapalı olmalı.',
  ),
 );

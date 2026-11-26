@@ -165,6 +165,7 @@ fragment FlxAiSettingsFields on FlxAiSettings {
   chatHistory
   chatInstructions
   chatWidgets
+  cloudAi
   mediaImageModel
   mediaVideoModel
   mediaDays

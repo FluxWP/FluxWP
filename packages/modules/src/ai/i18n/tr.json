@@ -661,5 +661,20 @@
  "Anthropic workspace ID": "Anthropic workspace ID",
  "Give me an AI briefing every morning at 9: yesterday's donations, new messages and anything that needs me.": "Her sabah 9'da bana YZ brifingi ver: dünkü bağışlar, yeni mesajlar ve benim bakmam gerekenler.",
  "Every Monday at 10, review donors who have not given in 3 months and suggest who to call.": "Her pazartesi 10'da 3 aydır bağış yapmayan bağışçılara bak, kimi aramam gerektiğini öner.",
- "Check the site speed every 6 hours and tell me only if something got worse.": "6 saatte bir site hızına bak, yalnız bir şey kötüleştiyse haber ver."
+ "Check the site speed every 6 hours and tell me only if something got worse.": "6 saatte bir site hızına bak, yalnız bir şey kötüleştiyse haber ver.",
+ "Flux Cloud AI credits": "Flux Cloud AI kredisi",
+ "This site is connected to a FluxWP account. Without your own key, AI runs on the account's monthly AI credits (1 credit = $0.001 of model cost).": "Bu site bir FluxWP hesabına bağlı. Kendi anahtarınız olmadan AI, hesabın aylık AI kredisiyle çalışır (1 kredi = $0,001 model maliyeti).",
+ "Flux Cloud does not offer AI credits right now; enter your own key below.": "Flux Cloud şu an AI kredisi sunmuyor; aşağıya kendi anahtarınızı girin.",
+ "Unlimited credits. This site used %s this month.": "Sınırsız kredi. Bu site bu ay %s kullandı.",
+ "%s of %s monthly credits used, %s left. This site used %s.": "Aylık %2$s kredinin %1$s kadarı kullanıldı, %3$s kaldı. Bu site %4$s kullandı.",
+ "Bought credits left: %s.": "Kalan satın alınan kredi: %s.",
+ "Renews on %s.": "%s tarihinde yenilenir.",
+ "Buy credits or change plan": "Kredi al ya da planı değiştir",
+ "Your plan includes basic models only (such as Haiku and Gemini Flash).": "Planınız yalnız temel modelleri içerir (Haiku, Gemini Flash gibi).",
+ "Use the account credits": "Hesap kredisini kullan",
+ "The default model runs on the account credits now.": "Varsayılan model şu an hesap kredisiyle çalışıyor.",
+ "The default model runs on your own key now.": "Varsayılan model şu an kendi anahtarınızla çalışıyor.",
+ "When this site has no key of its own (recommended)": "Sitenin kendi anahtarı yoksa (önerilen)",
+ "Always, even when a key is entered": "Her zaman, anahtar girilse de",
+ "Never, only my own keys": "Hiçbir zaman, yalnız kendi anahtarlarım"
 }

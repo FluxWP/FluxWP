@@ -445,6 +445,34 @@ type FlxAiChatUpdatePayload {
   errors: [FlxUserError!]!
 }
 
+"""
+Flux Cloud AI credits of the FluxWP account (1 credit = 0.001 USD of model cost).
+"""
+type FlxAiCloud {
+  """The default model runs on the account credits now."""
+  active: Boolean!
+  """The plan has basic models only."""
+  basic: Boolean!
+  """Bought credits left."""
+  bonus: Int!
+  """Where to buy credits or change the plan."""
+  buyUrl: String!
+  """Model Flux Cloud suggests when none is chosen."""
+  defaultModel: String!
+  """Credits left; -1 unlimited."""
+  left: Int!
+  """Monthly credits of the plan; -1 unlimited."""
+  monthly: Int!
+  """Flux Cloud offers AI credits."""
+  on: Boolean!
+  """Unix time the monthly credits renew."""
+  resets: Int!
+  """Credits this site used this month."""
+  siteUsed: Int!
+  """Monthly credits used this month (all sites of the account)."""
+  used: Int!
+}
+
 """A connected MCP server. Secrets are never returned."""
 type FlxAiConnection {
   """none, bearer, header or oauth."""
@@ -1355,6 +1383,8 @@ type FlxAiSettings {
   chatRoles: [String!]!
   """Let the model draw tables, cards, diagrams and charts as visuals."""
   chatWidgets: Boolean!
+  """Flux Cloud AI credits: auto (own key first), always or off."""
+  cloudAi: String!
   """Delete logs and chats when the plugin is deleted."""
   deleteData: Boolean!
   """How deeply Claude thinks."""
@@ -1419,6 +1449,10 @@ type FlxAiSettings {
 
 """Choices of the settings page and facts it shows."""
 type FlxAiSettingsOptions {
+  """
+  Flux Cloud AI credits of the connected FluxWP account; null when not connected.
+  """
+  cloud: FlxAiCloud
   """The model used when none is chosen."""
   defaultModel: String!
   """Image and video catalog."""
@@ -1467,6 +1501,8 @@ input FlxAiSettingsUpdateInput {
   This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
   """
   clientMutationId: String
+  """Flux Cloud AI credits: auto (own key first), always or off."""
+  cloudAi: String
   """Delete logs and chats when the plugin is deleted."""
   deleteData: Boolean
   """How deeply Claude thinks."""

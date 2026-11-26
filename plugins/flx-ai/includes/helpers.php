@@ -50,6 +50,7 @@ function flxai_defaults() {
 		'image_tool_on'       => 1,
 		'shell_on'            => 1,         // sanal shell (shell.php)
 		'web_provider'        => 'auto',
+		'cloud_ai'            => 'auto',
 		'web_search_month'    => 0,         // 0 = sınırsız
 		'web_search_cost'     => 0,         // USD / 1000 arama; >0 ise bütçeye ve kayıtlara yazılır
 		'tools_off'           => array(),   // kapalı araçlar (sohbet + MCP)
