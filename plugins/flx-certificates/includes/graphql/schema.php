@@ -605,6 +605,29 @@ flx_gql_type(
 	)
 );
 
+flx_gql_input(
+	'FlxCertificateProviderPick',
+	array(
+		'description' => __( 'The connection to send one channel with.', 'flx-certificates' ),
+		'fields'      => array(
+			'channel' => array( 'type' => 'FlxCertificateChannel!', 'description' => __( 'Channel.', 'flx-certificates' ) ),
+			'id'      => array( 'type' => 'Int!', 'description' => __( 'Provider id. 0 is the channel default.', 'flx-certificates' ) ),
+		),
+	)
+);
+
+/**
+ * @param array<string,mixed> $t Template row.
+ */
+function flxs_gql_template_thumb( array $t ): string {
+	$thumb = FLXS_Val::str( $t['thumb'] ?? '' );
+	if ( '' === $thumb ) {
+		return '';
+	}
+	$dir = flxs_upload_dir();
+	return FLXS_Val::str( is_array( $dir ) ? ( $dir['url'] ?? '' ) : '' ) . '/' . $thumb;
+}
+
 flx_gql_type(
 	'FlxCertificateTemplateOption',
 	array(
@@ -614,6 +637,7 @@ flx_gql_type(
 			'name'   => array( 'type' => 'String!', 'description' => __( 'Name.', 'flx-certificates' ) ),
 			'active' => array( 'type' => 'Boolean!', 'description' => __( 'Active.', 'flx-certificates' ) ),
 			'config' => array( 'type' => 'String!', 'description' => __( 'Template config as JSON, for the live preview.', 'flx-certificates' ) ),
+			'thumb'  => array( 'type' => 'String!', 'description' => __( 'Preview image URL. Empty until the template is saved once.', 'flx-certificates' ) ),
 		),
 	)
 );
@@ -930,6 +954,7 @@ flx_gql_query(
 					'name'   => FLXS_Val::str($t['name']),
 					'active' => true,
 					'config' => (string) wp_json_encode( $t['config'] ),
+					'thumb'  => flxs_gql_template_thumb( $t ),
 				);
 			}
 			if ( is_array( $edit ) && empty( $seen[ FLXS_Val::int($edit['template_id']) ] ) ) {
@@ -940,6 +965,7 @@ flx_gql_query(
 						'name'   => FLXS_Val::str($t['name']),
 						'active' => 'active' === ( $t['status'] ?? '' ),
 						'config' => (string) wp_json_encode( $t['config'] ),
+						'thumb'  => flxs_gql_template_thumb( $t ),
 					);
 				}
 			}
@@ -963,10 +989,10 @@ flx_gql_query(
 			}
 			$refs = array();
 			foreach ( flxs_users_with_cap() as $u ) {
-				if ( ! $u instanceof WP_User ) {
-					continue;
+				if ( ! is_object( $u ) || ! isset( $u->ID ) ) {
+					continue; // get_users() with 'fields' gives plain objects.
 				}
-				$refs[] = array( 'id' => FLXS_Val::int( $u->ID ), 'name' => FLXS_Val::str( $u->display_name ), 'status' => null, 'active' => null, 'count' => null );
+				$refs[] = array( 'id' => FLXS_Val::int( $u->ID ), 'name' => FLXS_Val::str( $u->display_name ?? '' ), 'status' => null, 'active' => null, 'count' => null );
 			}
 			return array(
 				'templates'       => $tpls,
@@ -1215,7 +1241,9 @@ flx_gql_mutation(
 		'cap'         => flxs_gql_use(),
 		'input'       => array(
 			'id'       => array( 'type' => 'Int!', 'description' => __( 'Certificate ID.', 'flx-certificates' ) ),
-			'channels' => array( 'type' => '[FlxCertificateChannel!]!', 'description' => __( 'Channels.', 'flx-certificates' ) ),
+			'channels'  => array( 'type' => '[FlxCertificateChannel!]!', 'description' => __( 'Channels.', 'flx-certificates' ) ),
+			'providers' => array( 'type' => '[FlxCertificateProviderPick!]', 'description' => __( 'Connection to use per channel. A missing channel uses its default.', 'flx-certificates' ) ),
+			'source'    => array( 'type' => 'String', 'description' => __( 'Where the send started: manual (default) or create.', 'flx-certificates' ) ),
 		),
 		'output'      => array(
 			'results' => array(
@@ -1225,7 +1253,13 @@ flx_gql_mutation(
 		),
 		'resolve'     => static function ( array $in ): array {
 			$channels = array_map( 'flx_gql_str', flx_gql_arr( $in['channels'] ?? array() ) );
-			$r = flxs_gql_ok( FLXS_Certificate_Service::send( flx_gql_int( $in['id'] ?? 0 ), $channels ) );
+			$prov     = array();
+			foreach ( flx_gql_arr( $in['providers'] ?? array() ) as $p ) {
+				$p = flx_gql_arr( $p );
+				$prov[ strtolower( flx_gql_str( $p['channel'] ?? '' ) ) ] = flx_gql_int( $p['id'] ?? 0 );
+			}
+			$source = 'create' === flx_gql_str( $in['source'] ?? '' ) ? 'create' : 'manual';
+			$r      = flxs_gql_ok( FLXS_Certificate_Service::send( flx_gql_int( $in['id'] ?? 0 ), $channels, $prov, $source ) );
 			return is_array( $r ) ? $r : array( 'results' => array() );
 		},
 	)
