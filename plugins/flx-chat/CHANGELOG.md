@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.54.2
+- Sesli mesaja çift cevap giderdi: dil tespiti tur başında okunmuş eski sohbet kaydını geri yazıp "son işlenen mesaj" işaretini geri sarıyordu, aynı mesaj ikinci kez cevaplanıyordu ("mesajınızın tamamı ulaşmadı"). Dil artık güncel kayıttan okunur; ayrıca bir çalıştırma aynı gelen mesajı iki kez işlemez.
+- Ses çevirisi hız sınırında (429) ve geçici sağlayıcı hatasında (5xx) en fazla 2 kez yeniden denenir (1 sn, 2 sn bekleyerek); düzelmezse yedek ses modeline geçer. Toplam süre ~35 sn ile sınırlı.
+- Sohbetteki sistem notu "Provider returned error" yerine sebebi söyler (ör. "Google AI Studio hız sınırına ulaşıldı…"); metin Flux AI 0.35.2'den gelir.
+
 ## 1.54.1
 - Sol menü daraltma (uygulama şeridi) kapalıyken sohbet ekranı sol menünün ve üst çubuğun üstüne taşmaz, içerik alanında kalır.
 

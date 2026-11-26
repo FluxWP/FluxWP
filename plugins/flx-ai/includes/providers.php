@@ -45,17 +45,51 @@ function flxai_strip_private( array $messages ) {
 	return $out;
 }
 
+/**
+ * 1.x: "Provider returned error" gibi anlamsız sağlayıcı hatalarını sebebe çevirir. OpenRouter hata gövdesi
+ * error.metadata içinde sağlayıcı adını ve ham metni taşır; hız sınırı (429), kota ve geçici kesinti ayrıştırılır.
+ * Sebep bulunamazsa '' döner ve özgün metin kalır.
+ */
+function flxai_error_reason( $code, $msg, $json ) {
+	$meta = is_array( $json ) && is_array( $json['error']['metadata'] ?? null ) ? $json['error']['metadata'] : array();
+	$prov = trim( (string) ( $meta['provider_name'] ?? '' ) );
+	$prov = '' !== $prov ? $prov : __( 'The model provider', 'flx-ai' );
+	$raw  = $meta['raw'] ?? '';
+	$raw  = is_string( $raw ) ? $raw : wp_json_encode( $raw );
+	$all  = strtolower( $msg . ' ' . $raw );
+	$gen  = '' === trim( $msg ) || false !== stripos( $msg, 'provider returned error' );
+	if ( 429 === (int) $code ) {
+		if ( preg_match( '/quota|per day|daily|billing|exhaust|credit|insufficient/', $all ) ) {
+			/* translators: %s: provider name */
+			return sprintf( __( '%s quota is used up for now (daily or monthly limit).', 'flx-ai' ), $prov );
+		}
+		if ( $gen || false !== strpos( $all, 'rate' ) || false !== strpos( $all, 'too many' ) ) {
+			/* translators: %s: provider name */
+			return sprintf( __( '%s rate limit reached: too many requests at once. Try again in a minute.', 'flx-ai' ), $prov );
+		}
+		return '';
+	}
+	if ( $gen && in_array( (int) $code, array( 500, 502, 503, 504 ), true ) ) {
+		/* translators: %s: provider name */
+		return sprintf( __( '%s is temporarily unavailable.', 'flx-ai' ), $prov );
+	}
+	return '';
+}
+
 /** HTTP hata metninden anahtarı temizler, WP_Error üretir. */
-function flxai_api_error( $provider, $code, $msg, $key ) {
+function flxai_api_error( $provider, $code, $msg, $key, $json = null ) {
 	$msg = str_replace( (string) $key, '***', (string) $msg );
 	if ( 'anthropic' === $provider && false !== stripos( $msg, 'anthropic-workspace-id' ) ) {
 		$msg .= ' ' . __( '→ Flux AI & MCP › Settings › "Anthropic workspace ID": paste the id (wrkspc_…) from console.anthropic.com › Settings › Workspaces.', 'flx-ai' );
 	}
+	$orig   = $msg;
+	$reason = flxai_error_reason( $code, $msg, $json );
+	$msg    = '' !== $reason ? $reason : $msg;
 	return new WP_Error(
 		'flxai_api',
 		/* translators: 1: HTTP code, 2: message */
 		sprintf( __( 'AI error (%1$d): %2$s', 'flx-ai' ), $code, '' !== $msg ? $msg : __( 'unknown error', 'flx-ai' ) ),
-		array( 'http' => (int) $code, 'msg' => $msg, 'provider' => $provider )
+		array( 'http' => (int) $code, 'msg' => $msg, 'orig' => $orig, 'provider' => $provider )
 	);
 }
 
@@ -291,7 +325,7 @@ function flxai_openrouter_request( array $messages, array $opts, $model ) {
 	}
 	if ( $code < 200 || $code >= 300 || ! is_array( $json ) || isset( $json['error'] ) ) {
 		$msg = is_array( $json ) ? (string) ( $json['error']['message'] ?? '' ) : '';
-		return flxai_api_error( 'openrouter', $code ? $code : 500, $msg, $key );
+		return flxai_api_error( 'openrouter', $code ? $code : 500, $msg, $key, $json );
 	}
 	$msg = $json['choices'][0]['message'] ?? null;
 	if ( ! is_array( $msg ) ) {

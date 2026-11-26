@@ -199,7 +199,10 @@ function flxc_bot_lang_set( $code ) {
  */
 function flxc_bot_lang_turn( $chat ) {
 	global $wpdb;
-	$state = flxc_bot_state( $chat );
+	// 1.54.2: $chat tur başında okunmuş eski kayıttır; durum güncel kayıttan alınır. Eski durumu geri yazmak last_in'i
+	// geri sarar ve aynı mesaja ikinci cevap gönderirdi.
+	$fresh = flxc_get_chat( $chat['id'] );
+	$state = flxc_bot_state( $fresh ? $fresh : $chat );
 	$mt    = flxc_table( 'messages' );
 	$rows  = $wpdb->get_col( $wpdb->prepare( "SELECT body FROM $mt WHERE chat_id = %d AND direction = 'in' AND type = 'text' ORDER BY id DESC LIMIT 3", (int) $chat['id'] ) ); // phpcs:ignore
 	$text  = implode( "\n", array_reverse( array_map( 'strval', (array) $rows ) ) );
