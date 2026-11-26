@@ -587,6 +587,9 @@ function flxc_rem_run( $rid, $deadline ) {
 		return $res( 'skipped', __( 'The assistant is off.', 'flx-chat' ) );
 	}
 	$state = flxc_bot_state( $chat );
+	// 1.55.0: hatırlatıcı kişinin son konuştuğu dilde ve seçtiği para biriminde gider.
+	flxc_bot_lang_set( flxc_bot_state_lang( $state ) );
+	flxc_bot_cur_set( flxc_bot_state_cur( $state ) );
 	$task  = "## Şimdiki görev: hatırlatıcı\nKişinin kurduğu hatırlatıcının zamanı geldi; konuşmayı sen başlatıyorsun, kişi şu an yazmadı.\n"
 		. '- Hatırlatıcı #' . $r['id'] . ': ' . $r['title'] . ' (' . flxc_rem_when( $r ) . ")\n- Görev: " . $r['task'] . "\n"
 		. "- Kişiye bu görevi yapan kısa, sıcak tek bir WhatsApp mesajı yaz. İçerik/proje göndermen gerekiyorsa search_site ile bul, yalnız dönen linkleri ver.\n";
@@ -620,6 +623,7 @@ function flxc_rem_run( $rid, $deadline ) {
 	// 1.30.1: ```widget görselleri metinden ayrılır, metinden sonra PNG resim olarak gider (sohbetteki gibi).
 	$wg    = flxc_widgets_split( $reply );
 	$reply = $wg['text'];
+	$ctx['after'] = flxc_bot_tr_out( (array) $ctx['after'], $state ); // sistemin hazır mesajları kişinin dilinde
 	foreach ( array_merge( '' === $reply ? array() : preg_split( '/\n\s*-{3,}\s*\n/', $reply ), $ctx['after'] ) as $text ) {
 		$text = trim( (string) $text );
 		if ( '' === $text ) {

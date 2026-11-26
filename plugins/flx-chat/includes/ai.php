@@ -425,6 +425,43 @@ function flxc_ai_context_text() {
 
 /** Asistanın sunduğu bağış türleri (açık olanlar; ayarda seçilenlerle sınırlı). */
 function flxc_ai_types() {
+	$types = flxc_ai_types_base();
+	$cur   = function_exists( 'flxc_bot_cur_now' ) ? flxc_bot_cur_now() : '';
+	return '' === $cur ? $types : flxc_ai_types_in( $types, $cur );
+}
+
+/**
+ * 1.55.0: türleri bir para biriminde fiyatlar (kur çevrimi yok: Flux Donate'taki elle girilmiş fiyatlar).
+ * O para biriminde fiyatı olmayan seçenek ve tür düşer; türün kendi para biriminde aynen döner.
+ */
+function flxc_ai_types_in( array $types, $cur ) {
+	$cur = strtoupper( (string) $cur );
+	$out = array();
+	foreach ( $types as $t ) {
+		if ( strtoupper( $t['currency'] ) === $cur ) {
+			$out[] = $t;
+			continue;
+		}
+		$opts = array();
+		foreach ( $t['options'] as $o ) {
+			$price = (float) ( $o['prices'][ $cur ] ?? 0 );
+			if ( $price > 0 ) {
+				$o['price'] = $price;
+				$opts[]     = $o;
+			}
+		}
+		$t['options']  = $opts;
+		$t['min']      = (float) ( $t['min_by'][ $cur ] ?? 0 );
+		$t['currency'] = $cur;
+		if ( $opts || $t['free'] ) {
+			$out[] = $t;
+		}
+	}
+	return $out;
+}
+
+/** Asistanın sunabileceği bağış türleri (açık olanlar; ayarda seçilenlerle sınırlı), türün kendi para biriminde. */
+function flxc_ai_types_base() {
 	static $cache = null;
 	if ( ! function_exists( 'flxb_get_types' ) ) {
 		return array();
@@ -450,6 +487,7 @@ function flxc_ai_types() {
 				'price'  => (float) $o['price'],
 				'unit'   => (string) ( $o['unit_label'] ?? '' ),
 				'units'  => (string) ( $o['unit_label_plural'] ?? ( $o['unit_label'] ?? '' ) ),
+				'prices' => array_change_key_case( (array) ( $o['prices'] ?? array() ), CASE_UPPER ), // 1.55.0: diğer para birimlerindeki elle fiyat
 			);
 		}
 		if ( ! $opts && empty( $t['allow_free'] ) ) {
@@ -460,9 +498,10 @@ function flxc_ai_types() {
 			'slug'     => (string) ( $t['slug'] ?? '' ),
 			'title'    => (string) $t['title'],
 			'desc'     => wp_trim_words( wp_strip_all_tags( (string) ( $t['description'] ?? '' ) ), 40, '…' ),
-			'currency' => (string) ( $t['currency'] ?? '' ),
+			'currency' => '' !== (string) ( $t['currency'] ?? '' ) ? strtoupper( (string) $t['currency'] ) : ( function_exists( 'flxb_default_currency' ) ? flxb_default_currency() : 'TRY' ),
 			'free'     => ! empty( $t['allow_free'] ),
 			'min'      => (float) ( $t['min_amount'] ?? 0 ),
+			'min_by'   => array_change_key_case( (array) ( $t['meta']['min_by_currency'] ?? array() ), CASE_UPPER ),
 			'qty'      => ! empty( $t['allow_quantity'] ),
 			'maxQty'   => (int) ( $t['max_quantity'] ?? 0 ),
 			'proxy'    => ! empty( $t['requires_proxy'] ),

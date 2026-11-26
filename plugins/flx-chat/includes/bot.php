@@ -51,6 +51,7 @@ function flxc_bot_state( $chat ) {
 			'last_in'  => 0,     // en son işlenen gelen mesaj id
 			'ai'       => 0,     // asistan bu sohbette en az bir kez yazdı (AI filtresi)
 			'closed'   => 0,     // 1.42.0: sohbet tamamlandı işareti (zaman); kişi yeni bir şey yazınca silinir
+			'cur'      => '',    // 1.55.0: kişinin seçtiği para birimi (TRY/USD/EUR); boşsa dile göre
 		)
 	);
 }
@@ -1058,6 +1059,9 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 	$rules[] = '- Link (internet adresi) asla kendin yazma, uydurma. Ödeme, sertifika ve fiyat listesi linklerini sistem ayrı mesajla gönderir. Araç sonucunda [[link1]] gibi bir işaret varsa ve kişi o sayfayı istiyorsa işareti aynen yaz; sistem gerçek linke çevirir. Kişi link istemediğini söylediyse link işareti yazma.';
 	$rules[] = flxc_voice_rule();
 	$rules[] = flxc_bot_lang_rule(); // 1.52.0
+	if ( '' !== flxc_bot_cur_rule() ) {
+		$rules[] = flxc_bot_cur_rule(); // 1.55.0
+	}
 	// 1.50.0: rules for tools other plugins add (`flxc_bot_tools`), each a "- ..." line.
 	$rules = array_values( (array) apply_filters( 'flxc_bot_rules', $rules, $tools, $chat ) );
 	$rules[] = '- "Sa", "Slm", "Selam", "Sa knk", "Selamün aleyküm" selamdır: selamı al (ör. "Aleyküm selam"), "Rica ederim" deme. Selama yalnız selam ve kısa bir "nasıl yardımcı olabilirim" ile karşılık ver; sorulmadıkça bağış ya da dekont durumunu anlatma.';
@@ -1291,6 +1295,7 @@ function flxc_bot_tools() {
 		$list[] = flxc_dekont_tool_def( $f );
 	}
 	$list = array_merge( $list, flxc_bot_info_tools( $f ) );
+	$list = flxc_bot_cur_tool_defs( $list, $f ); // 1.55.0
 	$list = array_merge( $list, flxc_bot_close_tools( $f ) );
 	if ( function_exists( 'flxc_rem_on' ) && flxc_rem_on() ) {
 		$list = array_merge( $list, flxc_rem_tools( $f ) );
@@ -1365,6 +1370,8 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			flxc_bot_save_state( $chat['id'], $state );
 		}
 	};
+	// 1.55.0: fiyatlar kişinin para biriminde (personel araçları türlerin kendi para biriminde).
+	flxc_bot_cur_set( 0 === strpos( $name, 'staff_' ) ? '' : flxc_bot_state_cur( $state ) );
 	if ( 0 === strpos( $name, 'staff_' ) && function_exists( 'flxc_staff_tool' ) ) {
 		return flxc_staff_tool( $name, $a, $chat, $state, $ctx, $sandbox, $save );
 	}
@@ -1430,7 +1437,14 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			}
 			return array( 'ok' => true );
 
+		case 'set_currency':
+			return flxc_bot_cur_tool( $a, $chat, $state, $sandbox, $save );
+
 		case 'send_price_list':
+			$gate = flxc_bot_cur_gate( $state );
+			if ( $gate ) {
+				return $gate;
+			}
 			$text = flxc_bot_price_text( (int) ( $a['type_id'] ?? 0 ) );
 			if ( '' === $text ) {
 				return array( 'ok' => false, 'error' => 'Şu an sunulacak bağış seçeneği yok. handoff çağır.' );
@@ -1442,6 +1456,10 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			return array( 'ok' => true, 'note' => 'Liste senin mesajından hemen sonra gönderilecek. Listeyi tekrar yazma.' );
 
 		case 'set_order':
+			$gate = flxc_bot_cur_gate( $state );
+			if ( $gate ) {
+				return $gate;
+			}
 			$o = flxc_bot_build_order( $a );
 			if ( is_wp_error( $o ) ) {
 				return array( 'ok' => false, 'error' => $o->get_error_message() );
@@ -1456,6 +1474,9 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			}
 			if ( ! $state['order'] ) {
 				return array( 'ok' => false, 'error' => 'Önce set_order ile bağış seçimini kaydet.' );
+			}
+			if ( flxc_bot_cur_multi() && '' !== flxc_bot_state_cur( $state ) && strtoupper( (string) $state['order']['currency'] ) !== flxc_bot_state_cur( $state ) ) {
+				return array( 'ok' => false, 'error' => 'Seçili bağış başka para biriminde (' . $state['order']['currency'] . '); kişinin para birimi ' . flxc_bot_state_cur( $state ) . '. set_order\'ı yeniden çağırıp yeni özeti göster, onay al.' );
 			}
 			if ( $state['donation'] && flxc_bot_same_order( $state ) ) {
 				return array( 'ok' => true, 'note' => 'Bu bağış kaydı zaten oluşturuldu (#' . $state['donation'] . '). Ödeme bilgileri gönderildi.' );
@@ -1493,6 +1514,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 					'option_key'           => $o['option'],
 					'quantity'             => $o['qty'],
 					'amount'               => $o['amount'],
+					'currency'             => $o['currency'], // 1.55.0: kişinin para birimi
 					'status'               => 'pending',
 					'method'               => 'bank_transfer',
 					'name'                 => $display,
@@ -1633,6 +1655,12 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			return $r;
 
 		case 'donation_options':
+			$gate = flxc_bot_cur_gate( $state );
+			if ( $gate ) {
+				return $gate;
+			}
+			return flxc_bot_info_tool( $name, $a );
+
 		case 'current_time':
 			return flxc_bot_info_tool( $name, $a );
 

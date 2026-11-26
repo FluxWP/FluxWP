@@ -607,6 +607,12 @@ function flxc_create_donation( array $p, $chat = null ) {
 		return new WP_Error( 'flxc_opt', __( 'Choose an option of the selected donation type.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$currency = $type ? (string) $type['currency'] : ( function_exists( 'flxb_default_currency' ) ? flxb_default_currency() : 'TRY' );
+	// 1.55.0: Flux Donate'ta elle fiyatlanmış başka para birimi (kur çevrimi yok); fiyatı olmayan para biriminde kayıt açılmaz.
+	$ask_cur  = strtoupper( sanitize_text_field( (string) ( $p['currency'] ?? '' ) ) );
+	$alt_cur  = $type && preg_match( '/^[A-Z]{3}$/', $ask_cur ) && strtoupper( (string) $type['currency'] ) !== $ask_cur;
+	if ( $alt_cur ) {
+		$currency = $ask_cur;
+	}
 	$method   = sanitize_key( (string) ( $p['method'] ?? 'bank_transfer' ) );
 	$method   = isset( flxc_donation_methods()[ $method ] ) ? $method : 'other';
 	$status   = 'pending' === ( $p['status'] ?? '' ) ? 'pending' : 'completed';
@@ -618,7 +624,7 @@ function flxc_create_donation( array $p, $chat = null ) {
 		$meta['flxc_chat'] = (int) $chat['id'];
 	}
 	if ( $opt ) {
-		$unit = (float) $opt['price'];
+		$unit = $alt_cur ? FLXB_Types::option_price( $type, $opt, $currency ) : (float) $opt['price'];
 		if ( $unit <= 0 ) {
 			return new WP_Error( 'flxc_price', __( 'This option has no price. Enter a price under Donations › Donation types, or choose a custom amount.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
