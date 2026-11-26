@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Site is connected to a FluxWP account (Flux Setup 1.6+). */
 function flxai_cloud_connected() {
-	return class_exists( 'FLXK_Cloud' ) && method_exists( 'FLXK_Cloud', 'connected' ) && FLXK_Cloud::connected();
+	return class_exists( 'FLXK_Cloud' ) && FLXK_Cloud::connected();
 }
 
 function flxai_cloud_mode() {
