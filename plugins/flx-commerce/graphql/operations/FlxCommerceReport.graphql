@@ -3,6 +3,7 @@ query FlxCommerceReport($preset: FlxCommerceReportPreset, $from: String, $to: St
     from to orders items customers newCustomers
     revenue { ...FlxCommerceMoney } gross { ...FlxCommerceMoney } refunds { ...FlxCommerceMoney }
     shipping { ...FlxCommerceMoney } tax { ...FlxCommerceMoney } discount { ...FlxCommerceMoney } aov { ...FlxCommerceMoney }
-    revenueDelta ordersDelta itemsDelta aovDelta
+    revenueDelta ordersDelta itemsDelta aovDelta counted
   }
+  flxCommerceMoneyFormat { symbol position decimal thousand }
 }

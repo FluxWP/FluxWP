@@ -9,6 +9,28 @@ type FlxCommerceAddress {
   text: String!
 }
 
+"""An order waiting for payment, as the Overview lists it."""
+type FlxCommerceAwaitingOrder {
+  """How long ago it was placed."""
+  ago: String!
+  """Order id."""
+  id: Int!
+  """Payment method title, or a dash."""
+  method: String!
+  """Billing name."""
+  name: String!
+  """Order number."""
+  number: String!
+  """A bank-transfer receipt has been uploaded."""
+  receiptIn: Boolean!
+  """Order status name."""
+  statusLabel: String!
+  """Order total, formatted."""
+  total: String!
+  """Edit link."""
+  url: String!
+}
+
 """
 Bank transfer gateway. The IBAN is the one customers are shown at checkout.
 """
@@ -117,6 +139,10 @@ type FlxCommerceCustomer {
   id: ID!
   """When it happened. Empty when unknown."""
   lastAt: FlxDateTime
+  """Day of the last order, d.m.Y. Empty when none."""
+  lastDay: String!
+  """Edit link of the last order. Empty when unknown."""
+  lastOrderUrl: String!
   """Name."""
   name: String!
   """Shop note."""
@@ -334,6 +360,18 @@ type FlxCommerceMethodStatEdge {
   node: FlxCommerceMethodStat!
 }
 
+"""How the store writes money."""
+type FlxCommerceMoneyFormat {
+  """Decimal separator."""
+  decimal: String!
+  """Currency position: left, right, left_space or right_space."""
+  position: String!
+  """Currency symbol."""
+  symbol: String!
+  """Thousand separator."""
+  thousand: String!
+}
+
 """Monthly and yearly prices of a subscription product."""
 type FlxCommerceOffer {
   """Monthly price. Empty when that period is not offered."""
@@ -362,6 +400,16 @@ type FlxCommerceOrder {
   statusLabel: String!
   """Amount."""
   total: FlxMoney!
+  """Edit link."""
+  url: String!
+}
+
+"""A linked order on a subscription row."""
+type FlxCommerceOrderLink {
+  """Order number."""
+  number: String!
+  """first or awaiting."""
+  role: String!
   """Edit link."""
   url: String!
 }
@@ -534,6 +582,8 @@ type FlxCommerceReport {
   aov: FlxMoney!
   """Percent change in average order value."""
   aovDelta: Float
+  """Which order statuses the report counts, written out."""
+  counted: String
   """Customers in the range."""
   customers: Int!
   """Amount."""
@@ -748,9 +798,11 @@ type FlxCommerceStock {
   id: Int!
   """Product name."""
   name: String!
+  """SKU, or a dash when there is none."""
+  sku: String!
   """Units in stock."""
   stock: Int!
-  """Edit link. Empty when unknown."""
+  """Edit link (the parent product for a variation). Empty when unknown."""
   url: String!
 }
 
@@ -790,6 +842,8 @@ type FlxCommerceSubscription {
   name: String!
   """When it happened. Empty when unknown."""
   nextChargeAt: FlxDateTime
+  """First and awaiting renewal order, for someone who can edit orders."""
+  orderLinks: [FlxCommerceOrderLink!]!
   """First order id."""
   parentOrderId: Int!
   """
@@ -820,6 +874,10 @@ type FlxCommerceSubscription {
   status: String!
   """WordPress user id. 0 for a guest."""
   userId: Int!
+  """
+  Renewal or end date written out, e.g. &quot;Renews on 30 December 2027&quot;.
+  """
+  whenLabel: String!
 }
 
 """Input for the flxCommerceSubscriptionCancel mutation."""
@@ -982,6 +1040,8 @@ type FlxCommerceSummary {
   aovDelta: Float
   """Orders waiting for payment."""
   awaiting: Int!
+  """Up to six newest orders waiting for payment."""
+  awaitingOrders: [FlxCommerceAwaitingOrder!]!
   """Customers who ordered in the range."""
   customers: Int!
   """Length of the range in days."""
@@ -992,14 +1052,18 @@ type FlxCommerceSummary {
   items: Int!
   """Percent change in units."""
   itemsDelta: Float
-  """Up to eight products at or under the threshold."""
+  """Up to six products at or under the threshold."""
   lowStock: [FlxCommerceStock!]!
+  """Low-stock threshold from the settings."""
+  lowStockThreshold: Int!
   """Customers whose first order is in the range."""
   newCustomers: Int!
   """Paid orders."""
   orders: Int!
   """Percent change in orders."""
   ordersDelta: Float
+  """The range and the range it is compared with, written out."""
+  period: String!
   """Amount."""
   revenue: FlxMoney!
   """Percent change in net revenue."""
@@ -1283,6 +1347,10 @@ extend type RootQuery {
     """Filter chip."""
     segment: FlxCommerceSegment
   ): FlxCommerceCustomerConnection!
+  """
+  Currency symbol, its position and the separators, for shortened amounts.
+  """
+  flxCommerceMoneyFormat: FlxCommerceMoneyFormat!
   """One bank transfer. Empty when it is not a bank-transfer order."""
   flxCommerceReceipt(
     """Order id."""

@@ -55,7 +55,7 @@ final class FLXCM_Subscription_Service {
 	 * An order edit URL is returned only to someone who can open it.
 	 *
 	 * @param array<string,mixed> $row Export row. Times are Unix timestamps.
-	 * @return array{productUrl:string,nextChargeAt:array{iso:string,timestamp:int,label:string,relative:string}|null,renewNow:bool,payUrl:string,lastOrderUrl:string}
+	 * @return array{productUrl:string,nextChargeAt:array{iso:string,timestamp:int,label:string,relative:string}|null,renewNow:bool,payUrl:string,lastOrderUrl:string,whenLabel:string,orderLinks:list<array{number:string,url:string,role:string}>}
 	 */
 	private static function account_fields( array $row ): array {
 		$product_id = FLXCM_Val::int($row['product_id']);
@@ -97,7 +97,55 @@ final class FLXCM_Subscription_Service {
 			'renewNow'     => ! $due && $live && $end > 0 && time() >= $window,
 			'payUrl'       => $pay,
 			'lastOrderUrl' => $last,
+			'orderLinks'   => self::order_links( $row ),
+			'whenLabel'    => self::when_label( $status, $end, FLXCM_Val::int( $row['ended_at'] ?? 0 ) ),
 		);
+	}
+
+	/**
+	 * First and awaiting renewal order, linked for someone who can edit orders.
+	 *
+	 * @param array<string,mixed> $row Export row.
+	 * @return list<array{number:string,url:string,role:string}>
+	 */
+	private static function order_links( array $row ): array {
+		if ( ! function_exists( 'wc_get_order' ) || ! current_user_can( 'edit_shop_orders' ) ) {
+			return array();
+		}
+		$out = array();
+		foreach ( array( 'parent_order_id' => 'first', 'renewal_order_id' => 'awaiting' ) as $col => $role ) {
+			$id = FLXCM_Val::int( $row[ $col ] ?? 0 );
+			$o  = $id ? flxcm_order( $id ) : null;
+			if ( $o instanceof WC_Order ) {
+				$out[] = array(
+					'number' => FLXCM_Val::str( $o->get_order_number() ),
+					'url'    => FLXCM_Val::str( $o->get_edit_order_url() ),
+					'role'   => $role,
+				);
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Renewal or end date written out, as the classic Subscriptions table showed it.
+	 */
+	private static function when_label( string $status, int $end, int $ended ): string {
+		switch ( $status ) {
+			case 'active':
+				/* translators: %s: date */
+				return sprintf( __( 'Renews on %s', 'flx-commerce' ), FLXCM_Val::str( flxcm_date( $end ) ) );
+			case 'past_due':
+				/* translators: %s: date */
+				return sprintf( __( 'Was due on %s', 'flx-commerce' ), FLXCM_Val::str( flxcm_date( $end ) ) );
+			case 'cancelled':
+				/* translators: %s: date */
+				return sprintf( __( 'Valid until %s', 'flx-commerce' ), FLXCM_Val::str( flxcm_date( $end ) ) );
+			case 'expired':
+				/* translators: %s: date */
+				return $ended ? sprintf( __( 'Ended on %s', 'flx-commerce' ), FLXCM_Val::str( flxcm_date( $ended ) ) ) : '—';
+		}
+		return '—';
 	}
 
 	/**
