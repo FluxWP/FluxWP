@@ -118,8 +118,7 @@ plugins/<slug>/      plugins (main file <slug>/<slug>.php)
 themes/<slug>/       themes (style.css)
 bin/                 build.sh, package-info.sh, release-notes.sh, test-update.sh, readme-table.sh
 tools/readme-media/  screenshots, GIFs and README generator
-docker/              WordPress Docker images and Coolify/Compose stacks (ghcr.io/fluxwp/wordpress)
-.github/workflows/   release.yml, docker-images.yml, fluxapp-ci.yml, fluxapp-desktop.yml, mobile-ci.yml
+.github/workflows/   release.yml, fluxapp-ci.yml, fluxapp-desktop.yml, mobile-ci.yml
 docs/                setup and API notes per package (docs/README.md, Turkish)
 .claude/skills/      Claude Code skills: flx-wp-eklenti, flx-wp-tema, flx-paket-yayin, flx-readme-tanitim
 ```
@@ -161,7 +160,7 @@ Published by `.github/workflows/npm-publish.yml` when a version changes on `main
 
 ## Docker
 
-Production-ready WordPress stacks for Coolify and plain Docker Compose (MariaDB, MySQL, MariaDB + Redis, nginx + PHP-FPM) live in [`docker/`](docker/README.md). The worker installs WordPress and FluxWP Panel on first start. Images: `ghcr.io/fluxwp/wordpress`, rebuilt daily for amd64 and arm64.
+Production-ready WordPress stacks for Coolify and plain Docker Compose (MariaDB, MySQL, MariaDB + Redis, nginx + PHP-FPM) live in their own repository, [FluxWP/docker-wordpress](https://github.com/FluxWP/docker-wordpress), so plugin and theme releases here never redeploy Docker sites. The worker installs WordPress and FluxWP Panel on first start. Images: `ghcr.io/fluxwp/wordpress`, rebuilt daily for amd64 and arm64.
 
 ## Desktop and mobile apps, shared TS packages
 

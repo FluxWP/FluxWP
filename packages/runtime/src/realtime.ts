@@ -2,7 +2,7 @@
 // `transport.realtime` is present only when the site's realtime server is healthy; without it nothing connects
 // and the app polls as before. Signals carry no data: each one names query keys (`inv`) to refetch.
 //
-// Protocol (docker/images/realtime/server.ts): connect, send {"auth": ticket, "vis": bool} first (ticket from
+// Protocol (FluxWP/docker-wordpress images/realtime/server.ts): connect, send {"auth": ticket, "vis": bool} first (ticket from
 // POST flx-realtime/v1/ticket, 60 s, single use), then {"vis": bool} when the screen goes to the background or
 // back, so the site does not send a phone push for something already on screen.
 import { useEffect, useSyncExternalStore } from 'react';
