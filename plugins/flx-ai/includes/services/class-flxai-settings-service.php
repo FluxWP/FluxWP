@@ -175,7 +175,7 @@ final class FLXAI_Settings_Service {
 		$p = flxai_parse_model( FLXAI_Cast::str( flxai_model_for( '' ) ) );
 		return new FLXAI_Cloud(
 			FLXAI_Cast::bool( $c['on'] ?? false ),
-			flxai_cloud_for( FLXAI_Cast::str( $p['provider'] ?? 'openrouter' ) ),
+			FLXAI_Cast::bool( flxai_cloud_for( FLXAI_Cast::str( $p['provider'] ?? 'openrouter' ) ) ),
 			'basic' === FLXAI_Cast::str( $c['models'] ?? 'all' ),
 			FLXAI_Cast::int( $c['monthly'] ?? 0 ),
 			FLXAI_Cast::int( $c['used'] ?? 0 ),
