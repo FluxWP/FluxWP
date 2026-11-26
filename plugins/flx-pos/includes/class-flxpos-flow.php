@@ -68,7 +68,8 @@ final class FLXPOS_Flow {
 	 * flxpos_frame adresini açılır pencerede açar, kapatılırsa flxpos_cancel'a döner.
 	 */
 	public static function start_result( array $txn, array $account, array $more = array() ) {
-		$d      = self::display( $account, $txn );
+		// Ödeme sayfasında belirteçlenmiş kart (Stripe): gösterecek form yok, doğrudan köprüye.
+		$d      = ! empty( $txn['data']['pm_in'] ) ? 'redirect' : self::display( $account, $txn );
 		$bridge = self::url( 'bridge', $txn['id'], $more );
 		if ( 'redirect' === $d ) {
 			return array( 'redirect' => $bridge );
@@ -349,6 +350,12 @@ final class FLXPOS_Flow {
 			'raw'  => (string) file_get_contents( 'php://input' ), // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		);
 		// phpcs:enable
+		$req['headers'] = array();
+		foreach ( $_SERVER as $k => $v ) {
+			if ( is_string( $v ) && 0 === strpos( (string) $k, 'HTTP_' ) ) {
+				$req['headers'][ strtolower( str_replace( '_', '-', substr( (string) $k, 5 ) ) ) ] = $v;
+			}
+		}
 		unset( $req['get']['flxpos'], $req['get']['a'] );
 		$n = $drv->notify( $req );
 		if ( is_wp_error( $n ) ) {

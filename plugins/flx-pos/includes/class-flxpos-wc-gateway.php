@@ -96,7 +96,9 @@ abstract class FLXPOS_WC_Base extends WC_Payment_Gateway {
 		if ( '' !== (string) $this->description ) {
 			echo wp_kses_post( wpautop( wptexturize( $this->description ) ) );
 		}
-		if ( $a && FLXPOS_Accounts::takes_card( $a ) ) {
+		if ( $a && FLXPOS_Stripe::is( $a ) ) {
+			FLXPOS_Stripe::fields( $a, $this->current_total(), $this->current_currency() );
+		} elseif ( $a && FLXPOS_Accounts::takes_card( $a ) ) {
 			FLXPOS_Gateways::card_form( $a, $this->current_total() );
 		}
 	}
@@ -129,7 +131,8 @@ abstract class FLXPOS_WC_Base extends WC_Payment_Gateway {
 				return array( 'result' => 'failure' );
 			}
 		}
-		$r = FLXPOS_Gateways::start_order( $order, FLXPOS_Accounts::get( $a['id'] ), $card );
+		$token = FLXPOS_Stripe::is( $a ) ? FLXPOS_Stripe::posted_token() : '';
+		$r     = FLXPOS_Gateways::start_order( $order, FLXPOS_Accounts::get( $a['id'] ), $card, $token );
 		if ( is_wp_error( $r ) ) {
 			wc_add_notice( $r->get_error_message(), 'error' );
 			return array( 'result' => 'failure' );

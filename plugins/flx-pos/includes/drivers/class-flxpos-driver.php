@@ -48,7 +48,7 @@ abstract class FLXPOS_Driver {
 
 	/** Bu model kart bilgisini sitemizde alır mı? (host/ortak ödeme sayfası modellerinde hayır.) */
 	public function needs_card() {
-		return ! in_array( $this->mode(), array( '3d_host', 'hosted', 'iframe', 'redirect', 'wallet' ), true );
+		return ! in_array( $this->mode(), array( '3d_host', 'hosted', 'iframe', 'redirect', 'wallet', 'elements' ), true );
 	}
 
 	/** Uç nokta: hesapta elle girilmişse o, yoksa tanımdaki test/canlı adres. */

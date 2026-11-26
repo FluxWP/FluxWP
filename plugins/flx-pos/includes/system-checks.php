@@ -37,6 +37,18 @@ add_filter(
 					$checks[] = $c( 'accounts', __( 'Sanal POS', 'flx-pos' ), 'ok', sprintf( _n( '%d hesap canlı modda etkin.', '%d hesap canlı modda etkin.', count( $acc ), 'flx-pos' ), count( $acc ) ) );
 				}
 			}
+			foreach ( $acc as $a ) {
+				if ( 'stripe' !== $a['provider'] ) {
+					continue;
+				}
+				if ( '' === (string) ( $a['creds']['webhook_secret'] ?? '' ) ) {
+					/* translators: %s: hesap adı */
+					$checks[] = $c( 'stripe_webhook_' . $a['id'], 'Stripe', 'warning', sprintf( __( '%s: webhook imza anahtarı yok. Ödeme dönüşü yine okunur, ama ödeyen dönmeden sayfayı kapatırsa sipariş bekler. Stripe panelinde bildirim adresini ekleyip whsec_… anahtarını girin.', 'flx-pos' ), FLXPOS_Accounts::label( $a ) ) );
+				}
+				if ( class_exists( 'WC_Stripe' ) || defined( 'WC_STRIPE_VERSION' ) ) {
+					$checks[] = $c( 'stripe_official', 'Stripe', 'info', __( 'Resmi WooCommerce Stripe eklentisi de açık. Ödeyen iki kart yöntemi görmesin diye Flux POS › Yöntemler\'de tek kart yöntemini seçin.', 'flx-pos' ) );
+				}
+			}
 			if ( ! is_ssl() && 0 !== strpos( home_url(), 'https://' ) ) {
 				$checks[] = $c( 'ssl', 'HTTPS', 'error', __( 'Site HTTPS değil; bankalar dönüş adresine kart sonucu göndermez, kart formu güvensiz olur.', 'flx-pos' ) );
 			}

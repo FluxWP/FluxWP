@@ -113,12 +113,61 @@
 		};
 	}
 
+	/* Stripe Payment Element: tutar sepetle güncellenir, belirteç ödeme kurulumunda üretilir. */
+	function StripeForm(data) {
+		return function (props) {
+			var box = useRef(null);
+			var ctl = useRef(null);
+			var e = useState(''); var err = e[0], setErr = e[1];
+			var bill = useRef(props.billing); bill.current = props.billing;
+			var minor = props.billing && props.billing.cartTotal ? props.billing.cartTotal.value : 0;
+			var cur = props.billing && props.billing.currency ? String(props.billing.currency.code || '').toLowerCase() : '';
+			var unit = props.billing && props.billing.currency ? props.billing.currency.minorUnit : 2;
+
+			useEffect(function () {
+				var S = window.FLXPOS_STRIPE;
+				if (!S || !box.current) { setErr((window.FLXPOS_STRIPE_I18N || {}).load || ''); return undefined; }
+				var cfg = Object.assign({}, data.stripe);
+				if (cur && cur === cfg.currency && unit === 2) cfg.amount = minor || cfg.amount;
+				ctl.current = S.mount(box.current, cfg);
+				if (ctl.current.error) setErr(ctl.current.error);
+				return function () { if (ctl.current) ctl.current.destroy(); ctl.current = null; };
+			}, []);
+			useEffect(function () {
+				if (ctl.current && minor && cur === data.stripe.currency && unit === 2) ctl.current.update(minor);
+			}, [minor]);
+
+			useEffect(function () {
+				return props.eventRegistration.onPaymentSetup(function () {
+					var R = props.emitResponse.responseTypes;
+					if (!ctl.current) return { type: R.ERROR, message: (window.FLXPOS_STRIPE_I18N || {}).load };
+					var a = (bill.current && bill.current.billingAddress) || {};
+					var b = { name: [a.first_name, a.last_name].filter(Boolean).join(' ') || undefined, email: a.email || undefined, phone: a.phone || undefined,
+						address: { line1: a.address_1 || undefined, line2: a.address_2 || undefined, city: a.city || undefined, state: a.state || undefined, postal_code: a.postcode || undefined, country: a.country || undefined } };
+					return ctl.current.tokenize(JSON.parse(JSON.stringify(b))).then(function (pm) {
+						setErr('');
+						return { type: R.SUCCESS, meta: { paymentMethodData: { flxpos_token: pm } } };
+					}, function (x) {
+						return { type: R.ERROR, message: (x && x.message) || (window.FLXPOS_STRIPE_I18N || {}).fail, messageContext: props.emitResponse.noticeContexts.PAYMENTS };
+					});
+				});
+			}, [props.eventRegistration.onPaymentSetup]);
+
+			return el('div', { className: 'flxpos-stripe flxpos-b' },
+				data.description ? el('p', null, decode(data.description)) : null,
+				el('div', { className: 'flxpos-stripe__el', ref: box }),
+				err ? el('p', { className: 'flxpos-stripe__err', role: 'alert' }, err) : null,
+				el('p', { className: 'flxpos-secure' }, (window.FLXPOS_STRIPE_I18N || {}).secure || T.secure),
+				data.test ? el('p', { className: 'flxpos-test' }, T.test) : null);
+		};
+	}
+
 	(window.flxposBlocks || []).forEach(function (name) {
 		var data = settings.getSetting(name + '_data', null);
 		if (!data) return;
 		var title = decode(data.title || name);
 		var Desc = function () { return data.description ? el('p', null, decode(data.description)) : null; };
-		var Content = data.card ? CardForm(data) : function (props) { useFrame(props); return Desc(); };
+		var Content = data.stripe ? StripeForm(data) : data.card ? CardForm(data) : function (props) { useFrame(props); return Desc(); };
 		reg.registerPaymentMethod({
 			name: name,
 			label: el('span', { className: 'flxpos-b-label' }, title, data.icon ? el('img', { src: data.icon, alt: '', loading: 'lazy' }) : null),
