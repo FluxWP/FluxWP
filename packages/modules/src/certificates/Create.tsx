@@ -714,10 +714,12 @@ function Form({ t, config, edit, onNotice, onNew }: { t: Translate; config: Conf
                   key={x.id}
                   className={'flxs-tpl' + (on ? ' is-on' : '')}
                   disabled={!!edit && !on}
-                  onClick={() => {
+                  data-tpl={x.id}
+                  onClick={(e) => {
                     if (edit) return;
                     setTplId(x.id);
-                    save('flxs_tpl', x.id);
+                    // The remembered choice is read back from the page, not from the server data.
+                    save('flxs_tpl', Number(e.currentTarget.dataset.tpl) || 0);
                   }}
                 >
                   {x.thumb ? <img src={x.thumb} alt="" /> : <span className="flxs-tpl__ph dashicons dashicons-awards"></span>}
@@ -836,9 +838,10 @@ function Form({ t, config, edit, onNotice, onNew }: { t: Translate; config: Conf
                             <label className="flxs-dist">
                               <input
                                 type="checkbox"
+                                value={f.key}
                                 checked={!!dist[f.key]}
                                 onChange={(e) => {
-                                  const next = { ...dist, [f.key]: e.target.checked };
+                                  const next = { ...dist, [e.target.value]: e.target.checked };
                                   setDist(next);
                                   save('flxs_dist', next);
                                 }}
