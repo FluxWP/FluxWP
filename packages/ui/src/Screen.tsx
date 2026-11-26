@@ -17,24 +17,19 @@ export interface TabsProps<T extends string = string> {
   /** Ekran okuyucu etiketi (genelde ekran başlığı). */
   label?: string | undefined;
   /** İkincil sekme sırası (ekran içinde alt görünüm): daha küçük ve alt çizgisiz. */
-  size?: 'md' | 'sm';
+  /** md: underline (page sections), sm: pills, seg: segmented filter (classic package filter). */
+  size?: 'md' | 'sm' | 'seg';
   className?: string;
 }
 
 /** Ortak sekme çubuğu: eski Flux Admin sekmeleriyle aynı görünüm (alt çizgi, taşarsa yatay kaydırma). */
 export function Tabs<T extends string = string>({ items, current, onChange, label, size = 'md', className }: TabsProps<T>) {
   return (
-    <nav className={'flx-tabs' + (size === 'sm' ? ' flx-tabs--sm' : '') + (className ? ' ' + className : '')} aria-label={label}>
+    <nav className={'flx-tabs' + (size === 'md' ? '' : ' flx-tabs--' + size) + (className ? ' ' + className : '')} aria-label={label}>
       {items
         .filter((x) => !x.hidden)
         .map((x) => (
-          <button
-            key={x.id}
-            type="button"
-            className={'flx-tab' + (x.id === current ? ' is-active' : '')}
-            aria-current={x.id === current ? 'page' : undefined}
-            onClick={() => onChange(x.id)}
-          >
+          <button key={x.id} type="button" className={'flx-tab' + (x.id === current ? ' is-active' : '')} aria-current={x.id === current ? 'page' : undefined} onClick={() => onChange(x.id)}>
             {x.label}
             {x.badge ? <span className="flx-tab__badge">{x.badge}</span> : null}
           </button>

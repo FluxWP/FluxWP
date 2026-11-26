@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 1.7.0
+- Paketler ekranı klasik sayfayla birebir: alt başlık, "Güncellemeleri kontrol et" altında son kontrol ve sonuç satırı (bildirim çubuğu yerine), Google kartı klasik görünümde.
+- Sunucuya ulaşılamıyor ve FluxWP paketi listelenemiyorsa bağlantı formu (sunucu adresi, site anahtarı, güncelleme sonrası kontrol, otomatik güncelleme, kullanım verisi) yine Paketler sayfasında; bağlantı kartında "Bağlantıyı test et".
+- Kutulu sekmeler, ikonlu arama; "Eklentiler, temalar ve güncellemeler" araç çubuğu (etkinleştir, seçilenleri kur, toplu işlem, tümünü güncelle) her zaman görünür.
+- Tabloda WordPress ve çeviri ikonları, mavi paket adları, satır şeritleri; paket listesi alınamadı notu tablonun üstünde. "WordPress güncellemeleri" bağlantısı ve kalkan ikonlu yedek şeridi klasik sırada; geçmişte yedek ikonu.
+- Ayarlar › Bağlantı formu klasik form-table düzeninde (ortak bileşen).
+
 ## 1.6.16
 - Paketler › toplu "Otomatik güncellemeyi aç/kapat" "Call to undefined function wp_is_auto_update_enabled_for_type()" hatasıyla düşüyordu: işlev wp-admin/includes/update.php içinde ve GraphQL isteğinde yüklü değildi. Dosya artık gerektiğinde yüklenir (tekli aç/kapa, toplu işlem ve tablo sütunu dahil).
 
