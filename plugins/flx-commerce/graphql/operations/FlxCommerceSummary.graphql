@@ -5,8 +5,11 @@ query FlxCommerceSummary($days: Int) {
     aov { ...FlxCommerceMoney }
     revenueDelta ordersDelta aovDelta itemsDelta
     series { date orders revenue { ...FlxCommerceMoney } }
-    lowStock { id name stock url }
+    lowStock { id name sku stock url }
+    lowStockThreshold period
+    awaitingOrders { id number name method ago total receiptIn statusLabel url }
   }
+  flxCommerceMoneyFormat { symbol position decimal thousand }
   flxCommerceReceipts(first: 20) {
     nodes { id number name email reference status statusLabel files { name url } total { ...FlxCommerceMoney } createdAt { ...FlxCommerceWhen } }
     pageInfo { hasNextPage endCursor }
