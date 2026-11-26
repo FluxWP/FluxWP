@@ -13,7 +13,8 @@ import {
   FlxSocialWhatsAppAdd,
   FlxSocialWhatsAppTargets,
 } from '@fluxwp/graphql/operations';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Icon, Loading, Modal } from '@fluxwp/ui';
+import { createPortal } from 'react-dom';
 import { useHost } from '../host';
 import { Avatar, NetDot, errorText, payloadError, useSocial, type Account, type Query } from './common';
 
@@ -107,7 +108,16 @@ export function AccountsPage({ query }: { query: Query }) {
     order.mutate({ input: { ids } });
   };
 
-  const connectors = (apps.data?.flxSocialApps ?? []).filter((a) => a.ready).flatMap((a) => a.connect);
+  const [connOpen, setConnOpen] = useState(false);
+  const head =
+    cfg.canManage && s.topSlot
+      ? createPortal(
+          <button type="button" className="flxsm-btn is-primary" onClick={() => setConnOpen(true)}>
+            <Icon name="plus-alt" size={15} /> {t('Connect account')}
+          </button>,
+          s.topSlot,
+        )
+      : null;
 
   return (
     <div className="flxsm-accounts">
@@ -119,34 +129,55 @@ export function AccountsPage({ query }: { query: Query }) {
           </button>
         </div>
       )}
-      {cfg.canManage && (
-        <section className="flxsm-card">
-          <h2>{t('Connect an account')}</h2>
+      {head}
+      {connOpen && (
+        <Modal title={t('Connect account')} onClose={() => setConnOpen(false)}>
+          <p className="flxsm-muted">{t('The network sign-in page opens; after you allow access you come back here. If there are several pages or channels you choose which to add.')}</p>
           {apps.isLoading ? (
             <Loading />
-          ) : connectors.length ? (
-            <div className="flxsm-connect">
-              {connectors.map((c) => (
-                <button key={c.for} type="button" className="flxsm-btn" onClick={() => void connect(c.for, c.provider, c.local)}>
-                  <NetDot provider={c.provider} size={18} /> {c.label}
-                </button>
-              ))}
-            </div>
           ) : (
-            <p className="flxsm-muted">{t('No accounts connected yet. Enter the app keys first, then connect accounts.')}</p>
+            <div className="flxsm-connect">
+              {(apps.data?.flxSocialApps ?? []).flatMap((app) =>
+                app.connect.map((c) => (
+                  <button
+                    key={app.id + c.for}
+                    type="button"
+                    className={'flxsm-conn' + (app.ready ? '' : ' is-off')}
+                    onClick={() => {
+                      setConnOpen(false);
+                      if (!app.ready) s.go('settings', { tab: 'apps' });
+                      else void connect(c.for, c.provider, c.local);
+                    }}
+                  >
+                    <NetDot provider={c.provider} size={30} />
+                    <span className="flxsm-conn-l">
+                      <strong>{c.label}</strong>
+                      <small>{app.ready ? app.label : t('Enter the keys first: {app}', { app: app.label })}</small>
+                    </span>
+                    <Icon name={app.ready ? 'external' : 'key'} size={16} />
+                  </button>
+                )),
+              )}
+            </div>
           )}
-          <p>
-            <button type="button" className="flxsm-link" onClick={() => s.go('settings', { tab: 'apps' })}>
-              {t('App keys')}
-            </button>
-          </p>
-        </section>
+        </Modal>
       )}
 
       {!accounts.length ? (
         <div className="flxsm-empty">
-          <h2>{t('No accounts yet')}</h2>
-          {!cfg.canManage && <p>{t('Accounts are connected by an administrator.')}</p>}
+          <Icon name="users" size={30} />
+          <h3>{t('No accounts yet')}</h3>
+          <p>{cfg.canManage ? t('First enter the network keys in Settings › Apps, then connect the account here.') : t('Accounts are connected by an administrator.')}</p>
+          {cfg.canManage && (
+            <div className="flxsm-row">
+              <button type="button" className="flxsm-btn is-primary" onClick={() => setConnOpen(true)}>
+                <Icon name="plus-alt" size={15} /> {t('Connect account')}
+              </button>
+              <button type="button" className="flxsm-btn" onClick={() => s.go('settings', { tab: 'apps' })}>
+                <Icon name="key" size={15} /> {t('App keys')}
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <ul className="flxsm-acc-list">
@@ -227,8 +258,26 @@ export function AccountsPage({ query }: { query: Query }) {
           }}
         />
       )}
-      {wa && <WhatsAppModal onClose={() => setWa(false)} onAdded={() => { setWa(false); done(); }} />}
-      {pick && <PickModal keyId={pick} onClose={() => setPick(null)} onDone={(n) => { setPick(null); setNotice({ text: t('{n} accounts added.', { n }), kind: 'ok' }); done(); }} />}
+      {wa && (
+        <WhatsAppModal
+          onClose={() => setWa(false)}
+          onAdded={() => {
+            setWa(false);
+            done();
+          }}
+        />
+      )}
+      {pick && (
+        <PickModal
+          keyId={pick}
+          onClose={() => setPick(null)}
+          onDone={(n) => {
+            setPick(null);
+            setNotice({ text: t('{n} accounts added.', { n }), kind: 'ok' });
+            done();
+          }}
+        />
+      )}
     </div>
   );
 }
