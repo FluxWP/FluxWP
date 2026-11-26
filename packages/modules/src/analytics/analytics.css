@@ -36,7 +36,7 @@ body.flx-dark .flxan {
 .flxan .flxan-tools select,
 .flxan .flxan-tools input[type="date"],
 .flxan .flxan-search {
-	min-height: 34px; border: 1px solid var(--flxan-line); border-radius: 8px; background: var(--flxan-card); color: var(--flxan-text); padding: 0 10px;
+	min-height: 34px; border: 1px solid var(--flxan-line); border-radius: 8px; background-color: var(--flxan-card); color: var(--flxan-text); padding: 0 10px;
 }
 .flxan .flxan-btn {
 	display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 12px; border-radius: 8px;
@@ -218,7 +218,7 @@ html.flxa-dark .flxan-heat, body.flx-dark .flxan-heat { background: color-mix(in
 
 .flxan-refform { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; padding: 10px; border: 1px dashed var(--flxan-line); border-radius: 10px; }
 .flxan-refform[hidden] { display: none; }
-.flxan .flxan-in { min-height: 34px; border: 1px solid var(--flxan-line); border-radius: 8px; background: var(--flxan-card); color: var(--flxan-text); padding: 0 10px; flex: 1 1 200px; }
+.flxan .flxan-in { min-height: 34px; border: 1px solid var(--flxan-line); border-radius: 8px; background-color: var(--flxan-card); color: var(--flxan-text); padding: 0 10px; flex: 1 1 200px; }
 .flxan-refout { flex: 1 1 100%; font-size: 13px; }
 .flxan-refout code { user-select: all; }
 .flxan-reftable .flxan-lbl { min-width: 200px; }
@@ -323,7 +323,7 @@ html.flxa-dark .flxan-kpi__ico, body.flx-dark .flxan-kpi__ico { background: colo
 .flxan-switch input:focus-visible + span { outline: 2px solid var(--flxan-accent); outline-offset: 2px; }
 .flxan-jgoal { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; margin-left: auto; }
 .flxan-jgoal__ico { color: #1f8a5b; font-size: 16px; }
-.flxan .flxan-jgoal select { min-height: 32px; border: 1px solid var(--flxan-line); border-radius: 8px; background: var(--flxan-card); color: var(--flxan-text); max-width: 240px; }
+.flxan .flxan-jgoal select { min-height: 32px; border: 1px solid var(--flxan-line); border-radius: 8px; background-color: var(--flxan-card); color: var(--flxan-text); max-width: 240px; }
 .flxan .flxan-jgoal.on select { border-color: var(--flxan-accent); background: var(--flxan-accent-soft); }
 .flxan-jctl { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: flex-end; }
 .flxan-jfield { display: flex; flex-direction: column; gap: 3px; font-size: 11px; color: var(--flxan-muted); }
@@ -410,8 +410,8 @@ html.flxa-dark .flxan-rate.hi, body.flx-dark .flxan-rate.hi { background: rgba(7
 .flxan-seg button[aria-checked="true"] { background: var(--flxan-card); color: var(--flxan-text); box-shadow: 0 1px 2px rgba(0, 0, 0, .12); font-weight: 600; }
 .flxan-seg button:focus-visible { outline: 2px solid var(--flxan-accent); }
 .flxan-fval { flex: 1 1 220px; display: grid; gap: 3px; min-width: 0; }
-.flxan .flxan-fval input, .flxan .flxan-fval select { width: 100%; min-height: 32px; border: 1px solid var(--flxan-line); border-radius: 8px; background: var(--flxan-card); color: var(--flxan-text); padding: 0 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
-.flxan .flxan-fval select { font-family: inherit; }
+.flxan .flxan-fval input, .flxan .flxan-fval select { width: 100%; min-height: 32px; border: 1px solid var(--flxan-line); border-radius: 8px; background-color: var(--flxan-card); color: var(--flxan-text); padding: 0 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+.flxan .flxan-fval select { font-family: inherit; padding-right: 28px; }
 .flxan-fval__hint { font-size: 11px; color: var(--flxan-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .flxan-fval--any { align-self: center; font-size: 12px; color: var(--flxan-muted); font-style: italic; }
 .flxan-fs__acts { display: flex; gap: 2px; align-self: center; }
@@ -504,3 +504,12 @@ html.flxa-dark .flxan-rate.hi, body.flx-dark .flxan-rate.hi { background: rgba(7
 .flxan-react .tm-t.warn{background:color-mix(in srgb,var(--flux-warning) 18%,transparent);color:var(--flxan-text)}
 .flxan-react .tm-cc-a{color:inherit;text-decoration:none}
 @media(max-width:782px){.flxan-react .tm-hide-m{display:none}.flxan-react .form-table th,.flxan-react .form-table td{display:block;width:auto}}
+
+/* Classic parity: filter row under the header, native select chevron kept. */
+.flxan .flxan-tools--bar{margin:0 0 16px}
+.flxan .flxan-tools select,.flxan select.flxan-in{background-color:var(--flxan-card);padding-right:28px}
+/* Classic parity: in-card tabs are a grey segmented control, not pills. */
+.flxan .flx-tabs.flx-tabs--sm{display:inline-flex;gap:0;padding:3px;margin:0;background:var(--flux-surface2);border-radius:7px}
+.flxan .flx-tabs.flx-tabs--sm>.flx-tab{padding:4px 10px;border:0;border-radius:5px;font-size:12px;color:var(--flxan-muted,var(--flux-text-muted))}
+.flxan .flx-tabs.flx-tabs--sm>.flx-tab.is-active{background:var(--flux-surface);color:var(--flux-text);border:0;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.flxan textarea.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}

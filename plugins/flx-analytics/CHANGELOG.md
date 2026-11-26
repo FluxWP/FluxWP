@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.8.3
+- İstatistikler, Yolculuklar ve Ayarlar eski klasik ekranla birebir: filtreler başlığın altında, seçim kutularında ok, grafikte tek gösterge ve nokta yok, kart içi sekmeler gri segment.
+- Klasik ekrandaki Türkçe metinler geri geldi (Görüntülenme, Oturum, Cihaz ve tarayıcı, Girişten itibaren yollar…); huni adımında "Sayfa" çevirisi eklendi; IP listesi eş aralıklı yazı.
+
 ## 0.8.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 
