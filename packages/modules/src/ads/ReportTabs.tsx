@@ -562,7 +562,7 @@ export function LinksTab() {
       <h2 className="flxads-h2">{t('Tag each ad with its own link')}</h2>
       <p className="flxads-muted">{t("Meta, Google and TikTok add their click ID by themselves. A UTM link also names the campaign and the ad, so the report can show \"which ad brought which donation\". Paste the link as the ad's website URL; use a different \"Ad\" value for each ad or video.")}</p>
       <div className="flxads-builder">
-        <Field label={t('Page')}>
+        <Field label={t('Page')} className="is-wide">
           <input type="url" list="flxads-pages" value={v.url || b.homeUrl} onChange={(e) => setV({ ...v, url: e.target.value })} />
           <datalist id="flxads-pages">
             {b.pages.map((p) => (

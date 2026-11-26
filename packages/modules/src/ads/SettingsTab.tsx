@@ -167,7 +167,7 @@ export function SettingsTab() {
 
   const text = (key: keyof Form, label: string, hint: string, ph = '') => (
     <Field label={label} hint={hint}>
-      <input value={form[key] as string} placeholder={ph} onChange={(e) => set({ [key]: e.target.value })} />
+      <input type="text" value={form[key] as string} placeholder={ph} onChange={(e) => set({ [key]: e.target.value })} />
     </Field>
   );
 
