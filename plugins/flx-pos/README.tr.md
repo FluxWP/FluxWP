@@ -6,6 +6,8 @@ ve blok ödeme), 3D Secure, test modu, taksit, siteden iade ve işlem kayıtlar�
 - **Bankalar:** Nestpay/EST (Akbank, İş Bankası, Halkbank, TEB, Ziraat, ING, Şekerbank, QNB, Anadolubank, Türkiye
   Finans, Alternatif Bank), Garanti BBVA + Garanti Pay, Akbank yeni sanal POS, Yapı Kredi (Posnet), Albaraka,
   Vakıfbank ve Ziraat Katılım (PayFlex), QNB (PayFor), Denizbank (InterPOS), Kuveyt Türk, Vakıf Katılım, İş Bankası GiroGate.
+- **Stripe:** ödeme sayfasında Payment Element kart alanları (klasik ve blok), Apple Pay / Google Pay, 3D Secure,
+  imzalı webhook, tam ve kısmi iade, 40 para birimi, aylık bağış için kayıtlı kart (`flxpos_charge_saved()`).
 - **Ödeme kuruluşları:** iyzico, PayTR, Param, Craftgate, Moka United, Tosla, Tami, Paynkolay, EsnekPOS, Payten
   (Paratika, VakıfPayS, ZiraatPay), Sipay, QNBpay, Vepara, Paybull, Halk Ödeme, Shopier, Mollie, Papara.
 - 3D Pay, 3D Model, ödeme sayfası, iFrame ve cüzdan modelleri. Banka dönüşüne güvenilmez: hash doğrulanır ya da ödeme
@@ -24,5 +26,12 @@ ve blok ödeme), 3D Secure, test modu, taksit, siteden iade ve işlem kayıtlar�
 
 > Sürücüler sağlayıcıların yayımladığı protokol belgelerine göre yazıldı; hepsi henüz test ortamlarında denenmedi.
 > Canlıya almadan önce her hesabı test kartıyla deneyin.
+
+## Kaynak
+
+Stripe sürücüsündeki webhook imza doğrulaması, ondalıksız/üç ondalıklı para birimi listeleri ve kart hata
+mesajları [WooCommerce Stripe Payment Gateway](https://github.com/woocommerce/woocommerce-gateway-stripe)'den
+(GPLv3) uyarlandı. Bu dosyalar (`includes/drivers/class-flxpos-driver-stripe.php`, `includes/class-flxpos-stripe.php`,
+`assets/stripe.js`) GPL-3.0-or-later; paket bütün olarak GPLv3 koşullarıyla dağıtılır.
 
 English: [README.md](README.md)

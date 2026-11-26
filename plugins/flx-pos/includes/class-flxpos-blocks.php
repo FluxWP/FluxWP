@@ -40,7 +40,12 @@ final class FLXPOS_Blocks extends AbstractPaymentMethodType {
 			if ( ! is_admin() ) {
 				wp_enqueue_style( 'flxpos-checkout' );
 			}
-			wp_register_script( 'flxpos-blocks', FLXPOS_URL . 'assets/blocks.js', array( 'wc-blocks-registry', 'wc-settings', 'wp-element', 'wp-html-entities' ), FLXPOS_VERSION, true );
+			$deps = array( 'wc-blocks-registry', 'wc-settings', 'wp-element', 'wp-html-entities' );
+			if ( FLXPOS_Gateways::stripe_active() ) {
+				FLXPOS_Stripe::register();
+				$deps[] = 'flxpos-stripe';
+			}
+			wp_register_script( 'flxpos-blocks', FLXPOS_URL . 'assets/blocks.js', $deps, FLXPOS_VERSION, true );
 			wp_add_inline_script( 'flxpos-blocks', 'window.FLXPOS=' . wp_json_encode( FLXPOS_Gateways::js_config() ) . ';window.flxposBlocks=' . wp_json_encode( array_values( array_unique( self::$names ) ) ) . ';', 'before' );
 		}
 		return array( 'flxpos-blocks' );
@@ -51,11 +56,14 @@ final class FLXPOS_Blocks extends AbstractPaymentMethodType {
 		$cur  = get_woocommerce_currency();
 		$acc  = $g ? $g->account( $cur ) : null;
 		$card = $acc && FLXPOS_Accounts::takes_card( $acc );
+		$cart = function_exists( 'WC' ) && WC()->cart ? (float) WC()->cart->get_total( 'edit' ) : 0.0;
+		$strp = $acc && FLXPOS_Stripe::is( $acc ) && ! is_admin() ? FLXPOS_Stripe::config( $acc, $cart, $cur ) : null;
 		return array(
 			'title'       => $g ? wp_strip_all_tags( (string) $g->get_title() ) : $this->name,
 			'description' => $g ? wp_strip_all_tags( (string) $g->get_description() ) : '',
 			'icon'        => $g ? esc_url_raw( (string) $g->icon ) : '',
 			'card'        => $card,
+			'stripe'      => $strp,
 			'account'     => $acc ? $acc['id'] : '',
 			'inst'        => $acc && $acc['installments'] ? 1 : 0,
 			'test'        => $acc ? (int) $acc['test'] : 0,

@@ -33,6 +33,12 @@ msgstr ""
 msgid "İşlem bulunamadı."
 msgstr ""
 
+msgid "Kayıtlı kart bilgisi eksik."
+msgstr ""
+
+msgid "Bu sağlayıcıda kayıtlı kartla çekim yok."
+msgstr ""
+
 msgid "Sağlayıcı seçin."
 msgstr ""
 
@@ -43,33 +49,6 @@ msgid "POS hesabı bulunamadı."
 msgstr ""
 
 msgid "Bu sağlayıcı için henüz sürücü yok."
-msgstr ""
-
-msgid "EsnekPOS (resmi modül)"
-msgstr ""
-
-msgid "Flux POS her zaman EsnekPOS güvenli ödeme sayfasını kullanır; gerekiyorsa banka 3D Secure doğrulamasını orada ister."
-msgstr ""
-
-msgid "Bu ödeme yöntemini Flux POS yürütür: klasik ve blok ödeme, sepetsiz ödeme bağlantıları; her ödeme sipariş \"ödendi\" olmadan önce EsnekPOS'a sunucudan sorulur. Test için üye işyeri TEST1234 ve EsnekPOS geliştirici sayfasındaki test anahtarı."
-msgstr ""
-
-msgid "EsnekPOS üye işyeri bilgileri eksik."
-msgstr ""
-
-msgid "Test modu (üye işyeri TEST1234)."
-msgstr ""
-
-msgid "Flux POS sipariş satırlarını gönderir, sepet gerekmez."
-msgstr ""
-
-msgid "Flux POS sipariş \"ödendi\" olmadan önce EsnekPOS'a sorar (ProcessQuery)."
-msgstr ""
-
-msgid "EsnekPOS ödeme sayfasında, EsnekPOS panelindeki ayara göre."
-msgstr ""
-
-msgid "İadeyi EsnekPOS panelinden yapın, sonra siparişi iade edildi olarak işaretleyin."
 msgstr ""
 
 msgid "Ödeme bağlantısı geçersiz ya da süresi dolmuş."
@@ -315,6 +294,9 @@ msgstr ""
 msgid "Sayfa içinde ödeme formu (iFrame)"
 msgstr ""
 
+msgid "Ödeme sayfasında Stripe kart alanları (Payment Element)"
+msgstr ""
+
 msgid "Cüzdan ile öde"
 msgstr ""
 
@@ -480,6 +462,21 @@ msgstr ""
 msgid "API anahtarı (test_… ya da live_…)"
 msgstr ""
 
+msgid "Yayımlanabilir anahtar (pk_test_… ya da pk_live_…)"
+msgstr ""
+
+msgid "Gizli anahtar (sk_… ya da kısıtlı rk_…)"
+msgstr ""
+
+msgid "Webhook imza anahtarı (whsec_…)"
+msgstr ""
+
+msgid "Stripe panelinde Geliştiriciler › Webhook: bildirim adresini ekleyin, payment_intent.succeeded, payment_intent.processing ve payment_intent.payment_failed olaylarını seçin."
+msgstr ""
+
+msgid "Ekstre eki (isteğe bağlı, en çok 22 karakter)"
+msgstr ""
+
 msgid "Web sitesi sırası"
 msgstr ""
 
@@ -502,6 +499,9 @@ msgid "Shopier panelinde geri dönüş adresi olarak bu hesabın bildirim adresi
 msgstr ""
 
 msgid "Test ya da canlı, anahtarın önekinden anlaşılır (test_… / live_…). Türk lirası desteklenmez."
+msgstr ""
+
+msgid "Kart alanları Stripe'ın Payment Element'idir; kart bilgisi siteye gelmez. 3D Secure, Apple Pay ve Google Pay Stripe'ta. Test ya da canlı, anahtarın önekinden anlaşılır ve hesabın test anahtarıyla aynı olmalı. \"Bağlantıyı test et\" alan adını Apple Pay için de kaydeder."
 msgstr ""
 
 msgid "GiroGate yöntemi"
@@ -535,6 +535,21 @@ msgid "Karta göre taksit"
 msgstr ""
 
 msgid "Sunucu bildirimi"
+msgstr ""
+
+msgid "Öde"
+msgstr ""
+
+msgid "İşleniyor…"
+msgstr ""
+
+msgid "Ödeme formu yüklenemedi. Sayfayı yenileyin ya da başka bir yöntem seçin."
+msgstr ""
+
+msgid "Kart bilgileriniz Stripe'ın güvenli alanlarında işlenir ve sitede saklanmaz."
+msgstr ""
+
+msgid "Vazgeç"
 msgstr ""
 
 msgid "Bekliyor"
@@ -612,6 +627,12 @@ msgid "Etkin POS hesabı yok; kartla ödeme alınmıyor."
 msgstr ""
 
 msgid "Test modunda hesap var, gerçek para çekilmez: %s"
+msgstr ""
+
+msgid "%s: webhook imza anahtarı yok. Ödeme dönüşü yine okunur, ama ödeyen dönmeden sayfayı kapatırsa sipariş bekler. Stripe panelinde bildirim adresini ekleyip whsec_… anahtarını girin."
+msgstr ""
+
+msgid "Resmi WooCommerce Stripe eklentisi de açık. Ödeyen iki kart yöntemi görmesin diye Flux POS › Yöntemler'de tek kart yöntemini seçin."
 msgstr ""
 
 msgid "Site HTTPS değil; bankalar dönüş adresine kart sonucu göndermez, kart formu güvensiz olur."
@@ -1154,69 +1175,6 @@ msgstr ""
 msgid "The transaction after the refund."
 msgstr ""
 
-msgid "Genel düzen"
-msgstr ""
-
-msgid "Ekstre düzeni tanınmadı: başlık satırında tarih, tutar ve açıklama sütunları bulunamadı."
-msgstr ""
-
-msgid "Sırada"
-msgstr ""
-
-msgid "Eşleşmedi"
-msgstr ""
-
-msgid "Öneri var"
-msgstr ""
-
-msgid "Eşleşti"
-msgstr ""
-
-msgid "Yoksayıldı"
-msgstr ""
-
-msgid "Çıkan"
-msgstr ""
-
-msgid "Dosyada hareket bulunamadı."
-msgstr ""
-
-msgid "Hareket ya da sipariş bulunamadı."
-msgstr ""
-
-msgid "Bu hareket zaten eşleşmiş."
-msgstr ""
-
-msgid "Sipariş zaten ödenmiş."
-msgstr ""
-
-msgid "Havale/EFT banka hareketiyle eşleşti: %1$s, %2$s, \"%3$s\" (%4$s)."
-msgstr ""
-
-msgid "otomatik"
-msgstr ""
-
-msgid "Banka hareketi eşleşmesi kaldırıldı; sipariş durumu değiştirilmedi."
-msgstr ""
-
-msgid "Dosya boş."
-msgstr ""
-
-msgid "Dosya okunamadı; Excel (.xls, .xlsx) ya da CSV olarak yeniden indirin."
-msgstr ""
-
-msgid "Sunucuda DOM uzantısı yok."
-msgstr ""
-
-msgid "Sunucuda zip uzantısı yok; dosyayı CSV olarak yükleyin."
-msgstr ""
-
-msgid "Excel dosyası açılamadı."
-msgstr ""
-
-msgid "Excel dosyasında sayfa bulunamadı."
-msgstr ""
-
 msgid "Üye işyeri bilgileri hatalı; hesap ayarlarını kontrol edin."
 msgstr ""
 
@@ -1284,6 +1242,93 @@ msgid "Banka 3D doğrulamasını tamamlamadı."
 msgstr ""
 
 msgid "Sonuç Shopier bildirimiyle gelecek."
+msgstr ""
+
+msgid "Stripe anahtarları eksik: yayımlanabilir anahtar ve gizli anahtar gerekir."
+msgstr ""
+
+msgid "Stripe anahtarlarından biri test, biri canlı. İkisi aynı modda olmalı."
+msgstr ""
+
+msgid "Hesap test modunda ama Stripe anahtarları canlı. Test anahtarlarını (sk_test_… / pk_test_…) girin ya da test modunu kapatın."
+msgstr ""
+
+msgid "Hesap canlı modda ama Stripe anahtarları test anahtarı. Canlı anahtarları girin ya da test modunu açın."
+msgstr ""
+
+msgid "Kart numarası geçerli değil."
+msgstr ""
+
+msgid "Kart numarası hatalı."
+msgstr ""
+
+msgid "Kart numarası eksik."
+msgstr ""
+
+msgid "Son kullanma ayı geçersiz."
+msgstr ""
+
+msgid "Son kullanma yılı geçersiz."
+msgstr ""
+
+msgid "Son kullanma yılı geçmişte."
+msgstr ""
+
+msgid "Son kullanma tarihi eksik."
+msgstr ""
+
+msgid "Kartın süresi dolmuş."
+msgstr ""
+
+msgid "Güvenlik kodu geçersiz."
+msgstr ""
+
+msgid "Güvenlik kodu hatalı."
+msgstr ""
+
+msgid "Güvenlik kodu eksik."
+msgstr ""
+
+msgid "Posta kodu doğrulanamadı."
+msgstr ""
+
+msgid "Posta kodu geçersiz; düzeltip yeniden deneyin."
+msgstr ""
+
+msgid "Kart reddedildi."
+msgstr ""
+
+msgid "Kartın bakiyesi ya da limiti yetersiz."
+msgstr ""
+
+msgid "Kartı veren banka ödemeyi onaylamadı."
+msgstr ""
+
+msgid "Kartın işlem sınırı aşıldı."
+msgstr ""
+
+msgid "Banka kart doğrulaması (3D Secure) istiyor."
+msgstr ""
+
+msgid "3D Secure doğrulaması başarısız; yeniden deneyin ya da başka kart kullanın."
+msgstr ""
+
+msgid "Kart işlenirken bir hata oluştu; yeniden deneyin."
+msgstr ""
+
+msgid "E-posta adresi geçersiz."
+msgstr ""
+
+msgid "Ödeme işlenemedi; yeniden deneyin ya da başka bir yöntem kullanın."
+msgstr ""
+
+msgid "Ödeme Stripe'ta işleniyor."
+msgstr ""
+
+msgid "Ödeme doğrulaması bekleniyor."
+msgstr ""
+
+msgid "Ödeme iptal edildi."
 msgstr ""
 
 msgid "Bu sağlayıcı bildirim göndermiyor."

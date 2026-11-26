@@ -1,5 +1,15 @@
 # Flux POS Entegrator
 
+## 0.3.0
+- Yeni sağlayıcı: Stripe. Kart alanları ödeme sayfasında Stripe'ın Payment Element'i (klasik ve blok ödeme); kart bilgisi siteye hiç gelmez. Apple Pay / Google Pay / Link, Stripe hesabında açıksa aynı alanda görünür.
+- PaymentIntent sunucudan oluşturulup onaylanır; 3D Secure gerekirse Stripe'ın doğrulama sayfasına gidilir, dönüşte durum Stripe'tan okunur. Yenilenen/geri dönülen ödeme sayfası aynı PaymentIntent'i sürdürür, tekrar deneme anahtarıyla (idempotency) çift çekim olmaz.
+- Webhook: payment_intent olayları Stripe-Signature (HMAC-SHA256, 5 dk tolerans) ile doğrulanır; kart reddi işlemi kapatmaz, ödeyen yeniden deneyebilir.
+- Siteden tam ve kısmi iade, durum sorgusu, 40 para birimi (ondalıksız ve üç ondalıklı birimler doğru), test/canlı anahtar uyumu denetimi, kart ret kodlarının Türkçe/İngilizce mesajları.
+- Belirteçsiz ödemeler (`flxpos_charge`, JS çalışmazsa) için sitenin kendi Stripe ödeme sayfası.
+- Kayıtlı kartla çekim: `flxpos_charge( … 'save' => true )` ilk ödemede kartı Stripe'ta saklar, `flxpos_charge_saved()` sonraki aylarda ödeyen sitede olmadan çeker (aylık bağış için).
+- Sistem kontrolü: webhook anahtarı eksik, resmi WooCommerce Stripe eklentisi de açık uyarıları.
+- Kaynak: webhook doğrulaması, para birimi ondalık listeleri ve ret kodu mesajları WooCommerce Stripe Payment Gateway'den (GPLv3) uyarlandı; Stripe sürücüsü dosyaları GPL-3.0-or-later.
+
 ## 0.2.3
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 
