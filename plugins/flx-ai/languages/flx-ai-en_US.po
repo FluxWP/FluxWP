@@ -2962,3 +2962,15 @@ msgstr "All models"
 
 msgid "%s more models: narrow your search."
 msgstr "%s more models: narrow your search."
+
+msgid "The model provider"
+msgstr "The model provider"
+
+msgid "%s quota is used up for now (daily or monthly limit)."
+msgstr "%s quota is used up for now (daily or monthly limit)."
+
+msgid "%s rate limit reached: too many requests at once. Try again in a minute."
+msgstr "%s rate limit reached: too many requests at once. Try again in a minute."
+
+msgid "%s is temporarily unavailable."
+msgstr "%s is temporarily unavailable."

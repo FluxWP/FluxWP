@@ -1729,5 +1729,9 @@ return array(
   'No entries' => 'Kayıt yok',
   'Model and tool calls are listed here. Request contents are not sent to the app.' => 'Model ve araç çağrıları burada listelenir. İstek içerikleri uygulamaya gönderilmez.',
   'Flux GraphQL is not active, so FluxWP screens cannot open.' => 'Flux GraphQL etkin değil, bu yüzden FluxWP ekranları açılamıyor.',
+  'The model provider' => 'Model sağlayıcısı',
+  '%s quota is used up for now (daily or monthly limit).' => '%s kotası şimdilik doldu (günlük ya da aylık sınır).',
+  '%s rate limit reached: too many requests at once. Try again in a minute.' => '%s hız sınırına ulaşıldı: aynı anda çok fazla istek var. Bir dakika sonra tekrar deneyin.',
+  '%s is temporarily unavailable.' => '%s geçici olarak kullanılamıyor.',
  ),
 );

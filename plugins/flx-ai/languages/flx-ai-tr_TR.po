@@ -4002,3 +4002,15 @@ msgstr "Model ve araç çağrıları burada listelenir. İstek içerikleri uygul
 #: includes/admin-flux.php
 msgid "Flux GraphQL is not active, so FluxWP screens cannot open."
 msgstr "Flux GraphQL etkin değil, bu yüzden FluxWP ekranları açılamıyor."
+
+msgid "The model provider"
+msgstr "Model sağlayıcısı"
+
+msgid "%s quota is used up for now (daily or monthly limit)."
+msgstr "%s kotası şimdilik doldu (günlük ya da aylık sınır)."
+
+msgid "%s rate limit reached: too many requests at once. Try again in a minute."
+msgstr "%s hız sınırına ulaşıldı: aynı anda çok fazla istek var. Bir dakika sonra tekrar deneyin."
+
+msgid "%s is temporarily unavailable."
+msgstr "%s geçici olarak kullanılamıyor."

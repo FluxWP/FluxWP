@@ -277,6 +277,9 @@ function flxc_bot_run( $chat_id ) {
 	set_transient( $lock, 1, flxc_bot_budget() + 20 );
 	flxc_bot_guard();
 	try {
+		// 1.54.2: bu çalıştırmada işlenen en büyük gelen mesaj id'si. Sohbet kaydındaki durum turun içinde bir yerden eski
+		// haliyle yeniden yazılırsa (last_in geri sarılırsa) aynı mesaj ikinci kez cevaplanmasın.
+		$handled = 0;
 		for ( $round = 0; $round < 3; $round++ ) {
 			$chat = flxc_get_chat( $chat_id );
 			if ( ! $chat || 'on' !== flxc_bot_chat_status( $chat ) ) {
@@ -284,9 +287,10 @@ function flxc_bot_run( $chat_id ) {
 			}
 			$last_in = flxc_bot_last_in_id( $chat_id );
 			$state   = flxc_bot_state( $chat );
-			if ( ! $last_in || $last_in <= (int) $state['last_in'] ) {
+			if ( ! $last_in || $last_in <= max( $handled, (int) $state['last_in'] ) ) {
 				break;
 			}
+			$handled = $last_in;
 			$day = wp_date( 'Y-m-d' );
 			if ( $state['day'] !== $day ) {
 				$state['day'] = $day;

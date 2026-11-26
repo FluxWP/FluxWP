@@ -1387,5 +1387,9 @@ return array(
   'Recently used' => 'Recently used',
   'All models' => 'All models',
   '%s more models: narrow your search.' => '%s more models: narrow your search.',
+  'The model provider' => 'The model provider',
+  '%s quota is used up for now (daily or monthly limit).' => '%s quota is used up for now (daily or monthly limit).',
+  '%s rate limit reached: too many requests at once. Try again in a minute.' => '%s rate limit reached: too many requests at once. Try again in a minute.',
+  '%s is temporarily unavailable.' => '%s is temporarily unavailable.',
  ),
 );

@@ -48,6 +48,84 @@ function flxc_voice_dur( $sec ) {
 	return floor( $sec / 60 ) . ':' . str_pad( (string) ( $sec % 60 ), 2, '0', STR_PAD_LEFT );
 }
 
+/** Yeniden denemeyle düzelebilecek hata: hız sınırı (429) ya da sağlayıcı tarafı geçici hata (5xx). */
+function flxc_voice_retryable( $e ) {
+	if ( ! is_wp_error( $e ) ) {
+		return false;
+	}
+	$d = (array) $e->get_error_data();
+	return in_array( (int) ( $d['http'] ?? 0 ), array( 429, 500, 502, 503, 504 ), true );
+}
+
+/** Yedek ses modeli: listedeki, ses okuyan ve seçili olandan farklı ilk model (yoksa ''). */
+function flxc_voice_fallback_model( $model ) {
+	$pref = (array) apply_filters( 'flxc_audio_models', array( 'google/gemini-2.5-flash-lite', 'google/gemini-2.0-flash-001', 'google/gemini-2.5-flash', 'openai/gpt-4o-audio-preview' ) );
+	$list = flxc_ai_models();
+	$ids  = array();
+	if ( is_array( $list ) && $list ) {
+		foreach ( $list as $x ) {
+			if ( 'openrouter' === ( $x['provider'] ?? '' ) && ( ! isset( $x['audio'] ) || ! empty( $x['audio'] ) ) ) {
+				$ids[ $x['id'] ] = 1;
+			}
+		}
+	}
+	foreach ( $pref as $p ) {
+		if ( $p !== $model && ( ! $ids || isset( $ids[ $p ] ) ) ) {
+			return (string) $p;
+		}
+	}
+	return '';
+}
+
+/**
+ * 1.54.2: ses isteği. Hız sınırı / geçici sağlayıcı hatasında en fazla 2 kez yeniden denenir (1 sn, 2 sn bekleyerek),
+ * düzelmezse yedek ses modeline geçilir. Toplam süre ~35 sn ile sınırlı (sunucu isteği kesmesin).
+ *
+ * @return array|WP_Error
+ */
+function flxc_voice_request( array $msgs, $model ) {
+	$end    = microtime( true ) + 35;
+	$models = array( $model );
+	$alt    = flxc_voice_fallback_model( $model );
+	if ( '' !== $alt ) {
+		$models[] = $alt;
+	}
+	$r = null;
+	foreach ( $models as $mi => $m ) {
+		for ( $try = 0; $try < 3; $try++ ) {
+			if ( $try ) {
+				sleep( $try ); // 1 sn, sonra 2 sn
+			}
+			$left = (int) floor( $end - microtime( true ) );
+			if ( $left < 6 ) {
+				return $r ? $r : new WP_Error( 'flxc_voice', __( 'The AI did not respond in time.', 'flx-chat' ) );
+			}
+			$r = flxc_ai_chat(
+				$msgs,
+				array(
+					'purpose'     => 'audio',
+					'model'       => $m,
+					'temperature' => 0,
+					'max_tokens'  => 1200,
+					'timeout'     => min( 25, $left ),
+				)
+			);
+			if ( ! is_wp_error( $r ) || ! flxc_voice_retryable( $r ) ) {
+				break;
+			}
+		}
+		// Başarılı ya da yeniden denemeyle düzelmeyen hata (anahtar, bütçe…): yedek modele geçmenin anlamı yok.
+		if ( ! is_wp_error( $r ) ) {
+			break;
+		}
+		$d = (array) $r->get_error_data();
+		if ( ! flxc_voice_retryable( $r ) && ! in_array( (int) ( $d['http'] ?? 0 ), array( 400, 404 ), true ) ) {
+			break;
+		}
+	}
+	return $r;
+}
+
 /**
  * Sesi metne çevirir.
  *
@@ -92,16 +170,7 @@ function flxc_voice_transcribe( $path, $mime, $chat_id = 0 ) {
 			),
 		),
 	);
-	$r = flxc_ai_chat(
-		$msgs,
-		array(
-			'purpose'     => 'audio',
-			'model'       => $model,
-			'temperature' => 0,
-			'max_tokens'  => 1200,
-			'timeout'     => 25,
-		)
-	);
+	$r = flxc_voice_request( $msgs, $model );
 	flxc_bot_stat_add( array( 'voice' => 1 ), ! is_wp_error( $r ) && isset( $r['_usage'] ) ? array( $r['_usage'] ) : array(), (int) $chat_id );
 	if ( is_wp_error( $r ) ) {
 		return $r;

@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.35.2
+- OpenRouter'ın "Provider returned error" hatası sebebine çevrilir: hata gövdesindeki sağlayıcı adı ve ham metinden hız sınırı (429), kota dolması ve geçici kesinti (5xx) ayrıştırılır ("Google AI Studio hız sınırına ulaşıldı: aynı anda çok fazla istek var. Bir dakika sonra tekrar deneyin."). Özgün metin hata verisinde `orig` olarak kalır.
+
 ## 0.35.1
 - Tüm ekranlar eski klasik görünümle birebir: sayfa açıklaması başlığın altında, tablo başlıkları büyük harf, KPI etiketleri büyük harf, açık gri segment düğmeler.
 - Bağlı sistemler: Açık kutusu, eklenti kodu, Durum, Hata sütunu ve Kayıtlar · AI ayarları · Ayarları bağlantıları geri geldi (AI ayarları bağlantısı artık doğru sayfaya gider).
