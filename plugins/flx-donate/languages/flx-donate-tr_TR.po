@@ -6224,3 +6224,61 @@ msgstr "Not silindi."
 
 msgid "Order notes"
 msgstr "Sipariş notları"
+
+msgid "Payment forms are paid on the WooCommerce checkout, which is not available: activate WooCommerce and turn on \"Flux Forms payment forms continue on the WooCommerce checkout\". Visitors see \"Online payment is not available at the moment.\""
+msgstr "Ödeme formları WooCommerce ödeme sayfasında ödenir ve bu sayfa şu an kullanılamıyor: WooCommerce'i etkinleştirin ve \"Flux Forms ödeme formları WooCommerce ödeme sayfasında devam eder\" ayarını açın. Ziyaretçiler \"Online ödeme şu anda kullanılamıyor.\" uyarısını görür."
+
+msgid "The recurring donation was canceled. No further charges will be made."
+msgstr "Düzenli bağış iptal edildi. Bundan sonra çekim yapılmayacak."
+
+msgid "Cancel this recurring donation? No further charges will be made."
+msgstr "Bu düzenli bağış iptal edilsin mi? Bundan sonra çekim yapılmayacak."
+
+msgid "Last run: %s. Recurring card charges are checked every hour."
+msgstr "Son çalışma: %s. Düzenli kart çekimleri her saat kontrol ediliyor."
+
+msgid "Missing or weak in wp-config.php: %s. The donors' cancel links of recurring donations are signed with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or links already sent stop working."
+msgstr "wp-config.php'de eksik veya zayıf: %s. Düzenli bağışların bağışçıya giden iptal bağlantıları bu anahtarlarla imzalanır; bir kez benzersiz değerler girin (https://api.wordpress.org/secret-key/1.1/salt/) ve sonra değiştirmeyin, yoksa gönderilmiş bağlantılar çalışmaz."
+
+msgid "Set in wp-config.php. The donors' cancel links of recurring donations are signed with them: do not change them, or links already sent stop working."
+msgstr "wp-config.php'de tanımlı. Düzenli bağışların bağışçıya giden iptal bağlantıları bunlarla imzalanır: değiştirmeyin, yoksa gönderilmiş bağlantılar çalışmaz."
+
+msgid "Monthly donations are paid by card; the card is stored by the payment provider and charged once a month."
+msgstr "Aylık bağışlar kartla ödenir; kart ödeme kuruluşunda saklanır ve ayda bir tahsil edilir."
+
+msgid "Monthly donations: Flux POS stores the card."
+msgstr "Aylık bağışlar: kartı Flux POS saklar."
+
+msgid "Monthly donations are off: they need a Flux POS card account that can store cards (Stripe today)."
+msgstr "Aylık bağışlar kapalı: kart saklayabilen bir Flux POS kart hesabı gerekir (şimdilik Stripe)."
+
+msgid "No card method is enabled; donations can only be paid by bank transfer. Add a POS account in Flux POS."
+msgstr "Etkin kart yöntemi yok; bağışlar yalnız havale/EFT ile ödenebilir. Flux POS'ta bir POS hesabı ekleyin."
+
+msgid "Flux POS stores the card at the first payment; a renewal order is opened and charged every month."
+msgstr "Kart ilk ödemede Flux POS ile saklanır; her ay bir yenileme siparişi açılır ve tahsil edilir."
+
+msgid "Monthly donations are off: they need Flux POS with a card account that can store cards (Stripe today) and its \"Pay by card\" method enabled."
+msgstr "Aylık bağışlar kapalı: kart saklayabilen bir kart hesabı (şimdilik Stripe) olan Flux POS ve açık \"Kart ile öde\" yöntemi gerekir."
+
+msgid "\"%1$s\" repeats monthly (recurring donation #%2$d); the card is stored at the payment provider."
+msgstr "\"%1$s\" her ay tekrarlanıyor (düzenli bağış #%2$d); kart ödeme kuruluşunda saklanıyor."
+
+msgid "Card, monthly"
+msgstr "Kart, aylık"
+
+msgid "Card payments are processed with 3D Secure by a licensed bank or payment institution. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account."
+msgstr "Kartla ödemeler lisanslı bir banka ya da ödeme kuruluşu üzerinden 3D Secure ile alınır. Kart bilgileri bu sitede saklanmaz. Havale/EFT ile yapılan bağışlar, para dernek hesabına ulaştığında onaylanır."
+
+msgid "Card and the last failed attempt; empty without one."
+msgstr "Kart ve son başarısız deneme; yoksa boş."
+
+msgid "%d recurring donation stopped after its card was declined on every attempt."
+msgid_plural "%d recurring donations stopped after their cards were declined on every attempt."
+msgstr[0] "%d düzenli bağış, kart her denemede reddedildiği için durdu."
+msgstr[1] "%d düzenli bağış, kartları her denemede reddedildiği için durdu."
+
+msgid "%s recurring donation could not be charged after all attempts and is now past due. The donor was e-mailed."
+msgid_plural "%s recurring donations could not be charged after all attempts and are now past due. The donors were e-mailed."
+msgstr[0] "%s düzenli bağış tüm denemelere rağmen tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçıya e-posta gönderildi."
+msgstr[1] "%s düzenli bağış tüm denemelere rağmen tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçılara e-posta gönderildi."

@@ -6,7 +6,7 @@ Flux Donate 2.0 bağışları **WooCommerce** üzerinden alır. Flux WooCommerce
 
 - WordPress 6.4+, PHP 7.4+
 - **WooCommerce 8.0+** (canlı sitede 11.2.1 var; 9.6.2 ile test edildi). Eklenti başlığında `Requires Plugins: woocommerce` yazar: WooCommerce kurulmadan Flux Donate etkinleşmez.
-- Tek seferlik kart ödemesi için resmî **iyzico WooCommerce** eklentisi (yoksa Flux Donate'ın kendi iyzico yöntemi kullanılır).
+- Kart ödemesi için **Flux POS** 0.4.0+ (kart hesabı; aylık bağış için kartı saklayabilen sürücü, bugün Stripe). Flux Donate kendi ödeme sistemini taşımaz (2.48.0).
 - Flux Certificates 1.2+ (ödemeden sonra sertifika), Flux Mail 1.0+ (e-posta şablonları; isteğe bağlı), Flux Forms **2.1.0+** (ödeme formları WooCommerce ödeme sayfasında ödenecekse).
 
 ## Temiz kurulum (2.0)
@@ -26,18 +26,16 @@ Site henüz canlı değil, bu yüzden 2.0 **veri taşımadan** kurulur (Ahmet, 2
 5. **Bağışlar › Ayarlar › WooCommerce**: "Online bağış sayfasını oluştur" düğmesiyle sayfayı açın ya da kendi sayfanıza **Bağış seçenekleri** bloğunu (`flx-wc-bagis/secenekler`) veya `[flx_bagis_secenekleri]` kısa kodunu koyun ve sayfayı seçin. Temanın `/bagis/` kalıbı aynı bloğu kullanır.
 6. **WooCommerce › Ayarlar › Ödemeler**:
    - **Havale (bağış)** (`flxb_havale`): IBAN, alıcı, banka, açıklama kodu şablonu. WooCommerce'in kendi "Doğrudan banka havalesi" (BACS) yöntemini kapatın. IBAN boş bırakılırsa temanın banka hesaplarından (`flxb_bank_accounts`) mağaza para birimindeki ilki kullanılır; alıcı ve banka da o hesaptan gelir (2.0.1), böylece IBAN tek yerde girilir.
-   - **Kart (iyzico) - Flux Donate** (`flxb_iyzico`): 2.1.0'dan beri tüm kart ödemeleri (tek seferlik ve aylık) varsayılan olarak bununla, ödeme sayfasındaki kendi kart alanlarımızla alınır (bkz. "Kart ödemesi"). Etkin olmalı.
-   - **iyzico** (resmî eklenti): yalnız anahtarlar için gerekir; bağışçıya gösterilmez. **Bağışlar › Ayarlar › WooCommerce › Kart ödeme ekranı** = "Tek seferlik bağışlarda resmi iyzico eklentisi" seçilirse tek seferlik bağışlar onunla alınır. İki kart yöntemi aynı anda gösterilmez.
-   - **Stripe yok:** 2.0'da Stripe WooCommerce yöntemi olarak taşınmadı. Gerekirse resmî "WooCommerce Stripe" eklentisi kurulabilir (sertifika ve kayıt defteri her WooCommerce yöntemiyle çalışır; aylık bağış yalnızca Flux Donate iyzico ile).
+   - **Kart (Flux POS)** (`flxpos_card`): tek seferlik ve aylık kart ödemeleri. Hesap ve sağlayıcı **Flux POS** ayarlarından; tek kart kuralı, blok ödeme ve logolar Flux POS'ta.
 7. **Bağışlar › Ayarlar › Sistem kontrolü**'nü açın; kırmızı ve sarı satırları düzeltin.
 
 ## Bağışçı ne görür
 
-- **Bağış seçenekleri bloğu:** türler sekme olarak; sabit paket kartları, − / + adetli kart (canlı toplam), serbest tutar ve hazır tutar düğmeleri, "Her ay tekrarla" (yalnız düzenli bağışa açık türlerde ve Flux Donate iyzico hazırsa).
+- **Bağış seçenekleri bloğu:** türler sekme olarak; sabit paket kartları, − / + adetli kart (canlı toplam), serbest tutar ve hazır tutar düğmeleri, "Her ay tekrarla" (yalnız düzenli bağışa açık türlerde ve Flux POS'ta kartı saklayabilen hesap varsa).
 - **Kimin için:** "Kendim için" ya da "Başkası adına" (adı sertifikaya yazılır). Sertifikanın gideceği **WhatsApp** ve **e-posta** tam genişlikte kartlarda; boş bırakılırsa hesaptaki `billing_phone` ve hesap e-postası (yoksa ödeme sayfasındakiler) kullanılır. Başkası adına bağışta **"Bana da gönder"** ile bağışçı da kopyasını alır.
 - **Sertifika:** "Online sertifika" (ücretsiz). **"Online + basılı sertifika" şimdilik "Yakında" rozetiyle kapalı gösterilir** ve seçilemez; elle gönderilse de sunucu reddeder. Açmak için **Ayarlar › WooCommerce › "Online + basılı sertifika"** = "Seçilebilir" (ücret ve posta adresi alanı o zaman devreye girer). "Gizli" seçeneği satırı hiç göstermez.
 - **Sepet ve ödeme:** klasik ve blok ödeme sayfası. Sepette yalnızca bağış varsa şirket, adres 2. satır ve posta kodu gizlenir.
-- **Tek iletişim bölümü (2.0.4):** sepette yalnız bağış varsa ödeme sayfasında "Fatura adresi" başlığı, ülke ve ayrı telefon alanı yok; tek bölümde **E-posta** ve **Telefon**, en az biri zorunlu (ikisi de yazılabilir), ad/soyad kalır. Yalnız telefon yazılırsa siparişe görünmeyen bir yer tutucu adres (`bagisci-<numara>@<site alan adı>`, 2.0.6'dan önce `@telefon.invalid`; iyzico onu hatalı format sayıyordu) yazılır; o adrese e-posta gitmez, bağışçı telefonla kaydedilir. Filtre: `flxb_wc_contact_either`.
+- **Tek iletişim bölümü (2.0.4):** sepette yalnız bağış varsa ödeme sayfasında "Fatura adresi" başlığı, ülke ve ayrı telefon alanı yok; tek bölümde **E-posta** ve **Telefon**, en az biri zorunlu (ikisi de yazılabilir), ad/soyad kalır. Yalnız telefon yazılırsa siparişe görünmeyen bir yer tutucu adres (`bagisci-<numara>@<site alan adı>`, 2.0.6'dan önce `@telefon.invalid`) yazılır; o adrese e-posta gitmez, bağışçı telefonla kaydedilir. Filtre: `flxb_wc_contact_either`.
 - **Ödeme sayfası düzeni (2.0.4):** mobilde üstteki açılır sipariş özeti yok (alttaki kalır), başlığı **"Bağış özeti"**; "Sipariş ver" butonu altta sabit (basınca eksik alan gösterilir). Header'ın sabit olması tema 0.5.23'te.
 - **Destek WhatsApp (2.0.4):** ödeme sayfasında ve havale bilgilerinin altında "Bir sorun mu var? WhatsApp'tan yazın: +90 555 000 00 00". Numara **Ayarlar › WooCommerce › Destek WhatsApp numarası**; boş bırakılırsa gizlenir.
 - **2.0.5:** bağış formunda (sertifikalı türlerde) WhatsApp ya da e-postadan en az biri zorunlu; kendisi için bağışta bunlar ödeme sayfasına dolu gelir. "Her ay tekrarla" seçimlerin altında tek satır. Toplam ve **Devam et** altta sabit. Ödeme sayfasında header üstte sabit; altta yalnız ince bar (Toplam + **Ödemeye geç**), Bağış özeti normal akışta. Güncellemeden sonra LiteSpeed (ve WP Rocket / WP Super Cache) önbelleği bir kez temizlenir, eski sayfa eski CSS'i göstermez.
@@ -45,7 +43,7 @@ Site henüz canlı değil, bu yüzden 2.0 **veri taşımadan** kurulur (Ahmet, 2
 - **Sertifika tasarımı seçimi (2.0.7, Flux Certificates 1.4.0+):** Sertifikalar › Şablonlar'da "Bağışçı bu tasarımı bağış sayfasında seçebilir" işaretli aktif şablonlar bağış formunda grup adıyla (varsayılan "Sertifikalar") kart olarak çıkar. Seçilen tasarımın alanları (ör. mesaj, kimden) açılır; ad ve fidan sayısını Flux Donate kendisi doldurur. Seçim siparişte "Tasarım" olarak görünür, ödeme sonrası sertifika o şablonla hazırlanır (şablon listeden kalktıysa bağış türünün şablonu). Tutar değişmez. Liste boşsa bölüm görünmez.
 - **2.2.1:** Flux Chat'nden (WhatsApp asistanı ya da temsilci) gelen bağış siparişlerinde havale onaylanınca sertifika artık hazırlanıp gönderilir (önceden bu siparişlerde "sertifika" seçimi olmadığı için hiçbir kanaldan gitmiyordu). Daha önce onaylanmış böyle bir sipariş için siparişin sağındaki Flux Donate kutusunda **"Sertifikayı hazırla"** düğmesi çıkar. Bağışa zaten sertifika bağlıysa ikincisi yapılmaz.
 - **2.2.0 (Flux Roles ile):** Her bağışın bir **Referans**'ı olabilir: personelin kişisel linkiyle (`?ref=`) gelen bağış, Çağrı Merkezi'nde personelin kaydettiği bağış ya da "Bağış ekle"de seçilen kişi. Aylık bağışın sonraki tahsilatları ilk bağışın referansını taşır. Bağışlar listesinde Referans sütunu ve filtresi, ayrıntıda yönetici için "Değiştir" (siparişin tüm kalemleri, aylık bağış ve sertifika birlikte değişir). **Personel** (`flxb_view_own`) Bağışlar menüsünde yalnız kendi referanslarını görür ("Referanslarım": liste, ayrıntı, CSV, makbuz); bağışçılar, türler ve ayarlar kapalı. **İdareci** (`flxb_dashboard`) ayrıca Dashboard'daki genel toplamları görür. Yetkiler Kullanıcılar › Roller ve erişim'den değişir.
-- **2.1.0:** Kart bilgileri doğrudan ödeme sayfasında, kendi alanlarımızda sorulur (ayrı iyzico sayfası yok). Kart numarası yazılınca taksit seçenekleri gelir, banka 3D Secure ekranı açılır, giriş yapmış bağışçı "Kartımı kaydet" diyebilir (kartı iyzico saklar). Ayrıntı: "Kart ödemesi". Tema 0.5.29 ile tekrar deneme sayfasında ödeme yöntemi kutuları düzenli.
+- **2.1.0:** Kart bilgileri doğrudan ödeme sayfasında, kendi alanlarımızda sorulur. 2.48.0'dan beri kart alanları Flux POS'ta. Tema 0.5.29 ile tekrar deneme sayfasında ödeme yöntemi kutuları düzenli.
 - **2.0.9:** Ödeme sayfasındaki "Şartlar ve koşullar / Gizlilik politikası" metni zorunlu onay kutusu oldu (işaretlenmeden sipariş verilmez, sunucu da reddeder; onay zamanı siparişte `_flxb_terms_accepted`). Linkler gerçek sayfalara gider: WooCommerce şartlar sayfası yoksa "Bağış Koşulları" sayfası (düzenlenebilir taslak metin) oluşturulur; gizlilik sayfası yayında değilse `/kvkk/`, o da yoksa kısa bir "Gizlilik Politikası" sayfası kullanılır. Bağışlar listesinde bir sepet (tek WooCommerce siparişi) tek satırdır: toplam tutar ve "3 kalem"; Ayrıntılar'da "Bağış sepeti" kartı tüm kalemleri (fidan, sertifika, sertifikadaki ad) gösterir ve havale bekleyen siparişte tek "Ödemeyi onayla" düğmesi vardır. Yeni API: `flxb_pending_count()` (onay bekleyen, sipariş başına 1). CSV kalem bazlı kalır. Tema 0.5.25 ile: büyük, hizalı onay kutuları; kart ödeme sayfasında hizalı özet, geniş ekranda sağda sabit.
 - **2.0.8:** e-kart tasarımlarındaki `gonderen` (Gönderen) alanı giriş yapmış bağışçının adıyla dolu gelir; boş bırakılırsa ödeme sayfasındaki ad soyad yazılır (formda zorunlu sorulmaz).
 - **Kartla ödeme:** sipariş ödenince sertifika hazırlanır ve seçilen kanallardan gönderilir; teşekkür sayfasında sertifika kartı (önizleme, PDF indir, paylaş) çıkar.
@@ -54,21 +52,18 @@ Site henüz canlı değil, bu yüzden 2.0 **veri taşımadan** kurulur (Ahmet, 2
 
 ## Aylık bağış
 
-- İlk ödeme **Flux Donate iyzico** ile alınır, kart iyzico'da saklanır (kart numarası siteye gelmez). Kart saklanmazsa bağış tek seferlik kalır ve siparişe not düşülür.
-- Her ay Flux Donate'ın saatlik görevi (`flxb_iyzico_renewals`) bir **yenileme siparişi** açar (`created_via = flxb-renewal`) ve kayıtlı kartı çeker. Başarılıysa sipariş tamamlanır ve bağış kaydına "yenileme" olarak yazılır; başarısızsa 1 ve 3 gün sonra tekrar denenir, üçüncüsünde düzenli bağış **Gecikmiş** olur ve bağışçıya e-posta gider. Zaman aşımında aynı ay ikinci kez çekilmez.
+- Aylık bağış bağlamında ödeme sayfasında yalnız **Kart (Flux POS)** çıkar. İlk ödemede kart Flux POS sürücüsünde (bugün Stripe) saklanır; sitede yalnız sürücünün müşteri/ödeme yöntemi kimlikleri durur. Kart saklanmazsa bağış tek seferlik kalır ve siparişe not düşülür.
+- Her ay Flux Donate'ın saatlik görevi (`flxb_renewals`) bir **yenileme siparişi** açar (`created_via = flxb-renewal`) ve kayıtlı kartı çeker. Başarılıysa sipariş tamamlanır ve bağış kaydına "yenileme" olarak yazılır; başarısızsa 1 ve 3 gün sonra tekrar denenir, üçüncüsünde düzenli bağış **Gecikmiş** olur ve bağışçıya e-posta gider. Sonucu gelmeyen çekim bir gün içinde tekrar denenmez, aynı ay ikinci kez çekilmez.
 - İptal: **Bağışlar › Düzenli bağışlar** ya da bağışçının e-postasındaki iptal bağlantısı.
 - **WP-Cron gerçek cron'la çalışmalı** (Hostinger: `define( 'DISABLE_WP_CRON', true );` ve hPanel › Cron Jobs'ta 15 dakikada bir `wget -q -O - https://ALAN-ADI/wp-cron.php?doing_wp_cron >/dev/null 2>&1`).
 
-## Kart ödemesi (2.1.0)
+## Kart ödemesi (2.48.0)
 
-- **Varsayılan: kendi kart alanlarımız.** Ödeme sayfasında "Kredi / banka kartı" seçilince kart numarası, kart üzerindeki isim, son kullanma (AA/YY) ve CVC alanları açılır. Kart numarası 8 haneye ulaşınca iyzico'dan o kartın **taksit seçenekleri** gelir (tek çekim + varsa 2-12 taksit, vade farkı iyzico'dan; çekilecek tutar sunucuda iyzico'ya tekrar sorulur). "Sipariş ver" sonrası bankanın **3D Secure** ekranı açılır, onaylanınca teşekkür sayfasına dönülür. Banka reddederse sipariş "başarısız" olur ve aynı siparişin ödeme sayfası hata mesajıyla açılır; bağışçı tekrar dener.
-- **Kartımı kaydet:** giriş yapmış bağışçıda kutucuk çıkar. Kart **iyzico kart saklama** altyapısında tutulur; sitede yalnız iyzico'nun bağışçı anahtarı (şifreli, `_flxb_iyz_cuk`) durur. Sonraki bağışta "Kayıtlı kartlarınız" listesinden seçilir, kart bilgisi tekrar sorulmaz. Aylık bağışta kart her zaman iyzico'da saklanır (bağışçıya not olarak yazılır).
-- **Kart verisi saklanmaz:** kart numarası, son kullanma ve CVC tarayıcıdan yalnız sipariş anında sunucuya, oradan doğrudan iyzico'ya gider; veritabanına, siparişe ve günlüklere yazılmaz.
-- **Ayarlar › WooCommerce › Kart ödeme ekranı:** "Ödeme sayfasında kendi kart alanlarımız" (varsayılan) · "iyzico ödeme formu (önceki gibi)" · "Tek seferlik bağışlarda resmi iyzico eklentisi". **En fazla taksit:** 1 (yalnız tek çekim) ile 12 arası, varsayılan 12.
-- **Test:** iyzico ayarlarında sandbox açıkken kart alanlarının altında test kartı notu görünür (ör. 5528 7900 0000 0008, 12/30, 123; 3D şifresi iyzico'nun test ekranında). Canlıya geçince not kaybolur. iyzico kapalıyken yöntem görünmez.
+- Kart alanları, taksit, 3D Secure ve test kartları Flux POS'ta (bkz. Flux POS belgesi). Flux Donate kart verisi görmez ve saklamaz.
+- Siparişteki **Ödeme ayrıntısı** kutusu ödeme eklentisinin `flxb_payment_details` filtresiyle doldurduğu bilgiyi gösterir (kart son 4, taksit, banka referansı).
 
 ## Sistem kontrolü Flux Speed'ta (2.9.0)
-Flux Speed kuruluysa Sistem kontrolü ekranı Performans › Sistem Kontrolü'nde açılır; Ayarlar'daki "Sistem kontrolü" sekmesi gizlenir, eski adres oraya yönlenir. Test düğmelerinin sonucu orada bildirim olarak çıkar, iyzico bildirim adresleri Ayarlar › Genel'in altına geçer. Flux Speed yoksa eski sekme aynen çalışır.
+Flux Speed kuruluysa Sistem kontrolü ekranı Performans › Sistem Kontrolü'nde açılır; Ayarlar'daki "Sistem kontrolü" sekmesi gizlenir, eski adres oraya yönlenir. Test düğmelerinin sonucu orada bildirim olarak çıkar. Flux Speed yoksa eski sekme aynen çalışır.
 
 ## Mobil uygulamada bağış onayı (2.8.0)
 Sipariş yönetme yetkisi olan personel uygulamada "Onay bekleyenler" ekranını görür: dekontu açar, Onayla ya da gerekçe yazıp Reddet. Paneldeki onay kartıyla aynı işi yapar (onayda sertifika gider, retde bağışçıya bildirim). Ayar yok.
@@ -110,7 +105,6 @@ Yetkiler Kullanıcılar › Roller ve erişim'den açılır; Flux Donate yalnız
 - Bağışlar listesi canlı MySQL'de boş görünüyordu (sepet gruplama sorgusu hata veriyordu); düzeldi. Onay bekleyen sayısı da aynı sebeple 0 görünebiliyordu.
 - Liste filtresi: üstte yalnız arama; tarih, durum, tür, form, referans "Detaylı filtre"de.
 - Tekrar ödeme sayfası (order-pay): tek ve zorunlu Şartlar onayı, WooCommerce'in İngilizce gizlilik metni yok, buton "Ödeme yap" ve ekranın altında sabit (tema 0.5.31).
-- Test modunda yalnız iyzico test kartları kabul edilir; "Test kartını doldur" düğmesi kartı doldurur. Kart başlatılamazsa siparişe not düşer (iyzico hatası, kartın ilk 6 ve son 4 hanesi).
 
 ## Havale hesabı (2.2.2)
 
@@ -120,16 +114,10 @@ IBAN tek yerden gelir: **WooCommerce > Ayarlar > Ödemeler > Doğrudan banka hav
 - WooCommerce'te hesap yoksa Tema Ayarları > Banka hesabı yedek olarak kullanılır.
 - Değişiklik görünmezse LiteSpeed Cache > Purge All.
 
-## iyzico anahtarları ve bildirim adresi
-
-- Anahtarlar resmî iyzico WooCommerce eklentisinin ayarlarından okunur; o eklenti yoksa **Bağışlar › Ayarlar › Ödemeler › iyzico** alanlarından. Anahtarlar hiçbir ekranda ve günlükte gösterilmez.
-- iyzico panelinde **İşyeri Bildirimleri Url** = `https://ALAN-ADI/wp-json/flxb/v1/iyzico/notify`. Bu tek adres Flux Donate ödemelerini kendisi işler, diğerlerini resmî iyzico eklentisinin webhook'una aynı istek içinde iletir. Abonelik bildirim adresleri kapalı kalmalı.
-- Ödeme ancak iyzico'dan tekrar sorgulanıp tutar, para birimi ve sepet siparişle aynı çıkınca "ödendi" sayılır.
-
 ## İade
 
 - WooCommerce'te sipariş üzerinden yapılan tam veya kısmi iade bağış kaydına yansır ("İade edildi" / "Kısmen iade edildi").
-- **Bağışlar › Bağış ayrıntısı**'ndaki iade düğmesi WooCommerce iadesi oluşturur; ödeme yöntemi destekliyorsa (iyzico) para karta geri gider, havalede yalnızca kaydedilir (parayı siz gönderirsiniz).
+- **Bağışlar › Bağış ayrıntısı**'ndaki iade düğmesi WooCommerce iadesi oluşturur; ödeme yöntemi destekliyorsa para karta geri gider, havalede yalnızca kaydedilir (parayı siz gönderirsiniz).
 
 ## Flux Forms ödeme formları
 
@@ -162,12 +150,12 @@ Yalnızca kararlı, herkese açık WooCommerce API'leri kullanılır (HPOS uyuml
 **Bağışlar › Ayarlar › Sistem kontrolü** sekmesi kurulumun yerinde olup olmadığını tek ekranda gösterir. Her satırda durum (simge + yazı: Tamam / Uyarı / Hata / Bilgi), ne kontrol edildiği, ayrıntı, kaynağı (Flux Donate, Flux Forms, Flux Certificates…) ve varsa düzeltme bağlantısı vardır. **Yeniden kontrol et** sayfayı baştan hesaplar.
 
 - **Zamanlanmış görevler:** DISABLE_WP_CRON durumu; Flux Donate'ın saatlik görevinin son çalışma zamanı (2 saatten eskiyse uyarı); 15 dakikadan fazla geciken görevler; **Cron'u test et** (sunucunun kendi wp-cron.php adresine bir istek atar).
-- **Ödemeler:** etkin sağlayıcı ve anahtarları; iyzico anahtarlarının kaynağı (iyzico WooCommerce eklentisi / Flux Donate), sandbox mı canlı mı; **Bağlantıyı test et** (iyzico'ya imzalı, zararsız bir BIN sorgusu atar; anahtar yanlışsa satır Hata olur); callback ve bildirim adresleri; 3 kez reddedilip duran düzenli bağışlar; Stripe anahtarları ve webhook imza anahtarı.
-- **Eklentiler:** WooCommerce (yoksa ya da 8.0'dan eskiyse hata), eski Flux WooCommerce Bağış hâlâ açıksa hata, Flux Forms, Flux Certificates, iyzico eklentileri.
+- **Ödemeler:** 3 kez reddedilip duran düzenli bağışlar. Kart hesabı ve anahtarlar Flux POS'un kendi kontrolünde.
+- **Eklentiler:** WooCommerce (yoksa ya da 8.0'dan eskiyse hata), eski Flux WooCommerce Bağış hâlâ açıksa hata, Flux Forms, Flux Certificates.
 - **WooCommerce (2.0):** sürüm, kart / aylık / havale yöntemleri, çift havale (BACS), para birimi uyumu, türlerin gizli ürünleri, bağış sayfası, sertifika şablonu, ürün XML'i, Flux Forms 2.1.0, Flux Mail.
 - **Ayarlar:** fiyatlı açık bağış türü, her açık türün formu, para birimi, havale banka hesapları, kurum adı, kalıcı bağlantılar, veritabanı sürümü.
 - **E-posta:** **Test e-postası gönder** yönetici adresine bir ileti yollar.
-- **Güvenlik:** HTTPS ve WordPress güvenlik anahtarları (kayıtlı iyzico kartları bunlarla şifrelenir; değiştirmeyin).
+- **Güvenlik:** HTTPS ve WordPress güvenlik anahtarları.
 
 Test düğmeleri dışında hiçbir kontrol dışarıya istek atmaz. Hata varken Başlangıç (Dashboard) ekranında kırmızı bir uyarı ve üst çubukta "Sistem: N hata" görünür; "Sonraki güncellemeye kadar gizle" ile gizlenir (yeni bir hata çıkarsa ya da eklenti güncellenirse tekrar görünür).
 

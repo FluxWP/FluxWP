@@ -133,7 +133,7 @@ flx_gql_type(
 				'status'        => array( 'FlxSubscriptionStatus!', __( 'Status.', 'flx-donate' ) ),
 				'statusLabel'   => array( 'String!', __( 'Status as people read it.', 'flx-donate' ) ),
 				'tone'          => array( 'FlxDonationTone!', __( 'Colour of the status.', 'flx-donate' ) ),
-				'note'          => array( 'String!', __( 'Card and the last failed attempt (iyzico); empty without one.', 'flx-donate' ) ),
+				'note'          => array( 'String!', __( 'Card and the last failed attempt; empty without one.', 'flx-donate' ) ),
 				'startedLabel'  => array( 'String!', __( 'Start date.', 'flx-donate' ) ),
 				'nextLabel'     => array( 'String!', __( 'Next charge, or when it was canceled; empty when unknown.', 'flx-donate' ) ),
 				'gifts'         => array( 'Int!', __( 'Gifts received.', 'flx-donate' ) ),

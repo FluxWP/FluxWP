@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.55.1
+- Asistanın kart ödeme bağlantısı Flux POS "Kart ile öde" yöntemini kullanır (Flux Donate'in iyzico yöntemi kaldırıldı). Yöntem kapalıysa kart bağlantısı verilmez; `flxc_pay_card_gateway` filtresi değişmedi.
+
 ## 1.55.0
 - Asistan kişinin para birimini hatırlar: Türkçe yazana TL gösterilir; yabancı dilde yazana (site birden fazla para birimi sunuyorsa: Flux Donate'ta bağışçının seçebildiği ve türde elle fiyatı girilmiş TL/USD/EUR) fiyattan önce hangisini istediği sorulur. Seçim kişide kalıcı saklanır (yeni `set_currency` aracı, kişi hafızasında "para birimi"), sonraki fiyat listesi, özet, bağış kaydı ve ödeme o para biriminde olur. Kur çevrimi yok; fiyatı o para biriminde girilmemiş seçenek sunulmaz. Para birimi değişirse seçili bağış yeniden hesaplanır.
 - Kişinin son konuşma dili kişi hafızasına da yazılır ("konuşma dili"). Hatırlatıcı artık kişinin son dilinde ve para biriminde gider; hatırlatıcıdaki hazır mesajlar (fiyat listesi vb.) da o dile çevrilir. Başka modüller için `flxc_chat_lang( $chat )` ve `flxc_chat_currency( $chat )`.

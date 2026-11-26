@@ -537,6 +537,18 @@ msgstr ""
 msgid "Sunucu bildirimi"
 msgstr ""
 
+msgid "Önceki çekimin sonucu bekleniyor."
+msgstr ""
+
+msgid "Sonuç gelmedi."
+msgstr ""
+
+msgid "Sipariş #%s"
+msgstr ""
+
+msgid "Kart çekilemedi."
+msgstr ""
+
 msgid "Öde"
 msgstr ""
 

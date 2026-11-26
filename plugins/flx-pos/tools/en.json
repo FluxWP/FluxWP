@@ -660,5 +660,9 @@
  "Ödeme işlenemedi; yeniden deneyin ya da başka bir yöntem kullanın.": "The payment could not be processed; try again or use another method.",
  "Ödeme Stripe'ta işleniyor.": "The payment is processing at Stripe.",
  "Ödeme doğrulaması bekleniyor.": "Waiting for payment authentication.",
- "Ödeme iptal edildi.": "The payment was canceled."
+ "Ödeme iptal edildi.": "The payment was canceled.",
+ "Önceki çekimin sonucu bekleniyor.": "The result of the previous charge is not in yet.",
+ "Sonuç gelmedi.": "No result came back.",
+ "Sipariş #%s": "Order #%s",
+ "Kart çekilemedi.": "The card was not charged."
 }

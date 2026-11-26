@@ -58,6 +58,13 @@ $txn = flxpos_charge_saved( array(
 // bağışçıya ödeme bağlantısı gönderip normal flxpos_charge() ile yeni ödeme alın.
 ```
 
+Hazır yardımcılar (0.4.0):
+
+- `flxpos_can_save_card( $currency = '' )`: bu para biriminde kartı saklayıp çekebilen etkin hesap var mı.
+- `flxpos_saved_card( $order )`: siparişin ödemesinde saklanan kart `{account, customer, payment_method, label}` ya da `null`.
+- `flxpos_charge_saved_order( WC_Order $order, array $card, $description = '' )`: kartı siparişe çeker, sonuç `{result: paid|failed|uncertain, txn?, error?}`. Önceki çekim beklemedeyse (1 günden yeni) tekrar çekmez; sipariş meta `_flxpos_saved_txn`.
+- Flux Commerce: `flxcm_card_providers` sağlayıcısı `flxpos` (gateway `flxpos_card`); abonelikli siparişe `_flxpos_save = yes` yazılır. Flux Donate aylık bağışı (2.48.0) aynı yardımcıları kullanır.
+
 Stripe Billing (Subscriptions) yerine bu yol seçildi: fiyat/plan Stripe'ta değil Flux Donate türünde kalır, iyzico gibi
 diğer sağlayıcılara da aynı arayüzle genişletilebilir.
 

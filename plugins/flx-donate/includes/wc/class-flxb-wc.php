@@ -143,7 +143,7 @@ final class FLXB_WC {
 			return;
 		}
 		$dir = FLXB_DIR . 'includes/wc/';
-		foreach ( array( 'currency', 'products', 'cart', 'form', 'havale', 'iyzico', 'iyzico-card', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'boxes', 'checks', 'addresses', 'contact', 'designs', 'terms', 'gateways', 'esnekpos', 'esnekpos-direct', 'look', 'fee', 'checkout-layout', 'commerce-card', 'payinfo' ) as $f ) {
+		foreach ( array( 'currency', 'products', 'cart', 'form', 'havale', 'receipts', 'certificates', 'notify', 'account', 'ledger', 'recurring', 'feed', 'callcenter', 'flxform', 'admin', 'boxes', 'checks', 'addresses', 'contact', 'designs', 'terms', 'look', 'fee', 'checkout-layout', 'payinfo' ) as $f ) {
 			require_once $dir . 'class-flxb-wc-' . $f . '.php';
 		}
 		if ( ! defined( 'FLXWB_VERSION' ) ) {
@@ -154,15 +154,12 @@ final class FLXB_WC {
 		FLXB_WC_Cart::init();
 		FLXB_WC_Form::init();
 		FLXB_WC_Havale::init();
-		FLXB_WC_Iyzico::init();
-		FLXB_WC_Iyzico_Card::init();
 		FLXB_WC_Receipts::init();
 		FLXB_WC_Certificates::init();
 		FLXB_WC_Notify::init();
 		FLXB_WC_Account::init();
 		FLXB_WC_Ledger::init();
 		FLXB_WC_Recurring::init();
-		FLXB_WC_Commerce_Card::init();
 		FLXB_WC_Feed::init();
 		FLXB_WC_Callcenter::init();
 		FLXB_WC_FLXForm::init();
@@ -173,9 +170,6 @@ final class FLXB_WC {
 		FLXB_WC_Contact::init();
 		FLXB_WC_Designs::init();
 		FLXB_WC_Terms::init();
-		FLXB_WC_Gateways::init();
-		FLXB_WC_Esnekpos::init();
-		FLXB_WC_Esnekpos_Direct::init();
 		FLXB_WC_Look::init();
 		FLXB_WC_Fee::init();
 		FLXB_WC_Checkout_Layout::init();
@@ -220,12 +214,7 @@ final class FLXB_WC {
 			'receipt_max_mb'  => 8,
 			'receipt_notify'  => '',
 			'forms_checkout'  => 1,       // Flux Forms payment forms pay through the WooCommerce checkout.
-			'card_gateway'    => 'auto',  // Before 2.1.0; replaced by card_ui.
-			'card_ui'         => 'fields', // 2.1.0: fields (our card fields) | form (iyzico payment page) | official (official iyzico plugin for one-time).
-			'card_installments' => 12,   // 2.1.0: most installments offered with our card fields (1 = single payment only).
 			'support_wa'      => '', // 2.0.4: shown on the checkout and the transfer panel; empty = hidden.
-			'card_method'     => 'auto', // 2.13.0: auto (a third-party POS if enabled, else iyzico) | iyzico | <gateway id> | all.
-			'block_fallback'  => 1,  // 2.13.0: payment plugins without checkout block support are added to the block (FLXB_WC_Gateways).
 			'currencies'      => array(), // 2.15.0: extra currencies donors can choose (the store currency is always offered).
 		);
 	}
