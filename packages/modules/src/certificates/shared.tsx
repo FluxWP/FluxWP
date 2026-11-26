@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useFlxMutation } from '@fluxwp/graphql/react';
+import { confirmDialog } from '@fluxwp/ui';
 import { FlxCertificateSendTo } from '@fluxwp/graphql/operations';
 import type { FlxCertificateChannel } from '@fluxwp/graphql/types';
 import type { Translate } from './i18n';
@@ -58,16 +59,8 @@ export function fmtPhone(d: string): string {
 }
 export const validEmail = (v: string) => /^[^@\s]+@[^@\s]+\.[^@\s.]{2,}$/.test(String(v || '').trim());
 
-declare global {
-  interface Window {
-    flxDialog?: { confirm: (o: { message: string; danger?: boolean }) => Promise<boolean> };
-  }
-}
-
 /** flx-brand's dialog (no native confirm in wp-admin); the browser's one only outside it. */
-export function ask(message: string, danger = false): Promise<boolean> {
-  return window.flxDialog ? window.flxDialog.confirm({ message, danger }) : Promise.resolve(window.confirm(message));
-}
+export const ask = confirmDialog;
 
 export const CHANNEL_ICON: Record<string, string> = { email: 'dashicons-email-alt', sms: 'dashicons-smartphone', whatsapp: 'dashicons-whatsapp' };
 

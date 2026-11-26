@@ -76,7 +76,11 @@ function CheckoutCard({ wc }: { wc: Checkout }) {
   const { t } = useForms();
   const host = useHost();
   const [tone, label, text] = !wc.active
-    ? (['is-pending', wc.installed ? t('Not active') : t('Not installed'), t('WooCommerce is needed to take payments. Until it is active, the payment box of payment forms says online payment is not available.')] as const)
+    ? ([
+        'is-pending',
+        wc.installed ? t('Not active') : t('Not installed'),
+        t('WooCommerce is needed to take payments. Until it is active, the payment box of payment forms says online payment is not available.'),
+      ] as const)
     : !wc.configured
       ? (['is-pending', t('No payment method'), t('WooCommerce is active but has no enabled payment method. Enable one (for example Flux POS card or bank transfer).')] as const)
       : (['is-ok', t('Ready'), t('Payment methods: {list}. Payment forms must use the store currency ({currency}).', { list: wc.gateways.join(', '), currency: wc.currency })] as const);
