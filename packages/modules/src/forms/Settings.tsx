@@ -49,17 +49,48 @@ const COLORS = [
 type ColorKey = (typeof COLORS)[number][0];
 type Palette = Partial<Record<ColorKey, string>>;
 const LIGHT: Palette = {
-  respPrimary: '#3644d2', respPrimaryDark: '#202a8d', respAccent: '#ffc107', respBtnText: '#ffffff', respText: '#1a1a2e', respTextMuted: '#657096',
-  respBgCard: '#ffffff', respBgMeta: '#f6f7fb', respBgResp: '#f8f9fd', respBgTrack: '#ffffff', respBgEditor: '#ffffff', respEditorText: '#1a1a2e', respEditorPh: '#a0aec0',
+  respPrimary: '#3644d2',
+  respPrimaryDark: '#202a8d',
+  respAccent: '#ffc107',
+  respBtnText: '#ffffff',
+  respText: '#1a1a2e',
+  respTextMuted: '#657096',
+  respBgCard: '#ffffff',
+  respBgMeta: '#f6f7fb',
+  respBgResp: '#f8f9fd',
+  respBgTrack: '#ffffff',
+  respBgEditor: '#ffffff',
+  respEditorText: '#1a1a2e',
+  respEditorPh: '#a0aec0',
 };
 // Same palettes as the classic Colors & Fonts dialog (list_form-efb.js).
 const DARK: Palette = {
-  respPrimary: '#7b8cff', respPrimaryDark: '#3f4bd8', respAccent: '#ffc107', respBtnText: '#ffffff', respText: '#e9ebf7', respTextMuted: '#9aa3c7',
-  respBgCard: '#1c2030', respBgMeta: '#252a3d', respBgResp: '#13161f', respBgTrack: '#1c2030', respBgEditor: '#252a3d', respEditorText: '#e9ebf7', respEditorPh: '#6b7394',
+  respPrimary: '#7b8cff',
+  respPrimaryDark: '#3f4bd8',
+  respAccent: '#ffc107',
+  respBtnText: '#ffffff',
+  respText: '#e9ebf7',
+  respTextMuted: '#9aa3c7',
+  respBgCard: '#1c2030',
+  respBgMeta: '#252a3d',
+  respBgResp: '#13161f',
+  respBgTrack: '#1c2030',
+  respBgEditor: '#252a3d',
+  respEditorText: '#e9ebf7',
+  respEditorPh: '#6b7394',
 };
 const shade = (h: string, amount: number) => {
   const n = parseInt(h.slice(1), 16);
-  return '#' + [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((c) => Math.max(0, Math.min(255, Math.round(c + amount))).toString(16).padStart(2, '0')).join('');
+  return (
+    '#' +
+    [(n >> 16) & 255, (n >> 8) & 255, n & 255]
+      .map((c) =>
+        Math.max(0, Math.min(255, Math.round(c + amount)))
+          .toString(16)
+          .padStart(2, '0'),
+      )
+      .join('')
+  );
 };
 const brand = (c: string): Palette => ({ ...LIGHT, respPrimary: c, respPrimaryDark: shade(c, -48), respAccent: shade(c, 70) });
 const FONTS: [string, string][] = [
@@ -97,7 +128,8 @@ export function SettingsPage() {
   const changed = (Object.keys(draft) as (keyof Draft)[]).filter((k) => draft[k] !== base[k]);
   const dirty = changed.length > 0 || secret !== '' || clearSecret;
   const set = <K extends keyof Draft>(k: K, v: Draft[K]) => setDraft((d) => (d ? { ...d, [k]: v } : d));
-  const preset = (p: string, brandColor = draft.respBrandColor) => setDraft((d) => (d ? { ...d, ...(p === 'light' ? LIGHT : p === 'dark' ? DARK : p === 'brand' ? brand(brandColor) : {}), respPreset: p, respBrandColor: brandColor } : d));
+  const preset = (p: string, brandColor = draft.respBrandColor) =>
+    setDraft((d) => (d ? { ...d, ...(p === 'light' ? LIGHT : p === 'dark' ? DARK : p === 'brand' ? brand(brandColor) : {}), respPreset: p, respBrandColor: brandColor } : d));
   const paint = (k: keyof Draft, v: string) => setDraft((d) => (d ? { ...d, [k]: v, respPreset: 'custom' } : d));
 
   const submit = async () => {

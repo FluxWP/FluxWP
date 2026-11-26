@@ -66,8 +66,7 @@ function NewForm() {
   if (q.isError) return <p className="flxfrm-bad">{errorText(q.error, t('Something went wrong.'))}</p>;
   if (!q.data) return <Loading />;
   const list = q.data.flxFormsBuilderTemplates;
-  const pick = (tpl: Template | null) =>
-    setStart({ id: 0, name: tpl ? tpl.title : '', structure: tpl && Array.isArray(tpl.structure) ? (tpl.structure as Structure) : [], hash: '' });
+  const pick = (tpl: Template | null) => setStart({ id: 0, name: tpl ? tpl.title : '', structure: tpl && Array.isArray(tpl.structure) ? (tpl.structure as Structure) : [], hash: '' });
   return (
     <div>
       <p className="flxfrm-muted flxfrm-lead">{t('Start with a blank form or a template. You can change everything after.')}</p>
@@ -229,10 +228,14 @@ function Editor({ start }: { start: Start }) {
         <Modal title={t('The form was changed')} onClose={() => setConflict(false)}>
           <p>{t('This form was changed somewhere else after you opened it. Save your version over it, or reload to see the other one (your changes here are lost).')}</p>
           <div className="flxfrm-actions is-end">
-            <button type="button" className="flxfrm-btn" onClick={() => {
+            <button
+              type="button"
+              className="flxfrm-btn"
+              onClick={() => {
                 leaving.current = true;
                 window.location.reload();
-              }}>
+              }}
+            >
               {t('Reload')}
             </button>
             <button type="button" className="flxfrm-btn is-primary" disabled={save.isPending} onClick={() => void submit(true)}>

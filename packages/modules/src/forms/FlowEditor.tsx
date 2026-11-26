@@ -1,13 +1,14 @@
 // Forms › Automations › one flow: a vertical editor (trigger with conditions, then steps) over
 // flxFormsAutomationEditor / flxFormsAutomationSave. The flow is an open JSON document (same shape the engine
 // reads); the server whitelists every field when it saves.
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { Fragment, cloneElement, isValidElement, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxFormsAutomationEditor, FlxFormsAutomationSave, FlxFormsAutomations } from '@fluxwp/graphql/operations';
-import { Check, Loading, Modal } from '@fluxwp/ui';
+import { Loading, confirmDialog, usePageHead } from '@fluxwp/ui';
 import type { Translate } from './i18n';
-import { Field, errorText, payloadError, useForms } from './common';
+import { errorText, payloadError, useForms } from './common';
+import { Svg } from './classic';
 
 interface FormField {
   id: string;
@@ -102,9 +103,9 @@ export function FlowEditor({ id }: { id: number }) {
   if (!data) return <Loading />;
   if (!data.flow) {
     return (
-      <div>
-        <p className="flxfrm-empty">{t('Automation not found.')}</p>
-        <button type="button" className="flxfrm-btn" onClick={() => go('automations')}>
+      <div className="flxfa flx-raw">
+        <p className="flxfa-notice flxfa-notice--warn">{t('Automation not found.')}</p>
+        <button type="button" className="flxfa-btn" onClick={() => go('automations')}>
           {t('All automations')}
         </button>
       </div>
@@ -114,22 +115,25 @@ export function FlowEditor({ id }: { id: number }) {
 }
 
 function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
-  const { t, toast, go } = useForms();
+  const { t, go } = useForms();
   const qc = useQueryClient();
   const { scope } = useGraphQL();
   const [flow, setFlow] = useState<Flow>(() => structuredClone(initial));
   const [dirty, setDirty] = useState(false);
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const [menuAt, setMenuAt] = useState<number | null>(null);
-  const [askRemove, setAskRemove] = useState<number | null>(null);
+  const [state, setState] = useState<'' | 'saving' | 'saved' | 'error'>('');
+  const [stateText, setStateText] = useState('');
   const [dragFrom, setDragFrom] = useState(-1);
+  const [dragOver, setDragOver] = useState(-1);
   const save = useFlxMutation(FlxFormsAutomationSave);
+  usePageHead(t('Automations'));
 
   const form = useMemo(() => data.forms.find((f) => f.id === flow.trigger.form_id) ?? null, [data.forms, flow.trigger.form_id]);
   const currency = form?.currency || 'TRY';
   const money = (v: number) => {
     try {
-      return new Intl.NumberFormat(undefined, { style: 'currency', currency, maximumFractionDigits: 2 }).format(v);
+      return new Intl.NumberFormat(document.documentElement.lang || undefined, { style: 'currency', currency, maximumFractionDigits: 2 }).format(v);
     } catch {
       return String(v);
     }
@@ -141,6 +145,7 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
       return next;
     });
     setDirty(true);
+    setState('');
   };
   const editAction = (i: number, fn: (a: Action) => void) =>
     edit((f) => {
@@ -149,6 +154,7 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
     });
 
   const submit = async () => {
+    setState('saving');
     try {
       const r = (await save.mutateAsync({ input: { flow } })).flxFormsAutomationSave;
       const err = payloadError(r?.errors);
@@ -160,10 +166,12 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
         if (!flow.id) go('automations', { flow: saved.id });
       }
       setDirty(false);
+      setState('saved');
+      setStateText(t('Saved.'));
       void qc.invalidateQueries({ queryKey: flxQueryKey(scope, FlxFormsAutomations) });
-      toast(t('Saved.'));
     } catch (e) {
-      toast(errorText(e, t('Could not save. Please try again.')), 'error');
+      setState('error');
+      setStateText(errorText(e, t('Could not save. Please try again.')));
     }
   };
   const submitRef = useRef(submit);
@@ -213,7 +221,18 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
       case 'send_certificate':
         return { channels: ['whatsapp', 'email'], providers: { email: 0, sms: 0, whatsapp: 0 } };
       case 'show_on_thankyou':
-        return { title: t('Your certificate is ready'), message: '', preview: true, btn_view: true, btn_pdf: true, btn_share: true, view_label: t('View certificate'), pdf_label: t('Download PDF'), share_label: t('Share'), redirect: 0 };
+        return {
+          title: t('Your certificate is ready'),
+          message: '',
+          preview: true,
+          btn_view: true,
+          btn_pdf: true,
+          btn_share: true,
+          view_label: t('View certificate'),
+          pdf_label: t('Download PDF'),
+          share_label: t('Share'),
+          redirect: 0,
+        };
       case 'send_email':
         return { to: 'admin', to_field: g.email_field ?? '', to_custom: '', subject: '', body: '{all_fields}\n\n{sertifika_link}' };
       case 'webhook':
@@ -289,7 +308,7 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
         ));
     const known = (form ? form.fields : data.forms.flatMap((x) => x.fields)).some((f) => f.id === value);
     return (
-      <select value={value} aria-label={label} onChange={(e) => onChange(e.target.value)}>
+      <select className="flxfa-input" value={value} aria-label={label} onChange={(e) => onChange(e.target.value)}>
         <option value="">{t('— none —')}</option>
         {form
           ? opts(form.fields)
@@ -307,9 +326,9 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
   };
 
   const tagChips = (onTag: (tag: string) => void) => (
-    <div className="flxfrm-tags" aria-label={t('Tags')}>
+    <div className="flxfa-tags" aria-label={t('Tags')}>
       {TAGS.map((tag) => (
-        <button key={tag} type="button" className="flxfrm-tag" onClick={() => onTag(tag)}>
+        <button key={tag} type="button" className="flxfa-tag" onClick={() => onTag(tag)}>
           {tag}
         </button>
       ))}
@@ -320,12 +339,18 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
   const settings = (a: Action, i: number): ReactNode => {
     const set = (k: string, v: unknown) => editAction(i, (x) => void (x[k] = v));
     const text = (k: string, label: string, opts?: { type?: string; placeholder?: string; note?: string }) => (
-      <Field label={label} note={opts?.note}>
-        <input type={opts?.type ?? 'text'} value={s(a[k])} placeholder={opts?.placeholder} onChange={(e) => set(k, opts?.type === 'number' ? (e.target.value === '' ? 0 : Number(e.target.value)) : e.target.value)} />
-      </Field>
+      <Row label={label} hint={opts?.note}>
+        <input
+          type={opts?.type ?? 'text'}
+          className={'flxfa-input' + (opts?.type === 'number' ? ' flxfa-input--num' : '')}
+          value={s(a[k])}
+          placeholder={opts?.placeholder}
+          onChange={(e) => set(k, opts?.type === 'number' ? (e.target.value === '' ? 0 : Number(e.target.value)) : e.target.value)}
+        />
+      </Row>
     );
     const area = (k: string, label: string, rows: number) => <TagArea label={label} rows={rows} value={s(a[k])} onChange={(v) => set(k, v)} chips={tagChips} />;
-    const certOff = !data.certAvailable && CERT.includes(a.type) ? <p className="flxfrm-note is-warn">{t('Flux Certificates is not active: certificate steps are disabled.')}</p> : null;
+    const certOff = !data.certAvailable && CERT.includes(a.type) ? <p className="flxfa-inline-warn">{t('Flux Certificates is not active: certificate steps are disabled.')}</p> : null;
 
     if (a.type === 'create_certificate') {
       const tpl = tplById(a.template_id);
@@ -339,14 +364,14 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
       ];
       const setVar = (key: string, patch: Partial<VarMap>) =>
         editAction(i, (x) => {
-          const v = ((x.vars ??= {}) as Record<string, VarMap>);
+          const v = (x.vars ??= {}) as Record<string, VarMap>;
           v[key] = { ...(v[key] ?? { mode: 'default', field: '', value: '', unit_price: data.saplingPrice || 150 }), ...patch };
         });
       return (
         <>
           {certOff}
-          <Field label={t('Certificate template')}>
-            <select value={n(a.template_id)} onChange={(e) => set('template_id', Number(e.target.value))}>
+          <Row label={t('Certificate template')}>
+            <select className="flxfa-input" value={n(a.template_id)} onChange={(e) => set('template_id', Number(e.target.value))}>
               <option value={0}>{t('Choose a template')}</option>
               {data.templates.map((x) => (
                 <option key={x.id} value={x.id}>
@@ -354,28 +379,29 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
                 </option>
               ))}
             </select>
-          </Field>
-          <fieldset className="flxfrm-fieldset">
+          </Row>
+          <fieldset className="flxfa-fieldset">
             <legend>{t('Certificate owner')}</legend>
-            <div className="flxfrm-grid2 is-tight">
+            <div className="flxfa-grid">
               {person.map(([k, label, filter]) => (
-                <Field key={k} label={label} note={s(a[k]) && g[k] === s(a[k]) ? '✓ ' + t('auto-detected') : undefined}>
+                <Row key={k} label={label} hint={s(a[k]) && g[k] === s(a[k]) ? '✓ ' + t('auto-detected') : undefined}>
                   {fieldPicker(s(a[k]), (v) => set(k, v), filter)}
-                </Field>
+                </Row>
               ))}
             </div>
           </fieldset>
           {tpl ? (
-            <fieldset className="flxfrm-fieldset">
+            <fieldset className="flxfa-fieldset">
               <legend>{t('Template variables')}</legend>
               {tpl.fields.map((fl) => {
                 if (fl.key === 'ad_soyad') {
                   return (
-                    <div key={fl.key} className="flxfrm-var">
-                      <div className="flxfrm-var__name">
-                        <strong>{fl.label}</strong> <code>{fl.key}</code>
+                    <div key={fl.key} className="flxfa-var">
+                      <div className="flxfa-var__name">
+                        <strong>{fl.label}</strong>
+                        <code>{fl.key}</code>
                       </div>
-                      <p className="flxfrm-muted">{t('Filled from the owner name above.')}</p>
+                      <p className="flxfa-hint">{t('Filled from the owner name above.')}</p>
                     </div>
                   );
                 }
@@ -388,12 +414,13 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
                 if (fl.type === 'number' || fl.type === 'text') modes.push(['amount_div', t('Payment amount ÷ unit price')], ['option_qty', t('Number in the selected option (e.g. “5 saplings” → 5)')]);
                 const unit = n(m.unit_price) || 1;
                 return (
-                  <div key={fl.key} className="flxfrm-var">
-                    <div className="flxfrm-var__name">
-                      <strong>{fl.label}</strong> <code>{fl.key}</code>
+                  <div key={fl.key} className="flxfa-var">
+                    <div className="flxfa-var__name">
+                      <strong>{fl.label}</strong>
+                      <code>{fl.key}</code>
                     </div>
-                    <div className="flxfrm-var__ctrl">
-                      <select aria-label={fl.label} value={m.mode} onChange={(e) => setVar(fl.key, { mode: e.target.value })}>
+                    <div className="flxfa-var__ctrl">
+                      <select className="flxfa-input" aria-label={fl.label} value={m.mode} onChange={(e) => setVar(fl.key, { mode: e.target.value })}>
                         {modes.map(([v, l]) => (
                           <option key={v} value={v}>
                             {l}
@@ -403,15 +430,33 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
                       {m.mode === 'field' || m.mode === 'option_qty'
                         ? fieldPicker(m.field, (v) => setVar(fl.key, { field: v }), m.mode === 'option_qty' ? (f) => /^(pay|radio|select|chl)/i.test(f.type) || f.options.length > 0 : undefined, t('Field'))
                         : null}
-                      {m.mode === 'fixed' ? <input type={fl.type === 'number' ? 'number' : fl.type === 'date' ? 'date' : 'text'} aria-label={t('Value')} value={m.value} onChange={(e) => setVar(fl.key, { value: e.target.value })} /> : null}
+                      {m.mode === 'fixed' ? (
+                        <input
+                          className="flxfa-input"
+                          type={fl.type === 'number' ? 'number' : fl.type === 'date' ? 'date' : 'text'}
+                          aria-label={t('Value')}
+                          value={m.value}
+                          onChange={(e) => setVar(fl.key, { value: e.target.value })}
+                        />
+                      ) : null}
                       {m.mode === 'amount_div' ? (
                         <>
-                          <label className="flxfrm-inline">
-                            <span>{t('Unit price')}</span>
-                            <input type="number" min="0.01" step="0.01" className="flxfrm-num" value={m.unit_price} onChange={(e) => setVar(fl.key, { unit_price: Number(e.target.value) || 0 })} />
-                            <span className="flxfrm-muted">{money(unit * 5) + ' ÷ ' + money(unit) + ' = 5'}</span>
-                          </label>
-                          <p className="flxfrm-muted">
+                          <div className="flxfa-inline">
+                            <label className="flxfa-label flxfa-label--inline" htmlFor={'flxfa-u-' + a.id + fl.key}>
+                              {t('Unit price')}
+                            </label>
+                            <input
+                              id={'flxfa-u-' + a.id + fl.key}
+                              type="number"
+                              min="0.01"
+                              step="0.01"
+                              className="flxfa-input flxfa-input--num"
+                              value={m.unit_price}
+                              onChange={(e) => setVar(fl.key, { unit_price: Number(e.target.value) || 0 })}
+                            />
+                            <span className="flxfa-hint flxfa-example">{money(unit * 5) + ' ÷ ' + money(unit) + ' = 5'}</span>
+                          </div>
+                          <p className="flxfa-hint">
                             {t('Verified paid amount divided by the unit price, rounded down, at least 1.')}
                             {flow.trigger.type !== 'payment_completed' ? ' — ' + t('Runs only after the payment gateway has confirmed the payment.') : ''}
                           </p>
@@ -423,8 +468,8 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
               })}
             </fieldset>
           ) : null}
-          <Field label={t('Event (optional)')}>
-            <select value={n(a.event_id)} onChange={(e) => set('event_id', Number(e.target.value))}>
+          <Row label={t('Event (optional)')}>
+            <select className="flxfa-input" value={n(a.event_id)} onChange={(e) => set('event_id', Number(e.target.value))}>
               <option value={0}>{t('No event')}</option>
               {data.events.map((ev) => (
                 <option key={ev.id} value={ev.id}>
@@ -432,7 +477,7 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
                 </option>
               ))}
             </select>
-          </Field>
+          </Row>
         </>
       );
     }
@@ -443,17 +488,17 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
       return (
         <>
           {certOff}
-          <fieldset className="flxfrm-fieldset">
+          <fieldset className="flxfa-fieldset">
             <legend>{t('Channels')}</legend>
             {Object.entries(data.channels).map(([ch, name]) => {
               const on = channels.includes(ch);
               const list = data.providers[ch] ?? [];
               return (
-                <div key={ch} className="flxfrm-channel">
-                  <Check checked={on} onChange={(v) => set('channels', v ? [...channels.filter((x) => x !== ch), ch] : channels.filter((x) => x !== ch))}>
+                <div key={ch} className="flxfa-channel">
+                  <CheckLabel checked={on} onChange={(v) => set('channels', v ? [...channels.filter((x) => x !== ch), ch] : channels.filter((x) => x !== ch))}>
                     {name}
-                  </Check>
-                  <select aria-label={t('Provider') + ' · ' + name} disabled={!on} value={n(providers[ch])} onChange={(e) => set('providers', { ...providers, [ch]: Number(e.target.value) })}>
+                  </CheckLabel>
+                  <select className="flxfa-input" aria-label={t('Provider') + ' · ' + name} disabled={!on} value={n(providers[ch])} onChange={(e) => set('providers', { ...providers, [ch]: Number(e.target.value) })}>
                     <option value={0}>{t('Default provider')}</option>
                     {list.map((p) => (
                       <option key={p.id} value={p.id}>
@@ -461,7 +506,7 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
                       </option>
                     ))}
                   </select>
-                  {!list.length && ch !== 'email' ? <p className="flxfrm-note is-warn">{t('No active provider for this channel yet (Flux Certificates › Providers).')}</p> : null}
+                  {!list.length && ch !== 'email' ? <p className="flxfa-hint flxfa-hint--warn">{t('No active provider for this channel yet (Flux Certificates › Providers).')}</p> : null}
                 </div>
               );
             })}
@@ -472,11 +517,11 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
 
     if (a.type === 'show_on_thankyou') {
       const btn = (k: string, labelKey: string, label: string) => (
-        <div className="flxfrm-inline">
-          <Check checked={b(a[k])} onChange={(v) => set(k, v)}>
+        <div className="flxfa-inline">
+          <CheckLabel checked={b(a[k])} onChange={(v) => set(k, v)}>
             {label}
-          </Check>
-          <input type="text" aria-label={t('Label')} value={s(a[labelKey])} onChange={(e) => set(labelKey, e.target.value)} />
+          </CheckLabel>
+          <input type="text" className="flxfa-input flxfa-input--sm" aria-label={t('Label')} value={s(a[labelKey])} onChange={(e) => set(labelKey, e.target.value)} />
         </div>
       );
       const sample = (v: string) =>
@@ -487,33 +532,46 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
           .replace(/\{amount\}/g, money(500))
           .replace(/\{sertifika_no\}/g, 'FLX-2026-00042');
       return (
-        <div className="flxfrm-show">
-          <div className="flxfrm-form">
+        <div className="flxfa-show">
+          <div className="flxfa-show__form">
             {text('title', t('Card title'))}
             {area('message', t('Message'), 3)}
-            <Check checked={a.preview === undefined ? true : b(a.preview)} onChange={(v) => set('preview', v)}>
-              {t('Show the certificate itself on the screen')}
-            </Check>
+            <div className="flxfa-inline">
+              <CheckLabel checked={a.preview === undefined ? true : b(a.preview)} onChange={(v) => set('preview', v)}>
+                {t('Show the certificate itself on the screen')}
+              </CheckLabel>
+            </div>
             {btn('btn_pdf', 'pdf_label', t('“Download PDF” button'))}
             {btn('btn_share', 'share_label', t('“Share” button'))}
             {btn('btn_view', 'view_label', t('“View certificate” link'))}
             {text('redirect', t('Open the certificate page automatically after (seconds, 0 = off)'), { type: 'number' })}
           </div>
-          <div className="flxfrm-preview" aria-hidden="true">
-            <div className="flxfrm-preview__card">
-              <p className="flxfrm-preview__title">{sample(s(a.title) || t('Your certificate is ready'))}</p>
-              {s(a.message) ? <p className="flxfrm-preview__msg">{sample(s(a.message))}</p> : null}
-              {a.preview === undefined || b(a.preview) ? <div className="flxfrm-preview__sheet" /> : null}
+          <div className="flxfa-preview" aria-hidden="true">
+            <div className={'flxf-cert-card' + (a.preview === undefined || b(a.preview) ? ' flxf-cert-card--preview' : '')}>
+              <div className="flxf-cert-card__head">
+                <div className="flxf-cert-card__icon">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="9" r="6" />
+                    <path d="M8.5 13.9 7 22l5-3 5 3-1.5-8.1" />
+                    <path d="m9.5 9 1.7 1.7L14.8 7.3" />
+                  </svg>
+                </div>
+                <div className="flxf-cert-card__body">
+                  <p className="flxf-cert-card__title">{sample(s(a.title) || t('Your certificate is ready'))}</p>
+                  {s(a.message) ? <p className="flxf-cert-card__msg">{sample(s(a.message))}</p> : null}
+                </div>
+              </div>
+              {a.preview === undefined || b(a.preview) ? <figure className="flxf-cert-card__figure flxfa-preview__sheet" style={{ aspectRatio: '1060/1500' }} /> : null}
               {b(a.btn_pdf) || b(a.btn_share) ? (
-                <div className="flxfrm-actions">
-                  {b(a.btn_pdf) ? <span className="flxfrm-btn is-primary">{s(a.pdf_label) || t('Download PDF')}</span> : null}
-                  {b(a.btn_share) ? <span className="flxfrm-btn">{s(a.share_label) || t('Share')}</span> : null}
+                <div className="flxf-cert-card__actions">
+                  {b(a.btn_pdf) ? <span className="flxf-cert-btn flxf-cert-btn--primary">{s(a.pdf_label) || t('Download PDF')}</span> : null}
+                  {b(a.btn_share) ? <span className="flxf-cert-btn">{s(a.share_label) || t('Share')}</span> : null}
                 </div>
               ) : null}
-              <p className="flxfrm-muted">
+              <p className="flxf-cert-card__no">
                 FLX-2026-00042
                 {b(a.btn_view) ? ' · ' : ''}
-                {b(a.btn_view) ? <u>{s(a.view_label) || t('View certificate')}</u> : null}
+                {b(a.btn_view) ? <span className="flxf-cert-card__link">{s(a.view_label) || t('View certificate')}</span> : null}
               </p>
             </div>
           </div>
@@ -524,15 +582,26 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
     if (a.type === 'send_email') {
       return (
         <>
-          <Field label={t('To')}>
-            <select value={s(a.to) || 'admin'} onChange={(e) => set('to', e.target.value)}>
-              <option value="admin">{t('Site administrator') + (data.adminEmail ? ' (' + data.adminEmail + ')' : '')}</option>
-              <option value="field">{t('E-mail from a form field')}</option>
-              <option value="custom">{t('Custom addresses')}</option>
-            </select>
-            {a.to === 'field' ? fieldPicker(s(a.to_field), (v) => set('to_field', v), (f) => f.type === 'email', t('E-mail from a form field')) : null}
-            {a.to === 'custom' ? <input type="text" aria-label={t('Custom addresses')} placeholder="ornek@site.com, diger@site.com" value={s(a.to_custom)} onChange={(e) => set('to_custom', e.target.value)} /> : null}
-          </Field>
+          <Row label={t('To')} htmlFor={'flxfa-to-' + a.id}>
+            <div className="flxfa-stack">
+              <select id={'flxfa-to-' + a.id} className="flxfa-input" value={s(a.to) || 'admin'} onChange={(e) => set('to', e.target.value)}>
+                <option value="admin">{t('Site administrator') + (data.adminEmail ? ' (' + data.adminEmail + ')' : '')}</option>
+                <option value="field">{t('E-mail from a form field')}</option>
+                <option value="custom">{t('Custom addresses')}</option>
+              </select>
+              {a.to === 'field'
+                ? fieldPicker(
+                    s(a.to_field),
+                    (v) => set('to_field', v),
+                    (f) => f.type === 'email',
+                    t('E-mail from a form field'),
+                  )
+                : null}
+              {a.to === 'custom' ? (
+                <input type="text" className="flxfa-input" aria-label={t('Custom addresses')} placeholder="ornek@site.com, diger@site.com" value={s(a.to_custom)} onChange={(e) => set('to_custom', e.target.value)} />
+              ) : null}
+            </div>
+          </Row>
           {text('subject', t('Subject'), { placeholder: '{form_title} · {track}' })}
           {area('body', t('Body'), 6)}
         </>
@@ -542,27 +611,40 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
     return (
       <>
         {text('url', t('URL (https only)'), { type: 'url', placeholder: 'https://example.com/hook', note: t('Only https:// URLs to public hosts are allowed.') })}
-        <Field label={t('Signing secret (optional)')} note={t('Adds an X-FLXF-Signature: sha256=HMAC header.')}>
-          <input type="text" autoComplete="off" value={s(a.secret)} onChange={(e) => set('secret', e.target.value)} />
-        </Field>
+        <Row label={t('Signing secret (optional)')} hint={t('Adds an X-FLXF-Signature: sha256=HMAC header.')}>
+          <input type="text" className="flxfa-input" autoComplete="off" value={s(a.secret)} onChange={(e) => set('secret', e.target.value)} />
+        </Row>
       </>
     );
   };
 
   const connector = (at: number) => (
-    <div className="flxfrm-connector">
-      <span className="flxfrm-connector__line" aria-hidden="true" />
-      <button type="button" className="flxfrm-connector__add" title={t('Insert a step here')} aria-label={t('Insert a step here')} aria-expanded={menuAt === at} onClick={() => setMenuAt((m) => (m === at ? null : at))}>
-        +
+    <div className="flxfa-connector">
+      <span className="flxfa-line" aria-hidden="true"></span>
+      <button
+        type="button"
+        className="flxfa-add"
+        title={t('Insert a step here')}
+        aria-label={t('Insert a step here')}
+        aria-haspopup="true"
+        aria-expanded={menuAt === at}
+        onClick={() => setMenuAt((m) => (m === at ? null : at))}
+      >
+        <Svg name="plus" />
       </button>
       {menuAt === at ? (
-        <div className="flxfrm-menu" role="menu">
+        <div className="flxfa-menu" role="menu">
           {ACTIONS.map((type) => {
             const off = !data.certAvailable && CERT.includes(type);
             return (
-              <button key={type} type="button" role="menuitem" className="flxfrm-menu__item" disabled={off} onClick={() => insert(at, type)}>
-                <strong>{actionLabel(type, t)}</strong>
-                <span className="flxfrm-muted">{off ? t('Flux Certificates is not active: certificate steps are disabled.') : actionDesc(type, t)}</span>
+              <button key={type} type="button" role="menuitem" className="flxfa-menu__item" disabled={off} onClick={() => insert(at, type)}>
+                <span className={'flxfa-node__icon flxfa-node__icon--' + type}>
+                  <Svg name={type} />
+                </span>
+                <span className="flxfa-menu__text">
+                  <strong>{actionLabel(type, t)}</strong>
+                  <span>{off ? t('Flux Certificates is not active: certificate steps are disabled.') : actionDesc(type, t)}</span>
+                </span>
               </button>
             );
           })}
@@ -573,47 +655,76 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
 
   const triggerSummary = (flow.trigger.type === 'payment_completed' ? t('A payment is completed') : t('A form is submitted')) + ' · ' + (form ? form.title : t('Any form'));
 
+  const removeStep = async (at: number) => {
+    if (await confirmDialog(t('Delete this step?'), true)) edit((f) => void f.actions.splice(at, 1));
+  };
+  const stateLabel = state === 'saving' ? t('Saving…') : state ? stateText : dirty ? t('You have unsaved changes.') : '';
+
   return (
-    <div className="flxfrm-flow">
-      <div className="flxfrm-toolbar">
-        <button type="button" className="flxfrm-btn" onClick={() => go('automations')}>
-          ← {t('All automations')}
-        </button>
-        <div className="flxfrm-inline">
-          {dirty ? <span className="flxfrm-muted">{t('You have unsaved changes.')}</span> : null}
-          <button type="button" className="flxfrm-btn is-primary" disabled={save.isPending} onClick={() => void submit()}>
-            {save.isPending ? t('Saving…') : t('Save')}
-          </button>
+    <div className="flxfa flx-raw">
+      <div className="flxfa-ed-head">
+        <a
+          className="flxfa-back"
+          href="#/automations"
+          onClick={(e) => {
+            e.preventDefault();
+            go('automations');
+          }}
+        >
+          <Svg name="back" />
+          {t('All automations')}
+        </a>
+        <div className="flxfa-ed-head__main">
+          <input
+            type="text"
+            className="flxfa-input flxfa-title-input"
+            value={flow.title}
+            placeholder={t('Automation name')}
+            aria-label={t('Automation name')}
+            onChange={(e) => edit((f) => void (f.title = e.target.value))}
+          />
+          <div className="flxfa-ed-head__actions">
+            <label className="flxfa-switch flxfa-switch--label">
+              <input type="checkbox" checked={flow.enabled} onChange={(e) => edit((f) => void (f.enabled = e.target.checked))} />
+              <span></span>
+              <em>{t('Enabled')}</em>
+            </label>
+            <span className={'flxfa-save-state' + (state === 'saved' ? ' is-saved' : state === 'error' ? ' is-error' : !state && dirty ? ' is-dirty' : '')} role="status" aria-live="polite">
+              {stateLabel}
+            </span>
+            <button type="button" className="flxfa-btn flxfa-btn--primary" id="flxfa-save" disabled={save.isPending} onClick={() => void submit()}>
+              {t('Save')}
+            </button>
+          </div>
         </div>
       </div>
-      <div className="flxfrm-card flxfrm-flow__head">
-        <input type="text" className="flxfrm-flow__title" value={flow.title} placeholder={t('Automation name')} aria-label={t('Automation name')} onChange={(e) => edit((f) => void (f.title = e.target.value))} />
-        <Check switch checked={flow.enabled} onChange={(v) => edit((f) => void (f.enabled = v))}>
-          {t('Enabled')}
-        </Check>
-      </div>
-      {!data.certAvailable ? <p className="flxfrm-note is-warn">{t('Flux Certificates is not active: certificate steps are disabled.')}</p> : null}
+      {!data.certAvailable ? (
+        <div className="flxfa-notice flxfa-notice--warn">
+          <Svg name="alert" size={18} />
+          <div>{t('Flux Certificates is not active: certificate steps are disabled.')}</div>
+        </div>
+      ) : null}
 
-      <div className="flxfrm-canvas">
-        <section className="flxfrm-node is-trigger" aria-label={t('Trigger')}>
-          <header className="flxfrm-node__head">
-            <span className="flxfrm-node__icon" aria-hidden="true">
-              ⚡
+      <div className="flxfa-canvas">
+        <section className="flxfa-node flxfa-node--trigger" aria-label={t('Trigger')}>
+          <header className="flxfa-node__head">
+            <span className="flxfa-node__icon flxfa-node__icon--trigger">
+              <Svg name="bolt" size={18} />
             </span>
-            <span className="flxfrm-node__titles">
-              <span className="flxfrm-node__kicker">{t('Trigger')}</span>
-              <span className="flxfrm-node__title">{triggerSummary}</span>
-            </span>
+            <div className="flxfa-node__titles">
+              <span className="flxfa-node__kicker">{t('Trigger')}</span>
+              <span className="flxfa-node__title">{triggerSummary}</span>
+            </div>
           </header>
-          <div className="flxfrm-node__body flxfrm-form">
-            <Field label={t('When')} note={flow.trigger.type === 'payment_completed' ? t('Runs only after the payment gateway has confirmed the payment.') : undefined}>
-              <select value={flow.trigger.type} onChange={(e) => edit((f) => void (f.trigger.type = e.target.value))}>
+          <div className="flxfa-node__body">
+            <Row label={t('When')} hint={flow.trigger.type === 'payment_completed' ? t('Runs only after the payment gateway has confirmed the payment.') : undefined}>
+              <select className="flxfa-input" value={flow.trigger.type} onChange={(e) => edit((f) => void (f.trigger.type = e.target.value))}>
                 <option value="form_submitted">{t('A form is submitted')}</option>
                 <option value="payment_completed">{t('A payment is completed')}</option>
               </select>
-            </Field>
-            <Field label={t('Form')}>
-              <select value={flow.trigger.form_id} onChange={(e) => changeForm(Number(e.target.value))}>
+            </Row>
+            <Row label={t('Form')}>
+              <select className="flxfa-input" value={flow.trigger.form_id} onChange={(e) => changeForm(Number(e.target.value))}>
                 <option value={0}>{t('Any form')}</option>
                 {data.forms.map((x) => (
                   <option key={x.id} value={x.id}>
@@ -621,120 +732,124 @@ function Editor({ data, initial }: { data: EditorData; initial: Flow }) {
                   </option>
                 ))}
               </select>
-            </Field>
-            <div className="flxfrm-conds">
-              <div className="flxfrm-inline">
-                <span className="flxfrm-field__label">{t('Conditions')}</span>
+            </Row>
+            <div className="flxfa-conds">
+              <div className="flxfa-conds__head">
+                <span className="flxfa-label">{t('Conditions')}</span>
                 {flow.conditions.length > 1 ? (
-                  <select aria-label={t('Conditions')} value={flow.match} onChange={(e) => edit((f) => void (f.match = e.target.value))}>
+                  <select className="flxfa-input flxfa-input--sm" aria-label={t('Conditions')} value={flow.match} onChange={(e) => edit((f) => void (f.match = e.target.value))}>
                     <option value="all">{t('All conditions must match')}</option>
                     <option value="any">{t('Any condition may match')}</option>
                   </select>
                 ) : null}
               </div>
-              {!flow.conditions.length ? <p className="flxfrm-muted">{t('No conditions: runs for every submission.')}</p> : null}
+              {!flow.conditions.length ? <p className="flxfa-hint">{t('No conditions: runs for every submission.')}</p> : null}
               {flow.conditions.map((c, ci) => (
-                <div key={ci} className="flxfrm-cond">
+                <div key={ci} className="flxfa-cond">
                   {fieldPicker(c.field, (v) => edit((f) => void (f.conditions[ci] && (f.conditions[ci].field = v))), undefined, t('Field'))}
-                  <select aria-label={t('Conditions')} value={c.op} onChange={(e) => edit((f) => void (f.conditions[ci] && (f.conditions[ci].op = e.target.value)))}>
+                  <select className="flxfa-input" aria-label={t('Conditions')} value={c.op} onChange={(e) => edit((f) => void (f.conditions[ci] && (f.conditions[ci].op = e.target.value)))}>
                     {OPS.map((o) => (
                       <option key={o} value={o}>
                         {opLabel(o, t)}
                       </option>
                     ))}
                   </select>
-                  {c.op !== 'filled' && c.op !== 'empty' ? <input type="text" aria-label={t('Value')} value={c.value} onChange={(e) => edit((f) => void (f.conditions[ci] && (f.conditions[ci].value = e.target.value)))} /> : <span />}
-                  <button type="button" className="flxfrm-btn is-danger-text" aria-label={t('Delete step')} title={t('Delete step')} onClick={() => edit((f) => void f.conditions.splice(ci, 1))}>
-                    ✕
+                  <input
+                    type="text"
+                    className="flxfa-input"
+                    aria-label={t('Value')}
+                    hidden={c.op === 'filled' || c.op === 'empty'}
+                    value={c.value}
+                    onChange={(e) => edit((f) => void (f.conditions[ci] && (f.conditions[ci].value = e.target.value)))}
+                  />
+                  <button type="button" className="flxfa-icon-btn flxfa-icon-btn--danger" aria-label={t('Delete step')} title={t('Delete step')} onClick={() => edit((f) => void f.conditions.splice(ci, 1))}>
+                    <Svg name="trash" />
                   </button>
                 </div>
               ))}
-              <button type="button" className="flxfrm-link is-accent" onClick={() => edit((f) => void f.conditions.push({ field: '', op: 'eq', value: '' }))}>
-                + {t('Add condition')}
+              <button type="button" className="flxfa-link-btn" onClick={() => edit((f) => void f.conditions.push({ field: '', op: 'eq', value: '' }))}>
+                <Svg name="plus" size={14} />
+                {t('Add condition')}
               </button>
             </div>
           </div>
         </section>
 
         {connector(0)}
-        {!flow.actions.length ? <p className="flxfrm-muted flxfrm-center">{t('No steps yet. Add the first one below.')}</p> : null}
+        {!flow.actions.length ? <p className="flxfa-hint flxfa-center">{t('No steps yet. Add the first one below.')}</p> : null}
         {flow.actions.map((a, i) => {
           const isOpen = !!open[a.id];
           const needsCert = (a.type === 'send_certificate' || a.type === 'show_on_thankyou') && !flow.actions.slice(0, i).some((x) => x.type === 'create_certificate');
           const off = !data.certAvailable && CERT.includes(a.type);
           return (
-            <div key={a.id}>
+            <Fragment key={a.id}>
               <section
-                className={'flxfrm-node' + (isOpen ? ' is-open' : '') + (off ? ' is-disabled' : '') + (dragFrom >= 0 && dragFrom !== i ? ' is-drop-target' : '')}
+                className={'flxfa-node flxfa-node--action' + (isOpen ? ' is-open' : '') + (off ? ' is-disabled' : '') + (dragFrom === i ? ' is-dragging' : '') + (dragOver === i && dragFrom !== i ? ' is-drop' : '')}
                 aria-label={actionLabel(a.type, t)}
                 draggable={dragFrom === i}
                 onDragOver={(e) => {
-                  if (dragFrom >= 0) e.preventDefault();
+                  if (dragFrom < 0) return;
+                  e.preventDefault();
+                  setDragOver(i);
                 }}
+                onDragLeave={() => setDragOver((o) => (o === i ? -1 : o))}
                 onDrop={(e) => {
                   e.preventDefault();
                   if (dragFrom >= 0) move(dragFrom, i);
                   setDragFrom(-1);
+                  setDragOver(-1);
                 }}
-                onDragEnd={() => setDragFrom(-1)}
+                onDragEnd={() => {
+                  setDragFrom(-1);
+                  setDragOver(-1);
+                }}
               >
-                <header className="flxfrm-node__head">
-                  <span className="flxfrm-grip" aria-hidden="true" onMouseDown={() => setDragFrom(i)} onMouseUp={() => setDragFrom(-1)}>
-                    ⋮⋮
+                <header className="flxfa-node__head">
+                  <span className="flxfa-grip" title={t('Move up') + ' / ' + t('Move down')} aria-hidden="true" onMouseDown={() => setDragFrom(i)} onMouseUp={() => setDragFrom(-1)}>
+                    <Svg name="grip" />
                   </span>
-                  <button type="button" className="flxfrm-node__toggle" aria-expanded={isOpen} title={t('Show / hide settings')} onClick={() => setOpen((o) => ({ ...o, [a.id]: !o[a.id] }))}>
-                    <span className="flxfrm-node__titles">
-                      <span className="flxfrm-node__kicker">{t('Step') + ' ' + (i + 1)}</span>
-                      <span className="flxfrm-node__title">{actionLabel(a.type, t)}</span>
-                      <span className="flxfrm-node__summary">{summaryOf(a)}</span>
+                  <span className={'flxfa-node__icon flxfa-node__icon--' + a.type}>
+                    <Svg name={a.type} size={18} />
+                  </span>
+                  <button type="button" className="flxfa-node__toggle" aria-expanded={isOpen} title={t('Show / hide settings')} onClick={() => setOpen((o) => ({ ...o, [a.id]: !o[a.id] }))}>
+                    <span className="flxfa-node__titles">
+                      <span className="flxfa-node__kicker">{t('Step') + ' ' + (i + 1)}</span>
+                      <span className="flxfa-node__title">{actionLabel(a.type, t)}</span>
+                      <span className="flxfa-node__summary">{summaryOf(a)}</span>
                     </span>
-                    <span className={'flxfrm-chev' + (isOpen ? ' is-open' : '')} aria-hidden="true">
-                      ›
+                    <span className={'flxfa-chev' + (isOpen ? ' is-open' : '')}>
+                      <Svg name="chevron" />
                     </span>
                   </button>
-                  <span className="flxfrm-node__tools">
-                    <button type="button" className="flxfrm-btn" title={t('Move up')} aria-label={t('Move up')} disabled={i === 0} onClick={() => move(i, i - 1)}>
-                      ↑
+                  <div className="flxfa-node__tools">
+                    <button type="button" className="flxfa-icon-btn" title={t('Move up')} aria-label={t('Move up')} disabled={i === 0} onClick={() => move(i, i - 1)}>
+                      <Svg name="up" />
                     </button>
-                    <button type="button" className="flxfrm-btn" title={t('Move down')} aria-label={t('Move down')} disabled={i === flow.actions.length - 1} onClick={() => move(i, i + 1)}>
-                      ↓
+                    <button type="button" className="flxfa-icon-btn" title={t('Move down')} aria-label={t('Move down')} disabled={i === flow.actions.length - 1} onClick={() => move(i, i + 1)}>
+                      <Svg name="down" />
                     </button>
-                    <button type="button" className="flxfrm-btn is-danger-text" title={t('Delete step')} aria-label={t('Delete step')} onClick={() => setAskRemove(i)}>
-                      ✕
+                    <button type="button" className="flxfa-icon-btn flxfa-icon-btn--danger" title={t('Delete step')} aria-label={t('Delete step')} onClick={() => void removeStep(i)}>
+                      <Svg name="trash" />
                     </button>
-                  </span>
+                  </div>
                 </header>
-                {needsCert ? <p className="flxfrm-note is-warn">{t('Needs a "Create certificate" step before it.')}</p> : null}
-                {isOpen ? <div className="flxfrm-node__body flxfrm-form">{settings(a, i)}</div> : null}
+                {needsCert ? (
+                  <p className="flxfa-node__warn">
+                    <Svg name="alert" size={14} />
+                    {t('Needs a "Create certificate" step before it.')}
+                  </p>
+                ) : null}
+                {isOpen ? <div className="flxfa-node__body">{settings(a, i)}</div> : null}
               </section>
               {connector(i + 1)}
-            </div>
+            </Fragment>
           );
         })}
-        <div className="flxfrm-end">⚑ {t('End')}</div>
+        <div className="flxfa-end">
+          <Svg name="flag" size={14} />
+          {t('End')}
+        </div>
       </div>
-
-      {askRemove !== null ? (
-        <Modal title={t('Delete step')} onClose={() => setAskRemove(null)}>
-          <p>{t('Delete this step?')}</p>
-          <div className="flxfrm-actions is-end">
-            <button type="button" className="flxfrm-btn" onClick={() => setAskRemove(null)}>
-              {t('Cancel')}
-            </button>
-            <button
-              type="button"
-              className="flxfrm-btn is-danger"
-              onClick={() => {
-                const at = askRemove;
-                edit((f) => void f.actions.splice(at, 1));
-                setAskRemove(null);
-              }}
-            >
-              {t('Delete')}
-            </button>
-          </div>
-        </Modal>
-      ) : null}
     </div>
   );
 }
@@ -766,9 +881,39 @@ function TagArea({ label, rows, value, onChange, chips }: { label: string; rows:
     }, 0);
   };
   return (
-    <Field label={label}>
-      <textarea ref={ref} rows={rows} value={value} onChange={(e) => onChange(e.target.value)} />
+    <>
+      <Row label={label}>
+        <textarea ref={ref} className="flxfa-input" rows={rows} value={value} onChange={(e) => onChange(e.target.value)} />
+      </Row>
       {chips(put)}
-    </Field>
+    </>
+  );
+}
+
+let rowSeq = 0;
+
+/** A classic settings row: label, control, hint (admin.js row()). */
+function Row({ label, hint, htmlFor, children }: { label: string; hint?: string | undefined; htmlFor?: string; children: ReactNode }) {
+  const [auto] = useState(() => 'flxfa-c-' + ++rowSeq);
+  const id = htmlFor ?? auto;
+  const child = isValidElement<{ id?: string }>(children) && typeof children.type === 'string' && /^(input|select|textarea)$/.test(children.type) && !children.props.id ? cloneElement(children, { id }) : children;
+  return (
+    <div className="flxfa-row">
+      <label className="flxfa-label" htmlFor={id}>
+        {label}
+      </label>
+      {child}
+      {hint ? <p className="flxfa-hint">{hint}</p> : null}
+    </div>
+  );
+}
+
+/** label.flxfa-check with a checkbox. */
+function CheckLabel({ checked, onChange, children }: { checked: boolean; onChange: (v: boolean) => void; children: ReactNode }) {
+  return (
+    <label className="flxfa-check">
+      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+      <span>{children}</span>
+    </label>
   );
 }
