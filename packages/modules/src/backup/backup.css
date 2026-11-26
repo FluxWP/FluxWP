@@ -33,10 +33,9 @@
 .flxy-level-warning .flxy-big{color:var(--flux-warning)}
 .flxy-level-error .flxy-big{color:var(--flux-danger)}
 .flxy-level-error .flxy-bar{outline:2px solid var(--flux-danger);outline-offset:1px}
-.flxy-range{display:inline-flex}
-.flxy-range .flxy-btn{border-radius:0;margin-left:-1px}
-.flxy-range .flxy-btn:first-child{border-radius:6px 0 0 6px;margin-left:0}
-.flxy-range .flxy-btn:last-child{border-radius:0 6px 6px 0}
+.flxy-range{display:inline-flex;gap:4px}
+.flxy-range .flxy-btn{background:var(--flux-surface);border-color:var(--flxy-bd)}
+.flxy-range .flxy-btn.is-active{background:var(--flux-surface);color:var(--flux-text);border-color:var(--flux-text-muted);font-weight:600}
 .flxy-donut{display:flex;flex-direction:column;align-items:center;gap:12px}
 .flxy-donut svg{width:160px;height:160px}
 .flxy-donut-chart{width:170px;max-width:100%}
@@ -83,9 +82,9 @@
 .flxy-sub-row td{background:color-mix(in srgb,var(--flux-text) 2%,transparent);font-size:13px}
 .flxy-sub-row td:first-child{padding-left:34px}
 .flxy-twisty{margin-right:6px;color:var(--flxy-mut)}
-.flxy-form{display:flex;flex-direction:column;gap:16px;max-width:900px}
-.flxy-field{display:grid;grid-template-columns:220px 1fr;gap:12px;align-items:start;padding:8px 0;border-bottom:1px solid var(--flxy-bd)}
-.flxy-field:last-child{border-bottom:0}
+.flxy-form{display:flex;flex-direction:column;gap:16px;max-width:980px}
+.flxy-form>.flxy-card>h2{font-size:15px;color:var(--flux-text);margin:0}
+.flxy-field{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:start;padding:14px 0}
 .flxy-field>label,.flxy-field>b{font-weight:600;padding-top:6px}
 .flxy-desc{margin:6px 0 0;color:var(--flxy-mut);font-size:13px;max-width:680px}
 .flxy-app select,.flxy-app input[type=text],.flxy-app input[type=number],.flxy-app textarea{padding:0 10px;border:1px solid var(--flxy-bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit;font-size:14px;max-width:100%}
@@ -109,7 +108,7 @@
 .flxy-file input{position:absolute;inset:0;opacity:0;cursor:pointer}
 @media (max-width:1100px){.flxy-cards{grid-template-columns:1fr 1fr}.flxy-grid{grid-template-columns:1fr}}
 @media (max-width:782px){.flxy-cards{grid-template-columns:1fr}.flxy-field{grid-template-columns:1fr;gap:6px}.flxy-field>label,.flxy-field>b{padding-top:0}.flxy-meta{grid-template-columns:1fr}.flxy-table th,.flxy-table td{padding:8px}}
-.flxy-link{color:var(--flxy-ac);text-decoration:none;padding:0;text-align:left;cursor:pointer}.flxy-link:hover{text-decoration:underline}
+.flxy-link{color:var(--flxy-ac);text-decoration:underline;text-underline-offset:2px;padding:0;text-align:left;cursor:pointer}.flxy-link:hover{text-decoration:underline}
 .flxy-contents{color:var(--flux-text-muted,#646970);font-size:12px;max-width:260px}
 /* Telefonda yedek listesi tablo değil kart: 8 sütun 390px'e sığmıyor, metin harf harf kırılıyordu. */
 @media (max-width:782px){
