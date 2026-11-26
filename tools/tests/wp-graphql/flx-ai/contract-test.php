@@ -207,7 +207,8 @@ flxt_ok( ! empty( $rt['errors'] ) || ! empty( $r['errors'] ) || ! empty( $rt['re
 // Usage: log rows (the model test above wrote a failed row of its own).
 $wpdb->query( 'DELETE FROM ' . flxai_table( 'log' ) ); // phpcs:ignore
 $wpdb->query( 'DELETE FROM ' . flxai_table( 'log_body' ) ); // phpcs:ignore
-$now  = time();
+// Rows are minutes apart: keep them all inside today, also when the run starts just after midnight (site time).
+$now  = max( time(), flxai_period_starts()['day'] + 600 );
 $rows = array(
 	array( 'ts' => $now - 60, 'kind' => 'model', 'source' => 'flx-chat', 'purpose' => 'chat', 'user_id' => $admin, 'chat_id' => 7, 'provider' => 'openrouter', 'model' => 'google/gemini-2.5-flash', 'in_tok' => 1000, 'out_tok' => 200, 'cache_read' => 400, 'cache_write' => 0, 'cost' => 0.012, 'full_cost' => 0.02, 'est' => 0, 'ms' => 1500, 'ok' => 1 ),
 	array( 'ts' => $now - 120, 'kind' => 'tool', 'source' => 'flx-chat', 'purpose' => '', 'user_id' => $admin, 'tool' => 'flxseo_audit', 'ms' => 300, 'ok' => 1 ),
