@@ -32,7 +32,7 @@ export function useScreen(): Screen {
   return c;
 }
 
-export function ScreenProvider({ children, title, lead }: { children: ReactNode; title: string; lead?: string }) {
+export function ScreenProvider({ children, title, lead, sub }: { children: ReactNode; title: string; lead?: string; /** Under the title instead of `lead` (classic "App settings" button). */ sub?: ReactNode }) {
   const host = useHost();
   const { i18n } = useTranslation();
   const { t, tn } = useMemo(() => translator(i18n.language), [i18n.language]);
@@ -59,7 +59,7 @@ export function ScreenProvider({ children, title, lead }: { children: ReactNode;
         className="flxas-app"
         icon={host.appIcon}
         title={title}
-        subtitle={lead || undefined}
+        subtitle={sub ?? (lead || undefined)}
         notice={
           notice && (
             <div className={'flxas-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>

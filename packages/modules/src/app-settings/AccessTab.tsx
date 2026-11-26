@@ -179,7 +179,7 @@ export function AccessTab({ all }: { all: boolean }) {
       {tokens(keys)}
       {d.canCreateKeys && (
         <>
-          <form className="flxas-card flxas-row" onSubmit={submit}>
+          <form className="flxas-card flxas-row flxas-keyform" onSubmit={submit}>
             <label>
               {t('Name')} <input type="text" required maxLength={100} placeholder={t('e.g. Claude MCP')} value={name} onChange={(e) => setName(e.currentTarget.value)} />
             </label>
