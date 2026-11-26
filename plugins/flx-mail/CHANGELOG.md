@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.26.1
+- Sistem kontrolü sekmesi ortak Flux Admin sistem kontrolü ekranıyla: durum çipleri (filtre), gruplar, tablo ve "Tekrar kontrol et" eski klasik ekranla birebir.
+- Geliştirici: GraphQL `FlxMailSystemCheck.source`, `groupLabel`.
+
 ## 1.26.0
 - İletişim ekranları eski klasik ekranlarla birebir: E-postalar listesi (istatistik kartları, gruplar, anahtarlar, rozetler), Kayıtlar tablosu ve satır penceresi, Ayarlar (bölüm bölüm eski metinler, alanlar, yardım yazıları, kota çubukları, alt kısım çizimleri) ve e-posta düzenleyici.
 - E-posta düzenleyicide içerik yine klasik WordPress editörüyle (Görsel / Metin) yazılır; değişken düğmesi imlecin olduğu yere ekler.
