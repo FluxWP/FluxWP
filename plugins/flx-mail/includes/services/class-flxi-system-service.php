@@ -21,24 +21,30 @@ class FLXI_System_Service {
 	 * @return list<array<string,string>>
 	 */
 	public static function checks(): array {
+		$labels = array();
 		if ( function_exists( 'flx_system_checks_sorted' ) ) {
 			add_filter( 'flx_system_checks_labels', 'flxi_system_checks_labels', 20 );
 			try {
-				$all = flx_system_checks_sorted();
+				$all    = flx_system_checks_sorted();
+				$labels = function_exists( 'flx_system_checks_labels' ) ? (array) flx_system_checks_labels() : array();
 			} finally {
 				remove_filter( 'flx_system_checks_labels', 'flxi_system_checks_labels', 20 );
 			}
 		} else {
 			$all = apply_filters( 'flx_system_checks', array() );
 		}
-		$out = array();
+		$groups = is_array( $labels['groups'] ?? null ) ? $labels['groups'] : array();
+		$out    = array();
 		foreach ( flxi_rows( $all ) as $c ) {
 			if ( 0 !== strpos( flxi_str( $c['id'] ?? '' ), 'flxi.' ) ) {
 				continue;
 			}
+			$group = flxi_str( $c['group'] ?? '' );
 			$out[] = array(
 				'id'          => flxi_str( $c['id'] ?? '' ),
-				'group'       => flxi_str( $c['group'] ?? '' ),
+				'source'      => flxi_str( $c['source'] ?? '' ),
+				'group'       => $group,
+				'groupLabel'  => flxi_str( $groups[ $group ] ?? $group ),
 				'label'       => flxi_str( $c['label'] ?? '' ),
 				'status'      => flxi_str( $c['status'] ?? '' ),
 				'message'     => flxi_str( $c['message'] ?? '' ),

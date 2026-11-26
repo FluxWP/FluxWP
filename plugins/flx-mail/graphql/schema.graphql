@@ -753,12 +753,16 @@ type FlxMailSystemCheck {
   actionUrl: String!
   """Group."""
   group: String!
+  """Group name."""
+  groupLabel: String!
   """Check id."""
   id: ID!
   """Label."""
   label: String!
   """What was found."""
   message: String!
+  """Package that added the row."""
+  source: String!
   """ok, warning, error or info."""
   status: String!
 }
