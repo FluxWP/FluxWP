@@ -8,7 +8,7 @@ import { FlxDonateAdd, FlxDonationAdd, FlxDonationRequest } from '@fluxwp/graphq
 import type { FlxDonateAddQuery } from '@fluxwp/graphql/types';
 import { Check, DatePicker, Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
-import { Go, useDonate } from './shared';
+import { useBackButton, useDonate } from './shared';
 import { Failed } from './Subscriptions';
 
 type F = NonNullable<FlxDonateAddQuery['flxDonationAddForm']>;
@@ -119,18 +119,10 @@ function Seg({ name, value, opts, onChange }: { name: string; value: string; opt
   );
 }
 
-function Back({ f }: { f: F }) {
-  const { t } = useDonate();
-  return f.listUrl ? (
-    <Go className="flxdn-back" href={f.listUrl}>
-      <span aria-hidden="true">‹</span> {f.listLabel || t('Donations')}
-    </Go>
-  ) : null;
-}
-
 function Record({ f, notice }: { f: F; notice: ReactNode }) {
   const host = useHost();
   const { t, tn, lang, told } = useDonate();
+  const back = useBackButton(f.listUrl, f.listLabel || t('Donations'));
   const money = useMoney(lang);
   const root = useRef<HTMLFormElement>(null);
   const picks = useMemo(() => {
@@ -252,7 +244,7 @@ function Record({ f, notice }: { f: F; notice: ReactNode }) {
       icon={host.appIcon}
       title={t('Add donation')}
       subtitle={t('Record a gift paid or promised by bank transfer, in cash or another way.')}
-      back={<Back f={f} />}
+      backButton={back}
       notice={notice}
     >
       <form ref={root} className="flxdn-form flxdn-add2" onSubmit={submit}>
@@ -504,6 +496,7 @@ function Record({ f, notice }: { f: F; notice: ReactNode }) {
 function Request({ f, notice }: { f: F; notice: ReactNode }) {
   const host = useHost();
   const { t, lang, told } = useDonate();
+  const back = useBackButton(f.listUrl, f.listLabel || t('Donations'));
   const money = useMoney(lang);
   const root = useRef<HTMLFormElement>(null);
   const [tid, setTid] = useState(String(f.types[0]?.databaseId ?? 0));
@@ -575,7 +568,7 @@ function Request({ f, notice }: { f: F; notice: ReactNode }) {
       icon={host.appIcon}
       title={t('New donation request')}
       subtitle={t('Open a donation on behalf of a donor. The donor gets a payment link and you are the referral.')}
-      back={<Back f={f} />}
+      backButton={back}
       notice={notice}
     >
       {done ? (

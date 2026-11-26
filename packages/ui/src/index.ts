@@ -10,7 +10,7 @@ export { openSanitizedLink, sanitizeHtml } from './sanitize';
 export { useOverlay } from './overlay';
 export { MenuIcon } from './MenuIcon';
 export { WpEditor, type WpEditorProps } from './WpEditor';
-export { Screen, ScreenDefaults, Tabs, type ScreenProps, type TabsProps, type TabItem } from './Screen';
+export { Screen, ScreenDefaults, Tabs, type ScreenProps, type ScreenBack, type TabsProps, type TabItem } from './Screen';
 export { useScreenHead, ScreenHeadProvider, usePageHead, PageActions, type PageHead } from './ScreenHead';
 export { confirmDialog } from './confirm';
 // Chart: ayrı giriş '@fluxwp/ui/chart' (Chart.js yalnız grafik kullanan ekranın parçasına düşsün, ortak girişe değil).

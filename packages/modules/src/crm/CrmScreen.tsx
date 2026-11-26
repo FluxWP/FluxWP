@@ -42,7 +42,7 @@ function Crm() {
   const q = useFlxQuery(FlxCrmShell, {}, { staleTime: 60_000 });
   const [route, go] = useRoute(START[host.startPage ?? ''] ?? (host.startPage || 'overview'));
   const [notice, setNotice] = useState<Notice>(null);
-  const [head, setHead] = useState<{ title: string; lead?: string } | null>(null);
+  const [head, setHead] = useState<{ title: string; lead?: string; back?: { to: string; label: string } } | null>(null);
   const [actionsEl, setActionsEl] = useState<HTMLDivElement | null>(null);
 
   const tell = useCallback((kind: 'ok' | 'bad', text: string) => {
@@ -121,6 +121,7 @@ function Crm() {
         className={'flxcrm-app' + (route.name === 'contact' ? ' is-bare' : '')}
         width="wide"
         icon={host.appIcon}
+        backButton={head?.back ? { label: head.back.label, href: '#/' + head.back.to, onClick: () => go(head.back!.to) } : undefined}
         title={head?.title ?? t('CRM')}
         subtitle={head?.lead}
         actions={<div ref={setActionsEl} className="flxcrm-head__actions" />}

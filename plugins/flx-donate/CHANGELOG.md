@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.47.1
+- Bağış ekle, Bağış türü düzenle ve Ortak düzenle ekranlarında geri düğmesi başlıktaki modül simgesinin yerine geçer; içerikteki "‹ Bağışlar" bağlantısı kalktı.
+
 ## 2.47.0
 - **Sade ödeme sayfası (Görünüm › "Sade ödeme").** Ad, telefon ve e-posta en üstte tek kartta; telefon ve e-posta ikisi de zorunlu, bu yüzden kart formu telefonu altta bir daha sormaz. Kart formunun altında yalnız 3D Secure satırı kalır: taksit bekleme notu (taksit varsa kutu görünür), "şifreli gönderilir" satırları ve "Kart ödemesi için telefon gerekir" notu ile "Güvenli ödeme" rozetindeki sağlayıcı adı kalktı. Kapalıyken (varsayılan) hiçbir şey değişmez.
 - Kupon kutusu ve adres defteri zaten Görünüm'de ayrı anahtarlar; bu sürümle sade ödeme bunlarla birlikte kullanılır.

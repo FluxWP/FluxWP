@@ -1,6 +1,7 @@
 // Ortak ekran kabuğu: her modül ekranı aynı başlığı, sekmeleri, kenar boşluklarını ve en fazla genişliği kullanır.
 // Modül kendi başlık/sekme CSS'ini yazmaz; içerik `className` ile modülün kök sınıfını taşır (eski CSS'i çalışır).
-import { createContext, useContext, type ReactNode } from 'react';
+import { createContext, useContext, type MouseEvent, type ReactNode } from 'react';
+import { ArrowLeft } from 'lucide-react';
 
 export interface TabItem<T extends string = string> {
   id: T;
@@ -38,6 +39,31 @@ export function Tabs<T extends string = string>({ items, current, onChange, labe
   );
 }
 
+export interface ScreenBack {
+  label: string;
+  href?: string | undefined;
+  onClick?: (() => void) | undefined;
+}
+
+/** Başlıkta simgenin yerine geçen yuvarlak geri düğmesi. */
+export function BackButton({ back }: { back: ScreenBack }) {
+  const click = (e: MouseEvent<HTMLElement>) => {
+    if (!back.onClick || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    back.onClick();
+  };
+  const icon = <ArrowLeft size={20} aria-hidden="true" />;
+  return back.href !== undefined ? (
+    <a className="flx-page__backbtn" href={back.href} aria-label={back.label} title={back.label} onClick={click}>
+      {icon}
+    </a>
+  ) : (
+    <button type="button" className="flx-page__backbtn" aria-label={back.label} title={back.label} onClick={() => back.onClick?.()}>
+      {icon}
+    </button>
+  );
+}
+
 export interface ScreenProps<T extends string = string> {
   title: ReactNode;
   subtitle?: ReactNode;
@@ -45,6 +71,11 @@ export interface ScreenProps<T extends string = string> {
   icon?: string | ReactNode;
   /** Başlığın üstündeki geri bağlantısı (klasik "‹ Liste" bağlantısı). */
   back?: ReactNode;
+  /**
+   * Alt/düzenleme ekranlarında geri düğmesi: başlıktaki modül simgesinin YERİNE geçer (içerikte ayrı geri bağlantısı yok).
+   * `label` hedefin adıdır ("Segmentler"); `href` bağlantı, `onClick` uygulama içi geçiş (ikisi birlikte olabilir).
+   */
+  backButton?: ScreenBack;
   /** Başlığın sağındaki düğmeler. */
   actions?: ReactNode;
   /** Başlık ile sekmeler arasındaki bildirim alanı. */
@@ -82,7 +113,7 @@ export function Screen<T extends string = string>(p: ScreenProps<T>) {
     <div className={'flx-page flx-page--' + (p.width || 'md') + (p.className ? ' ' + p.className : '')}>
       {p.back ? <div className="flx-page__back">{p.back}</div> : null}
       <header className="flx-page__head">
-        {icon}
+        {p.backButton ? <BackButton back={p.backButton} /> : icon}
         <div className="flx-page__title">
           <h1>{title}</h1>
           {subtitle ? <p>{subtitle}</p> : null}

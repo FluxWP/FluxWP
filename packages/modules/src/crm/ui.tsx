@@ -54,7 +54,7 @@ export interface Crm {
   num: (n: number) => string;
   adminUrl?: string;
   /** Page title and lead go to the shared screen header (classic layout: title, lead, buttons, then tabs). */
-  setHead?: (h: { title: string; lead?: string }) => void;
+  setHead?: (h: { title: string; lead?: string; back?: { to: string; label: string } }) => void;
   /** Header button slot; Head portals its actions here. */
   actionsEl?: HTMLElement | null;
 }
@@ -243,19 +243,15 @@ export function Card({ title, icon, aside, children, className }: { title?: stri
 export function Head({ title, lead, actions, back }: { title: string; lead?: string; actions?: ReactNode; back?: { to: string; label: string } }) {
   const c = useContext(CrmCtx);
   const setHead = c?.setHead;
+  const backTo = back?.to;
+  const backLabel = back?.label;
   useLayoutEffect(() => {
-    setHead?.({ title, lead });
-  }, [setHead, title, lead]);
+    setHead?.({ title, lead, ...(backTo !== undefined && backLabel !== undefined ? { back: { to: backTo, label: backLabel } } : {}) });
+  }, [setHead, title, lead, backTo, backLabel]);
   if (setHead) {
+    // The back button lives in the shared screen header (replaces the module icon), not in the content.
     return (
       <>
-        {back && (
-          <div className="flxcrm-head has-back">
-            <a className="flxcrm-backbtn" href={href(back.to)} aria-label={back.label} title={back.label}>
-              <Ic n="back" size={18} />
-            </a>
-          </div>
-        )}
         {actions && c?.actionsEl ? createPortal(actions, c.actionsEl) : null}
       </>
     );

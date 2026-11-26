@@ -18,9 +18,9 @@ import {
   FlxDonationPartnerSave,
 } from '@fluxwp/graphql/operations';
 import type { FlxDonatePartnerQuery, FlxDonatePartnersQuery } from '@fluxwp/graphql/types';
-import { Check, DatePicker, Loading, Modal, Screen } from '@fluxwp/ui';
+import { Check, DatePicker, Loading, Modal, Screen, type ScreenBack } from '@fluxwp/ui';
 import { useHost } from '../host';
-import { Go, Ico, useDonate } from './shared';
+import { Go, Ico, useBackButton, useDonate } from './shared';
 import { Failed } from './Subscriptions';
 
 type Tab = 'list' | 'settle';
@@ -362,11 +362,7 @@ export function Partner({ id, query, notice }: { id: number; query: string; noti
   useStartNotice(query);
   const q = useFlxQuery(FlxDonatePartner, { id });
   const p = q.data?.flxDonationPartner;
-  const back = (
-    <Go className="flxdn-back" href={PAGE}>
-      <span aria-hidden="true">‹</span> {t('Partners')}
-    </Go>
-  );
+  const back = useBackButton(PAGE, t('Partners'));
   if (!q.data) {
     return (
       <Screen className="flxdn" width="wide" icon={host.appIcon} title={id ? t('Partners') : t('New partner')} notice={notice}>
@@ -376,7 +372,7 @@ export function Partner({ id, query, notice }: { id: number; query: string; noti
   }
   if (!p) {
     return (
-      <Screen className="flxdn" width="wide" icon={host.appIcon} title={t('Partner not found.')} notice={notice} actions={back}>
+      <Screen className="flxdn" width="wide" icon={host.appIcon} title={t('Partner not found.')} notice={notice} backButton={back}>
         {null}
       </Screen>
     );
@@ -384,7 +380,7 @@ export function Partner({ id, query, notice }: { id: number; query: string; noti
   return <Editor key={p.databaseId} p={p} back={back} notice={notice} />;
 }
 
-function Editor({ p, back, notice }: { p: P; back: ReactNode; notice: ReactNode }) {
+function Editor({ p, back, notice }: { p: P; back: ScreenBack | undefined; notice: ReactNode }) {
   const host = useHost();
   const { t, told } = useDonate();
   const { scope } = useGraphQL();
@@ -483,7 +479,7 @@ function Editor({ p, back, notice }: { p: P; back: ReactNode; notice: ReactNode 
   const busyDel = priceDelete.isPending || payDelete.isPending;
 
   return (
-    <Screen className="flxdn" width="wide" icon={host.appIcon} title={p.databaseId ? p.name : t('New partner')} actions={back} notice={notice}>
+    <Screen className="flxdn" width="wide" icon={host.appIcon} title={p.databaseId ? p.name : t('New partner')} backButton={back} notice={notice}>
       <div className="flxdn-grid flxdn-grid--1-1">
         <section className="flxdn-card">
           <div className="flxdn-card__head">
