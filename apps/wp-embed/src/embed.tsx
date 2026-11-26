@@ -46,6 +46,8 @@ export interface MountOptions {
   adminUrl?: string;
   appIcon?: string;
   appDesc?: string;
+  /** Paketin sol menüdeki adı ("Performans"); ürün adıyla başlıklanan ekranlar bunu gösterir. */
+  menuTitle?: string;
   /** Eklentinin vurgu rengi (--brand). */
   accent?: string;
   /** Flux AI ortak sohbeti sayfada yüklü. */
@@ -239,6 +241,7 @@ export function createEmbed(screens: ScreenSource): EmbedApi {
       adminUrl: o.adminUrl,
       appIcon: o.appIcon,
       appDesc: o.appDesc,
+      appMenuTitle: o.menuTitle,
       aiEmbed: o.aiEmbed,
       startPage: o.startPage || undefined,
       classicUrl: o.classicUrl,

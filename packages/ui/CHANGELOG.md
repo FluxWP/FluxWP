@@ -1,5 +1,8 @@
 # @fluxwp/ui
 
+## 0.8.1
+- `Screen`: ürün adıyla verilen başlık ("Flux Performance") `ScreenDefaults.title` (paketin sol menüdeki adı, ör. "Performans") ile gösterilir; kayıt ve alt sayfa başlıkları aynen kalır.
+
 ## 0.8.0
 - `SystemChecks`: klasik Sistem Kontrolü ekranı (durum çipleri ve filtresi, "Kontrol: SS:DD", grup başına özet, Durum/Kontrol/Ayrıntı/Kaynak/İşlem tablosu). Metinler 10 dilde içinde (`lang`); stil styles.css'te (`flxsc-*`).
 

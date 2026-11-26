@@ -302,6 +302,10 @@ add_filter(
 					'Security'    => __( 'Security', 'flx-speed' ),
 					'Forms'       => __( 'Forms', 'flx-speed' ),
 					'Performance' => __( 'Performance', 'flx-speed' ),
+					// Group keys some packages send untranslated (Flux AI Chatbot, Flux Headless, Flux AI).
+					'Communication' => __( 'Communication', 'flx-speed' ),
+					'Integrations'  => __( 'Integrations', 'flx-speed' ),
+					'AI'            => __( 'AI', 'flx-speed' ),
 					'Other'       => __( 'Other', 'flx-speed' ),
 				),
 			)

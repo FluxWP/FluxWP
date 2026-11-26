@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.4
+- Ortak dil çözümleyici: FluxWP ekranlarının GraphQL istekleri (`_locale=user`) giriş yapan kullanıcının dilinde yanıtlanır; sunucuda üretilen metinler (Sistem Kontrolü satırları, grup adları, tarihler) site dili farklı olsa da panelin dilinde gelir. İstek kendi dilini seçtiyse (Flux Lang `?lang=`) o kalır.
+- Dil değişince (bu istek, bağışçının dilinde e-posta vb.) FluxWP eklentilerinin çevirileri artık bulunuyor: eklenti klasöründeki `languages/` her dil için kullanılır. Önceden ilk yüklenen dilden başka dile geçince metinler İngilizce kalıyordu.
+- Ekran başlığı paketin sol menüdeki adını gösterir ("Flux Speed" yerine "Performans"): kabuk `menuTitle` verir.
+- Sayfa yenilemeden ekran geçişi: rotası `pageLoad` olan ekranlara (Flux Admin uygulama modu: Çağrı Merkezi, Görevler) girerken ve çıkarken sayfa yüklenir.
+- Eklenti ekranları runtime'ı yeniden derlendi.
+
 ## 0.8.3
 - Düz kalıcı bağlantı (permalink) kullanan sitelerde Flux ekranlarındaki işlemler (kaydet, etkinleştir, sil) çalışıyor: ekran adresi `/index.php?rest_route=/` biçiminden doğru çıkarılıyor (önceden istek hiç gitmiyordu) ve ekranlar GraphQL'e `/?graphql=1` ile ulaşıyor (web sunucusunda `/graphql` yönlendirmesi gerekmiyor). Runtime yeniden derlendi.
 

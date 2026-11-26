@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.4
+- Ekran başlığı sol menüdeki adı gösterir.
+
 ## 1.8.3
 - Panel ve Ayarlar eski klasik ekranla birebir: boş depolama geçmişi noktasız eksen, "Türlere göre" boşken "Henüz yedek yok.", ayrı aralık düğmeleri, altı çizili bağlantılar.
 - Ayarlar: satır çizgileri kaldırıldı, klasik aralık ve 200px etiket sütunu, büyük bölüm başlıkları; haftalık gün seçimi her zaman görünür.
