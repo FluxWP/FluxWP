@@ -1,7 +1,7 @@
 // Shared bits of the Flux AI screens: formatters, the switch, notices and the small SVG charts.
 import { useMemo, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Check } from '@fluxwp/ui';
+import { Check, usePageHead } from '@fluxwp/ui';
 import { translator } from './i18n';
 
 export interface Notice {
@@ -65,4 +65,21 @@ export function dayLabel(d: string): string {
   } catch {
     return d.slice(5);
   }
+}
+
+/** Page lead text: shown as the screen subtitle (under the title), as the classic page head did. */
+export function Lead({ text }: { text: string }) {
+  usePageHead(undefined, text);
+  return null;
+}
+
+/** KPI tile (classic flx-ai look: uppercase muted label, big value, muted note). */
+export function Kpi({ label, value, sub }: { label: string; value: string; sub: string }) {
+  return (
+    <div className="flxai-card flxai-kpi">
+      <div className="flxai-kpi-l">{label}</div>
+      <div className="flxai-big">{value}</div>
+      <div className="flxai-muted">{sub}</div>
+    </div>
+  );
 }

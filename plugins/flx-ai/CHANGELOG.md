@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.35.1
+- Tüm ekranlar eski klasik görünümle birebir: sayfa açıklaması başlığın altında, tablo başlıkları büyük harf, KPI etiketleri büyük harf, açık gri segment düğmeler.
+- Bağlı sistemler: Açık kutusu, eklenti kodu, Durum, Hata sütunu ve Kayıtlar · AI ayarları · Ayarları bağlantıları geri geldi (AI ayarları bağlantısı artık doğru sayfaya gider).
+- Araçlar: Kaynak kodu, Tür etiketi, Yetki ve Ort. süre sütunları; açıklama iki satır.
+- Genel bakış: harcama sınırları en üstte, boş grafiklerde "Bu aralıkta veri yok."; Günlük token yığılmış çubuk.
+- MCP anahtar formu, Skill'ler ızgarası, Ayarlar alanları, Sohbet geçmişi (varsayılan Tümü) ve Türkçe metinler klasik ekrandaki gibi.
+
 ## 0.35.0
 - Flux SEO'nun yeni `flxseo_insert_image` aracı sonucu da önizleme/düzenleme bağlantısı taşır.
 - **Sesten metne:** sohbetteki mikrofon düğmesi artık sesi kaydedip sitede yazıya çevirir (OpenAI, Gemini ya da OpenRouter anahtarı varsa; `POST flx-ai/v1/transcribe`). Tarayıcının kendi konuşma tanıması olmayan ortamlarda (WebView, Tauri, Firefox) da çalışır; anahtar yoksa eski tarayıcı yöntemi kalır. Hem klasik sohbet (ajan görev penceresi dahil) hem React sohbet ekranı.

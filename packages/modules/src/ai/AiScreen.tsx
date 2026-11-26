@@ -20,7 +20,7 @@ import { Systems } from './Systems';
 import { Tasks } from './Tasks';
 import { Tools } from './Tools';
 import './ai.css';
-import { Screen } from '@fluxwp/ui';
+import { Screen, ScreenHeadProvider, useScreenHead } from '@fluxwp/ui';
 
 const VIEWS: Record<string, { title: string; sub: string; View: ComponentType; wide?: boolean }> = {
   overview: { title: 'Flux AI', sub: 'AI usage across all plugins: cost, time, cache and tools.', View: Overview, wide: true },
@@ -31,7 +31,7 @@ const VIEWS: Record<string, { title: string; sub: string; View: ComponentType; w
   approvals: { title: 'Awaiting approval', sub: '', View: Approvals },
   tasks: { title: 'Scheduled tasks', sub: '', View: Tasks },
   skills: { title: 'Skills', sub: '', View: Skills },
-  settings: { title: 'Settings', sub: '', View: Settings },
+  settings: { title: 'Flux AI settings', sub: 'Enter keys here once; all FluxWP plugins use this connection.', View: Settings },
   mcp: { title: 'MCP', sub: '', View: Mcp },
   connections: { title: 'Connections', sub: '', View: Connections },
   history: { title: 'Chat history', sub: '', View: History },
@@ -53,9 +53,12 @@ function Page() {
   const { t } = useAi();
   const v = VIEWS[host.startPage ?? 'overview'] ?? VIEWS.overview!;
   const View = v.View;
+  const head = useScreenHead();
   return (
-    <Screen className="flxai-app" width={v.wide ? 'wide' : 'md'} icon={host.appIcon} title={t(v.title)} subtitle={v.sub ? t(v.sub) : undefined}>
-      <View />
+    <Screen className="flxai-app" width={v.wide ? 'wide' : 'md'} icon={host.appIcon} title={head.title ?? t(v.title)} subtitle={head.sub ?? (v.sub ? t(v.sub) : undefined)} actions={<div className="flxai-head-acts" ref={head.setSlot} />}>
+      <ScreenHeadProvider value={head.api}>
+        <View />
+      </ScreenHeadProvider>
     </Screen>
   );
 }

@@ -7,7 +7,7 @@ import type { FlxAiChatSummaryFieldsFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
-import { Card, NoticeBar, Pill, errText, useAi, type Notice } from './common';
+import { Card, NoticeBar, Pill, errText, useAi, type Notice, Lead } from './common';
 
 type Chat = FlxAiChatSummaryFieldsFragment;
 const PAGE = 30;
@@ -25,7 +25,7 @@ export function History() {
   const [notice, setNotice] = useState<Notice | null>(null);
   const [text, setText] = useState('');
   const [q, setQ] = useState('');
-  const [archived, setArchived] = useState(0);
+  const [archived, setArchived] = useState(-1);
   const [limit, setLimit] = useState(PAGE);
   const [open, setOpen] = useState<number | null>(null);
   const [renaming, setRenaming] = useState<Chat | null>(null);
@@ -69,7 +69,7 @@ export function History() {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
-      <p className="flxai-lead">{t('Your earlier chats with the assistant. Search looks in titles and in what was said. Open a chat to read it, or continue it in the chat.')}</p>
+      <Lead text={t('Your earlier chats with the assistant.')} />
       <Card
         title={
           <span className="flxai-card-head">

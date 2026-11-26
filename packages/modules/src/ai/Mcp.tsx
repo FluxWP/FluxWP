@@ -7,7 +7,7 @@ import type { FlxAiMcpOverviewFieldsFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { Check, Loading, Modal } from '@fluxwp/ui';
 import { useHost } from '../host';
-import { Card, NoticeBar, Pill, errText, useAi, type Notice } from './common';
+import { Card, NoticeBar, Pill, errText, useAi, type Notice, Lead } from './common';
 import { firstError } from './Skills';
 
 type Overview = FlxAiMcpOverviewFieldsFragment;
@@ -85,7 +85,7 @@ export function Mcp() {
     }
   })();
   const keyShow = fresh || t('YOUR_KEY');
-  const json = JSON.stringify({ mcpServers: { [slug]: { command: 'npx', args: ['-y', 'mcp-remote', s.url, '--header', 'Authorization:Bearer ' + keyShow] } } }, null, 2);
+  const json = JSON.stringify({ mcpServers: { [slug]: { command: 'npx', args: ['-y', 'mcp-remote', s.url, '--header', 'Authorization:Bearer ' + keyShow] } } }, null, 4);
   const copy = (text: string) => {
     void navigator.clipboard?.writeText(text).then(() => setNotice({ kind: 'success', text: t('Copied.') }));
   };
@@ -94,7 +94,7 @@ export function Mcp() {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
-      <p className="flxai-lead">{t('AI assistants such as Claude connect to this site over MCP (Model Context Protocol). Tools come from the installed FluxWP plugins (SEO, CRM, Mail, Speed…); Flux AI chat uses the same tools.')}</p>
+      <Lead text={t('AI assistants such as Claude connect to this site over MCP (Model Context Protocol). Tools come from the installed FluxWP plugins (SEO, CRM, Mail, Speed…); Flux AI chat uses the same tools.')} />
       {s.legacy && <div className="flxai-notice is-warn">{t('An old Flux SEO version is running its own MCP server. Update Flux SEO; keys and the setting move here automatically.')}</div>}
       <Card title={t('1. Server')}>
         <div className="flxai-mcp-switches">
@@ -147,12 +147,9 @@ export function Mcp() {
             </span>
           </div>
         )}
-        <div className="flxai-rcp-row">
-          <input className="flxai-input" value={name} maxLength={80} placeholder={t('e.g. Claude – Alex')} aria-label={t('Name')} onChange={(e) => setName(e.target.value)} />
-          <button type="button" className="flxai-btn" disabled={create.isPending} onClick={() => create.mutate({ input: { name, tools: limit } })}>
-            {t('Create new key')}
-          </button>
-        </div>
+        <p>
+          <input className="flxai-input flxai-keyname" value={name} maxLength={80} placeholder={t('e.g. Claude – Alex')} aria-label={t('Name')} onChange={(e) => setName(e.target.value)} />
+        </p>
         <details className="flxai-mcp-scope">
           <summary>{t('Limit tools (optional)')}</summary>
           <p className="flxai-hint">{t("If none is selected the key works with all of the user's permissions. If some are selected it only sees and runs those tools (e.g. only order_summary for a TV order board).")}</p>
@@ -164,6 +161,11 @@ export function Mcp() {
             ))}
           </div>
         </details>
+        <p>
+          <button type="button" className="flxai-btn" disabled={create.isPending} onClick={() => create.mutate({ input: { name, tools: limit } })}>
+            {t('Create new key')}
+          </button>
+        </p>
         {o.keys.length > 0 && (
           <div className="flxai-tscroll">
             <table className="flxai-table">
