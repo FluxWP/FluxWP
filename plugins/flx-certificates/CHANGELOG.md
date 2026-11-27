@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.4.1
+- Sertifika panosundaki tarih aralığı filtreleri dar ekranlara ve uzun tarih metinlerine uyum sağlar.
+
 ## 2.4.0
 - Sertifikalar, Yeni sertifika ve Kişiler ekranları klasik sayfaların birebir düzeninde: başlık, alt başlık ve düğmeler (Excel indir, + Yeni sertifika, + Kişi ekle) ekran başlığında; arama + Durum/Etkinlik filtreleri, diğerleri "Filtreler" altında; sayfa numaraları ve sayfa başı seçimi.
 - Sertifika listesi klasik tablo: küçük görsel, d.m.Y H:i tarih, "geçmiş tarihli" etiketi, kanal simgeli gönderim çipleri, İşlemler menüsü. Kişi listesinde sertifika sayısı o kişinin sertifikalarını açar.

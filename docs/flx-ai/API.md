@@ -549,7 +549,7 @@ Site Flux Cloud'a bağlıysa (Flux Setup `FLXK_Cloud::connected()`) ve ilgili sa
 - Claude kimliği OpenRouter'a çevrilir: filtre `flxai_cloud_model_id( $id, $provider )`.
 - Hata (402 kredi bitti, 403 plan modeli içermiyor, 429 sınır): `WP_Error( 'flxai_cloud', <Flux Cloud mesajı>, { provider: 'cloud', status, buy_url } )`.
 
-## Aktarım (relay) API'si (0.37.0, Anthropic 0.37.1)
+## Aktarım (relay) API'si (0.37.0, Anthropic 0.37.2)
 
 Aynı sitedeki başka bir eklentinin (fluxwp.com'da Flux Cloud AI kredisi proxy'si) AI isteğini Flux AI üzerinden göndermesi için. Anahtar çağıran eklentide tutulmaz; Flux AI › Ayarlar'daki OpenRouter ve Anthropic (Claude) anahtarları (ya da `FLXAI_KEY_OPENROUTER` / `FLXAI_KEY_ANTHROPIC`) kullanılır. Flux Cloud kredisine hiç dönmez (döngü olmaz). Çağıran önce `function_exists( 'flx_ai_relay' )` ile Flux AI'ın açık olduğuna bakar.
 

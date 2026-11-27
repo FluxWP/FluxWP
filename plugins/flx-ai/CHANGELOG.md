@@ -1,8 +1,11 @@
 # Flux AI — Değişiklikler
 
-## 0.37.1
+## 0.37.2
 - Aktarım (relay) Anthropic anahtarını da kullanır: Flux AI › Ayarlar'da Claude (Anthropic) anahtarı varsa Claude modelleri ona, diğer modeller OpenRouter anahtarına gider; yalnız Anthropic anahtarı varsa her istek Claude modeliyle gider (Claude olmayan model Flux AI varsayılan Claude modeline ya da `claude-haiku-4.5`'e döner). Maliyet Anthropic fiyat tablosundan hesaplanır.
 - `flx_ai_relay()` `$opts['provider']`: `auto` (varsayılan), `openrouter` ya da `anthropic`; seçilen sağlayıcının anahtarı yoksa açık hata. `flx_ai_relay_info()` yeni alanlar: `providers` (sağlayıcı → anahtar sonu), `keys` (görünen metin). Anahtar denetimi iki anahtarı da sınar.
+
+## 0.37.1
+- Beceri kartları 320 piksel telefonlarda kullanılabilir genişliğe sığar.
 
 ## 0.37.0
 - Aktarım (relay) API'si: aynı sitedeki başka eklenti (fluxwp.com'da Flux Cloud'un AI kredisi proxy'si) OpenRouter biçimli isteği Flux AI üzerinden, Flux AI › Ayarlar'daki OpenRouter anahtarıyla gönderir; anahtar başka eklentide tutulmaz. `flx_ai_relay_info()`, `flx_ai_relay( $body, $opts )` (akış dahil), `flx_ai_relay_key_check()`. Yalnız sitenin kendi anahtarı kullanılır, Flux Cloud kredisine dönmez.
