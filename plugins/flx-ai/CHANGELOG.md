@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.37.1
+- Beceri kartları 320 piksel telefonlarda kullanılabilir genişliğe sığar.
+
 ## 0.37.0
 - Aktarım (relay) API'si: aynı sitedeki başka eklenti (fluxwp.com'da Flux Cloud'un AI kredisi proxy'si) OpenRouter biçimli isteği Flux AI üzerinden, Flux AI › Ayarlar'daki OpenRouter anahtarıyla gönderir; anahtar başka eklentide tutulmaz. `flx_ai_relay_info()`, `flx_ai_relay( $body, $opts )` (akış dahil), `flx_ai_relay_key_check()`. Yalnız sitenin kendi anahtarı kullanılır, Flux Cloud kredisine dönmez.
 
