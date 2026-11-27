@@ -743,7 +743,7 @@ msgid "Location to be announced"
 msgstr "Konum yakında açıklanacak"
 
 msgid "Details"
-msgstr "Detaylar"
+msgstr "Detay"
 
 msgid "Donate saplings"
 msgstr "Fidan bağışla"
@@ -1593,3 +1593,102 @@ msgstr "Konu"
 
 msgid "Text"
 msgstr "Metin"
+
+msgid "Plugin activated"
+msgstr "Eklenti etkinleştirildi"
+
+msgid "Certificate created"
+msgstr "Sertifika oluşturuldu"
+
+msgid "Certificate updated"
+msgstr "Sertifika güncellendi"
+
+msgid "Event saved"
+msgstr "Etkinlik kaydedildi"
+
+msgid "Event closed (archived)"
+msgstr "Etkinlik kapatıldı (arşiv)"
+
+msgid "Event reopened"
+msgstr "Etkinlik yeniden açıldı"
+
+msgid "Event deleted"
+msgstr "Etkinlik silindi"
+
+msgid "Certificate revoked"
+msgstr "Sertifika iptal edildi"
+
+msgid "Certificate restored"
+msgstr "Sertifika geri alındı"
+
+msgid "Certificate deleted"
+msgstr "Sertifika silindi"
+
+msgid "Certificates exported to Excel"
+msgstr "Sertifikalar Excel'e aktarıldı"
+
+msgid "Files generated on the server"
+msgstr "Dosyalar sunucuda oluşturuldu"
+
+msgid "Server file generation failed"
+msgstr "Sunucuda dosya oluşturulamadı"
+
+msgid "Person added"
+msgstr "Kişi eklendi"
+
+msgid "Person updated"
+msgstr "Kişi güncellendi"
+
+msgid "Person deleted"
+msgstr "Kişi silindi"
+
+msgid "Template saved"
+msgstr "Şablon kaydedildi"
+
+msgid "Template deleted"
+msgstr "Şablon silindi"
+
+msgid "Provider saved"
+msgstr "Sağlayıcı kaydedildi"
+
+msgid "Provider deleted"
+msgstr "Sağlayıcı silindi"
+
+msgid "Provider test"
+msgstr "Sağlayıcı testi"
+
+msgid "Settings saved"
+msgstr "Ayarlar kaydedildi"
+
+msgid "Message queued"
+msgstr "Mesaj kuyruğa alındı"
+
+msgid "Message sent"
+msgstr "Mesaj gönderildi"
+
+msgid "Message failed"
+msgstr "Mesaj başarısız"
+
+msgid "Message scheduled for retry"
+msgstr "Mesaj yeniden denenecek"
+
+msgid "Message cancelled"
+msgstr "Mesaj iptal edildi"
+
+msgid "Bulk send started"
+msgstr "Toplu gönderim başlatıldı"
+
+msgid "Number added to contacts"
+msgstr "Rehbere numara eklendi"
+
+msgid "Number removed from contacts"
+msgstr "Rehberden numara silindi"
+
+msgid "View certificate"
+msgstr "Sertifikayı aç"
+
+msgid "View in queue"
+msgstr "Kuyrukta gör"
+
+msgid "You do not have permission to download logs."
+msgstr "Kayıtları indirme izniniz yok."

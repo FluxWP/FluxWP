@@ -58,7 +58,7 @@ function flxs_logs_args() {
 function flxs_handle_logs_csv() {
 	check_admin_referer( 'flxs_logs_csv' );
 	if ( ! flxs_can_manage() ) {
-		wp_die( 'Yetki yok' );
+		wp_die( esc_html__( 'You do not have permission to download logs.', 'flx-certificates' ) );
 	}
 	$q      = flxs_logs_query( flxs_logs_args(), 0 );
 	$labels = flxs_log_actions();
@@ -122,13 +122,13 @@ function flxs_page_logs() {
 					if ( 'certificate' === $l['object_type'] && $l['object_id'] ) {
 						$c = flxs_get_certificate( $l['object_id'] );
 						if ( $c ) {
-							echo ' · <a href="' . esc_url( flxs_certificate_url( $c ) ) . '" target="_blank">aç</a>';
+							echo ' · <a href="' . esc_url( flxs_certificate_url( $c ) ) . '" target="_blank">' . esc_html__( 'View certificate', 'flx-certificates' ) . '</a>';
 						}
 					} elseif ( 'message' === $l['object_type'] ) {
-						echo ' · <a href="' . esc_url( admin_url( 'admin.php?page=flxs-kuyruk&s=' . rawurlencode( (string) ( json_decode( (string) $l['context'], true )['recipient'] ?? '' ) ) ) ) . '">kuyrukta</a>';
+						echo ' · <a href="' . esc_url( admin_url( 'admin.php?page=flxs-kuyruk&s=' . rawurlencode( (string) ( json_decode( (string) $l['context'], true )['recipient'] ?? '' ) ) ) ) . '">' . esc_html__( 'View in queue', 'flx-certificates' ) . '</a>';
 					}
 					if ( $l['context'] ) {
-						echo ' <details class="flxs-ctx"><summary>detay</summary><pre class="flxs-pre">' . esc_html( wp_json_encode( json_decode( $l['context'], true ), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '</pre></details>';
+						echo ' <details class="flxs-ctx"><summary>' . esc_html__( 'Details', 'flx-certificates' ) . '</summary><pre class="flxs-pre">' . esc_html( wp_json_encode( json_decode( $l['context'], true ), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ) . '</pre></details>';
 					}
 					?>
 				</td>

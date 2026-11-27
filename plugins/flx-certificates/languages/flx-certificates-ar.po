@@ -1693,3 +1693,102 @@ msgstr "الموضوع"
 
 msgid "Text"
 msgstr "نص"
+
+msgid "Plugin activated"
+msgstr "تم تفعيل البلوغين"
+
+msgid "Certificate created"
+msgstr "الشهادة التي أُنشئت"
+
+msgid "Certificate updated"
+msgstr "شهادة مستكملة"
+
+msgid "Event saved"
+msgstr "الحدث الذي تم إنقاذه"
+
+msgid "Event closed (archived)"
+msgstr "الحدث المغلق (المسجل)"
+
+msgid "Event reopened"
+msgstr "الحدث الذي أعيد فتحه"
+
+msgid "Event deleted"
+msgstr "حُذف الحدث"
+
+msgid "Certificate revoked"
+msgstr "شهادة ملغية"
+
+msgid "Certificate restored"
+msgstr "استعيدت الشهادة"
+
+msgid "Certificate deleted"
+msgstr "شهادته محذفة"
+
+msgid "Certificates exported to Excel"
+msgstr "شهادات صدرت إلى شركة Excel"
+
+msgid "Files generated on the server"
+msgstr "الملفات المتولدة على الخادم"
+
+msgid "Server file generation failed"
+msgstr "ملف سيرفر فشل"
+
+msgid "Person added"
+msgstr "أضيف شخص آخر"
+
+msgid "Person updated"
+msgstr "تحديث الشخصية"
+
+msgid "Person deleted"
+msgstr "الشخص المحذوب"
+
+msgid "Template saved"
+msgstr "تم حفظ القالب"
+
+msgid "Template deleted"
+msgstr "النموذج المحذف"
+
+msgid "Provider saved"
+msgstr "الادخار انقذ"
+
+msgid "Provider deleted"
+msgstr "الادخار محذوف"
+
+msgid "Provider test"
+msgstr "اختبار الادخار"
+
+msgid "Settings saved"
+msgstr "تم حفظ الإعدادات"
+
+msgid "Message queued"
+msgstr "رسالة تم تصفيتها"
+
+msgid "Message sent"
+msgstr "تم إرسال الرسالة"
+
+msgid "Message failed"
+msgstr "الرسالة فشلت"
+
+msgid "Message scheduled for retry"
+msgstr "رسالة من المقرر إعادة النظر فيها"
+
+msgid "Message cancelled"
+msgstr "الرسالة الملغاة"
+
+msgid "Bulk send started"
+msgstr "تم إرسالها"
+
+msgid "Number added to contacts"
+msgstr "العدد المضاف إلى الاتصالات"
+
+msgid "Number removed from contacts"
+msgstr "العدد المبعد من الاتصالات"
+
+msgid "View certificate"
+msgstr "عرض الشهادة"
+
+msgid "View in queue"
+msgstr "يقظة في الطريق"
+
+msgid "You do not have permission to download logs."
+msgstr "ليس لديكِ إذن لتحميل السجلات"

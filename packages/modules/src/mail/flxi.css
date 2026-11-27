@@ -300,6 +300,7 @@ html.flxa-dark .flxi-msgpv.is-sms .flxi-msgpv__bubble { background: #26262a; col
 }
 @media (max-width: 782px) {
 	.flxi-card { padding: 16px; }
+	.flxi-card button.button { max-inline-size: 100%; white-space: normal; overflow-wrap: anywhere; }
 	.flxi-list { margin: 0 -16px -16px; }
 	.flxi-row { grid-template-columns: auto minmax(0, 1fr); padding: 12px 16px; gap: 8px 12px; }
 	.flxi-row__meta, .flxi-row__actions { grid-column: 2; justify-content: flex-start; }

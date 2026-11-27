@@ -1593,3 +1593,102 @@ msgstr "Assunto"
 
 msgid "Text"
 msgstr "Texto"
+
+msgid "Plugin activated"
+msgstr "Plugin ativado"
+
+msgid "Certificate created"
+msgstr "Certificado criado"
+
+msgid "Certificate updated"
+msgstr "Certificado atualizado"
+
+msgid "Event saved"
+msgstr "Evento salvo"
+
+msgid "Event closed (archived)"
+msgstr "Evento fechado (arquivado)"
+
+msgid "Event reopened"
+msgstr "Evento reaberto"
+
+msgid "Event deleted"
+msgstr "Evento excluído"
+
+msgid "Certificate revoked"
+msgstr "Certificado revogado"
+
+msgid "Certificate restored"
+msgstr "Certificado restaurado"
+
+msgid "Certificate deleted"
+msgstr "Certificado excluído"
+
+msgid "Certificates exported to Excel"
+msgstr "Certificados exportados para Excel"
+
+msgid "Files generated on the server"
+msgstr "Arquivos gerados no servidor"
+
+msgid "Server file generation failed"
+msgstr "A geração de arquivos do servidor falhou"
+
+msgid "Person added"
+msgstr "Pessoa adicionada"
+
+msgid "Person updated"
+msgstr "Pessoa atualizada"
+
+msgid "Person deleted"
+msgstr "Pessoa excluída"
+
+msgid "Template saved"
+msgstr "Modelo salvo"
+
+msgid "Template deleted"
+msgstr "Modelo excluído"
+
+msgid "Provider saved"
+msgstr "Proprietário salvo"
+
+msgid "Provider deleted"
+msgstr "Proprietário excluído"
+
+msgid "Provider test"
+msgstr "Teste de provedor"
+
+msgid "Settings saved"
+msgstr "Configurações salvas"
+
+msgid "Message queued"
+msgstr "Mensagem em fila"
+
+msgid "Message sent"
+msgstr "Mensagem enviada"
+
+msgid "Message failed"
+msgstr "A mensagem falhou"
+
+msgid "Message scheduled for retry"
+msgstr "Mensagem marcada para retângulo"
+
+msgid "Message cancelled"
+msgstr "Mensagem cancelada"
+
+msgid "Bulk send started"
+msgstr "Enviar em massa começou"
+
+msgid "Number added to contacts"
+msgstr "Número adicionado aos contatos"
+
+msgid "Number removed from contacts"
+msgstr "Número removido de contatos"
+
+msgid "View certificate"
+msgstr "Ver certificado"
+
+msgid "View in queue"
+msgstr "Ver em fila"
+
+msgid "You do not have permission to download logs."
+msgstr "Você não tem permissão para baixar logs."

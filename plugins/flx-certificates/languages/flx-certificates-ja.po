@@ -1568,3 +1568,102 @@ msgstr "件名"
 
 msgid "Text"
 msgstr "テキスト"
+
+msgid "Plugin activated"
+msgstr "プラグインの有効化"
+
+msgid "Certificate created"
+msgstr "作成"
+
+msgid "Certificate updated"
+msgstr "証明書を更新しました。"
+
+msgid "Event saved"
+msgstr "イベント保存"
+
+msgid "Event closed (archived)"
+msgstr "イベント閉館(アーカイブ)"
+
+msgid "Event reopened"
+msgstr "イベント再開。"
+
+msgid "Event deleted"
+msgstr "イベント削除"
+
+msgid "Certificate revoked"
+msgstr "証明書が取り消された"
+
+msgid "Certificate restored"
+msgstr "復元"
+
+msgid "Certificate deleted"
+msgstr "証明書削除"
+
+msgid "Certificates exported to Excel"
+msgstr "Excel への証明書のエクスポート"
+
+msgid "Files generated on the server"
+msgstr "サーバー上で生成されたファイル"
+
+msgid "Server file generation failed"
+msgstr "サーバーファイル生成が失敗しました。"
+
+msgid "Person added"
+msgstr "追加"
+
+msgid "Person updated"
+msgstr "更新された人"
+
+msgid "Person deleted"
+msgstr "削除される人"
+
+msgid "Template saved"
+msgstr "テンプレートが保存されました"
+
+msgid "Template deleted"
+msgstr "テンプレート削除"
+
+msgid "Provider saved"
+msgstr "プロバイダー保存"
+
+msgid "Provider deleted"
+msgstr "プロバイダーを削除します。"
+
+msgid "Provider test"
+msgstr "プロバイダーテスト"
+
+msgid "Settings saved"
+msgstr "設定が保存されました"
+
+msgid "Message queued"
+msgstr "メッセージキュー"
+
+msgid "Message sent"
+msgstr "メッセージが送信されました"
+
+msgid "Message failed"
+msgstr "メッセージが失敗しました。"
+
+msgid "Message scheduled for retry"
+msgstr "再試行予定のメッセージ"
+
+msgid "Message cancelled"
+msgstr "メッセージのキャンセル"
+
+msgid "Bulk send started"
+msgstr "バルク送信開始。"
+
+msgid "Number added to contacts"
+msgstr "連絡先に追加される番号"
+
+msgid "Number removed from contacts"
+msgstr "連絡先から削除された番号"
+
+msgid "View certificate"
+msgstr "証明書を表示"
+
+msgid "View in queue"
+msgstr "キューのビュー"
+
+msgid "You do not have permission to download logs."
+msgstr "ログのダウンロード許可はありません。"

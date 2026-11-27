@@ -1618,3 +1618,102 @@ msgstr "Тема"
 
 msgid "Text"
 msgstr "Текст"
+
+msgid "Plugin activated"
+msgstr "Задействовано"
+
+msgid "Certificate created"
+msgstr "Выпуск свидетельства"
+
+msgid "Certificate updated"
+msgstr "Обновление свидетельства"
+
+msgid "Event saved"
+msgstr "Сохранённое событие"
+
+msgid "Event closed (archived)"
+msgstr "Мероприятие закрыто (захвачено)"
+
+msgid "Event reopened"
+msgstr "Возобновление мероприятия"
+
+msgid "Event deleted"
+msgstr "Вид событий удален"
+
+msgid "Certificate revoked"
+msgstr "Отмена свидетельства"
+
+msgid "Certificate restored"
+msgstr "Доставка свидетельства"
+
+msgid "Certificate deleted"
+msgstr "Удаление свидетельства"
+
+msgid "Certificates exported to Excel"
+msgstr "Сертификаты, экспортируемые в Excel"
+
+msgid "Files generated on the server"
+msgstr "Файлы, генерируемые на сервере"
+
+msgid "Server file generation failed"
+msgstr "Неверное поколение файлов сервера"
+
+msgid "Person added"
+msgstr "Выпущено"
+
+msgid "Person updated"
+msgstr "Обновленная информация"
+
+msgid "Person deleted"
+msgstr "Лицо удалено"
+
+msgid "Template saved"
+msgstr "Шаблон сохранен."
+
+msgid "Template deleted"
+msgstr "Изъять шаблон"
+
+msgid "Provider saved"
+msgstr "Экономия поставщика"
+
+msgid "Provider deleted"
+msgstr "Удаляется поставщик"
+
+msgid "Provider test"
+msgstr "Испытание поставщика"
+
+msgid "Settings saved"
+msgstr "Настройки сохранены."
+
+msgid "Message queued"
+msgstr "Сообщение в очереди"
+
+msgid "Message sent"
+msgstr "Сообщение отправлено"
+
+msgid "Message failed"
+msgstr "Не удалось получить сообщение"
+
+msgid "Message scheduled for retry"
+msgstr "Сообщение, запланированное для повторного испытания"
+
+msgid "Message cancelled"
+msgstr "Сообщение отменено"
+
+msgid "Bulk send started"
+msgstr "Начали отправку"
+
+msgid "Number added to contacts"
+msgstr "Число добавленных сообщений"
+
+msgid "Number removed from contacts"
+msgstr "Число удаленных из контактов"
+
+msgid "View certificate"
+msgstr "Просмотреть сертификат"
+
+msgid "View in queue"
+msgstr "Вид в очереди"
+
+msgid "You do not have permission to download logs."
+msgstr "У вас нет разрешения на загрузку журналов."

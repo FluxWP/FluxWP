@@ -1568,3 +1568,102 @@ msgstr "主题"
 
 msgid "Text"
 msgstr "文字"
+
+msgid "Plugin activated"
+msgstr "启动插件激活"
+
+msgid "Certificate created"
+msgstr "创建证书"
+
+msgid "Certificate updated"
+msgstr "更新证书证书"
+
+msgid "Event saved"
+msgstr "已保存事件"
+
+msgid "Event closed (archived)"
+msgstr "事件结束(存档)"
+
+msgid "Event reopened"
+msgstr "重开活动"
+
+msgid "Event deleted"
+msgstr "删除事件"
+
+msgid "Certificate revoked"
+msgstr "证书证书已撤销"
+
+msgid "Certificate restored"
+msgstr "恢复证书证书"
+
+msgid "Certificate deleted"
+msgstr "删除证书"
+
+msgid "Certificates exported to Excel"
+msgstr "证书导出至Excel"
+
+msgid "Files generated on the server"
+msgstr "在服务器上生成的文件"
+
+msgid "Server file generation failed"
+msgstr "服务器文件生成失败"
+
+msgid "Person added"
+msgstr "新增人"
+
+msgid "Person updated"
+msgstr "更新的人事"
+
+msgid "Person deleted"
+msgstr "人删除"
+
+msgid "Template saved"
+msgstr "模板已保存"
+
+msgid "Template deleted"
+msgstr "删除模板删除"
+
+msgid "Provider saved"
+msgstr "保存的提供者"
+
+msgid "Provider deleted"
+msgstr "删除提供者"
+
+msgid "Provider test"
+msgstr "供应商测试"
+
+msgid "Settings saved"
+msgstr "设置已保存"
+
+msgid "Message queued"
+msgstr "排队排队的"
+
+msgid "Message sent"
+msgstr "消息已发送"
+
+msgid "Message failed"
+msgstr "信件失败"
+
+msgid "Message scheduled for retry"
+msgstr "用于重新输入的已排定信件"
+
+msgid "Message cancelled"
+msgstr "信件已取消"
+
+msgid "Bulk send started"
+msgstr "批量发送开始"
+
+msgid "Number added to contacts"
+msgstr "联系人中添加的数"
+
+msgid "Number removed from contacts"
+msgstr "从联系人中移除的数"
+
+msgid "View certificate"
+msgstr "查看证书"
+
+msgid "View in queue"
+msgstr "在队列中查看"
+
+msgid "You do not have permission to download logs."
+msgstr "您没有下载日志的权限 。"

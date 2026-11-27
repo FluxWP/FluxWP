@@ -1593,3 +1593,102 @@ msgstr "Asunto"
 
 msgid "Text"
 msgstr "Texto"
+
+msgid "Plugin activated"
+msgstr "Plugin activado"
+
+msgid "Certificate created"
+msgstr "Certificado creado"
+
+msgid "Certificate updated"
+msgstr "Certificado actualizado"
+
+msgid "Event saved"
+msgstr "Evento salvado"
+
+msgid "Event closed (archived)"
+msgstr "Evento cerrado (archivado)"
+
+msgid "Event reopened"
+msgstr "Reapertura del evento"
+
+msgid "Event deleted"
+msgstr "Evento eliminado"
+
+msgid "Certificate revoked"
+msgstr "Certificado revocado"
+
+msgid "Certificate restored"
+msgstr "Certificado restaurado"
+
+msgid "Certificate deleted"
+msgstr "Certificado borrado"
+
+msgid "Certificates exported to Excel"
+msgstr "Certificados exportados a Excel"
+
+msgid "Files generated on the server"
+msgstr "Archivos generados en el servidor"
+
+msgid "Server file generation failed"
+msgstr "Generación de archivos del servidor falló"
+
+msgid "Person added"
+msgstr "Persona añadido"
+
+msgid "Person updated"
+msgstr "Persona actualizada"
+
+msgid "Person deleted"
+msgstr "Persona eliminada"
+
+msgid "Template saved"
+msgstr "Plantilla guardada"
+
+msgid "Template deleted"
+msgstr "Plantilla eliminada"
+
+msgid "Provider saved"
+msgstr "Proveedor salvado"
+
+msgid "Provider deleted"
+msgstr "Proveedor eliminado"
+
+msgid "Provider test"
+msgstr "Prueba de proveedor"
+
+msgid "Settings saved"
+msgstr "Configuración guardada"
+
+msgid "Message queued"
+msgstr "Mensaje apagado"
+
+msgid "Message sent"
+msgstr "Mensaje enviado"
+
+msgid "Message failed"
+msgstr "El mensaje falló"
+
+msgid "Message scheduled for retry"
+msgstr "Mensaje programado para la reingreso"
+
+msgid "Message cancelled"
+msgstr "Mensaje cancelado"
+
+msgid "Bulk send started"
+msgstr "Envío masivo iniciado"
+
+msgid "Number added to contacts"
+msgstr "Número añadido a los contactos"
+
+msgid "Number removed from contacts"
+msgstr "Número eliminado de los contactos"
+
+msgid "View certificate"
+msgstr "Ver certificado"
+
+msgid "View in queue"
+msgstr "Vista en cola"
+
+msgid "You do not have permission to download logs."
+msgstr "Usted no tiene permiso para descargar los registros."

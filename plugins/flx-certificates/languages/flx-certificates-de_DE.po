@@ -704,7 +704,7 @@ msgid "Goal: %s saplings"
 msgstr "Ziel: %s Setzlinge"
 
 msgid "%s%%"
-msgstr "%s % %"
+msgstr "%s %%"
 
 msgid "Completed event"
 msgstr "Veranstaltung abgeschlossen"
@@ -1593,3 +1593,102 @@ msgstr "Betreff"
 
 msgid "Text"
 msgstr "Text"
+
+msgid "Plugin activated"
+msgstr "Plugin aktiviert"
+
+msgid "Certificate created"
+msgstr "Zertifikat erstellt"
+
+msgid "Certificate updated"
+msgstr "Aktualisierung des Zertifikats"
+
+msgid "Event saved"
+msgstr "Event gespeichert"
+
+msgid "Event closed (archived)"
+msgstr "Veranstaltung geschlossen (archiviert)"
+
+msgid "Event reopened"
+msgstr "Wiedereröffnete Veranstaltung"
+
+msgid "Event deleted"
+msgstr "Event gelöscht"
+
+msgid "Certificate revoked"
+msgstr "Bescheinigung widerrufen"
+
+msgid "Certificate restored"
+msgstr "Zertifikat restauriert"
+
+msgid "Certificate deleted"
+msgstr "Zertifikat gelöscht"
+
+msgid "Certificates exported to Excel"
+msgstr "Zertifikate, die nach Excel exportiert werden"
+
+msgid "Files generated on the server"
+msgstr "Dateien, die auf dem Server erzeugt werden"
+
+msgid "Server file generation failed"
+msgstr "Server-Datei-Generierung fehlgeschlagen"
+
+msgid "Person added"
+msgstr "Person hinzugefügt"
+
+msgid "Person updated"
+msgstr "Aktualisierte Person"
+
+msgid "Person deleted"
+msgstr "Artikel gelöscht"
+
+msgid "Template saved"
+msgstr "Vorlage gespeichert"
+
+msgid "Template deleted"
+msgstr "Vorlage gelöscht"
+
+msgid "Provider saved"
+msgstr "Anbieter gespeichert"
+
+msgid "Provider deleted"
+msgstr "Anbieter gelöscht"
+
+msgid "Provider test"
+msgstr "Test des Anbieters"
+
+msgid "Settings saved"
+msgstr "Einstellungen gespeichert"
+
+msgid "Message queued"
+msgstr "Nachricht abgefragt"
+
+msgid "Message sent"
+msgstr "Nachricht gesendet"
+
+msgid "Message failed"
+msgstr "Nachricht ist gescheitert"
+
+msgid "Message scheduled for retry"
+msgstr "Nachricht geplant für die Wiederaufnahme"
+
+msgid "Message cancelled"
+msgstr "Nachricht storniert"
+
+msgid "Bulk send started"
+msgstr "Bulk send gestartet"
+
+msgid "Number added to contacts"
+msgstr "Anzahl der Kontakte hinzugefügt"
+
+msgid "Number removed from contacts"
+msgstr "Anzahl entfernt von Kontakten"
+
+msgid "View certificate"
+msgstr "Zertifikat anzeigen"
+
+msgid "View in queue"
+msgstr "Blick in die Warteschlange"
+
+msgid "You do not have permission to download logs."
+msgstr "Sie haben keine Erlaubnis, Protokolle herunterzuladen."

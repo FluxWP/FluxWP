@@ -1593,3 +1593,102 @@ msgstr "Sujet"
 
 msgid "Text"
 msgstr "Texte"
+
+msgid "Plugin activated"
+msgstr "Plugin activé"
+
+msgid "Certificate created"
+msgstr "Certificat créé"
+
+msgid "Certificate updated"
+msgstr "Certificat mis à jour"
+
+msgid "Event saved"
+msgstr "Événement enregistré"
+
+msgid "Event closed (archived)"
+msgstr "Événement clos (archivé)"
+
+msgid "Event reopened"
+msgstr "Événement rouvert"
+
+msgid "Event deleted"
+msgstr "Événement supprimé"
+
+msgid "Certificate revoked"
+msgstr "Certificat révoqué"
+
+msgid "Certificate restored"
+msgstr "Certificat restauré"
+
+msgid "Certificate deleted"
+msgstr "Certificat supprimé"
+
+msgid "Certificates exported to Excel"
+msgstr "Certificats exportés vers Excel"
+
+msgid "Files generated on the server"
+msgstr "Fichiers générés sur le serveur"
+
+msgid "Server file generation failed"
+msgstr "La génération de fichier serveur a échoué"
+
+msgid "Person added"
+msgstr "Personne ajoutée"
+
+msgid "Person updated"
+msgstr "Personne mise à jour"
+
+msgid "Person deleted"
+msgstr "Personne supprimée"
+
+msgid "Template saved"
+msgstr "Modèle enregistré"
+
+msgid "Template deleted"
+msgstr "Modèle supprimé"
+
+msgid "Provider saved"
+msgstr "Fournisseur enregistré"
+
+msgid "Provider deleted"
+msgstr "Fournisseur supprimé"
+
+msgid "Provider test"
+msgstr "Essai du fournisseur"
+
+msgid "Settings saved"
+msgstr "Paramètres enregistrés"
+
+msgid "Message queued"
+msgstr "Message en attente"
+
+msgid "Message sent"
+msgstr "Message envoyé"
+
+msgid "Message failed"
+msgstr "Le message a échoué"
+
+msgid "Message scheduled for retry"
+msgstr "Message prévu pour réessayer"
+
+msgid "Message cancelled"
+msgstr "Message annulé"
+
+msgid "Bulk send started"
+msgstr "Envoi en vrac commencé"
+
+msgid "Number added to contacts"
+msgstr "Numéro ajouté aux contacts"
+
+msgid "Number removed from contacts"
+msgstr "Nombre retiré des contacts"
+
+msgid "View certificate"
+msgstr "Afficher le certificat"
+
+msgid "View in queue"
+msgstr "Affichage dans la file d'attente"
+
+msgid "You do not have permission to download logs."
+msgstr "Vous n'avez pas la permission de télécharger les journaux."

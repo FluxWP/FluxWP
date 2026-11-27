@@ -120,7 +120,7 @@
   "Event information or thank-you: everyone of the event": "イベント情報や感謝の気持ち:イベントの皆さん。",
   "Event not found.": "イベントが見つからない。",
   "Events": "イベント",
-  "Events of every FluxWP package in one place. Close an event when it is over: it moves to the archive, its records stay valid and packages stop adding new ones.": "あらゆる出来事 FluxWP アーカイブに移動し、レコードが有効のまま、パッケージが新しいレコードを追加しなくなる。",
+  "Events of every FluxWP package in one place. Close an event when it is over: it moves to the archive, its records stay valid and packages stop adding new ones.": "すべての FluxWP パッケージのイベントを一か所で管理できます。終了したイベントを閉じるとアーカイブに移動します。既存の記録は保持され、パッケージから新しい記録は追加されなくなります。",
   "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions.": "CRM 内のすべて (連絡先、フィールド、ロール、タグ、同意、タイムライン、セグメント、設定) は、Flux AI チャットおよび MCP (Claude、ChatGPT、Cursor...) 経由で読み取り、編集できます。ツールはユーザー自身の CRM 権限で実行されます。",
   "Examples: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers with no purchase for 3 months\".": "例: 「昨年はクルバン寄付をしましたが、今年は寄付しませんでした」、「イスタンブールのボランティア」、「3 か月間購入のない顧客」。",
   "Failed": "失敗しました",
