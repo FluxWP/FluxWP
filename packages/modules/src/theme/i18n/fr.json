@@ -11,7 +11,7 @@
   "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working.": "Administrateurs, directeurs de magasin et éditeurs continuent de voir le site. C'est le même réglage que WooCommerce › Paramètres › Visibilité du site; changer l'une ou l'autre mise à jour, et WooCommerce liens de prévisualisation privés continuent de fonctionner.",
   "All good": "Tout va bien",
   "Appearance": "Apparence",
-  "Automatic (/cerez-politikasi/)": "Automatique (/cerez-politikasi/)",
+  "Automatic (%s)": "Automatique (%s)",
   "Automatic (first open donation type with a goal)": "Automatique (premier type de don ouvert avec un but)",
   "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.": "Automatique désormais : le groupe iyzico et les logos des plugins de point de vente virtuel activés. Une fois que vous ajoutez ou supprimez un logo, la liste est votre propre choix.",
   "Automatic: the site is dark when the device is in dark mode": "Automatique: le site est sombre lorsque le dispositif est en mode noir",

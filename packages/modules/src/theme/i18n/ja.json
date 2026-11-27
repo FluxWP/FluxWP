@@ -11,7 +11,7 @@
   "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working.": "管理者、ショップ管理者、編集者は引き続きサイトを閲覧できます。「WooCommerce › 設定 › サイトの公開範囲」と同じ設定です。どちらかを変更するともう一方にも反映され、WooCommerce の非公開プレビューリンクも引き続き使えます。",
   "All good": "大丈夫です",
   "Appearance": "外観",
-  "Automatic (/cerez-politikasi/)": "自動 (/cerez-politikasi/)",
+  "Automatic (%s)": "自動 (%s)",
   "Automatic (first open donation type with a goal)": "自動(ゴール付き初のオープン寄付タイプ)",
   "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.": "自動化されました: iyzico バンドと有効な仮想 POS プラグインのロゴ。ロゴを追加または削除すると、リストは自由に選択できます。",
   "Automatic: the site is dark when the device is in dark mode": "自動: デバイスがダークモードのときにサイトが暗くなります。",

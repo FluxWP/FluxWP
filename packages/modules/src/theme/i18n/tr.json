@@ -11,7 +11,7 @@
   "Administrators, shop managers and editors keep seeing the site. This is the same setting as WooCommerce › Settings › Site visibility; changing either one updates the other, and WooCommerce private preview links keep working.": "Yöneticiler, mağaza yöneticileri ve editörler siteyi görmeye devam eder. Bu ayar WooCommerce › Ayarlar › Site görünürlüğü ile aynıdır; birini değiştirmek diğerini günceller ve WooCommerce özel önizleme bağlantıları çalışır.",
   "All good": "Her şey yerinde",
   "Appearance": "Görünüm",
-  "Automatic (/cerez-politikasi/)": "Otomatik (/cerez-politikasi/)",
+  "Automatic (%s)": "Otomatik (%s)",
   "Automatic (first open donation type with a goal)": "Otomatik (hedefi olan ilk açık bağış türü)",
   "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.": "Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.",
   "Automatic: the site is dark when the device is in dark mode": "Otomatik: cihaz koyu moddaysa site de koyu",
