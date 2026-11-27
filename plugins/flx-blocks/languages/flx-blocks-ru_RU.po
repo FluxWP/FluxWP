@@ -1610,7 +1610,7 @@ msgid "Add custom vector icons and SVGs to enhance your site design."
 msgstr "Добавить векторные иконы и СВГ для усовершенствования дизайна вашего участка."
 
 msgid "Manage Vector Graphics"
-msgstr "Управление графическими данными о векторах"
+msgstr "Управление векторной графикой"
 
 msgid "Advanced Header"
 msgstr "Авангард"

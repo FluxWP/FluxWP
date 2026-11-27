@@ -107,7 +107,7 @@
 .flxas-desk .flxas-ph-card{height:40px}
 @media (max-width:1100px){.flxas-appearance{grid-template-columns:minmax(0,1fr)}.flxas-preview{position:static}}
 @media (max-width:782px){
-.flxas-field{grid-template-columns:1fr;gap:6px}
+.flxas-field{grid-template-columns:minmax(0,1fr);gap:6px}
 .flxas-field>label{padding-top:0}
 .flxas-meta>div{grid-template-columns:1fr;gap:2px}
 .flxas-table thead{display:none}

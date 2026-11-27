@@ -545,7 +545,7 @@ return array(
   'Manage Lottie Animations' => 'Регулирование анимации лотти',
   'Vector Graphics' => 'Вектор Графия',
   'Add custom vector icons and SVGs to enhance your site design.' => 'Добавить векторные иконы и СВГ для усовершенствования дизайна вашего участка.',
-  'Manage Vector Graphics' => 'Управление графическими данными о векторах',
+  'Manage Vector Graphics' => 'Управление векторной графикой',
   'Advanced Header' => 'Авангард',
   'Build custom headers in the block editor and full site editing.' => 'Покупать специальные заголовки в редакторе блока и редактировать полный сайт.',
   'Manage Headers' => 'Управление заголовками',
