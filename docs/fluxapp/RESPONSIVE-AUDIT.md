@@ -1,6 +1,6 @@
 # Eklenti yönetim ekranları responsive incelemesi
 
-Tarih: 27 Kasım 2026. Kaynak: FluxWP `e0d6fb89` ve wp-extras `49007a44`; aşağıdaki düzeltmeler uygulanarak tekrar kontrol edildi.
+Tarih: 27 Kasım 2026. Kaynak: FluxWP `3f8390b9` ve wp-extras `49007a44`; aşağıdaki düzeltmeler uygulanarak tekrar kontrol edildi.
 
 ## Kapsam ve yöntem
 
@@ -29,7 +29,7 @@ Ortak değişiklikler Flux GraphQL ekran sunucusunda uygulanır; tüm eklentiler
 - Son ölçümlerde 149 menü adresinin beş temel genişliğinde belge/kontrol taşması, görünmeyen seçili sekme veya yakalanmamış JavaScript hatası kalmadı.
 - Ortak sekme davranışı için gerçek Chromium regresyon testi: daraltma, seçim değişikliği, kök değiştirme, odak ve dikey kaydırmanın korunması.
 - Modül TypeScript kontrolü, panel derlemesi ve App/AI paket bağlantı doğrulaması geçti.
-- Flux GraphQL 0.8.5, App 0.10.5, AI 0.36.1 ve Sertifikalar 2.4.1 paketleri: WordPress 7.1.4 ve ortak bağımlılıkların desteklediği WordPress 6.5 üzerinde temiz kurulum ve önceki sürümden güncelleme.
+- Flux GraphQL 0.8.5, App 0.10.5, AI 0.37.1 ve Sertifikalar 2.4.1 paketleri: WordPress 7.1.4 ve ortak bağımlılıkların desteklediği WordPress 6.5 üzerinde temiz kurulum ve önceki sürümden güncelleme.
 - Redis 0.1.2: temiz kurulum, 0.1.1'den güncelleme, Redis 8.8 üzerinde beş mevcut test dosyası ve reCAPTCHA ile her iki yükleme sırası.
 - Paket testlerinde dış HTTP kapalı olduğundan WordPress'in güncelleme sunucusuna ulaşamama uyarıları oluştu. Fatal veya HTTP 500 kalmadı. Ayrı CLI güncelleyici / PHP geliştirme sunucusu testinde OPcache kapatıldı; iki ayrı süreç aksi halde eski PHP dosyalarını önbellekte tutabiliyor.
 
@@ -37,6 +37,6 @@ Ortak değişiklikler Flux GraphQL ekran sunucusunda uygulanır; tüm eklentiler
 
 Komutlar ve ölçüm kuralları: [`tools/tests/responsive/README.md`](../../tools/tests/responsive/README.md). JSON sonuçları, ekran görüntüleri ve ZIP'ler teslim klasöründedir; kimlik doğrulama dosyaları teslim edilmez.
 
-Bu inceleme etkin eklentilerin erişilebilir yönetim menülerini kapsar. Gizli/özellik koşullu rotalar, tüm açılır pencereler, her editör durumu, birbirini dışlayan ön yüz preset'leri ve gerçek telefon donanımı ayrı kapsamdır. Dış servisler ve e-posta kapatıldı; ödeme, mesaj gönderimi veya gerçek sağlayıcı işlevi bu taramada doğrulanmadı. Karanlık tema kontrolü tüm menülerin tüm durumları yerine ana modül örneklemesidir.
+Bu inceleme etkin eklentilerin erişilebilir yönetim menülerini kapsar. Gizli/özellik koşullu rotalar, tüm açılır pencereler, her editör durumu, birbirini dışlayan ön yüz preset'leri ve gerçek telefon donanımı ayrı kapsamdır. Dış servisler ve e-posta kapatıldı; ödeme, mesaj gönderimi veya gerçek sağlayıcı işlevi bu taramada doğrulanmadı. Karanlık tema kontrolü tüm menülerin tüm durumları yerine 48 sayfada 96 görünümden oluşan ana modül örneklemesidir.
 
-Yayın paketleri: `flx-graphql` 0.8.5, `flx-app` 0.10.5, `flx-ai` 0.36.1, `flx-certificates` 2.4.1; wp-extras tarafında `flx-redis` 0.1.2.
+Yayın paketleri: `flx-graphql` 0.8.5, `flx-app` 0.10.5, `flx-ai` 0.37.1, `flx-certificates` 2.4.1; wp-extras tarafında `flx-redis` 0.1.2.
