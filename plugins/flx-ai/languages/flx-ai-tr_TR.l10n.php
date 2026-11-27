@@ -1737,5 +1737,11 @@ return array(
   'Flux Cloud did not answer.' => 'Flux Cloud cevap vermedi.',
   'Flux Cloud (account AI credits)' => 'Flux Cloud (hesap AI kredisi)',
   'Flux Cloud use must be auto, always or off.' => 'Flux Cloud kullanımı otomatik, her zaman ya da kapalı olmalı.',
+  'Requests use the OpenRouter key in Flux AI settings.' => 'İstekler Flux AI ayarlarındaki OpenRouter anahtarıyla gider.',
+  'No OpenRouter key in Flux AI settings. Enter it there; Flux AI sends the requests.' => 'Flux AI ayarlarında OpenRouter anahtarı yok. Oraya girin; istekleri Flux AI gönderir.',
+  'No OpenRouter key in Flux AI settings.' => 'Flux AI ayarlarında OpenRouter anahtarı yok.',
+  'OpenRouter did not accept the key in Flux AI settings.' => 'OpenRouter, Flux AI ayarlarındaki anahtarı kabul etmedi.',
+  'The OpenRouter key in Flux AI works. Spent so far: $%s, no spending limit on the key (set one on OpenRouter).' => 'Flux AI\'daki OpenRouter anahtarı çalışıyor. Şimdiye kadar harcanan: $%s; anahtarda harcama sınırı yok (OpenRouter\'da koyun).',
+  'The OpenRouter key in Flux AI works. Spent so far: $%1$s of the $%2$s limit.' => 'Flux AI\'daki OpenRouter anahtarı çalışıyor. $%2$s sınırın $%1$s kadarı harcandı.',
  ),
 );

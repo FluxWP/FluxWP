@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.37.0
+- Aktarım (relay) API'si: aynı sitedeki başka eklenti (fluxwp.com'da Flux Cloud'un AI kredisi proxy'si) OpenRouter biçimli isteği Flux AI üzerinden, Flux AI › Ayarlar'daki OpenRouter anahtarıyla gönderir; anahtar başka eklentide tutulmaz. `flx_ai_relay_info()`, `flx_ai_relay( $body, $opts )` (akış dahil), `flx_ai_relay_key_check()`. Yalnız sitenin kendi anahtarı kullanılır, Flux Cloud kredisine dönmez.
+
 ## 0.36.0
 - Flux Cloud AI kredisi: site bir FluxWP hesabına bağlıysa (Flux Setup › FluxWP hesabı) AI anahtar girmeden hesabın aylık AI kredisiyle çalışır (Flux Cloud 0.3.0+). İstek OpenRouter biçiminde hesabın Flux Cloud proxy'sine sitenin Flux Cloud token'ıyla gider; akış (streaming) ve araç çağrıları aynen çalışır. Kendi anahtarı olan site eskisi gibi kendi anahtarını kullanır (mevcuta ek).
 - Ayarlar › "Flux Cloud AI kredisi" kartı: bu ay kullanılan / aylık / kalan kredi, bu sitenin kullanımı, yenilenme tarihi, "Kredi al ya da planı değiştir" bağlantısı, plan yalnız temel modelliyse uyarı. Seçim (`cloud_ai`): kendi anahtarı yoksa (varsayılan), her zaman, hiçbir zaman.
