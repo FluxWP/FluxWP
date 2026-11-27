@@ -43,7 +43,7 @@ final class FLXK_Cloud {
 	 * @return mixed
 	 */
 	public static function proof_first( $result, $server, $request ) {
-		if ( null !== $result || ! $request instanceof WP_REST_Request ) {
+		if ( null !== $result ) {
 			return $result;
 		}
 		if ( 'GET' !== $request->get_method() || '/flx-setup/v1/cloud/proof' !== untrailingslashit( strtolower( $request->get_route() ) ) ) {
