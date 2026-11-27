@@ -1743,5 +1743,12 @@ return array(
   'OpenRouter did not accept the key in Flux AI settings.' => 'OpenRouter, Flux AI ayarlarındaki anahtarı kabul etmedi.',
   'The OpenRouter key in Flux AI works. Spent so far: $%s, no spending limit on the key (set one on OpenRouter).' => 'Flux AI\'daki OpenRouter anahtarı çalışıyor. Şimdiye kadar harcanan: $%s; anahtarda harcama sınırı yok (OpenRouter\'da koyun).',
   'The OpenRouter key in Flux AI works. Spent so far: $%1$s of the $%2$s limit.' => 'Flux AI\'daki OpenRouter anahtarı çalışıyor. $%2$s sınırın $%1$s kadarı harcandı.',
+  'No OpenRouter or Anthropic key in Flux AI settings.' => 'Flux AI ayarlarında OpenRouter ya da Anthropic anahtarı yok.',
+  'No OpenRouter or Anthropic key in Flux AI settings. Enter one there; Flux AI sends the requests.' => 'Flux AI ayarlarında OpenRouter ya da Anthropic anahtarı yok. Oraya birini girin; istekleri Flux AI gönderir.',
+  'Only the Anthropic key is set: every request uses a Claude model. Add an OpenRouter key in Flux AI for other models.' => 'Yalnız Anthropic anahtarı girili: her istek bir Claude modeliyle gider. Başka modeller için Flux AI\'a OpenRouter anahtarı ekleyin.',
+  'Claude models use the Anthropic key, other models the OpenRouter key in Flux AI settings.' => 'Claude modelleri Flux AI ayarlarındaki Anthropic anahtarını, diğer modeller OpenRouter anahtarını kullanır.',
+  'Anthropic did not accept the key in Flux AI settings.' => 'Anthropic, Flux AI ayarlarındaki anahtarı kabul etmedi.',
+  'The Anthropic key in Flux AI works.' => 'Flux AI\'daki Anthropic anahtarı çalışıyor.',
+  'No Anthropic key in Flux AI settings.' => 'Flux AI ayarlarında Anthropic anahtarı yok.',
  ),
 );

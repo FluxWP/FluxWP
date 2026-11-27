@@ -549,10 +549,18 @@ Site Flux Cloud'a bağlıysa (Flux Setup `FLXK_Cloud::connected()`) ve ilgili sa
 - Claude kimliği OpenRouter'a çevrilir: filtre `flxai_cloud_model_id( $id, $provider )`.
 - Hata (402 kredi bitti, 403 plan modeli içermiyor, 429 sınır): `WP_Error( 'flxai_cloud', <Flux Cloud mesajı>, { provider: 'cloud', status, buy_url } )`.
 
-## Aktarım (relay) API'si (0.37.0)
+## Aktarım (relay) API'si (0.37.0, Anthropic 0.37.1)
 
-Aynı sitedeki başka bir eklentinin (fluxwp.com'da Flux Cloud AI kredisi proxy'si) AI isteğini Flux AI üzerinden göndermesi için. Anahtar çağıran eklentide tutulmaz; yalnız Flux AI › Ayarlar'daki OpenRouter anahtarı (ya da `FLXAI_KEY_OPENROUTER`) kullanılır. Flux Cloud kredisine hiç dönmez (döngü olmaz). Çağıran önce `function_exists( 'flx_ai_relay' )` ile Flux AI'ın açık olduğuna bakar.
+Aynı sitedeki başka bir eklentinin (fluxwp.com'da Flux Cloud AI kredisi proxy'si) AI isteğini Flux AI üzerinden göndermesi için. Anahtar çağıran eklentide tutulmaz; Flux AI › Ayarlar'daki OpenRouter ve Anthropic (Claude) anahtarları (ya da `FLXAI_KEY_OPENROUTER` / `FLXAI_KEY_ANTHROPIC`) kullanılır. Flux Cloud kredisine hiç dönmez (döngü olmaz). Çağıran önce `function_exists( 'flx_ai_relay' )` ile Flux AI'ın açık olduğuna bakar.
 
-- `flx_ai_relay_info()` → `{ ready, provider: 'openrouter', default, key_end, settings_url, message }`. `default`: Flux AI varsayılan modeli OpenRouter kimliğiyle (`claude:claude-haiku-5-5` → `anthropic/claude-haiku-5.5`), seçilmemişse `google/gemini-2.5-flash`.
-- `flx_ai_relay( array $body, array $opts )`: OpenRouter `/chat/completions` gövdesi aynen gider (`usage.include` eklenir). `$opts`: `referer`, `title`, `timeout`, akış için `on_start( int $code )` ve `on_sse( string $lines )` (ham SSE satırları, `[DONE]` hariç; akışı çağıran bitirir). Dönüş `{ code, json, raw, usage, model, id, cost, streamed }` ya da `WP_Error` (`flxai_relay_key` 503, `flxai_relay_http` 502). `cost` USD: `usage.cost`, yoksa OpenRouter `/generation`'dan bir kez sorulur, bilinmiyorsa `null`.
-- `flx_ai_relay_key_check()` → `{ usage, limit, message }` (OpenRouter `/key`) ya da `WP_Error`.
+Sağlayıcı seçimi (`$opts['provider']`):
+- `auto` (varsayılan): Claude modeli (`anthropic/…`, `claude:…`, `claude-…`) ve Anthropic anahtarı varsa Anthropic'e, diğerleri OpenRouter'a. Yalnız Anthropic anahtarı varsa her istek Anthropic'e gider.
+- `openrouter`: hep OpenRouter (Claude modelleri de OpenRouter kimliğiyle).
+- `anthropic`: hep Anthropic. Claude olmayan model Flux AI varsayılan Claude modeline, o da yoksa `claude-haiku-4-5`'e döner.
+- Seçilen sağlayıcının anahtarı yoksa `WP_Error flxai_relay_key` (503).
+
+Anthropic'e OpenAI uyumlu `/v1/chat/completions` ile gidilir (`x-api-key`, `anthropic-version`); OpenRouter'a özel alanlar (`usage`, `plugins`, `reasoning`, `provider`, `transforms`, `seed`) çıkarılır, akışta `stream_options.include_usage` eklenir. Kimlik `anthropic/claude-haiku-4.5` → `claude-haiku-4-5` (filtre `flxai_relay_anthropic_id`); dönüşte model yine OpenRouter biçimindedir.
+
+- `flx_ai_relay_info()` → `{ ready, provider, providers: { openrouter?: '1234', anthropic?: '5678' }, keys: 'OpenRouter …1234, Anthropic (Claude) …5678', default, key_end, settings_url, message }`. `default`: Flux AI varsayılan modeli OpenRouter kimliğiyle (`claude:claude-haiku-5-5` → `anthropic/claude-haiku-5.5`); seçilmemişse `google/gemini-2.5-flash` (yalnız Anthropic varsa `anthropic/claude-haiku-4.5`).
+- `flx_ai_relay( array $body, array $opts )`: OpenRouter `/chat/completions` gövdesi. `$opts`: `provider`, `referer`, `title`, `timeout`, akış için `on_start( int $code )` ve `on_sse( string $lines )` (ham SSE satırları, `[DONE]` hariç; akışı çağıran bitirir). Dönüş `{ code, json, raw, usage, model, id, cost, streamed, provider }` ya da `WP_Error` (`flxai_relay_key` 503, `flxai_relay_http` 502). `cost` USD: OpenRouter'da `usage.cost`, yoksa `/generation`'dan bir kez sorulur; Anthropic'te Flux AI fiyat tablosundan (önbellekli token dahil); bilinmiyorsa `null`.
+- `flx_ai_relay_key_check()` → `{ usage, limit, message }` (OpenRouter `/key`, Anthropic `/models`; ikisi varsa iki mesaj birleşir) ya da `WP_Error`.

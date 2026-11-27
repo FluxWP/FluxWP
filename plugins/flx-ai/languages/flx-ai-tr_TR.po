@@ -4044,3 +4044,24 @@ msgstr "Flux AI'daki OpenRouter anahtarı çalışıyor. Şimdiye kadar harcanan
 
 msgid "The OpenRouter key in Flux AI works. Spent so far: $%1$s of the $%2$s limit."
 msgstr "Flux AI'daki OpenRouter anahtarı çalışıyor. $%2$s sınırın $%1$s kadarı harcandı."
+
+msgid "No OpenRouter or Anthropic key in Flux AI settings."
+msgstr "Flux AI ayarlarında OpenRouter ya da Anthropic anahtarı yok."
+
+msgid "No OpenRouter or Anthropic key in Flux AI settings. Enter one there; Flux AI sends the requests."
+msgstr "Flux AI ayarlarında OpenRouter ya da Anthropic anahtarı yok. Oraya birini girin; istekleri Flux AI gönderir."
+
+msgid "Only the Anthropic key is set: every request uses a Claude model. Add an OpenRouter key in Flux AI for other models."
+msgstr "Yalnız Anthropic anahtarı girili: her istek bir Claude modeliyle gider. Başka modeller için Flux AI'a OpenRouter anahtarı ekleyin."
+
+msgid "Claude models use the Anthropic key, other models the OpenRouter key in Flux AI settings."
+msgstr "Claude modelleri Flux AI ayarlarındaki Anthropic anahtarını, diğer modeller OpenRouter anahtarını kullanır."
+
+msgid "Anthropic did not accept the key in Flux AI settings."
+msgstr "Anthropic, Flux AI ayarlarındaki anahtarı kabul etmedi."
+
+msgid "The Anthropic key in Flux AI works."
+msgstr "Flux AI'daki Anthropic anahtarı çalışıyor."
+
+msgid "No Anthropic key in Flux AI settings."
+msgstr "Flux AI ayarlarında Anthropic anahtarı yok."
