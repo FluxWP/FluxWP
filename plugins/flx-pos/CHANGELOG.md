@@ -1,5 +1,10 @@
 # Flux POS Entegrator
 
+## 0.4.1
+
+- Ödeme yöntemleri, POS hesapları, işlemler ve ayarlar FluxWP’nin ortak React bileşenleriyle yeniden düzenlendi. Ödeme önizlemesi, sağlayıcı seçimi, hesap formu ve iade penceresi yenilendi. İşlemler dar ekranda kart görünümüne geçer.
+- Paket ikonu WordPress menüsünde, ekran başlığında ve Flux App menüsünde görünür. Flux Admin’in pastel ikon seçimi desteklenir.
+
 ## 0.4.0
 - Flux Donate artık kendi kart ödeme sistemini taşımıyor; tek kart kuralı, blok ödemede gösterim, ödeme logoları ve ödeme yöntemleri ekranı Donate kurulu olsa da Flux POS'ta çalışır.
 - Kayıtlı kartla sonraki çekimler için ortak API: `flxpos_can_save_card( $currency )`, `flxpos_saved_card( $order )`, `flxpos_charge_saved_order( $order, $card )`. Siparişte `_flxpos_save` = yes ise kart saklanır. Önceki çekimin cevabı gelmediyse (işlem beklemede) yeniden çekilmez.
