@@ -4026,3 +4026,21 @@ msgstr "Flux Cloud (hesap AI kredisi)"
 
 msgid "Flux Cloud use must be auto, always or off."
 msgstr "Flux Cloud kullanımı otomatik, her zaman ya da kapalı olmalı."
+
+msgid "Requests use the OpenRouter key in Flux AI settings."
+msgstr "İstekler Flux AI ayarlarındaki OpenRouter anahtarıyla gider."
+
+msgid "No OpenRouter key in Flux AI settings. Enter it there; Flux AI sends the requests."
+msgstr "Flux AI ayarlarında OpenRouter anahtarı yok. Oraya girin; istekleri Flux AI gönderir."
+
+msgid "No OpenRouter key in Flux AI settings."
+msgstr "Flux AI ayarlarında OpenRouter anahtarı yok."
+
+msgid "OpenRouter did not accept the key in Flux AI settings."
+msgstr "OpenRouter, Flux AI ayarlarındaki anahtarı kabul etmedi."
+
+msgid "The OpenRouter key in Flux AI works. Spent so far: $%s, no spending limit on the key (set one on OpenRouter)."
+msgstr "Flux AI'daki OpenRouter anahtarı çalışıyor. Şimdiye kadar harcanan: $%s; anahtarda harcama sınırı yok (OpenRouter'da koyun)."
+
+msgid "The OpenRouter key in Flux AI works. Spent so far: $%1$s of the $%2$s limit."
+msgstr "Flux AI'daki OpenRouter anahtarı çalışıyor. $%2$s sınırın $%1$s kadarı harcandı."
