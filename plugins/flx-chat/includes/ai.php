@@ -55,6 +55,14 @@ function flxc_ai_provider_key( $provider ) {
 	return flxc_ai_hub() ? (string) flxai_provider_key( $provider ) : '';
 }
 
+/** The provider's models can be called: own key in Flux AI, or the FluxWP account's Flux Cloud AI credits (Flux AI 0.36+). */
+function flxc_ai_provider_usable( $provider ) {
+	if ( ! flxc_ai_hub() ) {
+		return false;
+	}
+	return function_exists( 'flxai_provider_usable' ) ? (bool) flxai_provider_usable( $provider ) : '' !== (string) flxai_provider_key( $provider );
+}
+
 /**
  * Flux AI'ye istek: mesajlar aynı (OpenAI) biçimde. Sistem metni "## Bilinenler"den bölünür (sabit kısım önbellek
  * kırılma noktası). Claude düşünme blokları araç turlarında korunur (_raw ↔ tool_calls[0]._claude). Hata kodları
@@ -155,7 +163,7 @@ function flxc_ai_model( $purpose = 'suggest' ) {
 
 function flxc_ai_ready() {
 	$m = flxc_ai_model();
-	return flxc_ai_hub() && '' !== $m && '' !== flxc_ai_provider_key( flxc_ai_model_provider( $m ) );
+	return flxc_ai_hub() && '' !== $m && flxc_ai_provider_usable( flxc_ai_model_provider( $m ) );
 }
 
 /* Yerleşik öneri sağlayıcısı. */
@@ -191,7 +199,7 @@ function flxc_ai_chat( array $messages, array $opts = array() ) {
 	if ( '' === $model ) {
 		return new WP_Error( 'flxc_ai_model', __( 'No AI model selected.', 'flx-chat' ) );
 	}
-	if ( '' === flxc_ai_provider_key( flxc_ai_model_provider( $model ) ) ) {
+	if ( ! flxc_ai_provider_usable( flxc_ai_model_provider( $model ) ) ) {
 		return new WP_Error( 'flxc_ai_key', 'anthropic' === flxc_ai_model_provider( $model ) ? __( 'No Anthropic (Claude) key has been entered in Flux AI.', 'flx-chat' ) : __( 'No OpenRouter key has been entered in Flux AI.', 'flx-chat' ) );
 	}
 	return flxc_ai_hub_chat( $messages, $opts, $model );

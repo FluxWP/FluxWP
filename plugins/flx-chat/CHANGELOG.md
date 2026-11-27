@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.55.2
+- AI asistan ve öneriler, sitede kendi anahtarı yokken FluxWP hesabının Flux Cloud AI kredisiyle çalışır (Flux AI 0.36+): "Yapay zekâ anahtarı ya da modeli girilmemiş" uyarısı kredi açıkken çıkmaz. `flxc_ai_provider_usable()`.
+
 ## 1.55.1
 - Asistanın kart ödeme bağlantısı Flux POS "Kart ile öde" yöntemini kullanır (Flux Donate'in iyzico yöntemi kaldırıldı). Yöntem kapalıysa kart bağlantısı verilmez; `flxc_pay_card_gateway` filtresi değişmedi.
 
