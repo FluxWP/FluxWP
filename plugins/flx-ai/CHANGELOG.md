@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.36.1
+- Beceri kartları 320 piksel telefonlarda kullanılabilir genişliğe sığar.
+
 ## 0.36.0
 - Flux Cloud AI kredisi: site bir FluxWP hesabına bağlıysa (Flux Setup › FluxWP hesabı) AI anahtar girmeden hesabın aylık AI kredisiyle çalışır (Flux Cloud 0.3.0+). İstek OpenRouter biçiminde hesabın Flux Cloud proxy'sine sitenin Flux Cloud token'ıyla gider; akış (streaming) ve araç çağrıları aynen çalışır. Kendi anahtarı olan site eskisi gibi kendi anahtarını kullanır (mevcuta ek).
 - Ayarlar › "Flux Cloud AI kredisi" kartı: bu ay kullanılan / aylık / kalan kredi, bu sitenin kullanımı, yenilenme tarihi, "Kredi al ya da planı değiştir" bağlantısı, plan yalnız temel modelliyse uyarı. Seçim (`cloud_ai`): kendi anahtarı yoksa (varsayılan), her zaman, hiçbir zaman.

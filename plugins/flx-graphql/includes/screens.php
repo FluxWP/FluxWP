@@ -645,6 +645,8 @@ add_action(
 			1
 		);
 		wp_enqueue_style( 'flx-screens', FLXGQL_URL . 'assets/css/screens.css', array(), FLXGQL_VERSION );
+		wp_enqueue_style( 'flx-screens-responsive', FLXGQL_URL . 'assets/css/responsive.css', array( 'flx-screens' ), FLXGQL_VERSION );
+		wp_enqueue_script( 'flx-screens-responsive', FLXGQL_URL . 'assets/js/responsive.js', array( 'flx-screens' ), FLXGQL_VERSION, true );
 		add_filter(
 			'script_loader_tag',
 			static function ( $tag, $h ) use ( $modules ) {

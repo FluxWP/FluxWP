@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.10.5
+- Uygulama ayarlarında etiket ve alanlar telefonda tek sütuna geçer; sonradan eklenen masaüstü sütun kuralının mobil düzeni ezmesi giderildi.
+
 ## 0.10.4
 - Uygulama ve Uygulama erişimi ekranları eski klasik görünümle birebir: alan etiketleri kutunun üstünde, 200 px etiket sütunu, modül tablosunda gri kod ve rozetler, erişim sayfasında başlık altında "Uygulama ayarları" düğmesi.
 

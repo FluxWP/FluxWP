@@ -110,7 +110,7 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-tasks-empty ul{margin:6px 0 0 18px}
 /* Skills */
 .flxai-skill-group{margin:16px 0 8px;font-size:14px}
-.flxai-skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.flxai-skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:12px}
 .flxai-skill{border:1px solid var(--bd);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px;background:var(--card)}
 .flxai-skill.is-off{opacity:.65}
 .flxai-skill-desc{font-size:13px;margin:0;flex:1}
@@ -139,7 +139,7 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-mcp-switches{display:flex;flex-direction:column;gap:8px;margin:0 0 8px}
 .flxai-mcp-fresh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .flxai-mcp-scope{margin:10px 0}.flxai-mcp-scope summary{cursor:pointer}
-.flxai-mcp-scope-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px;margin-top:6px}
+.flxai-mcp-scope-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:6px;margin-top:6px}
 /* Connections */
 .flxai-mcpc-list td{vertical-align:top}
 .flxai-mcpc-auth{display:flex;flex-direction:column;gap:6px}
@@ -172,7 +172,7 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-app .flxai-btn{background:var(--flux-surface);min-height:34px;border-radius:8px}
 .flxai-app .flxai-btn.is-small{min-height:28px;border-radius:6px}
 .flxai-app .flxai-btn.is-primary{background:var(--ac)}
-.flxai-app .flxai-skill-grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.flxai-app .flxai-skill-grid{grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr))}
 .flxai-app .flxai-nowrap{white-space:nowrap}
 .flxai-app .flxai-skill-slug{align-self:flex-start;display:inline-block}
 .flxai-app .flxai-kpi-l{font-size:12px;font-weight:600;color:var(--mut,var(--flux-text-muted));text-transform:uppercase;letter-spacing:.03em}

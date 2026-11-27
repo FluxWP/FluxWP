@@ -1,0 +1,44 @@
+/*
+ * Shared bounds for registered Flux admin screens, including embedded legacy forms.
+ * Keep controls inside their own fields while tables and tab strips scroll locally.
+ */
+.flx-screen.flux-root,
+.flx-screen .flx-page,
+.flx-screen .flx-page__body {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
+.flx-screen :where(form, fieldset, .field) {
+  min-inline-size: 0;
+}
+
+.flx-screen :is(input:not([type=checkbox]):not([type=radio]), select, textarea) {
+  box-sizing: border-box;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
+.flx-screen .flx-page__actions {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  flex-wrap: wrap;
+}
+
+.flx-screen .flx-page__actions > :is(button, a) {
+  max-inline-size: 100%;
+  white-space: normal;
+  height: auto;
+  min-block-size: 36px;
+}
+
+.flx-screen :is(.flx-tabs, .flxa-list, .flxa-pages) {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
+/* An absolutely positioned screen-reader label in a wide table must not widen the page. */
+.flx-screen .screen-reader-text:not(:focus) {
+  inset-inline-start: 0;
+  inset-block-start: 0;
+}

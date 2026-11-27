@@ -126,7 +126,7 @@
 .flxas-card.flxas-form{background:transparent;border:0;padding:0;border-radius:0}
 /* App settings, classic spacing (old form-table: 200px label column, roomier rows) */
 .flxas-form{gap:28px}
-.flxas-field{grid-template-columns:200px 1fr}
+@media (min-width:783px){.flxas-field{grid-template-columns:200px minmax(0,1fr)}}
 .flxas-tabs select{max-width:240px}
 .flxas-tabs input{width:110px}
 .flxas-table-wrap{max-width:1100px}
