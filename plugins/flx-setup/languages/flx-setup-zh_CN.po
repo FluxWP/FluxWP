@@ -158,7 +158,7 @@ msgid "Preset not found."
 msgstr "未找到预设。"
 
 msgid "Apply"
-msgstr "申请"
+msgstr "应用"
 
 msgid "What"
 msgstr "什么"
@@ -179,7 +179,7 @@ msgid "Conflict: %s also writes this value; the last one applied wins."
 msgstr "冲突:%s也写入这个值;最后应用的获胜。"
 
 msgid "Apply anyway"
-msgstr "Apply anyway"
+msgstr "反反反反反反反套用"
 
 msgid "Apply (%d changes)"
 msgstr "应用(%d更改)"
@@ -914,7 +914,7 @@ msgid "Will also be installed / activated:"
 msgstr "还将安装/激活:"
 
 msgid "wordpress.org"
-msgstr "wordpress.org"
+msgstr "电话:"
 
 msgid "Remove"
 msgstr "删除"
@@ -1699,7 +1699,7 @@ msgid "Update checks always send the site address; the server also looks up the 
 msgstr "更新检查始终发送站点地址;服务器还会根据 IP 查找国家/地区,并且不存储 IP(强制记录)。启用后,更新检查还会发送 WordPress 和 PHP 版本、时区和语言,并且 FluxWP 插件版本和错误会匿名发送。关闭时,仅发送需要的更新,并且更新的工作方式相同。您可以随时在此处撤回同意。"
 
 msgid "Anonymous usage data"
-msgstr "Anonymous usage data"
+msgstr "匿名使用数据"
 
 msgid "On"
 msgstr "开"
@@ -1923,44 +1923,257 @@ msgstr "更新服务器出现临时错误。请一分钟后重试。"
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr "下载失败(HTTP %1$d:%2$s)。%3$s"
 
-msgid "Install Flux GraphQL"
-msgstr "安装 Flux GraphQL"
+msgid "Select all changes"
+msgstr "选择所有变动"
 
-msgid "Activate Flux GraphQL"
-msgstr "启用 Flux GraphQL"
+msgid "Select all protected values (overwrite)"
+msgstr "选择所有受保护的价值观(主权)"
 
-msgid "Flux GraphQL settings"
-msgstr "Flux GraphQL 设置"
+msgid "Select %s"
+msgstr "选择%s"
 
-msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
-msgstr "%1$s 需要 PHP %2$s 或更高版本;本站运行的是 PHP %3$s。请在主机面板中升级 PHP 版本。"
+msgid "Apply selected changes (%d)"
+msgstr "适当选择的变动(%d )"
 
-msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
-msgstr "Flux GraphQL 服务器未运行,%s 无法加载数据。请打开 Flux GraphQL 设置进行修复。"
+msgid "The sign-in link expired. Start again with \"Sign in with FluxWP\"."
+msgstr "签名内链接过期。 重新开始“ 与 FluxWP 签入 FluxWP ” 。"
 
-msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
-msgstr "%s 需要 Flux GraphQL 才能加载数据。请安装并启用它,只需几秒钟。"
+msgid "FluxWP did not return a key. Try again."
+msgstr "FluxWP 没有回去 key。"
 
-msgid "PHP version"
-msgstr "PHP 版本"
+msgid "FluxWP could not be reached: %s"
+msgstr "FluxWP 无法到达: %s"
 
-msgid "PHP %s. FluxWP GraphQL packages run on it."
-msgstr "PHP %s。FluxWP GraphQL 包可在此版本上运行。"
+msgid "FluxWP answered with HTTP %d."
+msgstr "FluxWP 答复HTTP %d。"
 
-msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
-msgstr "PHP %1$s。新的 FluxWP 包(Flux GraphQL 及使用它的包)需要 PHP %2$s 或更高版本:请在主机面板中升级。"
+msgid "This site is not connected to a FluxWP account."
+msgstr "这个地点与一个地点没有联系 FluxWP 账户。"
 
-msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
-msgstr "Flux GraphQL %s 已安装并正常运行;没有与单独安装的 WPGraphQL 冲突。"
+msgid "Another request is renewing the session. Try again in a moment."
+msgstr "另一项请求是延长会议,现在再次举行。"
 
-msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
-msgstr "Flux GraphQL 已启用,但其 GraphQL 服务器未运行(通常是单独安装了不受支持的 WPGraphQL),因此 GraphQL 页面已关闭。"
+msgid "Connecting failed. Try again."
+msgstr "连接失败。 再试一次 。"
 
-msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
-msgstr "以下包需要未启用的 Flux GraphQL:%s。它们的页面无法加载数据。"
+msgid "Connected to your FluxWP account. Your plan's packages are on the Packages screen."
+msgstr "已连接到您的 FluxWP 账户。您的计划包包在软件包屏幕上。"
 
-msgid "Flux GraphQL is installed but not active. No active package needs it."
-msgstr "Flux GraphQL 已安装但未启用。没有已启用的包需要它。"
+msgid "Connecting was cancelled on FluxWP."
+msgstr "FluxWP 连接已取消 。"
 
-msgid "Flux GraphQL"
-msgstr "Flux GraphQL"
+msgid "Disconnected. Installed plugins keep working; updates of paid packages stop."
+msgstr "互不相连,停滞不前的pl器不断工作;有偿包件的更新。"
+
+msgid "Plan information refreshed."
+msgstr "计划信息更新。"
+
+msgid "FluxWP %1$s · %2$s"
+msgstr "FluxWP %1$s;%2$s"
+
+msgid "Subscription ended: the Free plan applies, paid updates are paused."
+msgstr "截止时间:适用自由计划,有偿更新被暂停。"
+
+msgid "Renews or ends on %s"
+msgstr "更新或结束 %s"
+
+msgid "Sets: %s"
+msgstr "Sets: %s"
+
+msgid "%d sites connected"
+msgstr "%d 连接点"
+
+msgid "%1$d of %2$d sites"
+msgstr "%1$d of %2$d 地点"
+
+msgid "Checked %s"
+msgstr "已检查%s"
+
+msgid "Connect your FluxWP account"
+msgstr "Connect your FluxWP 账户"
+
+msgid "Sign in or sign up on fluxwp.com: this site gets its update key and the packages of your plan automatically. The Free plan needs no card."
+msgstr "签名或注册于talentwp.com: 此网站会自动获得更新键和您的计划的包件。 Free 计划不需要卡片 。"
+
+msgid "Manage account"
+msgstr "管理账户"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "Disconnect"
+msgstr "Disconnect"
+
+msgid "Sign in with FluxWP"
+msgstr "签署日期:FluxWP"
+
+msgid "Choose one of the listed periods."
+msgstr "选择所列时期之一。"
+
+msgid "FluxWP account"
+msgstr "FluxWP account"
+
+msgid "Connected, plan %s."
+msgstr "连接,计划 %s."
+
+msgid "Not connected. Sign in with FluxWP to get the packages of your plan."
+msgstr "未连接。 FluxWP to get the packages of your plan."
+
+msgid "Select at least one change."
+msgstr "至少选择一次改动。"
+
+msgid "The selected changes are no longer available. Refresh the preview."
+msgstr "所选择的改动已不复存在。"
+
+msgid "Also select the required items: %s"
+msgstr "并选择所需项目: %s"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript 此 screen幕需要。"
+
+msgid "Contact"
+msgstr "联系方式"
+
+msgid "The server asked us to slow down, trying again shortly…"
+msgstr "服务器要求我们放慢,不久又一次尝试。"
+
+msgid "The update engine is not available: the old Flux Updater plugin is still active. Deactivate it."
+msgstr "更新引.尚未到位:旧的Flux更新厂仍在运行中。"
+
+msgid "All"
+msgstr "全部"
+
+msgid "FluxWP"
+msgstr "FluxWP"
+
+msgid "Themes"
+msgstr "主题"
+
+msgid "WordPress & translations"
+msgstr "WordPress 译文"
+
+msgid "Folder"
+msgstr "文件夹"
+
+msgid "Slug"
+msgstr "子弹"
+
+msgid "Category"
+msgstr "类别"
+
+msgid "Released"
+msgstr "释放"
+
+msgid "Translation"
+msgstr "翻译"
+
+msgid "Core"
+msgstr "核心"
+
+msgid "General"
+msgstr "一般"
+
+msgid "File"
+msgstr "文件"
+
+msgid "Author"
+msgstr "作者"
+
+msgid "Automatic updates are turned off for this site."
+msgstr "该网站的自动更新被撤销。"
+
+msgid "Automatic updates turned on for %d package."
+msgid_plural "Automatic updates turned on for %d packages."
+msgstr[0] "自动更新 %d 一揽子计划。"
+
+msgid "Automatic updates turned off for %d package."
+msgid_plural "Automatic updates turned off for %d packages."
+msgstr[0] "Automatic updates turned off for %d 一揽子计划。"
+
+msgid "Update backup retention is set on the Flux Backup settings page."
+msgstr "备份更新保留在Flux备用设施网页上。"
+
+msgid "Enter 1 to 365 days."
+msgstr "1至365天。"
+
+msgid "Filter packages"
+msgstr "成套材料"
+
+msgid "Updates available"
+msgstr "现有最新情况"
+
+msgid "Search plugins and themes"
+msgstr "搜索虫害和主题"
+
+msgid "Search plugins and themes…"
+msgstr "搜索插件和主题..."
+
+msgid "Only updates"
+msgstr "只有更新"
+
+msgid "Plugins, themes and updates"
+msgstr "成果、主题和更新"
+
+msgid "Turn on automatic updates"
+msgstr "自动更新"
+
+msgid "Turn off automatic updates"
+msgstr "自动更新"
+
+msgid "Auto-update"
+msgstr "自动化日期"
+
+msgid "Nothing matches this filter."
+msgstr "这条过.器没有什么同比。"
+
+msgid "No updates yet."
+msgstr "尚未更新 。"
+
+msgid "Updating %s…"
+msgstr "Updating %s ..."
+
+msgid "Retry failed ones"
+msgstr "重试失败失败者"
+
+msgid "Before updating %d packages"
+msgstr "更新前 %d 包 包"
+
+msgid "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support."
+msgstr "This FluxWP 包件地址不是预期的签名形式,因此没有安装。 FluxWP support."
+
+msgid "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute."
+msgstr "无法下载货包签字(%s),包件没有安装,一分钟就再次 installed。"
+
+msgid "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support."
+msgstr "%1$s %2$s 无有效 FluxWP 签署(HTTP) %3$d因而没有安装。 FluxWP support."
+
+msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
+msgstr "The FluxWP 签字 %1$s %2$s 不能与下载的档案相匹配,因此没有安装,包件可能在服务器上或服务器上有所改动。 FluxWP support."
+
+msgid "Translations"
+msgstr "翻译"
+
+msgid "New translations: %s"
+msgstr "新的译文:%s"
+
+msgid "All translations are up to date."
+msgstr "所有译文都更新。"
+
+msgid "%d update"
+msgid_plural "%d updates"
+msgstr[0] "%d 更新"
+
+msgid "On for all FluxWP packages (FluxWP Panel › Settings)."
+msgstr "人人共享 FluxWP 包 件FluxWP 小组讨论。"
+
+msgid "No download available"
+msgstr "无下载"
+
+msgid "Not installed: %s"
+msgstr "未安装:%s"
+
+msgid "WordPress.org still offers a newer translation: %s. The file could not be written or the language folder is read-only."
+msgstr "WordPress .org 仍然提供新的译文:%s . 文档无法写成,或语言fold览。"
+
+msgid "%s updated."
+msgstr "%s 更新。"

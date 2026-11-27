@@ -1469,7 +1469,7 @@ msgid "File upload"
 msgstr "Upload de arquivo"
 
 msgid "Tel"
-msgstr "Tel"
+msgstr "Tel."
 
 msgid "Longer Text"
 msgstr "Texto mais longo"
@@ -1706,7 +1706,7 @@ msgid "Copy Shortcode"
 msgstr "Copiar código curto"
 
 msgid "ShortCode"
-msgstr "ShortCode"
+msgstr "Coisa curta"
 
 msgid "Copy Confirmation Code"
 msgstr "Copiar código de confirmação"
@@ -1862,7 +1862,7 @@ msgid "Longitude"
 msgstr "Longitude"
 
 msgid "e.g."
-msgstr "e.g."
+msgstr "por exemplo."
 
 msgid "(Avoid adding JavaScript or jQuery codes to HTML for security reasons.)"
 msgstr "(Evite adicionar códigos JavaScript ou jQuery ao HTML por motivos de segurança.)"
@@ -1970,7 +1970,7 @@ msgid "Keep Pro"
 msgstr "KeepPro"
 
 msgid "Keep Free Plus"
-msgstr "Keep Free Plus"
+msgstr "Mantenha-se livre Plus"
 
 msgid "Switch to Free Plus"
 msgstr "Mudar para Free Plus"
@@ -2570,7 +2570,7 @@ msgid "Not Found"
 msgstr "Não encontrado"
 
 msgid "Editor"
-msgstr "Editor"
+msgstr "Editora"
 
 msgid "Please add the shortcode_message shortcode to the email template."
 msgstr "Adicione o código curto shortcode_message ao modelo de e-mail."
@@ -2894,7 +2894,7 @@ msgid "Max"
 msgstr "Máx."
 
 msgid "Min"
-msgstr "Min"
+msgstr "Minuto"
 
 msgid "Minimum entry must be lower than the maximum entry"
 msgstr "A entrada mínima deve ser menor que a entrada máxima"
@@ -4262,7 +4262,7 @@ msgid "Header Children"
 msgstr "Cabeçalho Filhos"
 
 msgid "Links"
-msgstr "Links"
+msgstr "Ligações em liga"
 
 msgid "Insert shortcode:"
 msgstr "Insira o código de acesso:"
@@ -4430,7 +4430,7 @@ msgid "Custom HTML content"
 msgstr "Conteúdo HTML personalizado"
 
 msgid "John Doe"
-msgstr "John Doe"
+msgstr "John Doe."
 
 msgid "This is a sample form submission."
 msgstr "Este é um exemplo de envio de formulário."
@@ -4844,7 +4844,7 @@ msgid "Pasta"
 msgstr "Massa"
 
 msgid "Pizza"
-msgstr "Pizza"
+msgstr "Pizza."
 
 msgid "Fish and seafood"
 msgstr "Peixes e frutos do mar"
@@ -4877,7 +4877,7 @@ msgid "Vegan"
 msgstr "Vegano"
 
 msgid "kosher"
-msgstr "kosher"
+msgstr "O que se passa?"
 
 msgid "Gluten-free"
 msgstr "Sem glúten"
@@ -4982,7 +4982,7 @@ msgid "Brochure (trifold)"
 msgstr "Folheto (três dobras)"
 
 msgid "banner"
-msgstr "banner"
+msgstr "banner de banner"
 
 msgid "Mains"
 msgstr "Rede elétrica"
@@ -7547,7 +7547,7 @@ msgid "Spreadsheet ID"
 msgstr "ID da planilha"
 
 msgid "tab"
-msgstr "tab"
+msgstr "aba"
 
 msgid "Choose Sheet"
 msgstr "Escolha a planilha"
@@ -9146,3 +9146,157 @@ msgstr "Não foi possível conectar ao Stripe: %s"
 
 msgid "Stripe API error (HTTP %d)."
 msgstr "Erro de API Stripe (HTTP %d)."
+
+msgid "Form submission"
+msgstr "Envio de formulário"
+
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "Formulário público, inquérito e subscrição de envios enviados através GraphQL ."
+
+msgid "Manages forms and responses"
+msgstr "Gerencia formas e respostas"
+
+msgid "Opens the form builder"
+msgstr "Abre o construtor de formulários"
+
+msgid "Opens the forms panel"
+msgstr "Abre o painel de formulários"
+
+msgid "Manages form add-ons"
+msgstr "Gerencia add-ons de formulário"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Flux Forms: choices"
+msgstr "Formulários de fluxo: escolhas"
+
+msgid "Flux Forms: advanced"
+msgstr "Formas de fluxo: avançado"
+
+msgid "Flux Forms: payment"
+msgstr "Formulários de fluxo: pagamento"
+
+msgid "Flux Forms: content"
+msgstr "Formulários de fluxo: conteúdo"
+
+msgid "The form structure is not valid."
+msgstr "A estrutura do formulário não é válida."
+
+msgid "This form type is not supported."
+msgstr "Este tipo de formulário não é suportado."
+
+msgid "This form was changed somewhere else after you opened it."
+msgstr "Esta forma foi mudada para outro lugar depois de abri-la."
+
+msgid "WooCommerce checkout"
+msgstr "Finalização de compra do WooCommerce"
+
+msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
+msgstr "Você vai escolher como pagar (cartão, transferência bancária...) na página de checkout seguro."
+
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "Complete o pagamento na janela que foi aberta. Esta página continua quando é feita."
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "A janela de pagamento foi bloqueada. Permitir pop-ups para este site e tentar novamente."
+
+msgid "The payment was not completed. You can try again."
+msgstr "O pagamento não foi concluído. Você pode tentar novamente."
+
+msgid "The order is received; the payment is confirmed when it arrives."
+msgstr "A ordem é recebida; o pagamento é confirmado quando chega."
+
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "Pagamento concluído. Você pode fechar esta janela e voltar ao formulário."
+
+msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
+msgstr "A ordem é recebida; o pagamento é confirmado quando chega. Você pode fechar esta janela e retornar ao formulário."
+
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "O pagamento não foi concluído. Você pode fechar esta janela e tentar novamente no formulário."
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "Flux Donate é ativo, mas não assumiu pagamentos (filter flxb_own_payments is off?). Flux Forms takes payment on the WooCommerce checkout."
+
+msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
+msgstr "Os formulários de pagamento são pagos no checkout WooCommerce ( %1$s ; %2$s )."
+
+msgid "No payment form exists. WooCommerce is needed only to take payments."
+msgstr "Não existe nenhum formulário de pagamento. WooCommerce é necessário apenas para fazer pagamentos."
+
+msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
+msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
+msgstr[0] "WooCommerce não tem método de pagamento habilitado: %d formulário de pagamento não pode tomar pagamentos."
+msgstr[1] "WooCommerce não tem método de pagamento habilitado: %d formulários de pagamento não podem tomar pagamentos."
+
+msgid "WooCommerce is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "WooCommerce não está ativo: %d formulário de pagamento mostra \"O pagamento on-line não está disponível\"."
+msgstr[1] "WooCommerce não está ativo: %d formulários de pagamento mostram \"O pagamento on-line não está disponível\"."
+
+msgid "Payment methods"
+msgstr "Métodos de pagamento"
+
+msgid "Card payment"
+msgstr "Pagamento com cartão"
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "Para fazer pagamentos on-line com um formulário de pagamento, instale e ative WooCommerce e ative um método de pagamento."
+
+msgid "The form was not found."
+msgstr "A forma não foi encontrada."
+
+msgid "Write a reply."
+msgstr "Escreva uma resposta."
+
+msgid "The response was not found."
+msgstr "A resposta não foi encontrada."
+
+msgid "The reply could not be saved."
+msgstr "A resposta não poderia ser salva."
+
+msgid "The settings could not be saved."
+msgstr "As configurações não podem ser salvas."
+
+msgid "Choose between 1 and 7 days."
+msgstr "Escolha entre 1 e 7 dias."
+
+msgid "Unknown track code style."
+msgstr "Estilo de código de faixa desconhecido."
+
+msgid "Unknown SMS sender."
+msgstr "Desconhecido SMS remetente."
+
+msgid "Enter a colour like #1a2b3c."
+msgstr "Digite uma cor como #1a2b3c."
+
+msgid "Enter a valid e-mail address."
+msgstr "Insira um endereço de e-mail válido."
+
+msgid "Use numbers like +12345678900, separated by commas."
+msgstr "Use números como +12345678900, separados por vírgulas."
+
+msgid "The template must contain the shortcode_message shortcode."
+msgstr "O modelo deve conter o shortcode_message shortcode."
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "Demasiadas submissões, espera um momento e tenta outra vez."
+
+msgid "The form could not be sent."
+msgstr "O formulário não pode ser enviado."
+
+msgid "This form cannot be sent here."
+msgstr "Este formulário não pode ser enviado aqui."
+
+msgid "The tracking code was not found."
+msgstr "O código de rastreamento não foi encontrado."
+
+msgid "Upload the file again."
+msgstr "Carregar o ficheiro outra vez."
+
+msgid "The confirmation code is not valid."
+msgstr "O código de confirmação não é válido."
+
+msgid "Choose one of the listed options."
+msgstr "Escolha uma das opções listadas."

@@ -1,0 +1,821 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Sees ad conversions"
+msgstr "يعرض الإحالات الناجحة للإعلانات"
+
+msgid "Ads"
+msgstr "إعلانات"
+
+msgid "Manages ads and tracking settings"
+msgstr "إدارة الإعلانات ومواقع التتبع"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Which ad brought which donation"
+msgstr "و الذي جلب التبرع"
+
+msgid "Report"
+msgstr "تقرير"
+
+msgid "Campaigns"
+msgstr "الحملات"
+
+msgid "Suggestions"
+msgstr "اقتراحات"
+
+msgid "Studio"
+msgstr "استوديو"
+
+msgid "Season plan"
+msgstr "خطة سيسون"
+
+msgid "Tests"
+msgstr "الاختبارات"
+
+msgid "Donor value"
+msgstr "قيمة الجهات المانحة"
+
+msgid "Ad spend"
+msgstr "\"أد أنفق\""
+
+msgid "Audiences"
+msgstr "الإدلاء بالشهادة"
+
+msgid "Send log"
+msgstr "إرسال السجل"
+
+msgid "Ad link"
+msgstr "الرابطة"
+
+msgid "You are not allowed to view this page."
+msgstr "غير مسموح لك بمشاهدة هذه الصفحة."
+
+msgid "Ad tracking settings"
+msgstr "أماكن التتبع"
+
+msgid "Change ad tracking settings"
+msgstr "تغيير أماكن تتبع الإعلانات"
+
+msgid "Test ad platform connection"
+msgstr "وصلة منصة إعلان الاختبار"
+
+msgid "Ad conversion send log"
+msgstr "نظام التحويل"
+
+msgid "Send a conversion again"
+msgstr "أرسل تحويلاً مرة أخرى"
+
+msgid "Add ad spend"
+msgstr "أضف"
+
+msgid "Delete manual ad spend"
+msgstr "تحذف الأقوال اليدوية"
+
+msgid "Update Meta ad spend now"
+msgstr "تحديث إعلان ميتا أنفق الآن"
+
+msgid "Donor value by campaign (LTV, CAC)"
+msgstr "قيمة الجهات المانحة حسب الحملة (LTV, CAC)"
+
+msgid "Meta audiences"
+msgstr "مشاهدو الميتا"
+
+msgid "Create a Meta audience"
+msgstr "إنشاء جمهور من الميتا"
+
+msgid "Create a lookalike audience"
+msgstr "خلق جمهور متشابه"
+
+msgid "Update a Meta audience now"
+msgstr "تحديث جمهور ميتا الآن"
+
+msgid "Delete a Meta audience"
+msgstr "تحذف عبارة &quot; جمهور ميتا &quot;"
+
+msgid "Meta campaigns"
+msgstr "الحملات المتعلقة بـ &quot; ميتا &quot;"
+
+msgid "Meta campaign details"
+msgstr "تفاصيل حملة (ميتا)"
+
+msgid "Pause or turn on in Meta"
+msgstr "وقف أو انقلب في ميتا"
+
+msgid "Change daily budget in Meta"
+msgstr "تغيير الميزانية اليومية في ميتا"
+
+msgid "Ad suggestions"
+msgstr "اقتراحات"
+
+msgid "Apply an ad suggestion"
+msgstr "تطبيق مقترح"
+
+msgid "Dismiss an ad suggestion"
+msgstr "يصرف اقتراحاً"
+
+msgid "Add a season date"
+msgstr "يضاف تاريخ موسم"
+
+msgid "Delete a season date"
+msgstr "يحذف تاريخ الموسم"
+
+msgid "Ad tests"
+msgstr "فحوصات"
+
+msgid "Start an ad test"
+msgstr "ابدأ اختبار الإعلان"
+
+msgid "End an ad test"
+msgstr "انهي اختبار الإعلان"
+
+msgid "Delete an ad test"
+msgstr "يحذف اختبار إعلان"
+
+msgid "Campaign planning context"
+msgstr "سياق تخطيط الحملات"
+
+msgid "Campaign drafts"
+msgstr "مشاريع الحملات"
+
+msgid "Save a campaign draft"
+msgstr "انقذوا مشروع الحملة"
+
+msgid "Create draft in Meta (paused)"
+msgstr "مشروع إنشاء في ميتا (مدفوع)"
+
+msgid "Delete a campaign draft"
+msgstr "يحذف مشروع الحملة الانتخابية"
+
+msgid "Ad conversions"
+msgstr "التحويلات النقدية"
+
+msgid "Audience not found."
+msgstr "لم يتم العثور على السمع."
+
+msgid "Everyone with ad consent"
+msgstr "كل شخص معلن"
+
+msgid "Donors and customers (paid at least once)"
+msgstr "الجهات المانحة والزبائن (تدفع مرة واحدة على الأقل)"
+
+msgid "Value group: %s"
+msgstr "مجموعة القيمة: %s"
+
+msgid "Segment: %s"
+msgstr "الجزء: %s"
+
+msgid "Show ads to them"
+msgstr "عرض إعلانات لهم"
+
+msgid "Exclude from ads"
+msgstr "استبعاد من الإعلانات"
+
+msgid "Enter a name and pick a group."
+msgstr "أدخل اسماً واختار مجموعة"
+
+msgid "Pick one of your own audiences as the source."
+msgstr "اختر أحد جمهورك كمصدر"
+
+msgid "%1$s · lookalike %2$d%% %3$s"
+msgstr "%1$s - %2$d٪ %3$s"
+
+msgid "Not from ads"
+msgstr "ليس من الإعلانات"
+
+msgid "(not set)"
+msgstr "(غير محدد)"
+
+msgid "A/B test"
+msgstr "A/B test"
+
+msgid "Holdout (lift)"
+msgstr "التوقيف (الرفع)"
+
+msgid "Choose the test type."
+msgstr "اختر نوع الاختبار"
+
+msgid "The end date is before the start date."
+msgstr "تاريخ النهاية قبل موعد بدء العمل"
+
+msgid "Pick a campaign and two different ads in it."
+msgstr "اختر حملة و إعلانين مختلفين فيها"
+
+msgid "Both ads must be in the chosen campaign."
+msgstr "كلا الإعلانين يجب أن يكونا في الحملة المختارة"
+
+msgid "Pick an audience that ads are shown to."
+msgstr "اختر جمهوراً يظهر عليه الإعلان"
+
+msgid "The holdout share must be between 5% and 50%."
+msgstr "يجب أن تكون حصة السحب بين 5 و50%"
+
+msgid "This audience already has a running holdout test."
+msgstr "هذا الجمهور لديه بالفعل اختبار التسكع"
+
+msgid "Test not found."
+msgstr "لا يوجد اختبار."
+
+msgid "The audience of this test was deleted."
+msgstr "حُذف جمهور هذا الاختبار."
+
+msgid "Not enough data yet: wait until both ads have clicks."
+msgstr "لا توجد بيانات كافية حتى الآن: انتظر حتى يكون لكلا الإعلانين نقرات."
+
+msgid "payments per click"
+msgstr "المدفوعات حسب النقر"
+
+msgid "click rate"
+msgstr "معدل النقر"
+
+msgid "Too little data yet: each ad needs at least 50 clicks (1,000 impressions while payments are few). Let it run longer."
+msgstr "ولا تزال البيانات قليلة جداً: يحتاج كل إعلان إلى 50 نقرة على الأقل (000 1 انطباع في حين أن المدفوعات قليلة) دعه يطول أكثر من ذلك."
+
+msgid "No clear winner yet on %1$s (confidence %2$s%%; 95%% is needed). Let it run longer."
+msgstr "لم يكن هناك فائز واضح بعد في %1$s (الثقة %2$s في المائة؛ 95 في المائة مطلوبة)."
+
+msgid "\"%1$s\" wins on %2$s with %3$s%% confidence. You can pause \"%4$s\"."
+msgstr "\"%1$s\" يفوز على %2$s مع %3$s٪ الثقة، يمكنك التوقف عن \"%4$s\""
+
+msgid "Not enough data yet."
+msgstr "لا توجد بيانات كافية بعد."
+
+msgid "Ads work: people who could see them gave %1$s%% more often. About %2$s extra donors and %3$s extra income came from the ads (confidence %4$s%%)."
+msgstr "العمل في مجال الإعلانات: أعطى الأشخاص الذين يستطيعون رؤيتهم نسبة %1$s في المائة في أغلب الأحيان، وحوالي %2$s من المانحين الإضافيين و %3$s من الدخل الإضافي من الإعلانات (الثقة %4$s في المائة)."
+
+msgid "People who did not see the ads gave more often. The ads to this audience are not adding donations; try other text or another audience."
+msgstr "فالناس الذين لم يروا الإعلانات كثيراً، ولا تضيف الإعلانات إلى هذا الجمهور هبات، ولا تحاكم أي نص آخر أو جمهور آخر."
+
+msgid "The holdout group is still small (%s people; at least 100 are needed). Use a larger audience or share, or wait for it to grow."
+msgstr "ولا تزال مجموعة القابض صغيرة (%s شخص؛ وهناك حاجة إلى 100 شخص على الأقل)، أو استخدام جمهور أكبر أو حصة أكبر، أو انتظار نموها."
+
+msgid "No clear difference yet between people who could see the ads and the holdout (confidence %s%%; 95%% is needed)."
+msgstr "ولا يوجد فرق واضح حتى الآن بين الأشخاص الذين يستطيعون رؤية الإعلانات والحمل (الثقة %s في المائة؛ وهناك حاجة إلى 95 في المائة)."
+
+msgid "Last 7 days"
+msgstr "آخر 7 أيام"
+
+msgid "Last 30 days"
+msgstr "آخر 30 يومًا"
+
+msgid "Last 90 days"
+msgstr "آخر 90 يومًا"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Paused"
+msgstr "متوقف مؤقتًا"
+
+msgid "Campaign paused"
+msgstr "الحملة متوقفة"
+
+msgid "Ad set paused"
+msgstr "تم تعيينهم"
+
+msgid "Processing"
+msgstr "المعالجة"
+
+msgid "Has issues"
+msgstr "لديه مشاكل"
+
+msgid "In review"
+msgstr "قيد المراجعة"
+
+msgid "Rejected"
+msgstr "مرفوض"
+
+msgid "Approved"
+msgstr "تمت الموافقة عليه"
+
+msgid "Billing needed"
+msgstr "الإبلات اللازمة"
+
+msgid "Archived"
+msgstr "مؤرشف"
+
+msgid "Deleted"
+msgstr "تم الحذف"
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+msgstr "أدخلي حساب إعلان (ميتا) و مفتاح تسويق رقم API في (ستينغز ميتا)"
+
+msgid "Campaign not found."
+msgstr "لم يتم العثور على الحملة."
+
+msgid "Status can only be Active or Paused."
+msgstr "الوضع لا يمكن إلا أن يكون نشطاً أو مدفوعاً."
+
+msgid "Enter a daily budget greater than zero."
+msgstr "أدخل ميزانية يومية أكبر من الصفر."
+
+msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr "وليس لهذا البند ميزانية يومية هنا (الميزانية على مدى الحياة، أو الميزانية مُحددة في الحملة/المجموعات المخصصة)."
+
+msgid "Pause campaign"
+msgstr "حملة وقف التنفيذ"
+
+msgid "Lower budget"
+msgstr "الميزانية الدنيا"
+
+msgid "Raise budget"
+msgstr "ميزانية الزيادة"
+
+msgid "Pause weak ad"
+msgstr "إعلان ضعيف"
+
+msgid "New ad text"
+msgstr "نص إعلان جديد"
+
+msgid "Season coming"
+msgstr "سيسون قادم"
+
+msgid "Waiting"
+msgstr "في انتظار"
+
+msgid "Applied"
+msgstr "Applied"
+
+msgid "Dismissed"
+msgstr "مفصول"
+
+msgid "No longer valid"
+msgstr "لم تعد صالحة"
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr "Spent %1$s في الأيام السبعة الماضية ولم يدفع أي مبلغ في الموقع (حكم عليه بعد ذلك) %2$s)."
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr "العودة إلى الإعلان تنفق %1$s، تحت نصف هدفك %2$s، خفض الميزانية اليومية %3$s . %4$s (-20 في المائة) ونقل الأموال إلى حملات أفضل."
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr "العودة إلى الإعلان تنفق %1$s مع %2$s دفعة، فوق هدفك، رفع الميزانية اليومية %3$s ). %4$s (+20 في المائة، صغيرة بما فيه الكفاية بحيث تحافظ ميتا على التعلم)."
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr "ويبلغ معدل الذكاء %1$s في المائة في حين أن الإعلانات الأخرى في هذا الإعلان تحدد نسبة %2$s في المائة؛ وقد أنفقت %3$s، ودفعت الميزانية إلى الإعلانات الأفضل."
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr "وشاهد الناس هذه الإعلانات %s مرة في كل 7 أيام؛ وعادة ما تنخفض النتائج بعد 4 من كتابة متغيرات نص جديدة في استوديو أو توسّع نطاق الجمهور."
+
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] "%1$s تبدأ في %2$s يوم، أكتب الحملة الآن حتى يكون لدى (ميتا) الوقت لاستعراضها وتعلمها."
+msgstr[1] "%1$s تبدأ في %2$s يوم، أكتب الحملة الآن حتى يكون لدى (ميتا) الوقت لاستعراضها وتعلمها."
+msgstr[2] "%1$s تبدأ في %2$s يوم، أكتب الحملة الآن حتى يكون لدى (ميتا) الوقت لاستعراضها وتعلمها."
+msgstr[3] "%1$s تبدأ في %2$s يوم، أكتب الحملة الآن حتى يكون لدى (ميتا) الوقت لاستعراضها وتعلمها."
+msgstr[4] "%1$s تبدأ في %2$s يوم، أكتب الحملة الآن حتى يكون لدى (ميتا) الوقت لاستعراضها وتعلمها."
+msgstr[5] "%1$s تبدأ في %2$s يوم، أكتب الحملة الآن حتى يكون لدى (ميتا) الوقت لاستعراضها وتعلمها."
+
+msgid "Last year it brought %1$s payments and %2$s."
+msgstr "العام الماضي جلب %1$s المدفوعات والمدفوعات %2$s."
+
+msgid "This suggestion is already closed."
+msgstr "وقد أُغلق هذا الاقتراح بالفعل."
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr "وليس لهذا الاقتراح أي شيء لتغييره في ميتا؛ فتح الاستوديو أو رفضه."
+
+msgid "Suggestion not found."
+msgstr "الاقتراح لم يعثر عليه"
+
+msgid "Ramadan and Eid"
+msgstr "رمضان والعيد"
+
+msgid "Qurban (Eid al-Adha)"
+msgstr "كوابان (عيد الأضحى)"
+
+msgid "World Forestry Day and Forest Week"
+msgstr "اليوم العالمي للغابات وأسبوع الغابات"
+
+msgid "Mother's Day (donate in her name)"
+msgstr "يوم الأم (تتبرع باسمها)"
+
+msgid "World Environment Day"
+msgstr "اليوم العالمي للبيئة"
+
+msgid "National Tree Planting Day (11 November)"
+msgstr "اليوم الوطني لزراعة الأشجار (11 تشرين الثاني/نوفمبر)"
+
+msgid "Teachers' Day (donate in their name)"
+msgstr "يوم المعلمين (تتبرع باسمهم)"
+
+msgid "Black Friday and Giving Tuesday"
+msgstr "الجمعة السوداء والعيد الثلاثاء"
+
+msgid "Year-end giving"
+msgstr "نهاية السنة"
+
+msgid "Enter a name and a start date."
+msgstr "أدخلي اسماً وتاريخ بداية"
+
+msgid "Too many dates; delete old ones first."
+msgstr "تواريخ كثيرة جداً، حذف التواريخ القديمة أولاً."
+
+msgid "Date not found."
+msgstr "التاريخ لم يعثر عليه."
+
+msgid "Campaign for %1$s (%2$s – %3$s)."
+msgstr "حملة من أجل %1$s (%2$s - %3$s)"
+
+msgid "Last year the same period brought %1$s payments and %2$s."
+msgstr "العام الماضي، نفس الفترة %1$s المدفوعات والمدفوعات %2$s."
+
+msgid "Ad channel"
+msgstr "القناة"
+
+msgid "Campaign"
+msgstr "حملة"
+
+msgid "Ad (utm_content)"
+msgstr "Ad (utm_content)"
+
+msgid "Source / medium"
+msgstr "المصدر/المتوسط"
+
+msgid "Landing page"
+msgstr "صفحة الهبوط"
+
+msgid "First ad touch"
+msgstr "أول لمسة إعلانية"
+
+msgid "Fill in the ID and the key first."
+msgstr "املأ بطاقة الهوية والمفتاح أولاً"
+
+msgid "Connected to \"%s\". Enter a test event code to see a test event in Events Manager."
+msgstr "\"وصلنا إلى \"%s أدخل رمزاً للاختبار لرؤية حدث اختباري في مدير الأحداث"
+
+msgid "Test event sent. Check Events Manager › Test events."
+msgstr "تظاهرة الاختبار أرسلت تحقق من مدير الأحداث"
+
+msgid "Enter the test event code from TikTok Events Manager › Test events, then test again."
+msgstr "أدخل رمز الحدث الإختباري من مدير أحداث (تيك توك) ثم اختبار مرة أخرى"
+
+msgid "Test event sent. Check TikTok Events Manager › Test events."
+msgstr "تظاهرة الاختبار أرسلت تحقق من مُدير (تيك توك) للاختبارات"
+
+msgid "Google accepted the test event (validation only; nothing was recorded)."
+msgstr "وقد قبلت غوغل حدث الاختبار (التخلي فقط؛ ولم يسجل أي شيء)."
+
+msgid "Enter the ad account ID and a key first."
+msgstr "أدخلي بطاقة تعريف الإعلان والمفتاح أولاً"
+
+msgid "Meta answered too slowly; try again later."
+msgstr "(ميتا) أجابت ببطئ جداً، حاول مرة أخرى لاحقاً."
+
+msgid "Too many rows; only part of the period was read."
+msgstr "عدد كبير جدا من الصفوف؛ ولم يقرأ سوى جزء من الفترة."
+
+msgid "Donations / sales (conversions)"
+msgstr "التبرعات/المبيعات (التحويلات)"
+
+msgid "Visits to the page"
+msgstr "زيارات إلى الصفحة"
+
+msgid "Awareness (reach)"
+msgstr "التوعية (التواصل)"
+
+msgid "Donate now"
+msgstr "تبرع الآن"
+
+msgid "Learn more"
+msgstr "تعلم المزيد"
+
+msgid "Shop now"
+msgstr "اقفز الآن"
+
+msgid "Sign up"
+msgstr "قم بالتسجيل"
+
+msgid "Draft"
+msgstr "مسودة"
+
+msgid "In Meta (paused)"
+msgstr "في Meta (متوقف مؤقتًا)"
+
+msgid "Not sent"
+msgstr "لم يتم إرسالها"
+
+msgid "Give the campaign a name."
+msgstr "أعطِ الحملةَ a اسم."
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr "يضاف إعلان واحد على الأقل (الذي يرى الإعلانات)."
+
+msgid "Add at least one ad with a text and a headline."
+msgstr "أضف إعلاناً واحداً على الأقل مع نص وخطاً رئيسياً"
+
+msgid "Draft not found."
+msgstr "لم يتم العثور على المسودة."
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr "هذا المشروع موجود بالفعل في (ميتا) أو كرره هنا"
+
+msgid "Too many drafts; delete old ones first."
+msgstr "الكثير من المسودات، حذف القديمة أولاً"
+
+msgid "%s (copy)"
+msgstr "%s(نسخة)"
+
+msgid "Meta ad account ID and Marketing API key (Settings › Meta)"
+msgstr "Meta ad account ID and Marketing API مفتاح (الجلسات)"
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr "هوية فيسبوك (Settings ) Meta)"
+
+msgid "This draft is already in Meta."
+msgstr "هذا المشروع موجود بالفعل في (ميتا)"
+
+msgid "Missing: %s."
+msgstr "المفقودين: %s"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr "Flux AI is not ready. Install Flux AI MCP و إضافة مفتاح نموذجي"
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr "كتابة موجز قصير: ما هي الحملة من أجل ومن ينبغي أن تصل إليها."
+
+msgid "The AI answer could not be read; try again."
+msgstr "لا يمكن قراءة جواب \"آى آي\" مرة أخرى"
+
+msgid "Ad conversion"
+msgstr "التحويل"
+
+msgid "Ad source"
+msgstr "المصدر"
+
+msgid "No payment from this contact came through an ad."
+msgstr "لم يُدفع من هذا الاتصال من خلال إعلان."
+
+msgid "First came through: %s"
+msgstr "أولاً: %s"
+
+msgid "Ad report"
+msgstr "التقرير المعد"
+
+msgid "Other campaigns (UTM)"
+msgstr "حملات أخرى"
+
+msgid "No ad (direct, search, other sites)"
+msgstr "بدون إعلان (مباشر أو بحث أو مواقع أخرى)"
+
+msgid "Ad conversions report"
+msgstr "تقرير التحويل المعدّل"
+
+msgid "Ad tracking status"
+msgstr "حالة التتبع"
+
+msgid "Similar to: %s"
+msgstr "مماثلة: %s"
+
+msgid "(removed group)"
+msgstr "(المجموعة المنقّحة)"
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr "حملة معزولة مع %1$d مجموعات الإعلانات %2$d الإعلانات تُنشأ في (ميتا)، لا شيء يُظهر أو يُنفق حتى تُشغلها تحت الحملات."
+
+msgid "Now"
+msgstr "الآن"
+
+msgid "Prepare now"
+msgstr "إستعدوا الآن"
+
+msgid "Later"
+msgstr "في وقت لاحق"
+
+msgid "running"
+msgstr "ركض"
+
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] "في %s يوما"
+msgstr[1] "في %s يوم"
+msgstr[2] "في %s يوما"
+msgstr[3] "في %s يوما"
+msgstr[4] "في %s يوما"
+msgstr[5] "في %s يوما"
+
+msgid "Sales"
+msgstr "البيع"
+
+msgid "Leads"
+msgstr "الرصاص"
+
+msgid "Traffic"
+msgstr "حركة المرور"
+
+msgid "Engagement"
+msgstr "المشاركة"
+
+msgid "Awareness"
+msgstr "التوعية"
+
+msgid "App promotion"
+msgstr "الترقية"
+
+msgid "%s / day"
+msgstr "%s/يوم"
+
+msgid "%s total"
+msgstr "%s المجموع"
+
+msgid "all genders"
+msgstr "جميع الجنسين"
+
+msgid "men"
+msgstr "الرجال"
+
+msgid "women"
+msgstr "النساء"
+
+msgid "%1$d–%2$d, %3$s, %4$s"
+msgstr "%1$d - %2$d, %3$s, %4$s"
+
+msgid "audiences +%1$d / −%2$d"
+msgstr "الجمهور + %1$d/-%2$d"
+
+msgid "unknown"
+msgstr "مجهول"
+
+msgid "%s spent"
+msgstr "%s أنفقت"
+
+msgid "Panel"
+msgstr "لوحة"
+
+msgid "Daily budget %1$s → %2$s"
+msgstr "الميزانية اليومية %1$s → %2$s"
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr "وضع الميزانية اليومية لـ \"%1$s\" %2$s في (ميتا)؟"
+
+msgid "Apply: %s a day"
+msgstr "Apply: %s يوم واحد"
+
+msgid "Pause \"%s\" in Meta?"
+msgstr "وقف \"%s\" في \"ميتا\"؟"
+
+msgid "Apply: pause"
+msgstr "التطبيق: وقف"
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr "وتُحكم على الحملة بعد أن يمضي %s في 7 أيام."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr "يتم الحكم على الحملة بعد أن تنفق ضعف متوسط تكلفة كل دفعة في 7 أيام (والآن %s)"
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr "يتم الحكم على الحملة بعد أن تنفق ضعف متوسط تكلفة كل دفعة في 7 أيام"
+
+msgid "Spend"
+msgstr "انفق"
+
+msgid "Link clicks"
+msgstr "نقرات الوصل"
+
+msgid "Payments on the site"
+msgstr "المدفوعات في الموقع"
+
+msgid "Payments per click"
+msgstr "المدفوعات حسب النقر"
+
+msgid "Cost per payment"
+msgstr "التكلفة لكل دفع"
+
+msgid "People"
+msgstr "الناس"
+
+msgid "Gave at least once"
+msgstr "منح على الأقل مرة واحدة"
+
+msgid "Income"
+msgstr "الإيرادات"
+
+msgid "Per person"
+msgstr "لكل شخص"
+
+msgid "Could see ads"
+msgstr "يمكن أن نرى الإعلانات"
+
+msgid "Held out"
+msgstr "المعقودة"
+
+msgid "Audience \"%1$s\", %2$s%% held out"
+msgstr "السمع \"%1$s\" %2$s٪"
+
+msgid "open-ended"
+msgstr "مفتوحة العضوية"
+
+msgid "%1$s (%2$s people)"
+msgstr "%1$s (%2$s شخصا)"
+
+msgid "There is no winner yet."
+msgstr "لا يوجد فائز بعد"
+
+msgid "Enter an amount greater than zero."
+msgstr "أدخل كمية أكبر من الصفر"
+
+msgid "Spend not found."
+msgstr "لم يعثر على (سبيند)"
+
+msgid "Sent"
+msgstr "تم الإرسال"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "visitor did not accept cookies"
+msgstr "الزائر لم يقبل الكعك"
+
+msgid "already sent from the browser"
+msgstr "لقد تم إرسالها من قبل"
+
+msgid "platform turned off"
+msgstr "منصة إيقاف"
+
+msgid "order deleted"
+msgstr "شطب الأمر"
+
+msgid "Row not found."
+msgstr "لم يعثر على (رو)"
+
+msgid "E-mail newsletter"
+msgstr "رسالة إخبارية بالبريد الإلكتروني"
+
+msgid "Paid social"
+msgstr "الخدمات الاجتماعية المدفوعة"
+
+msgid "Search ad (cpc)"
+msgstr "إعلان البحث (ج ج)"
+
+msgid "Video ad"
+msgstr "إعلان فيديو"
+
+msgid "Organic post"
+msgstr "الوظيفة العضوية"
+
+msgid "E-mail"
+msgstr "البريد الإلكتروني"
+
+msgid "Unknown platform."
+msgstr "منصة غير معروفة."
+
+msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
+msgstr "تحولت لكن الهوية مفقودة أو غير صحيحة لا شيء يتم تعقبه"
+
+msgid "Browser pixel only. Without the server key, bank-transfer donations approved later and visitors with ad blockers are not counted."
+msgstr "(بروسر بيكسل) فقط، بدون مفتاح الخادم، لا تحسب التبرعات التي تمت الموافقة عليها فيما بعد من خلال تحويلات مصرفية، ولا يحسب الزوار الذين لديهم مجمّعات إعلانية."
+
+msgid "Pixel and server events are set up. Last test passed."
+msgstr "تظاهرات (بيكسل) و الخادم قد تمّت آخر اختبار تمّت"
+
+msgid "Last connection test failed:"
+msgstr "فشل اختبار الاتصال الأخير:"
+
+msgid "Pixel and server events are set up. Run \"Test\" once to check the key."
+msgstr "تظاهرات (بيكسل) و الخادم تم إعدادها، اجري \"الاختبار\" مرة واحدة لتفقد المفتاح."
+
+msgid "Ad platforms"
+msgstr "منابر مخصصة"
+
+msgid "No ad platform is on. The ad report still works from UTM links and click IDs."
+msgstr "لا يوجد منصة إعلانية، ولا يزال تقرير الإعلان يعمل من وصلات الصرف الآلي ويقر الهويات."
+
+msgid "Server conversions"
+msgstr "تحويلات الموظفين"
+
+msgid "%1$d failed, %2$d waiting. Last retry run: %3$s."
+msgstr "%1$d فشل، %2$d ينتظر، آخر عملية إعادة تشغيل: %3$s."
+
+msgid "never"
+msgstr "أبدا"
+
+msgid "Meta ad spend"
+msgstr "الإنفاق على إعلانات Meta"
+
+msgid "Last update failed:"
+msgstr "وفشلت آخر المستجدات:"
+
+msgid "Spend read %s."
+msgstr "يستعاض عن عبارة &quot; %s."
+
+msgid "Not read yet; opening the Flux Ads screen starts it."
+msgstr "لا تقرأ بعد، فتح شاشة \"فلوكس آدز\" تبدأ بها."
+
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "%d الجمهور يستكمل يوميا."
+msgstr[1] "%d الجمهور يستكمل يوميا."
+msgstr[2] "%d الجمهور يستكمل يوميا."
+msgstr[3] "%d الجمهور يستكمل يوميا."
+msgstr[4] "%d الجمهور يستكمل يوميا."
+msgstr[5] "%d الجمهور يستكمل يوميا."
+
+msgid "Cookie consent"
+msgstr "موافقة كوكي"
+
+msgid "The theme cookie banner is off, so ad pixels load without asking. Under KVKK/GDPR marketing cookies need consent: turn the banner on in Appearance › Theme Settings."
+msgstr "لافتة كوكي مطفأة، لذا أعدّوا التحميل دون أن يسألوا، تحت كي في كي كي كي كي كيه/جي دي آر تسويق البسكويت بحاجة إلى الموافقة:"
+
+msgid "Theme Settings"
+msgstr "إعدادات الموضوع"

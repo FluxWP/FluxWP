@@ -1,0 +1,929 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Flux GraphQL"
+msgstr "Flux GraphQL"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "You do not have permission to do this."
+msgstr "ليس لديك الإذن للقيام بذلك."
+
+msgid "One GraphQL API for the FluxWP plugins. Screens in wp-admin, the FluxWP desktop and mobile apps and a headless front end all read the same typed schema."
+msgstr "واحد GraphQL API من أجل FluxWP المزلاجات، المزلاجات في السائل المنوي FluxWP حواسيب مكتبية و تطبيقات متنقلة ونهاية لا رأس لها كلها تقرأ نفس الكيمياء"
+
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+msgid "The separate WPGraphQL plugin was deactivated; the built-in copy is in use."
+msgstr "وقد تم تعطيل اللوغين المنفصل عن WPGraphQL؛ ويجري استخدام النسخة المدمجة."
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Endpoint"
+msgstr "نقطة النهاية"
+
+msgid "WPGraphQL"
+msgstr "WPGraphQL"
+
+msgid "%s (built in)"
+msgstr "%s (مبنية)"
+
+msgid "%s (separate plugin)"
+msgstr "%s (مضخة منفصلة)"
+
+msgid "not loaded"
+msgstr "غير محشوة"
+
+msgid "working"
+msgstr "العمل"
+
+msgid "off"
+msgstr "خارج"
+
+msgid "Known queries"
+msgstr "الاستفسارات المعروفة"
+
+msgid "%1$d from %2$d packages"
+msgstr "%1$d من %2$d رزمة"
+
+msgid "Upload endpoint"
+msgstr "نقطة النهاية"
+
+msgid "Use the Flux GraphQL version"
+msgstr "إستخدم نسخة Flux GraphQL"
+
+msgid "Open GraphiQL IDE"
+msgstr "فتح بيئة GraphiQL"
+
+msgid "Access"
+msgstr "الوصول"
+
+msgid "Only queries shipped with FluxWP packages (recommended)"
+msgstr "فقط الاستفسارات التي تم شحنها FluxWP حزم (التوصية)"
+
+msgid "Administrators may also send any query"
+msgstr "ويجوز لمديري البرامج أيضا أن يرسلوا أي استفسارات"
+
+msgid "Anyone may send any query (public headless API)"
+msgstr "يمكن لأي شخص أن يرسل أي استفسار (العلني رقم API)"
+
+msgid "Which queries run"
+msgstr "أيّ استفسارات تجري"
+
+msgid "Persisted queries keep the API small and let LiteSpeed cache public reads."
+msgstr "الاستفسارات المؤجلة تبقي API صغير ودع (ليت سبيد) يقرأ علناً"
+
+msgid "Front-end origins"
+msgstr "الأصول الأمامية"
+
+msgid "Sites allowed to call /graphql from the browser, one per line. This site is always allowed."
+msgstr "ويسمح للمواقع بالاتصال بـ (الغرافيكل) من المصفوف، وواحد لكل خط، وهذا الموقع مسموح به دائماً."
+
+msgid "GraphiQL IDE for administrators"
+msgstr "الرسم البياني للمديرين"
+
+msgid "Also lets administrators run any query while it is on."
+msgstr "أيضاً دع المديرون يُجريون أيّ استفسار بينما هو مُباشر."
+
+msgid "Public schema introspection"
+msgstr "التفتيش العام للكيماويات"
+
+msgid "Administrators can always read the schema."
+msgstr "ويمكن لمديري البرنامج دائما قراءة المخطط."
+
+msgid "Debug messages for administrators"
+msgstr "رسائل مديونية للمديرين"
+
+msgid "Limits"
+msgstr "حدود"
+
+msgid "Deepest nesting"
+msgstr "أذكى مضايقات"
+
+msgid "Highest complexity"
+msgstr "أكبر قدر من التعقيد"
+
+msgid "Records per page"
+msgstr "المحاضر في الصفحة"
+
+msgid "Queries per batch"
+msgstr "الكمية لكل دفعة"
+
+msgid "Public cache"
+msgstr "المخبأ العام"
+
+msgid "sec"
+msgstr "ثانية"
+
+msgid "Largest upload"
+msgstr "أكبر عدد ممكن"
+
+msgid "The FluxWP form fields could not load. Reinstall Flux GraphQL."
+msgstr "لا يمكن تحميل حقول الاستمارة FluxWP، إعادة تركيب Flux GraphQL"
+
+msgid "Shared hosting: keep the limits low. A query that goes over them is refused before it runs."
+msgstr "الاستضافة المشتركة: إبقاء الحدود متدنية، ويرفض الاستفسار الذي يتخطى هذه الحدود قبل أن يمضي."
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "GraphQL server"
+msgstr "خادم رقم GraphQL"
+
+msgid "Flux GraphQL settings"
+msgstr "Flux GraphQL settings"
+
+msgid "Built-in WPGraphQL %s is running."
+msgstr "بنّاء في WPGraphQL %s يجري."
+
+msgid "A separately installed WPGraphQL %1$s is running instead of the built-in %2$s. It works, but its updates are not tested with FluxWP. Use the built-in copy unless another plugin needs the separate one."
+msgstr "ويجرى تشغيل WPGraphQL %1$s على حدة بدلا من البناء في %2$s، ولكن تحديثاته لا يختبر برقم FluxWP."
+
+msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP screens cannot open. Deactivate it to use the built-in copy."
+msgstr "وينشط جهاز WPGraphQL %1$s، ويحتاج FluxWP إلى %2$s أو أكثر وأقل من %3$s، وبالتالي لا يمكن فتح الشاشات FluxWP، وإبطال مفعولها لاستخدام النسخة المدمجة."
+
+msgid "The built-in WPGraphQL files are missing. Reinstall Flux GraphQL from FluxWP Panel › Packages."
+msgstr "ملفات الفريق العامل المُنشأة مفقودة، إعادة تركيبه من طراز Flux GraphQL من FluxWP"
+
+msgid "GraphQL queries"
+msgstr "GraphQL استفسارات"
+
+msgid "Anyone may send any GraphQL query. Keep this only for a public headless front end; depth and complexity limits still apply."
+msgstr "يمكن لأي شخص أن يرسل أي استفسار رقم GraphQL، ولا يبق هذا إلا لنهاية عامة لا رأس لها؛ ولا تزال هناك حدود للعمق والتعقيد."
+
+msgid "Only queries shipped with FluxWP packages run (%d known)."
+msgid_plural "Only queries shipped with FluxWP packages run (%d known)."
+msgstr[0] "فقط الاستفسارات التي تم شحنها FluxWP طرود جاهزة%d معروفة."
+msgstr[1] "فقط الاستفسارات التي تم شحنها FluxWP طرود جاهزة%d معروفة."
+msgstr[2] "فقط الاستفسارات التي تم شحنها FluxWP طرود جاهزة%d معروفة."
+msgstr[3] "فقط الاستفسارات التي تم شحنها FluxWP طرود جاهزة%d معروفة."
+msgstr[4] "فقط الاستفسارات التي تم شحنها FluxWP طرود جاهزة%d معروفة."
+msgstr[5] "فقط الاستفسارات التي تم شحنها FluxWP طرود جاهزة%d معروفة."
+
+msgid "GraphQL types"
+msgstr "GraphQL أنواع"
+
+msgid "Some GraphQL fields were refused because they break the FluxWP rules: %s. Update the package that adds them."
+msgstr "وقد رُفض نحو GraphQL حقول لأنها تكسر قواعد FluxWP: %s تحديث المجموعة التي تضيفها."
+
+msgid "Flux GraphQL: the separately installed WPGraphQL %s is not supported, so FluxWP GraphQL screens are off."
+msgstr "Flux GraphQL: The separately installed WPGraphQL %s غير مدعوم، لذا FluxWP GraphQL الشاشات مطفأة"
+
+msgid "The user making the request and what they may do."
+msgstr "المستعمل الذي يقدم الطلب وما قد يفعلونه"
+
+msgid "Whether the request is signed in."
+msgstr "سواء تم التوقيع على الطلب"
+
+msgid "User ID; empty for a visitor."
+msgstr "هويّة المستخدم، فارغة للزائر."
+
+msgid "Display name; empty for a visitor."
+msgstr "اكتب اسماً فارغاً للزائر"
+
+msgid "Whether the user manages the site (manage_options)."
+msgstr "(أ) ما إذا كان المستخدم يدير الموقع (الطلب - التصويبات)."
+
+msgid "Capabilities from the FluxWP catalog that the user has."
+msgstr "القدرات من كتيبة FluxWP التي يملكها المستخدم"
+
+msgid "Whether the user has this capability."
+msgstr "سواء كان لدى المستعمل هذه القدرة"
+
+msgid "Capability name, e.g. flxg_use."
+msgstr "اسم القدرة، مثل \"فلكسيج\""
+
+msgid "A capability a FluxWP package checks."
+msgstr "قدرة 917101 شيكات طرد"
+
+msgid "What the capability allows, in the user's language."
+msgstr "ما تسمح به القدرة، بلغة المستخدم."
+
+msgid "Group label (usually the package); empty when not given."
+msgstr "(د) العلامة الجماعية (عادة الطرد)؛ فارغة عندما لا تعطى."
+
+msgid "Package slug that declares it; empty when not given."
+msgstr "حزمة التعبئة التي تعلن ذلك؛ فارغة عندما لا تعطى."
+
+msgid "Whether the current user has it."
+msgstr "سواء كان المستخدم الحالي لديه ذلك."
+
+msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
+msgstr "المُستخدم الذي يقدم الطلب، يُسجل الزائر في زوراً ولا قدرات."
+
+msgid "The FluxWP capability catalog, with what the current user has."
+msgstr "كتالوج القدرة FluxWP مع ما لدى المستخدم الحالي"
+
+msgid "Where a page sits in a list."
+msgstr "حيث يجلس صفحة في قائمة."
+
+msgid "More records follow this page."
+msgstr "المزيد من السجلات تتبع هذه الصفحة."
+
+msgid "Records come before this page."
+msgstr "السجلات تأتي قبل هذه الصفحة."
+
+msgid "Cursor of the first record on this page."
+msgstr "مُسجّل التسجيل الأول في هذه الصفحة."
+
+msgid "Cursor of the last record on this page; pass it as \"after\" for the next page."
+msgstr "ملخّص آخر سجل على هذه الصفحة، مرّه على الصفحة التالية."
+
+msgid "One %s in a list, with its cursor."
+msgstr "واحد %s في قائمة، مع فضوله."
+
+msgid "Opaque cursor of this record."
+msgstr "كاميرا المراقبة من هذا السجل."
+
+msgid "The record."
+msgstr "الرقم القياسي"
+
+msgid "A page of %s records."
+msgstr "صفحة من %s سجل"
+
+msgid "Records with their cursors."
+msgstr "السجلات مع فضائحهم."
+
+msgid "Records of this page."
+msgstr "سجلات هذه الصفحة"
+
+msgid "Paging information."
+msgstr "معلومات العبادة."
+
+msgid "All matching records (null when counting would be slow)."
+msgstr "جميع سجلات المطابقة (لم يكن العد سيكون بطيئاً)"
+
+msgid "Records per page (at most %d)."
+msgstr "السجلات في الصفحة (أكثر من %d)"
+
+msgid "Cursor to continue after (pageInfo.endCursor)."
+msgstr "كورس لمواصلة العمل بعد ذلك (الصفحة (Info.endCursor."
+
+msgid "The page cursor is not valid."
+msgstr "ممر الصفحات غير صالح"
+
+msgid "Please sign in again."
+msgstr "من فضلك وقع مرة أخرى."
+
+msgid "The record was not found."
+msgstr "لم يعثر على السجل"
+
+msgid "Some fields are not valid."
+msgstr "وبعض الحقول غير صالحة."
+
+msgid "The record was changed by someone else. Reload and try again."
+msgstr "تم تغيير السجل من قبل شخص آخر، أعيدي تحميله وحاولي مرة أخرى"
+
+msgid "Too many requests. Wait a moment and try again."
+msgstr "الكثير من الطلبات انتظر لحظة وحاول مرة أخرى"
+
+msgid "Something went wrong. Please try again."
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+
+msgid "This query is not known to the site. Update the app or the FluxWP packages."
+msgstr "هذا الاستفسار غير معروف للموقع، تحديث التطبيق أو FluxWP حزم."
+
+msgid "Only queries shipped with FluxWP packages may run on this site."
+msgstr "فقط الاستفسارات التي تم شحنها FluxWP رزمة قد تُدير في هذا الموقع."
+
+msgid "The ID is not valid."
+msgstr "الهوية غير صحيحة."
+
+msgid "Global ID."
+msgstr "هوية عالمية."
+
+msgid "Database ID."
+msgstr "هوية قاعدة البيانات"
+
+msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
+msgstr "مشاكل في المدخلات لتظهر بجانب الحقول الشكلية فارغة عندما ينجح الطفرة"
+
+msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
+msgstr "(ب) مجموعات من مجموعات المواد التي تم تركيبها والتي يبلغ عددها FluxWP (من المغازلة - المغازلة - شيما)."
+
+msgid "Panel settings of the installed FluxWP packages."
+msgstr "(ب) مجموعات من مجموعات التعبئة التي تم تركيبها في عام FluxWP."
+
+msgid "Changes panel settings. Only the groups and fields you send are written."
+msgstr "غيرت اللوحات فقط المجموعات والميادين التي ترسلها مكتوبة"
+
+msgid "Settings after the change."
+msgstr "تستقر بعد التغيير"
+
+msgid "This setting cannot be changed here."
+msgstr "لا يمكن تغيير هذا المكان هنا."
+
+msgid "Changes to %s. Only the fields you send are changed."
+msgstr "تغيرات إلى %s فقط الحقول التي ترسلها تغيرت"
+
+msgid "A list or object is expected."
+msgstr "من المتوقع أن تكون هناك قائمة أو موضوع."
+
+msgid "This choice is not available."
+msgstr "هذا الخيار غير متاح."
+
+msgid "Enter a colour like #1F6FEB."
+msgstr "أدخل لون مثل #1F6FEB."
+
+msgid "Free-form JSON value (object, list, string, number or boolean)."
+msgstr "القيمة الحرة للورقة المشتركة بين الوزارات (الهدف أو القائمة أو الخيوط أو الرقم أو البووليان)."
+
+msgid "A problem with the input of a mutation, shown next to the form field."
+msgstr "مشكلة مع مدخل الطفرة التي تظهر بجانب مجال الشكل"
+
+msgid "Stable code: INVALID_INPUT, CONFLICT, …"
+msgstr "شفرة طاولة: إنفالد"
+
+msgid "Message in the user's language."
+msgstr "رسالة بلغة المستعمل"
+
+msgid "Input field (dotted path) the problem belongs to."
+msgstr "مجال المدخلات (المسار المدوّن) المشكلة تعود إلى."
+
+msgid "A point in time with labels in the user's language."
+msgstr "نقطة في الوقت مع علامات في لغة المستخدم."
+
+msgid "Unix timestamp."
+msgstr "مصباح واحد."
+
+msgid "Date and time for display, in the site time zone and the user's language."
+msgstr "تاريخ ووقت العرض في المنطقة الزمنية للموقع ولغة المستعمل"
+
+msgid "Relative time for display (\"5 minutes ago\")."
+msgstr "وقت نسبي للعرض (قبل 5 دقائق)."
+
+msgid "Date only, in the site time zone and the user's language."
+msgstr "التاريخ فقط، في المنطقة الزمنية للموقع ولغة المستخدم"
+
+msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
+msgstr "تاريخ الاتفاق والوقت المحددان للجداول (16.10.2026 14:24 في تركيا)."
+
+msgid "An amount of money."
+msgstr "مبلغ من المال."
+
+msgid "Amount in the currency unit (150.5)."
+msgstr "المبلغ في وحدة العملة (150.5)."
+
+msgid "Amount with the currency sign for display."
+msgstr "كم مع علامة العملة للعرض."
+
+msgid "A phone number."
+msgstr "رقم هاتف"
+
+msgid "Number as entered, for display."
+msgstr "الرقم كما تم، للعرض."
+
+msgid "A stored file."
+msgstr "ملف مخزن"
+
+msgid "File ID (upload ID or the package's own ID)."
+msgstr "هويّة ملفّة (التعرّف على هويّة الحزمة أو هويّة الحزمة)"
+
+msgid "File name."
+msgstr "اسم ملف."
+
+msgid "MIME type."
+msgstr "من النوع المميز."
+
+msgid "Size in bytes."
+msgstr "اضغطي على الصدر"
+
+msgid "Download address (may need the same sign-in)."
+msgstr "عنوان تحميل (قد يحتاج إلى نفس الإشارة)."
+
+msgid "The file is an image."
+msgstr "الملف هو صورة"
+
+msgid "Thumbnail address for images."
+msgstr "عنوان الإبهام للصور"
+
+msgid "A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
+msgstr "الشخص (المانح، الزبون، الاتصال) - شركة Flux CRM تملك السجل؛ وحزم أخرى تعيده."
+
+msgid "Person ID in the shared people table."
+msgstr "هويّة شخص في طاولة الناس المشتركة."
+
+msgid "Full name."
+msgstr "اسم كامل"
+
+msgid "E-mail address."
+msgstr "عنوان البريد الإلكتروني."
+
+msgid "Phone number."
+msgstr "رقم الهاتف"
+
+msgid "Picture address."
+msgstr "عنوان الصورة."
+
+msgid "You are not allowed to manage plugins."
+msgstr "ليس مسموحاً لكِ أن تتدبري أمر (البلوجينز)"
+
+msgid "This screen needs JavaScript."
+msgstr "هذه الشاشة تحتاج إلى JavaScript"
+
+msgid "Loading the screen…"
+msgstr "وضع الشاشة..."
+
+msgid "A separately installed WPGraphQL plugin is active and FluxWP cannot use it. Deactivate it under Plugins; FluxWP has its own copy."
+msgstr "A separately installed WPGraphQL plugin is active and FluxWP لا يمكن استخدامه، إبطال مفعوله تحت (بلوجين) FluxWP لديه نسخته الخاصة"
+
+msgid "Flux GraphQL is not ready on this site. Check Flux GraphQL under Plugins."
+msgstr "Flux GraphQL ليست جاهزة في هذا الموقع تحقق من Flux GraphQL تحت Plugins"
+
+msgid "The screen files of this plugin are missing. Update or reinstall the plugin."
+msgstr "ملفات الشاشة هذه المزلاجة مفقودة، تحديث أو إعادة تركيب البلوغين"
+
+msgid "If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache."
+msgstr "وإذا تم تحديث البلوجين للتو، فإن المصفح أو مخبأ الموقع قد لا يزال يحتفظ بملفات قديمة، ويحمل الصفحة بقوة (Ctrl/Cmd + Shift + R)؛ وإذا ما استمر، يقيّد مكان الموقع."
+
+msgid "This screen could not be loaded"
+msgstr "تعذّر تحميل هذه الشاشة"
+
+msgid "Reload page"
+msgstr "إعادة تحميل الصفحة"
+
+msgid "Uploads are not accepted for this screen."
+msgstr "ولا تقبل هذه الشاشة التحميلات."
+
+msgid "You do not have permission to upload files here."
+msgstr "ليس لديك إذن لتحميل الملفات هنا"
+
+msgid "Too many uploads. Wait a few minutes and try again."
+msgstr "الكثير من التحميلات انتظروا بضع دقائق وحاولوا مرة أخرى"
+
+msgid "The file did not arrive. Try again."
+msgstr "الملف لم يصل، حاول مرة أخرى"
+
+msgid "The file is larger than %s."
+msgstr "الملف أكبر من %s"
+
+msgid "This file type is not allowed."
+msgstr "هذا النوع من الملفات غير مسموح به."
+
+msgid "The file could not be saved on the server."
+msgstr "الملف لا يمكن إنقاذه على الخادم"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "لم يتم العثور على الملف المُحمّل، قم بتحميله مجدداً."
+
+msgid "A name and value shown under a cart line (variation attribute or line detail)."
+msgstr "اسم وقيمة مبيّنة تحت خط عربة (مخصصات أو تفاصيل خطية)."
+
+msgid "Label."
+msgstr "(لابيل)"
+
+msgid "Value as plain text."
+msgstr "القيمة كنص واضح"
+
+msgid "Quantities a cart line accepts."
+msgstr "كمّا يُقبل خطّ العربة."
+
+msgid "Lowest quantity."
+msgstr "أقل كمية."
+
+msgid "Highest quantity."
+msgstr "كمية عالية."
+
+msgid "The quantity is a multiple of this."
+msgstr "الكمية متعددة من هذا"
+
+msgid "Whether the shopper may change the quantity (false for fixed lines such as a donation)."
+msgstr "(أ) ما إذا كان بإمكان المتسوق أن يغير الكمية (الجر بالنسبة للخطوط الثابتة مثل الهبة)."
+
+msgid "A line in the cart."
+msgstr "خط في العربة"
+
+msgid "Cart item key; flxCartItemUpdate and flxCartItemRemove take it."
+msgstr "مفتاح صنف البطاقة، مغازلة (كارت إيمبلد) و(فلاكس كارت إيتوم) يأخذها"
+
+msgid "What the line is: \"product\", or a name a package gives its own lines (Flux Donate: \"donation\"). Filter flx_gql_cart_item_kind."
+msgstr "ما هو السطر هو: \"المنتج\" أو اسم حزمة تعطي خطوطها الخاصة (فلوكس دونات: \"التبرع\""
+
+msgid "WooCommerce product (or variation) database ID."
+msgstr "(أو تغيير) قاعدة بيانات (D)"
+
+msgid "WooCommerce product type (simple, variation …)."
+msgstr "WooCommerce نوع المنتج (بسيط، تفاوت ...)."
+
+msgid "Product name."
+msgstr "اسم المنتج."
+
+msgid "Product page; null for products without a page."
+msgstr "(ب) صفحة المنتجات؛ لا ينطبق على المنتجات بدون صفحة."
+
+msgid "First product image; null without an image."
+msgstr "صورة المنتج الأول لاغية بدون صورة"
+
+msgid "Alternative text of the image."
+msgstr "النص البديل للصورة."
+
+msgid "Quantity."
+msgstr "الكمية."
+
+msgid "Quantities this line accepts."
+msgstr "الكمية التي يقبلها هذا الخط."
+
+msgid "Only one of this product per order."
+msgstr "واحد فقط من هذا المنتج لكل طلب"
+
+msgid "Price of one unit."
+msgstr "سعر وحدة واحدة"
+
+msgid "Regular price of one unit (before a sale)."
+msgstr "سعر منتظم لوحدة واحدة (قبل البيع)."
+
+msgid "Line total before coupons."
+msgstr "خط إجمالي قبل القسائم."
+
+msgid "Line total after coupons, without tax."
+msgstr "خط إجمالي بعد قسائم، بدون ضرائب."
+
+msgid "Tax of the line."
+msgstr "ضريبة على الخط"
+
+msgid "Chosen variation attributes."
+msgstr "سمات الاختراع"
+
+msgid "Line details other plugins add (e.g. a donation's names and certificate)."
+msgstr "الخط يُوضّحُ مُضَعَاتَ أخرى (مثل أسماءِ وشهادةِ الهبةِ)."
+
+msgid "A coupon applied to the cart."
+msgstr "قسيمة طبقت على العربة"
+
+msgid "Coupon code."
+msgstr "شفرة كوبون"
+
+msgid "WooCommerce discount type (percent, fixed_cart …)."
+msgstr "WooCommerce نوع الخصم (النسبة المئوية، الشاحنات الثابتة ...)."
+
+msgid "Discount without tax."
+msgstr "فرز بدون ضرائب."
+
+msgid "Tax part of the discount."
+msgstr "جزء ضريبي من التخفيض"
+
+msgid "A fee added to the cart (e.g. a payment fee)."
+msgstr "(أ) رسم مضاف إلى العربة (مثل رسوم الدفع)."
+
+msgid "Fee key."
+msgstr "مفتاح الطعام."
+
+msgid "Fee name."
+msgstr "إسمك."
+
+msgid "Fee without tax."
+msgstr "إدفع بدون ضرائب"
+
+msgid "Tax of the fee."
+msgstr "ضريبة الرسوم."
+
+msgid "One tax rate in the cart totals."
+msgstr "معدل ضريبي واحد في مجاميع العربة"
+
+msgid "Tax name."
+msgstr "اسم الضرائب."
+
+msgid "Rate as WooCommerce shows it."
+msgstr "المعدل WooCommerce يظهر ذلك."
+
+msgid "Amount."
+msgstr "المبلغ."
+
+msgid "Cart totals, as WooCommerce calculated them."
+msgstr "مجاميع البطاقة، كما حسبها WooCommerce."
+
+msgid "ISO 4217 currency of the cart."
+msgstr "ISO 4217 العملة من العربة."
+
+msgid "Lines before coupons, without tax."
+msgstr "خطوط قبل القسائم، بدون ضرائب."
+
+msgid "Tax of the lines."
+msgstr "ضريبة على الخطوط"
+
+msgid "Fees without tax."
+msgstr "رسوم بدون ضرائب"
+
+msgid "Coupon discounts without tax."
+msgstr "خصوم مزدوجة بدون ضرائب"
+
+msgid "Shipping without tax; null until shipping is calculated."
+msgstr "الشحن بدون ضرائب؛ لا شيء حتى يتم حساب الشحن."
+
+msgid "All taxes."
+msgstr "كل الضرائب"
+
+msgid "Amount to pay."
+msgstr "مبلغ للدفع"
+
+msgid "Taxes by rate."
+msgstr "الضرائب بالمعدل"
+
+msgid "A shipping option."
+msgstr "خيار الشحن."
+
+msgid "Rate ID for flxCartShippingRateSelect."
+msgstr "بطاقة تعريف لـ (فوكس كارت) لـ (ريتس سيلكتور)"
+
+msgid "Shipping method (flat_rate, free_shipping …)."
+msgstr "- طريقة الشحن (البطاقة، حرية الشحن ...)."
+
+msgid "Name."
+msgstr "الاسم."
+
+msgid "Description; may be empty."
+msgstr "الوصف، قد يكون فارغاً"
+
+msgid "Delivery time; may be empty."
+msgstr "وقت التسليم؛ قد يكون فارغا."
+
+msgid "Price without tax."
+msgstr "السعر بدون ضرائب"
+
+msgid "Whether this option is chosen."
+msgstr "ما إذا كان هذا الخيار قد اختير."
+
+msgid "A group of lines shipped together and its shipping options."
+msgstr "مجموعة من الخطوط تم شحنها معاً وخيارات الشحن"
+
+msgid "Package ID."
+msgstr "بطاقة هوية"
+
+msgid "Package name."
+msgstr "اسم الطرد."
+
+msgid "Shipping options."
+msgstr "خيارات الشحن."
+
+msgid "A billing or shipping address of the cart."
+msgstr "عنوان فواتير العربة أو شحنها"
+
+msgid "A problem with the cart the shopper has to fix before paying (e.g. a product went out of stock)."
+msgstr "هناك مشكلة مع العربة التي يجب على المتسوق أن يصلحها قبل دفعها (مثلاً، المنتج خرج من المخزن)."
+
+msgid "WooCommerce error code."
+msgstr "رمز خطأ WooCommerce"
+
+msgid "Message in the shopper's language."
+msgstr "رسالة في لغة المتسوق"
+
+msgid "Where the payment step continues. Payment stays on the WooCommerce Store API checkout; card data never goes through GraphQL."
+msgstr "عندما تستمر خطوة الدفع، يبقى الدفع على WooCommerce Store API بيانات البطاقات لا تعبر GraphQL."
+
+msgid "The site's checkout page; null when WooCommerce is not loaded."
+msgstr "صفحة دخول الموقع لاغية عندما لا يتم تحميل WooCommerce"
+
+msgid "The site's cart page; null when WooCommerce is not loaded."
+msgstr "صفحة الموقع لاغية عندما لا يتم تحميل WooCommerce"
+
+msgid "The shopper's WooCommerce cart (Store API)."
+msgstr "عربة المتسوق WooCommerce (المخزن API)"
+
+msgid "Cart token. Send it back as the Cart-Token header (headless front end, mobile); it is also in the Cart-Token response header. Null when WooCommerce gave none."
+msgstr "كارت توكين، أعيديه كرئيس لسيارة توكن (الجبهة بلا رأس، متحركة)؛ وهو أيضاً في رأس رد كارت - توكن، حيث لم يعط أي منها WooCommerce."
+
+msgid "Store API nonce for the same-site cookie session (Nonce header). Null when WooCommerce gave none."
+msgstr "لم تُعقد دورة كوكي في نفس الموقع (مدير نونس) كما لم يُمنح أي منها رقم WooCommerce."
+
+msgid "Number of units in the cart (quantities added up)."
+msgstr "عدد الوحدات في العربة (الكميات المضافة)."
+
+msgid "Lines."
+msgstr "خطوط."
+
+msgid "Applied coupons."
+msgstr "قسائم مطبقة."
+
+msgid "Fees."
+msgstr "رسوم."
+
+msgid "Totals."
+msgstr "المجموع."
+
+msgid "Whether the order needs a payment (false for a free cart)."
+msgstr "ما إذا كان الأمر يحتاج إلى دفعة (الدفع مقابل عربة مجانية)."
+
+msgid "Whether the order is shipped (false for donations and virtual products)."
+msgstr "وسواء كان الأمر مشحناً (نقص التبرعات والمنتجات الافتراضية)."
+
+msgid "Whether shipping was calculated for the current address."
+msgstr "ما إذا كانت الشحنة قد حسبت للعنوان الحالي."
+
+msgid "Shipping packages and their options."
+msgstr "طرود الشحن وخياراتهم"
+
+msgid "IDs of the payment gateways available for this cart (payment_method of the checkout)."
+msgstr "هويات بوابات الدفع المتاحة لهذه العربة (الدفع - ملحد من السحب)."
+
+msgid "Features a gateway must support for this cart (e.g. products, subscriptions)."
+msgstr "ويجب أن تدعم البوابة هذه العربة (مثل المنتجات والاشتراكات)."
+
+msgid "Problems to fix before paying."
+msgstr "مشاكل في الإصلاح قبل الدفع."
+
+msgid "Billing address."
+msgstr "عنوان بيلينغ."
+
+msgid "Shipping address."
+msgstr "عنوان الشحن."
+
+msgid "Where the payment step continues."
+msgstr "حيث تستمر خطوة الدفع."
+
+msgid "A variation attribute."
+msgstr "سمة مختلفة."
+
+msgid "Attribute name or taxonomy (e.g. pa_color)."
+msgstr "(أ) تُنسب الاسم أو التحصين (مثلاً (باب - كولور)."
+
+msgid "Chosen value."
+msgstr "قيمة مختارة"
+
+msgid "Address fields to change; fields left out keep their value."
+msgstr "معالجة الحقول للتغيير؛ وتبقي الحقول قيمة."
+
+msgid "The shopper's cart (Cart-Token session or the WooCommerce session cookie). Never cached."
+msgstr "عربة المتسوق (دورة (كارت توك أو كعكة الدورة WooCommerce لم تُخرب قط"
+
+msgid "The cart after the change; null when the change failed."
+msgstr "العربة بعد التغيير، لاغية عندما فشل التغيير."
+
+msgid "Adds a product to the cart (Store API cart/add-item)."
+msgstr "يضيف منتجا إلى العربة (العربة/البند المضاف من طراز Store API)."
+
+msgid "Product or variation database ID."
+msgstr "هوية قاعدة بيانات المنتجات أو التباينات."
+
+msgid "Quantity; default 1."
+msgstr "الكمية؛ التقصير 1"
+
+msgid "Variation attributes for a variable product."
+msgstr "(ب) خصائص التغير بالنسبة لمنتج متغير."
+
+msgid "Key of the line that was added or increased; null when the change failed."
+msgstr "مفتاح السطر الذي أضيف أو زاد؛ لا شيء عندما يفشل التغيير."
+
+msgid "Changes the quantity of a cart line; 0 removes it."
+msgstr "يغيّر كمية خط العربات، ولا يزيله أحد."
+
+msgid "Cart item key."
+msgstr "مفتاح صنف العربة"
+
+msgid "New quantity."
+msgstr "كمية جديدة."
+
+msgid "Removes a cart line."
+msgstr "يزيل خط العربة"
+
+msgid "Empties the cart."
+msgstr "يفرغ العربة."
+
+msgid "Applies a coupon."
+msgstr "يَفْعلُ a قسيمة."
+
+msgid "Removes a coupon."
+msgstr "يزيل قسيمة."
+
+msgid "Chooses a shipping option."
+msgstr "يختار خيار الشحن."
+
+msgid "Rate ID (FlxCartShippingRate.rateId)."
+msgstr "معدل الهوية (FlxCartShippingRate.rateId)."
+
+msgid "Shipping package; left out = every package."
+msgstr "رزمة الشحن؛ مُتبقية = كل طرد."
+
+msgid "Changes the billing and/or shipping address; totals, taxes and shipping options follow."
+msgstr "(ب) تغيير عنوان الفواتير و/أو الشحن؛ وتلي ذلك المجاميع والضرائب وخيارات النقل البحري."
+
+msgid "Billing address fields to change."
+msgstr "بلينغ) يخاطب الحقول للتغيير)"
+
+msgid "Shipping address fields to change."
+msgstr "تشحن الحقول لتغييرها"
+
+msgid "First name."
+msgstr "الاسم الأول."
+
+msgid "Last name."
+msgstr "الاسم الأخير."
+
+msgid "Company."
+msgstr "الشركة"
+
+msgid "Address line 1."
+msgstr "العنوان 1"
+
+msgid "Address line 2."
+msgstr "العنوان 2"
+
+msgid "City."
+msgstr "المدينة."
+
+msgid "State or province code."
+msgstr "قانون الولاية أو المقاطعة."
+
+msgid "Postcode."
+msgstr "البريد."
+
+msgid "E-mail."
+msgstr "البريد الإلكتروني."
+
+msgid "Phone."
+msgstr "الهاتف."
+
+msgid "Choose a product."
+msgstr "اختر منتجاً"
+
+msgid "The quantity must be at least 1."
+msgstr "يجب أن تكون الكمية 1 على الأقل"
+
+msgid "The quantity cannot be negative."
+msgstr "لا يمكن أن تكون الكمية سلبية."
+
+msgid "Enter a coupon code."
+msgstr "أدخل رمز الكوبونات"
+
+msgid "The shop is not available on this site."
+msgstr "المتجر غير متاح في هذا الموقع."
+
+msgid "Your cart has expired. Please reload the page."
+msgstr "عربتك إنتهت، من فضلك أعد تحميل الصفحة."
+
+msgid "The cart could not be changed. Please reload the page."
+msgstr "العربة لا يمكن تغييرها، رجاءً أعيدي تحميل الصفحة"
+
+msgid "Select date"
+msgstr "اختر التاريخ"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "Tomorrow"
+msgstr "غدًا"
+
+msgid "Next week"
+msgstr "الأسبوع المقبل"
+
+msgid "In 2 weeks"
+msgstr "بعد أسبوعين"
+
+msgid "This Friday"
+msgstr "يوم الجمعة هذا"
+
+msgid "No date"
+msgstr "بلا تاريخ"
+
+msgid "Clear"
+msgstr "مسح"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Apply"
+msgstr "تطبيق"
+
+msgid "Month"
+msgstr "الشهر"
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid "Previous month"
+msgstr "الشهر السابق"
+
+msgid "Next month"
+msgstr "الشهر التالي"
+
+msgid "Previous year"
+msgstr "السنة السابقة"
+
+msgid "Next year"
+msgstr "السنة التالية"
+
+msgid "Choose month"
+msgstr "اختر الشهر"
+
+msgid "Choose year"
+msgstr "اختر السنة"
+
+msgid "OK"
+msgstr "موافق"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Are you sure?"
+msgstr "هل أنت متأكد؟"
+
+msgid "Notice"
+msgstr "إشعار"
+
+msgid "This cannot be undone."
+msgstr "لا يمكن التراجع عن هذا الإجراء."
+
+msgid "To confirm, type %s"
+msgstr "اكتب %s للتأكيد"

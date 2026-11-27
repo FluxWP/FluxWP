@@ -82,7 +82,7 @@ function flxs_page_logs() {
 	$q      = flxs_logs_query( $a, $per, ( $paged - 1 ) * $per );
 	$labels = flxs_log_actions();
 	flxs_admin_header(
-		'Kayıtlar (log)',
+		__( 'Logs', 'flx-certificates' ),
 		array( array( 'label' => 'CSV indir', 'url' => wp_nonce_url( add_query_arg( array_merge( array( 'action' => 'flxs_logs_csv' ), array_filter( $_GET ) ), admin_url( 'admin-post.php' ) ), 'flxs_logs_csv' ) ) ), // phpcs:ignore
 		'Kim, ne zaman, neyi yaptı: sertifika oluşturma/düzenleme/iptal, her mesajın sonucu (gönderen kişiyle), sağlayıcı ve ayar değişiklikleri.'
 	);
@@ -91,32 +91,32 @@ function flxs_page_logs() {
 		<input type="hidden" name="page" value="flxs-kayitlar">
 		<input type="search" name="s" value="<?php echo esc_attr( $a['s'] ); ?>" placeholder="Ara…">
 		<select name="act" data-flxa-primary>
-			<option value="">Tüm işlemler</option>
+			<option value=""><?php esc_html_e( 'All actions', 'flx-certificates' ); ?></option>
 			<?php foreach ( $labels as $k => $l ) : ?>
 				<option value="<?php echo esc_attr( $k ); ?>" <?php selected( $a['action'], $k ); ?>><?php echo esc_html( $l ); ?></option>
 			<?php endforeach; ?>
 		</select>
 		<select name="user" data-flxa-primary>
-			<option value="">Tüm kullanıcılar</option>
+			<option value=""><?php esc_html_e( 'All users', 'flx-certificates' ); ?></option>
 			<?php foreach ( flxs_users_with_cap() as $u ) : ?>
 				<option value="<?php echo (int) $u->ID; ?>" <?php selected( $a['user'], $u->ID ); ?>><?php echo esc_html( $u->display_name ); ?></option>
 			<?php endforeach; ?>
 		</select>
 		<div class="flxs-daterange"><input type="date" name="from" value="<?php echo esc_attr( $a['from'] ); ?>"> – <input type="date" name="to" value="<?php echo esc_attr( $a['to'] ); ?>"></div>
-		<button class="button">Filtrele</button>
+		<button class="button"><?php esc_html_e( 'Filter', 'flx-certificates' ); ?></button>
 	</form>
 	<table class="widefat flxs-table flxs-table--logs">
-		<thead><tr><th>Zaman</th><th>Kullanıcı</th><th>İşlem</th><th>Açıklama</th><th>IP</th></tr></thead>
+		<thead><tr><th><?php esc_html_e( 'Time', 'flx-certificates' ); ?></th><th><?php esc_html_e( 'User', 'flx-certificates' ); ?></th><th><?php esc_html_e( 'Action', 'flx-certificates' ); ?></th><th><?php esc_html_e( 'Description', 'flx-certificates' ); ?></th><th>IP</th></tr></thead>
 		<tbody>
 		<?php if ( ! $q['items'] ) : ?>
-			<tr><td colspan="5" class="flxs-empty">Kayıt yok.</td></tr>
+			<tr><td colspan="5" class="flxs-empty"><?php esc_html_e( 'No records.', 'flx-certificates' ); ?></td></tr>
 		<?php endif; ?>
 		<?php foreach ( $q['items'] as $l ) : ?>
 			<tr>
-				<td data-label="Zaman" class="flxs-nowrap"><?php echo esc_html( flxs_date( $l['created_at'], 'd.m.Y H:i:s' ) ); ?></td>
-				<td data-label="Kullanıcı"><?php echo esc_html( flxs_user_label( $l['user_id'] ) ); ?></td>
-				<td data-label="İşlem"><span class="flxs-act flxs-act--<?php echo esc_attr( $l['action'] ); ?>"><?php echo esc_html( $labels[ $l['action'] ] ?? $l['action'] ); ?></span></td>
-				<td data-label="Açıklama">
+				<td data-label="<?php esc_attr_e( 'Time', 'flx-certificates' ); ?>" class="flxs-nowrap"><?php echo esc_html( flxs_date( $l['created_at'], 'd.m.Y H:i:s' ) ); ?></td>
+				<td data-label="<?php esc_attr_e( 'User', 'flx-certificates' ); ?>"><?php echo esc_html( flxs_user_label( $l['user_id'] ) ); ?></td>
+				<td data-label="<?php esc_attr_e( 'Action', 'flx-certificates' ); ?>"><span class="flxs-act flxs-act--<?php echo esc_attr( $l['action'] ); ?>"><?php echo esc_html( $labels[ $l['action'] ] ?? $l['action'] ); ?></span></td>
+				<td data-label="<?php esc_attr_e( 'Description', 'flx-certificates' ); ?>">
 					<?php
 					echo esc_html( $l['message'] );
 					if ( 'certificate' === $l['object_type'] && $l['object_id'] ) {

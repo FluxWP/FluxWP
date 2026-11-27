@@ -988,6 +988,7 @@ return array(
   'Şu an' => '今すぐ',
   'Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.' => 'Cookie なし、個人データなしのサイト統計: 訪問者、ビュー、最も読まれたページ、参照サイト、チャネル、デバイス/ブラウザ、キャンペーン (UTM)、クリック イベント、寄付コンバージョン。データはサイト上に残ります。人工知能 Flux AI / Flux AI および MCP ツールで読み取ります。',
   'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.' => 'Cookie なし、個人データなしのサイト統計: 訪問者、ビュー、最も読まれたページ、参照サイト、チャネル、デバイス/ブラウザ、キャンペーン (UTM)、クリック イベント、寄付コンバージョン。データはサイト上に残ります。人工知能 Flux AI / Flux AI および MCP ツールで読み取ります。',
-
+  'View statistics' => '統計学の展望',
+  'Logged-in people' => 'ログイン者',
  ),
 );

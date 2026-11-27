@@ -49,7 +49,7 @@ return array(
   'Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top.' => 'Gespräche aus dem Chat-Fenster auf Ihrer Website. Hier finden Sie auch Chats, auf die der Assistent geantwortet hat. Besucher, die nach einem Makler fragen, sind ganz oben.',
   'Flux Chat' => 'Flux-Chat',
   'Flux AI Chatbot' => 'Flux AI Chatbot',
-  'Chatbot' => 'Chatbot',
+  'Chatbot' => 'Ich bin nicht da.',
   'Chats' => 'Chats',
   'Chatbot settings' => 'Chatbot-Einstellungen',
   'Choose avatar' => 'Wählen Sie Avatar',
@@ -797,6 +797,8 @@ return array(
   'Siteye yapay zekâ destekli sohbet penceresi: Flux AI ile sitenizin içeriğinden ve ürünlerinden 7/24 cevap, potansiyel müşteri toplama, WooCommerce bilgisi, tek tıkla canlı temsilciye devir (Flux Chat gelen kutusu ya da eklentinin kendi gelen kutusu), dosya paylaşımı, okundu bilgisi, sohbet sonu puanlama ve mesai dışında mesaj bırakma. Renk, konum, avatar, metinler ve görünürlük panelden özelleştirilir.' => '[[„Von künstlicher Intelligenz unterstütztes Chat-Fenster zur Website: Mit Flux AI rund um die Uhr Antworten auf die Inhalte und Produkte Ihrer Website, Sammlung potenzieller Kunden, WooCommerce-Informationen, Übertragung mit einem Klick an einen Live-Vertreter (Flux-Chat-Posteingang oder der eigene Posteingang des Plugins), Dateifreigabe, Lesebestätigungen, Bewertung am Ende des Chats und Hinterlassen von Nachrichten nach Geschäftsschluss. Farbe, Position, Avatar, Texte und Sichtbarkeit werden über das Panel angepasst.“, \'tr\']]',
   'Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site\'s content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin\'s own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.' => '[[„Von künstlicher Intelligenz unterstütztes Chat-Fenster zur Website: Mit Flux AI rund um die Uhr Antworten auf die Inhalte und Produkte Ihrer Website, Sammlung potenzieller Kunden, WooCommerce-Informationen, Übertragung mit einem Klick an einen Live-Vertreter (Flux-Chat-Posteingang oder der eigene Posteingang des Plugins), Dateifreigabe, Lesebestätigungen, Bewertung am Ende des Chats und Hinterlassen von Nachrichten nach Geschäftsschluss. Farbe, Position, Avatar, Texte und Sichtbarkeit werden über das Panel angepasst.“, \'tr\']]',
   'Still answering. Please wait a moment.' => 'Die Antwort wird noch geschrieben. Bitte warten Sie einen Moment.',
-
+  'Answers site chats' => 'Antworten Website-Chats',
+  'JavaScript is required for this screen.' => 'Für diesen Bildschirm ist JavaScript erforderlich.',
+  'Chat on WhatsApp' => 'Chatten Sie auf WhatsApp',
  ),
 );

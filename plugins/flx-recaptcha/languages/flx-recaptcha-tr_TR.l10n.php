@@ -5,7 +5,7 @@ return array(
  'messages' => array(
   'Settings' => 'Ayarlar',
   'Protects forms against spam and bot attacks' => 'Formları spam ve bot saldırılarına karşı korur',
-  'reCAPTCHA' => 'reCAPTCHA',
+  'reCAPTCHA' => 'reCAPTCHA kez',
   'Forms are not protected yet. Enter your Google reCAPTCHA keys and test them.' => 'Formlar henüz korunmuyor. Google reCAPTCHA anahtarlarını girip test edin.',
   'Go to settings' => 'Ayarlara git',
   'You are not allowed to do this.' => 'Bu işlem için yetkiniz yok.',

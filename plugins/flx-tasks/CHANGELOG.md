@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.20.3
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.20.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

@@ -8,7 +8,7 @@
   "messages": {
     "Backups": "备份",
     "Backups › Dashboard": "备份 › 仪表板",
-    "Dashboard": "仪表板",
+    "Dashboard": "仪表盘",
     "Backups › Settings": "备份 › 设置",
     "Settings": "设置",
     "Permanently delete this backup?": "永久删除此备份吗?",
@@ -349,6 +349,8 @@
     "No backups": "无备份",
     "Back up": "备份",
     "Progress": "进展",
-    "Take the first backup with Back up now. Restore is done in the panel.": "使用“立即备份”进行第一次备份。恢复是在面板中完成的。"
+    "Take the first backup with Back up now. Restore is done in the panel.": "使用“立即备份”进行第一次备份。恢复是在面板中完成的。",
+    "JavaScript is required for this screen.": "JavaScript 此 screen幕需要。",
+    "%s%%": "%s %"
   }
 }

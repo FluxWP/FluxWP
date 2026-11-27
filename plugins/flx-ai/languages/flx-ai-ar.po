@@ -1572,3 +1572,1266 @@ msgstr "من يمكنه الاتصال: المستخدمون ذوو القدرة
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr "لا يستطيع حسابك ربط مساعد (قدرة MCP مطلوبة)."
+
+msgid "Flux GraphQL is not active, so FluxWP screens cannot open."
+msgstr "Flux GraphQL ليست نشطة، لذلك FluxWP الشاشات لا يمكن فتحها."
+
+msgid "Chat history"
+msgstr "تاريخ الشاسعة"
+
+msgid "Scheduled tasks"
+msgstr "المهام المقررة"
+
+msgid "Skills"
+msgstr "المهارات"
+
+msgid "Connections"
+msgstr "اتصالات"
+
+msgid "This action is no longer waiting for approval."
+msgstr "ولم يعد هذا الإجراء في انتظار الموافقة عليه."
+
+msgid "The file could not be uploaded."
+msgstr "لا يمكن تحميل الملف."
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr "هذا النوع من الملفات غير مدعم. %s"
+
+msgid "The file is too large (max %s)."
+msgstr "الملف كبير جداً (ماكس %s)"
+
+msgid "The image could not be read."
+msgstr "لا يمكن قراءة الصورة."
+
+msgid "File not found."
+msgstr "لم يتم العثور على الملف."
+
+msgid "Web search"
+msgstr "البحث على شبكة الإنترنت"
+
+msgid "Web search is turned off."
+msgstr "البحث على الانترنت مغلق."
+
+msgid "No search provider key; agents can still read web pages but cannot search."
+msgstr "لا يوجد مفتاح لمقدمي البحث؛ ولا يزال بإمكان العملاء قراءة صفحات الإنترنت ولكن لا يمكنهم البحث."
+
+msgid "Using %1$s. This month: %2$s searches."
+msgstr "استخدام %1$sهذا الشهر: %2$s عمليات تفتيش"
+
+msgid "Flux Cloud session could not be renewed: %s"
+msgstr "لا يمكن تجديد دورة السحاب: %s"
+
+msgid "\"%s\" is not a hex color (e.g. #0A5A40)."
+msgstr "\"%s\" ليس لون الثعلب \"مثل \"0A5A40"
+
+msgid "%s is too long (at most 30 KB)."
+msgstr "%s طويلة جداً (في معظم 30 كيلوبايت)."
+
+msgid "The brand kit can hold at most 20 documents."
+msgstr "مجموعة العلامة التجارية يمكن أن تحمل على أكثر من 20 وثيقة."
+
+msgid "Could not read the image %s."
+msgstr "لم أستطع قراءة الصورة %s"
+
+msgid "The images are too large in total (at most 30 MB)."
+msgstr "والصور كبيرة جداً في المجموع (أكثر من 30 ميغابايت)."
+
+msgid "Brand kit"
+msgstr "مجموعة أدوات براند"
+
+msgid "Update brand kit"
+msgstr "مجموعة مواد جديدة"
+
+msgid "Render design"
+msgstr "التصميم على أساس التردد"
+
+msgid "There is no workspace here; pass the HTML in \"html\"."
+msgstr "لا يوجد مكان عمل هنا، تمرر \"HTML\" في \"html\""
+
+msgid "This file is outside your workspace."
+msgstr "هذا الملف خارج مجال عملك"
+
+msgid "Text to replace was not found in the design: %s"
+msgstr "لم يعثر على نص يحل محله في التصميم: %s"
+
+msgid "The text occurs %1$d times; make it unique or set all=true: %2$s"
+msgstr "ويحدث النص %1$d مرة؛ ويجعله فريداً أو يحدد كل شيء: %2$s"
+
+msgid "The design HTML is empty."
+msgstr "التصميم HTML فارغ"
+
+msgid "The design HTML is too large (at most 400 KB). Pass images with \"images\", not inline."
+msgstr "تصميم \"هاب إل\" كبير جداً (في أكثر من 400 كيلو بي)، أرسل صوراً مع \"الصور\"، وليس على الإنترنت."
+
+msgid "Design"
+msgstr "التصميم"
+
+msgid "There is no workspace here; pass attachment_id or url."
+msgstr "لا يوجد مكان عمل هنا، مُلحقة مرورية بـ \"د\" أو \"رول\"."
+
+msgid "File not found: %s"
+msgstr "لم يتم العثور على الملف: %s"
+
+msgid "The image is too large (at most 15 MB)."
+msgstr "الصورة أكبر من الحد المسموح به (15 ميغابايت)."
+
+msgid "Not an image (PNG, JPEG, WebP, GIF or SVG): %s"
+msgstr "الملف ليس صورة (PNG أو JPEG أو WebP أو GIF أو SVG): %s"
+
+msgid "Give path, attachment_id or url for each image."
+msgstr "أعطِ الطريقَ، ملحقةَ - دَعْ أَو url لكلّ صورةِ."
+
+msgid "Attachment #%d is not an image."
+msgstr "الملحق رقم %d ليس صورة"
+
+msgid "Images can only be saved in your own folder (%s)."
+msgstr "الصور لا يمكن إنقاذها إلا في ملفك الخاص (%s)"
+
+msgid "View image"
+msgstr "صورة يقظة"
+
+msgid "Give at least one image."
+msgstr "أعطي صورة واحدة على الأقل."
+
+msgid "Collect images"
+msgstr "جمع الصور"
+
+msgid "Edit image"
+msgstr "صورة إديت"
+
+msgid "SVG files cannot be edited; use them as they are."
+msgstr "ولا يمكن تحرير ملفات SVG؛ واستخدامها كما هي."
+
+msgid "The image could not be opened."
+msgstr "لا يمكن فتح الصورة."
+
+msgid "Scheduled task"
+msgstr "المهمة المقررة"
+
+msgid "Attach file"
+msgstr "إرفاق الملف"
+
+msgid "Dictate"
+msgstr "إملاء صوتي"
+
+msgid "You can attach up to %s files."
+msgstr "يمكنك أن ترفق بها ملفات رقم %s"
+
+msgid "%s is too large."
+msgstr "%s كبير جدا."
+
+msgid "Microphone permission was not given."
+msgstr "لم يُمنح الإذن بالهواتف المصغرة."
+
+msgid "Scheduled task · %s"
+msgstr "المهمة المقررة: %s"
+
+msgid "1 error"
+msgstr "خطأ واحد"
+
+msgid "%s tools"
+msgstr "%s أدوات"
+
+msgid "1 tool"
+msgstr "أداة واحدة"
+
+msgid "%s rejected"
+msgstr "%s مرفوض"
+
+msgid "1 rejected"
+msgstr "1 رُفضت"
+
+msgid "No messages yet."
+msgstr "لا رسائل بعد"
+
+msgid "Workspace"
+msgstr "مكان العمل"
+
+msgid "Exit full screen"
+msgstr "الشاشة الكاملة"
+
+msgid "Full screen"
+msgstr "شاشة كاملة"
+
+msgid "Change in the assistant's folder"
+msgstr "تغيير في ملف المساعد"
+
+msgid "Change request #%s: waiting for your approval"
+msgstr "طلب التغيير رقم %s: في انتظار موافقتك"
+
+msgid "Change request #%s: rejected"
+msgstr "طلب التغيير رقم %s: رُفض"
+
+msgid "Change request #%s: merged"
+msgstr "طلب التغيير رقم %s: دمج"
+
+msgid "View diff"
+msgstr "فيو د."
+
+msgid "Empty folder"
+msgstr "مجلد فارغ"
+
+msgid "The file is too large to show a diff."
+msgstr "الملف كبير جداً ليظهر نزيفاً"
+
+msgid "No differences."
+msgstr "لا خلافات."
+
+msgid "Merged"
+msgstr "Merged"
+
+msgid "Rejected"
+msgstr "مرفوض"
+
+msgid "Partly merged"
+msgstr "تم دمجها جزئياً"
+
+msgid "Saved"
+msgstr "تم الحفظ"
+
+msgid "added"
+msgstr "وأضاف"
+
+msgid "changed"
+msgstr "تغير"
+
+msgid "deleted"
+msgstr "محذوف"
+
+msgid "Change request"
+msgstr "طلب التغيير"
+
+msgid "Change"
+msgstr "التغيير"
+
+msgid "%s files"
+msgstr "%s ملف"
+
+msgid "Merge"
+msgstr "رقيب"
+
+msgid "Merge this"
+msgstr "إدمج هذا"
+
+msgid "Files"
+msgstr "ملفات"
+
+msgid "Once the chat starts, its folder and the assistant's changes appear here."
+msgstr "بمجرد أن تبدأ الدردشة، ملفها وتغييرات المساعد تظهر هنا."
+
+msgid "The workspace needs the Flux Files plugin. You can install it from FluxWP Panel › Packages."
+msgstr "فضاء العمل يحتاج لبلوجين الفلفل يمكنك تركيبه من 917101 مجموعة"
+
+msgid "Back"
+msgstr "العودة"
+
+msgid "Open in Flux Files"
+msgstr "\"افتح في \"فلكس فيل"
+
+msgid "The folder is empty. Notes, reports and drafts the assistant writes appear here."
+msgstr "الملف فارغ، ملاحظات وتقارير و مشاريع كتبها المساعد هنا"
+
+msgid "Allowed folders"
+msgstr "الملفات المسموح بها"
+
+msgid "No changes yet. What the assistant writes to its own folder shows here as commits, and changes it proposes to site files as change requests."
+msgstr "لا تغيرات بعد ما كتبه المساعد لمجلده الخاص يظهر هنا كتكاليف وتغييرات يقترحها لملفات الموقع كطلبات تغيير"
+
+msgid "File access for this task"
+msgstr "إمكانية الوصول إلى الملفات لهذه المهمة"
+
+msgid "File access for this chat"
+msgstr "الدخول إلى هنا من أجل هذه المحادثة"
+
+msgid "Only its own folder"
+msgstr "فقط ملفه الخاص"
+
+msgid "The assistant sees only this chat's folder and the folders you allow below."
+msgstr "المساعد يرى فقط ملف الدردشة والملفات التي تسمح بها"
+
+msgid "Can read the whole site"
+msgstr "يمكن قراءة الموقع بأكمله"
+
+msgid "The assistant can read the site's files; every file it wants to change comes to you as a change request."
+msgstr "يمكن للمساعد أن يقرأ ملفات الموقع كل ملف يريد تغييره يأتي إليك كطلب تغيير"
+
+msgid "One folder per line (relative to the site root). Changes in these folders also wait for your approval."
+msgstr "ملف واحد لكل خط (متعلق بجذور الموقع) - التغييرات في هذه الملفات تنتظر موافقتك أيضاً."
+
+msgid "Rules that always apply"
+msgstr "القواعد التي تطبق دائما"
+
+msgid "The assistant cannot directly change any file outside its own folder."
+msgstr "ولا يمكن للمساعد أن يغير أي ملف مباشرة خارج ملفه الخاص."
+
+msgid "Other chats' and tasks' folders are closed; skill files are read-only."
+msgstr "دردشة أخرى وملفات المهام مغلقة ملفات المهارات تقرأ فقط"
+
+msgid "Files with passwords and keys (wp-config, .env, .sql) and WordPress core are never opened."
+msgstr "فلم تُفتح قط الملفات التي تحمل كلمات ومفاتيح (الثقوب، والهاتف، و(الرقيق) و(WordPress"
+
+msgid "At most 50 files per turn and 1 MB per file can be written."
+msgstr "ويمكن كتابة أكثر من 50 ملفاً لكل ملف، وواحدة ميغابايت لكل ملف."
+
+msgid "The file changed in the meantime and was not applied: %s"
+msgstr "وقد تغير الملف في غضون ذلك ولم يطبق: %s"
+
+msgid "Reject the change request?"
+msgstr "رفض طلب التغيير؟"
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Code"
+msgstr "الكود"
+
+msgid "Discard"
+msgstr "تجاهل"
+
+msgid "E-mail"
+msgstr "البريد الإلكتروني"
+
+msgid "Contact"
+msgstr "الاتصال"
+
+msgid "WhatsApp group"
+msgstr "مجموعة الواتساب"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Chats"
+msgstr "الدردشات"
+
+msgid "/ commands"
+msgstr "/ أوامر"
+
+msgid "Hide panel"
+msgstr "لوحة اختباء"
+
+msgid "Search chats…"
+msgstr "فتش الدردشة..."
+
+msgid "Results"
+msgstr "النتائج"
+
+msgid "Recent chats"
+msgstr "المحادثات الأخيرة"
+
+msgid "The archive is empty."
+msgstr "المحفوظات فارغة"
+
+msgid "No command found."
+msgstr "لم نجد أي أمر"
+
+msgid "Commands"
+msgstr "القيادات"
+
+msgid "Apps"
+msgstr "تطبيقات"
+
+msgid "Archived"
+msgstr "مؤرشف"
+
+msgid "Visual report"
+msgstr "التقرير الافتراضي"
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Open full screen"
+msgstr "فتح بملء الشاشة"
+
+msgid "View"
+msgstr "عرض"
+
+msgid "Recently used"
+msgstr "استخدمت مؤخرا"
+
+msgid "All models"
+msgstr "جميع النماذج"
+
+msgid "%s more models: narrow your search."
+msgstr "%s نماذج أخرى: تضييق البحث الخاص بك."
+
+msgid "Bubble"
+msgstr "فقاعة"
+
+msgid "Right panel"
+msgstr "الفريق اليميني"
+
+msgid "Small window at the bottom right"
+msgstr "نافذة صغيرة في أسفل اليمين"
+
+msgid "On the right, pushes the page"
+msgstr "على اليمين، يضغط على الصفحة"
+
+msgid "The left menu stays in place"
+msgstr "قائمة الطعام اليسرى تبقى في مكانها"
+
+msgid "%s / 1024"
+msgstr "%s / 1024"
+
+msgid "Trigger test"
+msgstr "اختبار الترايجر"
+
+msgid "%s% correct"
+msgstr "%s٪ صحيح"
+
+msgid "%1$s of %2$s prompts · %3$s · %4$s"
+msgstr "%1$s من أصل %2$s دفعة إلى %3$s · %4$s"
+
+msgid "Stopped early (time limit); run again for the rest."
+msgstr "توقف مبكراً (حد أقصى)؛ اركض ثانية للباقي."
+
+msgid "Prompt"
+msgstr "موجه"
+
+msgid "Expected"
+msgstr "المتوقع"
+
+msgid "Picked skills"
+msgstr "المهارات الملتقطة"
+
+msgid "Use"
+msgstr "استخدم"
+
+msgid "Do not use"
+msgstr "لا تستخدم"
+
+msgid "%1$s/%2$s checks"
+msgstr "%1$s / %2$s"
+
+msgid "%1$s in · %2$s out tokens · %3$s · %4$s s"
+msgstr "%1$s في عام 2006 %2$s - مَنْ يَكُونُ؟ %3$s · %4$s s"
+
+msgid "Test #%s"
+msgstr "الاختبار رقم %s"
+
+msgid "Check"
+msgstr "تحقق"
+
+msgid "With skill"
+msgstr "بالمهارة"
+
+msgid "Without"
+msgstr "بدون"
+
+msgid "No results yet."
+msgstr "لا نتائج بعد"
+
+msgid "Running…"
+msgstr "جاري..."
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Summary"
+msgstr "ملخص"
+
+msgid "Text"
+msgstr "نص"
+
+msgid "Message"
+msgstr "رسالة"
+
+msgid "Slug"
+msgstr "سبيكة"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Recipient"
+msgstr "المستلم"
+
+msgid "Subject"
+msgstr "الموضوع"
+
+msgid "Invalid or blocked address. Use a public https address."
+msgstr "عنوان غير رسمي أو مُغلق، استخدم عنواناً عمومياً."
+
+msgid "The server needs sign-in. Use \"Connect\" in Flux AI & MCP › Connections."
+msgstr "الخادم يحتاج إلى إشارة، إستخدم \"إتصال\" في \"فلوكس آي\" MCP"
+
+msgid "The server rejected the credentials (401)."
+msgstr "ورفض الخادم وثائق التفويض (401)."
+
+msgid "The server answered with HTTP %d."
+msgstr "الخدم أجاب مع HTTP %d."
+
+msgid "The server did not return a valid MCP response."
+msgstr "ولم يرد الخادم رداً صالحاً قدره MCP."
+
+msgid "Connection not found."
+msgstr "لم يتم العثور على الاتصال."
+
+msgid "Resources"
+msgstr "الموارد"
+
+msgid "Read resource"
+msgstr "قراءة الموارد"
+
+msgid "Could not find the sign-in (OAuth) settings of this server. Enter a token instead, or check the address."
+msgstr "لا يمكن العثور على لوحة الدخول (OAuth) من هذا الخادم، أو الدخول إلى مركب بدلاً من ذلك، أو التحقق من العنوان."
+
+msgid "This server does not support PKCE (S256), which OAuth 2.1 requires."
+msgstr "وهذا الخادم لا يدعم شركة PKCE (S256)، التي تتطلبها الحاجة إلى رقم OAuth 2.1."
+
+msgid "This server does not allow automatic client registration. Create an OAuth client at the provider and enter its client ID (and secret) in the connection settings."
+msgstr "ولا يسمح هذا الخادم بتسجيل العملاء آلياً، وينشئ عميلاً في المزود رقم OAuth ويدخل بطاقة هوية موكله (وسرياً) في أماكن الاتصال."
+
+msgid "Automatic client registration failed. Enter a client ID in the connection settings."
+msgstr "لقد فشل تسجيل العملاء الآليين، أدخلوا هوية العميل في أماكن الاتصال."
+
+msgid "Sign-in failed: %s"
+msgstr "لم يوقع عليها: %s"
+
+msgid "Sign in again."
+msgstr "وقع مرة أخرى."
+
+msgid "Sign-in session expired. Try again."
+msgstr "إنتهت جلسة التوقيع، حاول مرة أخرى"
+
+msgid "Sign-in was cancelled or refused (%s)."
+msgstr "ألغيت الإشارة أو رُفضت (%s)."
+
+msgid "MCP connection: %s"
+msgstr "وصلة رقم MCP: %s"
+
+msgid "%d tool available."
+msgid_plural "%d tools available."
+msgstr[0] "%d أدوات متاحة."
+msgstr[1] "%d أداة متاحة."
+msgstr[2] "%d أدوات متاحة."
+msgstr[3] "%d أدوات متاحة."
+msgstr[4] "%d أدوات متاحة."
+msgstr[5] "%d أدوات متاحة."
+
+msgid "Not checked yet."
+msgstr "لم يتم التحقق بعد."
+
+msgid "AI image"
+msgstr "صورة بالذكاء الاصطناعي"
+
+msgid "Generate image"
+msgstr "صورة جيلية"
+
+msgid "Flux Cloud (account AI credits)"
+msgstr "Flux Cloud (رصيد الذكاء الاصطناعي للحساب)"
+
+msgid "E-mail address"
+msgstr "البريد الإلكتروني"
+
+msgid "Phone number"
+msgstr "رقم الهاتف"
+
+msgid "Notify the task owner"
+msgstr "إخطار صاحب المهمة"
+
+msgid "This tool only works while a scheduled task is running."
+msgstr "هذه الأداة تعمل فقط بينما يتم تنفيذ مهمة مقررة"
+
+msgid "Find notification recipients"
+msgstr "العثور على متلقي الإخطارات"
+
+msgid "AI task report"
+msgstr "تقرير مهمة الذكاء الاصطناعي"
+
+msgid "Sent to the task owner when a scheduled AI task has something to report."
+msgstr "أرسل إلى مالك المهمة عندما يكون هناك شيء يجب الإبلاغ عنه"
+
+msgid "Task name"
+msgstr "اسم المهمة"
+
+msgid "Report summary"
+msgstr "موجز التقرير"
+
+msgid "Report link"
+msgstr "الصلة بين التقرير"
+
+msgid "Daily AI briefing"
+msgstr "جلسة إحاطة يومية للمبادرة"
+
+msgid "Yesterday: 12 donations, 4,350 TL in total. 2 receipts are waiting for approval."
+msgstr "أمس: 12 منحة، 350 4 لتراً في المجموع، إيصالان ينتظران الموافقة عليهما."
+
+msgid "Completed"
+msgstr "مكتمل"
+
+msgid "AI task: {gorev}"
+msgstr "مهمة الذكاء الاصطناعي: {gorev}"
+
+msgid "Open the report"
+msgstr "إفتح التقرير"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "AI task: %s"
+msgstr "مهمة الذكاء الاصطناعي: %s"
+
+msgid "The task could not finish: %s"
+msgstr "لم تستطع المهمة أن تنتهي: %s"
+
+msgid "An action is waiting for your approval."
+msgstr "العمل ينتظر موافقتك"
+
+msgid "panel"
+msgstr "حلقة نقاش"
+
+msgid "my e-mail"
+msgstr "بريدي الإلكتروني"
+
+msgid "OAuth sign-in for MCP is off."
+msgstr "OAuth التوقيع على MCP إنقطعت"
+
+msgid "Connecting assistants with sign-in is turned off on this site."
+msgstr "مساعدي الاتصال بالتوقيعات سيغلقون في هذا الموقع"
+
+msgid "Unknown application. Remove the connector and add it again."
+msgstr "تطبيق غير معروف، أزيل الموصل وأضيفه مرة أخرى"
+
+msgid "This return address is not registered for the application."
+msgstr "ولم يسجل هذا العنوان للحصول على الطلب."
+
+msgid "The page expired. Start connecting again from the assistant."
+msgstr "إنتهت الصفحة، ابدأ بالتواصل من المساعد."
+
+msgid "%1$s wants to connect to %2$s"
+msgstr "%1$s يريد التواصل مع %2$s"
+
+msgid "The assistant uses the site's MCP tools with your permissions."
+msgstr "المساعد يستخدم أدوات الموقع MCP بإذنك"
+
+msgid "New content is created as a draft; deleting only moves to trash."
+msgstr "ويُنشأ محتوى جديد كمشروع؛ ولا يُحذف سوى التحركات إلى القمامة."
+
+msgid "You can end the connection any time under Flux AI & MCP › MCP."
+msgstr "يمكنك إنهاء الاتصال في أي وقت تحت Flux AI و MCP  . MCP."
+
+msgid "After approval you return to %s."
+msgstr "بعد الموافقة تعود إلى %s"
+
+msgid "Deny"
+msgstr "رفض"
+
+msgid "Allow"
+msgstr "السماح"
+
+msgid "Connect assistant"
+msgstr "مساعد اتصال"
+
+msgid "Back to site"
+msgstr "العودة إلى الموقع"
+
+msgid "Could not take the screenshot (HTTP %d)."
+msgstr "لا يمكن أن تأخذ الطلقة (HTTP %d)"
+
+msgid "Page screenshot"
+msgstr "الشاشة الصفحة"
+
+msgid "You cannot view this content."
+msgstr "لا يمكنك رؤية هذا المحتوى"
+
+msgid "Only this site's addresses can be captured."
+msgstr "فقط عناوين هذا الموقع يمكن القبض عليها"
+
+msgid "Content not found."
+msgstr "لم يعثر على المضمون."
+
+msgid "The model provider"
+msgstr "مقدِّم النموذج"
+
+msgid "%s quota is used up for now (daily or monthly limit)."
+msgstr "وتُستخدم حصة %s في الوقت الراهن (حد أقصى يومي أو شهري)."
+
+msgid "%s rate limit reached: too many requests at once. Try again in a minute."
+msgstr "بلوغ الحد الأقصى للمعدل %s: عدد كبير جدا من الطلبات في وقت واحد، حاول مرة أخرى في دقيقة واحدة."
+
+msgid "%s is temporarily unavailable."
+msgstr "%s غير متاح مؤقتاً."
+
+msgid "Flux Cloud did not answer."
+msgstr "(فلكس كلود) لم يجيب"
+
+msgid "Start an empty chat."
+msgstr "ابدأ حديث فارغ"
+
+msgid "Show or hide the chat list: running, recent and archived chats."
+msgstr "عرض أو إخفاء قائمة الدردشة: خوض محادثات حديثة ومحفوظة."
+
+msgid "Find an earlier chat by title or content."
+msgstr "ابحث عن حديث سابق عن العنوان أو المحتوى"
+
+msgid "Files, change requests and settings of this chat."
+msgstr "الملفات، طلبات التغيير، والإطارات من هذا الدردشة."
+
+msgid "Attach a file"
+msgstr "إرفاق ملف"
+
+msgid "Image, PDF or document for the assistant to read."
+msgstr "صورة، أو PDF أو وثيقة للمساعد الذي يقرأها."
+
+msgid "Create a scheduled task: "
+msgstr "إنشاء مهمة مقررة:"
+
+msgid "Have the assistant run something on its own at set times and notify you or others."
+msgstr "اجعل المساعد يدير شيئاً بمفرده في أوقات محددة و يخطرك أو غيرك"
+
+msgid "List my scheduled tasks and their last reports."
+msgstr "أُدرجُ مهامَي المقرّرةَ وتقاريرهم الأخيرة."
+
+msgid "My tasks"
+msgstr "مهامي"
+
+msgid "Scheduled tasks, next runs and last reports."
+msgstr "المهام المقررة، والرحلات القادمة، والتقارير الأخيرة."
+
+msgid "Create a new skill: "
+msgstr "خلق مهارة جديدة:"
+
+msgid "New skill"
+msgstr "مهارات جديدة"
+
+msgid "Save reusable instructions you can call later with /name."
+msgstr "احفظي التعليمات القابلة للإستعمال يمكنكِ الاتصال لاحقاً مع الاسم"
+
+msgid "Change model"
+msgstr "نموذج التغيير"
+
+msgid "Pick the AI model for this chat."
+msgstr "اختر نموذج \"أي آي\" لهذا الدردشة"
+
+msgid "MCP server of %s: read and manage the site content and the tools of its FluxWP plugins."
+msgstr "MCP خادم رقم %s: قراءة وإدارة محتوى الموقع والأدوات التي يحتوي عليها 917103 بلوغين."
+
+msgid "The input is not valid JSON; nothing was run."
+msgstr "الإدخال ليس JSON صالحًا. لم يُشغّل أي إجراء."
+
+msgid "Change not found."
+msgstr "تغيير لم يتم العثور عليه."
+
+msgid "Some files were not applied: %s"
+msgstr "لم تطبق بعض الملفات: %s"
+
+msgid "This connection does not sign in with OAuth."
+msgstr "هذا الارتباط لا يوقع مع OAuth."
+
+msgid "Unknown tool or permission: %s"
+msgstr "أداة أو إذن غير معروفين: %s"
+
+msgid "Only read-only tools can run without asking: %s"
+msgstr "لا يمكن تشغيل إلا الأدوات القراء فقط دون أن تسأل: %s"
+
+msgid "This is another user's personal connection."
+msgstr "هذا اتصال شخصي لمستعمل آخر"
+
+msgid "Key not found."
+msgstr "المفتاح لم يجد."
+
+msgid "The prompt cache must be off, 5 minutes or 1 hour."
+msgstr "يجب أن يكون المخبأ السريع مغلقاً 5 دقائق أو ساعة"
+
+msgid "Effort must be low, medium or high."
+msgstr "يجب أن تكون (إيفورت) منخفضة أو متوسطة أو عالية"
+
+msgid "Choose a model from the list."
+msgstr "اختر نموذج من القائمة"
+
+msgid "Choose a search provider from the list."
+msgstr "اختر مُقدّم بحث من القائمة."
+
+msgid "Flux Cloud use must be auto, always or off."
+msgstr "لا بدّ أنّ استخدام (فلوكس كلود) آليّ، دائمًا أو بعيدًا."
+
+msgid "This key is not one Flux AI uses."
+msgstr "هذا المفتاح ليس واحداً يستخدمه (فلوكس آي)"
+
+msgid "Choose a file to upload."
+msgstr "اختر ملفاً لتحميله"
+
+msgid "The file could not be read."
+msgstr "لا يمكن قراءة الملف."
+
+msgid "Skill not found."
+msgstr "لم يعثر على المهارات."
+
+msgid "Unknown system."
+msgstr "نظام غير معروف"
+
+msgid "Unknown setting: %s"
+msgstr "غير معروف: %s"
+
+msgid "Task not found."
+msgstr "لم يتم العثور على المهمة."
+
+msgid "That plugin does not offer this tool under the same name."
+msgstr "هذا البلوغ لا يعرض هذه الأداة تحت نفس الاسم."
+
+msgid "Virtual shell"
+msgstr "قذيفة افتراضية"
+
+msgid "Add trigger test prompts first (some that should use the skill, some that should not)."
+msgstr "ويحفز اختبار الزناد أولاً (بعضها ينبغي أن يستخدم المهارة، وبعضها لا ينبغي أن يكون كذلك)."
+
+msgid "Test not found. Add a functional test with a prompt and expectations."
+msgstr "لم يعثر على الاختبار، أضف اختباراً وظيفياً بسرعة وتوقعات."
+
+msgid "Daily briefing"
+msgstr "إحاطة يومية"
+
+msgid "Short morning report: yesterday's donations and orders, unanswered messages, site issues and what needs you today."
+msgstr "التقرير الصباحي القصير: هبات الأمس وأوامره، رسائل غير مجيبة، مشاكل الموقع وما تحتاجه اليوم."
+
+msgid "Turns data, plans or explanations into an interactive one-page visual report (Tailwind, charts, diagrams) you open in the chat."
+msgstr "تحول البيانات أو الخطط أو التفسيرات إلى تقرير بصري تفاعلي من صفحة واحدة (تالويند، الخرائط، الرسوم البيانية) تفتح في الدردشة."
+
+msgid "Site health check"
+msgstr "فحص صحة الموقع"
+
+msgid "Checks system checks, speed and SEO audit results; reports only what changed or needs action."
+msgstr "(ب) التحقق من نتائج مراجعة حسابات النظام والسرعة ونظام المحاسبة البيئية - الاقتصادية؛ الإبلاغ فقط عن ما تغير أو يحتاج إلى إجراء."
+
+msgid "Skill creator"
+msgstr "صانعة المهارات"
+
+msgid "Creates, reviews and tests skills in the Agent Skills format. Use when the user wants a new skill, wants to improve one or asks why a skill does not trigger."
+msgstr "الخلق، الاستعراضات ومهارات الاختبارات في شكل العميل (سكيلز) استخدم عندما يريد المستعمل مهارة جديدة، يريد أن يحسن واحدة أو يسأل لماذا لا تحفز مهارة"
+
+msgid "Cover design"
+msgstr "تصميم الغطاء"
+
+msgid "Brand-style visuals with text as PNG/JPEG in several sizes from one brief: event covers, campaign and donation announcements, posts, stories, WhatsApp status, link previews, thank-you and quote cards, step infographics, carousel pages. Use for \"cover\", \"poster\", \"event visual\", \"story\", \"post image\", \"banner\"."
+msgstr "مشاهدات ذات شكل براند مع نص \"PNG/JPEG\" في عدة أحجام من موجز واحد: أغطية الأحداث، وإعلانات الحملات والتبرعات"
+
+msgid "Social media"
+msgstr "وسائل التواصل الاجتماعي"
+
+msgid "Voice builder"
+msgstr "بناة الصوت"
+
+msgid "Learns who you are and how you write from a short interview and 3-5 writing samples; saves about-me.md and voice.md to the brand kit. The other social media skills read them. Use for \"learn my voice\", \"set up my content system\"."
+msgstr "تعلم من تكون وكيف تكتب من مقابلة قصيرة و 3-5 عينات كتابية"
+
+msgid "Newsletter voice"
+msgstr "صوت النشرة الإخبارية"
+
+msgid "Adds newsletter-specific writing rules on top of the voice profile (newsletter-voice.md), from past issues or one of 6 archetypes. Use for \"learn my newsletter style\", \"set up my newsletter\"."
+msgstr "يضيف قواعد الكتابة الخاصة برسالة إخبارية على أعلى الصورة الصوتية (الفاتورة الإخبارية) من القضايا السابقة أو واحدة من 6 نماذج،"
+
+msgid "Post writer"
+msgstr "كاتب البريد"
+
+msgid "Writes LinkedIn and social media posts in your voice from a topic, notes or a transcript. Use for \"write a post\", \"draft a post about…\"."
+msgstr "كتب (لينكدين) و وسائل الإعلام الإجتماعية في صوتك من موضوع أو ملاحظات أو محاضرة"
+
+msgid "Post formatter"
+msgstr "الشكل البريدي"
+
+msgid "Turns a topic into a ready-to-publish post with a named framework (PAS, AIDA, BAB, STAR, SLAY), mobile-formatted. Use for \"format this as a post\", \"write it as PAS\"."
+msgstr "يحوّل موضوعاً إلى وظيفة جاهزة للنشر مع إطار مسمّى (البرنامج، الوكالة الدولية للطاقة الذرية، منظمة (ستار)، شركة (ستار)، (سيلا)، مُنقّلة."
+
+msgid "Hook generator"
+msgstr "مولد هوك"
+
+msgid "Six short two-line opening hooks for a post topic, using your real numbers and experience. Use for \"write me hooks\", \"hook ideas\"."
+msgstr "ستّة خطّتين مفتوحتين لموضوع بريديّ، باستخدام أرقامك وخبرتك الحقيقية، استخدام لـ\"كتابة لي الخطّافات\"، \"أفكار مُختلة\"."
+
+msgid "Post scorer"
+msgstr "مُسجل البريد"
+
+msgid "Scores a post draft against your own past performance (export or pasted posts) or with a labelled editorial review. Use for \"score my post\", \"rate this post\"."
+msgstr "يسجل مشروع بريد ضد أدائك السابق (الصادرات أو الوظائف المعجنة) أو مع استعراض تحريري مسمّى، استخدم لـ \"أعد منصبي\" و \"أعد هذه الوظيفة\"."
+
+msgid "Content matrix"
+msgstr "مصفوفة محتوى"
+
+msgid "Pairs your 3-5 content pillars with 8 formats for 24-40 post ideas in one table. Use for \"post ideas\", \"content plan for the month\", \"what should I post\"."
+msgstr "يُقرّرُ ركائزَ محتوىَكَ 3-5 بثمانية أشكالِ للأفكارِ البريديةِ 2440 في طاولةِ واحدةِ، إستعملْ ل \"أفكارِ البؤرةِ، \"خطّةِ الوحدةِ للشهرِ \"، \"ما الذي يَجِبُ أَنْ أَرتّبَ."
+
+msgid "Niche research"
+msgstr "البحوث المتعلقة بالنيشي"
+
+msgid "Finds up to 20 dated stories from the last 7 days in a niche with web search, with links and post angles. Use for \"what's trending\", \"this week's news in…\", \"research my niche\"."
+msgstr "تجد ما يصل إلى 20 قصة تاريخية من آخر 7 أيام في مكان مع البحث على الإنترنت، مع وصلات وزوايا البريد، استخدام لـ\"ما يتجه\" \"أخبار هذا الأسبوع في...\" \"أبحث عن مكاني\""
+
+msgid "Graphic designer"
+msgstr "مصممة خرافية"
+
+msgid "Designs the image for a post: a structured HTML graphic rendered to PNG or an AI infographic (whiteboard or branded). Use for \"design a graphic for my post\", \"make an image for this post\"."
+msgstr "يصمم صورة لوظيفة رسم مُنظم لـ (HTML) تم إرساله إلى (PNG) أو لـ (AI) فيزيائي (اللوحة أو العلامة)"
+
+msgid "Carousel"
+msgstr "Carousel"
+
+msgid "Builds a branded multi-slide carousel (1080x1350): brief, approval, then one image prompt or render per slide. Use for \"carousel\", \"turn this into slides\"."
+msgstr "يبنّي كرسولاً متعدد الأزرق مسمّى (1080x1350): موجز، موافقة، ثمّ صورة واحدة سريعة أو تصدر كلّ شريحة."
+
+msgid "Whiteboard infographic"
+msgstr "رسم بياني للوحة البيضاء"
+
+msgid "Turns a post, newsletter or note into a hand-drawn whiteboard infographic (brief + image prompt or generated image). Use for \"whiteboard infographic\", \"hand-drawn graphic\"."
+msgstr "حوّل موقعاً أو رسالة إخبارية أو مُلاحظة إلى لوح أبيض مُدمّر يدوياً (المسحة + الصورة السريعة أو المُنتَجة)"
+
+msgid "Quote post"
+msgstr "موقع الكيوت"
+
+msgid "Writes short original quotes and a matching quote graphic for a caption. Use for \"quote post\", \"quote graphic\", \"motivational post\"."
+msgstr "يكتب إقتباسات أصلية قصيرة وخط مطابق للمسحة من أجل الإقفال، استخدم لـ \"موقع اقتباس\" و \"الرسم البياني\" و \"المركز الحافز\""
+
+msgid "Pinned comment"
+msgstr "التعليق"
+
+msgid "Writes a deadpan pinned/first comment for a post together with a matching image prompt. Use for \"pinned comment\", \"first comment\"."
+msgstr "يكتب تعليقاً مميتاً أو أول تعليق لوظيفة مع صورة متطابقة سريعة، استخدم لـ\"تعليق مبني\"، \"تعليق أول\"."
+
+msgid "Profile optimizer"
+msgstr "جهاز اختصار"
+
+msgid "Rewrites a LinkedIn profile: headline options, about, experience, featured section and banner/photo image prompts. Use for \"optimize my profile\", \"rewrite my headline\"."
+msgstr "إعادة كتابة ملف (لينكد إن) : خيارات عناوين رئيسية ، عن تجربة ، وقسم خاص ، و محفزات لصور المسافرين و الفوتو"
+
+msgid "YouTube thumbnail"
+msgstr "يوتيوب الصورة المصغرة"
+
+msgid "Turns a video title into a high-click branded YouTube thumbnail prompt or image. Use for \"thumbnail\", \"YouTube cover\"."
+msgstr "يحوّل لقباً مرئياً إلى إبهام مسمّى بـ \"يوتيوب\" بسرعة أو صورة، استخدم لـ \"إبهام\" \"غطاء يوتيوب\""
+
+msgid "Reels scripting"
+msgstr "كتب ال Reels"
+
+msgid "Writes a Reel/short video script in your voice from a reference video's transcript and your content. Use for \"script a reel\", \"turn this into a reel\"."
+msgstr "يكتب نص فيديو لـ(ريل) و(ثورت) في صوتك من مخطوطة فيديو مرجعية ومحتوى الخاص بك، استخدم لـ \"كتابة نص\" و \"إحول هذا إلى ريح\""
+
+msgid "Analytics dashboard"
+msgstr "لوحات تحليلية"
+
+msgid "Turns a LinkedIn Analytics export (CSV) into an interactive visual report and 5 data-backed recommendations. Use for \"analyse my LinkedIn\", \"build my dashboard\"."
+msgstr "تحولت إلى تصدير (لينكد إن) إلى تقرير بصري تفاعلي و 5 توصيات مدعمة بالبيانات"
+
+msgid "The skill needs a name (lowercase letters, numbers and dashes)."
+msgstr "وتحتاج المهارة إلى اسم (خطابات وأرقام وجلود أقل)."
+
+msgid "\"%s\" is not a valid skill name: use up to 64 lowercase letters, numbers and single dashes, not starting or ending with a dash."
+msgstr "\"%s\" ليس اسم مهارة صالح: استخدام ما يصل إلى 64 حروف أدنى، أرقام وسدود واحدة، لا تبدأ أو تنتهي مع مخبأ."
+
+msgid "Skill names cannot contain \"claude\" or \"anthropic\" (reserved)."
+msgstr "لا يمكن أن تحتوي أسماء المهارات على \"كلود\" أو \"مقدس\" (متحفظة)"
+
+msgid "The folder \"%1$s\" must have the same name as the skill (\"%2$s\")."
+msgstr "الملف \"%1$s\" يجب أن يكون له نفس الإسم المهارة \"%2$s\""
+
+msgid "Write a description: what the skill does and when to use it. The assistant picks skills by this."
+msgstr "أكتب وصفاً لما تقوم به المهارة ومتى تستخدمه المساعد يختار المهارات بهذا"
+
+msgid "The description can be at most 1024 characters."
+msgstr "يمكن أن يكون الوصف على أكثر من 1024 شخصية."
+
+msgid "The name and description cannot contain < or > characters."
+msgstr "ولا يمكن أن يتضمن الاسم والوصف < or > شخصية."
+
+msgid "Compatibility can be at most 500 characters."
+msgstr "المطابقة يمكن أن تكون على أكثر من 500 شخص"
+
+msgid "Give the skill a name."
+msgstr "أعطي المهارة اسماً"
+
+msgid "Write the skill instructions."
+msgstr "أكتب تعليمات المهارة"
+
+msgid "A skill named \"%s\" already exists."
+msgstr "مهارة اسمها %s موجودة بالفعل"
+
+msgid "Invalid file path. Use something like references/guide.md."
+msgstr "طريق ملف غير سليم، استخدمي شيئاً مثل الإشارات/الإرشادات"
+
+msgid "SKILL.md is edited with the skill form or flxai_skill_save."
+msgstr "SKILL.md يُحرّرُ مَع استمارةِ المهارةِ أَو flxai_skill_save."
+
+msgid "This file type is not allowed in a skill folder."
+msgstr "هذا النوع من الملفات غير مسموح به في ملف مهارة"
+
+msgid "The skill has no file \"%s\"."
+msgstr "المهارة ليس لها ملف \"%s\""
+
+msgid "Binary file (image, font, archive…); it can be used as a template or attachment but not read as text."
+msgstr "ملف ملزم (التصوير، الفونت، المحفوظات)؛ ويمكن استخدامه كنموذج أو مرفق ولكن لا يُقرأ على أنه نص."
+
+msgid "A skill file can be at most 5 MB."
+msgstr "ملف مهارة يمكن أن يكون على الأكثر 5 إم بي."
+
+msgid "A skill folder can hold at most 200 files."
+msgstr "مطوّر مهارة يمكن أن يحمل على أكثر من 200 ملف."
+
+msgid "The zip PHP extension is not available on this server."
+msgstr "ولا يتاح هذا الخادم التمديد للزب رقم PHP."
+
+msgid "The zip file could not be created."
+msgstr "ملف الزبدة لا يمكن خلقه"
+
+msgid "The zip file could not be opened."
+msgstr "ملف الزبدة لا يمكن فتحه"
+
+msgid "The instructions file must be named exactly SKILL.md (capital letters)."
+msgstr "ويجب أن يُسمَّى ملف التعليمات تحديداً بـ سكايلل.م (خطابات رأسمالية)."
+
+msgid "No SKILL.md found in the zip."
+msgstr "لا يوجد (شيلد) في الزبدة"
+
+msgid "README.md is not part of a skill folder and was skipped; put documentation in SKILL.md or references/."
+msgstr "(د) لا يشكل &quot; ريدم &quot; جزءاً من مطوّر للمهارة، وقد تم اختراقه؛ ويضع الوثائق في &quot; سكيل &quot; (SKILL.md) أو الإشارات/."
+
+msgid "Skipped: %s"
+msgstr "تم تخطي: %s"
+
+msgid "\"%s\" has scripts. They are stored but not run on this server."
+msgstr "\"%s\" لديها نصوص، إنها مخزنة ولكن لا تعمل على هذا الخادم."
+
+msgid "This does not look like a SKILL.md file (it must start with a --- header)."
+msgstr "هذا لا يبدو كملف لـ (شيلد) (يجب أن يبدأ بـ... رئيس)"
+
+msgid "List skills"
+msgstr "المهارات المدرجة في القائمة"
+
+msgid "Read a skill"
+msgstr "إقرأْ مهارةَ"
+
+msgid "Read a skill file"
+msgstr "اقرأ ملف المهارة"
+
+msgid "Create or update a skill"
+msgstr "إنشاء أو تحديث مهارة"
+
+msgid "Write a skill file"
+msgstr "أكتب ملف مهارة"
+
+msgid "Test a skill"
+msgstr "اختبار مهارة"
+
+msgid "Delete a skill"
+msgstr "تُحذف مهارة"
+
+msgid "Every hour"
+msgstr "كل ساعة"
+
+msgid "Every %s hours"
+msgstr "كُلّ %s ساعات العمل"
+
+msgid "Weekdays at %s"
+msgstr "أيام الأسبوع في عام %s"
+
+msgid "Every %1$s at %2$s"
+msgstr "كُلّ %1$s في %2$s"
+
+msgid "Monthly on day %1$s at %2$s"
+msgstr "الشهري في اليوم %1$s في %2$s"
+
+msgid "Once: %s"
+msgstr "مرة واحدة: %s"
+
+msgid "Every day at %s"
+msgstr "كل يوم في %s"
+
+msgid "Write what the task should do."
+msgstr "أكتب ما يجب أن تقوم به المهمة"
+
+msgid "Pick a future date and time for a one-time task."
+msgstr "اختر موعداً ووقتاً للمهمة لمرة واحدة."
+
+msgid "Skill not found: %s"
+msgstr "لم يجد سكايل: %s"
+
+msgid "You can have at most %s scheduled tasks."
+msgstr "يمكن أن يكون لديك أكثر من %s المهام المقررة."
+
+msgid "The task owner can no longer use the AI chat, or Flux AI chat is turned off."
+msgstr "لم يعد بإمكان مالك المهمة أن يستخدم دردشة (آي آي) أو أن دردشة (فلوكس آي) قد أطفأت"
+
+msgid "List scheduled tasks"
+msgstr "المهام المقررة في القائمة"
+
+msgid "Create a scheduled task"
+msgstr "إنشاء مهمة مقررة"
+
+msgid "You cannot use the AI chat, so you cannot create tasks."
+msgstr "لا يمكنك استخدام دردشة الـ(آي آي) لذا لا يمكنك خلق المهام"
+
+msgid "Update a scheduled task"
+msgstr "استكمال المهمة المقررة"
+
+msgid "Delete a scheduled task"
+msgstr "تحذف المهمة المقررة"
+
+msgid "Read a scheduled task report"
+msgstr "قراءة تقرير المهمة المقرر"
+
+msgid "Run a scheduled task now"
+msgstr "أدير مهمة مقررة الآن"
+
+msgid "Scheduled AI tasks"
+msgstr "المهام المقررة للمعونة القانونية"
+
+msgid "%1$s tasks are more than 15 minutes late. Last check: %2$s. Make sure WP-Cron or a server cron calls wp-cron.php."
+msgstr "%1$s مهمة متأخرة أكثر من 15 دقيقة، آخر شيك: %2$s تأكد من WP-Cron أو خادم يُطلق على العنبر."
+
+msgid "%1$s active tasks. Last check: %2$s."
+msgstr "%1$s مهام نشطة - آخر عملية تحقق: %2$s"
+
+msgid "Speech to text needs an OpenAI, Gemini or OpenRouter key (Flux AI & MCP › Settings)."
+msgstr "ويحتاج خطاب النص إلى 917101، أو غيميني أو OpenRouter مفتاح (Flux AI &quot; MCP ). Settings)."
+
+msgid "No audio was received."
+msgstr "لم يرد أي صوت."
+
+msgid "This audio format is not supported."
+msgstr "ولا يُدعم هذا الشكل الصوتي."
+
+msgid "Speech to text failed (%1$d): %2$s"
+msgstr "فشل الخطاب في النص (أ)%1$d): %2$s"
+
+msgid "The recording is too long."
+msgstr "التسجيل طويل جداً"
+
+msgid "Visual reports need Flux Files (workspace)."
+msgstr "فالتقارير البصرية تحتاج إلى فيلمين (حيز العمل)."
+
+msgid "Report"
+msgstr "تقرير"
+
+msgid "The report is too large."
+msgstr "التقرير كبير جداً"
+
+msgid "Create a visual report"
+msgstr "إعداد تقرير مرئي"
+
+msgid "This tool only works in the AI chat."
+msgstr "هذه الأداة تعمل فقط في الدردشة"
+
+msgid "This file is not part of the workspace."
+msgstr "هذا الملف ليس جزءاً من مكان العمل"
+
+msgid "Invalid or blocked address. Only public http(s) addresses can be read."
+msgstr "العنوان غير المستوفى أو المغلق - يمكن قراءة العناوين العامة فقط."
+
+msgid "Web search is turned off in Flux AI & MCP › Settings › Web."
+msgstr "ويُطفَل البحث على شبكة الإنترنت في Flux AI &quot; MCP . Settings . Web."
+
+msgid "No web search provider key. Enter one in Flux AI & MCP › Settings › Web."
+msgstr "لا يوجد مُفتاح لمُقدِّمِيْ البحث على الإنترنت، أدخلوا واحدًا في \"فلوكس آي\" MCP"
+
+msgid "Monthly web search limit (%d) reached. You can raise it in Flux AI & MCP › Settings › Web."
+msgstr "تم الوصول إلى الحد الشهري للبحث على شبكة الإنترنت (%d) يمكنك رفعه في Flux AI &quot; MCP . Settings . Web."
+
+msgid "Search query is empty."
+msgstr "استفسار البحث فارغ."
+
+msgid "Brave Search rejected the API key."
+msgstr "البحث عن الشجاعة رفض مفتاح API"
+
+msgid "Brave Search rate or plan limit reached. Try again later."
+msgstr "معدل البحث الشجاع أو الحد الأقصى للخطه حاول مرة أخرى لاحقا"
+
+msgid "Search failed (HTTP %1$d). %2$s"
+msgstr "إخفاق البحث (HTTP) %1$d). %2$s"
+
+msgid "Reading web pages is turned off in Flux AI & MCP › Settings › Web."
+msgstr "وتُطفَل الصفحات الشبكية للقراءة في موقع Flux AI &quot; MCP . Settings . Web."
+
+msgid "The page could not be read (HTTP %d)."
+msgstr "ولا يمكن قراءة الصفحة (HTTP %d)."
+
+msgid "This content type cannot be read as text: %s"
+msgstr "لا يمكن قراءة هذا النوع من المحتوى على أنه نص: %s"
+
+msgid "Read web page"
+msgstr "إقرأ الصفحة"
+
+msgid "Invalid path."
+msgstr "مسار غير صالح."
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "ولا يمكن كتابة الملف (البعثات أو الحيز المتاح)."
+
+msgid "Outside this workspace. You may only use your own folder (%s) and the folders allowed for this chat or task."
+msgstr "خارج مكان العمل هذا يمكنك فقط استخدام ملفك الخاص (%s) والملفات سمحت لهذه المحادثة أو المهمة"
+
+msgid "AI changes"
+msgstr "التغييرات في المرفق الأول"
+
+msgid "This change request is already closed."
+msgstr "وقد أُغلق بالفعل طلب التغيير هذا."
+
+msgid "Flux Files is required to apply file changes."
+msgstr "ويُطلب من شركة Flux Files أن تطبق تغييرات في الملفات."
+
+msgid "Change request #%1$d was merged: %2$d file(s) changed."
+msgstr "تم دمج طلب التغيير رقم %1$d: تغيرت ملفات (ملفات) %2$d."
+
+msgid "Change request #%1$d was partly merged: %2$d file(s) applied, %3$d rejected."
+msgstr "تم دمج طلب التغيير رقم %1$d جزئياً: تطبيق %2$d ملف (ملفات)، ورفض %3$d."
+
+msgid "Change request #%d was rejected; no files were changed."
+msgstr "رفض طلب التغيير رقم %d؛ ولم تُغيّر أي ملفات."
+
+msgid "You cannot change this task."
+msgstr "لا يمكنك تغيير هذه المهمة"
+
+msgid "This folder is not part of the workspace."
+msgstr "هذا الملف ليس جزءاً من مكان العمل"
+
+msgid "Only text files in this chat's own folder can be edited."
+msgstr "فقط ملفات الرسائل في ملف هذه الدردشة يمكن تحريرها"
+
+msgid "The file is too large."
+msgstr "الملف كبير جدًا."
+
+msgid "Unexpected indentation on line %d of the header."
+msgstr "غير متوقعة في الخط %d من الرأس."
+
+msgid "A list item cannot follow a key on line %d of the header."
+msgstr "لا يمكن لبند من القائمة أن يتبع مفتاحاً على الخط %d من العنوان."
+
+msgid "Line %d of the header is not \"key: value\"."
+msgstr "الخط %d من الرأس ليس \"القيمة الرئيسية\""
+
+msgid "A key cannot follow a list item on line %d of the header."
+msgstr "لا يمكن للمفتاح أن يتبع بنداً في القائمة على السطر %d من الرأس."
+
+msgid "A quoted value in the header is not closed."
+msgstr "القيمة المقتبسة في الرأس ليست مغلقة"
+
+msgid "No OpenRouter key in Flux AI settings."
+msgstr "لا يوجد رقم OpenRouter مفتاح في (فلوكس آي)"
+
+msgid "No Anthropic key in Flux AI settings."
+msgstr "لا مفتاح أنثرويك في فليكس آي"
+
+msgid "No OpenRouter or Anthropic key in Flux AI settings."
+msgstr "لا OpenRouter أو مفتاح الأنثروبيك في فلوس آي إي بي إس"
+
+msgid "No OpenRouter or Anthropic key in Flux AI settings. Enter one there; Flux AI sends the requests."
+msgstr "رقم OpenRouter أو مفتاح الأنثروبيك في فلوس آي إيه، أدخل واحد هناك، فلوس آي يُرسل الطلبات."
+
+msgid "Only the Anthropic key is set: every request uses a Claude model. Add an OpenRouter key in Flux AI for other models."
+msgstr "ومفتاح الأنثروبيك هو الوحيد الذي تم تحديده: كل طلب يستخدم نموذج كلود، ويضاف مفتاح 917101 في Flux AI لعارضات أخرى."
+
+msgid "Requests use the OpenRouter key in Flux AI settings."
+msgstr "الطلبات المقدمة OpenRouter مفتاح في (فلوكس آي)"
+
+msgid "Claude models use the Anthropic key, other models the OpenRouter key in Flux AI settings."
+msgstr "تستخدم نماذج كلود المفتاح الأنثرويك، نماذج أخرى، مفتاح OpenRouter في فلوس آي إي."
+
+msgid "OpenRouter did not accept the key in Flux AI settings."
+msgstr "OpenRouter لم يقبل المفتاح في فلكس آي بيبس."
+
+msgid "The OpenRouter key in Flux AI works. Spent so far: $%s, no spending limit on the key (set one on OpenRouter)."
+msgstr "The OpenRouter المفتاح في \"فلوكس آي\" يعمل%sلا حدود للنفقة على المفتاح OpenRouter)."
+
+msgid "The OpenRouter key in Flux AI works. Spent so far: $%1$s of the $%2$s limit."
+msgstr "The OpenRouter المفتاح في \"فلوكس آي\" يعمل%1$s من دولارات الولايات المتحدة%2$s الحد الأقصى"
+
+msgid "Anthropic did not accept the key in Flux AI settings."
+msgstr "لم يقبل (أنثروبيك) المفتاح في (فلوكس آي)"
+
+msgid "The Anthropic key in Flux AI works."
+msgstr "مفتاح (أنثروبيك) في (فلوكس آي) يعمل"

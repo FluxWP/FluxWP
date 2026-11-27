@@ -11,7 +11,7 @@
     "Developer wiki: Markdown pages, search, LLM and MCP support": "Вики для разработчиков: страницы Markdown, поиск, поддержка LLM и MCP",
     "Wiki settings": "Настройки вики",
     "Preparing preview…": "Подготовка предварительного просмотра...",
-    "Could not load the preview.": "Could not load the preview.",
+    "Could not load the preview.": "Не мог загрузить превью.",
     "Nothing to preview.": "Ничего для предварительного просмотра.",
     "Link URL": "URL-адрес ссылки",
     "Heading": "Заголовок",
@@ -180,6 +180,17 @@
     "select": "выбрать",
     "open": "открыть",
     "close": "закрыть",
-    "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.": "Вики для разработчиков на сайте в разделе /wiki: страницы Markdown, разделы, дерево страниц и оглавление, подробный мгновенный поиск, оптимизированный для SEO вывод. Совместимость с LLM: каждая страница открывается и копируется как .md, /wiki/llms.txt и llms-full.txt, открываемые в ChatGPT/Claude. «Спросите Wiki» и инструменты MCP (поиск, чтение, список, запись) с Flux AI. Он поставляется с руководствами по написанию плагинов и тем, а также по созданию плагинов на базе искусственного интеллекта."
+    "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.": "Вики для разработчиков на сайте в разделе /wiki: страницы Markdown, разделы, дерево страниц и оглавление, подробный мгновенный поиск, оптимизированный для SEO вывод. Совместимость с LLM: каждая страница открывается и копируется как .md, /wiki/llms.txt и llms-full.txt, открываемые в ChatGPT/Claude. «Спросите Wiki» и инструменты MCP (поиск, чтение, список, запись) с Flux AI. Он поставляется с руководствами по написанию плагинов и тем, а также по созданию плагинов на базе искусственного интеллекта.",
+    "JavaScript is required for this screen.": "Для этого экрана требуется JavaScript.",
+    "You cannot edit this page.": "Вы не можете переписать эту страницу.",
+    "The parent page was not found.": "Основная страница не была найдена.",
+    "A page cannot be placed under itself.": "Страница не может быть помещена сама по себе.",
+    "This status is not available.": "Этот статус отсутствует.",
+    "You cannot delete this page.": "Вы не можете исключить эту страницу.",
+    "The page could not be deleted.": "Эта страница не может быть исключена.",
+    "You cannot manage sections.": "Вы не можете управлять участками.",
+    "A section name is required.": "Для этого требуется название участка.",
+    "Section not found.": "Раздел не найден.",
+    "The section could not be deleted.": "Этот раздел не может быть исключен."
   }
 }

@@ -1,0 +1,945 @@
+{
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "zh_CN",
+        "plural-forms": "nplurals=1; plural=0;"
+      },
+      "Settings": [
+        "设置"
+      ],
+      "Style Library": [
+        "样式库"
+      ],
+      "None": [
+        "无"
+      ],
+      "Spacing": [
+        "发言"
+      ],
+      "Border Radius": [
+        "边界半径"
+      ],
+      "Border Width": [
+        "边边宽度"
+      ],
+      "Icon Sizes": [
+        "图标大小"
+      ],
+      "Shadow": [
+        "Shadow"
+      ],
+      "Font Size": [
+        "字体大小"
+      ],
+      "Palette": [
+        "Palette"
+      ],
+      "Border": [
+        "边框"
+      ],
+      "Button": [
+        "按钮"
+      ],
+      "Icon": [
+        "图标"
+      ],
+      "Close": [
+        "关闭"
+      ],
+      "Save": [
+        "保存"
+      ],
+      "px": [
+        "px"
+      ],
+      "list item separator\u0004, ": [
+        ", "
+      ],
+      "Default": [
+        "默认"
+      ],
+      "Name": [
+        "名称"
+      ],
+      "Custom": [
+        "自定义"
+      ],
+      "Auto": [
+        "汽车"
+      ],
+      "Gradient": [
+        "渐变"
+      ],
+      "Cancel": [
+        "取消"
+      ],
+      "Individual": [
+        "个人"
+      ],
+      "Linked": [
+        "Linked"
+      ],
+      "Solid": [
+        "Solid"
+      ],
+      "Dashed": [
+        "Dashed"
+      ],
+      "Dotted": [
+        "Dotted"
+      ],
+      "Double": [
+        "双人"
+      ],
+      "Device": [
+        "设备"
+      ],
+      "Color": [
+        "颜色"
+      ],
+      "Left": [
+        "左"
+      ],
+      "Top": [
+        "Top"
+      ],
+      "Hover": [
+        "Hover"
+      ],
+      "Normal": [
+        "正常"
+      ],
+      "Active": [
+        "活跃"
+      ],
+      "Add": [
+        "添加"
+      ],
+      "Delete": [
+        "删除"
+      ],
+      "Clear": [
+        "清除"
+      ],
+      "Right": [
+        "右"
+      ],
+      "Bottom": [
+        "Bottom"
+      ],
+      "Reset": [
+        "重置"
+      ],
+      "auto": [
+        "汽车"
+      ],
+      "Background": [
+        "背景"
+      ],
+      "Desktop": [
+        "桌面"
+      ],
+      "Tablet": [
+        "平板电脑"
+      ],
+      "Mobile": [
+        "手机"
+      ],
+      "div": [
+        "div"
+      ],
+      "Weight": [
+        "重量"
+      ],
+      "Size": [
+        "尺寸"
+      ],
+      "-": [
+        "-"
+      ],
+      "Uppercase": [
+        "Uppercase"
+      ],
+      "Lowercase": [
+        "Lowercase"
+      ],
+      "Capitalize": [
+        "资本化"
+      ],
+      "Font Family": [
+        "字体系列"
+      ],
+      "Padding": [
+        "填充"
+      ],
+      "20%": [
+        "20%"
+      ],
+      "40%": [
+        "40%"
+      ],
+      "50%": [
+        "50%"
+      ],
+      "75%": [
+        "75%"
+      ],
+      "80%": [
+        "80%"
+      ],
+      "100%": [
+        "100%"
+      ],
+      "Create": [
+        "创建"
+      ],
+      "Margin": [
+        "边距"
+      ],
+      "label": [
+        "标签"
+      ],
+      "value": [
+        "值"
+      ],
+      "form": [
+        "表格"
+      ],
+      "button": [
+        "button"
+      ],
+      "icon": [
+        "图标"
+      ],
+      "image": [
+        "图像"
+      ],
+      "Border Color": [
+        "边框颜色"
+      ],
+      "text": [
+        "文字"
+      ],
+      "heading": [
+        "标题"
+      ],
+      "Heading": [
+        "标题"
+      ],
+      "section": [
+        "款次"
+      ],
+      "number": [
+        "数目"
+      ],
+      "Text": [
+        "文字"
+      ],
+      "header": [
+        "header"
+      ],
+      "block title\u0004Icon": [
+        "图标"
+      ],
+      "svg": [
+        "svg"
+      ],
+      "list": [
+        "清单"
+      ],
+      "info": [
+        "info"
+      ],
+      "1": [
+        "1"
+      ],
+      "hide": [
+        "隐藏"
+      ],
+      "separator": [
+        "分离器"
+      ],
+      "Tab": [
+        "制表符"
+      ],
+      "Saving…": [
+        "正在保存..."
+      ],
+      "Favorite": [
+        "最爱"
+      ],
+      "Color Palette": [
+        "色调调调色调"
+      ],
+      "Breakpoint": [
+        "空缺"
+      ],
+      "Drag to reorder": [
+        "拖动以重新排序"
+      ],
+      "Reset %1$s to %2$s": [
+        "资产 %1$s to %2$s"
+      ],
+      "From %s": [
+        "调自 %s"
+      ],
+      "From theme": [
+        "从主题"
+      ],
+      "X": [
+        "X"
+      ],
+      "Y": [
+        "Y"
+      ],
+      "Blur": [
+        "Blur"
+      ],
+      "Spread": [
+        "面包"
+      ],
+      "Inset": [
+        "Inset"
+      ],
+      "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here.": [
+        "%1$d 本pal的 co部仍然如下: %2$s直到你将它定制在这条pal上,才将其编辑成。 %2$s 还将更新本报告。"
+      ],
+      "Learn more": [
+        "了解更多"
+      ],
+      "Search fonts…": [
+        "搜索字体..."
+      ],
+      "No fonts found": [
+        "未找到字体"
+      ],
+      "Keep typing to narrow the list": [
+        "不断打字,以缩小清单"
+      ],
+      "Options loaded.": [
+        "已装入选项 。"
+      ],
+      "Loading options…": [
+        "正在装入选项..."
+      ],
+      "Swatch view": [
+        "Sw观察视图"
+      ],
+      "Grid view": [
+        "网格视图视图"
+      ],
+      "List view": [
+        "列表视图"
+      ],
+      "Set \"%s\" as the active library?": [
+        "Set  Set%sactive 作为活跃的图书馆?"
+      ],
+      "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor.": [
+        "Your site currently uses \"%1$sSet. Setting  Set%2$sco 在整个地点,在前端和编辑上, co作为对手、类型、间隔和其他风格的正面改变。"
+      ],
+      "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over.": [
+        "You can switch back at any time, but any custom values in \"%sstay 留在该图书馆 -- -- 他们没有被复制。"
+      ],
+      "Setting active…": [
+        "正在设定活动..."
+      ],
+      "Set as active": [
+        "设为活动"
+      ],
+      "Set \"%s\" as the active palette?": [
+        "Set  Set%sactive  active 是活的pal?"
+      ],
+      "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor.": [
+        "Your site currently uses \"%1$sSet. Setting  Set%2$sco 在整个地点的 co曲在前端和编辑上的积极改变。"
+      ],
+      "Add Color Group": [
+        "添加颜色组"
+      ],
+      "Group name": [
+        "团体名称"
+      ],
+      "A color group named \"%s\" already exists.": [
+        "名叫\"%s co的 co子集团已经存在。"
+      ],
+      "Loading…": [
+        "加载中..."
+      ],
+      "Base Styles": [
+        "基地轮胎"
+      ],
+      "Block Presets": [
+        "块预设"
+      ],
+      "Create Library": [
+        "创建图书馆"
+      ],
+      "Library title": [
+        "图书馆标题"
+      ],
+      "A library named \"%s\" already exists.": [
+        "已经有一个名为 &quot; %s &quot; 的图书馆。"
+      ],
+      "Creating…": [
+        "正在创建..."
+      ],
+      "Create Color Palette": [
+        "创建调色板"
+      ],
+      "Palette name": [
+        "调调调器名称"
+      ],
+      "A palette named \"%s\" already exists.": [
+        "已经有一张名为 &quot; %s\" &quot; 的邮袋。"
+      ],
+      "Delete Color Group?": [
+        "删除 &quot; 科罗尔集团 &quot; ?"
+      ],
+      "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette.": [
+        "删除 &quot; 小组 &quot; 。%1$sand and its %2$d color? This removes it from every palette."
+      ],
+      "Deleting…": [
+        "删除."
+      ],
+      "Resetting…": [
+        "Resetting."
+      ],
+      "Reset Library": [
+        "资产图书馆"
+      ],
+      "Delete Library": [
+        "删除图书馆"
+      ],
+      "Reset '%s' to its default values?": [
+        "将“ %s” 重置为默认值?"
+      ],
+      "Delete '%s'? Its tokens and presets are removed permanently.": [
+        "删除%sIts  Its  Its  Its  Its  Its  Its  Its  Its  Its  Its ken"
+      ],
+      "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor.": [
+        "这也是你的积极图书馆,因此你的网站将使用\"%sedi 相反,其 co、类型、间隔和其他风格立即在你的现场 -- -- 前端和编辑中 -- -- 生活。"
+      ],
+      "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor.": [
+        "你们选择的图书馆在前端和编辑的整个网址上立即启用,即 co、打字、停顿和其他风格。"
+      ],
+      "Which library should your site use instead?": [
+        "哪种图书馆应当使用?"
+      ],
+      "Select a library…": [
+        "选择图书馆。"
+      ],
+      "Delete \"%s\"?": [
+        "删除“%s”?"
+      ],
+      "Reset \"%s\"?": [
+        "Reset \" %s ??"
+      ],
+      "Its color overrides are removed permanently.": [
+        "永久地清除了 co。"
+      ],
+      "Its colors return to the shipped baseline. The palette itself stays.": [
+        "其 co回到了装运的基线,pal盘本身就停留了。"
+      ],
+      "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor.": [
+        "这也是你的积极pal,因此你的网站将使用\"%s\",其 co子立即穿过你的现场,在前端和编辑中。"
+      ],
+      "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor.": [
+        "这也是你的积极pal,所以你的网址需要另一个pal,下面所选择的pal子立即 live住,其 co子在前端和编辑的整个你的网址上发生了变化。"
+      ],
+      "Which palette should your site use instead?": [
+        "你的网址是否应该使用?"
+      ],
+      "Select a palette…": [
+        "选择一个pal。"
+      ],
+      "Not available in the current theme": [
+        "本主题未提供"
+      ],
+      "These presets came from another theme. Your changes to them are kept until that theme is active again.": [
+        "这些先.来自另一个主题,在主题再次活跃之前,你对这些主题的改动得以保持。"
+      ],
+      "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept.": [
+        "主题本身的价值观不可能在预设时得到拯救,因此只能保持你们的变化。"
+      ],
+      "The theme's own values for this preset were not recorded, so only your changes can be kept.": [
+        "没有记录这个主题本身的价值,因此只能保持你们的变化。"
+      ],
+      "Keep as custom preset": [
+        "保持自定义预设"
+      ],
+      "Keep changes as custom preset": [
+        "把改变作为习惯前期"
+      ],
+      "Discard changes": [
+        "弃权变动"
+      ],
+      "Active library": [
+        "积极图书馆"
+      ],
+      "Your site uses this library.": [
+        "您的网站使用此图书馆 。"
+      ],
+      "Not the active library": [
+        "不活动库"
+      ],
+      "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles.": [
+        "你的网站将图书馆建成,使之成为你的网站,将其转用到其 co、大小和风格上。"
+      ],
+      "Edit library": [
+        "电子图书馆"
+      ],
+      "Library": [
+        "图书馆"
+      ],
+      "New Library": [
+        "新图书馆"
+      ],
+      "Active palette": [
+        "活性pal"
+      ],
+      "Your site uses this palette.": [
+        "您的网站使用这个调色板 。"
+      ],
+      "Not the active palette": [
+        "非活动调色盘"
+      ],
+      "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette.": [
+        "把它当作一种积极的动力,把它放在你的场地的用途上,个别区块仍可改成另一块pal。"
+      ],
+      "Edit palette": [
+        "编辑调色盘"
+      ],
+      "Drag to reorder %s": [
+        "拖曳以重新排序 %s"
+      ],
+      "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values.": [
+        "您对 '%s' 进行了未保存的更改。 保存它们, 或者丢弃它们, 以便返回到保存的值 。"
+      ],
+      "You have unsaved changes. Save them, or discard them to go back to the saved values.": [
+        "你们没有变化,没有改变,或抛弃了这些变化,以恢复所节省的价值观。"
+      ],
+      "Unsaved Changes": [
+        "未解决的变动"
+      ],
+      "Discard": [
+        "丢弃"
+      ],
+      "Corner Radius": [
+        "角角半径"
+      ],
+      "Add Border Radius": [
+        "添加边框半径"
+      ],
+      "New Radius": [
+        "新半径"
+      ],
+      "Radius": [
+        "Radius"
+      ],
+      "Add Border Width": [
+        "添加边框宽度"
+      ],
+      "New Border Width": [
+        "新边界线"
+      ],
+      "Loading %s…": [
+        "Loading %s ..."
+      ],
+      "%s loaded.": [
+        "%s loaded."
+      ],
+      "Add color": [
+        "加 co"
+      ],
+      "Edit %s": [
+        "Edit %s"
+      ],
+      "Color group": [
+        "颜色组"
+      ],
+      "This palette could not be loaded.": [
+        "这条pal盘不能装上。"
+      ],
+      "Settings loaded.": [
+        "设置已装入 。"
+      ],
+      "Edit color": [
+        "编辑颜色颜色"
+      ],
+      "Add Icon Size": [
+        "增 计"
+      ],
+      "New Icon Size": [
+        "新图标大小"
+      ],
+      "This screen is coming soon.": [
+        "这个 screen幕即将来临。"
+      ],
+      "Adding…": [
+        "Adding.."
+      ],
+      "Preset saved.": [
+        "预设保存 。"
+      ],
+      "Preset deleted.": [
+        "删除了原子。"
+      ],
+      "Preset reset.": [
+        "预设重置 。"
+      ],
+      "Theme preset": [
+        "主题预设主题"
+      ],
+      "Styled by your theme. Flux Block Editor can't read or change these styles.": [
+        "以你的主题为标题,Flux Block编辑可阅读或改变这些风格。"
+      ],
+      "Changes saved under another theme still apply to it. Reset removes them.": [
+        "在另一个主题下节省下来的变革仍然适用于它,并予以撤销。"
+      ],
+      "Edit preset": [
+        "编辑预设"
+      ],
+      "Edit token": [
+        "编辑符号"
+      ],
+      "Add Shadow": [
+        "添加阴影"
+      ],
+      "New Shadow": [
+        "新 Sha"
+      ],
+      "Add Spacing": [
+        "添加间距"
+      ],
+      "New Spacing": [
+        "新的发言"
+      ],
+      "Visualize your font": [
+        "视像化您的字体"
+      ],
+      "Add Favorite": [
+        "添加最喜爱"
+      ],
+      "Adding Favorite…": [
+        "增加基础.."
+      ],
+      "Remove Favorite": [
+        "左叶"
+      ],
+      "Removing Favorite…": [
+        "删除最喜欢的..."
+      ],
+      "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site.": [
+        "把这条引信写到你的火警顶部,在这里和在编辑中,不改变你的网址。"
+      ],
+      "Unpins this font from the top of your font pickers. Text already using it stays as it is.": [
+        "这条引信是你的引信的顶部,已经使用该字的文本保持不变。"
+      ],
+      "%s removed from favorites.": [
+        "%s 脱离野.。"
+      ],
+      "%s added to favorites.": [
+        "%s 添加到野.。"
+      ],
+      "Font": [
+        "字体"
+      ],
+      "Typography": [
+        "地图"
+      ],
+      "Add Size": [
+        "规模"
+      ],
+      "New Font Size": [
+        "新字体大小"
+      ],
+      "Set the colors your site uses. Change a color here and it updates everywhere it's applied.": [
+        "设置网站使用的颜色。 在此更改颜色, 并随时更新应用中的内容 。"
+      ],
+      "Set the text sizes your site uses, and pick the fonts you want close to hand.": [
+        "设置网站使用的文本大小, 并选择您想要的手边字体 。"
+      ],
+      "Set the border radius options your site uses, so buttons, images and cards stay consistent.": [
+        "设置您网站使用的边框半径选项, 按钮、 图像和卡片保持一致 。"
+      ],
+      "Set the border thickness options your site uses, so borders match across your blocks.": [
+        "设置您网站使用的边框厚度选项, 从而在您的区块之间匹配 。"
+      ],
+      "Set the padding and margin steps your site uses, so gaps stay consistent from block to block.": [
+        "确定你的场地用途的ad接和 margin值,因此,这些差距从 block体到 block体不一。"
+      ],
+      "Set the sizes your icons can use, so icons stay consistent wherever they appear.": [
+        "设定图标可以使用的大小, 图标在出现时保持一致 。"
+      ],
+      "Set the shadow styles your site uses, so depth looks consistent across your blocks.": [
+        "设置网站使用的阴影样式, 深度在您的街区之间看起来一致 。"
+      ],
+      "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand.": [
+        "短.式的风格为先.,因此,你可以用一块cl子进行全盘检查,而不是用手头确定每一种选择。"
+      ],
+      "Save image styles as presets, so rounding, shadows and spacing stay the same across your images.": [
+        "假像是先.、 round、阴影和pa等,在你们的图像中保持着同样的形象。"
+      ],
+      "Save row styles as presets, so the sections of a page share the same background and rounding.": [
+        "假行式的风格为先行,因此页面各节具有同样的背景和四舍五入。"
+      ],
+      "Save section styles as presets, so the columns inside your rows share the same background and rounding.": [
+        "假节式的原型,因此,在你的行内各栏的背景和四舍五入。"
+      ],
+      "Save icon styles as presets, so icons keep the same size and color wherever you use them.": [
+        "假象是先.,因此,无论你使用哪种方式, i灯都保持同样的大小和 co。"
+      ],
+      "Save text styles as presets, so headings and paragraphs read the same from page to page.": [
+        "短文的原型,如标题和段落,从页到页面均有相同。"
+      ],
+      "Something went wrong. Please try again.": [
+        "出了点问题。请再试一次。"
+      ],
+      "Enter a library title.": [
+        "输入图书馆标题。"
+      ],
+      "A library with that title already exists.": [
+        "图书馆已经有该名称。"
+      ],
+      "Choose which library your site should use instead.": [
+        "选择用哪种方式来保存你的网址。"
+      ],
+      "Enter a palette name.": [
+        "输入调色板名称 。"
+      ],
+      "A palette with that name already exists.": [
+        "已经有一张标语。"
+      ],
+      "Choose which palette your site should use instead.": [
+        "选择用什么pal住你的网址。"
+      ],
+      "Enter a color group name.": [
+        "输入颜色组名称。"
+      ],
+      "A color group with that name already exists.": [
+        "有一个名 co集团已经存在。"
+      ],
+      "Custom Colors": [
+        "客户"
+      ],
+      "Saving failed.": [
+        "保存失败 。"
+      ],
+      "Another change to this library is already in progress.": [
+        "对该图书馆的另一项改革已在进行中。"
+      ],
+      "Palette activated.": [
+        "调色板激活"
+      ],
+      "Palette created.": [
+        "制作调色板"
+      ],
+      "Palette renamed.": [
+        "调色板改名"
+      ],
+      "Palette deleted.": [
+        "调色板删除 。"
+      ],
+      "Palette reset.": [
+        "调色板重置"
+      ],
+      "Swatch saved.": [
+        "斯怀特被救出来了"
+      ],
+      "Swatch deleted.": [
+        "Swatch被删除。"
+      ],
+      "Swatch reset.": [
+        "斯望重置 斯望重置 斯望重置 Swatch reset."
+      ],
+      "New Color": [
+        "新颜色"
+      ],
+      "Color added.": [
+        "加颜色 。"
+      ],
+      "Color group added.": [
+        "添加颜色组 。"
+      ],
+      "Color group renamed.": [
+        "颜色组重新命名 。"
+      ],
+      "Color group deleted.": [
+        "删除颜色组 。"
+      ],
+      "Token created.": [
+        "代金创造的"
+      ],
+      "Token saved.": [
+        "代金被救"
+      ],
+      "Token deleted.": [
+        "调子删除 。"
+      ],
+      "Token reset.": [
+        "调子重置"
+      ],
+      "Token order saved.": [
+        "代金顺序保存。"
+      ],
+      "100 Thin": [
+        "100 Thin"
+      ],
+      "200 Extra Light": [
+        "200部外光灯"
+      ],
+      "300 Light": [
+        "300轻型"
+      ],
+      "400 Regular": [
+        "400次"
+      ],
+      "500 Medium": [
+        "500中"
+      ],
+      "600 Semi Bold": [
+        "600 半粗"
+      ],
+      "700 Bold": [
+        "700 Bold"
+      ],
+      "800 Extra Bold": [
+        "800 额外粗体"
+      ],
+      "900 Black": [
+        "900 黑人"
+      ],
+      "Transform": [
+        "Transform"
+      ],
+      "Add Text Style": [
+        "添加文本样式"
+      ],
+      "New Text Style": [
+        "新案文"
+      ],
+      "Border and Shadow": [
+        "边界和阴影"
+      ],
+      "Add Button": [
+        "添加按钮"
+      ],
+      "New Button": [
+        "纽扣纽扣"
+      ],
+      "Add Section Style": [
+        "添加Style"
+      ],
+      "New Section Style": [
+        "新科"
+      ],
+      "Add Image Style": [
+        "添加"
+      ],
+      "New Image Style": [
+        "新图像系统"
+      ],
+      "Add Row Style": [
+        "加ow"
+      ],
+      "New Row Style": [
+        "新ow"
+      ],
+      "Add Icon Style": [
+        "添加图标样式"
+      ],
+      "New Icon Style": [
+        "新图标样式"
+      ],
+      "Matches the design system value": [
+        "设计系统价值汇总表"
+      ],
+      "Overrides the design system value": [
+        "超过设计系统价值"
+      ],
+      "Reset to the design system value": [
+        "重新确定设计系统价值"
+      ],
+      "Reverted to default": [
+        "返回到默认"
+      ],
+      "This token was deleted from the Style Library. The default applies until you pick a new value or reset.": [
+        "这件事被从Style图书馆删除,在你拿到新的价值或再生之前,这项缺省适用。"
+      ],
+      "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset.": [
+        "这一选择来自 &quot; 蓝. &quot; 主题,该主题已不再活跃,在你获得新的价值或重新设定之前,该缺省适用。"
+      ],
+      "Border style": [
+        "边境风格"
+      ],
+      "Border style (%s)": [
+        "边境风格(%s)"
+      ],
+      "%1$s: %2$s": [
+        "%1$s:%2$s"
+      ],
+      "%s Border Color": [
+        "%s 边境颜色"
+      ],
+      "Previous color format": [
+        "以前的正统格式"
+      ],
+      "Next color format": [
+        "下个 co色格式"
+      ],
+      "No favorite fonts yet.": [
+        "还没有最喜欢的字体 。"
+      ],
+      "Manage favorites in the Style Library": [
+        "管理样式库中最喜爱的样式库"
+      ],
+      "Favorites": [
+        "收藏夹"
+      ],
+      "Inherited": [
+        "继承"
+      ],
+      "Custom value": [
+        "客户价值"
+      ],
+      "Unit": [
+        "单位"
+      ],
+      "Theme default": [
+        "主题默认默认"
+      ],
+      "Default (%s)": [
+        "Default (%s )"
+      ],
+      "Inherited (%s)": [
+        "继承(%s )"
+      ],
+      "block keyword\u0004form": [
+        "表格"
+      ],
+      "block keyword\u0004header": [
+        "header"
+      ],
+      "block keyword\u0004img": [
+        "img"
+      ],
+      "block keyword\u0004image": [
+        "图像"
+      ],
+      "block keyword\u0004info": [
+        "info"
+      ],
+      "block keyword\u0004icon": [
+        "图标"
+      ],
+      "block keyword\u0004menu": [
+        "menu"
+      ],
+      "block title\u0004Tab": [
+        "制表符"
+      ]
+    }
+  }
+}

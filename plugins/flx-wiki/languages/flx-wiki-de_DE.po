@@ -62,7 +62,7 @@ msgid "Code block"
 msgstr "Codeblock"
 
 msgid "Link"
-msgstr "Link"
+msgstr "Link zur Seite"
 
 msgid "Wiki link"
 msgstr "Wiki-Link"
@@ -122,7 +122,7 @@ msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or 
 msgstr "Importierte Anleitungen: %1$d neu, %2$d aktualisiert, %3$d übersprungen (von Hand bearbeitet oder auf dem neuesten Stand)."
 
 msgid "Wiki"
-msgstr "Wiki"
+msgstr "Das ist der Grund, warum"
 
 msgid "Wiki open to visitors"
 msgstr "Wiki für Besucher geöffnet"
@@ -531,3 +531,36 @@ msgstr "schließen"
 
 msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
 msgstr "Entwickler-Wiki vor Ort unter /wiki: Markdown-Seiten, Abschnitte, Seitenbaum und Inhaltsverzeichnis, detaillierte Sofortsuche, SEO-freundliche Ausgabe. LLM-freundlich: Jede Seite wird als .md geöffnet und kopiert, /wiki/llms.txt und llms-full.txt, geöffnet in ChatGPT / Claude. „Ask the Wiki“ und MCP-Tools (Suchen, Lesen, Auflisten, Schreiben) mit Flux AI. Es enthält Anleitungen zum Schreiben von Plugins und Themes sowie zur KI-gestützten Erstellung von Plugins."
+
+msgid "JavaScript is required for this screen."
+msgstr "Für diesen Bildschirm ist JavaScript erforderlich."
+
+msgid "You cannot edit this page."
+msgstr "Sie können diese Seite nicht bearbeiten."
+
+msgid "The parent page was not found."
+msgstr "Die Elternseite wurde nicht gefunden."
+
+msgid "A page cannot be placed under itself."
+msgstr "Eine Seite kann nicht unter sich platziert werden."
+
+msgid "This status is not available."
+msgstr "Dieser Status ist nicht verfügbar."
+
+msgid "You cannot delete this page."
+msgstr "Sie können diese Seite nicht löschen."
+
+msgid "The page could not be deleted."
+msgstr "Die Seite konnte nicht gelöscht werden."
+
+msgid "You cannot manage sections."
+msgstr "Sie können Abschnitte nicht verwalten."
+
+msgid "A section name is required."
+msgstr "Es ist ein Abschnittsname erforderlich."
+
+msgid "Section not found."
+msgstr "Abschnitt nicht gefunden."
+
+msgid "The section could not be deleted."
+msgstr "Der Abschnitt konnte nicht gelöscht werden."

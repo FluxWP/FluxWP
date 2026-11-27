@@ -65,7 +65,7 @@ msgid "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CS
 msgstr "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups ve temel CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Site başka sitelerde iframe ile gösteriliyorsa açmayın."
 
 msgid "HSTS includeSubDomains"
-msgstr "HSTS includeSubDomains"
+msgstr "HSTS dahilSubDomains"
 
 msgid "If every subdomain is HTTPS, HSTS also covers subdomains."
 msgstr "Tüm alt alan adları HTTPS ise HSTS alt alan adlarını da kapsar."

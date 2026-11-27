@@ -284,6 +284,13 @@ return array(
   'Otomatik' => 'تلقائي',
   'Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur.' => 'إنه يحمي تسجيل الدخول، والتسجيل، وإعادة تعيين كلمة المرور، والتعليق، وحساب WooCommerce والدفع، ونموذج التبرع Flux Donate وعمليات إرسال Flux Forms ضد البريد العشوائي وهجمات الروبوتات باستخدام Google reCAPTCHA (v3 غير مرئي أو v2). يتم تشغيل وإيقاف النموذج الذي سيتم الاحتفاظ به من اللوحة؛ سرعة التدفق متوافقة مع عنوان تسجيل الدخول المخصص.',
   'It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address.' => 'إنه يحمي تسجيل الدخول، والتسجيل، وإعادة تعيين كلمة المرور، والتعليق، وحساب WooCommerce والدفع، ونموذج التبرع Flux Donate وعمليات إرسال Flux Forms ضد البريد العشوائي وهجمات الروبوتات باستخدام Google reCAPTCHA (v3 غير مرئي أو v2). يتم تشغيل وإيقاف النموذج الذي سيتم الاحتفاظ به من اللوحة؛ سرعة التدفق متوافقة مع عنوان تسجيل الدخول المخصص.',
-
+  'Choose v2 or v3.' => 'اختر ضد 2 أو ضد 3',
+  'A key can only contain letters, numbers, "-" and "_".' => 'المفتاح لا يمكن أن يحتوي إلا على رسائل وأرقام و " و "',
+  'The bot threshold must be between 0.1 and 0.9.' => 'ويجب أن تكون عتبة الفول بين 0.1 و 0.9.',
+  'Choose the Google host.' => 'اختر مضيف جوجل',
+  'Choose the checkbox theme.' => 'اختر موضوع صندوق الشيكات',
+  'Choose the checkbox size.' => 'اختر حجم صندوق الشيكات',
+  'Enter an IP address or a range like 198.51.100.0/24.' => 'أدخل عنوان IP أو نطاق مثل 198.51.10/24.',
+  'This form is not known.' => 'هذا الشكل غير معروف',
  ),
 );

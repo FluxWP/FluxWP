@@ -327,3 +327,45 @@ msgstr "Si se deja vacío, se muestran el nombre y la descripción en turco."
 
 msgid "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
 msgstr "Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript es necesario para esta pantalla."
+
+msgid "A language code has 2–3 letters and, optionally, a region such as pt-br."
+msgstr "Un código de idioma tiene 2-3 letras y, opcionalmente, una región como pt-br."
+
+msgid "A language can be listed only once."
+msgstr "Un idioma se puede enumerar sólo una vez."
+
+msgid "A WordPress locale has letters, digits and an underscore, e.g. en_US."
+msgstr "Un WordPress local tiene letras, dígitos y un subrayado, por ejemplo en_US."
+
+msgid "This language is not in the catalog."
+msgstr "Este idioma no está en el catálogo."
+
+msgid "The default language must be one of the listed languages and cannot be removed."
+msgstr "El idioma predeterminado debe ser uno de los idiomas enumerados y no puede ser eliminado."
+
+msgid "Unknown suggestion mode."
+msgstr "Modo de sugerencia desconocido."
+
+msgid "The suggested language must be one of the listed languages."
+msgstr "El idioma sugerido debe ser uno de los idiomas enumerados."
+
+msgid "Unknown switcher style."
+msgstr "Estilo de conmutador desconocido."
+
+msgid "Unknown switcher position."
+msgstr "Posición de conmutador desconocido."
+
+msgid "Use two-letter country codes (TR, CY…)."
+msgstr "Use códigos de dos letras (TR, CY...)."
+
+msgid "This content type does not exist."
+msgstr "Este tipo de contenido no existe."
+
+msgid "Unknown site text."
+msgstr "Texto desconocido del sitio."
+
+msgid "Site texts belong to a language other than the default one."
+msgstr "Los textos del sitio pertenecen a un idioma que no sea el predeterminado."

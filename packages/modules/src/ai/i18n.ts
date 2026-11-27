@@ -1,9 +1,18 @@
 // Flux AI screen texts. Keys are the English source strings of the plugin; Turkish is written by hand in i18n/tr.json.
+import de from './i18n/de.json';
+import es from './i18n/es.json';
+import fr from './i18n/fr.json';
+import ptBr from './i18n/pt-br.json';
+import ja from './i18n/ja.json';
+import zh from './i18n/zh.json';
+import ar from './i18n/ar.json';
+import ru from './i18n/ru.json';
 import { normalizeLocale } from '@fluxwp/core';
+import { gettextPlural } from '../gettext-plural';
 import en from './i18n/en.json';
 import tr from './i18n/tr.json';
 
-const dicts: Record<string, Record<string, string>> = { en, tr };
+const dicts: Record<string, Record<string, string>> = { en, tr, de, es, fr, 'pt-br': ptBr, ja, zh, ar, ru };
 
 export type Translate = (source: string, ...args: (string | number)[]) => string;
 
@@ -14,12 +23,13 @@ function fill(text: string, args: (string | number)[]): string {
 }
 
 export function translator(locale: string): { t: Translate; tn: (single: string, plural: string, n: number, ...args: (string | number)[]) => string } {
-  const d = dicts[normalizeLocale(locale)] ?? {};
+  const lang = normalizeLocale(locale);
+  const d = dicts[lang] ?? {};
   const t: Translate = (source, ...args) => fill(d[source] ?? source, args);
   const tn = (single: string, plural: string, n: number, ...args: (string | number)[]) => {
     const forms = (d[single + '\u0000' + plural] ?? '').split('\u0000');
-    const text = forms.length > 1 ? (n === 1 ? forms[0] : forms[1]) : forms[0] || (n === 1 ? single : plural);
-    return fill(text ?? single, args);
+    const text = gettextPlural(forms, lang, n) || (n === 1 ? single : plural);
+    return fill(text, args);
   };
   return { t, tn };
 }

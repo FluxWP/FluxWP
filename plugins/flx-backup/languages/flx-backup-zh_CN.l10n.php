@@ -5,7 +5,7 @@ return array(
  'messages' => array(
   'Backups' => '备份',
   'Backups › Dashboard' => '备份 › 仪表板',
-  'Dashboard' => '仪表板',
+  'Dashboard' => '仪表盘',
   'Backups › Settings' => '备份 › 设置',
   'Settings' => '设置',
   'Permanently delete this backup?' => '永久删除此备份吗?',
@@ -332,7 +332,7 @@ return array(
   '%1$s old backup deleted for the quota: %2$s' . chr(0) . '%1$s old backups deleted for the quota: %2$s' => '%1$s已删除配额的旧备份:%2$s',
   '%s backup past its retention period was deleted.' . chr(0) . '%s backups past their retention period were deleted.' => '超过保留期的%s备份已被删除。',
   'Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting.' => '在每次插件/主题更新、计划的完整备份、配额和保留管理、带有图表和选择性恢复的存储仪表板之前进行自动备份。与 Hostinger 共享主机兼容。',
-  'context_fd86717aca41%s%%' => '%s%%',
+  'context_fd86717aca41%s%%' => '%s %',
   'The archive file is deleted too.' => '存档文件也被删除。',
   'Status' => '状态',
   'Restore is only available in the panel.' => '恢复仅在面板中可用。',
@@ -693,6 +693,6 @@ return array(
   'İlerleme' => '进展',
   'Şimdi yedekle' => '立即备份',
   'Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır.' => '使用“立即备份”进行第一次备份。恢复是在面板中完成的。',
-
+  'JavaScript is required for this screen.' => 'JavaScript 此 screen幕需要。',
  ),
 );

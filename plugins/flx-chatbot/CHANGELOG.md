@@ -1,5 +1,9 @@
 # Flux AI Chatbot
 
+## 0.7.2
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.7.1
 - Ekran başlığı sol menüdeki adı gösterir.
 

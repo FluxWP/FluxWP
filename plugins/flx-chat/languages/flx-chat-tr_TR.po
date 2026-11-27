@@ -83,7 +83,7 @@ msgid "Us"
 msgstr "Biz"
 
 msgid "WhatsApp"
-msgstr "WhatsApp"
+msgstr "WhatsApp kez"
 
 msgid "Assistant"
 msgstr "Asistan"
@@ -500,7 +500,7 @@ msgid "Cost"
 msgstr "Maliyet"
 
 msgid "limit"
-msgstr "limit"
+msgstr "sınır"
 
 msgid "Input / output tokens"
 msgstr "Giriş / çıkış token"
@@ -1130,7 +1130,7 @@ msgid "Your receipt has reached us and your donation is confirmed ({donation}, {
 msgstr "Dekontunuz bize ulaştı, bağışınız onaylandı ({donation}, {amount}). Teşekkür ederiz."
 
 msgid "Cancel"
-msgstr "İptal et"
+msgstr "Vazgeç"
 
 msgid "You are not allowed to create donation records."
 msgstr "Bağış kaydı oluşturma yetkiniz yok."
@@ -2264,7 +2264,7 @@ msgid "Key and value are required."
 msgstr "Anahtar ve değer gerekli."
 
 msgid "AI Chat"
-msgstr "AI Chat"
+msgstr "AI Sohbet"
 
 msgid "Team (%s)"
 msgstr "Ekip (%s)"
@@ -2438,7 +2438,7 @@ msgid "Every year on %1$s at %2$s"
 msgstr "Her yıl %1$s %2$s"
 
 msgid "%1$s: %2$s"
-msgstr "%1$s: %2$s"
+msgstr "%1$s : %2$s"
 
 msgid "First: %s"
 msgstr "İlk: %s"
@@ -2825,7 +2825,7 @@ msgid "Instance name"
 msgstr "Instance adı"
 
 msgid "API key (apikey)"
-msgstr "API key (apikey)"
+msgstr "API anahtar (apikey)"
 
 msgid "•••••••• (saved; type to change)"
 msgstr "•••••••• (kayıtlı; değiştirmek için yazın)"
@@ -4451,7 +4451,7 @@ msgid "Writable and closed to the public."
 msgstr "Yazılabilir ve dışarıya kapalı."
 
 msgid "PHP cURL"
-msgstr "PHP cURL"
+msgstr "PHP CURL"
 
 msgid "Available."
 msgstr "Var."
@@ -4986,18 +4986,6 @@ msgstr "Devam: yanlış anlamadan sonra itiraz gelince hemen kapatır"
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "Veda tepkisi 👍 ya da 🤲, asla 🙏"
-
-msgid "Promotional messages"
-msgstr "Tanıtım mesajları"
-
-msgid "Off (the person replied STOP)"
-msgstr "Kapalı (kişi IPTAL yazdı)"
-
-msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
-msgstr "Tanıtım mesajları ve hatırlatıcılar gitmez. Kişinin kendi mesajlarına cevap verilir."
-
-msgid "The person replied STOP to promotional messages."
-msgstr "Kişi tanıtım mesajları için IPTAL yazdı."
 
 msgid "Schedules call-center reports"
 msgstr "Çağrı merkezi raporlarını zamanlar"
@@ -5824,6 +5812,9 @@ msgstr "yes olmalı."
 msgid "Cleared."
 msgstr "Temizlendi."
 
+msgid "(updates are sent to this address too)"
+msgstr "(bilgilendirmeler bu adrese de gider)"
+
 msgid "Proxy"
 msgstr "Vekâlet"
 
@@ -5833,8 +5824,38 @@ msgstr "Vekâlet vermek için \"Onaylıyorum\" yazmanız yeterli."
 msgid "at least %s"
 msgstr "en az %s"
 
-msgid "(updates are sent to this address too)"
-msgstr "(bilgilendirmeler bu adrese de gider)"
+msgid "Sent from the chat"
+msgstr "Sohbetten gönderildi"
+
+msgid "Promotional messages"
+msgstr "Tanıtım mesajları"
+
+msgid "Off (the person replied STOP)"
+msgstr "Kapalı (kişi IPTAL yazdı)"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "Tanıtım mesajları ve hatırlatıcılar gitmez. Kişinin kendi mesajlarına cevap verilir."
+
+msgid "The person replied STOP to promotional messages."
+msgstr "Kişi tanıtım mesajları için IPTAL yazdı."
+
+msgid "The upload has expired. Please add the file again."
+msgstr "Yükleme süresi doldu. Dosyayı yeniden ekleyin."
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "Bu mesajı yalnız gönderen ya da yönetici düzenleyebilir."
+
+msgid "This message can't be edited on this channel."
+msgstr "Bu mesaj bu kanalda düzenlenemez."
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "Düzenleme süresi doldu (WhatsApp 15 dakika izin verir)."
+
+msgid "The message can't be empty."
+msgstr "Mesaj boş olamaz."
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp mesajı düzenlemedi."
 
 msgid "Assistant languages"
 msgstr "Asistanın dilleri"

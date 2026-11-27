@@ -1,0 +1,843 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "POS accounts"
+msgstr "POS 账户"
+
+msgid "Card payments with banks and payment institutions"
+msgstr "与银行和付款机构交纳款项"
+
+msgid "Virtual POS"
+msgstr "虚拟 POS"
+
+msgid "POS"
+msgstr "POS"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "The amount must be greater than zero."
+msgstr "金额必须大于零。"
+
+msgid "No POS account for this currency."
+msgstr "监督事务厅没有对这一货币进行衡算。"
+
+msgid "This account needs card details."
+msgstr "这一账户需要卡的细节。"
+
+msgid "The payment record could not be created."
+msgstr "付款记录无法建立。"
+
+msgid "Transaction not found."
+msgstr "未找到交易 。"
+
+msgid "Saved card details are missing."
+msgstr "遗.卡的细节不详。"
+
+msgid "This provider does not support charging a saved card."
+msgstr "这个提供商不支持收取储蓄卡。"
+
+msgid "Choose a provider."
+msgstr "选择提供者。"
+
+msgid "test"
+msgstr "测试"
+
+msgid "POS account not found."
+msgstr "监督事务司没有发现。"
+
+msgid "No driver for this provider yet."
+msgstr "但这一提供商没有司机。"
+
+msgid "The payment link is invalid or has expired."
+msgstr "付款联系无效或已过期。"
+
+msgid "Order %s"
+msgstr "命令 %s"
+
+msgid "General"
+msgstr "一般"
+
+msgid "The card details have expired; please try again."
+msgstr "卡片细节已经过期;请再次试用。"
+
+msgid "Secure payment"
+msgstr "安全支付"
+
+msgid "Payment form"
+msgstr "付款表"
+
+msgid "Cancel and return to checkout"
+msgstr "取消并返回到退结"
+
+msgid "Going to the secure payment…"
+msgstr "支付担保款项。"
+
+msgid "Continue"
+msgstr "继续"
+
+msgid "The amount charged by the bank (%1$s) differs from the expected amount (%2$s); check it."
+msgstr "银行收取的款项(美元)%1$s数额与预期数额(美元)不同%2$s);核对。"
+
+msgid "Paid by card (%1$s): %2$s, reference %3$s, %4$s."
+msgstr "用卡路德(Paid)%1$s): %2$s,参考 %3$s, %4$s."
+
+msgid "%d installments"
+msgstr "%d 安装"
+
+msgid "single payment"
+msgstr "单笔付款"
+
+msgid "Card payment needs a check (%1$s): %2$s"
+msgstr "行车付款需要核对(%1$s):%2$s"
+
+msgid "Card payment failed (%1$s): %2$s"
+msgstr "卡路德付款失败(%1$s):%2$s"
+
+msgid "Redirecting…"
+msgstr "Redirecting.."
+
+msgid "The payment could not be completed. Please try again or use another card."
+msgstr "付款无法完成。请重试或使用另一张卡。"
+
+msgid "Name on card"
+msgstr "姓名"
+
+msgid "Card number"
+msgstr "卡号"
+
+msgid "Expiry (MM/YY)"
+msgstr "到期 (MM/YY)"
+
+msgid "Security code (CVC)"
+msgstr "安全代码(CVC)"
+
+msgid "Installments"
+msgstr "分期付款"
+
+msgid "Single payment"
+msgstr "单笔支付', 'zh']]"
+
+msgid "%1$s installments × %2$s (total %3$s)"
+msgstr "%1$s分期付款 ×%2$s(总计%3$s)"
+
+msgid "Your card details are protected by your bank's 3D Secure check and are not stored on this site."
+msgstr "您的卡片细节受银行3D安全检查的保护 并且不会存放在这个网站"
+
+msgid "Check the card number."
+msgstr "核对卡号。"
+
+msgid "Check the expiry date."
+msgstr "检查过期日期。"
+
+msgid "Check the security code."
+msgstr "检查安全编码。"
+
+msgid "Enter the name on the card."
+msgstr "在该卡上填写姓名。"
+
+msgid "Test mode: no real money is charged."
+msgstr "测试模式:没有收取任何实际资金。"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "The payment will be left unfinished. Close it?"
+msgstr "付款将没有完成。"
+
+msgid "The selected installment is not available for this card."
+msgstr "此卡没有经过选择的安装。"
+
+msgid "Installment fee (%d installments)"
+msgstr "停车费(美元)%d 安装)"
+
+msgid "No successful card payment found on this order."
+msgstr "订单上没有发现成功支付卡片。"
+
+msgid "This transaction cannot be refunded."
+msgstr "这一交易不能退还。"
+
+msgid "The refund amount cannot exceed the paid amount."
+msgstr "退款数额不得超过已付款数额。"
+
+msgid "The bank did not approve the refund."
+msgstr "银行没有核准退还款项。"
+
+msgid "The card payment was voided at the bank (%s)."
+msgstr "银行(银行)撤销了卡付款。%s)."
+
+msgid "Refunded to the card: %s."
+msgstr "卡路里: %s."
+
+msgid "Block checkout"
+msgstr "阻止结帐"
+
+msgid "Payment link"
+msgstr "付款链接"
+
+msgid "Server check"
+msgstr "服务器检查"
+
+msgid "Saved cards"
+msgstr "已保存的卡片"
+
+msgid "Refund from site"
+msgstr "从网站退款"
+
+msgid "Shown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method."
+msgstr "显示在使用结帐块构建的结帐页面上。经典结帐 ([woocommerce_checkout]) 显示每种方法。"
+
+msgid "Pays an existing order from its payment link without a cart (call center, \"pay again\")."
+msgstr "支付现有的支付订单,"
+
+msgid "The payment is confirmed with the provider from the server before the order is marked paid."
+msgstr "在订单标记为已付款之前,先从服务器向提供商确认付款。"
+
+msgid "The payer can pay in installments."
+msgstr "支付人可以支付安装费。"
+
+msgid "The payer can save the card for the next payment."
+msgstr "支付人可以为下一次付款节省卡。"
+
+msgid "The order's Refund button sends the refund to the provider."
+msgstr "订单退款,但顿将退款退还给提供商。"
+
+msgid "Added by Flux POS (the plugin has no block support)."
+msgstr "弗卢克斯·普斯(pl树无 block支持)添加了。"
+
+msgid "Flux POS adds it once the method is enabled."
+msgstr "Flux POS在方法允许后添加了它。"
+
+msgid "Turn on \"Show other payment plugins on the checkout block\"."
+msgstr "开启“在结账栏显示其他支付插件”。"
+
+msgid "The plugin shows its card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support."
+msgstr "pl只在传统的检查中展示其卡片场,使用传统的检查页或要求提供者提供 block塞支助。"
+
+msgid "Most plugins work; try a payment link once."
+msgstr "大多数插件都可以工作;尝试一次付款链接。"
+
+msgid "Depends on the plugin; ask the provider."
+msgstr "取决于插件;询问提供商。"
+
+msgid "On the payment page, if the provider offers it."
+msgstr "在付款页上,如果提供商提供。"
+
+msgid "Refund in the provider's panel, then mark the order refunded."
+msgstr "在提供商面板中退款,然后将订单标记为已退款。"
+
+msgid "The bank's return is verified by signature or a server query; the amount must match."
+msgstr "银行的回信通过签名或服务器查询核实;数额必须匹配。"
+
+msgid "The account's installment table is empty."
+msgstr "账户安装表是空的。"
+
+msgid "The provider does not support refunds from the site."
+msgstr "供应商不支持从该地点退还款项。"
+
+msgid "Confirmed by hand after the receipt."
+msgstr "收货后由专人确认。"
+
+msgid "Payment details"
+msgstr "付款详情"
+
+msgid "No Flux POS transaction on this order."
+msgstr "这份订单上没有Flux POS交易"
+
+msgid "Card"
+msgstr "卡"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "Bank reference"
+msgstr "银行参考"
+
+msgid "Authorization code"
+msgstr "授权编码"
+
+msgid "Transaction no"
+msgstr "无交易"
+
+msgid "Mode"
+msgstr "模式"
+
+msgid "Test"
+msgstr "测试"
+
+msgid "Live"
+msgstr "直播"
+
+msgid "All transactions"
+msgstr "所有交易"
+
+msgid "3D Pay (check and charge at the bank)"
+msgstr "3D 工资(支票和银行手续费)"
+
+msgid "3D Model (check at the bank, charge from the server)"
+msgstr "3D 模式(银行支票,服务器收费)"
+
+msgid "Bank's payment page (3D Host)"
+msgstr "银行付款页(3D东道国)"
+
+msgid "Provider's payment page"
+msgstr "供应商付款页"
+
+msgid "Payment form on the page (iFrame)"
+msgstr "页面付款表(iFrame)"
+
+msgid "Stripe card fields on the checkout page (Payment Element)"
+msgstr "检查页的卡片面(损伤器)"
+
+msgid "Pay with wallet"
+msgstr "使用钱包付款"
+
+msgid "Without 3D (only on accounts the bank allows)"
+msgstr "无3D(只在账户上,银行允许)"
+
+msgid "Store number (Client ID)"
+msgstr "存储号 (用户名)"
+
+msgid "API user name"
+msgstr "API 用户名"
+
+msgid "The user created with the API role in the bank panel. Needed for refunds, voids and queries."
+msgstr "用户与用户共同创建 API 在银行小组中发挥作用,需要退还、撤销和查询。"
+
+msgid "API user password"
+msgstr "API 用户密码"
+
+msgid "3D Store Key"
+msgstr "3D 存储密钥"
+
+msgid "Merchant number"
+msgstr "商号"
+
+msgid "Terminal number"
+msgstr "终止数"
+
+msgid "Provision user"
+msgstr "提供用户"
+
+msgid "Provision password"
+msgstr "备注"
+
+msgid "3D Secure key"
+msgstr "3D 安全密钥"
+
+msgid "Refund user (PROVRFN)"
+msgstr "退款用户(PROVRFN)"
+
+msgid "If empty, the provision user is used."
+msgstr "如果是空,则使用提供者。"
+
+msgid "Refund user password"
+msgstr "退款用户密码"
+
+msgid "Merchant number (MID)"
+msgstr "商号(MID)"
+
+msgid "Terminal number (TID)"
+msgstr "终端号 (TID)"
+
+msgid "Posnet ID"
+msgstr "Posnet 身份识别"
+
+msgid "Encryption key (ENCKEY)"
+msgstr "加密密钥 (ENCKEY)"
+
+msgid "Merchant password"
+msgstr "密码"
+
+msgid "API user code"
+msgstr "API 用户代码"
+
+msgid "Shop code (ShopCode)"
+msgstr "商店代码 (商店代码)"
+
+msgid "Merchant key (MerchantPass)"
+msgstr "商机密钥 (商机钥匙)"
+
+msgid "Store number (MerchantId)"
+msgstr "存储编号 (MechernantId)"
+
+msgid "Customer number (CustomerId)"
+msgstr "客户编号(CustomerId)"
+
+msgid "Merchant Safe ID"
+msgstr "商船安全身份证"
+
+msgid "Terminal Safe ID"
+msgstr "安全终端安全ID"
+
+msgid "Secret key"
+msgstr "秘钥"
+
+msgid "Merchant code (MERCHANT)"
+msgstr "商号(商号)"
+
+msgid "API user"
+msgstr "API 用户"
+
+msgid "API password"
+msgstr "API 密码"
+
+msgid "Dealer type (optional)"
+msgstr "较差的类型(形式)"
+
+msgid "App key (App ID)"
+msgstr "App 键 (App ID)"
+
+msgid "App secret (App Secret)"
+msgstr "App 秘密( 附加秘密)"
+
+msgid "Merchant key (Merchant Key)"
+msgstr "商机键 (商机键)"
+
+msgid "API key"
+msgstr "API密钥"
+
+msgid "Store number"
+msgstr "存储编号"
+
+msgid "Store password (Merchant Key)"
+msgstr "存储密码( 存储密钥)"
+
+msgid "Store secret (Merchant Salt)"
+msgstr "秘密存储( 商盐)"
+
+msgid "Terminal number (CLIENT_CODE)"
+msgstr "任期(CLIENT_CODE)"
+
+msgid "User name"
+msgstr "用户名"
+
+msgid "Password"
+msgstr "密码"
+
+msgid "Key (GUID)"
+msgstr "关键( GUID)"
+
+msgid "Merchant (MERCHANT)"
+msgstr "雇佣军(雇佣军)"
+
+msgid "TEST1234 for testing."
+msgstr "测试测试为 TESST1234"
+
+msgid "Merchant key (MERCHANT_KEY)"
+msgstr "商号 key(市场)"
+
+msgid "Public token (MERCHANT_PUBLIC_TOKEN, for installment rates)"
+msgstr "公共象征(用于安装率的MMERCHANT_PUBLIC_TOKEN)"
+
+msgid "Dealer code"
+msgstr "发牌代码"
+
+msgid "Client ID"
+msgstr "客户身份"
+
+msgid "Signing key ID (kid)"
+msgstr "签署关键身份证(千)"
+
+msgid "Signing key (k)"
+msgstr "信号关键(k)"
+
+msgid "Payment key (sx)"
+msgstr "付款 key(x)"
+
+msgid "Void/refund key (sx)"
+msgstr "小额/退款金键(sx)"
+
+msgid "API key (test_… or live_…)"
+msgstr "API 关键(试验.....................)"
+
+msgid "Publishable key (pk_test_… or pk_live_…)"
+msgstr "可公布密钥 (pk_ test_... 或 pk_ live_...)"
+
+msgid "Secret key (sk_… or restricted rk_…)"
+msgstr "密钥 (sk_... 或限制的rk_...)"
+
+msgid "Webhook signing secret (whsec_…)"
+msgstr "Webhook 签名秘密 (whsec_...)"
+
+msgid "In the Stripe Dashboard, Developers › Webhooks: add the notification URL and select the payment_intent.succeeded, payment_intent.processing and payment_intent.payment_failed events."
+msgstr "在加沙地带的Dashboard,开发商 Web万维网查询:添加通知URL,并选择付款方。"
+
+msgid "Statement descriptor suffix (optional, up to 22 characters)"
+msgstr "报表编号(备选案文,最多22个字)"
+
+msgid "Website index"
+msgstr "网站指数"
+
+msgid "This bank asks for the card again after the 3D return: the card is kept encrypted, tied to the transaction, for at most 20 minutes and opened once on return."
+msgstr "这家银行在3D回程后再次要求出示卡:卡片被密封,与交易相连,长达20分钟,在回程时开启一次。"
+
+msgid "This bank's return signature does not work as documented; every successful return is checked with the bank."
+msgstr "该银行的返还签名没有文件证明;每一次成功返回都与银行核对。"
+
+msgid "The \"Provider's payment page\" model is the iyzico checkout form; the \"Pay with iyzico\" wallet is on that page too."
+msgstr "ProProvider's付款页面 model模型是iyzico检查表;与iyzico wall墙的PPay也在该页上。"
+
+msgid "Enter this account's notification address as the Notification URL in the PayTR panel (shown on the account screen). Test mode works with the PayTR account's test key."
+msgstr "在 PayTR 面板( 显示在账户屏幕上) 中输入此账户的通知地址为通知 URL。 测试模式与 PayTR 账户的测试密钥一起工作 。"
+
+msgid "For a test use merchant TEST1234 and the test key from EsnekPOS's developer page."
+msgstr "测试使用商业TEST1234和EsnekPOS开发商页上的测试键。"
+
+msgid "Enter this account's notification address as the callback address in the Shopier panel. Refunds are made in the Shopier panel."
+msgstr "在 Shopier 面板中输入此账户的通知地址作为回回调地址。 退款在 Shoppier 面板中进行 。"
+
+msgid "Test or live is taken from the key's prefix (test_… / live_…). Turkish lira is not supported."
+msgstr "测试或生活来自 key的预 pre(试验/活_....)。"
+
+msgid "Card fields are Stripe's Payment Element; card details never reach the site. 3D Secure, Apple Pay and Google Pay are handled by Stripe. Test or live is read from the key prefix and must match the account's test switch. \"Test connection\" also registers the domain for Apple Pay."
+msgstr "牌字段是 刻板纸的支付元素; 纸牌细节从不到达网站 。 3D 安全、 苹果支付和谷歌支付由 刻板板处理 。 测试或直播是从密钥前缀读取的, 并且必须与账户的测试开关匹配 。 “ 测试连接” 也登记苹果支付域 。"
+
+msgid "GiroGate method"
+msgstr "吉罗Gate方法"
+
+msgid "Banks"
+msgstr "银行"
+
+msgid "Payment institutions"
+msgstr "支付机构"
+
+msgid "Wallets"
+msgstr "围墙"
+
+msgid "Meal and gift cards"
+msgstr "餐饮和礼品卡"
+
+msgid "Refund"
+msgstr "退款"
+
+msgid "Partial refund"
+msgstr "部分退款"
+
+msgid "Void"
+msgstr "Void"
+
+msgid "Status query"
+msgstr "状态查询"
+
+msgid "Installments by card"
+msgstr "卡片"
+
+msgid "Server notification"
+msgstr "服务器通知"
+
+msgid "The result of the previous charge is not in yet."
+msgstr "以前的收费尚未产生结果。"
+
+msgid "No result came back."
+msgstr "结果没有回来。"
+
+msgid "Order #%s"
+msgstr "订单#%s"
+
+msgid "The card was not charged."
+msgstr "该卡未收费。"
+
+msgid "Pay"
+msgstr "分享"
+
+msgid "Processing…"
+msgstr "Processing.."
+
+msgid "The payment form could not be loaded. Refresh the page or choose another method."
+msgstr "付款表不能装载,拒绝页面或选择另一种方法。"
+
+msgid "Your card details are processed in Stripe's secure fields and are not stored on this site."
+msgstr "您的卡片细节在Strake的安全区处理 而不储存在这个地点"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Pending"
+msgstr "待定"
+
+msgid "Paid"
+msgstr "付费"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Refunded"
+msgstr "已退款"
+
+msgid "Voided"
+msgstr "Voided"
+
+msgid "Needs a check"
+msgstr "需要检查"
+
+msgid "Enabled"
+msgstr "启用"
+
+msgid "Show this payment method"
+msgstr "如何用这种付款方法"
+
+msgid "Accounts, keys, installments and the display name are managed in the Flux POS panel."
+msgstr "账户、 key、安装和显示名称由Flux POS小组管理。"
+
+msgid "Flux POS panel"
+msgstr "Flux POS panel"
+
+msgid "Card payment is not available for this currency."
+msgstr "这种货币无法支付货款。"
+
+msgid "Pay by card (Flux POS)"
+msgstr "按卡片计薪(Flus POS)"
+
+msgid "3D Secure card payment through a bank or payment institution."
+msgstr "3D 通过银行或付款机构确保支付卡片。"
+
+msgid "Bank / Credit card"
+msgstr "银行/信用卡"
+
+msgid "%s (Flux POS)"
+msgstr "%s(流量POS)"
+
+msgid "Completed on the payment provider's page."
+msgstr "付款提供者网页上填写。"
+
+msgid "The merchant details are wrong; check the account settings."
+msgstr "商业细节错误; 检查账户设置 。"
+
+msgid "The bank's return signature did not match."
+msgstr "银行的回信签名不符"
+
+msgid "The bank's return does not belong to this payment."
+msgstr "银行回款不属于这一付款。"
+
+msgid "No successful sale was found at the bank."
+msgstr "银行没有成功出售。"
+
+msgid "The payment is pending at the provider."
+msgstr "付款在提供者待付。"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "For a payment with several lines, partial refunds are made in the Craftgate panel."
+msgstr "分几行付款,部分退款由Craftgate小组支付。"
+
+msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
+msgstr "请在卡片上填写全名(至少6封信)。"
+
+msgid "The payment could not be started. Please try again."
+msgstr "付款无法开始。请重试。"
+
+msgid "Status at the bank: %s"
+msgstr "银行状况:%s"
+
+msgid "iyzico put the payment under review."
+msgstr "iyzico将对付款进行审查。"
+
+msgid "The %s provision response could not be read; check with the bank."
+msgstr "The %s 无法阅读备抵;无法与银行核对。"
+
+msgid "The payment was not completed (%s)."
+msgstr "付款没有完成(%s )。"
+
+msgid "The payment method will report the result later."
+msgstr "付款方法将在晚些时候报告结果。"
+
+msgid "The transaction was voided at the bank."
+msgstr "交易在银行被撤销。"
+
+msgid "The payment was not completed."
+msgstr "付款没有完成。"
+
+msgid "Papara refunds only the full amount."
+msgstr "帕帕帕只退还全部款项。"
+
+msgid "The card is not eligible for 3D Secure."
+msgstr "卡没有资格获得3D担保。"
+
+msgid "The payment time ran out; please enter the card details again."
+msgstr "付款时间已过;请再次填写卡片。"
+
+msgid "The result will come with the PayTR notification."
+msgstr "结果将提交PayTR通知。"
+
+msgid "%s did not respond."
+msgstr "%s 没有答复。"
+
+msgid "The bank did not complete the 3D check."
+msgstr "银行没有完成3D检查。"
+
+msgid "The result will come with the Shopier notification."
+msgstr "结果将提交Shopier通知。"
+
+msgid "Stripe keys are missing: a publishable key and a secret key are required."
+msgstr "缺水 key:需要一个可公布的 key和一个秘密 key。"
+
+msgid "One Stripe key is test and the other is live. Both must be in the same mode."
+msgstr "一个加沙地带的关键是测试,另一个是活着,两者必须相同。"
+
+msgid "The account is in test mode but the Stripe keys are live. Enter test keys (sk_test_… / pk_test_…) or turn test mode off."
+msgstr "账户是试验型的,但加沙地带的 key是活着的,Enter测试 key(k_test_......)或转折测试模式。"
+
+msgid "The account is live but the Stripe keys are test keys. Enter live keys or turn test mode on."
+msgstr "帐户是活着的,但加沙地带的 key是测试 key, En子 key着 key或转.试验模式。"
+
+msgid "The card number is not valid."
+msgstr "卡号码不有效。"
+
+msgid "The card number is incorrect."
+msgstr "卡号码不正确。"
+
+msgid "The card number is incomplete."
+msgstr "卡号码不完整。"
+
+msgid "The expiry month is invalid."
+msgstr "过期月份为无效。"
+
+msgid "The expiry year is invalid."
+msgstr "过期年是无效的。"
+
+msgid "The expiry year is in the past."
+msgstr "过期年份过去。"
+
+msgid "The expiry date is incomplete."
+msgstr "过期日期不完整。"
+
+msgid "The card has expired."
+msgstr "卡已经过期。"
+
+msgid "The security code is invalid."
+msgstr "安全法无效。"
+
+msgid "The security code is incorrect."
+msgstr "安全代码是不正确的"
+
+msgid "The security code is incomplete."
+msgstr "安全守则不完整。"
+
+msgid "The postal code failed validation."
+msgstr "邮政编码验证失败 。"
+
+msgid "Invalid postal code; please correct it and try again."
+msgstr "无效的邮政编码; 请更正它, 然后再试一次 。"
+
+msgid "The card was declined."
+msgstr "卡片被拒绝。"
+
+msgid "The card has insufficient funds or limit."
+msgstr "卡的资金或限额不足。"
+
+msgid "The card issuer did not approve the payment."
+msgstr "卡片发行人没有批准付款。"
+
+msgid "The card's transaction limit was exceeded."
+msgstr "卡片交易限额被超额。"
+
+msgid "The bank requires card authentication (3D Secure)."
+msgstr "银行需要卡证认证(3D担保)。"
+
+msgid "3D Secure authentication failed; try again or use another card."
+msgstr "3D 安全认证失败;再次尝试或使用另一张卡。"
+
+msgid "An error occurred while processing the card; please try again."
+msgstr "在处理卡片时出现错误;请再次尝试。"
+
+msgid "The email address is invalid."
+msgstr "电子邮件地址无效。"
+
+msgid "The payment could not be processed; try again or use another method."
+msgstr "付款无法处理;再次尝试或使用另一种方法。"
+
+msgid "The payment is processing at Stripe."
+msgstr "付款在加沙地带处理。"
+
+msgid "Waiting for payment authentication."
+msgstr "正在等待付款认证 。"
+
+msgid "The payment was canceled."
+msgstr "付款被取消。"
+
+msgid "This provider sends no notifications."
+msgstr "该供应商没有发出通知。"
+
+msgid "This provider has no refunds from the site; make them in the provider's panel."
+msgstr "这一提供商没有从现场收回资金;因此,它们属于提供商小组。"
+
+msgid "This provider has no voids from the site."
+msgstr "这一提供商没有从现场逃脱。"
+
+msgid "This provider has no status query."
+msgstr "这一提供商没有地位问题。"
+
+msgid "Error code %s"
+msgstr "错误代码 %s"
+
+msgid "The payment was not approved."
+msgstr "付款没有核准。"
+
+msgid "%1$s did not respond (HTTP %2$d)."
+msgstr "%1$s 未作答复(HTTP) %2$d)."
+
+msgid "Redirect: the bank or provider page opens full screen"
+msgstr "转账:银行或供应商页面开放全盘 screen幕"
+
+msgid "Popup: in a frame, without leaving checkout"
+msgstr "制服:在一个框架内,不留下检查"
+
+msgid "On site: in a frame, with the site's header and footer"
+msgstr "现场:在一个框架内,点头和脚,"
+
+msgid "This provider has no connection test; try a small payment with a test card."
+msgstr "这一提供商没有联系测试;用测试卡试用小额付款。"
+
+msgid "Connection works, the keys were accepted."
+msgstr "连接工作, 接受密钥 。"
+
+msgid "Automatic"
+msgstr "自动"
+
+msgid "Show all"
+msgstr "显示全部"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce 未激活。"
+
+msgid "Add a POS account before turning on the Pay by card method."
+msgstr "在通过卡片方法交还工资之前加上一个POS账户。"
+
+msgid "Refund from the panel"
+msgstr "小组退款"
+
+msgid "No active POS account; card payments are not taken."
+msgstr "没有现成的考绩制度账户;没有支付卡片。"
+
+msgid "An account is in test mode, no real money is charged: %s"
+msgstr "账户以测试方式计算,没有实际资金:%s"
+
+msgid "%d account is active in live mode."
+msgid_plural "%d accounts are active in live mode."
+msgstr[0] "%d 账户在活着模式中很活跃。"
+
+msgid "%s: no webhook signing secret. The payment return is still read, but if the payer closes the page before returning the order stays pending. Add the notification URL in the Stripe Dashboard and enter the whsec_… secret."
+msgstr "%s:没有网络签字的秘密,付款的返还仍为读物,但如果付款人在交还命令前关闭该页,则在加沙地带Dashboard增加通知URL,进入秘密。"
+
+msgid "The official WooCommerce Stripe plugin is also active. Pick a single card method in Flux POS › Methods so payers do not see two card options."
+msgstr "The official WooCommerce 加沙地带也很活跃,在 &quot; Flux POS &quot; 方法中采用单张卡法,因此,支付者看不到两个卡片选择。"
+
+msgid "The site is not on HTTPS; banks do not send the card result to the return address and the card form is not secure."
+msgstr "该地点不在人道主义信托基金;银行没有将卡片结果发送给返回地址,而且卡片表不可靠。"
+
+msgid "Key encryption"
+msgstr "密钥加密"
+
+msgid "PHP sodium or openssl is missing; POS keys cannot be encrypted."
+msgstr "PHP  so或 open缺失;不能ry化监督办的 key。"
+
+msgid "Keys are encrypted with the WordPress salts. If the wp-config.php salts change, enter the POS keys again."
+msgstr "关键与《京都议定书》 WordPress 盐类:如果conf类盐类的改变,则再次进入临时安全条约的关键。"
+
+msgid "The check could not run: %s"
+msgstr "检查无法进行:%s"

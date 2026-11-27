@@ -215,6 +215,11 @@ return array(
   'Roller' => 'الأدوار',
   'Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.' => 'يضيف أدوار الموظفين والمسؤول والمدير (يُضاف دور جديد أيضًا من اللوحة)؛ يمكنك تشغيل وإيقاف الوصول إلى المهام والشهادات والتبرعات ومركز الاتصال والاستوديو والوصول إلى التقارير للأدوار من صفحة واحدة. الرابط المرجعي الشخصي ورقم هاتف المستخدم (لمساعد WhatsApp) موجودان هنا.',
   'Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.' => 'يضيف أدوار الموظفين والمسؤول والمدير (يُضاف دور جديد أيضًا من اللوحة)؛ يمكنك تشغيل وإيقاف الوصول إلى المهام والشهادات والتبرعات ومركز الاتصال والاستوديو والوصول إلى التقارير للأدوار من صفحة واحدة. الرابط المرجعي الشخصي ورقم هاتف المستخدم (لمساعد WhatsApp) موجودان هنا.',
-
+  'Unknown role.' => 'دور غير معروف',
+  'Unknown permission: %s.' => 'إذن غير معروف: %s',
+  'This screen is not available.' => 'هذه الشاشة غير متاحة',
+  'Enter 1 to 365 days.' => 'أدخل من 1 إلى 365 يوماً',
+  'Only roles added from the panel can be deleted.' => 'ولا يمكن حذف سوى الأدوار المضافة من الفريق.',
+  'Not found.' => 'لم يعثر عليه',
  ),
 );

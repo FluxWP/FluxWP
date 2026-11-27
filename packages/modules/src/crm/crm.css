@@ -529,7 +529,7 @@ html.flxa-dark .flxcrm-evmsg__bubble{background:#202c33;color:#e9edef}
 .flxcrm-evcard__foot{display:flex;align-items:center;gap:6px;padding:10px 16px 14px;border-top:1px solid var(--c-bd)}
 .flxcrm-evcard__foot .button{display:inline-flex;align-items:center;gap:4px}
 .flxcrm-evcard__sp{flex:1}
-.flxcrm-evcard .flxcrm-more__menu{right:0;left:auto}
+.flxcrm-evcard .flxcrm-more__menu{inset-inline-start:auto;inset-inline-end:0}
 .flxcrm-badge.is-info{background:var(--c-info-s);color:var(--c-info)}
 .flxcrm-badge.is-warn{background:var(--c-warn-s);color:var(--c-warn)}
 .flxcrm-badge.is-ok{background:var(--c-ok-s);color:var(--c-ok)}

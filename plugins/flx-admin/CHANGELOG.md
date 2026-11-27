@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.11.8
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 1.11.7
 - Çağrı Merkezi ve Görevler ekranları her zaman tam sayfa açılır ve kapanır. Önceden başka bir Flux ekranından sayfa yenilemeden geçilince sohbet tüm pencereyi kaplıyor, sol menü ve üst çubuk kayboluyordu; sohbetten başka ekrana geçince menü dar şerit olarak kalıyordu.
 

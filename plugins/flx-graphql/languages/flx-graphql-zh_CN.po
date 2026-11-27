@@ -1,0 +1,948 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Flux GraphQL"
+msgstr "Flux GraphQL"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "You do not have permission to do this."
+msgstr "您没有执行此操作的权限。"
+
+msgid "One GraphQL API for the FluxWP plugins. Screens in wp-admin, the FluxWP desktop and mobile apps and a headless front end all read the same typed schema."
+msgstr "One GraphQL API for the FluxWP plugins. Screens in wp-admin, the FluxWP 台式和移动式电脑和一台无头的前线都阅读了同类手che。"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "The separate WPGraphQL plugin was deactivated; the built-in copy is in use."
+msgstr "分离的WPGraphQL plugin已失效;内装 copy正在使用。"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Endpoint"
+msgstr "端点"
+
+msgid "WPGraphQL"
+msgstr "WPGraphQL"
+
+msgid "%s (built in)"
+msgstr "%s(在建)"
+
+msgid "%s (separate plugin)"
+msgstr "%s(单独插件)"
+
+msgid "not loaded"
+msgstr "未装载"
+
+msgid "working"
+msgstr "工作"
+
+msgid "off"
+msgstr "关闭"
+
+msgid "Known queries"
+msgstr "已知查询"
+
+msgid "%1$d from %2$d packages"
+msgstr "%1$d from %2$d 包 包"
+
+msgid "Upload endpoint"
+msgstr "装卸终点"
+
+msgid "Use the Flux GraphQL version"
+msgstr "Use the Flux GraphQL 版本"
+
+msgid "Open GraphiQL IDE"
+msgstr "打开图形化 IDE"
+
+msgid "Access"
+msgstr "访问"
+
+msgid "Only queries shipped with FluxWP packages (recommended)"
+msgstr "Only queries shipped with FluxWP 一揽子计划(建议)"
+
+msgid "Administrators may also send any query"
+msgstr "署长也可发出询问"
+
+msgid "Anyone may send any query (public headless API)"
+msgstr "任何人均可发出任何询问(公元) API)"
+
+msgid "Which queries run"
+msgstr "哪些询问"
+
+msgid "Persisted queries keep the API small and let LiteSpeed cache public reads."
+msgstr "持续查询 API Small and let LiteSpeed cache public reads."
+
+msgid "Front-end origins"
+msgstr "原产"
+
+msgid "Sites allowed to call /graphql from the browser, one per line. This site is always allowed."
+msgstr "允许从浏览器中调用/ raphql 的站点, 每行一个站点。 此站点总是允许 。"
+
+msgid "GraphiQL IDE for administrators"
+msgstr "用于管理员的图形化 IDE"
+
+msgid "Also lets administrators run any query while it is on."
+msgstr "此外,在行政人员在场时,他们会遇到任何问题。"
+
+msgid "Public schema introspection"
+msgstr "公共计划"
+
+msgid "Administrators can always read the schema."
+msgstr "署长可以一向阅读。"
+
+msgid "Debug messages for administrators"
+msgstr "为管理人员发出短信"
+
+msgid "Limits"
+msgstr "限制"
+
+msgid "Deepest nesting"
+msgstr "最深的巢穴"
+
+msgid "Highest complexity"
+msgstr "最复杂的问题"
+
+msgid "Records per page"
+msgstr "每页记录"
+
+msgid "Queries per batch"
+msgstr "每批"
+
+msgid "Public cache"
+msgstr "公共学士"
+
+msgid "sec"
+msgstr "sec"
+
+msgid "Largest upload"
+msgstr "最大装载量"
+
+msgid "The FluxWP form fields could not load. Reinstall Flux GraphQL."
+msgstr "The FluxWP 表格领域不能装载。 GraphQL."
+
+msgid "Shared hosting: keep the limits low. A query that goes over them is refused before it runs."
+msgstr "共享主机: 保持低限。 超过此权限的查询在运行前被拒绝 。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "GraphQL server"
+msgstr "GraphQL 服务器"
+
+msgid "Flux GraphQL settings"
+msgstr "Flux GraphQL settings"
+
+msgid "Built-in WPGraphQL %s is running."
+msgstr "Built-in WPGraphQL %s 正在运行。"
+
+msgid "A separately installed WPGraphQL %1$s is running instead of the built-in %2$s. It works, but its updates are not tested with FluxWP. Use the built-in copy unless another plugin needs the separate one."
+msgstr "A separately installed WPGraphQL %1$s 正在运行,而不是建造 %2$s其运作,但其更新没有经过测试 FluxWP. 使用内在的副本,除非另有一个pl需要分开。"
+
+msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP screens cannot open. Deactivate it to use the built-in copy."
+msgstr "A separately installed WPGraphQL %1$s 活跃。 FluxWP 需求 %2$s 或更新的或更新的 %3$s, FluxWP screen幕不能开放,无法使用内装 copy贝。"
+
+msgid "The built-in WPGraphQL files are missing. Reinstall Flux GraphQL from FluxWP Panel › Packages."
+msgstr "缺少 WP GraphiQL 内置文件。 从 FluxWP 面板  ??  包中重新安装 FLU GraphQL 。"
+
+msgid "GraphQL queries"
+msgstr "GraphQL 询问"
+
+msgid "Anyone may send any GraphQL query. Keep this only for a public headless front end; depth and complexity limits still apply."
+msgstr "任何人均可发送任何信息。 GraphQL 询问:只在公共前线结束之前才这样做;深度和复杂性仍然适用。"
+
+msgid "Only queries shipped with FluxWP packages run (%d known)."
+msgid_plural "Only queries shipped with FluxWP packages run (%d known)."
+msgstr[0] "Only queries shipped with FluxWP 包机运行(包括)%d 已知)。"
+
+msgid "GraphQL types"
+msgstr "GraphQL 类型"
+
+msgid "Some GraphQL fields were refused because they break the FluxWP rules: %s. Update the package that adds them."
+msgstr "部分 GraphQL 田间被拒绝,因为田间破裂 FluxWP 规则: %s更新补充这些内容的一揽子计划。"
+
+msgid "Flux GraphQL: the separately installed WPGraphQL %s is not supported, so FluxWP GraphQL screens are off."
+msgstr "Flux GraphQL:单独安装的WPGraphQL %s 没有获得支持,因此 FluxWP GraphQL 放置 screen幕。"
+
+msgid "The user making the request and what they may do."
+msgstr "提出请求的用户及其可能做什么。"
+
+msgid "Whether the request is signed in."
+msgstr "请求是否已签署。"
+
+msgid "User ID; empty for a visitor."
+msgstr "用户 ID; 空的用户名。"
+
+msgid "Display name; empty for a visitor."
+msgstr "显示名称; 访问者可用空的 。"
+
+msgid "Whether the user manages the site (manage_options)."
+msgstr "用户是否管理该网站(管理/操作)。"
+
+msgid "Capabilities from the FluxWP catalog that the user has."
+msgstr "能力 FluxWP catalog that the user has."
+
+msgid "Whether the user has this capability."
+msgstr "用户是否具备这种能力。"
+
+msgid "Capability name, e.g. flxg_use."
+msgstr "能力名称,例如,石蜡_use。"
+
+msgid "A capability a FluxWP package checks."
+msgstr "能力a FluxWP 一揽子检查。"
+
+msgid "What the capability allows, in the user's language."
+msgstr "能力以用户语言为准。"
+
+msgid "Group label (usually the package); empty when not given."
+msgstr "集团标签(通常为整套办法);在未给予时空。"
+
+msgid "Package slug that declares it; empty when not given."
+msgstr "声明它的软件包; 未给定时为空 。"
+
+msgid "Whether the current user has it."
+msgstr "目前的用户是否拥有。"
+
+msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
+msgstr "用户请求访问,访问者被登录在假的,没有能力。"
+
+msgid "The FluxWP capability catalog, with what the current user has."
+msgstr "The FluxWP 能力催化剂,现有用户有什么。"
+
+msgid "Where a page sits in a list."
+msgstr "清单中的页面its。"
+
+msgid "More records follow this page."
+msgstr "更多记录沿着这一页。"
+
+msgid "Records come before this page."
+msgstr "记录见本页。"
+
+msgid "Cursor of the first record on this page."
+msgstr "本页首页记录的记录。"
+
+msgid "Cursor of the last record on this page; pass it as \"after\" for the next page."
+msgstr "本页上最后记录的演员;下页的urs夫特.通过该记录。"
+
+msgid "One %s in a list, with its cursor."
+msgstr "一个 %s 列表中,有光标。"
+
+msgid "Opaque cursor of this record."
+msgstr "此记录不透明光标 。"
+
+msgid "The record."
+msgstr "记录。"
+
+msgid "A page of %s records."
+msgstr "A page of %s 记录。"
+
+msgid "Records with their cursors."
+msgstr "其cur曲记录。"
+
+msgid "Records of this page."
+msgstr "本页记录。"
+
+msgid "Paging information."
+msgstr "呼叫信息"
+
+msgid "All matching records (null when counting would be slow)."
+msgstr "所有配对记录(在清点工作进展缓慢时取消)。"
+
+msgid "Records per page (at most %d)."
+msgstr "每页记录(大多数) %d)."
+
+msgid "Cursor to continue after (pageInfo.endCursor)."
+msgstr "此后继续工作(信息.端导游)。"
+
+msgid "The page cursor is not valid."
+msgstr "页面cur览器不有效。"
+
+msgid "Please sign in again."
+msgstr "请再次签署。"
+
+msgid "The record was not found."
+msgstr "没有发现记录。"
+
+msgid "Some fields are not valid."
+msgstr "有些领域是无效的。"
+
+msgid "The record was changed by someone else. Reload and try again."
+msgstr "其他人改变了记录,重新装载并再次尝试。"
+
+msgid "Too many requests. Wait a moment and try again."
+msgstr "许多请求,现在是一刻,再次尝试。"
+
+msgid "Something went wrong. Please try again."
+msgstr "出了点问题。请再试一次。"
+
+msgid "This query is not known to the site. Update the app or the FluxWP packages."
+msgstr "现场不知晓这一询问,更新附录或附录。 FluxWP 一揽子计划。"
+
+msgid "Only queries shipped with FluxWP packages may run on this site."
+msgstr "Only queries shipped with FluxWP 包件可以在这个地点运行。"
+
+msgid "The ID is not valid."
+msgstr "身份证明无效 。"
+
+msgid "Global ID."
+msgstr "全球身份证。"
+
+msgid "Database ID."
+msgstr "数据库。"
+
+msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
+msgstr "投入问题,以显示在形式领域附近的情况,在经变后取得成效时的情况。"
+
+msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
+msgstr "安装的小组环境 FluxWP 包件(从setting灯具_schema)"
+
+msgid "Panel settings of the installed FluxWP packages."
+msgstr "安装的小组环境 FluxWP 一揽子计划。"
+
+msgid "Changes panel settings. Only the groups and fields you send are written."
+msgstr "修改面板设置。只有您发送的组和字段才会被写入。"
+
+msgid "Settings after the change."
+msgstr "变更后决定。"
+
+msgid "This setting cannot be changed here."
+msgstr "此处不能改变这种方式。"
+
+msgid "Changes to %s. Only the fields you send are changed."
+msgstr "变动 %s.只有你所寄出的田地才改变。"
+
+msgid "A list or object is expected."
+msgstr "预期清单或物体。"
+
+msgid "This choice is not available."
+msgstr "这一选择是不存在的。"
+
+msgid "Enter a colour like #1F6FEB."
+msgstr "输入像 # 1F6FEB 的颜色。"
+
+msgid "Free-form JSON value (object, list, string, number or boolean)."
+msgstr "(项目、清单、str、编号或ole类)"
+
+msgid "A problem with the input of a mutation, shown next to the form field."
+msgstr "窗体字段旁边显示突变输入的问题 。"
+
+msgid "Stable code: INVALID_INPUT, CONFLICT, …"
+msgstr "稳定代码:INVALID_INPUT,冲突,."
+
+msgid "Message in the user's language."
+msgstr "用用户语言传递信息。"
+
+msgid "Input field (dotted path) the problem belongs to."
+msgstr "在投入领域(分配途径)问题属于问题。"
+
+msgid "A point in time with labels in the user's language."
+msgstr "用用户语言标示的时间点。"
+
+msgid "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+msgstr "世界协调时(2026-11-15T14:59:00Z)ISO 8601。"
+
+msgid "Unix timestamp."
+msgstr "统一时间标记"
+
+msgid "Date and time for display, in the site time zone and the user's language."
+msgstr "展出日期和时间,地点时间区和用户语言。"
+
+msgid "Relative time for display (\"5 minutes ago\")."
+msgstr "展出的相对时间(5分钟前)"
+
+msgid "Date only, in the site time zone and the user's language."
+msgstr "日期仅为现场时间区和用户语言。"
+
+msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
+msgstr "合同日期和表格时间(土耳其文16.10.2026 14:24)。"
+
+msgid "An amount of money."
+msgstr "金额。"
+
+msgid "Amount in the currency unit (150.5)."
+msgstr "货币单位数额(150.5)。"
+
+msgid "ISO 4217 code (TRY, USD)."
+msgstr "ISO 4217代码(TRY, USD)."
+
+msgid "Amount with the currency sign for display."
+msgstr "用货币标志显示的数额。"
+
+msgid "A phone number."
+msgstr "电话号码。"
+
+msgid "E.164 form (+905301234567); empty when the number is not valid."
+msgstr "E.164表格(+905301234567);当数字不有效时空。"
+
+msgid "Digits only (905301234567)."
+msgstr "只ig(905301234567)。"
+
+msgid "Number as entered, for display."
+msgstr "输入的显示数字。"
+
+msgid "A stored file."
+msgstr "储存的文件"
+
+msgid "File ID (upload ID or the package's own ID)."
+msgstr "文件 ID (上载文件 ID 或软件包自己的文件 ID) 。"
+
+msgid "File name."
+msgstr "文件名称。"
+
+msgid "MIME type."
+msgstr "MIME型的。"
+
+msgid "Size in bytes."
+msgstr "by类。"
+
+msgid "Download address (may need the same sign-in)."
+msgstr "own载地址(可能需要同样的标志)。"
+
+msgid "The file is an image."
+msgstr "卷宗是一个形象。"
+
+msgid "Thumbnail address for images."
+msgstr "图像缩略图地址 。"
+
+msgid "A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
+msgstr "个人(捐助者、客户、联系人)、Flux CRM拥有记录;其他包件归还记录。"
+
+msgid "Person ID in the shared people table."
+msgstr "共同人表上的人证"
+
+msgid "Full name."
+msgstr "全名。"
+
+msgid "E-mail address."
+msgstr "电子邮件地址。"
+
+msgid "Phone number."
+msgstr "电话号码"
+
+msgid "Picture address."
+msgstr "图片地址"
+
+msgid "You are not allowed to manage plugins."
+msgstr "不允许你管理pl。"
+
+msgid "This screen needs JavaScript."
+msgstr "这一 screen幕需要 JavaScript."
+
+msgid "Loading the screen…"
+msgstr "正在装入屏幕..."
+
+msgid "A separately installed WPGraphQL plugin is active and FluxWP cannot use it. Deactivate it under Plugins; FluxWP has its own copy."
+msgstr "另行安装的WPGraphQL plugin正在运行中 FluxWP 不能使用它,在lu类下停止使用; FluxWP 有自己的副本。"
+
+msgid "Flux GraphQL is not ready on this site. Check Flux GraphQL under Plugins."
+msgstr "Flux GraphQL 该场址尚不准备好。 GraphQL under Plugins."
+
+msgid "The screen files of this plugin are missing. Update or reinstall the plugin."
+msgstr "这一pl的 screen幕档案缺失,更新或重新放置pl。"
+
+msgid "If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache."
+msgstr "pl如刚刚更新,row或场地ache仍可能持有老的档案, page上load(Ctrl/Cmd + Shift + R);如果 page固不化,则pur出场地ache。"
+
+msgid "This screen could not be loaded"
+msgstr "无法加载此页面"
+
+msgid "Reload page"
+msgstr "重新加载页面"
+
+msgid "Uploads are not accepted for this screen."
+msgstr "此 screen幕不接受上传。"
+
+msgid "You do not have permission to upload files here."
+msgstr "您没有在这里上传文件的权限 。"
+
+msgid "Too many uploads. Wait a few minutes and try again."
+msgstr "太多上传,等几分钟再试一次"
+
+msgid "The file did not arrive. Try again."
+msgstr "卷宗没有到达,Try又一次。"
+
+msgid "The file is larger than %s."
+msgstr "卷宗多于 %s."
+
+msgid "This file type is not allowed."
+msgstr "不允许使用此文件类型。"
+
+msgid "The file could not be saved on the server."
+msgstr "案卷无法在服务器上节省。"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "上传的卷宗没有找到,再次上传。"
+
+msgid "A name and value shown under a cart line (variation attribute or line detail)."
+msgstr "卡特线下显示的名称和价值(固定属性或线性细节)。"
+
+msgid "Label."
+msgstr "Label."
+
+msgid "Value as plain text."
+msgstr "价值作为纯文本。"
+
+msgid "Quantities a cart line accepts."
+msgstr "车行接受数量 。"
+
+msgid "Lowest quantity."
+msgstr "数量最少。"
+
+msgid "Highest quantity."
+msgstr "数量最高。"
+
+msgid "The quantity is a multiple of this."
+msgstr "数量是其中的多方面。"
+
+msgid "Whether the shopper may change the quantity (false for fixed lines such as a donation)."
+msgstr "店主是否可改变数量(用于捐赠等固定线路)。"
+
+msgid "A line in the cart."
+msgstr "车厢里有条线"
+
+msgid "Cart item key; flxCartItemUpdate and flxCartItemRemove take it."
+msgstr "墨盒项键; 漂移卡片更新和 漂移卡片删除。"
+
+msgid "What the line is: \"product\", or a name a package gives its own lines (Flux Donate: \"donation\"). Filter flx_gql_cart_item_kind."
+msgstr "该行线是:productproduct\",或一个包件的名称为自己的线(Flux Donate:Fdonation\"), Fil胶 fl浮 fl/gql_cart_item_kind."
+
+msgid "WooCommerce product (or variation) database ID."
+msgstr "WooCommerce 产品(或变异)数据库ID。"
+
+msgid "WooCommerce product type (simple, variation …)."
+msgstr "WooCommerce 产品类型(简单、变异.)。"
+
+msgid "Product name."
+msgstr "产品名称。"
+
+msgid "SKU; empty when the product has none."
+msgstr "SKU; 当产品无时空 。"
+
+msgid "Product page; null for products without a page."
+msgstr "产品页面;无页产品无效。"
+
+msgid "First product image; null without an image."
+msgstr "第一个产品图像; 无图像的空号 。"
+
+msgid "Alternative text of the image."
+msgstr "图像的替代文本 。"
+
+msgid "Quantity."
+msgstr "Quantity."
+
+msgid "Quantities this line accepts."
+msgstr "本项接受的数量。"
+
+msgid "Only one of this product per order."
+msgstr "只有一种产品是按顺序计算的。"
+
+msgid "Price of one unit."
+msgstr "一个单位的价格。"
+
+msgid "Regular price of one unit (before a sale)."
+msgstr "一个单位的定期价格(销售前)。"
+
+msgid "Line total before coupons."
+msgstr "折价券前总线数"
+
+msgid "Line total after coupons, without tax."
+msgstr "折价券后总线,不征税。"
+
+msgid "Tax of the line."
+msgstr "税额。"
+
+msgid "Chosen variation attributes."
+msgstr "Chosen的变异属性。"
+
+msgid "Line details other plugins add (e.g. a donation's names and certificate)."
+msgstr "线上还有其他pl片(例如捐赠名称和证书)。"
+
+msgid "A coupon applied to the cart."
+msgstr "车厢里有优惠券"
+
+msgid "Coupon code."
+msgstr "库邦代码。"
+
+msgid "WooCommerce discount type (percent, fixed_cart …)."
+msgstr "WooCommerce 贴现类型(百分比、固定/cart.)。"
+
+msgid "Discount without tax."
+msgstr "无税务折扣。"
+
+msgid "Tax part of the discount."
+msgstr "减税部分。"
+
+msgid "A fee added to the cart (e.g. a payment fee)."
+msgstr "车厢加费(例如支付费)。"
+
+msgid "Fee key."
+msgstr "收费钥匙"
+
+msgid "Fee name."
+msgstr "收费姓名。"
+
+msgid "Fee without tax."
+msgstr "免费的"
+
+msgid "Tax of the fee."
+msgstr "收费税。"
+
+msgid "One tax rate in the cart totals."
+msgstr "总的税率。"
+
+msgid "Tax name."
+msgstr "税务名称。"
+
+msgid "Rate as WooCommerce shows it."
+msgstr "比率 WooCommerce 显示。"
+
+msgid "Amount."
+msgstr "数额。"
+
+msgid "Cart totals, as WooCommerce calculated them."
+msgstr "Cart totals, as WooCommerce 计算结果。"
+
+msgid "ISO 4217 currency of the cart."
+msgstr "ISO 4217 克朗。"
+
+msgid "Lines before coupons, without tax."
+msgstr "免税的优惠券前的单行"
+
+msgid "Tax of the lines."
+msgstr "税目税。"
+
+msgid "Fees without tax."
+msgstr "无税费。"
+
+msgid "Coupon discounts without tax."
+msgstr "无征税的复合折扣。"
+
+msgid "Shipping without tax; null until shipping is calculated."
+msgstr "无征税的航运;在计算航运之前一律无效。"
+
+msgid "All taxes."
+msgstr "所有税款。"
+
+msgid "Amount to pay."
+msgstr "支付数额。"
+
+msgid "Taxes by rate."
+msgstr "税率。"
+
+msgid "A shipping option."
+msgstr "航运选择。"
+
+msgid "Rate ID for flxCartShippingRateSelect."
+msgstr "选择 FlxCartshipRate 的速率 ID 。"
+
+msgid "Shipping method (flat_rate, free_shipping …)."
+msgstr "航运方法(平价、免费船运.)。"
+
+msgid "Name."
+msgstr "Name."
+
+msgid "Description; may be empty."
+msgstr "征兵;可以是空洞的。"
+
+msgid "Delivery time; may be empty."
+msgstr "交货时间;可能空。"
+
+msgid "Price without tax."
+msgstr "无税价格。"
+
+msgid "Whether this option is chosen."
+msgstr "是否选择了这一选择。"
+
+msgid "A group of lines shipped together and its shipping options."
+msgstr "一组线路合在一起运输,并有其航运选择。"
+
+msgid "Package ID."
+msgstr "包裹识别码"
+
+msgid "Package name."
+msgstr "软件包名称 。"
+
+msgid "Shipping options."
+msgstr "航运选择。"
+
+msgid "E-mail; null on the shipping address."
+msgstr "电子邮件; 发运地址无效。"
+
+msgid "A billing or shipping address of the cart."
+msgstr "车的账单或货运地址"
+
+msgid "A problem with the cart the shopper has to fix before paying (e.g. a product went out of stock)."
+msgstr "直升机在支付之前必须修的车(例如产品库存已用完)有问题。"
+
+msgid "WooCommerce error code."
+msgstr "WooCommerce 错误编码。"
+
+msgid "Message in the shopper's language."
+msgstr "商店语言信息。"
+
+msgid "Where the payment step continues. Payment stays on the WooCommerce Store API checkout; card data never goes through GraphQL."
+msgstr "付款步骤继续支付时,付款暂停 WooCommerce Store API 检查;卡片数据从未通过 GraphQL."
+
+msgid "Store API checkout URL (POST with the same Cart-Token, billing address and payment method)."
+msgstr "存储存储 API 退票 URL( 使用相同的墨盒- 调制、 账单地址和支付方法的 POST) 。"
+
+msgid "The site's checkout page; null when WooCommerce is not loaded."
+msgstr "网站 checks checkout page; no when WooCommerce is not loaded."
+
+msgid "The site's cart page; null when WooCommerce is not loaded."
+msgstr "该网站 cars cart page; null when WooCommerce is not loaded."
+
+msgid "The shopper's WooCommerce cart (Store API)."
+msgstr "商店 WooCommerce 汽车(Store) API)."
+
+msgid "Cart token. Send it back as the Cart-Token header (headless front end, mobile); it is also in the Cart-Token response header. Null when WooCommerce gave none."
+msgstr "Cart token. Send it back as the Cart-Token header (headless front end, mobile); it is also in the Cart-Token response header. Null when WooCommerce 没有。"
+
+msgid "Store API nonce for the same-site cookie session (Nonce header). Null when WooCommerce gave none."
+msgstr "Store API 同一地点的 co会议(注头)不复会。 WooCommerce 没有。"
+
+msgid "Number of units in the cart (quantities added up)."
+msgstr "车上单位数目(增加数量)。"
+
+msgid "Lines."
+msgstr "线。"
+
+msgid "Applied coupons."
+msgstr "应用优惠券。"
+
+msgid "Fees."
+msgstr "Fees."
+
+msgid "Totals."
+msgstr "共计。"
+
+msgid "Whether the order needs a payment (false for a free cart)."
+msgstr "订单是否需要付款(免费停车)。"
+
+msgid "Whether the order is shipped (false for donations and virtual products)."
+msgstr "订单是否已发运(用于捐赠和虚拟产品)。"
+
+msgid "Whether shipping was calculated for the current address."
+msgstr "运输是否是按目前地址计算。"
+
+msgid "Shipping packages and their options."
+msgstr "一揽子航运及其选择。"
+
+msgid "IDs of the payment gateways available for this cart (payment_method of the checkout)."
+msgstr "该车可用付款网关的帐号(支付/支付核对费)。"
+
+msgid "Features a gateway must support for this cart (e.g. products, subscriptions)."
+msgstr "标志必须支持这一车道(例如产品、订购)。"
+
+msgid "Problems to fix before paying."
+msgstr "支付前要解决的问题。"
+
+msgid "Billing address."
+msgstr "账单地址"
+
+msgid "Shipping address."
+msgstr "航运地址。"
+
+msgid "Where the payment step continues."
+msgstr "在付款步骤继续不变的情况下。"
+
+msgid "A variation attribute."
+msgstr "差异属性。"
+
+msgid "Attribute name or taxonomy (e.g. pa_color)."
+msgstr "属性名称或分类(例如 pa_color)。"
+
+msgid "Chosen value."
+msgstr "被选价值"
+
+msgid "Address fields to change; fields left out keep their value."
+msgstr "解决变化领域;留下的田地保持着价值。"
+
+msgid "The shopper's cart (Cart-Token session or the WooCommerce session cookie). Never cached."
+msgstr "店铺车(明天会议或明天) WooCommerce session,.。"
+
+msgid "The cart after the change; null when the change failed."
+msgstr "变革之后的小心;在变革失败时无效。"
+
+msgid "Adds a product to the cart (Store API cart/add-item)."
+msgstr "加一个产品(Store API cart/add-item)。"
+
+msgid "Product or variation database ID."
+msgstr "产品或变异数据库ID。"
+
+msgid "Quantity; default 1."
+msgstr "数量;缺省1。"
+
+msgid "Variation attributes for a variable product."
+msgstr "变量产品的变异属性。"
+
+msgid "Key of the line that was added or increased; null when the change failed."
+msgstr "增加或增加的关键;在改变失败时无效。"
+
+msgid "Changes the quantity of a cart line; 0 removes it."
+msgstr "修改行数; 0 移除它。"
+
+msgid "Cart item key."
+msgstr "墨盒钥匙"
+
+msgid "New quantity."
+msgstr "新数量。"
+
+msgid "Removes a cart line."
+msgstr "删除一个行。"
+
+msgid "Empties the cart."
+msgstr "取消推车。"
+
+msgid "Applies a coupon."
+msgstr "应用优惠券。"
+
+msgid "Removes a coupon."
+msgstr "删除优惠券。"
+
+msgid "Chooses a shipping option."
+msgstr "选择航运选择。"
+
+msgid "Rate ID (FlxCartShippingRate.rateId)."
+msgstr "速率识别( 速率) (FlxCartshippingRate. rateId) 。"
+
+msgid "Shipping package; left out = every package."
+msgstr "包船; 漏载=每个包车。"
+
+msgid "Changes the billing and/or shipping address; totals, taxes and shipping options follow."
+msgstr "修改账单和(或)航运地址;遵循总汇、税款和航运选项。"
+
+msgid "Billing address fields to change."
+msgstr "法案涉及变革领域。"
+
+msgid "Shipping address fields to change."
+msgstr "航运涉及变革领域。"
+
+msgid "First name."
+msgstr "名字 名字 名字 名字 名字"
+
+msgid "Last name."
+msgstr "最后名字。"
+
+msgid "Company."
+msgstr "Company."
+
+msgid "Address line 1."
+msgstr "处理项目1。"
+
+msgid "Address line 2."
+msgstr "处理项目2"
+
+msgid "City."
+msgstr "City."
+
+msgid "State or province code."
+msgstr "州或省法典。"
+
+msgid "Postcode."
+msgstr "Postcode."
+
+msgid "ISO 3166-1 alpha-2 country code."
+msgstr "ISO 3166-1 Alpha-2国家代码。"
+
+msgid "E-mail."
+msgstr "电子邮件。"
+
+msgid "Phone."
+msgstr "Phone."
+
+msgid "Choose a product."
+msgstr "选择产品。"
+
+msgid "The quantity must be at least 1."
+msgstr "数量必须至少为1。"
+
+msgid "The quantity cannot be negative."
+msgstr "数量不能是负数。"
+
+msgid "Enter a coupon code."
+msgstr "输入优惠券代码 。"
+
+msgid "The shop is not available on this site."
+msgstr "该店不在此营业。"
+
+msgid "Your cart has expired. Please reload the page."
+msgstr "你的汽车已经过期,请重新装载该页。"
+
+msgid "The cart could not be changed. Please reload the page."
+msgstr "小汽车无法改变,请重新装载该页。"
+
+msgid "Select date"
+msgstr "选择日期"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "Tomorrow"
+msgstr "明天"
+
+msgid "Next week"
+msgstr "下周"
+
+msgid "In 2 weeks"
+msgstr "两周后"
+
+msgid "This Friday"
+msgstr "本周五"
+
+msgid "No date"
+msgstr "无日期"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Apply"
+msgstr "应用"
+
+msgid "Month"
+msgstr "月"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Previous month"
+msgstr "上个月"
+
+msgid "Next month"
+msgstr "下个月"
+
+msgid "Previous year"
+msgstr "上一年"
+
+msgid "Next year"
+msgstr "下一年"
+
+msgid "Choose month"
+msgstr "选择月份"
+
+msgid "Choose year"
+msgstr "选择年份"
+
+msgid "OK"
+msgstr "确定"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Are you sure?"
+msgstr "确定继续吗？"
+
+msgid "Notice"
+msgstr "提示"
+
+msgid "This cannot be undone."
+msgstr "此操作无法撤销。"
+
+msgid "To confirm, type %s"
+msgstr "输入 %s 以确认"

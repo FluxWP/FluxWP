@@ -1,5 +1,9 @@
 # Flux POS Entegrator
 
+## 0.4.2
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.4.1
 
 - Ödeme yöntemleri, POS hesapları, işlemler ve ayarlar FluxWP’nin ortak React bileşenleriyle yeniden düzenlendi. Ödeme önizlemesi, sağlayıcı seçimi, hesap formu ve iade penceresi yenilendi. İşlemler dar ekranda kart görünümüne geçer.

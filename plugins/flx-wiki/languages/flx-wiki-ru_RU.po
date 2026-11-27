@@ -17,7 +17,7 @@ msgid "Preparing preview…"
 msgstr "Подготовка предварительного просмотра..."
 
 msgid "Could not load the preview."
-msgstr "Could not load the preview."
+msgstr "Не мог загрузить превью."
 
 msgid "Nothing to preview."
 msgstr "Ничего для предварительного просмотра."
@@ -534,3 +534,36 @@ msgstr "закрыть"
 
 msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
 msgstr "Вики для разработчиков на сайте в разделе /wiki: страницы Markdown, разделы, дерево страниц и оглавление, подробный мгновенный поиск, оптимизированный для SEO вывод. Совместимость с LLM: каждая страница открывается и копируется как .md, /wiki/llms.txt и llms-full.txt, открываемые в ChatGPT/Claude. «Спросите Wiki» и инструменты MCP (поиск, чтение, список, запись) с Flux AI. Он поставляется с руководствами по написанию плагинов и тем, а также по созданию плагинов на базе искусственного интеллекта."
+
+msgid "JavaScript is required for this screen."
+msgstr "Для этого экрана требуется JavaScript."
+
+msgid "You cannot edit this page."
+msgstr "Вы не можете переписать эту страницу."
+
+msgid "The parent page was not found."
+msgstr "Основная страница не была найдена."
+
+msgid "A page cannot be placed under itself."
+msgstr "Страница не может быть помещена сама по себе."
+
+msgid "This status is not available."
+msgstr "Этот статус отсутствует."
+
+msgid "You cannot delete this page."
+msgstr "Вы не можете исключить эту страницу."
+
+msgid "The page could not be deleted."
+msgstr "Эта страница не может быть исключена."
+
+msgid "You cannot manage sections."
+msgstr "Вы не можете управлять участками."
+
+msgid "A section name is required."
+msgstr "Для этого требуется название участка."
+
+msgid "Section not found."
+msgstr "Раздел не найден."
+
+msgid "The section could not be deleted."
+msgstr "Этот раздел не может быть исключен."

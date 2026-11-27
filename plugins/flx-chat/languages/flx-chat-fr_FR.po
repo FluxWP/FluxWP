@@ -227,7 +227,7 @@ msgid "Introduces themselves with a nickname"
 msgstr "Se présente avec un surnom"
 
 msgid "Cancel the opened donation"
-msgstr "Cancel the opened donation"
+msgstr "Annulez le don ouvert"
 
 msgid "Switches payment to card"
 msgstr "Bascule le paiement vers la carte"
@@ -506,7 +506,7 @@ msgid "Input / output tokens"
 msgstr "Jetons d'entrée/sortie"
 
 msgid "Claude cache"
-msgstr "Claude cache"
+msgstr "Cache Claude"
 
 msgid "%1$d tokens read, %2$d written"
 msgstr "Jetons %1$d lus, %2$d écrit"
@@ -965,7 +965,7 @@ msgid "System"
 msgstr "Système"
 
 msgid "Agent (%s)"
-msgstr "Agent (%s)"
+msgstr "Agent ( %s)"
 
 msgid "Agent"
 msgstr "Agent"
@@ -1220,7 +1220,7 @@ msgid "Yesterday"
 msgstr "Hier"
 
 msgid "Today"
-msgstr "Aujourd'hui"
+msgstr "Aujourd’hui"
 
 msgid "Connection error"
 msgstr "Erreur de connexion"
@@ -2576,7 +2576,7 @@ msgid "Day of month"
 msgstr "Jour du mois"
 
 msgid "Time"
-msgstr "Temps"
+msgstr "Heure"
 
 msgid "no number"
 msgstr "pas de numéro"
@@ -4616,7 +4616,7 @@ msgid "warning"
 msgstr "avertissement"
 
 msgid "ok"
-msgstr "ok"
+msgstr "OK."
 
 msgid "Your {marka} verification code: {kod}"
 msgstr "Votre code de vérification {marka}: {kod}"
@@ -4987,6 +4987,36 @@ msgstr "Suite : après un malentendu, la plainte le ferme aussitôt"
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "La réaction d’au revoir est 👍 ou 🤲, jamais 🙏"
 
+msgid "Schedules call-center reports"
+msgstr "Calendriers rapports téléphoniques"
+
+msgid "Can receive a call-center report"
+msgstr "Peut recevoir un rapport d'appel-centre"
+
+msgid "Can receive the general call-center report"
+msgstr "Peut recevoir le rapport général du centre d'appel"
+
+msgid "Uses the call center"
+msgstr "Utiliser le centre d'appel"
+
+msgid "Manages the call center"
+msgstr "Gère le centre d'appel"
+
+msgid "(updates are sent to this address too)"
+msgstr "(les notifications sont aussi envoyées à cette adresse)"
+
+msgid "Proxy"
+msgstr "Procuration"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "Veuillez répondre \"Je suis d'accord\" pour donner votre procuration."
+
+msgid "at least %s"
+msgstr "au moins %s"
+
+msgid "Sent from the chat"
+msgstr "Envoyé du chat"
+
 msgid "Promotional messages"
 msgstr "Messages promotionnels"
 
@@ -4999,11 +5029,26 @@ msgstr "Les messages promotionnels et les rappels ne sont pas envoyés. Les rép
 msgid "The person replied STOP to promotional messages."
 msgstr "La personne a répondu STOP aux messages promotionnels."
 
-msgid "at least %s"
-msgstr "au moins %s"
+msgid "The upload has expired. Please add the file again."
+msgstr "Le téléchargement a expiré. S'il vous plaît ajouter le fichier à nouveau."
 
-msgid "(updates are sent to this address too)"
-msgstr "(les notifications sont aussi envoyées à cette adresse)"
+msgid "The chat could not be opened."
+msgstr "Le chat n'a pas pu être ouvert."
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "Seul l'expéditeur ou un administrateur peut modifier ce message."
+
+msgid "This message can't be edited on this channel."
+msgstr "Ce message ne peut pas être modifié sur ce canal."
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "Le délai d'édition est passé (WhatsApp permet 15 minutes)."
+
+msgid "The message can't be empty."
+msgstr "Le message ne peut pas être vide."
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp n'a pas modifié le message."
 
 msgid "Assistant languages"
 msgstr "Langues de l’assistant"

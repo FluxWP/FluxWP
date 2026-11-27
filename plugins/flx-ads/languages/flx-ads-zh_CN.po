@@ -1,0 +1,812 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Sees ad conversions"
+msgstr "见待改划"
+
+msgid "Ads"
+msgstr "广告"
+
+msgid "Manages ads and tracking settings"
+msgstr "管理广告和跟踪设置"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Which ad brought which donation"
+msgstr "哪些捐款"
+
+msgid "Report"
+msgstr "报告"
+
+msgid "Campaigns"
+msgstr "运动"
+
+msgid "Suggestions"
+msgstr "建议"
+
+msgid "Studio"
+msgstr "工作室"
+
+msgid "Season plan"
+msgstr "季节计划"
+
+msgid "Tests"
+msgstr "Tests"
+
+msgid "Donor value"
+msgstr "捐助者价值"
+
+msgid "Ad spend"
+msgstr "支出"
+
+msgid "Audiences"
+msgstr "Audiences"
+
+msgid "Send log"
+msgstr "发送日志"
+
+msgid "Ad link"
+msgstr "Ad 链接"
+
+msgid "You are not allowed to view this page."
+msgstr "您无权查看此页面。"
+
+msgid "Ad tracking settings"
+msgstr "跟踪环境"
+
+msgid "Change ad tracking settings"
+msgstr "变革跟踪环境"
+
+msgid "Test ad platform connection"
+msgstr "测试与平台连接"
+
+msgid "Ad conversion send log"
+msgstr "改划发送日志"
+
+msgid "Send a conversion again"
+msgstr "再次推迟改划"
+
+msgid "Add ad spend"
+msgstr "增加支出"
+
+msgid "Delete manual ad spend"
+msgstr "删除人工开支"
+
+msgid "Update Meta ad spend now"
+msgstr "更新Meta ad支出"
+
+msgid "Donor value by campaign (LTV, CAC)"
+msgstr "按活动分列的捐助方价值(LTV, CAC)"
+
+msgid "Meta audiences"
+msgstr "听众"
+
+msgid "Create a Meta audience"
+msgstr "创建一个 &quot; 气象 &quot; 受众"
+
+msgid "Create a lookalike audience"
+msgstr "创建像似似似似似似似样的观众群"
+
+msgid "Update a Meta audience now"
+msgstr "更新 &quot; 气象 &quot; 受众"
+
+msgid "Delete a Meta audience"
+msgstr "删除 &quot; 梅塔 &quot; 听众"
+
+msgid "Meta campaigns"
+msgstr "气象运动"
+
+msgid "Meta campaign details"
+msgstr "Metete运动运动细节"
+
+msgid "Pause or turn on in Meta"
+msgstr "暂停或打开在元中"
+
+msgid "Change daily budget in Meta"
+msgstr "梅塔的每日预算变动"
+
+msgid "Ad suggestions"
+msgstr "提议"
+
+msgid "Apply an ad suggestion"
+msgstr "应用一项建议"
+
+msgid "Dismiss an ad suggestion"
+msgstr "删除一项建议"
+
+msgid "Add a season date"
+msgstr "加一个季节日期"
+
+msgid "Delete a season date"
+msgstr "删除季节日期"
+
+msgid "Ad tests"
+msgstr "适当的试验"
+
+msgid "Start an ad test"
+msgstr "启动广告测试"
+
+msgid "End an ad test"
+msgstr "结束广告测试"
+
+msgid "Delete an ad test"
+msgstr "删除一项试验"
+
+msgid "Campaign planning context"
+msgstr "运动规划背景"
+
+msgid "Campaign drafts"
+msgstr "运动草稿"
+
+msgid "Save a campaign draft"
+msgstr "停止运动草案"
+
+msgid "Create draft in Meta (paused)"
+msgstr "在 Meta 中创建草稿( 已暂停)"
+
+msgid "Delete a campaign draft"
+msgstr "删除一项运动草案"
+
+msgid "Ad conversions"
+msgstr "改划"
+
+msgid "Audience not found."
+msgstr "找不到观众 。"
+
+msgid "Everyone with ad consent"
+msgstr "所有人同意,"
+
+msgid "Donors and customers (paid at least once)"
+msgstr "捐助者和客户(至少支付一次)"
+
+msgid "Value group: %s"
+msgstr "数值组:%s"
+
+msgid "Segment: %s"
+msgstr "分部:%s"
+
+msgid "Show ads to them"
+msgstr "显示广告"
+
+msgid "Exclude from ads"
+msgstr "广告中排除"
+
+msgid "Flux CRM and a Meta ad account with an ads_management key are needed."
+msgstr "需要有含铅management料的客户关系管理机制和金属管理账户,并设有管理 key。"
+
+msgid "Enter a name and pick a group."
+msgstr "输入名称和选择一组。"
+
+msgid "Pick one of your own audiences as the source."
+msgstr "选择你自己的观众作为源头"
+
+msgid "%1$s · lookalike %2$d%% %3$s"
+msgstr "%1$s  look类: %2$d % %3$s"
+
+msgid "Not from ads"
+msgstr "不来自 ad"
+
+msgid "(not set)"
+msgstr "(未定)"
+
+msgid "A/B test"
+msgstr "A/B test"
+
+msgid "Holdout (lift)"
+msgstr "专约(起)"
+
+msgid "Choose the test type."
+msgstr "选择试验类型。"
+
+msgid "The end date is before the start date."
+msgstr "最终日期在开始日期之前。"
+
+msgid "Pick a campaign and two different ads in it."
+msgstr "选一个竞选广告 和两个不同的广告在里面。"
+
+msgid "Both ads must be in the chosen campaign."
+msgstr "两个 ad都必须参加选定的运动。"
+
+msgid "Pick an audience that ads are shown to."
+msgstr "给听众以示例。"
+
+msgid "The holdout share must be between 5% and 50%."
+msgstr "搁置份额必须为5%至50%。"
+
+msgid "This audience already has a running holdout test."
+msgstr "这些听众已经有一次自觉的测验。"
+
+msgid "Test not found."
+msgstr "没有发现测试。"
+
+msgid "The audience of this test was deleted."
+msgstr "删除了这一测试的受众。"
+
+msgid "Not enough data yet: wait until both ads have clicks."
+msgstr "数据不够:等到两个广告都有点击后再做。"
+
+msgid "payments per click"
+msgstr "每cl付款"
+
+msgid "click rate"
+msgstr "cl率"
+
+msgid "Too little data yet: each ad needs at least 50 clicks (1,000 impressions while payments are few). Let it run longer."
+msgstr "数据很少:每种产品至少需要50个字符(1 000个印象,而付款很少),因此需要较长时间。"
+
+msgid "No clear winner yet on %1$s (confidence %2$s%%; 95%% is needed). Let it run longer."
+msgstr "No clear winner yet on %1$s (保密) %2$s百分比;95%需要,更长。"
+
+msgid "\"%1$s\" wins on %2$s with %3$s%% confidence. You can pause \"%4$s\"."
+msgstr "\"%1$swin wins on %2$s with %3$s信任率%. 你可以pa%4$s\"."
+
+msgid "Not enough data yet."
+msgstr "数据还不够。"
+
+msgid "Ads work: people who could see them gave %1$s%% more often. About %2$s extra donors and %3$s extra income came from the ads (confidence %4$s%%)."
+msgstr "Ads work: people who could see them gave %1$s百分比更高。 %2$s 额外捐助者和 %3$s 额外收入来自conf类(保密) %4$s%%)."
+
+msgid "People who did not see the ads gave more often. The ads to this audience are not adding donations; try other text or another audience."
+msgstr "看不到这些 ad的人往往给予更多的帮助,这些听众的 ad子没有增加捐款;试图其他文字或另一个听众。"
+
+msgid "The holdout group is still small (%s people; at least 100 are needed). Use a larger audience or share, or wait for it to grow."
+msgstr "The holdout group is still small (%s 人民;至少需要100人);利用更多的受众或共享,或等着增长。"
+
+msgid "No clear difference yet between people who could see the ads and the holdout (confidence %s%%; 95%% is needed)."
+msgstr "看见 ad和 hold(混 the)的人之间没有明显的差别 %s百分比;95%需要。"
+
+msgid "Last 7 days"
+msgstr "过去 7 天"
+
+msgid "Last 30 days"
+msgstr "过去 30 天"
+
+msgid "Last 90 days"
+msgstr "过去 90 天"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Paused"
+msgstr "已暂停"
+
+msgid "Campaign paused"
+msgstr "运动暂停"
+
+msgid "Ad set paused"
+msgstr "已暂停暂停"
+
+msgid "Processing"
+msgstr "加工"
+
+msgid "Has issues"
+msgstr "问题"
+
+msgid "In review"
+msgstr "审核中"
+
+msgid "Rejected"
+msgstr "被拒绝"
+
+msgid "Approved"
+msgstr "已批准"
+
+msgid "Billing needed"
+msgstr "所需离账"
+
+msgid "Archived"
+msgstr "已存档"
+
+msgid "Deleted"
+msgstr "已删除"
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+msgstr "输入 Meta ad 账户ID和在设置 {{{{{{{}} 中销售 API 键。"
+
+msgid "Campaign not found."
+msgstr "未找到发送任务。"
+
+msgid "Status can only be Active or Paused."
+msgstr "地位只能是主动的,也可以得到补偿。"
+
+msgid "Enter a daily budget greater than zero."
+msgstr "每日预算高于零。"
+
+msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr "此项目没有每日预算(活期预算,或预算列在运动/套项目上),而是在Meta Ads经理中加以修改。"
+
+msgid "Pause campaign"
+msgstr "使用权运动"
+
+msgid "Lower budget"
+msgstr "预算减少"
+
+msgid "Raise budget"
+msgstr "预算"
+
+msgid "Pause weak ad"
+msgstr "暂停微弱广告"
+
+msgid "New ad text"
+msgstr "新案文"
+
+msgid "Season coming"
+msgstr "季节即将到来"
+
+msgid "Waiting"
+msgstr "等待"
+
+msgid "Applied"
+msgstr "Applied"
+
+msgid "Dismissed"
+msgstr "Dismissed"
+
+msgid "No longer valid"
+msgstr "不再有效"
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr "Spent %1$s 在最后7天之内,未在现场付款(在判决后作出判决) %2$s)."
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr "待处理的返回 %1$s,在你的一半以下 %2$s 目标:减少每日预算 %3$s → %4$s (-20%%) and move money to better campaigns."
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr "待处理的返回 %1$s with %2$s 支付数额远远超过你的目标。 %3$s → %4$s (+20%,小于Meta保持学习)。"
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr "Click rate %1$s本附录中其他附注物% %2$s百分比;支出 %3$s利用预算使预算更加完善。"
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr "People saw these ads %s 每次7天,结果通常在4月之后下降,在Studio写出新的案文变量,或扩大受众。"
+
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] "%1$s 开始 %2$s 活动现在是Meta省有时间审查和学习的。"
+
+msgid "Last year it brought %1$s payments and %2$s."
+msgstr "去年 %1$s 付款和付款 %2$s."
+
+msgid "This suggestion is already closed."
+msgstr "这项建议已经结束。"
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr "这项建议对梅塔没有什么改变;开门开播或开除。"
+
+msgid "Suggestion not found."
+msgstr "未找到建议 。"
+
+msgid "Ramadan and Eid"
+msgstr "斋月和斋月和斋节"
+
+msgid "Qurban (Eid al-Adha)"
+msgstr "Quburb(宰牲节)"
+
+msgid "World Forestry Day and Forest Week"
+msgstr "世界森林日和森林周"
+
+msgid "Mother's Day (donate in her name)"
+msgstr "母亲节(以她的名义捐赠)"
+
+msgid "World Environment Day"
+msgstr "世界环境日"
+
+msgid "National Tree Planting Day (11 November)"
+msgstr "全国植树日(11月11日)"
+
+msgid "Teachers' Day (donate in their name)"
+msgstr "教师日(以其名义捐赠)"
+
+msgid "Black Friday and Giving Tuesday"
+msgstr "黑色星期五和星期二"
+
+msgid "Year-end giving"
+msgstr "年终津贴"
+
+msgid "Enter a name and a start date."
+msgstr "输入姓名和起始日期。"
+
+msgid "Too many dates; delete old ones first."
+msgstr "日期太多; 先删除旧日期 。"
+
+msgid "Date not found."
+msgstr "未找到日期。"
+
+msgid "Campaign for %1$s (%2$s – %3$s)."
+msgstr "反对种族主义、种族歧视、 %1$s (%2$s – %3$s)."
+
+msgid "Last year the same period brought %1$s payments and %2$s."
+msgstr "去年同期 %1$s 付款和付款 %2$s."
+
+msgid "Ad channel"
+msgstr "Ad 频道"
+
+msgid "Campaign"
+msgstr "活动"
+
+msgid "Ad (utm_content)"
+msgstr "Ad (utm_content)"
+
+msgid "Source / medium"
+msgstr "资料来源/中文"
+
+msgid "Landing page"
+msgstr "着陆页"
+
+msgid "First ad touch"
+msgstr "第一次触碰"
+
+msgid "Fill in the ID and the key first."
+msgstr "先填上身份证和钥匙"
+
+msgid "Connected to \"%s\". Enter a test event code to see a test event in Events Manager."
+msgstr "Connected to%stest. 制订测试活动代码,看看事件管理员的测试活动。"
+
+msgid "Test event sent. Check Events Manager › Test events."
+msgstr "发送了测试活动,检查事件主管Test测试活动。"
+
+msgid "Enter the test event code from TikTok Events Manager › Test events, then test again."
+msgstr "从 TikTok 事件管理器输入测试事件代码 {} {} 测试事件, 然后再测试一次 。"
+
+msgid "Test event sent. Check TikTok Events Manager › Test events."
+msgstr "发送了测试活动,Check TikTok Events Manager Test Test events."
+
+msgid "Google accepted the test event (validation only; nothing was recorded)."
+msgstr "Google接受了试验事件(仅验证;没有记录)。"
+
+msgid "Enter the ad account ID and a key first."
+msgstr "先输入广告账户编号和密钥。"
+
+msgid "Meta answered too slowly; try again later."
+msgstr "Meta回答太慢;稍后再试。"
+
+msgid "Too many rows; only part of the period was read."
+msgstr "多行;只有部分时间阅读。"
+
+msgid "Donations / sales (conversions)"
+msgstr "捐赠/销售(改划)"
+
+msgid "Visits to the page"
+msgstr "访问页面"
+
+msgid "Awareness (reach)"
+msgstr "提高认识(每次)"
+
+msgid "Donate now"
+msgstr "现年"
+
+msgid "Learn more"
+msgstr "了解更多"
+
+msgid "Shop now"
+msgstr "现时"
+
+msgid "Sign up"
+msgstr "注册"
+
+msgid "Draft"
+msgstr "吃水"
+
+msgid "In Meta (paused)"
+msgstr "在Meta(暂用)"
+
+msgid "Not sent"
+msgstr "未发送"
+
+msgid "Give the campaign a name."
+msgstr "把运动改名。"
+
+msgid "Enter the page the ads open (a full https:// address)."
+msgstr "输入所打开的广告页面(完整的 https:// address)。"
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr "增加至少一套配件(见附录)。"
+
+msgid "Add at least one ad with a text and a headline."
+msgstr "增加至少一个案文和一个标题。"
+
+msgid "Draft not found."
+msgstr "未找到草稿。"
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr "该草案已经出现在Meta,在那里,或在此重复。"
+
+msgid "Too many drafts; delete old ones first."
+msgstr "许多草案;首先删除旧草案。"
+
+msgid "%s (copy)"
+msgstr "%s(复制)"
+
+msgid "Meta ad account ID and Marketing API key (Settings › Meta)"
+msgstr "Meta ad account ID and Marketing API 关键(Settings  Met Meta)"
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr "Facebook 页面ID (设置  ??   ??  Meta)"
+
+msgid "This draft is already in Meta."
+msgstr "该草案已在梅塔。"
+
+msgid "Missing: %s."
+msgstr "失踪: %s ."
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr "Flux AI没有准备就绪,Install Flux AI &quot; MCP &quot; 增加了一个模型关键。"
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr "简述:竞选活动是何方,应如何开展。"
+
+msgid "The AI answer could not be read; try again."
+msgstr "大赦国际的答复是不能阅读的;再次尝试。"
+
+msgid "Ad conversion"
+msgstr "改划"
+
+msgid "Ad source"
+msgstr "来源"
+
+msgid "No payment from this contact came through an ad."
+msgstr "这份联系没有通过广告付款"
+
+msgid "First came through: %s"
+msgstr "第一次通过:%s"
+
+msgid "Ad report"
+msgstr "附加报告"
+
+msgid "Other campaigns (UTM)"
+msgstr "其他运动(UTM)"
+
+msgid "No ad (direct, search, other sites)"
+msgstr "否(直接、搜查、其他地点)"
+
+msgid "Ad conversions report"
+msgstr "改划报告"
+
+msgid "Ad tracking status"
+msgstr "跟踪状态"
+
+msgid "Similar to: %s"
+msgstr "类似:%s"
+
+msgid "(removed group)"
+msgstr "(清除组)"
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr "A paused campaign %1$d ad sets and %2$d Campaign子在梅塔省创建,在运动下 Campaign头之前,没有显示或使用任何东西。"
+
+msgid "Now"
+msgstr "现在"
+
+msgid "Prepare now"
+msgstr "编写"
+
+msgid "Later"
+msgstr "后来"
+
+msgid "running"
+msgstr "running"
+
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] "in %s 天"
+
+msgid "Sales"
+msgstr "销售"
+
+msgid "Leads"
+msgstr "领导人"
+
+msgid "Traffic"
+msgstr "交通"
+
+msgid "Engagement"
+msgstr "参与度"
+
+msgid "Awareness"
+msgstr "认识"
+
+msgid "App promotion"
+msgstr "应用晋升"
+
+msgid "%s / day"
+msgstr "%s/天"
+
+msgid "%s total"
+msgstr "%s 共计"
+
+msgid "all genders"
+msgstr "所有性别"
+
+msgid "men"
+msgstr "男"
+
+msgid "women"
+msgstr "妇女"
+
+msgid "%1$d–%2$d, %3$s, %4$s"
+msgstr "%1$d — %2$d , %3$s , %4$s"
+
+msgid "audiences +%1$d / −%2$d"
+msgstr "听众+%1$d / − %2$d"
+
+msgid "unknown"
+msgstr "unknown"
+
+msgid "%s spent"
+msgstr "%s 支出"
+
+msgid "Panel"
+msgstr "面板"
+
+msgid "Daily budget %1$s → %2$s"
+msgstr "每日预算 %1$s→%2$s"
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr "编制每日预算 of%1$sto to %2$s in Meta?"
+
+msgid "Apply: %s a day"
+msgstr "应用 : %s 每天一天"
+
+msgid "Pause \"%s\" in Meta?"
+msgstr "Pause\"%s在梅塔?"
+
+msgid "Apply: pause"
+msgstr "应用: 暂停"
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr "A campaign is judged after %s 7天。"
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr "在7天(现为每笔付款平均费用2倍之后,对一项运动进行判断 %s)."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr "在7天的每笔付款平均费用两倍之后,对一项运动进行判断。"
+
+msgid "Spend"
+msgstr "花费"
+
+msgid "Link clicks"
+msgstr "单击链接"
+
+msgid "Payments on the site"
+msgstr "现场付款"
+
+msgid "Payments per click"
+msgstr "每cl付款"
+
+msgid "Cost per payment"
+msgstr "每笔付款的费用"
+
+msgid "People"
+msgstr "人"
+
+msgid "Gave at least once"
+msgstr "至少一次"
+
+msgid "Income"
+msgstr "收入"
+
+msgid "Per person"
+msgstr "每人"
+
+msgid "Could see ads"
+msgstr "可见附录"
+
+msgid "Held out"
+msgstr "举行"
+
+msgid "Audience \"%1$s\", %2$s%% held out"
+msgstr "Audience udi%1$s\", %2$s百分比"
+
+msgid "open-ended"
+msgstr "无限期"
+
+msgid "%1$s (%2$s people)"
+msgstr "%1$s (%2$s people)"
+
+msgid "There is no winner yet."
+msgstr "现在还没有赢家。"
+
+msgid "Enter an amount greater than zero."
+msgstr "数额大于零。"
+
+msgid "Spend not found."
+msgstr "未找到津贴。"
+
+msgid "Sent"
+msgstr "已发送"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "visitor did not accept cookies"
+msgstr "访客不接受 co"
+
+msgid "already sent from the browser"
+msgstr "已由行星发射"
+
+msgid "platform turned off"
+msgstr "平台被 turned台"
+
+msgid "order deleted"
+msgstr "删除"
+
+msgid "Row not found."
+msgstr "没有发现ow。"
+
+msgid "E-mail newsletter"
+msgstr "电子邮件通讯"
+
+msgid "Paid social"
+msgstr "有偿社会"
+
+msgid "Search ad (cpc)"
+msgstr "搜索广告(cpc)"
+
+msgid "Video ad"
+msgstr "视频广告"
+
+msgid "Organic post"
+msgstr "有机哨所"
+
+msgid "E-mail"
+msgstr "电子邮件"
+
+msgid "Unknown platform."
+msgstr "未知平台 未知平台"
+
+msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
+msgstr "打开了, 但身份识别码丢失或无效。 没有跟踪任何信息 。"
+
+msgid "Browser pixel only. Without the server key, bank-transfer donations approved later and visitors with ad blockers are not counted."
+msgstr "只需花row,没有服务器 key,后来核准的银行转账捐款,没有用 block器对游客进行计票。"
+
+msgid "Pixel and server events are set up. Last test passed."
+msgstr "建立了固定和服务器活动,最后通过测试。"
+
+msgid "Last connection test failed:"
+msgstr "最后连接试验失败了:"
+
+msgid "Pixel and server events are set up. Run \"Test\" once to check the key."
+msgstr "设置了固定和服务器活动。"
+
+msgid "Ad platforms"
+msgstr "平台"
+
+msgid "No ad platform is on. The ad report still works from UTM links and click IDs."
+msgstr "没有一个平台,因此,报告仍在使用自动取款机链接和密码身份证。"
+
+msgid "Server conversions"
+msgstr "服务器转换"
+
+msgid "%1$d failed, %2$d waiting. Last retry run: %3$s."
+msgstr "%1$d 失败, %2$d 等待: %3$s."
+
+msgid "never"
+msgstr "从不"
+
+msgid "Meta ad spend"
+msgstr "Meta ad 支出"
+
+msgid "Last update failed:"
+msgstr "最后更新失败了:"
+
+msgid "Spend read %s."
+msgstr "改为: %s."
+
+msgid "Not read yet; opening the Flux Ads screen starts it."
+msgstr "尚未阅读;开启Flux Ads screen幕就开始。"
+
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "%d 每天更新受众。"
+
+msgid "Cookie consent"
+msgstr "库克群岛同意"
+
+msgid "The theme cookie banner is off, so ad pixels load without asking. Under KVKK/GDPR marketing cookies need consent: turn the banner on in Appearance › Theme Settings."
+msgstr "主题 ban条横幅已经消失,因此没有king问,根据KVKK/GDPR营销 co需要同意:将旗.变成 &quot; 应用 ban &quot; 。"
+
+msgid "Theme Settings"
+msgstr "主题设置"

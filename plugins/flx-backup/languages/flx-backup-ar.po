@@ -8,7 +8,7 @@ msgid "Backups › Dashboard"
 msgstr "النسخ الاحتياطية › لوحة القيادة"
 
 msgid "Dashboard"
-msgstr "لوحة القيادة"
+msgstr "لوحة التحكم"
 
 msgid "Backups › Settings"
 msgstr "النسخ الاحتياطية › الإعدادات"
@@ -1081,3 +1081,9 @@ msgstr "التقدم"
 
 msgid "Take the first backup with Back up now. Restore is done in the panel."
 msgstr "خذ النسخة الاحتياطية الأولى مع النسخ الاحتياطي الآن. تتم الاستعادة في اللوحة."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript مطلوب لهذه الشاشة."
+
+msgid "%s%%"
+msgstr "%s٪"

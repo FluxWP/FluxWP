@@ -970,10 +970,12 @@ body.flxg-dragging * { cursor: grabbing !important; user-select: none !important
 	.flxg-only-mobile { display: inline-flex !important; }
 	.flxg-hide-sm { display: none !important; }
 	.flxg-side {
-		position: absolute; top: 0; left: 0; bottom: 0; z-index: 70; width: min(300px, 86vw); transform: translateX(-102%);
+		position: absolute; top: 0; inset-inline-start: 0; bottom: 0; z-index: 70; width: min(300px, 86vw); transform: translateX(-102%);
+		visibility: hidden;
 		transition: transform .22s ease-out; box-shadow: var(--shadow-lg); padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
 	}
-	.flxg.nav-open .flxg-side { transform: none; }
+	.flxg-side:dir(rtl) { transform: translateX(102%); }
+	.flxg.nav-open .flxg-side { transform: none; visibility: visible; }
 	.flxg-nav-shade { position: absolute; inset: 0; z-index: 69; background: rgba(0, 0, 0, .4); }
 	.flxg.nav-open .flxg-nav-shade { display: block; animation: flxg-fade .2s; }
 	.flxg-tree-more { opacity: 1; }

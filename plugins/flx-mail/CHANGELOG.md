@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.26.2
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 1.26.1
 - Sistem kontrolü sekmesi ortak Flux Admin sistem kontrolü ekranıyla: durum çipleri (filtre), gruplar, tablo ve "Tekrar kontrol et" eski klasik ekranla birebir.
 - Geliştirici: GraphQL `FlxMailSystemCheck.source`, `groupLabel`.

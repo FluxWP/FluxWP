@@ -74,7 +74,7 @@ msgid "If a certificate is registered with these details, its link will be sent 
 msgstr "إذا تم تسجيل شهادة بهذه التفاصيل، فسيتم إرسال رابطها إليك خلال دقائق قليلة."
 
 msgid "OK"
-msgstr "حسنًا"
+msgstr "موافق"
 
 msgid "Warning"
 msgstr "تحذير"
@@ -740,7 +740,7 @@ msgid "Goal: %s saplings"
 msgstr "الهدف: شتلات %s"
 
 msgid "%s%%"
-msgstr "%s%%"
+msgstr "%s٪"
 
 msgid "Completed event"
 msgstr "حدث مكتمل"
@@ -864,13 +864,13 @@ msgid "Recipient or subject"
 msgstr "المتلقي أو الموضوع"
 
 msgid "Saplings"
-msgstr "شتلات"
+msgstr "الشتلات"
 
 msgid "Queued to send"
 msgstr "في قائمة الانتظار للإرسال"
 
 msgid "Send queue"
-msgstr "إرسال قائمة الانتظار"
+msgstr "قائمة انتظار الإرسال"
 
 msgid "Sends appear here."
 msgstr "تظهر عمليات الإرسال هنا."
@@ -1093,3 +1093,603 @@ msgstr "لا توجد خريطة بعد: يفتح الرابط صفحة الفع
 
 msgid "Person not found."
 msgstr "لم يُعثر على الشخص."
+
+msgid "Creates and sees certificates"
+msgstr "إنشاء ورؤية الشهادات"
+
+msgid "Manages certificates"
+msgstr "شهادات المنشأ"
+
+msgid "Sends certificates in bulk"
+msgstr "إرسال شهادات بالجملة"
+
+msgid "Sees the certificate dashboard"
+msgstr "يرى لوحة القيادة الشهادة"
+
+msgid "Sees only certificates they created or referred"
+msgstr "يرى فقط الشهادات التي قاموا بإنشائها أو إحالتها"
+
+msgid "All Certificates"
+msgstr "جميع الشهادات"
+
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+msgid "Bulk send"
+msgstr "إرسال جماعي"
+
+msgid "Providers"
+msgstr "مقدمي الخدمات"
+
+msgid "Logs"
+msgstr "سجلات"
+
+msgid "Certificate settings"
+msgstr "مؤسسات الشهادة"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "certificates"
+msgstr "شهادات"
+
+msgid "Only certificates that you created."
+msgstr "فقط الشهادات التي صنعتها"
+
+msgid "Sapling donations, certificates and deliveries."
+msgstr "الحصول على هبات وشهادات وتسليمات."
+
+msgid "Loading…"
+msgstr "جارٍ التحميل..."
+
+msgid "%1$s: %2$s saplings, %3$s certificates"
+msgstr "%1$s: %2$s سرابينج %3$s الشهادات"
+
+msgid "%2$s saplings during %1$s"
+msgstr "%2$s قنابل خلال %1$s"
+
+msgid "%s failed"
+msgstr "%s فشل"
+
+msgid "%s first-time recipients"
+msgstr "%s متلقية لأول مرة"
+
+msgid "%s sent"
+msgstr "%s أرسل"
+
+msgid "%s waiting"
+msgstr "%s"
+
+msgid "30 days"
+msgstr "30 يوما"
+
+msgid "7 days"
+msgstr "7 أيام"
+
+msgid "90 days"
+msgstr "90 يوما"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "All staff"
+msgstr "جميع الموظفين"
+
+msgid "Archive"
+msgstr "أرشيف"
+
+msgid "Average saplings"
+msgstr "متوسط الرش"
+
+msgid "Avg."
+msgstr "Avg."
+
+msgid "Busiest day"
+msgstr "يوم الأسياف"
+
+msgid "Busiest month"
+msgstr "الشهر المضيف"
+
+msgid "Channel and status"
+msgstr "القناة والوضع"
+
+msgid "Chart"
+msgstr "الرسم البياني"
+
+msgid "Compared with the previous %s days"
+msgstr "مقارنة مع ما سبق %s أيام"
+
+msgid "Could not load data:"
+msgstr "لا يمكن تحميل البيانات:"
+
+msgid "Cumulative"
+msgstr "تراكمي"
+
+msgid "Daily certificates"
+msgstr "الشهادات اليومية"
+
+msgid "Daily saplings"
+msgstr "الحلقات اليومية"
+
+msgid "Daily saplings chart"
+msgstr "الرسم البياني اليومي"
+
+msgid "Day"
+msgstr "يوم"
+
+msgid "Days of the week"
+msgstr "أيام الأسبوع"
+
+msgid "Delivery"
+msgstr "التوصيل"
+
+msgid "End date"
+msgstr "تاريخ الانتهاء"
+
+msgid "Excluding %s revoked"
+msgstr "باستثناء رقم %s الذي ألغي"
+
+msgid "Month"
+msgstr "الشهر"
+
+msgid "Monthly certificates"
+msgstr "الشهادات الشهرية"
+
+msgid "Monthly saplings"
+msgstr "دقات شهرية"
+
+msgid "No certificates in this period."
+msgstr "ولا شهادات في هذه الفترة."
+
+msgid "No data."
+msgstr "لا توجد بيانات."
+
+msgid "No deliveries in this period."
+msgstr "لا توجد شحنات في هذه الفترة."
+
+msgid "No new people"
+msgstr "لا يوجد أشخاص جدد"
+
+msgid "No people registered in this period."
+msgstr "لم يسجل أي شخص في هذه الفترة."
+
+msgid "Per certificate"
+msgstr "الشهادة"
+
+msgid "Referring staff"
+msgstr "الموظفون المُحيلون"
+
+msgid "Same as the previous period"
+msgstr "نفس الفترة السابقة"
+
+msgid "Sapling goal"
+msgstr "هدف الفصل"
+
+msgid "Saplings by day of the week"
+msgstr "المشابكات في يوم الأسبوع"
+
+msgid "Saplings collected"
+msgstr "الشتلات المُجمّعة"
+
+msgid "Saplings gifted to date"
+msgstr "الشتلات المهداة حتى الآن"
+
+msgid "Saplings · certificates"
+msgstr "- شهادات المبيعات"
+
+msgid "Start date"
+msgstr "تاريخ البدء"
+
+msgid "Table"
+msgstr "الجدول"
+
+msgid "This month"
+msgstr "هذا الشهر"
+
+msgid "This year"
+msgstr "هذا العام"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "Total"
+msgstr "المجموع"
+
+msgid "Top 10"
+msgstr "القمة 10"
+
+msgid "Top sapling donors"
+msgstr "أكبر المتبرعين بالشتلات"
+
+msgid "Total saplings"
+msgstr "مجموع الفقاعات"
+
+msgid "Waiting"
+msgstr "في انتظار"
+
+msgid "Without a referrer"
+msgstr "بلا مُحيل"
+
+msgid "Without an event"
+msgstr "بلا فعالية"
+
+msgid "new"
+msgstr "جديد"
+
+msgid "Sapling target (optional)"
+msgstr "هدف الفصل (اختياري)"
+
+msgid "Extra saplings (donations without a certificate)"
+msgstr "سبايل إضافية (تبرعات بدون شهادة)"
+
+msgid "Saplings of the person"
+msgstr "صفقات الشخص"
+
+msgid "Certificates of the person"
+msgstr "شهادات الشخص"
+
+msgid "Certificate number"
+msgstr "رقم الشهادة"
+
+msgid "saplings"
+msgstr "شتلات"
+
+msgid "+%s extra"
+msgstr "+ %s"
+
+msgid "target %s"
+msgstr "الهدف %s"
+
+msgid "Certificate dashboard"
+msgstr "لوحة الشهادات"
+
+msgid "Add the certificates without an event (%s) to this event"
+msgstr "يضاف إلى هذا الحدث الشهادات التي لم تحدث (%s)"
+
+msgid "The event name cannot be empty."
+msgstr "لا يمكن أن يكون اسم الحدث فارغاً"
+
+msgid "The person could not be saved."
+msgstr "لا يمكن إنقاذ الشخص."
+
+msgid "The certificate could not be saved."
+msgstr "ولا يمكن إنقاذ الشهادة."
+
+msgid "Certificate not found."
+msgstr "لم يتم العثور على الشهادة."
+
+msgid "You cannot edit this certificate."
+msgstr "لا يمكنك تحرير هذه الشهادة"
+
+msgid "That event is closed. Choose an open event."
+msgstr "هذا الحدث مغلق اختر حدثاً مفتوحاً"
+
+msgid "Only a manager can backdate a certificate."
+msgstr "فقط المدير يمكنه أن يدعم شهادة"
+
+msgid "That issue date is not valid."
+msgstr "وتاريخ هذه المسألة غير صحيح."
+
+msgid "Only a manager can delete a certificate."
+msgstr "فقط المدير يمكنه أن يحذف شهادة"
+
+msgid "That channel is not valid."
+msgstr "هذه القناة غير صالحة"
+
+msgid "That action is not valid."
+msgstr "وهذا الإجراء غير صحيح."
+
+msgid "A revoked certificate cannot be sent."
+msgstr "ولا يمكن إرسال شهادة ملغية."
+
+msgid "Choose a channel."
+msgstr "اختر قناة"
+
+msgid "File upload is not available."
+msgstr "تحميل الملفات غير متاح."
+
+msgid "No file was uploaded."
+msgstr "لم يتم تحميل أي ملف"
+
+msgid "That phone number belongs to someone else."
+msgstr "هذا الهاتف يعود لشخص آخر"
+
+msgid "That e-mail belongs to someone else."
+msgstr "هذا البريد الإلكتروني يعود لشخص آخر"
+
+msgid "That phone number is not valid."
+msgstr "رقم الهاتف هذا غير صحيح"
+
+msgid "Only a manager can delete a person."
+msgstr "فقط المدير يمكنه أن يحذف شخص ما"
+
+msgid "That e-mail address is not valid."
+msgstr "هذا العنوان غير صحيح."
+
+msgid "The full name is required."
+msgstr "الاسم الكامل مطلوب."
+
+msgid "This person has certificates. Delete the certificates first."
+msgstr "هذا الشخص لديه شهادات احذف الشهادات أولاً"
+
+msgid "That event is closed or does not exist. A closed event cannot take certificates."
+msgstr "هذا الحدث مغلق أو غير موجود، ولا يمكن للحدث المغلقة أن يأخذ شهادات."
+
+msgid "That is not a valid PDF."
+msgstr "وهذا ليس قوة الدفاع الشعبي الصالحة."
+
+msgid "That is not a valid image (JPEG expected)."
+msgstr "وهذه ليست صورة صحيحة (يتوقع الفريق)."
+
+msgid "The file is too large."
+msgstr "الملف كبير جدًا."
+
+msgid "The file could not be written. Check the uploads folder permissions."
+msgstr "لم يكن من الممكن كتابة الملف تحقق من رخص الملفات"
+
+msgid "The person has no e-mail address."
+msgstr "الشخص ليس لديه عنوان بريد إلكتروني"
+
+msgid "The person has no phone number."
+msgstr "الشخص ليس لديه رقم هاتف"
+
+msgid "Enter an e-mail address."
+msgstr "أدخل عنوان البريد الإلكتروني"
+
+msgid "Enter a phone number."
+msgstr "أدخل رقم هاتف"
+
+msgid "Enter a valid phone number or e-mail address."
+msgstr "أدخل رقم هاتف صالح أو عنوان بريد إلكتروني."
+
+msgid "The message could not be sent."
+msgstr "لا يمكن إرسال الرسالة."
+
+msgid "The message text is empty."
+msgstr "الرسالة فارغة"
+
+msgid "The message could not be queued."
+msgstr "الرسالة لا يمكن تصفيةها."
+
+msgid "There is no active connection for %s. Set one up in Flux Mail."
+msgstr "ليس هناك ارتباط نشط %s-أعد واحدة في (فلوكس ماييل )"
+
+msgid "%s: the date format is not valid."
+msgstr "%s: شكل التاريخ غير صحيح."
+
+msgid "%s is required."
+msgstr "مطلوب %s."
+
+msgid "That phone number belongs to another person (#%d) and was not added."
+msgstr "وينتمي هذا الرقم إلى شخص آخر (# %d) ولم يُضاف إليه."
+
+msgid "That e-mail belongs to another person (#%d) and was not added."
+msgstr "وينتمي ذلك البريد الإلكتروني إلى شخص آخر (# %d) ولم يُضاف إليه."
+
+msgid "l, F j, Y"
+msgstr "ل، ف ي، ي"
+
+msgid "F j"
+msgstr "ف ي"
+
+msgid "F j, Y"
+msgstr "ف ي، ي"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Staff can only see the certificates they create"
+msgstr "لا يستطيع الموظفون إلا أن يروا الشهادات التي يصنعونها"
+
+msgid "Additional fonts"
+msgstr "رسوم إضافية"
+
+msgid "Choose a font file (TTF/OTF)"
+msgstr "اختيار ملف فونت (TTF/OTF)"
+
+msgid "Keep logs (days, 0 = indefinitely)"
+msgstr "الاحتفاظ بالسجلات (أيام، صفر) إلى أجل غير مسمى"
+
+msgid "Image (JPG/PNG)"
+msgstr "الصورة (JPG/PNG)"
+
+msgid "All actions"
+msgstr "جميع الإجراءات"
+
+msgid "Issuing organization (on the certificate page and LinkedIn)"
+msgstr "المنظمة المصدرة (على صفحة الشهادة ولينكدين)"
+
+msgid "Save settings"
+msgstr "حفظ الإعدادات"
+
+msgid "Action"
+msgstr "العمل"
+
+msgid "Staff permissions"
+msgstr "إذن الموظفين"
+
+msgid "Height (pt)"
+msgstr "مرتفع (نع)"
+
+msgid "PDF (recommended)"
+msgstr "PDF (التوصية)"
+
+msgid "Link address"
+msgstr "عنوان الرابط"
+
+msgid "No records."
+msgstr "لا توجد سجلات."
+
+msgid "Font name"
+msgstr "اسم الفونت"
+
+msgid "With sample data"
+msgstr "بيانات العينات"
+
+msgid "Provider"
+msgstr "مزود"
+
+msgid "User"
+msgstr "المستخدم"
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid "Certificate Staff"
+msgstr "موظفو الشهادة"
+
+msgid "Custom"
+msgstr "مخصص"
+
+msgid "How?"
+msgstr "كيف؟"
+
+msgid "Certificate number format"
+msgstr "استمارة رقم الشهادة"
+
+msgid "Hide certificate pages from search engines (noindex, recommended for personal data)"
+msgstr "صفحات شهادة الاختباء من محركات البحث (لا توجد مواصفات، يوصى بها للحصول على بيانات شخصية)"
+
+msgid "Maximum retry attempts"
+msgstr "أقصى محاولات إعادة التأهيل"
+
+msgid "Send certificate links to their holders"
+msgstr "إرسال وصلات شهادة إلى أصحابها"
+
+msgid "Recipient, number, text…"
+msgstr "متلقي، رقم، رسالة..."
+
+msgid "Provider response"
+msgstr "رد مقدِّم الخدمات"
+
+msgid "All users"
+msgstr "كافة المستخدمين"
+
+msgid "Enabled"
+msgstr "ممكّن"
+
+msgid "All deliveries for this certificate"
+msgstr "جميع عمليات التسليم لهذه الشهادة"
+
+msgid "WhatsApp (*bold*, _italic_)"
+msgstr "WhatsApp (*العبار*، ____________)"
+
+msgid "Title (og:title)"
+msgstr "العنوان (الرقم: الترجمة التحريرية)"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Message registered people"
+msgstr "الرسائل المسجلة"
+
+msgid "Certificate title (on the page and in messages as {sertifika})"
+msgstr "عنوان الشهادة (على الصفحة والرسائل على النحو {sertifika})"
+
+msgid "All channels"
+msgstr "جميع القنوات"
+
+msgid "Link sharing preview"
+msgstr "التشارك في العروض الأولية"
+
+msgid "Sender"
+msgstr "المرسل"
+
+msgid "Default messages"
+msgstr "الرسائل الافتراضية"
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "All registered people"
+msgstr "جميع الأشخاص المسجلين"
+
+msgid "Recipient"
+msgstr "المستلم"
+
+msgid "“Find my certificate” page"
+msgstr "صفحة &quot; في شهادة &quot; ."
+
+msgid "Data"
+msgstr "البيانات"
+
+msgid "Delete all certificate data when uninstalling the plugin"
+msgstr "تحذف جميع بيانات الشهادة عندما تبطل البلوغين"
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Date format"
+msgstr "تنسيق التاريخ"
+
+msgid "Allow staff to send in bulk"
+msgstr "السماح للموظفين بإرسال الغالبية العظمى"
+
+msgid "Email subject"
+msgstr "موضوع البريد الإلكتروني"
+
+msgid "Import template"
+msgstr "نموذج الواردات"
+
+msgid "No messages."
+msgstr "لا رسائل"
+
+msgid "Maximum messages per run"
+msgstr "أقصى قدر ممكن من الرسائل في كل مرة"
+
+msgid "Template name (shown in the dashboard)"
+msgstr "اسم نموذجي (يظهر في لوحة المتابعة)"
+
+msgid "Solid color"
+msgstr "لون خالص"
+
+msgid "Width (pt)"
+msgstr "الأرملة (الفصل)"
+
+msgid "Email body"
+msgstr "نص البريد الإلكتروني"
+
+msgid "Process now"
+msgstr "العملية الآن"
+
+msgid "Choose or upload a file"
+msgstr "اختيار أو تحميل ملف"
+
+msgid "To a list of numbers or email addresses"
+msgstr "إلى قائمة بالأرقام أو عناوين البريد الإلكتروني"
+
+msgid "remove"
+msgstr "إزالة"
+
+msgid "Code length"
+msgstr "طول المدونة"
+
+msgid "You do not have permission to send messages in bulk."
+msgstr "ليس لديك إذن لإرسال رسائل بالجملة."
+
+msgid "Send certificate links or a custom message to multiple recipients. Preview the message before adding it to the send queue."
+msgstr "إرسال وصلات شهادة أو رسالة عرفية إلى متلقين متعددين، تمهيداً للرسالة قبل إضافتها إلى استفسار الإرسال."
+
+msgid "Recipients"
+msgstr "المستلمون"
+
+msgid "Template (all valid certificates issued with this template)"
+msgstr "النموذج (جميع الشهادات الصحيحة الصادرة بهذا النموذج)"
+
+msgid "To send only specific certificates, select them in the certificate list and choose a send action."
+msgstr "لارسال شهادات محددة فقط، واختيارها في قائمة الشهادة واختيار إجراء إرسال."
+
+msgid "Holders of the “%s” certificate"
+msgstr "حائزو شهادة &quot; %s &quot;"
+
+msgid "Message"
+msgstr "رسالة"
+
+msgid "Leave this blank to use the default certificate message from the template or settings."
+msgstr "دع هذا فارغاً ليستخدم رسالة شهادة التقصير من النموذج أو البيئات"
+
+msgid "Subject"
+msgstr "الموضوع"
+
+msgid "Text"
+msgstr "نص"

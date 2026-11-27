@@ -284,6 +284,13 @@ return array(
   'Otomatik' => 'Automático',
   'Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur.' => 'Ele protege login, registro, redefinição de senha, comentários, conta e pagamento WooCommerce, formulário de doação Flux Donate e envios de Formulários Flux contra spam e ataques de bot com Google reCAPTCHA (v3 invisível ou bloco v2). Qual formulário será mantido é ligado e desligado no painel; Flux Speed ​​é compatível com endereço de login personalizado.',
   'It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address.' => 'Ele protege login, registro, redefinição de senha, comentários, conta e pagamento WooCommerce, formulário de doação Flux Donate e envios de Formulários Flux contra spam e ataques de bot com Google reCAPTCHA (v3 invisível ou bloco v2). Qual formulário será mantido é ligado e desligado no painel; Flux Speed ​​é compatível com endereço de login personalizado.',
-
+  'Choose v2 or v3.' => 'Escolha v2 ou v3.',
+  'A key can only contain letters, numbers, "-" and "_".' => 'Uma chave só pode conter letras, números, "-" e "_".',
+  'The bot threshold must be between 0.1 and 0.9.' => 'O limiar de bot deve estar entre 0,1 e 0,9.',
+  'Choose the Google host.' => 'Escolha o host do Google.',
+  'Choose the checkbox theme.' => 'Escolha o tema da caixa de seleção.',
+  'Choose the checkbox size.' => 'Escolha o tamanho da caixa de seleção.',
+  'Enter an IP address or a range like 198.51.100.0/24.' => 'Digite um endereço IP ou um intervalo como 198.51.100.0/24.',
+  'This form is not known.' => 'Esta forma não é conhecida.',
  ),
 );

@@ -620,7 +620,7 @@ msgid "Properties"
 msgstr "属性"
 
 msgid "Apply"
-msgstr "申请"
+msgstr "应用"
 
 msgid "Logo"
 msgstr "标志"
@@ -752,7 +752,7 @@ msgid "Secret key"
 msgstr "秘钥"
 
 msgid "Dashboard"
-msgstr "仪表板"
+msgstr "仪表盘"
 
 msgid "7 days"
 msgstr "7天"
@@ -4619,7 +4619,7 @@ msgid "Your email server is healthy"
 msgstr "您的电子邮件服务器运行状况良好"
 
 msgid "The test email arrived, and the subject and unique-code checks both passed."
-msgstr "The test email arrived, and the subject and unique-code checks both passed."
+msgstr "测试电子邮件已经到达,主题和独特编码都经过了检查。"
 
 msgid "Delivered, but likely to be filtered as spam"
 msgstr "已发送,但可能被作为垃圾邮件过滤"
@@ -4793,7 +4793,7 @@ msgid "Select a Date"
 msgstr "选择日期"
 
 msgid "ex: example@mail.com"
-msgstr "ex: example@mail.com"
+msgstr "举个例子@mail. com"
 
 msgid "How can we help you?"
 msgstr "我们能为您提供什么帮助?"
@@ -5090,7 +5090,7 @@ msgid "Your Easy Form Builder Pro subscription has expired, so the Pro add-ons c
 msgstr "您的 Easy Form Builder Pro 订阅已过期,因此无法下载 Pro 附加组件。没有它们,插件仍然可以工作。续订您的订阅以恢复所有 Pro 功能:"
 
 msgid "The version of the add-on is not compatible with the version of the Flux Forms plugin."
-msgstr "The version of the add-on is not compatible with the version of the Flux Forms plugin."
+msgstr "附加式的版本与 Flux 表质插件的版本不兼容 。"
 
 msgid "Cannot install add-ons of Flux Forms because the plugin is not able to download files"
 msgstr "无法安装 Flux Forms 的附加组件,因为该插件无法下载文件"
@@ -5165,7 +5165,7 @@ msgid "Outgoing requests"
 msgstr "传出请求"
 
 msgid "WP-Cron"
-msgstr "WP-Cron"
+msgstr "WP-克"
 
 msgid "Attempts made"
 msgstr "已尝试"
@@ -8270,7 +8270,7 @@ msgid "jQuery is not properly loaded or available. AJAX and interactive form fea
 msgstr "jQuery 未正确加载或不可用。 AJAX 和交互式表单功能可能无法正常工作。"
 
 msgid "WhiteStudio.team"
-msgstr "WhiteStudio.team"
+msgstr "白电视电视剧组"
 
 msgid "EFB"
 msgstr "EFB"
@@ -8915,7 +8915,7 @@ msgid "Flux Forms couldn't locate the form settings. Please check your settings 
 msgstr "Flux Forms 无法找到表单设置。请检查您的设置或联系支持人员寻求帮助。"
 
 msgid "Y/m/d \\a\\t g:ia"
-msgstr "Y/m/d \\a\\t g:ia"
+msgstr "Y/m/d aatt g:"
 
 msgid "Too many attempts. Please wait a few minutes and try again."
 msgstr "尝试次数过多。请等待几分钟,然后重试。"
@@ -9095,7 +9095,7 @@ msgid "A new user has registered on your website."
 msgstr "新用户已在您的网站上注册。"
 
 msgid "The user has been sent a verification email to confirm their account."
-msgstr "The user has been sent a verification email to confirm their account."
+msgstr "已向用户发送核查电子邮件,以确认其账户。"
 
 msgid "This is an alert message regarding a SID validation error. This issue may have occurred due to a plugin conflict or an unauthorized attempt to access the website."
 msgstr "这是有关 SID 验证错误的警报消息。出现此问题的原因可能是插件冲突或未经授权的尝试访问网站。"
@@ -9133,3 +9133,155 @@ msgstr "无法连接到 Stripe:%s"
 
 msgid "Stripe API error (HTTP %d)."
 msgstr "Stripe API 错误 (HTTP%d)。"
+
+msgid "Form submission"
+msgstr "表单提交"
+
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "通过公开形式、调查和订阅方式发送的呈文 GraphQL."
+
+msgid "Manages forms and responses"
+msgstr "方式和对策"
+
+msgid "Opens the form builder"
+msgstr "打开窗体构建器"
+
+msgid "Opens the forms panel"
+msgstr "开放表格小组"
+
+msgid "Manages form add-ons"
+msgstr "制成添加剂"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Flux Forms: choices"
+msgstr "流动形式:选择"
+
+msgid "Flux Forms: advanced"
+msgstr "流动表格: 高级"
+
+msgid "Flux Forms: payment"
+msgstr "通货表格:支付"
+
+msgid "Flux Forms: content"
+msgstr "流动形式:内容"
+
+msgid "The form structure is not valid."
+msgstr "形式结构不有效。"
+
+msgid "This form type is not supported."
+msgstr "这种形式得不到支持。"
+
+msgid "This form was changed somewhere else after you opened it."
+msgstr "在你开始发言之后,这一形式在其他地方发生了变化。"
+
+msgid "WooCommerce checkout"
+msgstr "WooCommerce 结帐"
+
+msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
+msgstr "你将选择如何在安全检查页上支付(卡、银行转账.)费用。"
+
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "在开启的窗口内完成付款,该页在开工时继续进行。"
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "付款窗口被.住,允许该地点的居民再次尝试。"
+
+msgid "The payment was not completed. You can try again."
+msgstr "付款未完成。您可以重试。"
+
+msgid "The order is received; the payment is confirmed when it arrives."
+msgstr "收到命令;付款在到达时得到确认。"
+
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "付款完成,你可以关闭这个窗口,回到表格上。"
+
+msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
+msgstr "收到命令;付款在到达时得到确认,你可以关闭这个窗口,回到表格中。"
+
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "付款没有完成,你可以关闭这个窗口,并再次尝试形式。"
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce 离职。"
+
+msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
+msgstr "支付表 WooCommerce 离职(离职)%1$s; %2$s)."
+
+msgid "No payment form exists. WooCommerce is needed only to take payments."
+msgstr "没有付款表。 WooCommerce 只需要支付款项。"
+
+msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
+msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
+msgstr[0] "WooCommerce 没有能够付款的方法: %d 付款表不能付款。"
+
+msgid "WooCommerce is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "WooCommerce 不活跃: %d 付款表显示,没有提供O线付款。"
+
+msgid "Payment methods"
+msgstr "付款方式"
+
+msgid "Card payment"
+msgstr "刷卡支付"
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "以付款形式进行在线付款,安装和启动 WooCommerce and enable a payment method."
+
+msgid "The form was not found."
+msgstr "表格没有找到。"
+
+msgid "Write a reply."
+msgstr "写信。"
+
+msgid "The response was not found."
+msgstr "没有找到答复。"
+
+msgid "The reply could not be saved."
+msgstr "不能拯救这一答复。"
+
+msgid "The settings could not be saved."
+msgstr "环境无法得到挽救。"
+
+msgid "Choose between 1 and 7 days."
+msgstr "选择1至7天。"
+
+msgid "Unknown track code style."
+msgstr "未知的音轨代码样式 。"
+
+msgid "Unknown SMS sender."
+msgstr "未知未知 SMS 发送者。"
+
+msgid "Enter a colour like #1a2b3c."
+msgstr "输入类似 #1a2b3c 的颜色 。"
+
+msgid "Enter a valid e-mail address."
+msgstr "输入有效的电子邮件地址。"
+
+msgid "Use numbers like +12345678900, separated by commas."
+msgstr "使用数字如+12345678900,用逗号分隔。"
+
+msgid "The template must contain the shortcode_message shortcode."
+msgstr "模板必须包含短co/短co。"
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "太多的呈文,等一下再试一次"
+
+msgid "The form could not be sent."
+msgstr "无法发送表格。"
+
+msgid "This form cannot be sent here."
+msgstr "此表不能寄送。"
+
+msgid "The tracking code was not found."
+msgstr "没有发现跟踪代码。"
+
+msgid "Upload the file again."
+msgstr "再次上传档案。"
+
+msgid "The confirmation code is not valid."
+msgstr "确认准则无效。"
+
+msgid "Choose one of the listed options."
+msgstr "选择清单所列备选办法之一。"

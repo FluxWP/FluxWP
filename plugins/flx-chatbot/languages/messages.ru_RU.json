@@ -54,7 +54,7 @@
     "Flux AI Chatbot": "Чат-бот Flux с искусственным интеллектом",
     "Chatbot": "Чат-бот",
     "Chats": "Чаты",
-    "Chatbot settings": "Chatbot settings",
+    "Chatbot settings": "Установка шаттла",
     "Choose avatar": "Выбрать аватар",
     "Use this image": "Используйте это изображение",
     "You have unsaved changes": "У вас есть несохраненные изменения",
@@ -274,8 +274,8 @@
     "Assistant model": "Модель помощника",
     "The model that answers visitors. A fast, low-cost model is recommended; when empty, the Flux AI default.": "Модель, которая отвечает посетителям. Рекомендуется быстрая и недорогая модель; если пусто, используется Flux AI по умолчанию.",
     "Site chat transcript": "Стенограмма чата на сайте",
-    "Chat not found.": "Chat not found.",
-    "Chat statistics": "Chat statistics",
+    "Chat not found.": "Чейт не нашел.",
+    "Chat statistics": "Статистические данные о цепях",
     "Site chat": "Чат на сайте",
     "Site chat · %s": "Чат на сайте ·%s",
     "A site chat is waiting for an agent.": "Чат на сайте ждет агента.",
@@ -404,6 +404,9 @@
     "Order placed: #%1$s (%2$s)": "Размещен заказ: #%1$s(%2$s)",
     "Placed after site chat #%d": "Размещено после чата сайта #%d",
     "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.": "Окно чата на сайте с поддержкой искусственного интеллекта: с Flux AI, круглосуточные ответы от контента и продуктов вашего сайта, сбор потенциальных клиентов, информация WooCommerce, передача в один клик живому представителю (входящие сообщения чата Flux или собственный почтовый ящик плагина), обмен файлами, уведомления о прочтении, подсчет очков в конце чата и оставление сообщений в нерабочее время. Цвет, положение, аватар, тексты и видимость настраиваются с панели.",
-    "Still answering. Please wait a moment.": "Ответ ещё готовится. Пожалуйста, подождите немного."
+    "Still answering. Please wait a moment.": "Ответ ещё готовится. Пожалуйста, подождите немного.",
+    "Answers site chats": "Ответы на сайты",
+    "JavaScript is required for this screen.": "Для этого экрана требуется JavaScript.",
+    "Chat on WhatsApp": "Череп WhatsApp"
   }
 }

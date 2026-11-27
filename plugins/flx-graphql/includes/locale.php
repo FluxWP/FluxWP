@@ -65,3 +65,60 @@ add_filter(
 	10,
 	3
 );
+
+/** Shared admin date picker words. Site-specific filters can still override individual labels. */
+add_filter(
+	'flx_date_strings',
+	static function ( array $labels ): array {
+		if ( ! is_admin() ) {
+			return $labels;
+		}
+		return array_replace(
+			$labels,
+			array(
+				'pick' => __( 'Select date', 'flx-graphql' ),
+				'today' => __( 'Today', 'flx-graphql' ),
+				'tomorrow' => __( 'Tomorrow', 'flx-graphql' ),
+				'nextWeek' => __( 'Next week', 'flx-graphql' ),
+				'in2Weeks' => __( 'In 2 weeks', 'flx-graphql' ),
+				'thisFriday' => __( 'This Friday', 'flx-graphql' ),
+				'noDate' => __( 'No date', 'flx-graphql' ),
+				'clear' => __( 'Clear', 'flx-graphql' ),
+				'cancel' => __( 'Cancel', 'flx-graphql' ),
+				'apply' => __( 'Apply', 'flx-graphql' ),
+				'month' => __( 'Month', 'flx-graphql' ),
+				'time' => __( 'Time', 'flx-graphql' ),
+				'prev' => __( 'Previous month', 'flx-graphql' ),
+				'next' => __( 'Next month', 'flx-graphql' ),
+				'prevYear' => __( 'Previous year', 'flx-graphql' ),
+				'nextYear' => __( 'Next year', 'flx-graphql' ),
+				'pickMonth' => __( 'Choose month', 'flx-graphql' ),
+				'pickYear' => __( 'Choose year', 'flx-graphql' ),
+			)
+		);
+	},
+	5
+);
+
+/** Use the admin locale in the shared confirmation, notice and prompt dialogs. */
+add_filter(
+	'flx_dialog_strings',
+	static function ( array $labels ): array {
+		if ( ! is_admin() ) {
+			return $labels;
+		}
+		return array_replace(
+			$labels,
+			array(
+				'ok'            => __( 'OK', 'flx-graphql' ),
+				'cancel'        => __( 'Cancel', 'flx-graphql' ),
+				'close'         => __( 'Close', 'flx-graphql' ),
+				'confirm'       => __( 'Are you sure?', 'flx-graphql' ),
+				'notice'        => __( 'Notice', 'flx-graphql' ),
+				'sure'          => __( 'This cannot be undone.', 'flx-graphql' ),
+				'typeToConfirm' => __( 'To confirm, type %s', 'flx-graphql' ),
+			)
+		);
+	},
+	5
+);

@@ -257,7 +257,7 @@ msgid "Couldn't save. Please try again."
 msgstr "Не удалось сохранить. Пожалуйста, попробуйте еще раз."
 
 msgid "Tip: right-click a menu item to pin it."
-msgstr "Tip: right-click a menu item to pin it."
+msgstr "Направить меню, чтобы повесить его."
 
 msgid "New task"
 msgstr "Новая задача"
@@ -1209,3 +1209,54 @@ msgstr "Предыдущий месяц"
 
 msgid "Next month"
 msgstr "Следующий месяц"
+
+msgid "Learn more"
+msgstr "Узнать больше"
+
+msgid "Dismiss"
+msgstr "Уволить"
+
+msgid "or"
+msgstr "или"
+
+msgid "This role does not exist."
+msgstr "Эта роль отсутствует."
+
+msgid "This permission is not in the table."
+msgstr "Это разрешение не за столом."
+
+msgid "There is no backup to restore."
+msgstr "Нет подкрепления для восстановления."
+
+msgid "A layout needs at least one menu item."
+msgstr "Нужна схема, по крайней мере, один меню."
+
+msgid "Choose a menu item."
+msgstr "Выбери меню."
+
+msgid "Unknown menu action."
+msgstr "Неизвестная меню."
+
+msgid "Unread WhatsApp"
+msgstr "Unread WhatsApp"
+
+msgid "The logo must be an image from the media library."
+msgstr "Логотип должен быть изображением из библиотеки СМИ."
+
+msgid "Choose 30, 60 or 120 seconds."
+msgstr "Выбери 30, 60 или 120 секунд."
+
+msgid "Enter a color like #1F2937."
+msgstr "Введите цвет, как 1F2937."
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "Загруженное досье не было найдено, и оно снова загрузилось."
+
+msgid "The file could not be saved on the server."
+msgstr "Дело не может быть сохранено на сервере."
+
+msgid "Choose auto, light or dark."
+msgstr "Выбери авто, свет или темноту."
+
+msgid "You do not have permission to do this."
+msgstr "У вас нет разрешения на это."

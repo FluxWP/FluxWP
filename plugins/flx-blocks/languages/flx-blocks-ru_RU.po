@@ -1,0 +1,2651 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "JavaScript is required for this screen."
+msgstr "Для этого экрана требуется JavaScript."
+
+msgid "Block Editor"
+msgstr "Редактор блока"
+
+msgid "Actionable endpoint for api call."
+msgstr "Подходящий конец для звонка."
+
+msgid "Submission rejected, invalid security token. Reload the page and try again."
+msgstr "Сообщение отклонено, недействительная сигнализация, перезагрузка страницы и попытка снова."
+
+msgid "Token invalid"
+msgstr "Товарные недействительные"
+
+msgid "CAPTCHA Failed"
+msgstr "Ошибка CAPTCHA"
+
+msgid "Submission rejected."
+msgstr "Представление отклонено."
+
+msgid "Third Party Failed"
+msgstr "Третья Сторона"
+
+msgid "Submission failed"
+msgstr "Представление не вышло"
+
+msgid "No Data"
+msgstr "Данные отсутствуют"
+
+msgid "Accept"
+msgstr "Принятие"
+
+msgid "Did not accept"
+msgstr "Не принимается"
+
+msgid "Missing a required field"
+msgstr "Пропало необходимое поле"
+
+msgid "Trying to include too many files."
+msgstr "Пытаюсь включить слишком много файлов."
+
+msgid "File too large"
+msgstr "Слишком большой"
+
+msgid "File could not be uploaded"
+msgstr "Файл не может быть загружен"
+
+msgid "Sorry, you are not allowed to upload this file type."
+msgstr "Простите, вам нельзя загрузить этот файл."
+
+msgid "Not enough disk quota on this website."
+msgstr "На этом веб-сайте не хватает дисковой квоты."
+
+msgid "Failed to upload file"
+msgstr "Нерассмотренные файлы"
+
+msgid "Submission Failed"
+msgstr "Ошибка представления"
+
+msgid "Data not found"
+msgstr "Данные не найдены"
+
+msgid "Submission Success, Thanks for getting in touch!"
+msgstr "\"Спасибо, что связался\"!"
+
+msgid "Submission Failed, reCaptcha spam prevention. Please reload your page and try again."
+msgstr "Сообщение не сработало, профилактика спама, пожалуйста, перезагрузите страницу и попробуйте еще раз."
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Entries"
+msgstr "Записи"
+
+msgid "Entries (Pro Only)"
+msgstr "(Проект только)"
+
+msgid "Forms"
+msgstr "Формы"
+
+msgid "Form"
+msgstr "Форма"
+
+msgid "Form Archives"
+msgstr "Форма архивов"
+
+msgid "Form Attributes"
+msgstr "Форма"
+
+msgid "Parent Form:"
+msgstr "Форма родителей:"
+
+msgid "Add New Form"
+msgstr "Добавить новую форму"
+
+msgid "New Form"
+msgstr "Новая форма"
+
+msgid "Edit Form"
+msgstr "Форма Правки"
+
+msgid "Update Form"
+msgstr "Обновленная форма"
+
+msgid "View Form"
+msgstr "Вид Форма"
+
+msgid "View Forms"
+msgstr "Вирусные формы"
+
+msgid "Search Forms"
+msgstr "Обычные формы"
+
+msgid "Not found"
+msgstr "Не найден"
+
+msgid "Not found in Trash"
+msgstr "Не найдено в Траше."
+
+msgid "Filter items list"
+msgstr "Перечень предметов для факсимильной связи"
+
+msgid "Contact forms, subscribe forms and others for your site."
+msgstr "Связные бланки, подписные бланки и другие формы для вашего места."
+
+msgid "You do not have permission to view these posts."
+msgstr "У вас нет разрешения на посещение этих постов."
+
+msgid "Submission"
+msgstr "Submission"
+
+msgid "No Response from MailerLite"
+msgstr "Ответа от &quot; Мейлерлейт &quot; не поступило"
+
+msgid "MailerLite Misconfiguration"
+msgstr "Неверное знание мейлер-лита"
+
+msgid "MailerLite Failed"
+msgstr "Ошибка записи"
+
+msgid "You do not have permission to access GetResponse API data."
+msgstr "У вас нет разрешения на доступ к данным No GetResponse API."
+
+msgid "Invalid or disallowed endpoint."
+msgstr "Недействительный или отключенный конечных точек."
+
+msgid "Error fetching data from GetResponse"
+msgstr "Ошибка получения данных из GetResponse"
+
+msgid "Empty data from GetResponse"
+msgstr "Данные о mpty from GetResponse"
+
+msgid "[block rendering halted]"
+msgstr "[block rendering halted]"
+
+msgid "Please fix the errors to proceed"
+msgstr "Пожалуйста, почините ошибки, чтобы продолжить."
+
+msgid "is required"
+msgstr "Требуется"
+
+msgid "does not match"
+msgstr "не совпадает"
+
+msgid "is not valid"
+msgstr "недействительна"
+
+msgid "requires a unique entry and this value has already been used"
+msgstr "требует уникального ввода, и эта стоимость уже используется"
+
+msgid "Item"
+msgstr "Товар"
+
+msgid "Photo Gallery Carousel"
+msgstr "Фотогалерея"
+
+msgid "Toggle autoplay"
+msgstr "Тогельное автоплеменное поле"
+
+msgid "See more"
+msgstr "См. выше."
+
+msgid "Display lightbox image:"
+msgstr "Фотография светоотражающего устройства:"
+
+msgid "Previous slide"
+msgstr "Предыдущий слайд"
+
+msgid "Next slide"
+msgstr "Следующий поворот"
+
+msgid "Go to first slide"
+msgstr "Иди на первый слайд"
+
+msgid "Go to last slide"
+msgstr "Иди в последний слайд"
+
+msgid "Go to slide %s"
+msgstr "Иди к слайду %s"
+
+msgid "Go to page %s"
+msgstr "Иди на стр. %s"
+
+msgid "Start autoplay"
+msgstr "Начинайте автофильм"
+
+msgid "Pause autoplay"
+msgstr "Приостановить автопроигрывание"
+
+msgid "carousel"
+msgstr "Carousel"
+
+msgid "slide"
+msgstr "slide"
+
+msgid "Select a slide to show"
+msgstr "Выбери слайд, чтобы показать."
+
+msgid "%s of %s"
+msgstr "%s из %s"
+
+msgid "Days"
+msgstr "Дни"
+
+msgid "Hrs"
+msgstr "Hrs"
+
+msgid "Mins"
+msgstr "Мины"
+
+msgid "Secs"
+msgstr "Secs"
+
+msgid "Please enable JavaScript in your browser to submit the form"
+msgstr "Просьба предоставить JavaScript в вашем браузере возможность представить бланк"
+
+msgid "Google map of %s"
+msgstr "Карта Google %s"
+
+msgid "Child menu"
+msgstr "Детское меню"
+
+msgid "Child menu of"
+msgstr "Детское меню"
+
+msgid "Toggle child menu of"
+msgstr "Тогловый детский меню"
+
+msgid "No posts"
+msgstr "Нет сообщений"
+
+msgid "%1$s out of %2$s Stars"
+msgstr "%1$s из %2$s Звезд"
+
+msgid "Progressbar Label"
+msgstr "Маркировка пропусков"
+
+msgid "Play"
+msgstr "Играть"
+
+msgid "Pause"
+msgstr "Пауза"
+
+msgid "Unmute"
+msgstr "Невозмутимый"
+
+msgid "Mute"
+msgstr "Отключить звук"
+
+msgid "Close search"
+msgstr "Близкий поиск"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Content is collapsed."
+msgstr "Контент разваливается."
+
+msgid "Content continues."
+msgstr "Контент продолжается."
+
+msgid "Activate the"
+msgstr "Активировать"
+
+msgid "button to reveal the full content."
+msgstr "кнопка, чтобы раскрыть полное содержание."
+
+msgid "Show More"
+msgstr "Больше."
+
+msgid "%1$d out of %2$d stars"
+msgstr "%1$d из %2$d звезд"
+
+msgid "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply"
+msgstr "Этот участок охраняется reCAPTCHA, а в Гугле применяются политика и условия службы в области конфиденциальности."
+
+msgid "Close Menu"
+msgstr "Близкий Мену"
+
+msgid "Toggle Menu"
+msgstr "Меню Меню"
+
+msgid "Name Prefix"
+msgstr "Имя и имя"
+
+msgid "First Name"
+msgstr "Имя и фамилия"
+
+msgid "Last Name"
+msgstr "Последнее имя"
+
+msgid "Full Name"
+msgstr "Полное имя"
+
+msgid "Timezone"
+msgstr "Часовой пояс"
+
+msgid "Address Line 1"
+msgstr "Адресная линия 1"
+
+msgid "Address Line 2"
+msgstr "Адресная линия 2"
+
+msgid "City"
+msgstr "Город"
+
+msgid "State"
+msgstr "Государство"
+
+msgid "Postal Code"
+msgstr "Почтовый индекс"
+
+msgid "Country"
+msgstr "Страна"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "You do not have sufficient permissions to export content."
+msgstr "У вас нет достаточных разрешений на экспорт."
+
+msgid "Export"
+msgstr "Экспорт"
+
+msgid "Import completed successfully!"
+msgstr "Импорт завершен успешно!"
+
+msgid "Export All"
+msgstr "Экспорт"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "Upload & Import"
+msgstr "Загрузка"
+
+msgid "You do not have sufficient permissions to import content."
+msgstr "У вас нет достаточных разрешений на импорт содержания."
+
+msgid "Please upload a file to import."
+msgstr "Пожалуйста, загрузите файл для импорта."
+
+msgid "File upload failed."
+msgstr "Загрузка не сработала."
+
+msgid "Invalid file type. Please upload a ZIP file."
+msgstr "Загрузите файлы ZIP."
+
+msgid "Invalid data in import file."
+msgstr "Неверные данные в файле импорта."
+
+msgid "Invalid import file structure. Missing export.json"
+msgstr "Инвалидная структура файлов импортных товаров."
+
+msgid "Invalid JSON data in import file."
+msgstr "Неверные данные JSON в файле импорта."
+
+msgid "This site does not share its design library."
+msgstr "Этот сайт не разделяет его проектную библиотеку."
+
+msgid "The library key is missing or wrong."
+msgstr "Библиотечный ключ пропал или ошибался."
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "My patterns"
+msgstr "Мои образцы"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Unknown action."
+msgstr "Неизвестное действие."
+
+msgid "Library not found."
+msgstr "Библиотека не найдена."
+
+msgid "The library could not be reached."
+msgstr "Библиотеку не удалось достичь."
+
+msgid "The library refused access. Check the key, and that sharing is on at the other site."
+msgstr "Библиотека отказалась в доступе, проверь ключ, и этот обмен на другом объекте."
+
+msgid "This address is not a Flux design library."
+msgstr "Этот адрес не библиотека дизайна Флукса."
+
+msgid "Make a duplicate from this."
+msgstr "Сделай дубликат."
+
+msgid "Duplicate"
+msgstr "Дублировать"
+
+msgid "No post to duplicate has been supplied!"
+msgstr "Никакой должности дубликата не поставляли!"
+
+msgid "Post creation failed, could not find original post: %s"
+msgstr "После создания не удалось найти исходную должность: %s"
+
+msgid "%s (Copy)"
+msgstr "%s (Копи)"
+
+msgid "%s and higher"
+msgstr "%s и выше"
+
+msgid "Inherit"
+msgstr "Inherit"
+
+msgid "Thin 100"
+msgstr "Thin 100"
+
+msgid "Extra-Light 200"
+msgstr "Внешние перевозки 200"
+
+msgid "Light 300"
+msgstr "Свет 300"
+
+msgid "Regular"
+msgstr "Регулярный"
+
+msgid "Medium 500"
+msgstr "Среднее 500"
+
+msgid "Semi-Bold 600"
+msgstr "Полуболд 600"
+
+msgid "Bold 700"
+msgstr "Bold 700"
+
+msgid "Extra-Bold 800"
+msgstr "Экстрадер-Болд 800"
+
+msgid "Ultra-Bold 900"
+msgstr "Ультра-золотые 900"
+
+msgid "Limit results to items of a specific post type."
+msgstr "Ограничить результаты по статьям конкретного типа должностей."
+
+msgid "Include posts by ID."
+msgstr "Включает должности с разбивкой по документам."
+
+msgid "Number of results to return."
+msgstr "Число полученных результатов."
+
+msgid "Define Type of Query."
+msgstr "Определить тип кварея."
+
+msgid "Define Query Order."
+msgstr "Определите порядок."
+
+msgid "Define Query Order By."
+msgstr "Обозначить Квори."
+
+msgid "Allow Sticky in Query."
+msgstr "Позволь Стикки в Кваре."
+
+msgid "Exclude Category."
+msgstr "Исключая категорию."
+
+msgid "Number of items to offset in query."
+msgstr "Число единиц имущества, которое будет компенсировано запросом."
+
+msgid "The Current Post ID."
+msgstr "Текущий номер."
+
+msgid "Check if using a custom Taxonomy"
+msgstr "Проверка, если использовать обычай Таксономия"
+
+msgid "Include posts category."
+msgstr "Включая должности категории."
+
+msgid "Include posts tags."
+msgstr "Включайте метки должностей."
+
+msgid "Taxonomy Type."
+msgstr "Тип таксономии."
+
+msgid "The source of the content."
+msgstr "Источник содержания."
+
+msgid "Page of results to return."
+msgstr "Наглядка результатов на возвращение."
+
+msgid "Expand Table of Contents"
+msgstr "Расширенная таблица содержимого"
+
+msgid "Collapse Table of Contents"
+msgstr "Таблица содержания"
+
+msgid "Table of Contents"
+msgstr "Таблица Содержание"
+
+msgid "Lottie animation not found"
+msgstr "Лотти-Анимация не найдена"
+
+msgid "Lottie animation file contains invalid json"
+msgstr "Дело Лотти-Анимационно содержит недействительный json"
+
+msgid "Lottie animation contains invalid JSON"
+msgstr "Лотти-Анимация содержит недействительные СПОН"
+
+msgid "Please enter an animation title"
+msgstr "Пожалуйста, входите в титул на анимацию"
+
+msgid "The API Key for Mailerlite account."
+msgstr "The API Ключ на счет \"Майлерлит\"."
+
+msgid "Query Args for url."
+msgstr "Квартир Аргс для урла."
+
+msgid "Vector contains invalid SVG"
+msgstr "Вектор содержит недействительную SVG"
+
+msgid "Please enter a vector title"
+msgstr "Пожалуйста, введите векторный титул."
+
+msgid "Flux Block Editor"
+msgstr "Flux Block Editor"
+
+msgid "Google Fonts"
+msgstr "& Скажи в Google"
+
+msgid "Google Fonts are served from this site; visitors do not connect to Google."
+msgstr "С этого сайта выдают пули из Google; посетители не связываются с Google."
+
+msgid "Google Fonts load from fonts.googleapis.com, which shares visitor IP addresses with Google. Turn on \"Load Google Fonts Locally\"."
+msgstr "Googleapis.com, в котором посетительские IP адреса с Google."
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Form spam protection"
+msgstr "Защита от искусственного спама"
+
+msgid "Flux reCAPTCHA is active and can protect Flux Block Editor forms."
+msgstr "Flux reCAPTCHA является активным и может защищать формы редактирования Flux Block."
+
+msgid "Flux reCAPTCHA is not active. Forms use the honeypot check only unless a captcha key is set on the form."
+msgstr "Флюкс reCAPTCHA не активен, формы используют медовый пот только в том случае, если на бланке не установлен ключ капча."
+
+msgid "Blocks"
+msgstr "Блоки"
+
+msgid "%d block is turned off."
+msgid_plural "%d blocks are turned off."
+msgstr[0] "%d блок выключен."
+msgstr[1] "%d блок выключен."
+msgstr[2] "%d блок выключен."
+
+msgid "All blocks are on."
+msgstr "Все блоки на месте."
+
+msgid "Data not Found"
+msgstr "Данные отсутствуют"
+
+msgid "Submission Rejected"
+msgstr "Представление отклонено"
+
+msgid "Spam Detected"
+msgstr "Спам обнаружен"
+
+msgid "reCAPTCHA Failed"
+msgstr "reCAPTCHA Несовершенные"
+
+msgid "Required Field Empty"
+msgstr "Требуемая деятельность на местах"
+
+msgid "Flux Header"
+msgstr "Flux Header"
+
+msgid "Add New Flux Header"
+msgstr "Добавить новый заголовок Flux"
+
+msgid "New Flux Header"
+msgstr "Новый заголовок потока"
+
+msgid "Edit Flux Header"
+msgstr "Редактировать заголовок"
+
+msgid "View Flux Header"
+msgstr "Вид Заголовок потока"
+
+msgid "Headers"
+msgstr "Headers"
+
+msgid "Search Flux Headers"
+msgstr "Поиск заголовков Flux"
+
+msgid "Parent Flux Header:"
+msgstr "Родитель Флукс-Хокер:"
+
+msgid "No Flux Header found."
+msgstr "Не нашли Флукса Заводителя."
+
+msgid "No Flux Header found in Trash."
+msgstr "В Трэше нет ни одного заголовка."
+
+msgid "Flux Header archives"
+msgstr "Flux Header archives"
+
+msgid "Insert into Flux Header"
+msgstr "Включить в рубрику Flux Header"
+
+msgid "Uploaded to this Flux Header"
+msgstr "Загружено на этот заголовок"
+
+msgid "Filter Flux Header list"
+msgstr "Файлер Флюкс"
+
+msgid "Flux Headers list navigation"
+msgstr "Flux Headers list navigation"
+
+msgid "Flux Headers list"
+msgstr "Flux Headers list"
+
+msgid "Flux Headers that can be inserted into your site."
+msgstr "Заголовки, которые могут быть включены в ваш сайт."
+
+msgid "Theme Header"
+msgstr "Заголовок темы"
+
+msgid "%s (Theme)"
+msgstr "%s (Тема)"
+
+msgid "Add New"
+msgstr "Добавить новый"
+
+msgid "Header"
+msgstr "Заголовок"
+
+msgid "Continue"
+msgstr "Продолжить"
+
+msgid "Lottie Animations"
+msgstr "Лотти Анимации"
+
+msgid "Lottie Animations imported in Flux"
+msgstr "Лотти Анимации импортируются в потоке"
+
+msgid "Vector SVGs"
+msgstr "Вектор SVG"
+
+msgid "Vector SVGs imported in Flux"
+msgstr "Вектор SVG импортирован в Flux"
+
+msgid "Flux Navigation"
+msgstr "Flux Navigation"
+
+msgid "Add New Flux Navigation"
+msgstr "Добавить новое плавание"
+
+msgid "New Flux Navigation"
+msgstr "Новое плавание"
+
+msgid "Edit Flux Navigation"
+msgstr "Редактировать систему навигации потоков"
+
+msgid "View Flux Navigation"
+msgstr "Навигация с использованием потока"
+
+msgid "Navigations"
+msgstr "Судоходство"
+
+msgid "Search Flux Navigations"
+msgstr "Навигации для поиска Flux"
+
+msgid "Parent Flux Navigation:"
+msgstr "Родительское плавание:"
+
+msgid "No Flux Navigation found."
+msgstr "Навигации с Flux не найдены."
+
+msgid "No Flux Navigation found in Trash."
+msgstr "В Траше нет плавучего корабля."
+
+msgid "Flux Navigation archives"
+msgstr "Flux Navigation archives"
+
+msgid "Insert into Flux Navigation"
+msgstr "Включить в Flux Navigation"
+
+msgid "Uploaded to this Flux Navigation"
+msgstr "Перегружено на борт этого плавучего судна"
+
+msgid "Filter Flux Navigation list"
+msgstr "Перечень плавучих потоков"
+
+msgid "Flux Navigation list navigation"
+msgstr "Flux Navigation list navigation"
+
+msgid "Flux Navigation list"
+msgstr "Flux Navigation list"
+
+msgid "Flux Navigations that can be inserted into your site."
+msgstr "Навигации, которые могут быть включены в ваш участок."
+
+msgid "Style Library"
+msgstr "Библиотека &lt; &lt; Стиль &gt; &gt;"
+
+msgid "Global Styles"
+msgstr "Глобальные стили"
+
+msgid "This site uses the Flux theme in Full Site Editing mode, so site-wide colors are managed in the Site Editor's %s."
+msgstr "На этом сайте используется тема Flux в режиме полной редактирования, так что цветы на местах управляются в %s редактора сит."
+
+msgid "Style Library settings keep applying to the blocks that use them."
+msgstr "Стильная библиотека продолжает применяться к тем блокам, которые используют ее."
+
+msgid "Your Library"
+msgstr "Твоя библиотека"
+
+msgid "Flux Block Editor design tokens are disabled because these tokens have no baseline entry: %s"
+msgstr "Флюксные символы редактора блоков не имеют права на получение базового образования: %s"
+
+msgid "None"
+msgstr "Нет"
+
+msgid "2X Small"
+msgstr "2X Small"
+
+msgid "Extra Small"
+msgstr "Малые"
+
+msgid "Small"
+msgstr "Маленький"
+
+msgid "Medium"
+msgstr "Средний"
+
+msgid "Large"
+msgstr "Большой"
+
+msgid "Extra Large"
+msgstr "Экстренная"
+
+msgid "2X Large"
+msgstr "2X Large"
+
+msgid "3X Large"
+msgstr "3X Large"
+
+msgid "4X Large"
+msgstr "4X Large"
+
+msgid "5X Large"
+msgstr "5X Large"
+
+msgid "Full"
+msgstr "Полностью"
+
+msgid "Spacing"
+msgstr "Покрытие"
+
+msgid "Gap"
+msgstr "Gap"
+
+msgid "Border Radius"
+msgstr "Радиус границы"
+
+msgid "Border Width"
+msgstr "Граница"
+
+msgid "Icon Sizes"
+msgstr "Размеры значков"
+
+msgid "Shadow"
+msgstr "Shadow"
+
+msgid "Font Size"
+msgstr "Размер шрифта"
+
+msgid "Brand Primary"
+msgstr "Начальное образование"
+
+msgid "Brand Secondary"
+msgstr "Брэнд Вторичный"
+
+msgid "Neutral 900"
+msgstr "Нейтральная 900"
+
+msgid "Neutral 700"
+msgstr "Нейтральный 700"
+
+msgid "Neutral 600"
+msgstr "Нейтральная 600"
+
+msgid "Neutral 500"
+msgstr "Нейтральный 500"
+
+msgid "Neutral 100"
+msgstr "Нейтральный 100"
+
+msgid "Neutral 50"
+msgstr "Neutral 50"
+
+msgid "Neutral 0"
+msgstr "Neutral 0"
+
+msgid "Complement"
+msgstr "Complement"
+
+msgid "Success"
+msgstr "Успех"
+
+msgid "Info"
+msgstr "Информация"
+
+msgid "Alert"
+msgstr "Alert"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "Rating"
+msgstr "Рейтинг"
+
+msgid "Palette"
+msgstr "Palette"
+
+msgid "Button Background"
+msgstr "Фон кнопки"
+
+msgid "Button Text"
+msgstr "Текст кнопки"
+
+msgid "Button Background (Hover)"
+msgstr "Фон кнопки (Говер)"
+
+msgid "Button Text (Hover)"
+msgstr "Текст для кнопки (Говер)"
+
+msgid "Button Border"
+msgstr "Пограничная часть"
+
+msgid "Brand"
+msgstr "Бренд"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Notices"
+msgstr "Уведомления"
+
+msgid "Brand Accent"
+msgstr "Бренд Ацент"
+
+msgid "Brand Button"
+msgstr "Бренд Кнопка"
+
+msgid "Brand Button (Hover)"
+msgstr "Брэнд Баттон (Ховер)"
+
+msgid "Neutral 300"
+msgstr "Нейтральная 300"
+
+msgid "Neutral 200"
+msgstr "Нейтральная 200"
+
+msgid "Media Radius"
+msgstr "Радиус СМИ"
+
+msgid "Control Radius"
+msgstr "Регулирование Радиуса"
+
+msgid "Icon Size"
+msgstr "Кислородный размер"
+
+msgid "Icon Block Size"
+msgstr "Размер блок-контейнер"
+
+msgid "Row Layout Radius"
+msgstr "Строка Radius"
+
+msgid "Layout"
+msgstr "Макет"
+
+msgid "Column Radius"
+msgstr "Колонка Радиус"
+
+msgid "Column Radius (Hover)"
+msgstr "Колонка Радиус (Гвер)"
+
+msgid "Row Layout Background"
+msgstr "Строка"
+
+msgid "Column Background"
+msgstr "Колонка"
+
+msgid "Column Background (Hover)"
+msgstr "Колонка справочной информации (Hover)"
+
+msgid "Border"
+msgstr "Граница"
+
+msgid "Border (Hover)"
+msgstr "Пограничная граница (покрытие)"
+
+msgid "Image Background"
+msgstr "История изображения"
+
+msgid "Media"
+msgstr "СМИ"
+
+msgid "Border Width (Hover)"
+msgstr "Пограничный Width (Hover)"
+
+msgid "Media Shadow"
+msgstr "Тени СМИ"
+
+msgid "Media Padding"
+msgstr "Пассажирская деятельность"
+
+msgid "Media Border Width"
+msgstr "Средства массовой информации"
+
+msgid "Button Border Width"
+msgstr "Пограничная часть"
+
+msgid "Button Shadow"
+msgstr "Тень кнопки"
+
+msgid "Button Shadow (Hover)"
+msgstr "Баттон Тедоу (Ховер)"
+
+msgid "Style"
+msgstr "Стиль"
+
+msgid "Button"
+msgstr "Кнопка"
+
+msgid "Advanced Image"
+msgstr "Промежуточная доставка"
+
+msgid "Row Layout"
+msgstr "Строка"
+
+msgid "Section"
+msgstr "Раздел"
+
+msgid "Icon"
+msgstr "Значок"
+
+msgid "Advanced Text"
+msgstr "Предоставленный текст"
+
+msgid "Sorry, that design token library does not exist."
+msgstr "Простите, но эта дизайнерская библиотека не существует."
+
+msgid "The active token library slug, always resolved to an existing library."
+msgstr "Активная библиотечная шлюха всегда была готова к существующей библиотеке."
+
+msgid "The token library slug to make active."
+msgstr "Тонкая библиотечная шлюха, чтобы активировать."
+
+msgid "Sorry, you are not allowed to manage design tokens."
+msgstr "Простите, вам не разрешено управлять дизайнными символами."
+
+msgid "The requested design token library does not exist."
+msgstr "Запрошенная библиотека дизайна отсутствует."
+
+msgid "The token library was modified since you last read it. Reload and try again."
+msgstr "Токенная библиотека была изменена с тех пор, как вы прочли ее в последний раз."
+
+msgid "The user primitive document invariant failed."
+msgstr "Примитивный документ пользователя не сработал."
+
+msgid "The document contains an unsupported reference to a user primitive."
+msgstr "В документе содержится неподтвержденная ссылка на примитивный пользователь."
+
+msgid "The design token document failed validation."
+msgstr "Конструкционный символ не подтвердил достоверность."
+
+msgid "The design token document could not be encoded."
+msgstr "Проектный символ не может быть закодирован."
+
+msgid "The design token library could not be saved."
+msgstr "Не удалось спасти дизайнерскую библиотеку."
+
+msgid "Bulk replace is not allowed while user-created primitives exist. Delete them first or use PATCH."
+msgstr "Замена пулка не допускается, пока существуют примитивные примитивы, сконструированные пользователем, исключить их первым или использовать ПАТХГ."
+
+msgid "A library title cannot be empty."
+msgstr "Библиотечное название не может быть пустым."
+
+msgid "The library title could not be saved."
+msgstr "Библиотечное название не может быть сохранено."
+
+msgid "The design token library could not be deleted."
+msgstr "Нельзя исключать из проектно-эксплуатационной библиотеки."
+
+msgid "A $type is required to create a new token."
+msgstr "Для создания нового символа требуется такой тип."
+
+msgid "Use the user-primitives endpoint to delete a custom primitive."
+msgstr "Использовать конечный параметр пользователя для исключения примитивного обычая."
+
+msgid "The token path must begin with a valid layer (%s) and name a token below it, with no empty segments."
+msgstr "Токенный путь должен начинаться с действительного слоя (%s) и обозначаться символом ниже, причем без порожних сегментов."
+
+msgid "The token library slug."
+msgstr "Тонкая библиотечная шлюха."
+
+msgid "The human-readable label for the library, empty when none is stored."
+msgstr "Человеческая ярлыка для библиотеки пуста, когда ее не хранят."
+
+msgid "The cache-busting version hash for the library, empty when it renders from baseline."
+msgstr "Версия, в которой болят тайники, для библиотеки пуста, когда она поступает из исходных данных."
+
+msgid "The raw overrides-only DTCG document, empty when the library renders entirely from baseline."
+msgstr "Документ ДКПГ, подготовленный исключительно на основе сырьевого сырья, является пустым, когда библиотека полностью выходит из базового уровня."
+
+msgid "Resolved CSS values keyed by token dot-path id."
+msgstr "Устраненные значения CSS, соединенные символом токена дот-пат-ид."
+
+msgid "Resolved CSS values keyed by CSS custom-property name."
+msgstr "Установленные значения CSS, отнесенные к названию CSS, принадлежащему заказу."
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id; present only for tokens that carry a shape."
+msgstr "Удовлетворенная реакция/зажима, заложенная символом &quot; дот-пат-ид &quot; ; присутствует только для символов, имеющих форму."
+
+msgid "Sorry, that token is not registered."
+msgstr "Простите, этот символ не зарегистрирован."
+
+msgid "Sorry, that token group does not exist."
+msgstr "Простите, эта тонкая группа не существует."
+
+msgid "Sorry, that font family is not available on this site."
+msgstr "Простите, на этом объекте нет семьи с шрифтом."
+
+msgid "\"%s\" is a token group, not a single token. Write a token below it instead."
+msgstr "\" %s\" - это тонкая группа, а не одна символика, вместо этого напишите символ под ней."
+
+msgid "\"%1$s\" is a token, not a group, so \"%2$s\" cannot be written below it."
+msgstr "\" %1$s\" - это символ, а не группа, так что \" %2$s\" не может быть написана под ним."
+
+msgid "The human-readable label for the token library."
+msgstr "Человеческая ярлыка для символа."
+
+msgid "The token library slug to write. Defaults to the default library."
+msgstr "Тонкая библиотечная шлюха, чтобы писать."
+
+msgid "The overrides-only DTCG document to store."
+msgstr "Документ ДКНТ, который должен храниться только в существенных хранилищах."
+
+msgid "Optional human-readable label for the token library."
+msgstr "Факультативная читательская лейбл для символа токена."
+
+msgid "The token dot-path, e.g. primitive.color.brand."
+msgstr "Тонкая дот-пат, например примитивный.цвет."
+
+msgid "The display-label override. Empty or whitespace-only clears the override, equivalent to DELETE."
+msgstr "Публикация отображается, бросает или очистит верхнюю поверхность, эквивалентную ДЕЛЕТЕ."
+
+msgid "The token's canonical dot-path id, e.g. semantic.color.button-bg."
+msgstr "Каноническая дот-пат-ид Токена, например семантика.цвет."
+
+msgid "The version the client last read; empty for a first write. A mismatch is rejected with HTTP 409."
+msgstr "Последний вариант, который был зачитан клиентом; пустой для первого писания. &quot; HTTP 409 &quot; отвергает ошибку."
+
+msgid "The token ids in their new order for this group."
+msgstr "Тонкие идры в их новом порядке для этой группы."
+
+msgid "The UI-schema group name whose token order is being set."
+msgstr "Имя группы UI-schema, приказ которой установлен."
+
+msgid "The font family name to add as a favorite, e.g. Abril Fatface."
+msgstr "Фонт-семейное имя добавляет в качестве любимого, например, \"Абрил Фатфайс\"."
+
+msgid "The primitive.*.custom.* namespace is reserved for user-created primitives. Use the user-primitives endpoint."
+msgstr "Примитивное место*.название* зарезервировано для примитивов с пользователем."
+
+msgid "Whether the design-token registry is active."
+msgstr "Действует ли реестр, составленный в соответствии с конструкцией."
+
+msgid "Whether the library resolved without a corrupt-store failure."
+msgstr "Улажен ли библиотека без коррумпированной неудачи."
+
+msgid "The library's stored label, empty when it has none."
+msgstr "Библиотечная лейбл, пустая, когда её нет."
+
+msgid "The token library slug the feed was assembled for."
+msgstr "Токенная библиотека склеила подачу."
+
+msgid "The token structure, grouped for the UI."
+msgstr "Токенная структура, сгруппированная для UI."
+
+msgid "Per-block preset structure and resolved preview values."
+msgstr "Разблокированная структура и устранены предвидения."
+
+msgid "The nav-ready block-presets section, for labeled/picker-driven preset bindings only."
+msgstr "Нави-читательский блок-пресетс, предназначенный только для маркировки/конструкции, ориентированной на пиккера."
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id."
+msgstr "Удовлетворенная реакция/зажима, клюшка которого прикреплена токенной дот-пат-идом."
+
+msgid "The REST descriptor (root, namespace, nonce) the app writes edits to."
+msgstr "Декриптор REST (рут, название, неце) в приложении пишут редакцию."
+
+msgid "The token library slug to read the feed for."
+msgstr "Токенная библиотека слизывается, чтобы прочитать корм."
+
+msgid "A swatch value or label is required."
+msgstr "Требуется значение или маркировка шлюза."
+
+msgid "A swatch value cannot be empty."
+msgstr "Значение люка не может быть пустым."
+
+msgid "A swatch label cannot be empty."
+msgstr "Ярлык не может быть пустым."
+
+msgid "A swatch label is structural and can only be set on the library's default palette."
+msgstr "Ярлык для тарелок - это конструкция, и его можно поставить только на бледную палетку библиотеки."
+
+msgid "The current palette must name a palette the library defines."
+msgstr "Нынешняя Палета должна назвать Палетту, которую определяет библиотека."
+
+msgid "The palette id."
+msgstr "Палетта Сид."
+
+msgid "The palette label."
+msgstr "Бледная ярлыка."
+
+msgid "The ordered color groups, each an ordered list of swatches."
+msgstr "Заказные цветные группы, каждый заказный список защитных."
+
+msgid "The color palette failed validation."
+msgstr "Колоричная палетта не подтверждала."
+
+msgid "The color palette could not be encoded."
+msgstr "Цветная палетка не может быть закодирована."
+
+msgid "The color palette could not be saved."
+msgstr "Цветная палетка не может быть спасена."
+
+msgid "The palette label must be a string."
+msgstr "Бледная ярлыка должна быть стрингом."
+
+msgid "A palette must define at least one color group."
+msgstr "Палета должна определить по крайней мере одну цветную группу."
+
+msgid "Each color group must have an id, a label, and a swatches list."
+msgstr "У каждой цветной группы должна быть id, лейбл, и список свадеб."
+
+msgid "Each swatch must have a token, a label, and a value."
+msgstr "Каждый шлюз должен иметь символ, знак и значение."
+
+msgid "Swatch token \"%s\" does not target a color."
+msgstr "Слова \"%s\" не мишени для цвета."
+
+msgid "Token \"%s\" appears more than once in the palette."
+msgstr "Токен \" %s\" появляется больше, чем один раз в Палетте."
+
+msgid "Swatch value aliases a token that does not exist: \"%s\"."
+msgstr "Значимость означает символ, который не существует: %s."
+
+msgid "Swatch \"%s\" is part of the shipped palette and cannot be removed."
+msgstr "Перелов \"%s\" - часть отгруженной палеты и не может быть устранен."
+
+msgid "Accent"
+msgstr "Акцент"
+
+msgid "Sorry, that palette does not exist."
+msgstr "Простите, эта палетта не существует."
+
+msgid "Optional token library slug to target; defaults to the active library."
+msgstr "Факультативное символическое поле для библиотеки; неисполнение обязательств в активной библиотеке."
+
+msgid "The swatch token dot-path."
+msgstr "Слова с тонкими дот-патами."
+
+msgid "The swatch value: a literal color or a {dot.path} alias."
+msgstr "Значение люка: литературный цвет или {dot.path} псевдоним."
+
+msgid "The swatch's structural label. Only valid when {id} is the library's default palette — labels are defined once, not per palette."
+msgstr "Конструкционный лейбл швабры, только когда {id} - это неисполненная бледная метка библиотеки - этикетки определяются один раз, а не на палету."
+
+msgid "The palette id to make current."
+msgstr "Палетта должна сделать то, что нужно."
+
+msgid "A preset slug is required."
+msgstr "Требуется предсетевая слюна."
+
+msgid "The preset's human-readable label."
+msgstr "Предсет - человеческий лейбл."
+
+msgid "The preset's property => value map: an alias or literal, a per-corner list, or a responsive envelope."
+msgstr "Имущество пресета = карта стоимости: псевдоним или литературный, список на один корнер или реагирующий конверт."
+
+msgid "Which properties this preset genuinely stores itself, as property => true. A bound property absent here is only inherited from the baseline's own definition of the same preset slug, and a control shows it as a muted default rather than as bound."
+msgstr "Какая собственность, которую этот участок действительно хранит, как имущество = правда. &lt; &lt; Связанное имущество &gt; &gt; отсутствует здесь, унаследовано только из определения исходного уровня того же участка, и контроль показывает, что оно является не связанным, а не связанным, как смутным порохом."
+
+msgid "The classes the theme's own stylesheet paints this preset through, for a preset painted by class rather than by variables."
+msgstr "Классы с стильным шрифтом данной темы пишут заранее, для заранее сортовой, а не переменными."
+
+msgid "The values the theme currently renders for this preset, for display only: a control shows them as muted defaults and a save stores only the values that differ."
+msgstr "Значения, которые в настоящее время производятся для этой передаточной части, для отображения только: контроль показывает, что они являются грязью и защитным магазином, и только отличаются друг от друга значения."
+
+msgid "Whether the theme's values behind this preset could be read. A preset that is not readable can be previewed and picked but offers nothing to edit."
+msgstr "Значения этой темы можно прочесть, а не читать, можно предвидеть и выбрать, но не предлагает редактировать."
+
+msgid "The block name the preset collection belongs to."
+msgstr "Фильм, к которому принадлежит коллекция предварительного отсека."
+
+msgid "The default preset slug."
+msgstr "Сцепление с дефолтом."
+
+msgid "The preset slugs the library defines beyond the baseline. Deleting one removes it; deleting anything else at most reverts an override."
+msgstr "Претензия в библиотеке определяет не только исходные условия, но и исключает одну из них, исключив что-либо еще, в большинстве случаев, возвращает обратное."
+
+msgid "The named presets, keyed by slug."
+msgstr "Знаменитые пресети, клюшки с клюшкой."
+
+msgid "The stored theme presets the active theme does not offer, keyed by slug: not listed, not projected, kept until a theme that offers them is active again."
+msgstr "Записанная тема предшествует активной теме, которая не предложена: не включена в перечень, не прогнозируется, сохраняется до тех пор, пока не будет вновь активно обсуждаться предлагаемая тема."
+
+msgid "The label the preset was stored with."
+msgstr "На этикетке, с которой был записан презент."
+
+msgid "The overrides the preset keeps."
+msgstr "Преодоление держится в силе."
+
+msgid "The theme values the preset had when its overrides were last saved."
+msgstr "Тема ценит презентацию, когда ее конечные сбережения были сохранены."
+
+msgid "The design token library could not be encoded."
+msgstr "Не может быть кодирована библиотека дизайна."
+
+msgid "Sorry, that block does not accept presets."
+msgstr "Простите, этот блок не принимает предсети."
+
+msgid "A preset slug cannot be empty."
+msgstr "Сцепление не может быть пустым."
+
+msgid "Each preset must be an object with an optional string label and a token map."
+msgstr "Каждый преобразующий элемент должен быть объектом, имеющим факультативный знак лямки и символическую карту."
+
+msgid "A preset cannot set theme-owned keys."
+msgstr "Презентация не может установить ключи, принадлежащие к той или иной теме."
+
+msgid "That preset slug is reserved."
+msgstr "Этот предсетевый шлюз зарезервирован."
+
+msgid "A per-corner value is only valid for a dimension property."
+msgstr "Значение по одному корнеру действительно только для имущества по размеру."
+
+msgid "A per-corner base value must set every corner; a gap is only valid inside a responsive override."
+msgstr "Значение в расчете на один корнер должно устанавливаться в каждом углу; пробел является действительным только в пределах реагирующего перегиба."
+
+msgid "A dimension value must not contain a space; compound literals (e.g. calc(), clamp()) are not supported."
+msgstr "Значение размера не должно содержать пространства; не поддерживаются соединенные литературы (например, кальк(), зажим())."
+
+msgid "A per-corner responsive override requires a per-corner base value for the same property."
+msgstr "Для реагирующего на каждый угол регулировка требуется базовая величина для одного и того же объекта."
+
+msgid "A shadow value must be an alias, a literal, or a composite carrying color, offsetX, offsetY, blur and spread."
+msgstr "Теневая стоимость должна быть псевдонимом, литературным или композитным, перевозящим цвет, компенсивным, смешным и растягивающимся."
+
+msgid "The default preset must name an existing preset."
+msgstr "Предположение неисполнения должно обозначать существующий заранее."
+
+msgid "A theme preset cannot be the default preset."
+msgstr "Предпосылка не может быть предрасположена."
+
+msgid "A preset can only set properties the block binds."
+msgstr "Претензия может устанавливать только свойства блока."
+
+msgid "A preset alias does not resolve to a token."
+msgstr "Предназначенные псевдонимы не решаются."
+
+msgid "The block vendor segment, e.g. flxbk."
+msgstr "В блок-продавце, например, флксбк."
+
+msgid "The block name segment, e.g. singlebtn."
+msgstr "Сегмент с названиями блоков, например, салон."
+
+msgid "The preset slug."
+msgstr "Сцепление с засадой."
+
+msgid "The preset slug to create or merge."
+msgstr "Преднамеренный шлюз, чтобы создать или объединить."
+
+msgid "Optional human-readable label for the preset."
+msgstr "Факультативная цитата с человеческим авторитетом для презентации."
+
+msgid "The preset's property => alias-or-literal token map."
+msgstr "Имущество предсета = карта, предназначенная для псевдонимов или литературы."
+
+msgid "The presets to store, keyed by slug."
+msgstr "Предсеты для хранения, клавиатуру которых зашивает."
+
+msgid "Optional default preset slug."
+msgstr "Факультативная дефолтная слизняка."
+
+msgid "The preset slugs in their new display order."
+msgstr "Крутые шлюшки в их новом приказе."
+
+msgid "The combined design-token editor CSS for every token library."
+msgstr "Совокупный проектный редактор CSS для каждой символической библиотеки."
+
+msgid "The DTCG schema could not be read."
+msgstr "Схема ДКПГ не может быть прочещена."
+
+msgid "The published DTCG JSON Schema that a valid design token document must satisfy."
+msgstr "Опубликованная схема СПОН ДТСГ, которую должен удовлетворять действительный символ разработки."
+
+msgid "That custom token does not exist."
+msgstr "Этот обычай не существует."
+
+msgid "The id must be a lowercase kebab-case slug with no dots (e.g. my-color)."
+msgstr "Сид должен быть люком нижней части кебабаба без дот (например, мой цвет)."
+
+msgid "The group must be a lowercase kebab-case key."
+msgstr "Эта группа должна быть ключом с нижним кебабом."
+
+msgid "That group is not declared for user-created primitives."
+msgstr "Эта группа не объявлена для примитивов с пользователем."
+
+msgid "That $type does not support user-created primitives in this version."
+msgstr "Этот тип не поддерживает примитивные примитивы, устанавливаемые пользователем, в данном варианте."
+
+msgid "That id is used by a system token."
+msgstr "Эта индейка используется с помощью системы."
+
+msgid "A custom token with that id already exists."
+msgstr "С этой идеей уже существует обычай."
+
+msgid "That id is reserved by the system."
+msgstr "Эта id зарезервирована системой."
+
+msgid "System primitives cannot be deleted."
+msgstr "Системные примитивы не могут быть исключены."
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before deleting."
+msgstr "В этом примитивном положении содержатся ссылки, которые не могут быть автоматически урегулированы, снимать их вручную до исключения."
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before renaming."
+msgstr "В этом примитивном положении содержатся ссылки, которые не могут быть автоматически урегулированы, снимать их вручную до их переименования."
+
+msgid "The stored definition has no $type and cannot be renamed."
+msgstr "Закрепленное определение не имеет своего рода и не может быть переименовано."
+
+msgid "The new id is already in use."
+msgstr "Новая династия уже используется."
+
+msgid "The new id is reserved by the system."
+msgstr "Новая id зарезервирована системой."
+
+msgid "The canonical dot-path id of the user primitive."
+msgstr "Канонический дот-пат-ид пользователя, примитивный."
+
+msgid "The human-readable label stored in the provenance map."
+msgstr "Человеческий знак хранится в карте доказательства."
+
+msgid "The cache-busting version hash for the token library."
+msgstr "Версия с учебами для библиотеки."
+
+msgid "Whether the primitive can be safely deleted (all references are supported)."
+msgstr "Можно ли безопасно исключить примитивное вещество (подтверждаются все ссылки)."
+
+msgid "All alias references to this primitive found in the document."
+msgstr "Все ссылки на это примитивное вещество содержатся в документе."
+
+msgid "The id must be a canonical custom primitive path (primitive.<type>.custom.<slug>)."
+msgstr "Сид должен быть каноническим примитивным путем (примитивным. <type>.custom. <slug>)."
+
+msgid "The version token the client last read."
+msgstr "Версия вычеркнула клиента в последний раз."
+
+msgid "The terminal slug for the new primitive (kebab-case, no dots)."
+msgstr "Терминалный шлюз для нового примитива (дело кебаба, ни дот)."
+
+msgid "The DTCG $type for the new primitive."
+msgstr "Тип ДКПГ для нового примитива."
+
+msgid "The DTCG $value for the new primitive."
+msgstr "Стоимость ДКНЖ для нового примитива."
+
+msgid "Optional human-readable label."
+msgstr "Факультативная цитатата с человеческим правом."
+
+msgid "Optional stable machine key for the UI group this primitive should join."
+msgstr "Ключ с факультативным стабильным механизмом для группы УИ должен присоединиться этот примитивный."
+
+msgid "The canonical dot-path id of the user primitive to delete."
+msgstr "Каноническая дот-пат-ид пользователя, примитивный к исключению."
+
+msgid "The canonical dot-path id of the user primitive to rename."
+msgstr "Канонический дот-пат, который пользователь примитивно переименует."
+
+msgid "The new terminal slug (kebab-case, no dots)."
+msgstr "Новый терминалный шлюз (кеб-дело, никаких точек)."
+
+msgid "Optional new human-readable label."
+msgstr "Факультативная новая человеческая ярлыка."
+
+msgid "Theme Base"
+msgstr "База данных"
+
+msgid "Theme %s"
+msgstr "Тема %s"
+
+msgid "Theme Button"
+msgstr "Тема Баттон."
+
+msgid "Theme Secondary"
+msgstr "Тема среднего образования"
+
+msgid "Unknown block."
+msgstr "Неизвестный квартал."
+
+msgid "Choose Small, Large or Fullwidth."
+msgstr "Выбери маленькую, крупную или Фулвайдт."
+
+msgid "Enter a width between 200 and 4000 px."
+msgstr "Ширина между 200 и 4000 px."
+
+msgid "Pattern not found."
+msgstr "Паттерн не найден."
+
+msgid "Enter a valid site address."
+msgstr "Введите действительный адрес."
+
+msgid "Pale pink"
+msgstr "Цветок в бумажной розовой"
+
+msgid "Vivid red"
+msgstr "красный"
+
+msgid "Luminous vivid orange"
+msgstr "Светло-яркий оранжевый"
+
+msgid "Luminous vivid amber"
+msgstr "Светло-яркая янтарь"
+
+msgid "Light green cyan"
+msgstr "Светлый зеленый циан"
+
+msgid "Vivid green cyan"
+msgstr "Зеленый циан"
+
+msgid "Pale cyan blue"
+msgstr "Синий циан"
+
+msgid "Vivid cyan blue"
+msgstr "Синий циан"
+
+msgid "Very light gray"
+msgstr "Очень светлый"
+
+msgid "Cyan bluish gray"
+msgstr "Сиан седина"
+
+msgid "Very dark gray"
+msgstr "Очень темный."
+
+msgid "Config Flux Block Defaults"
+msgstr "Закладки с блоками потоков"
+
+msgid "Config Flux Block visibility settings"
+msgstr "Установки видимости блокировки блокировки Flux B"
+
+msgid "Config Flux Block Settings"
+msgstr "Установки для блокировки Flux Block"
+
+msgid "Config Flux Block Prophecy AI"
+msgstr "Заголовок « Заголовок »"
+
+msgid "Config Flux Block Editor Color Palette"
+msgstr "Цветовой индекс"
+
+msgid "Config Flux Block Editor Global Settings"
+msgstr "Редактор &lt; &lt; Глобальные установки &gt; &gt;"
+
+msgid "Google reCaptcha Site Key"
+msgstr "Ключ сайта Google reCAPTCHA"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Скрытая ключи Google"
+
+msgid "Google reCaptcha Language"
+msgstr "Гуглить язык рекапчи"
+
+msgid "Cloudflare Turnstile Site Key"
+msgstr "Ключ от облачной стройной площадки"
+
+msgid "Cloudflare Turnstile Secret Key"
+msgstr "Скрытая ключи от облаков"
+
+msgid "hCaptcha Turnstile Site Key"
+msgstr "h Капитанча, ключ к объекту"
+
+msgid "hCaptcha Secret Key"
+msgstr "h Капитан, секретный ключ"
+
+msgid "MailerLite API Key"
+msgstr "Ключ"
+
+msgid "Google Maps API Key"
+msgstr "Google Карты API"
+
+msgid "Config Flux Block Editor Cloud"
+msgstr "Редактор &quot; Конфиг флюкс Блок &quot;"
+
+msgid "Is Flux header notice dismissed"
+msgstr "Уведомление Флукса отклонено"
+
+msgid "Subscribe to Wireframe library"
+msgstr "Перевод в библиотеку Wireframe"
+
+msgid "ConvertKit API Key"
+msgstr "Конвертка API"
+
+msgid "Mark the Header popover tutorial Complete"
+msgstr "Марка наставника по оположительному популю"
+
+msgid "Small Template"
+msgstr "Малый храм"
+
+msgid "Large Template"
+msgstr "Большой шаблон"
+
+msgid "Post default"
+msgstr "По умолчанию"
+
+msgid "Page Default"
+msgstr "Строка"
+
+msgid "Enable Editor Width"
+msgstr "Адресный редактор"
+
+msgid "Load Google Fonts Locally"
+msgstr "Загрузить шрифты в Google"
+
+msgid "Show Block Headers in Admin Bar"
+msgstr "Шоу Блок Хедерс в Админ Бар"
+
+msgid "Allows for changes to the editor width on per page/post basis with preset defaults."
+msgstr "Допускается внесение изменений в ширину редактора на странице/пост с заранее установленными неисполнениями."
+
+msgid "False"
+msgstr "False"
+
+msgid "True"
+msgstr "Верно."
+
+msgid "Experimental editor CSS for less excess margins in Gutenberg in an attempt to get a closer WYSIWYG editing experience."
+msgstr "Экспериментальный редактор CSS для меньшего количества наценок в Гутенберге в попытке получить более широкий опыт редактирования WYSIWYG."
+
+msgid "px"
+msgstr "px"
+
+msgid "Fullwidth"
+msgstr "Полностью"
+
+msgid "Create rows with nested blocks either in columns or as a container. Give style to your rows with background, overlay, padding, etc."
+msgstr "Создавать ряды с непроницаемыми блоками либо в колонках, либо в контейнере."
+
+msgid "Create a contact form or marketing form and style it within the block editor."
+msgstr "Создать контактную форму или рекламную форму и стиль в редакторе блока."
+
+msgid "Advanced Gallery"
+msgstr "Авансовые галереи"
+
+msgid "Photo galleries, carousels, and sliders! Enable custom links, captions, and more. Plus, you can select image sizes."
+msgstr "Фотографические галереи, карусели и слайдеры!"
+
+msgid "Advanced Button"
+msgstr "Авангардный бутон"
+
+msgid "Create an advanced button or a row of buttons. Style each one including hover controls plus you can use an icon and display them side by side"
+msgstr "Создайте переднюю кнопку или ряд кнопок, сложите каждую, включая управление по охлаждению, плюс вы можете использовать икон и отобрать их бок о бок."
+
+msgid "Add an extra \"wow\" factor to your site with engaging Lottie animations."
+msgstr "Добавить дополнительный фактор \"вау\" к вашему сайту, с помощью анимаций Лотти."
+
+msgid "Manage Lottie Animations"
+msgstr "Регулирование анимации лотти"
+
+msgid "Vector Graphics"
+msgstr "Вектор Графия"
+
+msgid "Add custom vector icons and SVGs to enhance your site design."
+msgstr "Добавить векторные иконы и СВГ для усовершенствования дизайна вашего участка."
+
+msgid "Manage Vector Graphics"
+msgstr "Управление графическими данными о векторах"
+
+msgid "Advanced Header"
+msgstr "Авангард"
+
+msgid "Build custom headers in the block editor and full site editing."
+msgstr "Покупать специальные заголовки в редакторе блока и редактировать полный сайт."
+
+msgid "Manage Headers"
+msgstr "Управление заголовками"
+
+msgid "Advanced Navigation"
+msgstr "Авангардное судоходство"
+
+msgid "Build custom navigation menus"
+msgstr "Построение традиционного меню для навигации"
+
+msgid "Manage Navigation Menus"
+msgstr "Управление навигационными панельми"
+
+msgid "Choose from over 1500+ SVG Icons to add into your page and style the size, colors, background, border, etc."
+msgstr "Выбрать из 1500+ SVG Icons, чтобы добавить в свою страницу и стиль размер, цветы, фон, границы и т.д."
+
+msgid "Spacer/Divider"
+msgstr "Космический агент/дивиддер"
+
+msgid "Easily create a divider and determine the space around it or just create some space in your content."
+msgstr "Просто создай диепаратор и определи его место или просто создай какое-то пространство в вашем содержании."
+
+msgid "Create a heading or paragraph and define sizes for desktop, tablet and mobile along with font family, colors, etc."
+msgstr "Создать заголовок или пункт и определить размеры настольных, таблеток и мобильной продукции наряду с семейством, цветами и т.д."
+
+msgid "Tabs"
+msgstr "Табс"
+
+msgid "Create custom vertical or horizontal tabs with advanced styling controls. Each tab content is an empty canvas able to contain any other blocks."
+msgstr "Созвать таможенные вертикальные или горизонтальные таблички с современными устройствами регулировки штифтов, каждая табачная контента - пустые свечи, способные содержать любые другие блоки."
+
+msgid "Info Box"
+msgstr "Информационное поле"
+
+msgid "Create a box containing an icon or image and, optionally, a title, description, and learn more text. Style static and hover separately."
+msgstr "Создайте коробку, содержащую икон или изображение, и, факультативно, название, описание и учитесь больше текста."
+
+msgid "Accordion"
+msgstr "Согласие"
+
+msgid "Create beautiful accordions! Each pane can contain any other block, customize title styles, content background, and borders."
+msgstr "Каждый из них может содержать любой другой блок, адаптировать стиль титула, контент и границы."
+
+msgid "Icon List"
+msgstr "Список"
+
+msgid "Add beautiful icons to your lists and make them more engaging. Over 1500 icons to choose from and unlimited styles."
+msgstr "Добавить красивые иконы в ваши списки и сделать их более активными. 1500 икон выбирают из неограниченных стилей."
+
+msgid "Allow your readers to navigate your content easily with a table of contents block. Includes smooth scroll to anchor."
+msgstr "Пусть ваши читателям легко управлять своим содержанием с помощью содержимого блока, включая гладкий свиток на якорь."
+
+msgid "Posts"
+msgstr "Сообщения"
+
+msgid "Display a clean grid of posts anywhere on your site, great for your home page where you want to tease your blog."
+msgstr "Отобрать чистую сеть постов где угодно на вашем сайте, отлично для вашей домашней страницы, где вы хотите дразнить блог."
+
+msgid "Countdown"
+msgstr "Countdown"
+
+msgid "Increase your conversions by adding a sense of urgency to your offering. Pro includes evergreen campaigns as well."
+msgstr "Увеличить вашу конверсию, добавив в свое предложение чувство срочности, и включить в программу все более масштабные кампании."
+
+msgid "Testimonials"
+msgstr "Testimonials"
+
+msgid "Create confidence in your brand or product by showing off beautiful unique testimonials, add as a carousel or a grid."
+msgstr "Установить доверие к вашему марку или продукту, показывая красивые уникальные тестимониалы, добавив в качестве каруселя или сетки."
+
+msgid "Video Popup"
+msgstr "Видео Поппа"
+
+msgid "Beautifully display a thumbnail with overlay and hover effect that links to a video popup on click. Works with local or external videos!"
+msgstr "Прекрасная демонстрация большого пальца с помощью замка и похмелья, связывающих с видеозаписью на клике, работает с местными или внешними видеозаписями!"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "Last updated"
+msgstr "Последнее обновление"
+
+msgid "Unknown"
+msgstr "Неизвестно"
+
+msgid "Previous version"
+msgstr "Предыдущий вариант"
+
+msgid "Has Pro"
+msgstr "Про"
+
+msgid "Deactivated Blocks"
+msgstr "Отключенные блоки В"
+
+msgid "Has Block Defaults"
+msgstr "Заголовки блока"
+
+msgid "Using Setting Visibility"
+msgstr "Использование распознавания"
+
+msgid "Has Custom Colors"
+msgstr "Цветы обычно"
+
+msgid "Has reCAPTCHA key"
+msgstr "Ключ reCAPTCHA"
+
+msgid "Has a maps API key"
+msgstr "У него есть карта API ключ"
+
+msgid "Has MailerLite key"
+msgstr "Ключ Мейлерлейт"
+
+msgid "Has Cloud Library"
+msgstr "Библиотека &lt; &lt; Клоуд &gt; &gt;"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Read More"
+msgstr "Читать больше"
+
+msgid "By"
+msgstr "Автор"
+
+msgid "Posted on"
+msgstr "Должность"
+
+msgid "Updated on"
+msgstr "Обновленная информация"
+
+msgid "Posted in"
+msgstr "Должность"
+
+msgid ", "
+msgstr ", "
+
+msgid "Comment"
+msgstr "Комментарий"
+
+msgid "Comments"
+msgstr "Комментарии"
+
+msgid " / "
+msgstr " / "
+
+msgid " - "
+msgstr " - "
+
+msgid " | "
+msgstr " | "
+
+msgid "View File"
+msgstr "Просмотреть файл"
+
+msgid "Sent from %s"
+msgstr "Отправлено из %s"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Custom"
+msgstr "Пользовательский"
+
+msgid "Auto"
+msgstr "Авто"
+
+msgid "Gradient"
+msgstr "Градиент"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Individual"
+msgstr "Отдел"
+
+msgid "Linked"
+msgstr "Увязка"
+
+msgid "Solid"
+msgstr "Solid"
+
+msgid "Dashed"
+msgstr "Dashed"
+
+msgid "Dotted"
+msgstr "Dotted"
+
+msgid "Double"
+msgstr "Двойная"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "Color"
+msgstr "Цвет"
+
+msgid "Left"
+msgstr "Левый"
+
+msgid "Top"
+msgstr "Top"
+
+msgid "Hover"
+msgstr "Hover"
+
+msgid "Normal"
+msgstr "Нормальный"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Right"
+msgstr "Правильно"
+
+msgid "Bottom"
+msgstr "Bottom"
+
+msgid "Reset"
+msgstr "Сброс"
+
+msgid "auto"
+msgstr "Автомобиль"
+
+msgid "Background"
+msgstr "Фон"
+
+msgid "Desktop"
+msgstr "Рабочий стол"
+
+msgid "Tablet"
+msgstr "Таблетка"
+
+msgid "Mobile"
+msgstr "мобильный"
+
+msgid "div"
+msgstr "div"
+
+msgid "Weight"
+msgstr "Вес"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "-"
+msgstr "-"
+
+msgid "Uppercase"
+msgstr "Вертолет"
+
+msgid "Lowercase"
+msgstr "Нижняя часть"
+
+msgid "Capitalize"
+msgstr "Капитализация"
+
+msgid "Font Family"
+msgstr "Семейство шрифтов"
+
+msgid "Padding"
+msgstr "Отступы"
+
+msgid "20%"
+msgstr "20%"
+
+msgid "40%"
+msgstr "40%"
+
+msgid "50%"
+msgstr "50%"
+
+msgid "75%"
+msgstr "75%"
+
+msgid "80%"
+msgstr "80%"
+
+msgid "100%"
+msgstr "100%"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Margin"
+msgstr "Маржа"
+
+msgid "label"
+msgstr "Знак опасности"
+
+msgid "value"
+msgstr "значение"
+
+msgid "form"
+msgstr "форма"
+
+msgid "button"
+msgstr "кнопка"
+
+msgid "icon"
+msgstr "значок"
+
+msgid "image"
+msgstr "изображение"
+
+msgid "Border Color"
+msgstr "Цвет границы"
+
+msgid "text"
+msgstr "текст"
+
+msgid "heading"
+msgstr "в направлении"
+
+msgid "Heading"
+msgstr "Заголовок"
+
+msgid "section"
+msgstr "Раздел"
+
+msgid "number"
+msgstr "Номер"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "header"
+msgstr "Голова"
+
+msgid "svg"
+msgstr "svg"
+
+msgid "list"
+msgstr "Список"
+
+msgid "info"
+msgstr "info"
+
+msgid "1"
+msgstr "1"
+
+msgid "hide"
+msgstr "скрыть"
+
+msgid "separator"
+msgstr "separator"
+
+msgid "Tab"
+msgstr "tab"
+
+msgid "Saving…"
+msgstr "Сохранение..."
+
+msgid "Favorite"
+msgstr "Любимый"
+
+msgid "Color Palette"
+msgstr "Цвет"
+
+msgid "Breakpoint"
+msgstr "Разрыв"
+
+msgid "Drag to reorder"
+msgstr "Перетащите, чтобы изменить порядок"
+
+msgid "Reset %1$s to %2$s"
+msgstr "Перенос %1$s - %2$s"
+
+msgid "From %s"
+msgstr "Из %s"
+
+msgid "From theme"
+msgstr "Из темы"
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+msgid "Blur"
+msgstr "Blur"
+
+msgid "Spread"
+msgstr "Пространство"
+
+msgid "Inset"
+msgstr "Inset"
+
+msgid "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here."
+msgstr "Цвет %1$d в этой палете все еще стоит %2$s, пока вы не прибавите его в этой палетте, редактируя его в %2$s, он тоже будет обновляться здесь."
+
+msgid "Learn more"
+msgstr "Узнать больше"
+
+msgid "Search fonts…"
+msgstr "Обычные шрифты..."
+
+msgid "No fonts found"
+msgstr "Никаких шрифтов найдено не было"
+
+msgid "Keep typing to narrow the list"
+msgstr "Продолжайте печатать, чтобы сузить список."
+
+msgid "Options loaded."
+msgstr "Варианты загружены."
+
+msgid "Loading options…"
+msgstr "Варианты погрузки..."
+
+msgid "Swatch view"
+msgstr "Вид движения"
+
+msgid "Grid view"
+msgstr "Гримальный вид"
+
+msgid "List view"
+msgstr "Мнение о перечне"
+
+msgid "Set \"%s\" as the active library?"
+msgstr "\" %s\" как активная библиотека?"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor."
+msgstr "В вашем сайте в настоящее время используется \" %1$s\" и устанавливается %2$s как активный вид меняет цветы, типографию, интервалы и другие стихи на всей вашей сайте прямо сейчас, на переднем конце и в редакторе."
+
+msgid "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over."
+msgstr "Ты можешь переключаться в любое время, но любые традиционные значения в \" %s\" остаются в библиотеке - они не копируются."
+
+msgid "Setting active…"
+msgstr "Устраиваясь активным..."
+
+msgid "Set as active"
+msgstr "Установлено как активное"
+
+msgid "Set \"%s\" as the active palette?"
+msgstr "Назначить \" %s\" активным Палеттой?"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor."
+msgstr "В вашем сайте в настоящее время используется \" %1$s\", а именно %2$s в качестве активных изменений в цветах по всему сайту, прямо на переднем конце и в редакторе."
+
+msgid "Add Color Group"
+msgstr "Добавить группу цветов"
+
+msgid "Group name"
+msgstr "Название группы"
+
+msgid "A color group named \"%s\" already exists."
+msgstr "Цветовая группа по имени %s уже существует."
+
+msgid "Loading…"
+msgstr "Загрузка..."
+
+msgid "Base Styles"
+msgstr "Базовые штаммы"
+
+msgid "Block Presets"
+msgstr "Блокировка пресетов"
+
+msgid "Create Library"
+msgstr "Библиотека Create"
+
+msgid "Library title"
+msgstr "Название библиотеки"
+
+msgid "A library named \"%s\" already exists."
+msgstr "Библиотека по имени %s уже существует."
+
+msgid "Creating…"
+msgstr "Создание..."
+
+msgid "Create Color Palette"
+msgstr "Создать цветную палетку"
+
+msgid "Palette name"
+msgstr "Имя и фамилия палетки"
+
+msgid "A palette named \"%s\" already exists."
+msgstr "Палета по имени %s уже существует."
+
+msgid "Delete Color Group?"
+msgstr "Удалить Колор Групп?"
+
+msgid "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette."
+msgstr "Опустить группу \"%1$s\" и ее цвет %2$d?"
+
+msgid "Deleting…"
+msgstr "Отключить..."
+
+msgid "Resetting…"
+msgstr "Чувствую себя..."
+
+msgid "Reset Library"
+msgstr "Библиотека перезагрузки"
+
+msgid "Delete Library"
+msgstr "Исключить Библию"
+
+msgid "Reset '%s' to its default values?"
+msgstr "Переместить %s на свои неисполненные значения?"
+
+msgid "Delete '%s'? Its tokens and presets are removed permanently."
+msgstr "Удалить %s?"
+
+msgid "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor."
+msgstr "Это также ваша активная библиотека, так что ваш сайт будет использовать \"%s\", вместо этого его цветы, типография, интервалы и другие стихи будут прямо на вашем сайте, на переднем конце и в редакторе."
+
+msgid "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor."
+msgstr "Это также ваша активная библиотека, так что ваш сайт нуждается в еще одной библиотеке, которую вы вы выбираете, сразу же живет - цветы, типография, чередование и другие стихи меняются на вашем сайте на переднем конце и в редакторе."
+
+msgid "Which library should your site use instead?"
+msgstr "Какая библиотека должна использовать вместо этого ваш сайт?"
+
+msgid "Select a library…"
+msgstr "Выбери библиотеку..."
+
+msgid "Delete \"%s\"?"
+msgstr "Удалить «%s»?"
+
+msgid "Reset \"%s\"?"
+msgstr "Перезагрузка %s?"
+
+msgid "Its color overrides are removed permanently."
+msgstr "Его цветные засушливые отрубы постоянно удаляются."
+
+msgid "Its colors return to the shipped baseline. The palette itself stays."
+msgstr "Цветы возвращаются в отгруженные исходные условия."
+
+msgid "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor."
+msgstr "Это также ваша активная палета, так что ваш сайт будет использовать \"%s\", а цветы будут прямо напротив вашего сайта, на переднем конце и в редакторе."
+
+msgid "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor."
+msgstr "Это также твоя активная палетка, так что ваш сайт нуждается в другой."
+
+msgid "Which palette should your site use instead?"
+msgstr "А какая бледная палетта должна использовать вместо этого твой сайт?"
+
+msgid "Select a palette…"
+msgstr "Выбери палету..."
+
+msgid "Not available in the current theme"
+msgstr "Не имеется в наличии в рамках нынешней темы"
+
+msgid "These presets came from another theme. Your changes to them are kept until that theme is active again."
+msgstr "Эти предсказания были сделаны по другой теме, ваши изменения в них сохранились до тех пор, пока эта тема не будет активна."
+
+msgid "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept."
+msgstr "Значения этой темы не могут быть сохранены в заранеем порядке, так что можно сохранить только ваши изменения."
+
+msgid "The theme's own values for this preset were not recorded, so only your changes can be kept."
+msgstr "Значения этой темы не были записаны, так что можно сохранить только ваши изменения."
+
+msgid "Keep as custom preset"
+msgstr "Сохраняйте, как обычно."
+
+msgid "Keep changes as custom preset"
+msgstr "Сохраняйте изменения в зависимости от конкретного вида"
+
+msgid "Discard changes"
+msgstr "Изменения в деградациях"
+
+msgid "Active library"
+msgstr "Активная библиотека"
+
+msgid "Your site uses this library."
+msgstr "Ваш сайт использует эту библиотеку."
+
+msgid "Not the active library"
+msgstr "Не в активной библиотеке."
+
+msgid "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles."
+msgstr "Устанавливая его как активный, это делает библиотеку той, которую использует ваш сайт, переключается на его цветы, размеры и стиль."
+
+msgid "Edit library"
+msgstr "Редактировать библиотеку"
+
+msgid "Library"
+msgstr "Библиотека"
+
+msgid "New Library"
+msgstr "Новая библиотека"
+
+msgid "Active palette"
+msgstr "Активная палетка"
+
+msgid "Your site uses this palette."
+msgstr "Ваш сайт использует эту палету."
+
+msgid "Not the active palette"
+msgstr "А не активная палетка."
+
+msgid "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette."
+msgstr "Устанавливая его так, как он активен, делает эту палету той, которую использует ваш сайт, и отдельные блоки все еще могут быть переключены на другой палет."
+
+msgid "Edit palette"
+msgstr "Правка палитры"
+
+msgid "Drag to reorder %s"
+msgstr "Дрейг в реанимацию %s"
+
+msgid "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values."
+msgstr "У вас есть непростые изменения в %s 'Спасите их, или отбросите их, чтобы вернуться к сбереженным ценностям."
+
+msgid "You have unsaved changes. Save them, or discard them to go back to the saved values."
+msgstr "У тебя есть неспровоцированные перемены, спасите их, или отбросите их, чтобы вернуться к сбереженным ценностям."
+
+msgid "Unsaved Changes"
+msgstr "Несохраненные изменения"
+
+msgid "Discard"
+msgstr "Отбросить"
+
+msgid "Corner Radius"
+msgstr "Угол Радиуса"
+
+msgid "Add Border Radius"
+msgstr "Добавить пограничный радий"
+
+msgid "New Radius"
+msgstr "Новый радий"
+
+msgid "Radius"
+msgstr "Radius"
+
+msgid "Add Border Width"
+msgstr "Добавить пограничный круг"
+
+msgid "New Border Width"
+msgstr "Новая граница"
+
+msgid "Loading %s…"
+msgstr "Погрузка %s ..."
+
+msgid "%s loaded."
+msgstr "%s загружен."
+
+msgid "Add color"
+msgstr "Добавить цвет."
+
+msgid "Edit %s"
+msgstr "Edit %s"
+
+msgid "Color group"
+msgstr "Колоричная группа"
+
+msgid "This palette could not be loaded."
+msgstr "Эту палету нельзя загрузить."
+
+msgid "Settings loaded."
+msgstr "Заряжены."
+
+msgid "Edit color"
+msgstr "Красный цвет"
+
+msgid "Add Icon Size"
+msgstr "Добавить Icon"
+
+msgid "New Icon Size"
+msgstr "Новый размер икон"
+
+msgid "This screen is coming soon."
+msgstr "Этот экран скоро приедет."
+
+msgid "Adding…"
+msgstr "Добавить..."
+
+msgid "Preset saved."
+msgstr "Пресет спасён."
+
+msgid "Preset deleted."
+msgstr "Презат исключен."
+
+msgid "Preset reset."
+msgstr "Перезагрузка."
+
+msgid "Theme preset"
+msgstr "Предназначение."
+
+msgid "Styled by your theme. Flux Block Editor can't read or change these styles."
+msgstr "Редактор \"Флюкс Блок\" не может читать или изменять эти стиля."
+
+msgid "Changes saved under another theme still apply to it. Reset removes them."
+msgstr "К ней все еще применяются изменения, которые были сэкономлены в рамках другой темы."
+
+msgid "Edit preset"
+msgstr "Редактировать предварительный ввод"
+
+msgid "Edit token"
+msgstr "Изменить символ"
+
+msgid "Add Shadow"
+msgstr "Добавить Тени."
+
+msgid "New Shadow"
+msgstr "Новая тень"
+
+msgid "Add Spacing"
+msgstr "Добавить"
+
+msgid "New Spacing"
+msgstr "Новый Спацификатор"
+
+msgid "Visualize your font"
+msgstr "Визуализировать свой шрифт"
+
+msgid "Add Favorite"
+msgstr "Добавить любимый"
+
+msgid "Adding Favorite…"
+msgstr "Добавить Фаворита..."
+
+msgid "Remove Favorite"
+msgstr "Удаление пещеры"
+
+msgid "Removing Favorite…"
+msgstr "Убрать Фаворит..."
+
+msgid "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site."
+msgstr "Напишите этот шрифт на вершину ваших каталогов, здесь и в редакторе, он не меняет ни одного текста на вашем сайте."
+
+msgid "Unpins this font from the top of your font pickers. Text already using it stays as it is."
+msgstr "Снимает этот шрифт с верхней части твоих кирпичей, а текст уже использует его, остается таким же, как он есть."
+
+msgid "%s removed from favorites."
+msgstr "%s удален от любимых."
+
+msgid "%s added to favorites."
+msgstr "%s добавлен к любимым."
+
+msgid "Font"
+msgstr "Шрифт"
+
+msgid "Typography"
+msgstr "Typography"
+
+msgid "Add Size"
+msgstr "Добавить калибр"
+
+msgid "New Font Size"
+msgstr "Новый фонт-сам"
+
+msgid "Set the colors your site uses. Change a color here and it updates everywhere it's applied."
+msgstr "Поставь цветы на вашем месте, измените цвет здесь, и он обновляет везде, где он применяется."
+
+msgid "Set the text sizes your site uses, and pick the fonts you want close to hand."
+msgstr "Сложите количество текстов, которые использует ваш сайт, и выберите шрифты, которые вы хотите сблизиться с руками."
+
+msgid "Set the border radius options your site uses, so buttons, images and cards stay consistent."
+msgstr "Установите пограничный радиус, чтобы ваш сайт использовался, так что кнопки, изображения и карточки остаются последовательными."
+
+msgid "Set the border thickness options your site uses, so borders match across your blocks."
+msgstr "Установите варианты пограничной толщины, которые использует ваш сайт, так что границы совпадают с вашими кварталами."
+
+msgid "Set the padding and margin steps your site uses, so gaps stay consistent from block to block."
+msgstr "Установите ступеньки и маржиу, которые вы используете, так что пробелы остаются последовательными от квартала до квартала."
+
+msgid "Set the sizes your icons can use, so icons stay consistent wherever they appear."
+msgstr "Определить размеры, которые могут использовать твои иконы, так что иконы должны быть последовательными везде, где они появляются."
+
+msgid "Set the shadow styles your site uses, so depth looks consistent across your blocks."
+msgstr "Установить теневые стильы на вашем объекте, так что глубина логически совпадает с вашими кварталами."
+
+msgid "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand."
+msgstr "Спасите кнопки в качестве предсказателей, чтобы вы могли применить весь взгляд на один клик вместо того, чтобы подставить каждый вариант."
+
+msgid "Save image styles as presets, so rounding, shadows and spacing stay the same across your images."
+msgstr "Спасать образы, как предки, так что округляться, тенни и закачиваться, держаться одинаково по своим изображениям."
+
+msgid "Save row styles as presets, so the sections of a page share the same background and rounding."
+msgstr "Сохранение стилей строк в качестве предисловий, поэтому разделы страницы имеют одинаковый фон и округление."
+
+msgid "Save section styles as presets, so the columns inside your rows share the same background and rounding."
+msgstr "Спасите сеансы как предки, так что колонки в ваших рядах совпадают с тем же фоном и округлением."
+
+msgid "Save icon styles as presets, so icons keep the same size and color wherever you use them."
+msgstr "Спасите иконовые стильы, как предки, так что иконы сохраняют одинаковый размер и цвет, где бы вы их не использовали."
+
+msgid "Save text styles as presets, so headings and paragraphs read the same from page to page."
+msgstr "Спасать текстообразные стиля в качестве предисловий, поэтому заголовки и пункты читают то же самое с страницы на страницу."
+
+msgid "Something went wrong. Please try again."
+msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз."
+
+msgid "Enter a library title."
+msgstr "Входите в библиотечный титул."
+
+msgid "A library with that title already exists."
+msgstr "Библиотека с этим названием уже существует."
+
+msgid "Choose which library your site should use instead."
+msgstr "Выбери какую библиотеку, которую нужно использовать вместо этого."
+
+msgid "Enter a palette name."
+msgstr "Назови имя Палетт."
+
+msgid "A palette with that name already exists."
+msgstr "Палета с этим именем уже существует."
+
+msgid "Choose which palette your site should use instead."
+msgstr "Выбирайте, какую палетту нужно использовать вместо этого."
+
+msgid "Enter a color group name."
+msgstr "Назови цветное название."
+
+msgid "A color group with that name already exists."
+msgstr "Цветовая группа с этим именем уже существует."
+
+msgid "Custom Colors"
+msgstr "Обычные цветы"
+
+msgid "Saving failed."
+msgstr "Спасение провалилось."
+
+msgid "Another change to this library is already in progress."
+msgstr "Еще одно изменение в этой библиотеке уже происходит."
+
+msgid "Palette activated."
+msgstr "Палетта активирована."
+
+msgid "Palette created."
+msgstr "Палетта создала."
+
+msgid "Palette renamed."
+msgstr "Палетта переименована."
+
+msgid "Palette deleted."
+msgstr "Палетта опущена."
+
+msgid "Palette reset."
+msgstr "Палетт перезагрузилась."
+
+msgid "Swatch saved."
+msgstr "Смена спасена."
+
+msgid "Swatch deleted."
+msgstr "Переключатель удален."
+
+msgid "Swatch reset."
+msgstr "Перезагрузка."
+
+msgid "New Color"
+msgstr "Новый цвет"
+
+msgid "Color added."
+msgstr "Цвет добавлен."
+
+msgid "Color group added."
+msgstr "Группа цветов добавила."
+
+msgid "Color group renamed."
+msgstr "Колорская группа переименована."
+
+msgid "Color group deleted."
+msgstr "Колоричная группа исключена."
+
+msgid "Token created."
+msgstr "Токен создан."
+
+msgid "Token saved."
+msgstr "Токен спасся."
+
+msgid "Token deleted."
+msgstr "Токен удален."
+
+msgid "Token reset."
+msgstr "Токен перезагрузка."
+
+msgid "Token order saved."
+msgstr "Токен спас приказ."
+
+msgid "100 Thin"
+msgstr "100 Thin"
+
+msgid "200 Extra Light"
+msgstr "200 Дополнительный свет"
+
+msgid "300 Light"
+msgstr "300 Свет"
+
+msgid "400 Regular"
+msgstr "400"
+
+msgid "500 Medium"
+msgstr "500 Средний"
+
+msgid "600 Semi Bold"
+msgstr "600 Полузолотые"
+
+msgid "700 Bold"
+msgstr "700 Болт"
+
+msgid "800 Extra Bold"
+msgstr "800 Экстральд"
+
+msgid "900 Black"
+msgstr "900"
+
+msgid "Transform"
+msgstr "Трансформация"
+
+msgid "Add Text Style"
+msgstr "Добавить текст Стиля"
+
+msgid "New Text Style"
+msgstr "Новый текст"
+
+msgid "Border and Shadow"
+msgstr "Граница и тень"
+
+msgid "Add Button"
+msgstr "Добавить кнопку."
+
+msgid "New Button"
+msgstr "Новый кнопка"
+
+msgid "Add Section Style"
+msgstr "Добавить раздел &lt; &lt; Стиль &gt; &gt;"
+
+msgid "New Section Style"
+msgstr "Новая секция"
+
+msgid "Add Image Style"
+msgstr "Добавить имейдж Стиль"
+
+msgid "New Image Style"
+msgstr "Новый стиль изображения"
+
+msgid "Add Row Style"
+msgstr "Добавить Рау Стайл"
+
+msgid "New Row Style"
+msgstr "Новый строй"
+
+msgid "Add Icon Style"
+msgstr "Добавить Икон Стиль"
+
+msgid "New Icon Style"
+msgstr "Новый стиль Икона"
+
+msgid "Matches the design system value"
+msgstr "Схема проектной системы"
+
+msgid "Overrides the design system value"
+msgstr "Превышение значения проектной системы"
+
+msgid "Reset to the design system value"
+msgstr "Перенос в расчетную величину проектной системы"
+
+msgid "Reverted to default"
+msgstr "Перезагрузить в по умолчанию"
+
+msgid "This token was deleted from the Style Library. The default applies until you pick a new value or reset."
+msgstr "Этот символ был исключен из библиотеки Style."
+
+msgid "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset."
+msgstr "Этот вариант был сделан из темы Flux, которая более не активна, и он применяется до тех пор, пока не выберешь новую ценность или перезагрузку."
+
+msgid "Border style"
+msgstr "Пограничный стиль"
+
+msgid "Border style (%s)"
+msgstr "Пограничный стиль (%s)"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "%s Border Color"
+msgstr "%s Пограничный цвет"
+
+msgid "Previous color format"
+msgstr "Предыдущий цветной формат"
+
+msgid "Next color format"
+msgstr "Следующий цветок"
+
+msgid "No favorite fonts yet."
+msgstr "Пока никаких любимых шрифтов."
+
+msgid "Manage favorites in the Style Library"
+msgstr "В библиотеке Стилла фавориты"
+
+msgid "Favorites"
+msgstr "Избранное"
+
+msgid "Inherited"
+msgstr "Ненадеженные"
+
+msgid "Custom value"
+msgstr "Обычная стоимость"
+
+msgid "Unit"
+msgstr "Единица"
+
+msgid "Theme default"
+msgstr "По умолчанию темы"
+
+msgid "Default (%s)"
+msgstr "Дефолт (%s)"
+
+msgid "Inherited (%s)"
+msgstr "Недоедание (%s)"
+
+msgid "img"
+msgstr "img"
+
+msgid "menu"
+msgstr "menu"

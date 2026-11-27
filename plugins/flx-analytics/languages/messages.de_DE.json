@@ -98,7 +98,7 @@
     "Referral link": "Empfehlungslink",
     "Mobile": "Mobil",
     "Tablet": "Tablette",
-    "Desktop": "Desktop",
+    "Desktop": "Desktop-PC",
     "Other": "Andere",
     "Live visitors": "Live-Besucher",
     "Traffic sources and referrals": "Verkehrsquellen und Verweise",
@@ -187,7 +187,7 @@
     "All time": "Alle Zeiten",
     "Custom range": "Benutzerdefiniertes Sortiment",
     "Device": "Gerät",
-    "Browser": "Browser",
+    "Browser": "Browser-Software",
     "Operating system": "Betriebssystem",
     "Browser language": "Browsersprache",
     "Country": "Land",
@@ -496,6 +496,8 @@
     "Visitors and pageviews": "Besucher und Seitenaufrufe",
     "Analytics": "Analytik",
     "Right now": "Gerade jetzt",
-    "Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.": "Cookie-freie, keine personenbezogenen Daten enthaltende Website-Statistiken: Besucher, Aufrufe, meistgelesene Seiten, verweisende Websites, Kanal, Gerät/Browser, Kampagne (UTM), Klickereignisse und Spendenkonvertierungen. Die Daten verbleiben auf der Website; Liest mit künstlicher Intelligenz Flux AI / Flux AI & MCP-Tools."
+    "Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.": "Cookie-freie, keine personenbezogenen Daten enthaltende Website-Statistiken: Besucher, Aufrufe, meistgelesene Seiten, verweisende Websites, Kanal, Gerät/Browser, Kampagne (UTM), Klickereignisse und Spendenkonvertierungen. Die Daten verbleiben auf der Website; Liest mit künstlicher Intelligenz Flux AI / Flux AI & MCP-Tools.",
+    "View statistics": "Statistik ansehen",
+    "Logged-in people": "Eingeloggte Personen"
   }
 }

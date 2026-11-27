@@ -1595,7 +1595,7 @@ msgid "Pro (paid monthly)"
 msgstr "Pro (monatlich bezahlt)"
 
 msgid "Pay-as-you-go"
-msgstr "Pay-as-you-go"
+msgstr "Zahl-as-you-go"
 
 msgid "X: a video or GIF is shared on its own."
 msgstr "X: Ein Video oder GIF wird einzeln geteilt."

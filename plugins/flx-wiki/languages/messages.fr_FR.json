@@ -18,7 +18,7 @@
     "text": "texte",
     "code": "coder",
     "link": "lien",
-    "page-slug": "page-slug",
+    "page-slug": "identifiant-de-page",
     "item": "article",
     "Note": "Remarque",
     "Subheading": "Sous-titre",
@@ -180,6 +180,17 @@
     "select": "sélectionner",
     "open": "ouvert",
     "close": "fermer",
-    "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.": "Wiki du développeur sur le site sous /wiki : pages Markdown, sections, arborescence des pages et table des matières, recherche instantanée détaillée, sortie optimisée pour le référencement. LLM friendly : chaque page est ouverte et copiée au format .md, /wiki/llms.txt et llms-full.txt, ouverte dans ChatGPT / Claude. \"Ask the Wiki\" et outils MCP (recherche, lecture, liste, écriture) avec Flux AI. Il est livré avec des guides pour écrire des plugins et des thèmes, et créer des plugins alimentés par l'IA."
+    "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.": "Wiki du développeur sur le site sous /wiki : pages Markdown, sections, arborescence des pages et table des matières, recherche instantanée détaillée, sortie optimisée pour le référencement. LLM friendly : chaque page est ouverte et copiée au format .md, /wiki/llms.txt et llms-full.txt, ouverte dans ChatGPT / Claude. \"Ask the Wiki\" et outils MCP (recherche, lecture, liste, écriture) avec Flux AI. Il est livré avec des guides pour écrire des plugins et des thèmes, et créer des plugins alimentés par l'IA.",
+    "JavaScript is required for this screen.": "JavaScript est nécessaire pour cet écran.",
+    "You cannot edit this page.": "Vous ne pouvez pas modifier cette page.",
+    "The parent page was not found.": "La page mère n'a pas été trouvée.",
+    "A page cannot be placed under itself.": "Une page ne peut pas être placée sous elle-même.",
+    "This status is not available.": "Ce statut n'est pas disponible.",
+    "You cannot delete this page.": "Vous ne pouvez pas supprimer cette page.",
+    "The page could not be deleted.": "La page ne peut pas être supprimée.",
+    "You cannot manage sections.": "Vous ne pouvez pas gérer les sections.",
+    "A section name is required.": "Un nom de section est requis.",
+    "Section not found.": "Section non trouvée.",
+    "The section could not be deleted.": "La section n'a pas pu être supprimée."
   }
 }

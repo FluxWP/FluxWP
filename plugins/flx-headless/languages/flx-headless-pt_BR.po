@@ -1,0 +1,83 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: pt_BR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "Serves headless front ends over GraphQL"
+msgstr "Serves frontless termina sobre GraphQL"
+
+msgid "Headless"
+msgstr "Sem cabeça"
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr "Esta tela precisa do Flux GraphQL (0.4.0 ou mais recente). Instalá-lo ou atualizá-lo a partir da tela dos pacotes FluxWP."
+
+msgid "This front end does not exist any more."
+msgstr "Este front-end não existe mais."
+
+msgid "At most %d front ends can be added."
+msgstr "No máximo %d front-ends podem ser adicionados."
+
+msgid "Give the front end a name."
+msgstr "Dê um nome à parte da frente."
+
+msgid "Enter the front end address with https:// (http:// only for localhost)."
+msgstr "Insira o endereço front-end com https:// (http:// apenas para localhost)."
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr "O front-end não pode ter o mesmo endereço que este WordPress . Mova WordPress para outro endereço (por exemplo, cms.example.com) primeiro."
+
+msgid "Another front end already has this address."
+msgstr "Outro front-end já tem este endereço."
+
+msgid "Enter the webhook address with https:// (http:// only for localhost)."
+msgstr "Insira o endereço webhook com https:// (http:// apenas para localhost)."
+
+msgid "The language \"%s\" is not on this site."
+msgstr "A linguagem \" %s \" não está neste site."
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr "O caminho de visualização começa com \"/\" (por exemplo /api/preview)."
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr "O segredo deve ser pelo menos 24 caracteres. Use o botão Gerar."
+
+msgid "The secret could not be stored securely on this server."
+msgstr "O segredo não pode ser armazenado com segurança neste servidor."
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr "Um webhook precisa de um segredo para que o front-end possa verificar que a chamada vem deste site."
+
+msgid "Choose what WordPress does with its own pages."
+msgstr "Escolha o que WordPress faz com suas próprias páginas."
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr "Adicione um front-end primeiro; WordPress páginas apontam visitantes e mecanismos de busca para ele."
+
+msgid "Enter the webhook address and the secret first."
+msgstr "Digite o endereço webhook e o segredo primeiro."
+
+msgid "Sent without waiting for the answer."
+msgstr "Enviado sem esperar pela resposta."
+
+msgid "The front end accepted the call."
+msgstr "A parte frontal aceitou a chamada."
+
+msgid "The front end answered with HTTP %d."
+msgstr "O front end respondeu com HTTP %d ."
+
+msgid "Home"
+msgstr "Página inicial"
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr "Nenhum front-end é adicionado ainda; GraphQL obras, mas links, endereços canônicos e o webhook não têm front-end a ponto."
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr "A última chamada do webhook falhou para: %s . Abra o log de entrega na página Sem Cabeça."
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr "Sem webhook revalidate para: %s . Essas extremidades da frente mostram mudanças apenas quando seu cache é executado."
+
+msgid "Headless front ends"
+msgstr "Fronteiras sem cabeça"

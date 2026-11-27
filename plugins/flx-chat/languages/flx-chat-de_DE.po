@@ -83,7 +83,7 @@ msgid "Us"
 msgstr "Wir"
 
 msgid "WhatsApp"
-msgstr "WhatsApp"
+msgstr "ANHANG"
 
 msgid "Assistant"
 msgstr "Assistent"
@@ -407,7 +407,7 @@ msgid "Built-in text"
 msgstr "Eingebauter Text"
 
 msgid "Version %s"
-msgstr "Version %s"
+msgstr "Artikel %s"
 
 msgid "Live instructions (%s)"
 msgstr "Live-Anweisungen (%s)"
@@ -473,7 +473,7 @@ msgid "Date"
 msgstr "Datum"
 
 msgid "Plugin"
-msgstr "Plugin"
+msgstr "Plugins"
 
 msgid "Status"
 msgstr "Status"
@@ -965,10 +965,10 @@ msgid "System"
 msgstr "System"
 
 msgid "Agent (%s)"
-msgstr "Agent (%s)"
+msgstr "Agent ( %s )"
 
 msgid "Agent"
-msgstr "Agent"
+msgstr "Agenten"
 
 msgid "Internal note (%s)"
 msgstr "Interner Hinweis (%s)"
@@ -1106,7 +1106,7 @@ msgid "Info"
 msgstr "Infos"
 
 msgid "Website"
-msgstr "Website"
+msgstr "Webseite"
 
 msgid "You can find all the details on our website: {site}"
 msgstr "Alle Details finden Sie auf unserer Website: {site}"
@@ -2267,7 +2267,7 @@ msgid "AI Chat"
 msgstr "KI-Chat"
 
 msgid "Team (%s)"
-msgstr "Team (%s)"
+msgstr "Team ( %s )"
 
 msgid "Team (phone)"
 msgstr "Team (Telefon)"
@@ -2282,13 +2282,13 @@ msgid "min"
 msgstr "min"
 
 msgid "max"
-msgstr "max"
+msgstr "max."
 
 msgid "Input price $"
 msgstr "Eingabepreis $"
 
 msgid "Clear"
-msgstr "Klar"
+msgstr "Leeren"
 
 msgid "Price: 1M tokens input / output"
 msgstr "Preis: 1 Mio. Token Ein-/Ausgabe"
@@ -2576,7 +2576,7 @@ msgid "Day of month"
 msgstr "Tag des Monats"
 
 msgid "Time"
-msgstr "Zeit"
+msgstr "Uhrzeit"
 
 msgid "no number"
 msgstr "keine Nummer"
@@ -3608,7 +3608,7 @@ msgid "Donation #{id}"
 msgstr "Spende #{id}"
 
 msgid "Version {id}"
-msgstr "Version {id}"
+msgstr "Artikel {id}"
 
 msgid "Change note (e.g. Added sacrifice question)"
 msgstr "Notiz ändern (z. B. Opferfrage hinzugefügt)"
@@ -4376,7 +4376,7 @@ msgid "Documents"
 msgstr "Dokumente"
 
 msgid "Benchmark"
-msgstr "Benchmark"
+msgstr "Benchmarking"
 
 msgid "7 days"
 msgstr "7 Tage"
@@ -4451,7 +4451,7 @@ msgid "Writable and closed to the public."
 msgstr "Beschreibbar und für die Öffentlichkeit geschlossen."
 
 msgid "PHP cURL"
-msgstr "PHP cURL"
+msgstr "KURZEN"
 
 msgid "Available."
 msgstr "Verfügbar."
@@ -4616,7 +4616,7 @@ msgid "warning"
 msgstr "Warnung"
 
 msgid "ok"
-msgstr "ok"
+msgstr "Okay."
 
 msgid "Your {marka} verification code: {kod}"
 msgstr "Ihr {marka}-Bestätigungscode: {kod}"
@@ -4987,6 +4987,36 @@ msgstr "Fortsetzung: Beschwerde nach Missverständnis schließt sofort"
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "Abschiedsreaktion ist 👍 oder 🤲, nie 🙏"
 
+msgid "Schedules call-center reports"
+msgstr "Termine Call-Center-Berichte"
+
+msgid "Can receive a call-center report"
+msgstr "Kann einen Callcenter-Bericht erhalten"
+
+msgid "Can receive the general call-center report"
+msgstr "Kann den allgemeinen Callcenter-Bericht erhalten"
+
+msgid "Uses the call center"
+msgstr "Benutzt das Callcenter"
+
+msgid "Manages the call center"
+msgstr "Verwaltet das Callcenter"
+
+msgid "(updates are sent to this address too)"
+msgstr "(Benachrichtigungen gehen auch an diese Adresse)"
+
+msgid "Proxy"
+msgstr "Stellvertreter"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "Bitte antworte \"Ich stimme zu\", um Ihren Proxy zu geben."
+
+msgid "at least %s"
+msgstr "mindestens %s"
+
+msgid "Sent from the chat"
+msgstr "Gesendet vom Chat"
+
 msgid "Promotional messages"
 msgstr "Werbenachrichten"
 
@@ -4999,11 +5029,26 @@ msgstr "Werbenachrichten und Erinnerungen werden nicht gesendet. Antworten auf e
 msgid "The person replied STOP to promotional messages."
 msgstr "Die Person hat auf Werbenachrichten mit STOP geantwortet."
 
-msgid "at least %s"
-msgstr "mindestens %s"
+msgid "The upload has expired. Please add the file again."
+msgstr "Der Upload ist abgelaufen. Bitte fügen Sie die Datei erneut hinzu."
 
-msgid "(updates are sent to this address too)"
-msgstr "(Benachrichtigungen gehen auch an diese Adresse)"
+msgid "The chat could not be opened."
+msgstr "Der Chat konnte nicht geöffnet werden."
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "Nur der Absender oder ein Administrator kann diese Nachricht bearbeiten."
+
+msgid "This message can't be edited on this channel."
+msgstr "Diese Nachricht kann nicht auf diesem Kanal bearbeitet werden."
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "Die Zeitgrenze für die Bearbeitung ist überschritten ( WhatsApp erlaubt 15 Minuten)."
+
+msgid "The message can't be empty."
+msgstr "Die Nachricht kann nicht leer sein."
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp hat die Nachricht nicht bearbeitet."
 
 msgid "Assistant languages"
 msgstr "Sprachen des Assistenten"

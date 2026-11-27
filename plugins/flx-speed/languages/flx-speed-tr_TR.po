@@ -296,7 +296,7 @@ msgid "Hooks"
 msgstr "Hook'lar"
 
 msgid "Time"
-msgstr "Süre"
+msgstr "Saat"
 
 msgid "Slow"
 msgstr "Yavaş"
@@ -869,7 +869,7 @@ msgid "Theme: %s"
 msgstr "Tema: %s"
 
 msgid "Drop-in: %s"
-msgstr "Drop-in: %s"
+msgstr "Bırakma: %s"
 
 msgid "WordPress core"
 msgstr "WordPress çekirdeği"
@@ -899,7 +899,7 @@ msgid "IP address"
 msgstr "IP adresi"
 
 msgid "Port"
-msgstr "Port"
+msgstr "Liman"
 
 msgid "Document root"
 msgstr "Belge kökü"

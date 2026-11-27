@@ -758,6 +758,9 @@
     "Video ad": "Video ad",
     "Organic post": "Organic post",
     "E-mail": "E-mail",
-    "Unknown platform.": "Unknown platform."
+    "Unknown platform.": "Unknown platform.",
+    "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn.\u0000%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn.": "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn.\u0000%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn.",
+    "in %s day\u0000in %s days": "in %s day\u0000in %s days",
+    "%d audience is updated daily.\u0000%d audiences are updated daily.": "%d audience is updated daily.\u0000%d audiences are updated daily."
   }
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.2
+- Yönetim ekranları için dil katalogları güncellendi. Pano tarihleri, grafikler, menüler ve ayar etiketleri de profil dilini izler.
+
+
 ## 2.4.1
 - Sertifika panosundaki tarih aralığı filtreleri dar ekranlara ve uzun tarih metinlerine uyum sağlar.
 

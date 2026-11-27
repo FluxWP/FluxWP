@@ -1,0 +1,838 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: pt_BR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "POS accounts"
+msgstr "Contas de pagamento"
+
+msgid "Card payments with banks and payment institutions"
+msgstr "Pagamentos com bancos e instituições de pagamento"
+
+msgid "Virtual POS"
+msgstr "Terminal de pagamento virtual"
+
+msgid "POS"
+msgstr "POS"
+
+msgid "You are not allowed to do this."
+msgstr "Você não tem permissão para fazer isso."
+
+msgid "The amount must be greater than zero."
+msgstr "O valor deve ser maior que zero."
+
+msgid "No POS account for this currency."
+msgstr "Nenhuma conta POS para esta moeda."
+
+msgid "This account needs card details."
+msgstr "Esta conta precisa de detalhes do cartão."
+
+msgid "The payment record could not be created."
+msgstr "O registro de pagamento não poderia ser criado."
+
+msgid "Transaction not found."
+msgstr "Transação não encontrada."
+
+msgid "Saved card details are missing."
+msgstr "Faltam detalhes de cartão salvo."
+
+msgid "This provider does not support charging a saved card."
+msgstr "Este provedor não suporta carregar um cartão salvo."
+
+msgid "Choose a provider."
+msgstr "Escolha um provedor."
+
+msgid "test"
+msgstr "teste"
+
+msgid "POS account not found."
+msgstr "Página não encontrada."
+
+msgid "No driver for this provider yet."
+msgstr "Ainda não há condutor para este fornecedor."
+
+msgid "The payment link is invalid or has expired."
+msgstr "O link de pagamento é inválido ou expirou."
+
+msgid "Order %s"
+msgstr "Ordem %s"
+
+msgid "General"
+msgstr "Geral"
+
+msgid "The card details have expired; please try again."
+msgstr "Os detalhes do cartão expiraram; tente novamente."
+
+msgid "Secure payment"
+msgstr "Pagamento seguro"
+
+msgid "Payment form"
+msgstr "Formulário de pagamento"
+
+msgid "Cancel and return to checkout"
+msgstr "Cancelar e voltar para o checkout"
+
+msgid "Going to the secure payment…"
+msgstr "Ir para o pagamento seguro..."
+
+msgid "Continue"
+msgstr "Continuar"
+
+msgid "The amount charged by the bank (%1$s) differs from the expected amount (%2$s); check it."
+msgstr "O montante cobrado pelo banco ( %1$s ) difere do montante esperado ( %2$s ); verifica-o."
+
+msgid "Paid by card (%1$s): %2$s, reference %3$s, %4$s."
+msgstr "Pago por cartão ( %1$s ): %2$s , referência %3$s , %4$s ."
+
+msgid "%d installments"
+msgstr "%d parcelas"
+
+msgid "single payment"
+msgstr "pagamento único"
+
+msgid "Card payment needs a check (%1$s): %2$s"
+msgstr "O pagamento do cartão precisa de um cheque ( %1$s ): %2$s"
+
+msgid "Card payment failed (%1$s): %2$s"
+msgstr "Pagamento do cartão falhou ( %1$s ): %2$s"
+
+msgid "Redirecting…"
+msgstr "Redirecionar..."
+
+msgid "The payment could not be completed. Please try again or use another card."
+msgstr "Não foi possível concluir o pagamento. Tente novamente ou use outro cartão."
+
+msgid "Name on card"
+msgstr "Nome no cartão"
+
+msgid "Card number"
+msgstr "Número do cartão"
+
+msgid "Expiry (MM/YY)"
+msgstr "Expiração (MM/AA)"
+
+msgid "Security code (CVC)"
+msgstr "Código de segurança (CVC)"
+
+msgid "Installments"
+msgstr "Parcelas"
+
+msgid "Single payment"
+msgstr "Pagamento único"
+
+msgid "%1$s installments × %2$s (total %3$s)"
+msgstr "%1$s parcelas ×%2$s(total %3$s)"
+
+msgid "Your card details are protected by your bank's 3D Secure check and are not stored on this site."
+msgstr "Os detalhes do seu cartão são protegidos pela verificação 3D Secure do seu banco e não são armazenados neste site."
+
+msgid "Check the card number."
+msgstr "Verifica o número do cartão."
+
+msgid "Check the expiry date."
+msgstr "Verifique a data de validade."
+
+msgid "Check the security code."
+msgstr "Verifica o código de segurança."
+
+msgid "Enter the name on the card."
+msgstr "Digite o nome no cartão."
+
+msgid "Test mode: no real money is charged."
+msgstr "Modo de teste: nenhum dinheiro real é cobrado."
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "The payment will be left unfinished. Close it?"
+msgstr "O pagamento será deixado inacabado."
+
+msgid "The selected installment is not available for this card."
+msgstr "A instalação selecionada não está disponível para este cartão."
+
+msgid "Installment fee (%d installments)"
+msgstr "Taxa de instalação ( %d parcelas)"
+
+msgid "No successful card payment found on this order."
+msgstr "Nenhum pagamento de cartão bem sucedido encontrado nesta ordem."
+
+msgid "This transaction cannot be refunded."
+msgstr "Esta transação não pode ser reembolsada."
+
+msgid "The refund amount cannot exceed the paid amount."
+msgstr "O montante de reembolso não pode exceder o montante pago."
+
+msgid "The bank did not approve the refund."
+msgstr "O banco não aprovou o reembolso."
+
+msgid "The card payment was voided at the bank (%s)."
+msgstr "O pagamento do cartão foi anulado no banco ( %s)."
+
+msgid "Refunded to the card: %s."
+msgstr "Reembolsado ao cartão: %s ."
+
+msgid "Block checkout"
+msgstr "Bloquear finalização de compra"
+
+msgid "Payment link"
+msgstr "Link de pagamento"
+
+msgid "Server check"
+msgstr "Verificação do servidor"
+
+msgid "Saved cards"
+msgstr "Cartões salvos"
+
+msgid "Refund from site"
+msgstr "Reembolso do site"
+
+msgid "Shown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method."
+msgstr "Mostrado em uma página de checkout criada com o bloco Checkout. O checkout clássico ([woocommerce_checkout]) mostra todos os métodos."
+
+msgid "Pays an existing order from its payment link without a cart (call center, \"pay again\")."
+msgstr "Paga uma ordem existente a partir de seu link de pagamento sem um carrinho (call center, \"pay again\")."
+
+msgid "The payment is confirmed with the provider from the server before the order is marked paid."
+msgstr "O pagamento é confirmado com o fornecedor a partir do servidor antes do pedido ser marcado como pago."
+
+msgid "The payer can pay in installments."
+msgstr "O pagador pode pagar em parcelas."
+
+msgid "The payer can save the card for the next payment."
+msgstr "O pagador pode salvar o cartão para o próximo pagamento."
+
+msgid "The order's Refund button sends the refund to the provider."
+msgstr "O botão Reembolso da encomenda envia o reembolso ao fornecedor."
+
+msgid "Added by Flux POS (the plugin has no block support)."
+msgstr "Adicionado por Flux POS (o plugin não tem suporte de bloco)."
+
+msgid "Flux POS adds it once the method is enabled."
+msgstr "Flux POS adiciona-o uma vez que o método é ativado."
+
+msgid "Turn on \"Show other payment plugins on the checkout block\"."
+msgstr "Ative \"Mostrar outros plugins de pagamento no bloco de checkout\"."
+
+msgid "The plugin shows its card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support."
+msgstr "O plugin mostra seus campos de cartão apenas no checkout clássico. Use a página de checkout clássico ou peça ao provedor para suporte de bloco."
+
+msgid "Most plugins work; try a payment link once."
+msgstr "A maioria dos plug-ins funciona; tente um link de pagamento uma vez."
+
+msgid "Depends on the plugin; ask the provider."
+msgstr "Depende do plugin; pergunte ao provedor."
+
+msgid "On the payment page, if the provider offers it."
+msgstr "Na página de pagamento, se o provedor o oferece."
+
+msgid "Refund in the provider's panel, then mark the order refunded."
+msgstr "Reembolso no painel do fornecedor e marque o pedido como reembolsado."
+
+msgid "The bank's return is verified by signature or a server query; the amount must match."
+msgstr "O retorno do banco é verificado por assinatura ou consulta de servidor; o valor deve corresponder."
+
+msgid "The account's installment table is empty."
+msgstr "A tabela de instalação da conta está vazia."
+
+msgid "The provider does not support refunds from the site."
+msgstr "O provedor não suporta reembolsos do site."
+
+msgid "Confirmed by hand after the receipt."
+msgstr "Confirmado manualmente após o recebimento."
+
+msgid "Payment details"
+msgstr "Detalhes de pagamento"
+
+msgid "No Flux POS transaction on this order."
+msgstr "Nenhuma transação com o Flux POS nesta ordem."
+
+msgid "Card"
+msgstr "Cartão"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Amount"
+msgstr "Quantidade"
+
+msgid "Bank reference"
+msgstr "Referência do banco"
+
+msgid "Authorization code"
+msgstr "Código de Autorização"
+
+msgid "Transaction no"
+msgstr "Transação não"
+
+msgid "Mode"
+msgstr "Modo"
+
+msgid "Test"
+msgstr "Teste"
+
+msgid "Live"
+msgstr "Ao vivo"
+
+msgid "All transactions"
+msgstr "Todas as transações"
+
+msgid "3D Pay (check and charge at the bank)"
+msgstr "Pagamento 3D (verifique e cobrar no banco)"
+
+msgid "3D Model (check at the bank, charge from the server)"
+msgstr "Modelo 3D (verificar no banco, carregar do servidor)"
+
+msgid "Bank's payment page (3D Host)"
+msgstr "Página de pagamento do banco (3D Host)"
+
+msgid "Provider's payment page"
+msgstr "Página de pagamento do provedor"
+
+msgid "Payment form on the page (iFrame)"
+msgstr "Formulário de pagamento na página (iFrame)"
+
+msgid "Stripe card fields on the checkout page (Payment Element)"
+msgstr "Campos de cartão Stripe na página de checkout (Elemento de pagamento)"
+
+msgid "Pay with wallet"
+msgstr "Pague com carteira"
+
+msgid "Without 3D (only on accounts the bank allows)"
+msgstr "Sem 3D (apenas em contas o banco permite)"
+
+msgid "Store number (Client ID)"
+msgstr "Número da loja (Client ID)"
+
+msgid "API user name"
+msgstr "API Nome de utilizador"
+
+msgid "The user created with the API role in the bank panel. Needed for refunds, voids and queries."
+msgstr "O usuário criou com a função API no painel bancário. Necessário para reembolsos, vazios e consultas."
+
+msgid "API user password"
+msgstr "API senha de usuário"
+
+msgid "3D Store Key"
+msgstr "Chave de loja 3D"
+
+msgid "Merchant number"
+msgstr "Número do Merchant"
+
+msgid "Terminal number"
+msgstr "Número de terminal"
+
+msgid "Provision user"
+msgstr "Utilizador de provisões"
+
+msgid "Provision password"
+msgstr "Palavra-passe de provisão"
+
+msgid "3D Secure key"
+msgstr "Chave segura 3D"
+
+msgid "Refund user (PROVRFN)"
+msgstr "Reembolsar o usuário (PROVRFN)"
+
+msgid "If empty, the provision user is used."
+msgstr "Se estiver vazio, o usuário de provisão é usado."
+
+msgid "Refund user password"
+msgstr "Reembolsar a senha do usuário"
+
+msgid "Merchant number (MID)"
+msgstr "Número do Merchant (MID)"
+
+msgid "Terminal number (TID)"
+msgstr "Número de terminal (TID)"
+
+msgid "Posnet ID"
+msgstr "ID de Posnet"
+
+msgid "Encryption key (ENCKEY)"
+msgstr "Chave de criptografia (ENCKEY)"
+
+msgid "Merchant password"
+msgstr "Senha do Merchant"
+
+msgid "API user code"
+msgstr "API Código do utilizador"
+
+msgid "Shop code (ShopCode)"
+msgstr "Código da loja (ShopCode)"
+
+msgid "Merchant key (MerchantPass)"
+msgstr "Chave do Merchant (MerchantPass)"
+
+msgid "Store number (MerchantId)"
+msgstr "Número da loja (MerchantId)"
+
+msgid "Customer number (CustomerId)"
+msgstr "Número do cliente (CustomerId)"
+
+msgid "Merchant Safe ID"
+msgstr "Identificação segura do Merchant"
+
+msgid "Terminal Safe ID"
+msgstr "Identificação segura do terminal"
+
+msgid "Secret key"
+msgstr "Chave secreta"
+
+msgid "Merchant code (MERCHANT)"
+msgstr "Código do Merchant (MERCHANT)"
+
+msgid "API user"
+msgstr "API utilizador"
+
+msgid "API password"
+msgstr "API senha"
+
+msgid "Dealer type (optional)"
+msgstr "Tipo de negociante (opcional)"
+
+msgid "App key (App ID)"
+msgstr "Chave do aplicativo (ID do aplicativo)"
+
+msgid "App secret (App Secret)"
+msgstr "Segredo App (Segredo App)"
+
+msgid "Merchant key (Merchant Key)"
+msgstr "Chave do Merchant (Chave do Mecanismo)"
+
+msgid "API key"
+msgstr "Chave de API"
+
+msgid "Store number"
+msgstr "Número da loja"
+
+msgid "Store password (Merchant Key)"
+msgstr "Senha de loja (Merchant Key)"
+
+msgid "Store secret (Merchant Salt)"
+msgstr "Segredo de loja (Merchant Salt)"
+
+msgid "Terminal number (CLIENT_CODE)"
+msgstr "Número do terminal (CLIENT_CODE)"
+
+msgid "User name"
+msgstr "Nome do utilizador"
+
+msgid "Password"
+msgstr "Senha"
+
+msgid "Key (GUID)"
+msgstr "Chave (GUID)"
+
+msgid "TEST1234 for testing."
+msgstr "TEST1234 para testes."
+
+msgid "Merchant key (MERCHANT_KEY)"
+msgstr "Chave do Merchant (MERCHANT_KEY)"
+
+msgid "Public token (MERCHANT_PUBLIC_TOKEN, for installment rates)"
+msgstr "Token público (MERCHANT_PUBLIC_TOKEN, para taxas de instalação)"
+
+msgid "Dealer code"
+msgstr "Código do revendedor"
+
+msgid "Client ID"
+msgstr "ID do cliente"
+
+msgid "Signing key ID (kid)"
+msgstr "Assinando ID chave (kid)"
+
+msgid "Signing key (k)"
+msgstr "Chave de assinatura (k)"
+
+msgid "Payment key (sx)"
+msgstr "Chave de pagamento (sx)"
+
+msgid "Void/refund key (sx)"
+msgstr "Chave de Void/refund (sx)"
+
+msgid "API key (test_… or live_…)"
+msgstr "API chave (test_... ou live_...)"
+
+msgid "Publishable key (pk_test_… or pk_live_…)"
+msgstr "Chave publável (pk_test_... ou pk_live_...)"
+
+msgid "Secret key (sk_… or restricted rk_…)"
+msgstr "Chave secreta (sk_... ou restrita rk_...)"
+
+msgid "Webhook signing secret (whsec_…)"
+msgstr "Webhook assinando segredo (whsec_...)"
+
+msgid "In the Stripe Dashboard, Developers › Webhooks: add the notification URL and select the payment_intent.succeeded, payment_intent.processing and payment_intent.payment_failed events."
+msgstr "No Stripe Dashboard, Developers › Webhooks: adicione a URL de notificação e selecione os eventos pay_intent.succeed, payment_intent.processing e payment_intent.payment_failed."
+
+msgid "Statement descriptor suffix (optional, up to 22 characters)"
+msgstr "Sufixo de descritor (opcional, até 22 caracteres)"
+
+msgid "Website index"
+msgstr "Índice de Website"
+
+msgid "This bank asks for the card again after the 3D return: the card is kept encrypted, tied to the transaction, for at most 20 minutes and opened once on return."
+msgstr "Este banco pede o cartão novamente após o retorno 3D: o cartão é mantido criptografado, amarrado à transação, por no máximo 20 minutos e aberto uma vez no retorno."
+
+msgid "This bank's return signature does not work as documented; every successful return is checked with the bank."
+msgstr "A assinatura de retorno deste banco não funciona como documentada; cada retorno bem sucedido é verificado com o banco."
+
+msgid "The \"Provider's payment page\" model is the iyzico checkout form; the \"Pay with iyzico\" wallet is on that page too."
+msgstr "O modelo de \"Página de pagamento daProvider\" é o formulário de checkout iyzico; a carteira \"Pay with iyzico\" também está nessa página."
+
+msgid "Enter this account's notification address as the Notification URL in the PayTR panel (shown on the account screen). Test mode works with the PayTR account's test key."
+msgstr "Digite o endereço de notificação desta conta como a URL de notificação no painel PayTR (mostrado na tela da conta). O modo de teste funciona com a chave de teste da conta PayTR."
+
+msgid "For a test use merchant TEST1234 and the test key from EsnekPOS's developer page."
+msgstr "Para um teste use o comerciante TEST1234 e a chave de teste da página de desenvolvedor do EsnekPOS."
+
+msgid "Enter this account's notification address as the callback address in the Shopier panel. Refunds are made in the Shopier panel."
+msgstr "Digite o endereço de notificação desta conta como o endereço de retorno de chamada no painel Shopier. Os reembolsos são feitos no painel Shopier."
+
+msgid "Test or live is taken from the key's prefix (test_… / live_…). Turkish lira is not supported."
+msgstr "Teste ou ao vivo é retirado do prefixo da chave (test_... / live_...). A lira turca não é suportada."
+
+msgid "Card fields are Stripe's Payment Element; card details never reach the site. 3D Secure, Apple Pay and Google Pay are handled by Stripe. Test or live is read from the key prefix and must match the account's test switch. \"Test connection\" also registers the domain for Apple Pay."
+msgstr "Os campos de cartão são o elemento de pagamento da Stripe; os detalhes do cartão nunca chegam ao site. 3D Secure, Apple Pay e Google Pay são tratados pela Stripe. Teste ou ao vivo é lido a partir do prefixo-chave e deve corresponder ao interruptor de teste da conta. \"Conexão de destino\" também registra o domínio para o Apple Pay."
+
+msgid "GiroGate method"
+msgstr "Método de GiroGate"
+
+msgid "Banks"
+msgstr "Bancos"
+
+msgid "Payment institutions"
+msgstr "Instituições de pagamento"
+
+msgid "Wallets"
+msgstr "Carteiras"
+
+msgid "Meal and gift cards"
+msgstr "Cartões de refeições e presentes"
+
+msgid "Refund"
+msgstr "Reembolso"
+
+msgid "Partial refund"
+msgstr "Reembolso parcial"
+
+msgid "Void"
+msgstr "Vóide."
+
+msgid "Status query"
+msgstr "Consulta de status"
+
+msgid "Installments by card"
+msgstr "Instalações por cartão"
+
+msgid "Server notification"
+msgstr "Notificação do servidor"
+
+msgid "The result of the previous charge is not in yet."
+msgstr "O resultado da cobrança anterior ainda não está dentro."
+
+msgid "No result came back."
+msgstr "Nenhum resultado voltou."
+
+msgid "Order #%s"
+msgstr "Pedido #%s"
+
+msgid "The card was not charged."
+msgstr "O cartão não foi cobrado."
+
+msgid "Pay"
+msgstr "Compartilhar"
+
+msgid "Processing…"
+msgstr "Processamento..."
+
+msgid "The payment form could not be loaded. Refresh the page or choose another method."
+msgstr "O formulário de pagamento não pode ser carregado. Atualizar a página ou escolher outro método."
+
+msgid "Your card details are processed in Stripe's secure fields and are not stored on this site."
+msgstr "Os detalhes do seu cartão são processados nos campos seguros da Stripe e não são armazenados neste site."
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Pending"
+msgstr "Pendente"
+
+msgid "Paid"
+msgstr "Pago"
+
+msgid "Failed"
+msgstr "Falha"
+
+msgid "Refunded"
+msgstr "Reembolsado"
+
+msgid "Voided"
+msgstr "Voidedação"
+
+msgid "Needs a check"
+msgstr "Precisa de um cheque"
+
+msgid "Enabled"
+msgstr "Habilitado"
+
+msgid "Show this payment method"
+msgstr "Mostrar este método de pagamento"
+
+msgid "Accounts, keys, installments and the display name are managed in the Flux POS panel."
+msgstr "Contas, chaves, parcelas e o nome do visor são gerenciados no painel Flux POS."
+
+msgid "Flux POS panel"
+msgstr "Flux POS panel"
+
+msgid "Card payment is not available for this currency."
+msgstr "O pagamento do cartão não está disponível para esta moeda."
+
+msgid "Pay by card (Flux POS)"
+msgstr "Pague por cartão (Flux POS)"
+
+msgid "3D Secure card payment through a bank or payment institution."
+msgstr "Pagamento de cartão seguro 3D através de uma instituição bancária ou de pagamento."
+
+msgid "Bank / Credit card"
+msgstr "Banco / Cartão de crédito"
+
+msgid "Completed on the payment provider's page."
+msgstr "Completada na página do provedor de pagamento."
+
+msgid "The merchant details are wrong; check the account settings."
+msgstr "Os detalhes do mercador estão errados; verifique as configurações da conta."
+
+msgid "The bank's return signature did not match."
+msgstr "A assinatura do banco não correspondeu."
+
+msgid "The bank's return does not belong to this payment."
+msgstr "O retorno do banco não pertence a este pagamento."
+
+msgid "No successful sale was found at the bank."
+msgstr "Nenhuma venda bem sucedida foi encontrada no banco."
+
+msgid "The payment is pending at the provider."
+msgstr "O pagamento está pendente no provedor."
+
+msgid "Other"
+msgstr "Outro"
+
+msgid "For a payment with several lines, partial refunds are made in the Craftgate panel."
+msgstr "Para um pagamento com várias linhas, reembolsos parciais são feitos no painel Craftgate."
+
+msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
+msgstr "Por favor, escreva o nome completo do titular do cartão como está no cartão (pelo menos 6 letras)."
+
+msgid "The payment could not be started. Please try again."
+msgstr "Não foi possível iniciar o pagamento. Tente novamente."
+
+msgid "Status at the bank: %s"
+msgstr "Status no banco: %s"
+
+msgid "iyzico put the payment under review."
+msgstr "iyzico colocar o pagamento sob revisão."
+
+msgid "The %s provision response could not be read; check with the bank."
+msgstr "A resposta de provisão %s não pôde ser lida; verifique com o banco."
+
+msgid "The payment was not completed (%s)."
+msgstr "O pagamento não foi concluído ( %s )."
+
+msgid "The payment method will report the result later."
+msgstr "O método de pagamento irá relatar o resultado mais tarde."
+
+msgid "The transaction was voided at the bank."
+msgstr "A transação foi anulada no banco."
+
+msgid "The payment was not completed."
+msgstr "O pagamento não foi concluído."
+
+msgid "Papara refunds only the full amount."
+msgstr "Papara reembolsa apenas o valor total."
+
+msgid "The card is not eligible for 3D Secure."
+msgstr "O cartão não é elegível para 3D Secure."
+
+msgid "The payment time ran out; please enter the card details again."
+msgstr "O tempo de pagamento acabou; por favor, insira os detalhes do cartão novamente."
+
+msgid "The result will come with the PayTR notification."
+msgstr "O resultado virá com a notificação PayTR."
+
+msgid "%s did not respond."
+msgstr "%s não respondeu."
+
+msgid "The bank did not complete the 3D check."
+msgstr "O banco não completou a verificação 3D."
+
+msgid "The result will come with the Shopier notification."
+msgstr "O resultado virá com a notificação do Shopier."
+
+msgid "Stripe keys are missing: a publishable key and a secret key are required."
+msgstr "As teclas de listra estão faltando: uma chave publicável e uma chave secreta são necessárias."
+
+msgid "One Stripe key is test and the other is live. Both must be in the same mode."
+msgstr "Uma tecla Stripe é teste e a outra é ao vivo. Ambos devem estar no mesmo modo."
+
+msgid "The account is in test mode but the Stripe keys are live. Enter test keys (sk_test_… / pk_test_…) or turn test mode off."
+msgstr "A conta está no modo de teste, mas as teclas Stripe são ao vivo. Digite as teclas de teste (sk_test_... / pk_test_...) ou desligue o modo de teste."
+
+msgid "The account is live but the Stripe keys are test keys. Enter live keys or turn test mode on."
+msgstr "A conta é ao vivo, mas as teclas Stripe são chaves de teste. Digite teclas ao vivo ou gire o modo de teste."
+
+msgid "The card number is not valid."
+msgstr "O número do cartão não é válido."
+
+msgid "The card number is incorrect."
+msgstr "O número do cartão está incorreto."
+
+msgid "The card number is incomplete."
+msgstr "O número do cartão está incompleto."
+
+msgid "The expiry month is invalid."
+msgstr "O mês de expiração é inválido."
+
+msgid "The expiry year is invalid."
+msgstr "O ano de validade é inválido."
+
+msgid "The expiry year is in the past."
+msgstr "O ano de expiração é no passado."
+
+msgid "The expiry date is incomplete."
+msgstr "A data de validade é incompleta."
+
+msgid "The card has expired."
+msgstr "O cartão expirou."
+
+msgid "The security code is invalid."
+msgstr "O código de segurança é inválido."
+
+msgid "The security code is incorrect."
+msgstr "O código de segurança está incorreto."
+
+msgid "The security code is incomplete."
+msgstr "O código de segurança está incompleto."
+
+msgid "The postal code failed validation."
+msgstr "O código postal falhou a validação."
+
+msgid "Invalid postal code; please correct it and try again."
+msgstr "Código postal inválido; corrigi-lo e tentar novamente."
+
+msgid "The card was declined."
+msgstr "O cartão foi recusado."
+
+msgid "The card has insufficient funds or limit."
+msgstr "O cartão tem fundos ou limite insuficientes."
+
+msgid "The card issuer did not approve the payment."
+msgstr "O emissor do cartão não aprovou o pagamento."
+
+msgid "The card's transaction limit was exceeded."
+msgstr "O limite de transação do cartão foi ultrapassado."
+
+msgid "The bank requires card authentication (3D Secure)."
+msgstr "O banco requer autenticação de cartão (3D Secure)."
+
+msgid "3D Secure authentication failed; try again or use another card."
+msgstr "Autenticação segura 3D falhou; tente novamente ou use outro cartão."
+
+msgid "An error occurred while processing the card; please try again."
+msgstr "Um erro ocorreu durante o processamento do cartão; tente novamente."
+
+msgid "The email address is invalid."
+msgstr "O endereço de e-mail é inválido."
+
+msgid "The payment could not be processed; try again or use another method."
+msgstr "O pagamento não poderia ser processado; tente novamente ou use outro método."
+
+msgid "The payment is processing at Stripe."
+msgstr "O pagamento está processando na Stripe."
+
+msgid "Waiting for payment authentication."
+msgstr "À espera de autenticação de pagamento."
+
+msgid "The payment was canceled."
+msgstr "O pagamento foi cancelado."
+
+msgid "This provider sends no notifications."
+msgstr "Este provedor não envia notificações."
+
+msgid "This provider has no refunds from the site; make them in the provider's panel."
+msgstr "Este provedor não tem reembolsos do site; torná-los no painel do provedor."
+
+msgid "This provider has no voids from the site."
+msgstr "Este provedor não tem vazios do site."
+
+msgid "This provider has no status query."
+msgstr "Este provedor não tem nenhuma consulta de status."
+
+msgid "Error code %s"
+msgstr "Código de erro %s"
+
+msgid "The payment was not approved."
+msgstr "O pagamento não foi aprovado."
+
+msgid "%1$s did not respond (HTTP %2$d)."
+msgstr "%1$s não respondeu (HTTP %2$d )."
+
+msgid "Redirect: the bank or provider page opens full screen"
+msgstr "Redirecionar: a página do banco ou provedor abre tela cheia"
+
+msgid "Popup: in a frame, without leaving checkout"
+msgstr "Popup: em um quadro, sem sair do checkout"
+
+msgid "On site: in a frame, with the site's header and footer"
+msgstr "No local: em um quadro, com o cabeçalho e rodapé do site"
+
+msgid "This provider has no connection test; try a small payment with a test card."
+msgstr "Este provedor não tem nenhum teste de conexão; tente um pequeno pagamento com um cartão de teste."
+
+msgid "Connection works, the keys were accepted."
+msgstr "Trabalhos de conexão, as chaves foram aceitas."
+
+msgid "Automatic"
+msgstr "Automático"
+
+msgid "Show all"
+msgstr "Mostrar tudo"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce não está ativo."
+
+msgid "Add a POS account before turning on the Pay by card method."
+msgstr "Adicione uma conta POS antes de ligar o método de pagamento por cartão."
+
+msgid "Refund from the panel"
+msgstr "Reembolso do painel"
+
+msgid "No active POS account; card payments are not taken."
+msgstr "Não há conta POS ativa; os pagamentos de cartão não são tomados."
+
+msgid "An account is in test mode, no real money is charged: %s"
+msgstr "Uma conta está no modo de teste, nenhum dinheiro real é cobrado: %s"
+
+msgid "%d account is active in live mode."
+msgid_plural "%d accounts are active in live mode."
+msgstr[0] "A conta %d está ativa no modo ao vivo."
+msgstr[1] "%d contas estão ativas no modo ao vivo."
+
+msgid "%s: no webhook signing secret. The payment return is still read, but if the payer closes the page before returning the order stays pending. Add the notification URL in the Stripe Dashboard and enter the whsec_… secret."
+msgstr "%s : nenhum webhook assinando segredo. O retorno de pagamento ainda é lido, mas se o pagador fechar a página antes de retornar a ordem permanece pendente. Adicione a URL de notificação no Stripe Dashboard e digite o segredo whsec_...."
+
+msgid "The official WooCommerce Stripe plugin is also active. Pick a single card method in Flux POS › Methods so payers do not see two card options."
+msgstr "O plugin oficial WooCommerce Stripe também está ativo. Escolha um método de cartão único no Flux POS › Métodos para que os pagadores não vejam duas opções de cartão."
+
+msgid "The site is not on HTTPS; banks do not send the card result to the return address and the card form is not secure."
+msgstr "O site não está em HTTPS; os bancos não enviam o resultado do cartão para o endereço de retorno e o formulário de cartão não é seguro."
+
+msgid "Key encryption"
+msgstr "Criptografia de chave"
+
+msgid "PHP sodium or openssl is missing; POS keys cannot be encrypted."
+msgstr "PHP sódio ou abresl está faltando; chaves POS não podem ser criptografadas."
+
+msgid "Keys are encrypted with the WordPress salts. If the wp-config.php salts change, enter the POS keys again."
+msgstr "As chaves são criptografadas com os sais WordPress. Se os sais wp-config.php mudarem, insira as chaves POS novamente."
+
+msgid "The check could not run: %s"
+msgstr "O cheque não pôde ser executado: %s"

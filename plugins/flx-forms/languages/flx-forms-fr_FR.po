@@ -392,7 +392,7 @@ msgid "Last check: %s"
 msgstr "Dernière vérification : %s"
 
 msgid "Actions"
-msgstr "Actions"
+msgstr "Mesures à prendre"
 
 msgid "Daily"
 msgstr "Quotidiennement"
@@ -494,7 +494,7 @@ msgid "Stop"
 msgstr "Arrêter"
 
 msgid "Pause"
-msgstr "Pause"
+msgstr "Mettre en pause"
 
 msgid "Resume"
 msgstr "CV"
@@ -620,7 +620,7 @@ msgid "Properties"
 msgstr "Propriétés"
 
 msgid "Apply"
-msgstr "Postuler"
+msgstr "Appliquer"
 
 msgid "Logo"
 msgstr "Logo"
@@ -947,7 +947,7 @@ msgid "Clear log"
 msgstr "Effacer le journal"
 
 msgid "Time"
-msgstr "Temps"
+msgstr "Heure"
 
 msgid "Steps"
 msgstr "Étapes"
@@ -1862,7 +1862,7 @@ msgid "Longitude"
 msgstr "Longitude"
 
 msgid "e.g."
-msgstr "e.g."
+msgstr "par exemple."
 
 msgid "(Avoid adding JavaScript or jQuery codes to HTML for security reasons.)"
 msgstr "(Évitez d'ajouter des codes JavaScript ou jQuery au HTML pour des raisons de sécurité.)"
@@ -2924,7 +2924,7 @@ msgid "5 Point Scale"
 msgstr "Échelle de 5 points"
 
 msgid "Net Promoter Score"
-msgstr "Net Promoter Score"
+msgstr "Score du promoteur net"
 
 msgid "NPS Table Matrix"
 msgstr "Matrice de table NPS"
@@ -3452,7 +3452,7 @@ msgid "720p (HD)"
 msgstr "720p (HD)"
 
 msgid "1080p (Full HD)"
-msgstr "1080p (Full HD)"
+msgstr "1080p (en HD)"
 
 msgid "Permission to access your microphone/camera/screen was denied."
 msgstr "L'autorisation d'accéder à votre microphone/caméra/écran a été refusée."
@@ -4934,7 +4934,7 @@ msgid "Highlights"
 msgstr "Points forts"
 
 msgid "Twist-Out"
-msgstr "Twist-Out"
+msgstr "Twist-out"
 
 msgid "Trim"
 msgstr "Découper"
@@ -6962,7 +6962,7 @@ msgid "Connection Name"
 msgstr "Nom de la connexion"
 
 msgid "e.g., Customer Lookup API"
-msgstr "e.g., Customer Lookup API"
+msgstr "e.g., Client Lookup API"
 
 msgid "HTTP Method"
 msgstr "Méthode HTTP"
@@ -7547,7 +7547,7 @@ msgid "Spreadsheet ID"
 msgstr "ID de feuille de calcul"
 
 msgid "tab"
-msgstr "tab"
+msgstr "onglet"
 
 msgid "Choose Sheet"
 msgstr "Choisir une feuille"
@@ -8480,7 +8480,7 @@ msgid "WordPress form builder"
 msgstr "Générateur de formulaires WordPress"
 
 msgid "free WordPress form plugin"
-msgstr "free WordPress form plugin"
+msgstr "gratuit WordPress formulaire plugin"
 
 msgid "WordPress form plugin"
 msgstr "Plugin de formulaire WordPress"
@@ -8534,7 +8534,7 @@ msgid "smart forms WordPress"
 msgstr "Formulaires intelligents WordPress"
 
 msgid "file upload form plugin"
-msgstr "file upload form plugin"
+msgstr "fichier télécharger formulaire plugin"
 
 msgid "electronic signature forms"
 msgstr "formulaires de signature électronique"
@@ -8561,13 +8561,13 @@ msgid "WordPress job application form"
 msgstr "Formulaire de demande d'emploi WordPress"
 
 msgid "event registration forms"
-msgstr "event registration forms"
+msgstr "formulaires d &apos; inscription"
 
 msgid "WordPress event registration form"
 msgstr "Formulaire d'inscription à un événement WordPress"
 
 msgid "email notification forms"
-msgstr "email notification forms"
+msgstr "Formulaires de notification par courriel"
 
 msgid "WordPress email notifications"
 msgstr "Notifications par e-mail WordPress"
@@ -8576,7 +8576,7 @@ msgid "conditional email notifications"
 msgstr "notifications conditionnelles par e-mail"
 
 msgid "form email deliverability"
-msgstr "form email deliverability"
+msgstr "formulaire de livraison par courriel"
 
 msgid "SPF DKIM DMARC WordPress forms"
 msgstr "Formulaires WordPress SPF DKIM DMARC"
@@ -8585,13 +8585,13 @@ msgid "WordPress form entries"
 msgstr "Entrées du formulaire WordPress"
 
 msgid "form submission management"
-msgstr "form submission management"
+msgstr "gestion des demandes de soumission"
 
 msgid "WordPress form message management"
 msgstr "Gestion des messages du formulaire WordPress"
 
 msgid "form submissions PDF export"
-msgstr "form submissions PDF export"
+msgstr "présentation de formulaires PDF export"
 
 msgid "form submissions CSV export"
 msgstr "exportation CSV de soumissions de formulaire"
@@ -9146,3 +9146,157 @@ msgstr "Impossible de se connecter à Stripe : %s"
 
 msgid "Stripe API error (HTTP %d)."
 msgstr "Erreur API Stripe (HTTP %d)."
+
+msgid "Form submission"
+msgstr "Soumission du formulaire"
+
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "Forme publique, sondage et soumissions de souscription envoyées par GraphQL ."
+
+msgid "Manages forms and responses"
+msgstr "Gère les formulaires et les réponses"
+
+msgid "Opens the form builder"
+msgstr "Ouvre le formateur"
+
+msgid "Opens the forms panel"
+msgstr "Ouvre le panneau de formulaires"
+
+msgid "Manages form add-ons"
+msgstr "Gère les add-ons de formulaire"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Flux Forms: choices"
+msgstr "Flux Forms: choix"
+
+msgid "Flux Forms: advanced"
+msgstr "Flux Forms: avancé"
+
+msgid "Flux Forms: payment"
+msgstr "Formulaires Flux: paiement"
+
+msgid "Flux Forms: content"
+msgstr "Flux Forms: contenu"
+
+msgid "The form structure is not valid."
+msgstr "La structure du formulaire n'est pas valide."
+
+msgid "This form type is not supported."
+msgstr "Ce type de formulaire n'est pas pris en charge."
+
+msgid "This form was changed somewhere else after you opened it."
+msgstr "Ce formulaire a été changé ailleurs après l'ouverture."
+
+msgid "WooCommerce checkout"
+msgstr "Paiement WooCommerce"
+
+msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
+msgstr "Vous choisirez comment payer (carte, virement bancaire...) sur la page de paiement sécurisé."
+
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "Complétez le paiement dans la fenêtre qui a ouvert. Cette page se poursuit quand il est fait."
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "La fenêtre de paiement a été bloquée. Permettre des pop-ups pour ce site et essayer de nouveau."
+
+msgid "The payment was not completed. You can try again."
+msgstr "Le paiement n’a pas été effectué. Vous pouvez réessayer."
+
+msgid "The order is received; the payment is confirmed when it arrives."
+msgstr "La commande est reçue; le paiement est confirmé à son arrivée."
+
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "Paiement terminé. Vous pouvez fermer cette fenêtre et retourner au formulaire."
+
+msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
+msgstr "L'ordre est reçu; le paiement est confirmé quand il arrive. Vous pouvez fermer cette fenêtre et retourner au formulaire."
+
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "Le paiement n'a pas été terminé. Vous pouvez fermer cette fenêtre et essayer de nouveau sur le formulaire."
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "Flux Donate est actif mais n'a pas pris de trop-payés (filter flxb_own_paiement est hors?). Flux Forms prend des paiements sur le WooCommerce."
+
+msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
+msgstr "Les formulaires de paiement sont payés sur la caisse WooCommerce ( %1$s ; %2$s )."
+
+msgid "No payment form exists. WooCommerce is needed only to take payments."
+msgstr "Aucun formulaire de paiement n'existe. WooCommerce n'est nécessaire que pour prendre des paiements."
+
+msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
+msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
+msgstr[0] "WooCommerce n'a pas de méthode de paiement activée: %d formulaire de paiement ne peut pas prendre de paiements."
+msgstr[1] "WooCommerce n'a pas de méthode de paiement activée : %d formulaires de paiement ne peuvent pas prendre de paiements."
+
+msgid "WooCommerce is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "WooCommerce n'est pas actif: %d le formulaire de paiement indique «Le paiement en ligne n'est pas disponible»."
+msgstr[1] "WooCommerce n'est pas actif: %d formulaires de paiement montrent «Le paiement en ligne n'est pas disponible»."
+
+msgid "Payment methods"
+msgstr "Modes de paiement"
+
+msgid "Card payment"
+msgstr "Paiement par carte"
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "Pour prendre des paiements en ligne avec un formulaire de paiement, installez et activez WooCommerce et activez un mode de paiement."
+
+msgid "The form was not found."
+msgstr "Le formulaire n'a pas été trouvé."
+
+msgid "Write a reply."
+msgstr "Rédigez une réponse."
+
+msgid "The response was not found."
+msgstr "La réponse n'a pas été trouvée."
+
+msgid "The reply could not be saved."
+msgstr "La réponse ne peut être sauvegardée."
+
+msgid "The settings could not be saved."
+msgstr "Les paramètres ne pouvaient pas être sauvegardés."
+
+msgid "Choose between 1 and 7 days."
+msgstr "Choisissez entre 1 et 7 jours."
+
+msgid "Unknown track code style."
+msgstr "Inconnu style de code de piste."
+
+msgid "Unknown SMS sender."
+msgstr "Inconnu SMS expéditeur."
+
+msgid "Enter a colour like #1a2b3c."
+msgstr "Entrez une couleur comme #1a2b3c."
+
+msgid "Enter a valid e-mail address."
+msgstr "Entrez une adresse e-mail valide."
+
+msgid "Use numbers like +12345678900, separated by commas."
+msgstr "Utilisez des numéros comme +12345678900, séparés par des virgules."
+
+msgid "The template must contain the shortcode_message shortcode."
+msgstr "Le modèle doit contenir le shortcode shortcode_message."
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "Trop de soumissions, attendez un moment et essayez de nouveau."
+
+msgid "The form could not be sent."
+msgstr "Le formulaire n'a pas pu être envoyé."
+
+msgid "This form cannot be sent here."
+msgstr "Ce formulaire ne peut pas être envoyé ici."
+
+msgid "The tracking code was not found."
+msgstr "Le code de suivi n'a pas été trouvé."
+
+msgid "Upload the file again."
+msgstr "Téléchargez le fichier."
+
+msgid "The confirmation code is not valid."
+msgstr "Le code de confirmation n'est pas valide."
+
+msgid "Choose one of the listed options."
+msgstr "Choisissez l'une des options énumérées."

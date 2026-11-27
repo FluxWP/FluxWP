@@ -158,7 +158,7 @@ msgid "Large title"
 msgstr "Großer Titel"
 
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Desktop-PC"
 
 msgid "The sidebar follows the role's Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):"
 msgstr "Die Seitenleiste folgt dem Flux Admin-Menülayout der Rolle (Pins und Gruppen). In der Befehlspalette immer angezeigte Verknüpfungen (⌘K):"
@@ -613,7 +613,7 @@ msgid "Recent orders"
 msgstr "Letzte Bestellungen"
 
 msgid "Web"
-msgstr "Web"
+msgstr "Web-Seiten"
 
 msgid "Sign-in required."
 msgstr "Anmeldung erforderlich."
@@ -922,7 +922,7 @@ msgid "Video"
 msgstr "Video"
 
 msgid "Audio"
-msgstr "Audio"
+msgstr "Audio- und Audiotechnik"
 
 msgid "Document"
 msgstr "Dokument"
@@ -970,7 +970,7 @@ msgid "Username"
 msgstr "Benutzername"
 
 msgid "Website"
-msgstr "Website"
+msgstr "Webseite"
 
 msgid "Registered"
 msgstr "Registriert"
@@ -1051,7 +1051,7 @@ msgid "Comments on new posts"
 msgstr "Kommentare zu neuen Beiträgen"
 
 msgid "Pingbacks"
-msgstr "Pingbacks"
+msgstr "Pingback"
 
 msgid "Plugins"
 msgstr "Plugins"
@@ -1288,7 +1288,7 @@ msgid "Call"
 msgstr "Rufen Sie an"
 
 msgid "Yetkiniz yok."
-msgstr "Yetkiniz yok."
+msgstr "Dies ist Ihnen nicht gestattet."
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr "Serverseite der FluxWP-Desktop- und Mobil-App: OAuth 2.0 (PKCE)-Anmeldung, Geräte und Push, App-Ansicht (Konfiguration), Plugin-Anzeigen (Manifest), Panel-Sitzung. MCP-Clients verbinden sich auch über OAuth."
@@ -1349,3 +1349,105 @@ msgstr "Die Telefonnummer wurde aus Ihrem %s-Konto entfernt"
 
 msgid "The token does not include the scope this request needs."
 msgstr "Das Token enthält nicht den Bereich, den diese Anfrage benötigt."
+
+msgid "JavaScript is required for this screen."
+msgstr "Für diesen Bildschirm ist JavaScript erforderlich."
+
+msgid "Open in app"
+msgstr "In App öffnen"
+
+msgid "Open in the FluxWP app"
+msgstr "Geöffnet in der FluxWP App"
+
+msgid "Opening the app…"
+msgstr "Öffnen der App..."
+
+msgid "The app did not open. Install it, then come back and press the button again."
+msgstr "Die App hat nicht geöffnet. Installieren Sie es, dann kommen Sie zurück und drücken Sie die Taste erneut."
+
+msgid "Download on the App Store"
+msgstr "Download im App Store"
+
+msgid "Get it on Google Play"
+msgstr "Holen Sie es auf Google Play"
+
+msgid "Download for Mac"
+msgstr "Download für Mac"
+
+msgid "Open the app"
+msgstr "App öffnen"
+
+msgid "This push service is not allowed."
+msgstr "Dieser Push-Service ist nicht erlaubt."
+
+msgid "Invalid subscription keys."
+msgstr "Invalide Aboschlüssel."
+
+msgid "Browser notifications need a signed-in browser session."
+msgstr "Browser-Benachrichtigungen benötigen eine signierte Browser-Sitzung."
+
+msgid "Notifications are turned off on this site."
+msgstr "Auf dieser Seite werden Meldungen abgeschaltet."
+
+msgid "Notifications on"
+msgstr "Mitteilungen über"
+
+msgid "Notifications blocked"
+msgstr "Verstopfte Meldungen"
+
+msgid "Get notifications in this browser, also when the site is closed."
+msgstr "Erhalten Sie Benachrichtigungen in diesem Browser, auch wenn die Website geschlossen ist."
+
+msgid "Stop notifications in this browser."
+msgstr "Stoppen Sie Benachrichtigungen in diesem Browser."
+
+msgid "Notifications are blocked for this site in the browser settings."
+msgstr "In den Browser-Einstellungen werden für diese Seite Benachrichtigungen gesperrt."
+
+msgid "Notifications could not be turned on"
+msgstr "Mitteilungen konnten nicht eingeschaltet werden"
+
+msgid "This browser"
+msgstr "Dieser Browser"
+
+msgid "Notification types"
+msgstr "Notifizierungsarten"
+
+msgid "Applies to all your devices, also the mobile app."
+msgstr "Gilt für alle Ihre Geräte, auch die mobile App."
+
+msgid "No notification types are available yet."
+msgstr "Es sind noch keine Benachrichtigungstypen verfügbar."
+
+msgid "Could not save, try again."
+msgstr "Könnte nicht retten, versuchen Sie es noch mal."
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Browser notifications (Web Push)"
+msgstr "Browser-Benachrichtigungen (Web Push)"
+
+msgid "Browsers allow notifications only on https sites."
+msgstr "Browser erlauben Meldungen nur auf https-Seiten."
+
+msgid "Ready. Users turn them on per browser with Notifications in the admin bar."
+msgstr "Bereit. Benutzer wenden sie pro Browser mit Meldungen in der Admin-Bar an."
+
+msgid "PHP OpenSSL cannot sign P-256 keys here; browsers do not get notifications. Mobile app push still works."
+msgstr "PHP OpenSSL kann P-256 Schlüssel hier nicht signieren; Browser erhalten keine Benachrichtigungen. Mobile App Push funktioniert noch."
+
+msgid "Live connection (realtime)"
+msgstr "Live-Verbindung (realtime)"
+
+msgid "The realtime service runs but has no public address (FLX_REALTIME_URL); apps poll."
+msgstr "Der Echtzeit-Service läuft, hat aber keine öffentliche Adresse (FLX_REALTIME_URL); Apps Umfrage."
+
+msgid "Panel and app get changes at once."
+msgstr "Panel und App erhalten Änderungen auf einmal."
+
+msgid "Not checked yet; shown after the next app sign-in."
+msgstr "Noch nicht überprüft; nach dem nächsten App-Zeichen angezeigt."
+
+msgid "The realtime service is not answering; apps poll until it is back."
+msgstr "Der Echtzeit-Service wird nicht beantwortet; Apps Umfrage, bis es zurück ist."

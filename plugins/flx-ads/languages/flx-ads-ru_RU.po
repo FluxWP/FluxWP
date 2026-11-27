@@ -1,0 +1,818 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Sees ad conversions"
+msgstr "См. ad conversions"
+
+msgid "Ads"
+msgstr "Объявления"
+
+msgid "Manages ads and tracking settings"
+msgstr "Направление объявлений и отслеживание сигналов"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Which ad brought which donation"
+msgstr "Которая реклама принесла пожертвование"
+
+msgid "Report"
+msgstr "Отчет"
+
+msgid "Campaigns"
+msgstr "Кампании"
+
+msgid "Suggestions"
+msgstr "Предложения"
+
+msgid "Studio"
+msgstr "Студия"
+
+msgid "Season plan"
+msgstr "План сезона"
+
+msgid "Tests"
+msgstr "Испытания"
+
+msgid "Donor value"
+msgstr "Доноры"
+
+msgid "Ad spend"
+msgstr "Адресные расходы"
+
+msgid "Audiences"
+msgstr "Аудиенции"
+
+msgid "Send log"
+msgstr "Отправить журнал"
+
+msgid "Ad link"
+msgstr "Адресная связь"
+
+msgid "You are not allowed to view this page."
+msgstr "Вам не разрешено просматривать эту страницу."
+
+msgid "Ad tracking settings"
+msgstr "Настройка отслеживания"
+
+msgid "Change ad tracking settings"
+msgstr "Перемены в системе отслеживания объявлений"
+
+msgid "Test ad platform connection"
+msgstr "Связь с платформой для испытания"
+
+msgid "Ad conversion send log"
+msgstr "Реконструкционный журнал"
+
+msgid "Send a conversion again"
+msgstr "Повторите пересчет."
+
+msgid "Add ad spend"
+msgstr "Добавить рекламу"
+
+msgid "Delete manual ad spend"
+msgstr "Исключить ручное объявление"
+
+msgid "Update Meta ad spend now"
+msgstr "Новенькая мета-ад сейчас тратит"
+
+msgid "Donor value by campaign (LTV, CAC)"
+msgstr "Доноры в разбивке по кампаниям (LTV, CAC)"
+
+msgid "Meta audiences"
+msgstr "Мета аудитория"
+
+msgid "Create a Meta audience"
+msgstr "Созвать аудиторию &quot; мета &quot;"
+
+msgid "Create a lookalike audience"
+msgstr "Создай зрителей."
+
+msgid "Update a Meta audience now"
+msgstr "Обновление публики мета."
+
+msgid "Delete a Meta audience"
+msgstr "Исключить публику мета."
+
+msgid "Meta campaigns"
+msgstr "Кампании &lt; &lt; Мета &gt; &gt;"
+
+msgid "Meta campaign details"
+msgstr "Подробная информация о кампании &lt; &lt; Мета &gt; &gt;"
+
+msgid "Pause or turn on in Meta"
+msgstr "Пауза или поворот в Мете"
+
+msgid "Change daily budget in Meta"
+msgstr "Динамика ежедневного бюджета в Мете"
+
+msgid "Ad suggestions"
+msgstr "А. Предложения"
+
+msgid "Apply an ad suggestion"
+msgstr "Применять предложение"
+
+msgid "Dismiss an ad suggestion"
+msgstr "Упраздновать предложение"
+
+msgid "Add a season date"
+msgstr "Добавить дату сезона"
+
+msgid "Delete a season date"
+msgstr "Исключить дату сезона"
+
+msgid "Ad tests"
+msgstr "Испытательные испытания"
+
+msgid "Start an ad test"
+msgstr "Начать испытание ad"
+
+msgid "End an ad test"
+msgstr "Конец испытания на ад"
+
+msgid "Delete an ad test"
+msgstr "Исключить испытание ad"
+
+msgid "Campaign planning context"
+msgstr "Концептуальный контекст планирования кампаний"
+
+msgid "Campaign drafts"
+msgstr "Проекты кампаний"
+
+msgid "Save a campaign draft"
+msgstr "Спаси проект кампании"
+
+msgid "Create draft in Meta (paused)"
+msgstr "Проект в Мете (оплачивается)"
+
+msgid "Delete a campaign draft"
+msgstr "Исключить проект кампании"
+
+msgid "Ad conversions"
+msgstr "Конверсия в должности"
+
+msgid "Audience not found."
+msgstr "Аудиенции не найдены."
+
+msgid "Everyone with ad consent"
+msgstr "Все с согласия"
+
+msgid "Donors and customers (paid at least once)"
+msgstr "Доноры и клиенты (оплачивается по крайней мере один раз)"
+
+msgid "Value group: %s"
+msgstr "Группа: %s"
+
+msgid "Segment: %s"
+msgstr "Раздел: %s"
+
+msgid "Show ads to them"
+msgstr "Покажи им рекламу"
+
+msgid "Exclude from ads"
+msgstr "Исключая адски"
+
+msgid "Flux CRM and a Meta ad account with an ads_management key are needed."
+msgstr "Необходима система CRM Flux и специальный счет мета с рекламным ключом."
+
+msgid "Enter a name and pick a group."
+msgstr "Назовите имя и выберите группу."
+
+msgid "Pick one of your own audiences as the source."
+msgstr "Выбери одну из своих зрителей в качестве источника."
+
+msgid "%1$s · lookalike %2$d%% %3$s"
+msgstr "%1$s - похоже на %2$d% %3$s"
+
+msgid "Not from ads"
+msgstr "Не из объявлений"
+
+msgid "(not set)"
+msgstr "(не установлен)"
+
+msgid "A/B test"
+msgstr "Испытание A/B"
+
+msgid "Holdout (lift)"
+msgstr "Холдинг (лифт)"
+
+msgid "Choose the test type."
+msgstr "Выбери тип испытания."
+
+msgid "The end date is before the start date."
+msgstr "Конечная дата - до начала."
+
+msgid "Pick a campaign and two different ads in it."
+msgstr "Выбери кампанию и две разные рекламные ролики."
+
+msgid "Both ads must be in the chosen campaign."
+msgstr "Оба объявления должны быть в выбранной кампании."
+
+msgid "Pick an audience that ads are shown to."
+msgstr "Выбери рекламу."
+
+msgid "The holdout share must be between 5% and 50%."
+msgstr "Доля лиц, не имеющих права на питание, должна составлять от 5% до 50%."
+
+msgid "This audience already has a running holdout test."
+msgstr "У этой аудитории уже есть тест на утечку."
+
+msgid "Test not found."
+msgstr "Тест не найден."
+
+msgid "The audience of this test was deleted."
+msgstr "Участники этого испытания были исключены."
+
+msgid "Not enough data yet: wait until both ads have clicks."
+msgstr "Пока не достаточно данных: подождите, пока у обеих реклам не будет щелчка."
+
+msgid "payments per click"
+msgstr "платежи в расчете на щелчок"
+
+msgid "click rate"
+msgstr "Скорость щелчка"
+
+msgid "Too little data yet: each ad needs at least 50 clicks (1,000 impressions while payments are few). Let it run longer."
+msgstr "Слишком мало данных: каждая реклама нуждается по крайней мере в 50 щелчках (1 000 впечатлений, в то время как платежи незначительны)."
+
+msgid "No clear winner yet on %1$s (confidence %2$s%%; 95%% is needed). Let it run longer."
+msgstr "Победителя пока нет на уровне %1$s (конфиденция %2$s%; необходимость в 95%)."
+
+msgid "\"%1$s\" wins on %2$s with %3$s%% confidence. You can pause \"%4$s\"."
+msgstr "\" %1$s\" выигрывает на %2$s с %3$s% уверенности, и ты можешь пропустить %4$s."
+
+msgid "Not enough data yet."
+msgstr "Пока недостаточно данных."
+
+msgid "Ads work: people who could see them gave %1$s%% more often. About %2$s extra donors and %3$s extra income came from the ads (confidence %4$s%%)."
+msgstr "Задачи: люди, которые могли видеть их, чаще получают %1$s%. Около %2$s дополнительных доноров и %3$s дополнительных поступлений поступили из объявлений (конфиденция %4$s%)."
+
+msgid "People who did not see the ads gave more often. The ads to this audience are not adding donations; try other text or another audience."
+msgstr "Люди, которые не видят объявления, чаще рекламируют эту аудиторию, не добавляют пожертвований; пробуют другой текст или другие аудитории."
+
+msgid "The holdout group is still small (%s people; at least 100 are needed). Use a larger audience or share, or wait for it to grow."
+msgstr "The holdout group is still small (%s - людей; по крайней мере 100 человек необходимы); использовать более широкую аудиторию или долю или ждать, пока она будет расти."
+
+msgid "No clear difference yet between people who could see the ads and the holdout (confidence %s%%; 95%% is needed)."
+msgstr "Между людьми, которые могли бы видеть объявления и трюм, пока нет никаких четких различий (договор %s процента; необходимо 95%)."
+
+msgid "Last 7 days"
+msgstr "Последние 7 дней"
+
+msgid "Last 30 days"
+msgstr "Последние 30 дней"
+
+msgid "Last 90 days"
+msgstr "Последние 90 дней"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Paused"
+msgstr "Приостановлено"
+
+msgid "Campaign paused"
+msgstr "Кампания началась"
+
+msgid "Ad set paused"
+msgstr "На старт"
+
+msgid "Processing"
+msgstr "Обработка"
+
+msgid "Has issues"
+msgstr "Проблемы"
+
+msgid "In review"
+msgstr "На рассмотрении"
+
+msgid "Rejected"
+msgstr "Отклонено"
+
+msgid "Approved"
+msgstr "Утверждено"
+
+msgid "Billing needed"
+msgstr "Требуется Биллинг"
+
+msgid "Archived"
+msgstr "В архиве"
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+msgstr "Enter the Meta ad account ID and a Marketing API ключ в \"Сетингс\" Мета."
+
+msgid "Campaign not found."
+msgstr "Кампания не найдена."
+
+msgid "Status can only be Active or Paused."
+msgstr "Статус может быть только активным или паузовым."
+
+msgid "Enter a daily budget greater than zero."
+msgstr "Ежедневный бюджет больше нуля."
+
+msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr "В данном разделе не предусматривается ежедневного бюджета (бюджет на период жизни или бюджет на проведение кампании/предоставление бюджета)."
+
+msgid "Pause campaign"
+msgstr "Кампания &quot; Пауза &quot;"
+
+msgid "Lower budget"
+msgstr "Снижение бюджета"
+
+msgid "Raise budget"
+msgstr "Увеличение бюджетных ассигнований"
+
+msgid "Pause weak ad"
+msgstr "Пауза слабая."
+
+msgid "New ad text"
+msgstr "Новый специальный текст"
+
+msgid "Season coming"
+msgstr "Сезон приближается."
+
+msgid "Waiting"
+msgstr "Ожидание"
+
+msgid "Applied"
+msgstr "Applied"
+
+msgid "Dismissed"
+msgstr "Увольнение"
+
+msgid "No longer valid"
+msgstr "Больше недействительно"
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr "В течение последних 7 дней отбывал %1$s и не получил никаких платежей на объекте (решение принято после %2$s)."
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr "Возвращение на рекламу %1$sПод половиной твоего %2$s Сокращение объема бюджета на ежедневной основе %3$s → %4$s (-20%) и перевод денег на более эффективные кампании."
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr "Возвращение на ад-страктные расходы составляет %1$s с выплатами %2$s за ваш целевой показатель. %3$s → %4$s (+20%, достаточно малая, чтобы Мета продолжала учиться)."
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr "Ставка цилинка %1$s%, в то время как другие рекламы в этом рекламе устанавливают среднее значение %2$s%; она расходуется %3$s...чтобы он перенес бюджет на лучшие рекламные ролики."
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr "Люди видели эти объявления %s раз каждый за 7 дней; результаты обычно снижаются после 4. Напишите новые варианты текстов в Студио или расширяют аудиторию."
+
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] "%1$s начинается с %2$s дня, напишите кампанию, чтобы Мета получила время для изучения и изучения."
+msgstr[1] "%1$s начинается через %2$s дня, напишите кампанию, чтобы Мета располагала временем для изучения и изучения."
+msgstr[2] "%1$s начинается через %2$s дня, напишите кампанию, чтобы Мета располагала временем для изучения и изучения."
+
+msgid "Last year it brought %1$s payments and %2$s."
+msgstr "В прошлом году он произвел %1$s платеж и %2$s ."
+
+msgid "This suggestion is already closed."
+msgstr "Это предложение уже закрыто."
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr "Это предложение не имеет ничего общего с мета; открывает Студио или отстраняет его."
+
+msgid "Suggestion not found."
+msgstr "Предложение не найдено."
+
+msgid "Ramadan and Eid"
+msgstr "Рамадан и Эйд"
+
+msgid "Qurban (Eid al-Adha)"
+msgstr "Курбан (Ид аль-Адха)"
+
+msgid "World Forestry Day and Forest Week"
+msgstr "Всемирный день лесного хозяйства и Неделя лесов"
+
+msgid "Mother's Day (donate in her name)"
+msgstr "День матери (покойна на ее имя)"
+
+msgid "World Environment Day"
+msgstr "Всемирный день окружающей среды"
+
+msgid "National Tree Planting Day (11 November)"
+msgstr "Национальный день посадки деревьев (11 ноября)"
+
+msgid "Teachers' Day (donate in their name)"
+msgstr "День учителей (поздно на имя)"
+
+msgid "Black Friday and Giving Tuesday"
+msgstr "Черная пятница и вторник"
+
+msgid "Year-end giving"
+msgstr "Годовая сдача"
+
+msgid "Enter a name and a start date."
+msgstr "Назовите имя и дату начала."
+
+msgid "Too many dates; delete old ones first."
+msgstr "Слишком много дат; сначала удалить старые."
+
+msgid "Date not found."
+msgstr "Дата не найдена."
+
+msgid "Campaign for %1$s (%2$s – %3$s)."
+msgstr "Кампания за %1$s (%2$s - %3$s)."
+
+msgid "Last year the same period brought %1$s payments and %2$s."
+msgstr "В прошлом году в тот же период было произведено %1$s платежа и %2$s ."
+
+msgid "Ad channel"
+msgstr "Адресный канал"
+
+msgid "Campaign"
+msgstr "Кампания"
+
+msgid "Ad (utm_content)"
+msgstr "Ad (utm_content)"
+
+msgid "Source / medium"
+msgstr "Источник/средний"
+
+msgid "Landing page"
+msgstr "Страница посадки"
+
+msgid "First ad touch"
+msgstr "Первое объявление"
+
+msgid "Fill in the ID and the key first."
+msgstr "Заполните удостоверение личности и ключ."
+
+msgid "Connected to \"%s\". Enter a test event code to see a test event in Events Manager."
+msgstr "Соединённый с \"%s\" и введи код испытательного события, чтобы увидеть событие в менеджере по событиям."
+
+msgid "Test event sent. Check Events Manager › Test events."
+msgstr "Испытательное событие, проверьте события менеджера по мероприятиям &quot; Испытания."
+
+msgid "Enter the test event code from TikTok Events Manager › Test events, then test again."
+msgstr "Введи код испытательного события из \"Тиктока\" в \"Испытание\", затем снова испытуем."
+
+msgid "Test event sent. Check TikTok Events Manager › Test events."
+msgstr "Проверьте управляющий мероприятиями в Тиктоке &quot; Тестовые мероприятия."
+
+msgid "Google accepted the test event (validation only; nothing was recorded)."
+msgstr "Google принял испытательное событие (только калибровка; ничего не было зарегистрировано)."
+
+msgid "Enter the ad account ID and a key first."
+msgstr "Введите удостоверение личности и ключ."
+
+msgid "Meta answered too slowly; try again later."
+msgstr "Мета слишком медленно ответила, попробуем позже."
+
+msgid "Too many rows; only part of the period was read."
+msgstr "Слишком много рядов; была прочитана лишь часть периода."
+
+msgid "Donations / sales (conversions)"
+msgstr "Пожертвования/продажи (конверсия)"
+
+msgid "Visits to the page"
+msgstr "Поездки на страницу"
+
+msgid "Awareness (reach)"
+msgstr "Осведомленность (отсутствие)"
+
+msgid "Donate now"
+msgstr "Пожертвуй сейчас"
+
+msgid "Learn more"
+msgstr "Узнать больше"
+
+msgid "Shop now"
+msgstr "Сейчас же."
+
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+msgid "Draft"
+msgstr "Черновик"
+
+msgid "In Meta (paused)"
+msgstr "В Мета (запачканное)"
+
+msgid "Not sent"
+msgstr "Не отправлено"
+
+msgid "Give the campaign a name."
+msgstr "Назовите кампанию имя."
+
+msgid "Enter the page the ads open (a full https:// address)."
+msgstr "Введите страницу объявлений открытым (полный адрес https:// address)."
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr "Добавить по крайней мере один набор объявлений (который видит объявления)."
+
+msgid "Add at least one ad with a text and a headline."
+msgstr "Добавить хотя бы одну рекламу с текстом и заголовком."
+
+msgid "Draft not found."
+msgstr "Черновик не найден."
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr "Этот проект уже в Мете, редактирует его там или дублирует его здесь."
+
+msgid "Too many drafts; delete old ones first."
+msgstr "Слишком много проектов; сначала исключить старые."
+
+msgid "%s (copy)"
+msgstr "%s(копия)"
+
+msgid "Meta ad account ID and Marketing API key (Settings › Meta)"
+msgstr "Meta ad account ID and Marketing API ключ (Settings  &apos; Meta)"
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr "ID Facebook (выпуск ник)"
+
+msgid "This draft is already in Meta."
+msgstr "Этот проект уже в Мете."
+
+msgid "Missing: %s."
+msgstr "Пропало %s."
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr "Flux AI не готов. MCP и добавить образец."
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr "Напишите краткое сообщение: для чего идет кампания и для кого она должна быть доступна."
+
+msgid "The AI answer could not be read; try again."
+msgstr "Ответ МА не может читаться; попробуйте еще раз."
+
+msgid "Ad conversion"
+msgstr "Преобразование в должность"
+
+msgid "Ad source"
+msgstr "Адресный источник"
+
+msgid "No payment from this contact came through an ad."
+msgstr "Никаких выплат от этого контакта не было."
+
+msgid "First came through: %s"
+msgstr "Первый: %s"
+
+msgid "Ad report"
+msgstr "Специальный доклад"
+
+msgid "Other campaigns (UTM)"
+msgstr "Другие кампании (УПМ)"
+
+msgid "No ad (direct, search, other sites)"
+msgstr "Никаких объявлений (прямые, поисковые, другие объекты)"
+
+msgid "Ad conversions report"
+msgstr "Доклад о преобразовании должностей"
+
+msgid "Ad tracking status"
+msgstr "Статус отслеживания"
+
+msgid "Similar to: %s"
+msgstr "Аналогично: %s"
+
+msgid "(removed group)"
+msgstr "(группа уволена)"
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr "В Мете создается кампания с рекламой %1$d и %2$d рекламы."
+
+msgid "Now"
+msgstr "Сейчас"
+
+msgid "Prepare now"
+msgstr "Приготовься."
+
+msgid "Later"
+msgstr "Позже"
+
+msgid "running"
+msgstr "бегство"
+
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] "в %s день"
+msgstr[1] "в %s день"
+msgstr[2] "в %s день"
+
+msgid "Sales"
+msgstr "Продажи"
+
+msgid "Leads"
+msgstr "Ведущие"
+
+msgid "Traffic"
+msgstr "Движение"
+
+msgid "Engagement"
+msgstr "Помолвка"
+
+msgid "Awareness"
+msgstr "Осведомленность"
+
+msgid "App promotion"
+msgstr "Продвижение по службе"
+
+msgid "%s / day"
+msgstr "%s/день"
+
+msgid "%s total"
+msgstr "Всего %s"
+
+msgid "all genders"
+msgstr "всех полов"
+
+msgid "men"
+msgstr "Мужчины"
+
+msgid "women"
+msgstr "женщины"
+
+msgid "%1$d–%2$d, %3$s, %4$s"
+msgstr "%1$d - %2$d , %3$s, %4$s"
+
+msgid "audiences +%1$d / −%2$d"
+msgstr "аудитория + %1$d / - %2$d"
+
+msgid "unknown"
+msgstr "неизвестные"
+
+msgid "%s spent"
+msgstr "%s отработано"
+
+msgid "Panel"
+msgstr "Панель"
+
+msgid "Daily budget %1$s → %2$s"
+msgstr "Ежедневный бюджет %1$s → %2$s"
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr "Установить ежедневный бюджет на %1$s %2$s в Мете?"
+
+msgid "Apply: %s a day"
+msgstr "Применяется: %s в день"
+
+msgid "Pause \"%s\" in Meta?"
+msgstr "Пауза %s в Мете?"
+
+msgid "Apply: pause"
+msgstr "Применить: паузу"
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr "A campaign is judged after %s провести через 7 дней."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr "После того, как в течение 7 дней расходы на проведение кампании в два раза превышают средние расходы на выплату (в настоящее время %s)."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr "После того, как в течение 7 дней в два раза в день расходуется средняя стоимость за один платеж, проводится кампания."
+
+msgid "Spend"
+msgstr "Тратить"
+
+msgid "Link clicks"
+msgstr "Линия"
+
+msgid "Payments on the site"
+msgstr "Выплаты на объекте"
+
+msgid "Payments per click"
+msgstr "Выплаты за щелчок"
+
+msgid "Cost per payment"
+msgstr "Расходы за выплату"
+
+msgid "People"
+msgstr "Люди"
+
+msgid "Gave at least once"
+msgstr "По крайней мере один раз"
+
+msgid "Income"
+msgstr "Поступления"
+
+msgid "Per person"
+msgstr "На человека"
+
+msgid "Could see ads"
+msgstr "Смотреть рекламу."
+
+msgid "Held out"
+msgstr "состоявшемся"
+
+msgid "Audience \"%1$s\", %2$s%% held out"
+msgstr "Аудиенция%1$s\", %2$sПроцентная доля от общего числа"
+
+msgid "open-ended"
+msgstr "открытого состава"
+
+msgid "%1$s (%2$s people)"
+msgstr "%1$s (%2$s человека)"
+
+msgid "There is no winner yet."
+msgstr "Пока нет победителя."
+
+msgid "Enter an amount greater than zero."
+msgstr "Взять больше, чем ноль."
+
+msgid "Spend not found."
+msgstr "Спенда нет."
+
+msgid "Sent"
+msgstr "Отправлено"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "visitor did not accept cookies"
+msgstr "Посетитель не принял печенье."
+
+msgid "already sent from the browser"
+msgstr "уже отправлен из броузера."
+
+msgid "platform turned off"
+msgstr "платформа выключена"
+
+msgid "order deleted"
+msgstr "исключено"
+
+msgid "Row not found."
+msgstr "Роу не нашли."
+
+msgid "E-mail newsletter"
+msgstr "Информационный бюллетень электронной почты"
+
+msgid "Paid social"
+msgstr "Выплаченные социальные пособия"
+
+msgid "Search ad (cpc)"
+msgstr "Поиск (cpc)"
+
+msgid "Video ad"
+msgstr "Видеозапись"
+
+msgid "Organic post"
+msgstr "Органический пост"
+
+msgid "E-mail"
+msgstr "Электронная почта"
+
+msgid "Unknown platform."
+msgstr "Неизвестная платформа."
+
+msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
+msgstr "Включено, но личность пропала или недействительна."
+
+msgid "Browser pixel only. Without the server key, bank-transfer donations approved later and visitors with ad blockers are not counted."
+msgstr "Без ключа сервера, пожертвования на банковский транспорт, одобренные позднее, и посетители с блокировками не учитываются."
+
+msgid "Pixel and server events are set up. Last test passed."
+msgstr "Весьма устроены фиксель и сервер."
+
+msgid "Last connection test failed:"
+msgstr "Последнее испытание на подсоединение провалилось:"
+
+msgid "Pixel and server events are set up. Run \"Test\" once to check the key."
+msgstr "Устанавливаются пиксел и серверы. \"Испытать\" раз, чтобы проверить ключ."
+
+msgid "Ad platforms"
+msgstr "Ad plays"
+
+msgid "No ad platform is on. The ad report still works from UTM links and click IDs."
+msgstr "В отчете по рекламе все еще работают сайты УТМ и щелочные документы."
+
+msgid "Server conversions"
+msgstr "Преобразование серверов"
+
+msgid "%1$d failed, %2$d waiting. Last retry run: %3$s."
+msgstr "%1$d Неудачник, %2$d Последний повторный ход: %3$s."
+
+msgid "never"
+msgstr "никогда"
+
+msgid "Meta ad spend"
+msgstr "Мета реклама тратит"
+
+msgid "Last update failed:"
+msgstr "Последнее обновление провалилось:"
+
+msgid "Spend read %s."
+msgstr "Прочее читать %s."
+
+msgid "Not read yet; opening the Flux Ads screen starts it."
+msgstr "Пока не читается; открытие экрана Flux Ads начинается."
+
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "Ежедневно обновляется %d."
+msgstr[1] "Ежедневно обновляется %d."
+msgstr[2] "Ежедневно обновляется %d."
+
+msgid "Cookie consent"
+msgstr "Согласие со стороны Куки"
+
+msgid "The theme cookie banner is off, so ad pixels load without asking. Under KVKK/GDPR marketing cookies need consent: turn the banner on in Appearance › Theme Settings."
+msgstr "Тема баннера для печенья отменяется, так что при помощи пикселов не спрашиваются. &quot; КВКК/ГПР &quot; требуется согласие: выключить баннер в \"Припасах\""
+
+msgid "Theme Settings"
+msgstr "Настройки темы"

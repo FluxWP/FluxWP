@@ -341,10 +341,10 @@ msgid "Summary"
 msgstr "Zusammenfassung"
 
 msgid "l, F j, Y"
-msgstr "l, F j, Y"
+msgstr "L, F j, Y"
 
 msgid "%1$s, %2$s"
-msgstr "%1$s, %2$s"
+msgstr "%1$s , %2$s"
 
 msgid "Edit modules"
 msgstr "Bearbeiten Sie Module"
@@ -458,7 +458,7 @@ msgid "Admin"
 msgstr "Admin"
 
 msgid "Dashboard"
-msgstr "Armaturenbrett"
+msgstr "Übersicht"
 
 msgid "General"
 msgstr "Allgemein"
@@ -1039,7 +1039,7 @@ msgid "Filters"
 msgstr "Filter"
 
 msgid "Clear"
-msgstr "Klar"
+msgstr "Leeren"
 
 msgid "Pagination"
 msgstr "Paginierung"
@@ -1057,7 +1057,7 @@ msgid "Per page"
 msgstr "Pro Seite"
 
 msgid "Apply"
-msgstr "Bewerben"
+msgstr "Anwenden"
 
 msgid "Default: the theme's primary colour (Appearance › Editor › Styles). If you pick the theme's colour, this follows the theme when it changes."
 msgstr "Standard: die Primärfarbe des Themas (Darstellung › Editor › Stile). Wenn Sie die Farbe des Themas auswählen, folgt diese dem Thema, wenn es sich ändert."
@@ -1200,3 +1200,54 @@ msgstr "Vorheriger Monat"
 
 msgid "Next month"
 msgstr "Nächster Monat"
+
+msgid "Learn more"
+msgstr "Erfahren Sie mehr"
+
+msgid "Dismiss"
+msgstr "Entlassen"
+
+msgid "or"
+msgstr "oder"
+
+msgid "This role does not exist."
+msgstr "Diese Rolle existiert nicht."
+
+msgid "This permission is not in the table."
+msgstr "Diese Erlaubnis ist nicht in der Tabelle."
+
+msgid "There is no backup to restore."
+msgstr "Es gibt keine Sicherung zur Wiederherstellung."
+
+msgid "A layout needs at least one menu item."
+msgstr "Ein Layout benötigt mindestens einen Menüpunkt."
+
+msgid "Choose a menu item."
+msgstr "Wählen Sie einen Menüpunkt."
+
+msgid "Unknown menu action."
+msgstr "Unbekannte Menü-Action."
+
+msgid "Unread WhatsApp"
+msgstr "Nicht zu lesen WhatsApp"
+
+msgid "The logo must be an image from the media library."
+msgstr "Das Logo muss ein Bild aus der Medienbibliothek sein."
+
+msgid "Choose 30, 60 or 120 seconds."
+msgstr "Wählen Sie 30, 60 oder 120 Sekunden."
+
+msgid "Enter a color like #1F2937."
+msgstr "Geben Sie eine Farbe wie #1F2937 ein."
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "Die hochgeladene Datei wurde nicht gefunden. Laden Sie sie erneut hoch."
+
+msgid "The file could not be saved on the server."
+msgstr "Die Datei konnte nicht auf dem Server gespeichert werden."
+
+msgid "Choose auto, light or dark."
+msgstr "Wählen Sie Auto, Licht oder Dunkel."
+
+msgid "You do not have permission to do this."
+msgstr "Sie haben dazu keine Berechtigung."

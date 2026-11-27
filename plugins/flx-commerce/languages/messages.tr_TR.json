@@ -87,7 +87,7 @@
     "Refunded": "İade edildi",
     "Failed": "Başarısız",
     "Flux Commerce": "Flux Commerce",
-    "WooCommerce": "WooCommerce",
+    "WooCommerce": "WooCommerce kez",
     "Active, version %s": "Etkin, sürüm %s",
     "WooCommerce is not installed or not active; Flux Commerce does not work.": "WooCommerce kurulu ya da etkin değil; Flux Commerce çalışmaz.",
     "Plugins": "Eklentiler",
@@ -122,7 +122,7 @@
     "Payments": "Ödemeler",
     "Notes": "Notlar",
     "Customer since %s": "%s tarihinden beri müşteri",
-    "WhatsApp": "WhatsApp",
+    "WhatsApp": "WhatsApp kez",
     "%s open orders": "%s açık sipariş",
     "Average order": "Ortalama sepet",
     "Order frequency": "Sipariş sıklığı",
@@ -434,6 +434,17 @@
     "Automatic card renewal:": "Kartla otomatik yenileme:",
     "no card provider yet (Flux Donate iyzico adds one).": "henüz kart sağlayıcısı yok (Flux Donate iyzico ekler).",
     "Auto: %s": "Otomatik: %s",
-    "Monthly and yearly payments. Renewal orders are created before each period ends; a stored card is charged automatically, otherwise the customer pays by bank transfer or through the payment link.": "Aylık ve yıllık ödemeler. Her dönem bitmeden yenileme siparişi açılır; kayıtlı kart varsa otomatik çekilir, yoksa müşteri Havale/EFT ile ya da ödeme bağlantısından öder."
+    "Monthly and yearly payments. Renewal orders are created before each period ends; a stored card is charged automatically, otherwise the customer pays by bank transfer or through the payment link.": "Aylık ve yıllık ödemeler. Her dönem bitmeden yenileme siparişi açılır; kayıtlı kart varsa otomatik çekilir, yoksa müşteri Havale/EFT ile ya da ödeme bağlantısından öder.",
+    "Sees store reports": "Mağaza raporları görür",
+    "Manages the store": "Mağazayı yönetir",
+    "Edits shop orders": "Mağaza siparişlerini düzenler",
+    "WooCommerce is required.": "WooCommerce gerekmektedir.",
+    "The cart is not available.": "Araba mevcut değil.",
+    "That billing period is not offered.": "Bu faturalandırma süresi teklif edilmez.",
+    "The note could not be saved.": "Not kurtarılamadı.",
+    "The note is too long.": "Not çok uzun.",
+    "Subscription not found.": "Abonelik bulunamadı.",
+    "This subscription cannot be changed.": "Bu abonelik değiştirilemez.",
+    "Unknown action.": "Bilinmeyen işlem."
   }
 }

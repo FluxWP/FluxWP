@@ -458,7 +458,7 @@ msgid "Admin"
 msgstr "管理员"
 
 msgid "Dashboard"
-msgstr "仪表板"
+msgstr "仪表盘"
 
 msgid "General"
 msgstr "一般"
@@ -743,7 +743,7 @@ msgid "General settings"
 msgstr "常规设置"
 
 msgid "App icon"
-msgstr "App icon"
+msgstr "App 图标"
 
 msgid "Using the site icon."
 msgstr "使用网站图标。"
@@ -1056,7 +1056,7 @@ msgid "Per page"
 msgstr "每页"
 
 msgid "Apply"
-msgstr "申请"
+msgstr "应用"
 
 msgid "Default: the theme's primary colour (Appearance › Editor › Styles). If you pick the theme's colour, this follows the theme when it changes."
 msgstr "默认值:主题的主要颜色(外观 > 编辑器 > 样式)。如果您选择主题的颜色,则当主题发生变化时,颜色也会随之变化。"
@@ -1191,3 +1191,54 @@ msgstr "上个月"
 
 msgid "Next month"
 msgstr "下个月"
+
+msgid "Learn more"
+msgstr "了解更多"
+
+msgid "Dismiss"
+msgstr "解雇"
+
+msgid "or"
+msgstr "或"
+
+msgid "This role does not exist."
+msgstr "这种作用并不存在。"
+
+msgid "This permission is not in the table."
+msgstr "此许可未列入表。"
+
+msgid "There is no backup to restore."
+msgstr "恢复工作没有后盾。"
+
+msgid "A layout needs at least one menu item."
+msgstr "布局至少需要一个菜单项目。"
+
+msgid "Choose a menu item."
+msgstr "选择一个菜单项目。"
+
+msgid "Unknown menu action."
+msgstr "未知的菜单动作 。"
+
+msgid "Unread WhatsApp"
+msgstr "未结"
+
+msgid "The logo must be an image from the media library."
+msgstr "标志必须是媒体图书馆的形象。"
+
+msgid "Choose 30, 60 or 120 seconds."
+msgstr "选择30、60或120 second。"
+
+msgid "Enter a color like #1F2937."
+msgstr "输入像#1F2937的颜色。"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "上传的卷宗没有找到,再次上传。"
+
+msgid "The file could not be saved on the server."
+msgstr "案卷无法在服务器上节省。"
+
+msgid "Choose auto, light or dark."
+msgstr "选择自动、轻或暗。"
+
+msgid "You do not have permission to do this."
+msgstr "您没有执行此操作的权限。"

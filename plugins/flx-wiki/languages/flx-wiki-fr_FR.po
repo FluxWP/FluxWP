@@ -38,7 +38,7 @@ msgid "link"
 msgstr "lien"
 
 msgid "page-slug"
-msgstr "page-slug"
+msgstr "identifiant-de-page"
 
 msgid "item"
 msgstr "article"
@@ -531,3 +531,36 @@ msgstr "fermer"
 
 msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
 msgstr "Wiki du développeur sur le site sous /wiki : pages Markdown, sections, arborescence des pages et table des matières, recherche instantanée détaillée, sortie optimisée pour le référencement. LLM friendly : chaque page est ouverte et copiée au format .md, /wiki/llms.txt et llms-full.txt, ouverte dans ChatGPT / Claude. \"Ask the Wiki\" et outils MCP (recherche, lecture, liste, écriture) avec Flux AI. Il est livré avec des guides pour écrire des plugins et des thèmes, et créer des plugins alimentés par l'IA."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript est nécessaire pour cet écran."
+
+msgid "You cannot edit this page."
+msgstr "Vous ne pouvez pas modifier cette page."
+
+msgid "The parent page was not found."
+msgstr "La page mère n'a pas été trouvée."
+
+msgid "A page cannot be placed under itself."
+msgstr "Une page ne peut pas être placée sous elle-même."
+
+msgid "This status is not available."
+msgstr "Ce statut n'est pas disponible."
+
+msgid "You cannot delete this page."
+msgstr "Vous ne pouvez pas supprimer cette page."
+
+msgid "The page could not be deleted."
+msgstr "La page ne peut pas être supprimée."
+
+msgid "You cannot manage sections."
+msgstr "Vous ne pouvez pas gérer les sections."
+
+msgid "A section name is required."
+msgstr "Un nom de section est requis."
+
+msgid "Section not found."
+msgstr "Section non trouvée."
+
+msgid "The section could not be deleted."
+msgstr "La section n'a pas pu être supprimée."

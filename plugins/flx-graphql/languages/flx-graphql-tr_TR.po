@@ -1,9 +1,5 @@
 msgid ""
-msgstr ""
-"Project-Id-Version: Flux GraphQL\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Language: tr_TR\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Flux GraphQL"
 msgstr "Flux GraphQL"
@@ -158,6 +154,11 @@ msgstr "GraphQL sorguları"
 msgid "Anyone may send any GraphQL query. Keep this only for a public headless front end; depth and complexity limits still apply."
 msgstr "Herkes her GraphQL sorgusunu gönderebilir. Bunu yalnız herkese açık bir headless ön yüz için açık tutun; derinlik ve karmaşıklık sınırları yine geçerlidir."
 
+msgid "Only queries shipped with FluxWP packages run (%d known)."
+msgid_plural "Only queries shipped with FluxWP packages run (%d known)."
+msgstr[0] "Yalnız FluxWP paketleriyle gelen sorgular çalışır (%d tanınan)."
+msgstr[1] "Yalnız FluxWP paketleriyle gelen sorgular çalışır (%d tanınan)."
+
 msgid "GraphQL types"
 msgstr "GraphQL tipleri"
 
@@ -167,8 +168,263 @@ msgstr "Bazı GraphQL alanları FluxWP kurallarına uymadığı için reddedildi
 msgid "Flux GraphQL: the separately installed WPGraphQL %s is not supported, so FluxWP GraphQL screens are off."
 msgstr "Flux GraphQL: ayrı kurulmuş WPGraphQL %s desteklenmiyor, bu yüzden FluxWP GraphQL ekranları kapalı."
 
-msgid "Only queries shipped with FluxWP packages run (%d known)."
-msgstr "Yalnız FluxWP paketleriyle gelen sorgular çalışır (%d tanınan)."
+msgid "The user making the request and what they may do."
+msgstr "İsteği yapan kullanıcı ve yapabildikleri."
+
+msgid "Whether the request is signed in."
+msgstr "İstek giriş yapmış bir kullanıcıdan mı."
+
+msgid "User ID; empty for a visitor."
+msgstr "Kullanıcı ID'si; ziyaretçide boş."
+
+msgid "Display name; empty for a visitor."
+msgstr "Görünen ad; ziyaretçide boş."
+
+msgid "Whether the user manages the site (manage_options)."
+msgstr "Kullanıcı siteyi yönetiyor mu (manage_options)."
+
+msgid "Capabilities from the FluxWP catalog that the user has."
+msgstr "FluxWP kataloğundan kullanıcıda olan yetkiler."
+
+msgid "Whether the user has this capability."
+msgstr "Kullanıcıda bu yetki var mı."
+
+msgid "Capability name, e.g. flxg_use."
+msgstr "Yetki adı, ör. flxg_use."
+
+msgid "A capability a FluxWP package checks."
+msgstr "Bir FluxWP paketinin kontrol ettiği yetki."
+
+msgid "What the capability allows, in the user's language."
+msgstr "Yetkinin neye izin verdiği, kullanıcının dilinde."
+
+msgid "Group label (usually the package); empty when not given."
+msgstr "Grup adı (genelde paket); verilmezse boş."
+
+msgid "Package slug that declares it; empty when not given."
+msgstr "Yetkiyi bildiren paketin slug'ı; verilmezse boş."
+
+msgid "Whether the current user has it."
+msgstr "Geçerli kullanıcıda var mı."
+
+msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
+msgstr "İsteği yapan kullanıcı. Ziyaretçide loggedIn false, yetki listesi boş."
+
+msgid "The FluxWP capability catalog, with what the current user has."
+msgstr "FluxWP yetki kataloğu ve geçerli kullanıcıda olanlar."
+
+msgid "Where a page sits in a list."
+msgstr "Sayfanın listedeki yeri."
+
+msgid "More records follow this page."
+msgstr "Bu sayfadan sonra başka kayıt var."
+
+msgid "Records come before this page."
+msgstr "Bu sayfadan önce kayıt var."
+
+msgid "Cursor of the first record on this page."
+msgstr "Bu sayfadaki ilk kaydın imleci."
+
+msgid "Cursor of the last record on this page; pass it as \"after\" for the next page."
+msgstr "Bu sayfadaki son kaydın imleci; sonraki sayfa için \"after\" olarak verin."
+
+msgid "One %s in a list, with its cursor."
+msgstr "Listedeki bir %s, imleciyle."
+
+msgid "Opaque cursor of this record."
+msgstr "Bu kaydın opak imleci."
+
+msgid "The record."
+msgstr "Kayıt."
+
+msgid "A page of %s records."
+msgstr "Bir sayfa %s kaydı."
+
+msgid "Records with their cursors."
+msgstr "İmleçleriyle kayıtlar."
+
+msgid "Records of this page."
+msgstr "Bu sayfanın kayıtları."
+
+msgid "Paging information."
+msgstr "Sayfalama bilgisi."
+
+msgid "All matching records (null when counting would be slow)."
+msgstr "Eşleşen tüm kayıtlar (saymak yavaş olacaksa null)."
+
+msgid "Records per page (at most %d)."
+msgstr "Sayfa başına kayıt (en fazla %d)."
+
+msgid "Cursor to continue after (pageInfo.endCursor)."
+msgstr "Sonrasından devam edilecek imleç (pageInfo.endCursor)."
+
+msgid "The page cursor is not valid."
+msgstr "Sayfa imleci geçerli değil."
+
+msgid "Please sign in again."
+msgstr "Lütfen yeniden giriş yapın."
+
+msgid "The record was not found."
+msgstr "Kayıt bulunamadı."
+
+msgid "Some fields are not valid."
+msgstr "Bazı alanlar geçerli değil."
+
+msgid "The record was changed by someone else. Reload and try again."
+msgstr "Kaydı başka biri değiştirdi. Yenileyip yeniden deneyin."
+
+msgid "Too many requests. Wait a moment and try again."
+msgstr "Çok fazla istek. Biraz bekleyip yeniden deneyin."
+
+msgid "Something went wrong. Please try again."
+msgstr "Bir sorun oluştu. Lütfen yeniden deneyin."
+
+msgid "This query is not known to the site. Update the app or the FluxWP packages."
+msgstr "Bu sorgu sitede tanınmıyor. Uygulamayı ya da FluxWP paketlerini güncelleyin."
+
+msgid "Only queries shipped with FluxWP packages may run on this site."
+msgstr "Bu sitede yalnız FluxWP paketleriyle gelen sorgular çalışabilir."
+
+msgid "The ID is not valid."
+msgstr "Kimlik geçerli değil."
+
+msgid "Global ID."
+msgstr "Genel kimlik (global ID)."
+
+msgid "Database ID."
+msgstr "Veritabanı kimliği."
+
+msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
+msgstr "Form alanlarının yanında gösterilecek girdi sorunları. İşlem başarılıysa boş."
+
+msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
+msgstr "Kurulu FluxWP paketlerinin panel ayarları (flx_settings_schema'dan)."
+
+msgid "Panel settings of the installed FluxWP packages."
+msgstr "Kurulu FluxWP paketlerinin panel ayarları."
+
+msgid "Changes panel settings. Only the groups and fields you send are written."
+msgstr "Panel ayarlarını değiştirir. Yalnız gönderdiğiniz gruplar ve alanlar yazılır."
+
+msgid "Settings after the change."
+msgstr "Değişiklikten sonraki ayarlar."
+
+msgid "This setting cannot be changed here."
+msgstr "Bu ayar burada değiştirilemez."
+
+msgid "Changes to %s. Only the fields you send are changed."
+msgstr "%s değişiklikleri. Yalnız gönderdiğiniz alanlar değişir."
+
+msgid "A list or object is expected."
+msgstr "Liste ya da nesne bekleniyor."
+
+msgid "This choice is not available."
+msgstr "Bu seçenek yok."
+
+msgid "Enter a colour like #1F6FEB."
+msgstr "#1F6FEB gibi bir renk girin."
+
+msgid "Free-form JSON value (object, list, string, number or boolean)."
+msgstr "Serbest JSON değeri (nesne, liste, metin, sayı ya da mantıksal)."
+
+msgid "A problem with the input of a mutation, shown next to the form field."
+msgstr "Bir işlemin girdisindeki sorun; form alanının yanında gösterilir."
+
+msgid "Stable code: INVALID_INPUT, CONFLICT, …"
+msgstr "Sabit kod: INVALID_INPUT, CONFLICT, …"
+
+msgid "Message in the user's language."
+msgstr "Kullanıcının dilinde mesaj."
+
+msgid "Input field (dotted path) the problem belongs to."
+msgstr "Sorunun ait olduğu girdi alanı (noktalı yol)."
+
+msgid "A point in time with labels in the user's language."
+msgstr "Kullanıcının dilinde etiketleriyle bir zaman."
+
+msgid "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+msgstr "UTC'de ISO 8601 (2026-11-15T14:59:00Z)."
+
+msgid "Unix timestamp."
+msgstr "Unix zaman damgası."
+
+msgid "Date and time for display, in the site time zone and the user's language."
+msgstr "Gösterim için tarih ve saat; site saat diliminde ve kullanıcının dilinde."
+
+msgid "Relative time for display (\"5 minutes ago\")."
+msgstr "Gösterim için göreli zaman (\"5 dakika önce\")."
+
+msgid "Date only, in the site time zone and the user's language."
+msgstr "Yalnız tarih; site saat diliminde ve kullanıcının dilinde."
+
+msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
+msgstr "Tablolar için kısa tarih ve saat (Türkçede 16.10.2026 14:24)."
+
+msgid "An amount of money."
+msgstr "Bir para tutarı."
+
+msgid "Amount in the currency unit (150.5)."
+msgstr "Para biriminde tutar (150.5)."
+
+msgid "ISO 4217 code (TRY, USD)."
+msgstr "ISO 4217 kodu (TRY, USD)."
+
+msgid "Amount with the currency sign for display."
+msgstr "Gösterim için para işaretiyle tutar."
+
+msgid "A phone number."
+msgstr "Bir telefon numarası."
+
+msgid "E.164 form (+905301234567); empty when the number is not valid."
+msgstr "E.164 biçimi (+905301234567); numara geçersizse boş."
+
+msgid "Digits only (905301234567)."
+msgstr "Yalnız rakamlar (905301234567)."
+
+msgid "Number as entered, for display."
+msgstr "Gösterim için girildiği gibi numara."
+
+msgid "A stored file."
+msgstr "Saklanan bir dosya."
+
+msgid "File ID (upload ID or the package's own ID)."
+msgstr "Dosya kimliği (yükleme kimliği ya da paketin kendi kimliği)."
+
+msgid "File name."
+msgstr "Dosya adı."
+
+msgid "MIME type."
+msgstr "MIME türü."
+
+msgid "Size in bytes."
+msgstr "Bayt cinsinden boyut."
+
+msgid "Download address (may need the same sign-in)."
+msgstr "İndirme adresi (aynı giriş gerekebilir)."
+
+msgid "The file is an image."
+msgstr "Dosya bir görsel."
+
+msgid "Thumbnail address for images."
+msgstr "Görseller için küçük resim adresi."
+
+msgid "A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
+msgstr "Bir kişi (bağışçı, müşteri, kişi). Kaydın sahibi Flux CRM; diğer paketler onu döndürür."
+
+msgid "Person ID in the shared people table."
+msgstr "Ortak kişi tablosundaki kişi kimliği."
+
+msgid "Full name."
+msgstr "Ad soyad."
+
+msgid "E-mail address."
+msgstr "E-posta adresi."
+
+msgid "Phone number."
+msgstr "Telefon numarası."
+
+msgid "Picture address."
+msgstr "Resim adresi."
 
 msgid "You are not allowed to manage plugins."
 msgstr "Eklentileri yönetmeye yetkiniz yok."
@@ -620,261 +876,74 @@ msgstr "Sepetinizin süresi doldu. Lütfen sayfayı yenileyin."
 msgid "The cart could not be changed. Please reload the page."
 msgstr "Sepet değiştirilemedi. Lütfen sayfayı yenileyin."
 
-msgid "The user making the request and what they may do."
-msgstr "İsteği yapan kullanıcı ve yapabildikleri."
+msgid "Select date"
+msgstr "Tarih seçin"
 
-msgid "Whether the request is signed in."
-msgstr "İstek giriş yapmış bir kullanıcıdan mı."
+msgid "Today"
+msgstr "Bugün"
 
-msgid "User ID; empty for a visitor."
-msgstr "Kullanıcı ID'si; ziyaretçide boş."
+msgid "Tomorrow"
+msgstr "Yarın"
 
-msgid "Display name; empty for a visitor."
-msgstr "Görünen ad; ziyaretçide boş."
+msgid "Next week"
+msgstr "Gelecek hafta"
 
-msgid "Whether the user manages the site (manage_options)."
-msgstr "Kullanıcı siteyi yönetiyor mu (manage_options)."
+msgid "In 2 weeks"
+msgstr "2 hafta sonra"
 
-msgid "Capabilities from the FluxWP catalog that the user has."
-msgstr "FluxWP kataloğundan kullanıcıda olan yetkiler."
+msgid "This Friday"
+msgstr "Bu cuma"
 
-msgid "Whether the user has this capability."
-msgstr "Kullanıcıda bu yetki var mı."
+msgid "No date"
+msgstr "Tarih yok"
 
-msgid "Capability name, e.g. flxg_use."
-msgstr "Yetki adı, ör. flxg_use."
+msgid "Clear"
+msgstr "Temizle"
 
-msgid "A capability a FluxWP package checks."
-msgstr "Bir FluxWP paketinin kontrol ettiği yetki."
+msgid "Cancel"
+msgstr "Vazgeç"
 
-msgid "What the capability allows, in the user's language."
-msgstr "Yetkinin neye izin verdiği, kullanıcının dilinde."
+msgid "Apply"
+msgstr "Uygula"
 
-msgid "Group label (usually the package); empty when not given."
-msgstr "Grup adı (genelde paket); verilmezse boş."
+msgid "Month"
+msgstr "Ay"
 
-msgid "Package slug that declares it; empty when not given."
-msgstr "Yetkiyi bildiren paketin slug'ı; verilmezse boş."
+msgid "Time"
+msgstr "Saat"
 
-msgid "Whether the current user has it."
-msgstr "Geçerli kullanıcıda var mı."
+msgid "Previous month"
+msgstr "Önceki ay"
 
-msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
-msgstr "İsteği yapan kullanıcı. Ziyaretçide loggedIn false, yetki listesi boş."
+msgid "Next month"
+msgstr "Sonraki ay"
 
-msgid "The FluxWP capability catalog, with what the current user has."
-msgstr "FluxWP yetki kataloğu ve geçerli kullanıcıda olanlar."
+msgid "Previous year"
+msgstr "Önceki yıl"
 
-msgid "Where a page sits in a list."
-msgstr "Sayfanın listedeki yeri."
+msgid "Next year"
+msgstr "Sonraki yıl"
 
-msgid "More records follow this page."
-msgstr "Bu sayfadan sonra başka kayıt var."
+msgid "Choose month"
+msgstr "Ay seçin"
 
-msgid "Records come before this page."
-msgstr "Bu sayfadan önce kayıt var."
+msgid "Choose year"
+msgstr "Yıl seçin"
 
-msgid "Cursor of the first record on this page."
-msgstr "Bu sayfadaki ilk kaydın imleci."
+msgid "OK"
+msgstr "Tamam"
 
-msgid "Cursor of the last record on this page; pass it as \"after\" for the next page."
-msgstr "Bu sayfadaki son kaydın imleci; sonraki sayfa için \"after\" olarak verin."
+msgid "Close"
+msgstr "Kapat"
 
-msgid "One %s in a list, with its cursor."
-msgstr "Listedeki bir %s, imleciyle."
+msgid "Are you sure?"
+msgstr "Emin misiniz?"
 
-msgid "Opaque cursor of this record."
-msgstr "Bu kaydın opak imleci."
+msgid "Notice"
+msgstr "Bilgi"
 
-msgid "The record."
-msgstr "Kayıt."
+msgid "This cannot be undone."
+msgstr "Bu işlem geri alınamaz."
 
-msgid "A page of %s records."
-msgstr "Bir sayfa %s kaydı."
-
-msgid "Records with their cursors."
-msgstr "İmleçleriyle kayıtlar."
-
-msgid "Records of this page."
-msgstr "Bu sayfanın kayıtları."
-
-msgid "Paging information."
-msgstr "Sayfalama bilgisi."
-
-msgid "All matching records (null when counting would be slow)."
-msgstr "Eşleşen tüm kayıtlar (saymak yavaş olacaksa null)."
-
-msgid "Records per page (at most %d)."
-msgstr "Sayfa başına kayıt (en fazla %d)."
-
-msgid "Cursor to continue after (pageInfo.endCursor)."
-msgstr "Sonrasından devam edilecek imleç (pageInfo.endCursor)."
-
-msgid "The page cursor is not valid."
-msgstr "Sayfa imleci geçerli değil."
-
-msgid "Please sign in again."
-msgstr "Lütfen yeniden giriş yapın."
-
-msgid "The record was not found."
-msgstr "Kayıt bulunamadı."
-
-msgid "Some fields are not valid."
-msgstr "Bazı alanlar geçerli değil."
-
-msgid "The record was changed by someone else. Reload and try again."
-msgstr "Kaydı başka biri değiştirdi. Yenileyip yeniden deneyin."
-
-msgid "Too many requests. Wait a moment and try again."
-msgstr "Çok fazla istek. Biraz bekleyip yeniden deneyin."
-
-msgid "Something went wrong. Please try again."
-msgstr "Bir sorun oluştu. Lütfen yeniden deneyin."
-
-msgid "This query is not known to the site. Update the app or the FluxWP packages."
-msgstr "Bu sorgu sitede tanınmıyor. Uygulamayı ya da FluxWP paketlerini güncelleyin."
-
-msgid "Only queries shipped with FluxWP packages may run on this site."
-msgstr "Bu sitede yalnız FluxWP paketleriyle gelen sorgular çalışabilir."
-
-msgid "The ID is not valid."
-msgstr "Kimlik geçerli değil."
-
-msgid "Global ID."
-msgstr "Genel kimlik (global ID)."
-
-msgid "Database ID."
-msgstr "Veritabanı kimliği."
-
-msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
-msgstr "Form alanlarının yanında gösterilecek girdi sorunları. İşlem başarılıysa boş."
-
-msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
-msgstr "Kurulu FluxWP paketlerinin panel ayarları (flx_settings_schema'dan)."
-
-msgid "Panel settings of the installed FluxWP packages."
-msgstr "Kurulu FluxWP paketlerinin panel ayarları."
-
-msgid "Changes panel settings. Only the groups and fields you send are written."
-msgstr "Panel ayarlarını değiştirir. Yalnız gönderdiğiniz gruplar ve alanlar yazılır."
-
-msgid "Settings after the change."
-msgstr "Değişiklikten sonraki ayarlar."
-
-msgid "This setting cannot be changed here."
-msgstr "Bu ayar burada değiştirilemez."
-
-msgid "Changes to %s. Only the fields you send are changed."
-msgstr "%s değişiklikleri. Yalnız gönderdiğiniz alanlar değişir."
-
-msgid "A list or object is expected."
-msgstr "Liste ya da nesne bekleniyor."
-
-msgid "This choice is not available."
-msgstr "Bu seçenek yok."
-
-msgid "Enter a colour like #1F6FEB."
-msgstr "#1F6FEB gibi bir renk girin."
-
-msgid "Free-form JSON value (object, list, string, number or boolean)."
-msgstr "Serbest JSON değeri (nesne, liste, metin, sayı ya da mantıksal)."
-
-msgid "A problem with the input of a mutation, shown next to the form field."
-msgstr "Bir işlemin girdisindeki sorun; form alanının yanında gösterilir."
-
-msgid "Stable code: INVALID_INPUT, CONFLICT, …"
-msgstr "Sabit kod: INVALID_INPUT, CONFLICT, …"
-
-msgid "Message in the user's language."
-msgstr "Kullanıcının dilinde mesaj."
-
-msgid "Input field (dotted path) the problem belongs to."
-msgstr "Sorunun ait olduğu girdi alanı (noktalı yol)."
-
-msgid "A point in time with labels in the user's language."
-msgstr "Kullanıcının dilinde etiketleriyle bir zaman."
-
-msgid "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
-msgstr "UTC'de ISO 8601 (2026-11-15T14:59:00Z)."
-
-msgid "Unix timestamp."
-msgstr "Unix zaman damgası."
-
-msgid "Date and time for display, in the site time zone and the user's language."
-msgstr "Gösterim için tarih ve saat; site saat diliminde ve kullanıcının dilinde."
-
-msgid "Relative time for display (\"5 minutes ago\")."
-msgstr "Gösterim için göreli zaman (\"5 dakika önce\")."
-
-msgid "Date only, in the site time zone and the user's language."
-msgstr "Yalnız tarih; site saat diliminde ve kullanıcının dilinde."
-
-msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
-msgstr "Tablolar için kısa tarih ve saat (Türkçede 16.10.2026 14:24)."
-
-msgid "An amount of money."
-msgstr "Bir para tutarı."
-
-msgid "Amount in the currency unit (150.5)."
-msgstr "Para biriminde tutar (150.5)."
-
-msgid "ISO 4217 code (TRY, USD)."
-msgstr "ISO 4217 kodu (TRY, USD)."
-
-msgid "Amount with the currency sign for display."
-msgstr "Gösterim için para işaretiyle tutar."
-
-msgid "A phone number."
-msgstr "Bir telefon numarası."
-
-msgid "E.164 form (+905301234567); empty when the number is not valid."
-msgstr "E.164 biçimi (+905301234567); numara geçersizse boş."
-
-msgid "Digits only (905301234567)."
-msgstr "Yalnız rakamlar (905301234567)."
-
-msgid "Number as entered, for display."
-msgstr "Gösterim için girildiği gibi numara."
-
-msgid "A stored file."
-msgstr "Saklanan bir dosya."
-
-msgid "File ID (upload ID or the package's own ID)."
-msgstr "Dosya kimliği (yükleme kimliği ya da paketin kendi kimliği)."
-
-msgid "File name."
-msgstr "Dosya adı."
-
-msgid "MIME type."
-msgstr "MIME türü."
-
-msgid "Size in bytes."
-msgstr "Bayt cinsinden boyut."
-
-msgid "Download address (may need the same sign-in)."
-msgstr "İndirme adresi (aynı giriş gerekebilir)."
-
-msgid "The file is an image."
-msgstr "Dosya bir görsel."
-
-msgid "Thumbnail address for images."
-msgstr "Görseller için küçük resim adresi."
-
-msgid "A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
-msgstr "Bir kişi (bağışçı, müşteri, kişi). Kaydın sahibi Flux CRM; diğer paketler onu döndürür."
-
-msgid "Person ID in the shared people table."
-msgstr "Ortak kişi tablosundaki kişi kimliği."
-
-msgid "Full name."
-msgstr "Ad soyad."
-
-msgid "E-mail address."
-msgstr "E-posta adresi."
-
-msgid "Phone number."
-msgstr "Telefon numarası."
-
-msgid "Picture address."
-msgstr "Resim adresi."
-
+msgid "To confirm, type %s"
+msgstr "Onaylamak için %s yazın"

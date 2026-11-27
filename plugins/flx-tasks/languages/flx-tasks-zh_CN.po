@@ -1193,7 +1193,7 @@ msgid "Insert below cursor"
 msgstr "在光标下方插入"
 
 msgid "Append"
-msgstr "Append"
+msgstr "附录"
 
 msgid "Insert at top"
 msgstr "插入顶部"
@@ -1610,7 +1610,7 @@ msgid "AI usage"
 msgstr "人工智能的使用"
 
 msgid "Month"
-msgstr "月份"
+msgstr "月"
 
 msgid "Requests"
 msgstr "要求"
@@ -2390,7 +2390,7 @@ msgid "Task name updated."
 msgstr "任务名称已更新。"
 
 msgid "Apply"
-msgstr "申请"
+msgstr "应用"
 
 msgid "Description updated."
 msgstr "描述已更新。"
@@ -2426,7 +2426,7 @@ msgid "Next week"
 msgstr "下周"
 
 msgid "In 2 weeks"
-msgstr "2周内"
+msgstr "两周后"
 
 msgid "Time (optional)"
 msgstr "时间(可选)"
@@ -2715,3 +2715,258 @@ msgstr "此界面与 FluxApp 相同。经典视图还会保留一段时间。"
 
 msgid "Could not start a chat."
 msgstr "无法开始对话。"
+
+msgid "Select text to comment on, or use a block's menu."
+msgstr "选择要评论的文本，或使用块菜单。"
+
+msgid "Open comment"
+msgstr "打开评论"
+
+msgid "Resolved"
+msgstr "已解决"
+
+msgid "No resolved comments."
+msgstr "没有已解决的评论。"
+
+msgid "No comments yet."
+msgstr "还没有评论。"
+
+msgid "Select text and press \"Comment\", or add a comment from a block's menu (⋮⋮)."
+msgstr "选择文本后点击“评论”，或从块菜单（⋮⋮）添加评论。"
+
+msgid "Block"
+msgstr "块"
+
+msgid "deleted"
+msgstr "已删除"
+
+msgid "text changed"
+msgstr "文本已更改"
+
+msgid "Write a comment… (Ctrl+Enter sends)"
+msgstr "写评论…（Ctrl+Enter 发送）"
+
+msgid "Comment"
+msgstr "评论"
+
+msgid "This comment was deleted."
+msgstr "此评论已删除。"
+
+msgid "(edited)"
+msgstr "（已编辑）"
+
+msgid "Reopen"
+msgstr "重新打开"
+
+msgid "Mark as resolved"
+msgstr "标记为已解决"
+
+msgid "Resolved by {n}"
+msgstr "由 {n} 解决"
+
+msgid "{n} more replies"
+msgstr "还有 {n} 条回复"
+
+msgid "Reply… (Ctrl+Enter sends)"
+msgstr "回复…（Ctrl+Enter 发送）"
+
+msgid "Reply"
+msgstr "回复"
+
+msgid "The comment will be deleted; the replies stay in the thread."
+msgstr "评论将被删除，回复会保留在讨论中。"
+
+msgid "The comment will be permanently deleted."
+msgstr "评论将被永久删除。"
+
+msgid "Comment resolved"
+msgstr "评论已解决"
+
+msgid "This page is locked."
+msgstr "此页面已锁定。"
+
+msgid "Locked by {n}, {t}."
+msgstr "由 {n} 锁定，{t}。"
+
+msgid "Unlock it to edit."
+msgstr "解锁后即可编辑。"
+
+msgid "Unlock"
+msgstr "解锁"
+
+msgid "You can view and comment on this page."
+msgstr "你可以查看并评论此页面。"
+
+msgid "You can only view this page."
+msgstr "你只能查看此页面。"
+
+msgid "Page locked"
+msgstr "页面已锁定"
+
+msgid "The page was locked; your changes are saved once it is unlocked."
+msgstr "页面已被锁定，解锁后会保存你的更改。"
+
+msgid "This page is locked. Unlock it to edit."
+msgstr "此页面已锁定。解锁后即可编辑。"
+
+msgid "Page unlocked"
+msgstr "已解锁"
+
+msgid "{n} locked this page so it is not changed by accident. If you unlock it, everyone who can edit can change it again."
+msgstr "{n} 锁定了此页面以免被误改。解锁后，所有可编辑的人都能再次修改。"
+
+msgid "If you unlock it, everyone who can edit can change the page again."
+msgstr "解锁后，所有可编辑的人都能再次修改此页面。"
+
+msgid "Lock page"
+msgstr "锁定页面"
+
+msgid "Access…"
+msgstr "访问权限…"
+
+msgid "Restricted access"
+msgstr "访问受限"
+
+msgid "Locked"
+msgstr "已锁定"
+
+msgid "Page access"
+msgstr "页面访问权限"
+
+msgid "Access saved"
+msgstr "访问权限已保存"
+
+msgid "Everyone with access to the document"
+msgstr "所有可访问该文档的人"
+
+msgid "Everyone in the project who can see this document also sees this page."
+msgstr "项目中能看到此文档的人也能看到此页面。"
+
+msgid "Only people I choose"
+msgstr "仅限我选择的人"
+
+msgid "The page and its subpages are visible only to the people below and project admins."
+msgstr "此页面及其子页面仅对下方人员和项目管理员可见。"
+
+msgid "The parent page is restricted too: only people allowed there can open this page."
+msgstr "上级页面也受限：只有在那里有权限的人才能打开此页面。"
+
+msgid "Can edit (you)"
+msgstr "可编辑（你）"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "+ Add person"
+msgstr "+ 添加人员"
+
+msgid "People and their roles"
+msgstr "人员及角色"
+
+msgid "Project admins ({n}) always have access."
+msgstr "项目管理员（{n}）始终可以访问。"
+
+msgid "Add comment"
+msgstr "添加评论"
+
+msgid "Add comment (Ctrl+Alt+M)"
+msgstr "添加评论（Ctrl+Alt+M）"
+
+msgid "This page is locked. Unlock it to make changes."
+msgstr "此页面已锁定。解锁后才能修改。"
+
+msgid "Only people who can edit the page can lock or unlock it."
+msgstr "只有可以编辑此页面的人才能锁定或解锁。"
+
+msgid "Only people who can edit the page can change who has access."
+msgstr "只有可以编辑此页面的人才能更改访问权限。"
+
+msgid "You are not allowed to comment on this page."
+msgstr "你无权评论此页面。"
+
+msgid "Write a comment first."
+msgstr "请先写评论。"
+
+msgid "Comment not found."
+msgstr "未找到评论。"
+
+msgid "Select some text or a block to comment on."
+msgstr "请选择要评论的文本或块。"
+
+msgid "The comment could not be saved."
+msgstr "无法保存评论。"
+
+msgid "Only the author can edit a comment."
+msgstr "只有作者可以编辑评论。"
+
+msgid "Only the author or a project admin can delete a comment."
+msgstr "只有作者或项目管理员可以删除评论。"
+
+msgid "You are not allowed to resolve this comment."
+msgstr "你无权解决此评论。"
+
+msgid "Unresolved"
+msgstr "未解决"
+
+msgid "Flux Tasks needs the Flux GraphQL plugin. Install and activate it to open this screen."
+msgstr "任务需要任务 GraphQL 插件。安装并激活它打开此屏幕。"
+
+msgid "Nothing to change."
+msgstr "没有任何变化。"
+
+msgid "You are not allowed to edit this page."
+msgstr "不允许你编辑这页。"
+
+msgid "AI is off"
+msgstr "AI, is off"
+
+msgid "Info and activity"
+msgstr "信息与活动"
+
+msgid "created the page"
+msgstr "创建网页"
+
+msgid "edited the page"
+msgstr "编辑页面"
+
+msgid "moved the page"
+msgstr "页面移动"
+
+msgid "renamed it from \"{a}\" to \"{b}\""
+msgstr "改名为 &quot; {a}\" &quot; 至 &quot; {b}\" &quot;"
+
+msgid "No activity yet"
+msgstr "尚未活动"
+
+msgid "Could not load activity"
+msgstr "无法装入活动"
+
+msgid "Hide pages"
+msgstr "页 次"
+
+msgid "Created by"
+msgstr "创建者:"
+
+msgid "Cannot be moved into or under a locked page."
+msgstr "不得进入或进入锁定的页面。"
+
+msgid "Drag to resize"
+msgstr "拖拖至调整大小"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "Remove file"
+msgstr "移除文件"
+
+msgid "Preview image for YouTube links"
+msgstr "YouTube 链接的预览图"
+
+msgid "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+msgstr "YouTube 链接在文档中的一条线上显示为带有视频缩略图的卡片。 缩略图是从YouTube上装入的; 关闭时, 链接将保持纯文本 。"
+
+msgid "Gantt"
+msgstr "Gantt"
+
+msgid "This dependency would create a loop."
+msgstr "这种依赖将造成一种游说。"

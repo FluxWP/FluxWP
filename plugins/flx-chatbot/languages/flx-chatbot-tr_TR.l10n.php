@@ -155,11 +155,7 @@ return array(
   'Photos of agents who replied recently show in the header.' => 'Son cevap veren temsilcilerin fotoğrafları başlıkta görünür.',
   'Suggested questions' => 'Hazır sorular',
   'One question per line (up to 6). Clickable on the home screen and at the start of a chat.' => 'Satır başına bir soru (en fazla 6). Ana ekranda ve sohbet başında tıklanabilir.',
-  'How long does shipping take?
-How do returns work?
-Where is my order?' => 'Kargo ne kadar sürer?
-İade nasıl yapılır?
-Siparişim nerede?',
+  'How long does shipping take?' . chr(10) . 'How do returns work?' . chr(10) . 'Where is my order?' => 'Kargo ne kadar sürer?' . chr(10) . 'İade nasıl yapılır?' . chr(10) . 'Siparişim nerede?',
   'Contact links' => 'İletişim bağlantıları',
   'One per line: Label | address. https, mailto:, tel: and wa.me are supported.' => 'Satır başına: Etiket | adres. https, mailto:, tel: ve wa.me desteklenir.',
   'Chat texts' => 'Sohbet metinleri',
@@ -181,13 +177,7 @@ Siparişim nerede?',
   'What the assistant must follow. Example: Don\'t give discount codes. Hand business sales questions to an agent.' => 'Asistanın uyması gerekenler. Örnek: İndirim kodu verme. Kurumsal satış sorularını temsilciye devret.',
   'Knowledge base' => 'Bilgi bankası',
   'Information not on your site: shipping, returns, opening hours, FAQs. Plain text; the assistant answers only from here and your site.' => 'Sitede yazmayan bilgiler: kargo, iade, çalışma saatleri, sık sorulan sorular. Düz metin; asistan yalnız buradan ve sitenizden cevap verir.',
-  'Shipping: 1-3 business days, free over $50.
-Returns: within 14 days with the invoice.
-Q: Do you have a store?
-A: We sell online only.' => 'Kargo: 1-3 iş günü, 50 $ üzeri ücretsiz.
-İade: faturayla 14 gün içinde.
-S: Mağazanız var mı?
-C: Yalnız online satış yapıyoruz.',
+  'Shipping: 1-3 business days, free over $50.' . chr(10) . 'Returns: within 14 days with the invoice.' . chr(10) . 'Q: Do you have a store?' . chr(10) . 'A: We sell online only.' => 'Kargo: 1-3 iş günü, 50 $ üzeri ücretsiz.' . chr(10) . 'İade: faturayla 14 gün içinde.' . chr(10) . 'S: Mağazanız var mı?' . chr(10) . 'C: Yalnız online satış yapıyoruz.',
   'Sources and tools' => 'Kaynaklar ve araçlar',
   'The assistant searches these before answering. Only published, non-password-protected content is read.' => 'Asistan cevap vermeden önce bunları arar. Yalnız yayımlanmış, şifresiz içerik okunur.',
   'Pages' => 'Sayfalar',
@@ -592,5 +582,6 @@ C: Yalnız online satış yapıyoruz.',
   'Delete this chat?' => 'Bu sohbet silinsin mi?',
   'Its messages are removed for good.' => 'Mesajları kalıcı olarak silinir.',
   'Deleted' => 'Silindi',
+  'JavaScript is required for this screen.' => 'Bu ekran için JavaScript gerekir.',
  ),
 );

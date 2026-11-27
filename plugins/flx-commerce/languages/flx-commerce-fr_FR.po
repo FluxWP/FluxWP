@@ -902,3 +902,321 @@ msgstr "Contacter"
 
 msgid "Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications."
 msgstr "Panneau de vente pour la boutique WooCommerce, clients, rapports de ventes, mandat/EFT avec téléchargement de reçus, page de paiement simple, barre de livraison gratuite, flux de produits Google Merchant et notifications WhatsApp/e-mail."
+
+msgid "Sees store reports"
+msgstr "On voit des rapports de magasin."
+
+msgid "Manages the store"
+msgstr "Gère le magasin"
+
+msgid "Edits shop orders"
+msgstr "Éditions commandes"
+
+msgid "Subscriptions"
+msgstr "Abonnements"
+
+msgid "Hidden product"
+msgstr "Produit caché"
+
+msgid "Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page."
+msgstr "Non indiqué dans le magasin, la recherche ou le plan du site; les clients ne peuvent pas ouvrir la page du produit. Vendu uniquement par un lien (par exemple une page de prix)."
+
+msgid "Hidden product: only editors see this page. Customers buy it through a link."
+msgstr "Produit caché: seuls les éditeurs voient cette page. Les clients l'achètent par un lien."
+
+msgid "Awaiting first payment"
+msgstr "Attendant le premier paiement"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "Payment overdue"
+msgstr "Sommes dues au paiement"
+
+msgid "Ended"
+msgstr "Terminé"
+
+msgid "Renews on %s"
+msgstr "Renouvellement sur %s"
+
+msgid "Was due on %s"
+msgstr "Était attendue le %s"
+
+msgid "Valid until %s"
+msgstr "Valide jusqu'à %s"
+
+msgid "Ended on %s"
+msgstr "Finie le %s"
+
+msgid "You have no subscriptions yet."
+msgstr "Vous n'avez pas encore d'abonnement."
+
+msgid "Renews automatically from your card %s."
+msgstr "Renvoie automatiquement à partir de votre carte %s ."
+
+msgid "%1$s will be charged to your card on %2$s."
+msgstr "%1$s sera facturé à votre carte sur %2$s ."
+
+msgid "Renewal order #%1$s is waiting for payment: %2$s"
+msgstr "Ordonnance de renouvellement # %1$s attend le paiement: %2$s"
+
+msgid "Bank details and receipt"
+msgstr "Renseignements bancaires et reçus"
+
+msgid "Pay now"
+msgstr "Payez maintenant."
+
+msgid "Last order #%s"
+msgstr "Dernière commande # %s"
+
+msgid "Renew now"
+msgstr "Renouvellement maintenant"
+
+msgid "Remove the card? Renewals will then be paid with the payment link we e-mail you."
+msgstr "Retirer la carte? Les renouvellements seront ensuite payés avec le lien de paiement que nous vous envoyons par courriel."
+
+msgid "Remove card"
+msgstr "Supprimer la carte"
+
+msgid "Turn off renewal? The subscription stays valid until the end of the current period."
+msgstr "Désactiver le renouvellement? L'abonnement reste valide jusqu'à la fin de la période actuelle."
+
+msgid "Cancel subscription"
+msgstr "Annuler l'abonnement"
+
+msgid "Turn renewal back on"
+msgstr "Renouvellement"
+
+msgid "Start again"
+msgstr "Recommencez."
+
+msgid "Card stored for automatic subscription renewals: %s."
+msgstr "Carte stockée pour les renouvellements automatiques de l'abonnement: %s ."
+
+msgid "Subscription renewal charged to the stored card (%1$s), transaction %2$s."
+msgstr "Renouvellement d'abonnement facturé à la carte stockée ( %1$s ), transaction %2$s ."
+
+msgid "Automatic card charge failed after the last attempt: %s. The customer was sent the payment link."
+msgstr "Les frais de carte automatique ont échoué après la dernière tentative: %s . Le client a été envoyé le lien de paiement."
+
+msgid "Automatic card charge failed: %1$s. Retrying in %2$d day(s)."
+msgstr "Frais automatiques de carte échoué: %1$s . Entrée dans %2$d jours(s)."
+
+msgid "Subscription"
+msgstr "Abonnement"
+
+msgid "Sold as a monthly or yearly subscription (Flux Commerce). Renewals arrive as orders."
+msgstr "Vendu sous forme d'abonnement mensuel ou annuel (Flux Commerce). Les renouvellements arrivent sous forme de commandes."
+
+msgid "Monthly price (%s)"
+msgstr "Prix mensuel ( %s )"
+
+msgid "Empty = no monthly option."
+msgstr "Empty = pas d &apos; option mensuelle."
+
+msgid "Yearly price (%s)"
+msgstr "Prix annuel ( %s )"
+
+msgid "Empty = no yearly option."
+msgstr "Empty = pas d &apos; option annuelle."
+
+msgid "or"
+msgstr "ou"
+
+msgid "Subscribe"
+msgstr "Abonnez-vous"
+
+msgid "Billing period"
+msgstr "Période de facturation"
+
+msgid "Save %s%%"
+msgstr "Enregistrer %s %%"
+
+msgid "Renews automatically; we send a reminder before every renewal. You can cancel any time from My account."
+msgstr "Renouvelons automatiquement; nous envoyons un rappel avant chaque renouvellement. Vous pouvez annuler tout temps de Mon compte."
+
+msgid "This product is not a subscription."
+msgstr "Ce produit n'est pas un abonnement."
+
+msgid "The product could not be added to the cart."
+msgstr "Le produit ne peut pas être ajouté au panier."
+
+msgid "Subscription #%d created; it starts when the payment arrives."
+msgstr "Abonnement # %d créé; il commence lorsque le paiement arrive."
+
+msgid "Subscription #%1$d started; next renewal %2$s."
+msgstr "Abonnement # %1$d a commencé; prochain renouvellement %2$s ."
+
+msgid "Subscription #%1$d renewed until %2$s."
+msgstr "Abonnement # %1$d renouvelé jusqu'à %2$s ."
+
+msgid "Subscription ended; the renewal order is no longer needed."
+msgstr "L'abonnement a pris fin; l'ordonnance de renouvellement n'est plus nécessaire."
+
+msgid "Only an active subscription can be renewed."
+msgstr "Seul un abonnement actif peut être renouvelé."
+
+msgid "A renewal order for this period was already created."
+msgstr "Une commande de renouvellement pour cette période a déjà été créée."
+
+msgid "Renewal order for subscription #%1$d (period ends %2$s)."
+msgstr "Commande de renouvellement pour abonnement # %1$d (période fin %2$s )."
+
+msgid "First name"
+msgstr "Prénom"
+
+msgid "Period end"
+msgstr "Fin de la période"
+
+msgid "Payment link"
+msgstr "Lien de paiement"
+
+msgid "Monthly"
+msgstr "Mensuel"
+
+msgid "Subscription renewal reminder"
+msgstr "Rappel de renouvellement de l &apos; abonnement"
+
+msgid "Goes to the customer when the renewal order is created and again on the last day if it is unpaid."
+msgstr "Va au client quand la commande de renouvellement est créée et de nouveau le dernier jour si elle est impayée."
+
+msgid "Your {urun} subscription renews on {bitis}"
+msgstr "Votre abonnement {urun} renouvelle sur {bitis}"
+
+msgid "Time to renew, {ad}"
+msgstr "Temps de renouvellement, {ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. Amount: {tutar}."
+msgstr "Votre abonnement {urun} ( {donem} ) renouvelle le {bitis} . Montant: {tutar} ."
+
+msgid "Subscription renews by card"
+msgstr "Abonnement renouvelle par carte"
+
+msgid "Goes to the customer before a renewal that will be charged to the stored card."
+msgstr "Va au client avant un renouvellement qui sera facturé à la carte stockée."
+
+msgid "Card"
+msgstr "Carte"
+
+msgid "Renewal coming up, {ad}"
+msgstr "Renouvellement à venir, {ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. {tutar} will be charged to your card {kart}; you do not need to do anything."
+msgstr "Votre abonnement {urun} ( {donem} ) renouvelle le {bitis} . {tutar} sera facturé à votre carte {kart} ; vous n'avez pas besoin de faire quoi que ce soit."
+
+msgid "To change the card or turn off renewal, go to My account › Subscriptions."
+msgstr "Pour changer la carte ou désactiver le renouvellement, allez à Mon compte › Abonnements."
+
+msgid "My subscriptions"
+msgstr "Mes abonnements"
+
+msgid "Subscription card charge failed"
+msgstr "Frais de carte d'abonnement échoués"
+
+msgid "Goes to the customer when the stored card could not be charged after the last attempt."
+msgstr "Va au client lorsque la carte stockée n'a pas pu être chargée après la dernière tentative."
+
+msgid "We could not renew your {urun} subscription"
+msgstr "Nous ne pouvions pas renouveler votre abonnement {urun}"
+
+msgid "Payment needed, {ad}"
+msgstr "Paiement nécessaire, {ad}"
+
+msgid "We could not charge {tutar} to your card {kart} for your {urun} subscription. Please pay with the button below so the subscription continues."
+msgstr "Nous ne pouvions pas facturer {tutar} à votre carte {kart} pour votre abonnement {urun}. Veuillez payer avec le bouton ci-dessous afin que l'abonnement continue."
+
+msgid "Subscription ended"
+msgstr "Abonnement terminé"
+
+msgid "Goes to the customer when a subscription ends."
+msgstr "Va au client quand un abonnement se termine."
+
+msgid "Your {urun} subscription has ended"
+msgstr "Votre abonnement {urun} a pris fin"
+
+msgid "Your subscription has ended"
+msgstr "Votre abonnement a pris fin"
+
+msgid "Hello {ad}, your {urun} subscription has ended. You can start it again at any time."
+msgstr "Bonjour {ad} , votre abonnement {urun} a pris fin. Vous pouvez le recommencer à tout moment."
+
+msgid "Yearly"
+msgstr "Annuelle"
+
+msgid "year"
+msgstr "Année"
+
+msgid "month"
+msgstr "mois"
+
+msgid "Recipient: %1$s · IBAN: %2$s · Reference: %3$s"
+msgstr "Bénéficiaire: %1$s · IBAN: %2$s · Référence: %3$s"
+
+msgid "Your %s subscription has ended"
+msgstr "Votre abonnement %s a pris fin"
+
+msgid "Hello %1$s, your %2$s subscription has ended. You can start it again at any time: %3$s"
+msgstr "Bonjour %1$s , votre abonnement %2$s a pris fin. Vous pouvez le recommencer à tout moment: %3$s"
+
+msgid "Your %1$s subscription renews on %2$s"
+msgstr "Votre abonnement %1$s renouvelle sur %2$s"
+
+msgid "Hello %1$s, your %2$s subscription renews on %3$s. %4$s will be charged to your card %5$s; you do not need to do anything. Manage it here: %6$s"
+msgstr "Bonjour %1$s , votre abonnement %2$s renouvelle sur %3$s . %4$s sera facturé à votre carte %5$s ; vous n'avez pas besoin de faire quoi que ce soit. Gérer ici: %6$s"
+
+msgid "We could not renew your %s subscription"
+msgstr "Nous ne pouvions pas renouveler votre abonnement %s"
+
+msgid "Hello %1$s, we could not charge %2$s to your card %3$s for your %4$s subscription. Please pay here so it continues: %5$s"
+msgstr "Bonjour %1$s , nous ne pouvions pas facturer %2$s à votre carte %3$s pour votre abonnement %4$s. Veuillez payer ici pour continuer: %5$s"
+
+msgid "Hello %1$s, your %2$s subscription (%3$s) renews on %4$s. Amount: %5$s. Pay here: %6$s"
+msgstr "Bonjour %1$s , votre abonnement %2$s ( %3$s ) renouvelle sur %4$s . Montant: %5$s . Payez ici: %6$s"
+
+msgid "WooCommerce is required."
+msgstr "WooCommerce est nécessaire."
+
+msgid "The cart is not available."
+msgstr "Le panier n'est pas disponible."
+
+msgid "That billing period is not offered."
+msgstr "Cette période de facturation n'est pas offerte."
+
+msgid "The note could not be saved."
+msgstr "La note n'a pas pu être sauvegardée."
+
+msgid "The note is too long."
+msgstr "La note est trop longue."
+
+msgid "Subscription not found."
+msgstr "Abonnement non trouvé."
+
+msgid "This subscription cannot be changed."
+msgstr "Cet abonnement ne peut pas être modifié."
+
+msgid "Unknown action."
+msgstr "Action inconnue."
+
+msgid "Your subscription has ended."
+msgstr "Votre abonnement a pris fin."
+
+msgid "Renewal is off. Your subscription stays valid until %s."
+msgstr "Votre abonnement reste valide jusqu'à %s ."
+
+msgid "The customer removed the stored card; this renewal is paid with the payment link."
+msgstr "Le client a retiré la carte stockée; ce renouvellement est payé avec le lien de paiement."
+
+msgid "The card was removed. We will e-mail you a payment link before each renewal."
+msgstr "La carte a été retirée. Nous vous enverrons un lien de paiement avant chaque renouvellement."
+
+msgid "Renewal is back on."
+msgstr "Le renouveau est de retour."
+
+msgid "Subscription renewals"
+msgstr "Renouvellement de l &apos; abonnement"
+
+msgid "The renewal job has not run for more than 6 hours. Check the server cron (wp-cron.php); renewal orders and reminders wait until it runs."
+msgstr "Le travail de renouvellement n'a pas duré plus de 6 heures. Vérifiez le cron du serveur (wp-cron.php); les commandes de renouvellement et les rappels attendent jusqu'à ce qu'il fonctionne."
+
+msgid "%1$s open subscriptions. Last run: %2$s"
+msgstr "%1$s abonnements ouverts. Dernière course: %2$s"

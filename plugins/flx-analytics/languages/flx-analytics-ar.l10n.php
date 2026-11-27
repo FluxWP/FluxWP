@@ -988,6 +988,7 @@ return array(
   'Şu an' => 'الآن',
   'Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.' => 'إحصاءات موقع البيانات الخالية من ملفات تعريف الارتباط وغير الشخصية: الزائرون والمشاهدات والصفحات الأكثر قراءة والمواقع المرجعية والقناة والجهاز/المتصفح والحملة (UTM) وأحداث النقر وتحويلات التبرعات. تبقى البيانات على الموقع. يقرأ باستخدام أدوات الذكاء الاصطناعي Flux AI / Flux AI & MCP.',
   'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.' => 'إحصاءات موقع البيانات الخالية من ملفات تعريف الارتباط وغير الشخصية: الزائرون والمشاهدات والصفحات الأكثر قراءة والمواقع المرجعية والقناة والجهاز/المتصفح والحملة (UTM) وأحداث النقر وتحويلات التبرعات. تبقى البيانات على الموقع. يقرأ باستخدام أدوات الذكاء الاصطناعي Flux AI / Flux AI & MCP.',
-
+  'View statistics' => 'إحصاءات المشاهدة',
+  'Logged-in people' => 'الأشخاص المُلَغَلون',
  ),
 );

@@ -1,0 +1,1049 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Manages the site files (Flux Files)"
+msgstr "إدارة ملفات الموقع (Flux Files)"
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Browse, edit and share the site files"
+msgstr "تصفّح ملفات الموقع وتعديلها ومشاركتها"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Flux Files needs JavaScript."
+msgstr "(فلوكس فيل) تحتاج إلى JavaScript"
+
+msgid "Something went wrong. Try again."
+msgstr "حدث شيء ما، حاول مرة أخرى"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Site root"
+msgstr "الجذر النباتي"
+
+msgid "Browser"
+msgstr "المتصفح"
+
+msgid "Editor"
+msgstr "محرر"
+
+msgid "Upload"
+msgstr "تحميل"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "More"
+msgstr "المزيد"
+
+msgid "Read-only: file changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "القراءة فقط: تغيرات الملف معوقة في هذا الموقع (DisALLOW_FILE_MODS)."
+
+msgid "Back"
+msgstr "العودة"
+
+msgid "Forward"
+msgstr "إلى الأمام"
+
+msgid "Folder"
+msgstr "مجلد"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Search in this folder…"
+msgstr "ابحث في هذا الملف..."
+
+msgid "Also search inside text and code files"
+msgstr "أيضاً بحث داخل ملفات النص والشفرة"
+
+msgid "Content"
+msgstr "المحتوى"
+
+msgid "List or grid"
+msgstr "القائمة أو الشبكة"
+
+msgid "Refresh"
+msgstr "تحديث"
+
+msgid "Drop files or folders to upload"
+msgstr "إسقاط الملفات أو الملفات لتحميل"
+
+msgid "Show or hide files"
+msgstr "ملفات العرض أو الاختباء"
+
+msgid "Choose a file on the left to edit it."
+msgstr "اختر ملفاً على اليسار لتحريره"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Trash"
+msgstr "سلة المهملات"
+
+msgid "Activity"
+msgstr "النشاط"
+
+msgid "Results for \"%s\""
+msgstr "نتائج \"%s\""
+
+msgid "Name · A to Z"
+msgstr "الاسم: ألف إلى زاي"
+
+msgid "Name · Z to A"
+msgstr "الاسم: Z إلى A"
+
+msgid "Modified · newest"
+msgstr "مُعدَّل - أحدث"
+
+msgid "Modified · oldest"
+msgstr "مُعدّل؛ أقدم"
+
+msgid "Size · largest"
+msgstr "الحجم الأكبر"
+
+msgid "Size · smallest"
+msgstr "أصغر حجم"
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "No results"
+msgstr "لا توجد نتائج"
+
+msgid "This folder is empty"
+msgstr "هذا الملف فارغ"
+
+msgid "Drag files here or use Upload."
+msgstr "ملفات السحب هنا أو استخدام تحميل."
+
+msgid "%s items"
+msgstr "%s العناصر"
+
+msgid "1 item"
+msgstr "بند واحد"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Modified"
+msgstr "معدلة"
+
+msgid "Size"
+msgstr "الحجم"
+
+msgid "Permissions"
+msgstr "الأذونات"
+
+msgid "Original location"
+msgstr "الموقع الأصلي"
+
+msgid "Deleted"
+msgstr "تم الحذف"
+
+msgid "Showing the first results only. Search in a smaller folder for more."
+msgstr "تظهر النتائج الأولى فقط ابحث في ملف أصغر للمزيد"
+
+msgid "Protected: cannot be moved, renamed or deleted"
+msgstr "محمية: لا يمكن نقلها أو إعادة تسميتها أو حذفها"
+
+msgid "Contains secrets: never shared with AI"
+msgstr "\"يحتوي على أسرار: \"لم يُشارك مع \"آى"
+
+msgid "WordPress core file"
+msgstr "WordPress ملف أساسي"
+
+msgid "%s selected"
+msgstr "تم تحديد %s"
+
+msgid "%s on clipboard"
+msgstr "%s على لوح المشبك"
+
+msgid "Storage"
+msgstr "التخزين"
+
+msgid "measuring…"
+msgstr "القياس..."
+
+msgid "%s used"
+msgstr "%s مستعمل"
+
+msgid "Hosting account: %1$s files, measured %2$s"
+msgstr "حساب استضافة: %1$s ملفا، مقيسا %2$s"
+
+msgid "Cut"
+msgstr "قطع"
+
+msgid "Copy"
+msgstr "نسخ"
+
+msgid "Paste"
+msgstr "Paste"
+
+msgid "Download"
+msgstr "تحميل"
+
+msgid "Download as ZIP"
+msgstr "حمولة خفيفة"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Clear selection"
+msgstr "مسح التحديد"
+
+msgid "Upload files"
+msgstr "الملفات المجهزة"
+
+msgid "Upload folder"
+msgstr "مطروحة"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "New file"
+msgstr "ملف جديد"
+
+msgid "New folder"
+msgstr "مجلد جديد"
+
+msgid "Folder info"
+msgstr "المعلومات المتعلقة بالطوابق"
+
+msgid "File info"
+msgstr "المعلومات المالية"
+
+msgid "Copy path"
+msgstr "مسار النسخ"
+
+msgid "Path from the site root"
+msgstr "الطريق من جذور الموقع"
+
+msgid "Full server path"
+msgstr "مسار الخادم الكامل"
+
+msgid "Web address (URL)"
+msgstr "العنوان الشبكي (URL)"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Archive…"
+msgstr "المحفوظات..."
+
+msgid "The ZIP file is created in this folder."
+msgstr "ملف شركة \"زي بي\" مُنشأ في هذا الملف."
+
+msgid "Extract"
+msgstr "مقتطف"
+
+msgid "Duplicate"
+msgstr "مكررة"
+
+msgid "Copy or move"
+msgstr "نسخ أو تحرّك"
+
+msgid "Move to…"
+msgstr "...تحركوا إلى"
+
+msgid "Copy to…"
+msgstr "...عُلم"
+
+msgid "Show in folder"
+msgstr "عرض في الملف"
+
+msgid "Permissions…"
+msgstr "التصريحات..."
+
+msgid "Share on site"
+msgstr "حصة في الموقع"
+
+msgid "Stop sharing"
+msgstr "توقف عن المشاركة"
+
+msgid "Version history"
+msgstr "تاريخ الإرسال"
+
+msgid "Rename"
+msgstr "إعادة تسمية"
+
+msgid "%s items cut. Open a folder and paste."
+msgstr "%s قطعة، افتح ملف وعجينة."
+
+msgid "Cut. Open a folder and paste."
+msgstr "اقطعي، افتحي ملفاً وعجينة"
+
+msgid "%s items copied. Open a folder and paste."
+msgstr "تم نسخ %s قطعة، افتح ملف وعجينة."
+
+msgid "Copied. Open a folder and paste."
+msgstr "افتح ملفاً وعجينة"
+
+msgid "Move \"%s\" to the trash?"
+msgstr "نقل \"%s\" إلى القمامة؟"
+
+msgid "Move %s items to the trash?"
+msgstr "نقل %s قطعة إلى القمامة؟"
+
+msgid "You can restore it from the trash."
+msgstr "يمكنك أن تعيده من القمامة"
+
+msgid "%s items moved to the trash."
+msgstr "%s قطعة نقلت إلى القمامة."
+
+msgid "Some items could not be processed"
+msgstr "بعض البنود لا يمكن معالجتها"
+
+msgid "Already exists"
+msgstr "موجود بالفعل"
+
+msgid "%s items already exist in the target folder. Replace them? The replaced files go to the trash."
+msgstr "%s صنف موجود بالفعل في ملف الهدف، واستبدالها؟ الملفات المُستبدلة تذهب إلى القمامة."
+
+msgid "Overwrite"
+msgstr "الكتابة الكاملة"
+
+msgid "Skip"
+msgstr "تخطي"
+
+msgid "Skipped"
+msgstr "تم تخطيه"
+
+msgid "%s items moved."
+msgstr "تم نقل %s قطعة"
+
+msgid "%s items copied."
+msgstr "تم نسخ %s قطعة."
+
+msgid "Folder name"
+msgstr "اسم المجلد"
+
+msgid "Create"
+msgstr "إنشاء"
+
+msgid "Created."
+msgstr "مُختلق"
+
+msgid "Working…"
+msgstr "العمل..."
+
+msgid "Archive created."
+msgstr "صنع المحفوظات."
+
+msgid "\"%s\" will be extracted into a new folder next to it."
+msgstr "\"%s\" سوف يتم استخراجها في ملف جديد بجانبه"
+
+msgid "Extracted %s files."
+msgstr "مقتطفات من %s ملف"
+
+msgid "Shared on the site"
+msgstr "متقاسمة في الموقع"
+
+msgid "Visitors can browse and download this folder where you add the shortcode below (copied). Add it to any page or post."
+msgstr "يمكن للزوار أن ينظفوا ويحمّلوا هذا الملف حيث تضيفون الرمز المختصر أدناه (المشفى) ويضافونه إلى أي صفحة أو وظيفة."
+
+msgid "No longer shared."
+msgstr "لم يعد مُشتركاً"
+
+msgid "Calculate"
+msgstr "احسب"
+
+msgid "Calculating…"
+msgstr "جارٍ الحساب..."
+
+msgid "%s files"
+msgstr "%s ملف"
+
+msgid "1 file"
+msgstr "ملف واحد"
+
+msgid "partial"
+msgstr "جزئي"
+
+msgid "Not writable"
+msgstr "لا يُستَطيع"
+
+msgid "Notes"
+msgstr "ملاحظات"
+
+msgid "Image"
+msgstr "صورة"
+
+msgid "Video"
+msgstr "فيديو"
+
+msgid "Audio"
+msgstr "الصوت"
+
+msgid "PDF document"
+msgstr "مستند PDF"
+
+msgid "Archive"
+msgstr "أرشيف"
+
+msgid "Code"
+msgstr "الكود"
+
+msgid "Document"
+msgstr "وثيقة"
+
+msgid "Text"
+msgstr "نص"
+
+msgid "Font"
+msgstr "الخط"
+
+msgid "File"
+msgstr "ملف"
+
+msgid "Owner"
+msgstr "المالك"
+
+msgid "Group"
+msgstr "المجموعة"
+
+msgid "Everyone"
+msgstr "الجميع"
+
+msgid "Read"
+msgstr "اقرأ"
+
+msgid "Write"
+msgstr "اكتب"
+
+msgid "Execute"
+msgstr "Execute"
+
+msgid "Write access for everyone is not allowed."
+msgstr "لا يسمح بكتابة وصول الجميع."
+
+msgid "Numeric value"
+msgstr "القيمة العددية"
+
+msgid "Usual values: 644 for files, 755 for folders."
+msgstr "القيم المعتادة: 644 للملفات، 755 للملفات."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Saved."
+msgstr "تم الحفظ."
+
+msgid "Choose this folder"
+msgstr "اختر هذا الملف"
+
+msgid "Loading…"
+msgstr "جارٍ التحميل..."
+
+msgid "No subfolders"
+msgstr "لا توجد ملفات فرعية"
+
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "Each save keeps the previous content. The last %s versions of a file are kept."
+msgstr "كل واحد يحافظ على المحتوى السابق، أما النسخ الأخيرة من الملف، وعددها %s."
+
+msgid "No earlier versions yet."
+msgstr "لا نسخ سابقة بعد."
+
+msgid "Difference from the current file"
+msgstr "الفرق من الملف الحالي"
+
+msgid "Restore this version"
+msgstr "استعادة هذا الإصدار"
+
+msgid "The file goes back to this version. The current content is kept as a new version."
+msgstr "ويعود الملف إلى هذه الصيغة ويحتفظ بالمحتوى الحالي كنسخة جديدة."
+
+msgid "Restored."
+msgstr "مُستعادة"
+
+msgid "Panel"
+msgstr "لوحة"
+
+msgid "AI chat"
+msgstr "دردشة"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Site"
+msgstr "الموقع"
+
+msgid "%s unchanged lines"
+msgstr "%s خطوط بدون تغيير"
+
+msgid "No changes."
+msgstr "لا تغييرات."
+
+msgid "Uploading %1$s / %2$s"
+msgstr "تحميل %1$s/%2$s"
+
+msgid "%s files uploaded"
+msgstr "%s ملف محمل"
+
+msgid "1 file uploaded"
+msgstr "تم تحميل ملف واحد"
+
+msgid "Upload failed"
+msgstr "تم تفريغها"
+
+msgid "\"%s\" already exists. Replace it? The old file is kept as a version."
+msgstr "\"%s\" موجود بالفعل، إستبدله، الملف القديم محتفظ به كنسخة"
+
+msgid "Items are deleted for good after %s days."
+msgstr "تُحذف البنود للأبد بعد مرور %s يوماً."
+
+msgid "Items stay until you empty the trash."
+msgstr "الأشياء تبقى حتى تفرغ القمامة"
+
+msgid "Empty trash"
+msgstr "قمامة فارغة"
+
+msgid "The trash is empty"
+msgstr "القمامة فارغة"
+
+msgid "Kept until %s"
+msgstr "بقيت حتى %s"
+
+msgid "Restore"
+msgstr "استعادة"
+
+msgid "Delete permanently"
+msgstr "حذف نهائيا"
+
+msgid "This cannot be undone."
+msgstr "هذا لا يمكن أن يُبطل."
+
+msgid "Everything in the trash will be deleted permanently. This cannot be undone."
+msgstr "كل شيء في القمامة سيتم حذفه بشكل دائم هذا لا يمكن أن يكون غير سليم"
+
+msgid "Restored to %s"
+msgstr "Reored to %s"
+
+msgid "%s items deleted."
+msgstr "حذفت %s بندا."
+
+msgid "All"
+msgstr "الكل"
+
+msgid "No activity yet"
+msgstr "لا يوجد نشاط بعد"
+
+msgid "Load more"
+msgstr "تحميل المزيد"
+
+msgid "%s events"
+msgstr "%s مناسبة"
+
+msgid "1 event"
+msgstr "مناسبة واحدة"
+
+msgid "Created"
+msgstr "تم إنشاؤها"
+
+msgid "Edited"
+msgstr "Edited"
+
+msgid "Renamed"
+msgstr "أعيدت تسميتها"
+
+msgid "Moved"
+msgstr "متحركة"
+
+msgid "Copied"
+msgstr "منقول"
+
+msgid "Moved to trash"
+msgstr "تم النقل إلى سلة المهملات"
+
+msgid "Restored"
+msgstr "المستعادة"
+
+msgid "Deleted permanently"
+msgstr "محررة بصورة دائمة"
+
+msgid "Permissions changed"
+msgstr "تغيرت الانبعاثات"
+
+msgid "Archived"
+msgstr "مؤرشف"
+
+msgid "Extracted"
+msgstr "مقتطفات"
+
+msgid "Uploaded"
+msgstr "تم الرفع"
+
+msgid "Version restored"
+msgstr "استعيدت الصورة"
+
+msgid "Settings changed"
+msgstr "تغيرت الأوضاع"
+
+msgid "Shared on site"
+msgstr "متقاسمة في الموقع"
+
+msgid "Sharing stopped"
+msgstr "توقف تبادل المعلومات"
+
+msgid "View"
+msgstr "عرض"
+
+msgid "Show hidden files"
+msgstr "تظهر ملفات مخبأة"
+
+msgid "Files starting with a dot, such as .htaccess."
+msgstr "الملفات تبدأ بالنقطه مثل الوصول"
+
+msgid "Safety"
+msgstr "السلامة"
+
+msgid "Keep trash for (days)"
+msgstr "احتفظ بالقمامة لـ (أيام)"
+
+msgid "0 keeps items until you empty the trash."
+msgstr "لا يحتفظ بأشياء حتى تفرغ القمامة"
+
+msgid "Versions per file"
+msgstr "صور لكل ملف"
+
+msgid "Disk quota (GB)"
+msgstr "حصص الأقراص (GB)"
+
+msgid "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only."
+msgstr "مكان قرصك في خطة الإستضافة، مثل 100، يُقاس الاستخدام لحساب الاستضافة بأكمله."
+
+msgid "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."
+msgstr "محتويات سابقة تم حفظها في كل خزنة (تصدر ملفات تصل إلى 3 إم بي) لا شيء يطفئها"
+
+msgid "AI and MCP"
+msgstr "منظمة العفو الدولية وMCP"
+
+msgid "Flux AI chat can list, read and search files, and asks you before every change. wp-config.php, .env and key files are never shared."
+msgstr "دردشة \"فلوكس آي\" يمكن أن تُدرج الملفات وتقرأ وتبحث عنها وتسألك قبل كل تغيير"
+
+msgid "External MCP clients may change files"
+msgstr "يمكن للعملاء الخارجيين MCP أن يغيروا الملفات"
+
+msgid "Off: Claude, ChatGPT and other MCP clients can only read. On: they can write, move and delete (to the trash)."
+msgstr "لا يمكن للزبائن القراءـة إلاّ من كلود، وشاتجي تي، و MCP عملاء آخرين، ويمكنهم الكتابة والتنقل والحذف (إلى القمامة)."
+
+msgid "AI may write code files"
+msgstr "يمكن أن يكتب ملفاً رمزياً"
+
+msgid "Lets AI change .php, .js, .css, .html, .htaccess and similar files. WordPress core and protected files stay off-limits."
+msgstr "(د) السماح لـ (آي) بتغيير (إف بي) و(ي) و(ج) و(ج) و(ج) و(س) و(س) و(س) و(س) و(س) و(س) و(س) و(س) و(س) و(س) و(س) و(س) و(س) و(س) و(س)(س) و(س)(س)(س)(س)(س) و(س) و(س) و(س)(س)(س)(و)(س)(س)(س)(و)(و)(و)(و)(و)(و)(و)(و)(ب)(و)(ج)(و)(ب)(ب)(ب)(ج)(ب)(ج)(ب)(ب)(ب)(ب)(ب)(ج)(ب)(ب)(ب) WordPress الملفات الأساسية والمحمية تبقى خارج الحدود."
+
+msgid "This lets AI change more of the site. Every change is still logged in Activity and earlier versions are kept. Continue?"
+msgstr "وهذا ما يجعل منظمة العفو الدولية تغير أكثر من الموقع، ولا يزال كل تغيير مسجلا في النشاط، وتستمر الصيغ السابقة."
+
+msgid "Shared folders"
+msgstr "الملفات المشتركة"
+
+msgid "Folders in uploads that visitors can browse with the [flx_files] shortcode. Right-click a folder › Share on site."
+msgstr "يحمّلون الزائرين على محملات يُمكن للزوار أن يتصفحوا بالرمز القصير [flx_files]."
+
+msgid "No shared folders."
+msgstr "لا توجد ملفات مشتركة."
+
+msgid "Show in browser"
+msgstr "عرض في بروزر"
+
+msgid "\"%s\" has unsaved changes. Close it anyway?"
+msgstr "\"%s\" لديها تغيرات غير متقطعة، أغلقها على أي حال؟"
+
+msgid "Unsaved changes"
+msgstr "التغييرات غير المحفوظة"
+
+msgid "Close without saving"
+msgstr "قريب من دون أن ينقذ"
+
+msgid "Find"
+msgstr "اعثروا على"
+
+msgid "Copy content"
+msgstr "محتوى النسخ"
+
+msgid "Explain with AI"
+msgstr "شرح بالذكاء الاصطناعي"
+
+msgid "Explain the selection with AI"
+msgstr "شرح التحديد بالذكاء الاصطناعي"
+
+msgid "Edit with AI"
+msgstr "تحرير مع الذكاء الاصطناعي"
+
+msgid "Line %1$s, column %2$s"
+msgstr "البند %1$s، العمود %2$s"
+
+msgid "%s lines"
+msgstr "%s"
+
+msgid "Unsaved"
+msgstr "غير مأهولة"
+
+msgid "Saved"
+msgstr "تم الحفظ"
+
+msgid "This file holds passwords or keys. It is never sent to AI; be careful when sharing it."
+msgstr "هذا الملف يحمل كلمات سر أو مفاتيح، ولا يرسل أبداً إلى منظمة العفو الدولية، وتوخي الحذر عند تقاسمه."
+
+msgid "WordPress core file: changes are lost when WordPress updates."
+msgstr "WordPress ملف أساسي: تضيع التغييرات عندما يستكمل WordPress."
+
+msgid "The server does not allow writing this file; it is opened read-only."
+msgstr "ولا يسمح الخادم بكتابة هذا الملف؛ ويُفتح فقط."
+
+msgid "This is a WordPress core file. A mistake can break the site and the change is lost on the next WordPress update. Save anyway? The previous content is kept as a version."
+msgstr "هذا ملف أساسي هو WordPress، ويمكن أن يكسر الموقع ويضيع التغيير في آخر المستجدات في عام WordPress، على أي حال؟ ويحتفظ المحتوى السابق كنسخة."
+
+msgid "This file controls the site configuration. A mistake can take the site down. Save anyway? The previous content is kept as a version."
+msgstr "هذا الملف يتحكم في تشكيلة الموقع، الخطأ يمكن أن يخفض الموقع، إنقاذ على أي حال؟"
+
+msgid "Replace with"
+msgstr "يستعاض عن عبارة"
+
+msgid "Replace"
+msgstr "استبدال"
+
+msgid "Replace all"
+msgstr "يستعاض عن عبارة:"
+
+msgid "%s replaced."
+msgstr "تم استبدال %s."
+
+msgid "AI is working…"
+msgstr "آي يعمل..."
+
+msgid "What should change?"
+msgstr "ما الذي يجب أن يتغير؟"
+
+msgid "e.g. Add a comment above each function / Fix the syntax error on line 12"
+msgstr "(ه) مثلاً إضافة تعليق فوق كل وظيفة / تثبيط الخطأ في التلفاز على السطر 12"
+
+msgid "AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save."
+msgstr "أقترح تغييراً و يظهر الفرق لا شيء يتم إنقاذه حتى تُطبقه و تُضغط على (فري)"
+
+msgid "Suggest a change"
+msgstr "اقتراح تغيير"
+
+msgid "Apply in editor"
+msgstr "تطبيقه في المحررة"
+
+msgid "Up one level"
+msgstr "مستوى أعلى"
+
+msgid "Applied in the editor. Review it and press Save."
+msgstr "مطبقة في المحرّر، قم باستعراضها وأضغط على (فري)"
+
+msgid "Explain file"
+msgstr "ملف تفسيري"
+
+msgid "Edit file with AI"
+msgstr "تعديل الملف بالذكاء الاصطناعي"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and choose a model."
+msgstr "(فلوكس آي) غير مستعد، (إنستل فلكس آي) MCP، واختار نموذجاً."
+
+msgid "This file may contain passwords or keys, so it is never sent to AI."
+msgstr "هذا الملف قد يحتوي على كلمات سر أو مفاتيح، لذلك لا يرسل أبدا إلى AI."
+
+msgid "The file is too large for AI (limit %s). Select a smaller file."
+msgstr "الملف كبير جداً بالنسبة لـ (إيه آي) (المحدّد %s)"
+
+msgid "Write what to change."
+msgstr "أكتب ما يجب تغييره."
+
+msgid "AI did not return a change."
+msgstr "لم أرد أي تغيير."
+
+msgid "This path points outside the site folder."
+msgstr "هذا الطريقِ يَدْخلُ ملف الموقعَ."
+
+msgid "File or folder not found."
+msgstr "الملفوف أو الملف لم يعثر عليه"
+
+msgid "Invalid path."
+msgstr "مسار غير صالح."
+
+msgid "Invalid name."
+msgstr "اسم غير مقصود"
+
+msgid "The parent folder does not exist."
+msgstr "الملف لا وجود له."
+
+msgid "This is not a folder."
+msgstr "هذا ليس ملف"
+
+msgid "The folder could not be read (permissions)."
+msgstr "ولا يمكن قراءة الملف (البعثات)."
+
+msgid "This is not a file."
+msgstr "هذا ليس ملف"
+
+msgid "The file could not be read (permissions)."
+msgstr "ولا يمكن قراءة الملف (البعثات)."
+
+msgid "The file is larger than %s and cannot be opened in the editor. Download it instead."
+msgstr "والملف أكبر من %s ولا يمكن فتحه في المحرِّر، ويحمّله بدلاً من ذلك."
+
+msgid "This is a binary file and cannot be opened in the editor."
+msgstr "هذا ملف ثنائي ولا يمكن فتحه في المحرّر"
+
+msgid "File changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "وتُعوق التغييرات المالية في هذا الموقع (DesALLOW_FILE_MODS)."
+
+msgid "This folder is managed by Flux Files."
+msgstr "هذا الملف يديره (فلكس فيليس)"
+
+msgid "Editing code files is disabled on this site (DISALLOW_FILE_EDIT)."
+msgstr "الملفات الرمزية المحررة معطلة في هذا الموقع (DSALLOW_FILE_EDIT)."
+
+msgid "AI cannot change protected or WordPress core files."
+msgstr "لا يمكن أن تغير الملفات الأساسية المحمية أو WordPress"
+
+msgid "AI is not allowed to write code files. Enable it in Flux Files › Settings."
+msgstr "لا يُسمح لـ (إي آي) بكتابة ملفات الشفرة (إجعلها في (فلوكس فيليس"
+
+msgid "A folder with this name already exists."
+msgstr "ملف بهذا الاسم موجود بالفعل"
+
+msgid "A file with this name already exists."
+msgstr "ملف بهذا الاسم موجود بالفعل"
+
+msgid "The file changed on the server since you opened it. Reload it or save a copy."
+msgstr "الملف تغير على الخادم منذ فتحته، أعد تحميله أو أنقذ نسخة منه."
+
+msgid "The file is not writable (permissions)."
+msgstr "والملف غير قابل للكتابة (البعثات)."
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "ولا يمكن كتابة الملف (البعثات أو الحيز المتاح)."
+
+msgid "A file or folder with this name already exists."
+msgstr "ملف أو ملف مع هذا الاسم موجود بالفعل"
+
+msgid "The folder could not be created (permissions)."
+msgstr "ولا يمكن إنشاء الملف (البعثات)."
+
+msgid "This file or folder is protected and cannot be moved, renamed or deleted."
+msgstr "ويحمي هذا الملف أو الملف ولا يمكن نقله أو إعادة تسميته أو حذفه."
+
+msgid "A folder cannot be moved into itself."
+msgstr "لا يمكن نقل الملف إلى نفسه."
+
+msgid "Could not move (permissions)."
+msgstr "لا يمكن التحرك (البعثات)."
+
+msgid "AI cannot read or copy protected files."
+msgstr "لا يمكن لـ (آي آي) قراءة أو نسخ الملفات المحمية"
+
+msgid "A folder cannot be copied into itself."
+msgstr "لا يمكن نسخ الملف إلى نفسه"
+
+msgid "The folder has more than %s files; copy it with SSH or a backup tool."
+msgstr "ويحتوي الملف على أكثر من %s ملفاً؛ ونسخه مع SSH أو أداة احتياطية."
+
+msgid "Could not copy (permissions or disk space)."
+msgstr "لا يمكن أن تنسخ (البعثات أو أماكن قرص)."
+
+msgid "AI can only delete folders with fewer than 2,000 files."
+msgstr "لا يمكن للمخابرات إلا أن تحذف الملفات بأقل من 000 2 ملف."
+
+msgid "Could not move to the trash (permissions)."
+msgstr "لا يمكن الانتقال إلى القمامة (البعثات)."
+
+msgid "Permissions can only be changed from the Flux Files screen."
+msgstr "الأذن لا يمكن تغييرها إلا من شاشه الافلام الفاخرة"
+
+msgid "Enter permissions as three digits, e.g. 644 or 755."
+msgstr "أدخلوا التصاريح كثلاثة أرقام، مثل 644 أو 755."
+
+msgid "World-writable permissions (e.g. 777) are not allowed."
+msgstr "ولا يُسمح بالإذن بالكتابة على الصعيد العالمي (مثلاً 777)."
+
+msgid "Permissions could not be changed."
+msgstr "ولا يمكن تغيير الأذون."
+
+msgid "Type at least 2 characters."
+msgstr "صنف شخصين على الأقل"
+
+msgid "The PHP zip extension is not available on this server."
+msgstr "ولا يوجد في هذا الخادم تمديد للزبدة قدره PHP."
+
+msgid "Nothing selected."
+msgstr "لا شيء مختار."
+
+msgid "The archive could not be created."
+msgstr "لا يمكن إنشاء المحفوظات."
+
+msgid "Too many files for one archive."
+msgstr "الكثير من الملفات لمحفوظ واحد."
+
+msgid "This archive could not be opened."
+msgstr "هذا الأرشيف لا يمكن فتحه."
+
+msgid "Too many files in this archive."
+msgstr "الكثير من الملفات في هذه المحفوظات"
+
+msgid "The archive contains unsafe paths and was not extracted."
+msgstr "ويحتوي المحفوظات على مسارات غير آمنة ولم يتم استخراجها."
+
+msgid "Not enough disk space to extract this archive."
+msgstr "ليس هناك مساحة كافية من الأقراص لاستخراج هذا الأرشيف"
+
+msgid "This folder is not shared. Open Flux Files, right-click the folder and choose \"Share on site\"."
+msgstr "هذا الملف غير مُشترك، افتح ملفات (فلوكس) و قم بعق الملف و اختار \"حلق على الموقع\""
+
+msgid "Search files…"
+msgstr "ملفات البحث..."
+
+msgid "Search files"
+msgstr "ملفات البحث"
+
+msgid "%1$d result for \"%2$s\""
+msgid_plural "%1$d results for \"%2$s\""
+msgstr[0] "%1$d نتائج \"%2$s\""
+msgstr[1] "%1$d نتيجة \"%2$s\""
+msgstr[2] "%1$d نتائج \"%2$s\""
+msgstr[3] "%1$d نتائج \"%2$s\""
+msgstr[4] "%1$d نتائج \"%2$s\""
+msgstr[5] "%1$d نتائج \"%2$s\""
+
+msgid "Clear"
+msgstr "مسح"
+
+msgid "No files found."
+msgstr "لا توجد ملفات"
+
+msgid "This folder is empty."
+msgstr "هذا الملف فارغ"
+
+msgid "List files"
+msgstr "الملفات المدرجة في القائمة"
+
+msgid "Read file"
+msgstr "قُرِض الملف"
+
+msgid "File activity"
+msgstr "النشاط التمويلي"
+
+msgid "Files in trash"
+msgstr "الملفات في القمامة"
+
+msgid "Write file"
+msgstr "ملف الكتابة"
+
+msgid "Edit file (find and replace)"
+msgstr "ملف إديت (محدَّد ومستبدل)"
+
+msgid "Create folder"
+msgstr "مطروحة"
+
+msgid "Move or rename"
+msgstr "النقل أو تغيير الاسم"
+
+msgid "Delete (to trash)"
+msgstr "تحذف (إلى القمامة)"
+
+msgid "Restore from trash"
+msgstr "ريسوم من القمامة"
+
+msgid "Unknown action."
+msgstr "عمل غير معروف."
+
+msgid "The upload failed. The file may be larger than the server allows."
+msgstr "لقد فشلت الحمولة، قد يكون الملف أكبر مما يسمح به الخادم."
+
+msgid "The upload failed. Try again."
+msgstr "لقد فشلت الحمولة، حاول مرة أخرى"
+
+msgid "Not enough disk space."
+msgstr "ليس مساحة كافية من القرص"
+
+msgid "The upload was interrupted. Try again."
+msgstr "تم قطع الحمولة حاول مرة أخرى"
+
+msgid "Only folders inside the uploads folder can be shared on the site."
+msgstr "فقط الملفات داخل الملفات المحملة يمكن تقاسمها في الموقع"
+
+msgid "Version not found."
+msgstr "لم يتم العثور على الإصدار."
+
+msgid "This item is no longer in the trash."
+msgstr "هذا البند لم يعد في القمامة"
+
+msgid "Could not restore (permissions)."
+msgstr "لا يمكن إعادة (البعثات)."
+
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d العناصر"
+msgstr[1] "البند %d"
+msgstr[2] "%d العناصر"
+msgstr[3] "%d العناصر"
+msgstr[4] "%d العناصر"
+msgstr[5] "%d العناصر"
+
+msgid "Trash and versions folder"
+msgstr "مطوّرات ونسخ"
+
+msgid "Deleted files and earlier versions are kept in a private folder closed to the web."
+msgstr "وتُحتفظ الملفات المهجورة والنسخ السابقة في ملف خاص يُغلق على الشبكة."
+
+msgid "The private folder under wp-content cannot be written. Deleting and versioning will fail; check the wp-content permissions."
+msgstr "ولا يمكن كتابة الملف الخاص تحت بند الرعاة، وسيفشل التسريح والنسخ؛ ويتحقق من الأذون الصادرة عن المفرزة."
+
+msgid "ZIP support"
+msgstr "الدعم المقدم من شركة ZIP"
+
+msgid "Folders can be downloaded as ZIP, archived and extracted."
+msgstr "يمكن تحميل الفولدرز كزبائن ومحفوظة و مستخرجة"
+
+msgid "The PHP zip extension is missing; ZIP download, archive and extract are off. Enable \"zip\" in the hosting PHP extensions."
+msgstr "تمدّد الزبدة PHP مفقود، إنّ حمولة (زي بي) والمحفوظات والمنتزعات مُطفأة، مُمكّن من \"الزب\" في مُدّة رقم PHP."
+
+msgid "File changes"
+msgstr "التغييرات المالية"
+
+msgid "DISALLOW_FILE_MODS is on: Flux Files is read-only."
+msgstr "الـ (فلوكس فيليس) يقرأ فقط"
+
+msgid "Only administrators can use Flux Files. wp-config.php, .htaccess and WordPress core folders are protected from deletion."
+msgstr "ولا يمكن إلا للمديرين استخدام الملفات الفارغة. ويحمي من الخرف المكشوف، ويحصلون على المعلومات الأساسية، ويحمي من الإفلاس، ويحصلون على WordPress ملفا."
+
+msgid "DISALLOW_FILE_EDIT is on: code files (.php, .htaccess …) cannot be edited or uploaded."
+msgstr "\"المشروبات\" \"الملفات الرمزية\" \"الرمزية، الوصول...\" لا يمكن تحريرها أو تحميلها."
+
+msgid "AI and MCP file access"
+msgstr "AI and MCP الاطلاع على الملفات"
+
+msgid "External MCP clients can change and delete files. Turn this off when you no longer need it."
+msgstr "عملاء خارجيون MCP يمكنهم تغيير وحذف الملفات اطفئها عندما لا تحتاجها"
+
+msgid "AI chat asks before every change; external MCP clients can only read. Secret files are never shared."
+msgstr "وتحدثت منظمة العفو الدولية يسأل قبل كل تغيير؛ فعملاء خارجيون لا يستطيعون القراءة إلا 917101، ولا يتم تبادل الملفات السرية."
+
+msgid "Trash cleanup"
+msgstr "تنظيف الخنازير"
+
+msgid "The trash was last cleaned %s. It is also cleaned when an administrator opens Flux Files."
+msgstr "لقد تم اخر تنظيف النفايات %s و يتم تنظيفها ايضا عندما يفتح مدير الملفات"

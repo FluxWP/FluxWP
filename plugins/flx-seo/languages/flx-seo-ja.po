@@ -1212,3 +1212,147 @@ msgstr "メタ タイトル/説明、正規、オープン グラフ、スキー
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "PageSpeed がタイムアウトしました。この手順はスキップされました。"
+
+msgid "Searches this website and returns matching pages and posts with their title and address."
+msgstr "本ウェブサイトを検索し、タイトルとアドレスで一致するページと投稿を返します。"
+
+msgid "How many results to return (1-20)"
+msgstr "返される結果の数(1-20)"
+
+msgid "Reads a page of this website as Markdown (title, description and main content). Without an address, reads the current page."
+msgstr "当サイトのページをマークダウン(タイトル、説明、メインコンテンツ)として、アドレスがない場合は、現在のページを読みます。"
+
+msgid "Page address on this website; empty for the current page"
+msgstr "本ウェブサイト上のページアドレス。"
+
+msgid "Returns a short overview of this website (llms.txt): what it is about and its main pages."
+msgstr "このサイト(llms.txt): 内容とそのメインページの概要を短く説明します。"
+
+msgid "Turn on Content-Signal in robots.txt"
+msgstr "Robots.txt の Content-Signal を有効にします。"
+
+msgid "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings."
+msgstr "Robots.txt に Content-Signal 行(検索、ai-input、ai-train)を追加し、クローラーがコンテンツの使用方法を理解できるようにします。"
+
+msgid "Serve Markdown to agents"
+msgstr "エージェントへのマークダウンの処理"
+
+msgid "Pages answer Accept: text/markdown with a Markdown version of the main content; far fewer tokens than HTML."
+msgstr "ページは、受け入れます: メイン コンテンツの Markdown バージョンでテキスト/マークダウン。"
+
+msgid "WebMCP tools are registered"
+msgstr "WebMCP ツールが登録されました。"
+
+msgid "Markdown is served to agents"
+msgstr "マークダウンはエージェントに提供されます"
+
+msgid "Content signals are declared"
+msgstr "コンテンツ信号が宣言されます。"
+
+msgid "Organization and contact pages are complete"
+msgstr "組織や連絡先ページが完成します。"
+
+msgid "MCP Server Card is published"
+msgstr "MCP Server Card を発行しました。"
+
+msgid "Flux AI & MCP"
+msgstr "Flux AI & MCP"
+
+msgid "No Content-Signal in robots.txt"
+msgstr "Robot.txt のコンテンツ信号なし"
+
+msgid "A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under \"User-agent: *\" yourself."
+msgstr "Content-Signal(例えば、search=yes、ai-input=yes、ai-train=no) は、コンテンツの使用方法をクローラーに伝えます。Flux SEO は、生成された robots.txt に追加します。"
+
+msgid "Sitemap has no lastmod dates"
+msgstr "Sitemap には最新のデータはありません。"
+
+msgid "Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there."
+msgstr "サイトマップのエントリは必ず必ず持ち込みます。 <lastmod> 検索エンジンとエージェントは何が変わったか知っています WordPress 別のプラグインがsitemapを構築している場合は、そこにlastmod.comをオンにします。"
+
+msgid "Organization schema is missing contact details"
+msgstr "組織スキーマには連絡先の詳細が欠けている"
+
+msgid "Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty)."
+msgstr "電話に入力して、エージェントが推測せずに組織に関する質問に答えられるようにします:SEO  ??  組織、またはFlux Setupの組織プロフィール(Flux SEOは、独自のフィールドが空いているときにそれを読みます)。"
+
+msgid "About, contact or legal page is not linked from the home page"
+msgstr "ホームページから連絡先や法律ページへのリンクはございません。"
+
+msgid "Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read."
+msgstr "ホームページから、約、連絡先、プライバシー/用語ページ(通常フッター)をリンクします:リンクは連絡先ページとしてカウントされません。"
+
+msgid "Markdown is not served when an agent asks for it"
+msgstr "エージェントが要求したときには、マークダウンは提供されません。"
+
+msgid "For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when \"Serve Markdown\" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the \"Flux SEO Markdown\" block is at the top of .htaccess."
+msgstr "Accept: テキスト/マークダウンページはMarkdownバージョンで解答すべきです。HTMLよりもはるかに少ないトークンのエージェントです。Flux SEOは、\"Serve Markdown\"がオンのときにこれを行います。HTMLがまだ戻ってきている場合、ページキャッシュが最初に答えます。キャッシュ(LiteSpeed: Purge All)をパージし、\"Flux SEO Markdown\"ブロックが.htaccessの上部にあることを確認します。"
+
+msgid "No WebMCP tools are registered on page load"
+msgstr "ページ読み込み時に WebMCP ツールは登録されません。"
+
+msgid "Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on."
+msgstr "ブラウザエージェントは、navigator.modelContext.registerTool()に登録されたツールや、ツール名/ツールの説明が書かれたフォームを探します。Flux SEOは、WebMCPがオンのときに検索、読み込み、サイト概要ツールを登録します。"
+
+msgid "No MCP Server Card"
+msgstr "MCP サーバーカードはありません。"
+
+msgid "Agents discover the site's MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this."
+msgstr "エージェントがサイトの発見を行う MCP サーバ from /.well-known/mcp/server-card.json (name, version, endpoint,capabilities). Flux AI & MCP 出版するのです MCP サーバーがオンです。 MCP › MCP) フラックスAI&なし。 MCP サイトには MCP サーバー; これを無視できます。"
+
+msgid "Hidden from search engines (noindex)."
+msgstr "検索エンジンから隠された(インデックスなし)。"
+
+msgid "Title is long (%d characters); Google cuts after about 60."
+msgstr "タイトルは長いです。%d 文字)、Googleは約60後にカットします。"
+
+msgid "Title is very short; write a title that describes the topic."
+msgstr "タイトルは非常に短く、トピックを記述するタイトルを書きます。"
+
+msgid "No meta description; it is built from the content automatically."
+msgstr "メタ記述なし。コンテンツから自動的に構築されます。"
+
+msgid "Meta description is long (%d characters)."
+msgstr "メタ記述は長いです。%d 文字)"
+
+msgid "Meta description is short (%d characters)."
+msgstr "メタ記述は短いです。%d 文字)"
+
+msgid "No featured image (it will not show in shares or Google Discover)."
+msgstr "画像は表示されません(シェアやGoogleディスカバーには表示されません)。"
+
+msgid "%d images have no alt text (filled in automatically from the image name; write a meaningful alt text)."
+msgstr "%d 画像には、alt テキストが含まれていません (画像名から自動的に入力されます。"
+
+msgid "%d images have no alt text."
+msgstr "%d 画像にはaltテキストはありません。"
+
+msgid "The page has %d H1 headings; there must be only one."
+msgstr "ページには %d H1見出し。"
+
+msgid "The page has no main heading (H1)."
+msgstr "ページはメインヘッダー(H1)はありません。"
+
+msgid "The content has an H1; the page title is already the H1. Make sub-headings H2."
+msgstr "コンテンツにはH1が、ページタイトルにはH1が、サブ見出しにはH2が設定されている。"
+
+msgid "The content is short (%d words). 300+ words are recommended."
+msgstr "内容が短い(。%d 単語) 300+ 単語を推奨します。"
+
+msgid "Long content has no sub-heading (H2)."
+msgstr "長い内容はサブ見出し(H2)はありません。"
+
+msgid "The focus keyword is not in the title."
+msgstr "タイトルに重点キーワードはありません。"
+
+msgid "The focus keyword is not in the description."
+msgstr "説明にはFocusキーワードは含まれません。"
+
+msgid "No internal links (link to related pages)."
+msgstr "内部リンク(関連ページへのリンク)はありません。"
+
+msgid "Content not found."
+msgstr "内容は見つかりません。"
+
+msgid "You are not allowed to edit this content."
+msgstr "このコンテンツを編集することはできません。"

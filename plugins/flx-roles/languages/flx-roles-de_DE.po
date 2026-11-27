@@ -320,3 +320,21 @@ msgstr "Rollen"
 
 msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
 msgstr "Fügt die Rollen „Mitarbeiter“, „Administrator“ und „Manager“ hinzu (neue Rolle wird auch über das Bedienfeld hinzugefügt); Sie können den Aufgaben-, Zertifikats-, Spenden-, Callcenter-, Studio- und Berichtszugriff für Rollen auf einer einzigen Seite aktivieren und deaktivieren. Persönlicher Referenzlink und Benutzertelefonnummer (für WhatsApp-Assistent) finden Sie hier."
+
+msgid "Unknown role."
+msgstr "Unbekannte Rolle."
+
+msgid "Unknown permission: %s."
+msgstr "Unbekannte Erlaubnis: %s ."
+
+msgid "This screen is not available."
+msgstr "Dieser Bildschirm ist nicht verfügbar."
+
+msgid "Enter 1 to 365 days."
+msgstr "Geben Sie 1 bis 365 Tage ein."
+
+msgid "Only roles added from the panel can be deleted."
+msgstr "Nur Rollen, die vom Panel hinzugefügt werden, können gelöscht werden."
+
+msgid "Not found."
+msgstr "Nicht gefunden."

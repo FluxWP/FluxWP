@@ -596,6 +596,13 @@
     "The current object cache is turned off and LiteSpeed Cache takes over. Continue?": "The current object cache is turned off and LiteSpeed Cache takes over. Continue?",
     "Cache status": "Cache status",
     "%1$s needs the %2$s plugin. It is not installed yet.": "%1$s needs the %2$s plugin. It is not installed yet.",
-    "%1$s needs the %2$s plugin to be active. It is installed but turned off.": "%1$s needs the %2$s plugin to be active. It is installed but turned off."
+    "%1$s needs the %2$s plugin to be active. It is installed but turned off.": "%1$s needs the %2$s plugin to be active. It is installed but turned off.",
+    "View Flux Speed": "View Flux Speed",
+    "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on.": "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on.",
+    "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable.": "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable.",
+    "Unknown operation.": "Unknown operation.",
+    "Communication": "Communication",
+    "Integrations": "Integrations",
+    "AI": "AI"
   }
 }

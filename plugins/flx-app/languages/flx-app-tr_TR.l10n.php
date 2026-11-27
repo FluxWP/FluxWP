@@ -135,7 +135,7 @@ return array(
   'Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice.' => 'İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayrıca izin veren hesaplar sayılır. Her tamamlanmış UTC günü için iOS/Android toplamları, en az beş hesap varsa telemetri merkezinize gönderilir. Kişi adları, hesap kimlikleri, içerik, site adresi ve GPS konumu bu rapora eklenmez. Ülke, sitenin ayarından gelir. Genel kullanım verisi izni de açık olmalıdır. Giriş ve uygulama özellikleri bu seçime bağlı değildir.',
   'Share aggregate mobile app usage' => 'Mobil uygulamanın toplam kullanımını paylaş',
   'Save' => 'Kaydet',
-  'Yetkiniz yok.' => 'Yetkiniz yok.',
+  'Yetkiniz yok.' => 'Yetkiniz Yok.',
   'This push service is not allowed.' => 'Bu bildirim servisine izin verilmiyor.',
   'Invalid subscription keys.' => 'Abonelik anahtarları geçersiz.',
   'Browser notifications need a signed-in browser session.' => 'Tarayıcı bildirimleri için tarayıcıda oturum açık olmalı.',

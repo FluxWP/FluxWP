@@ -1,0 +1,86 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Serves headless front ends over GraphQL"
+msgstr "يُخدمُ جبهةً لا رأسَ لها نهايةُ على GraphQL"
+
+msgid "Headless"
+msgstr "الرأس"
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr "وتحتاج هذه الشاشة إلى رقم Flux GraphQL (0.4.0 أو أحدث) وتركيبها أو تحديثها من الشاشة رقم FluxWP."
+
+msgid "This front end does not exist any more."
+msgstr "هذه النهاية الأمامية لم تعد موجودة"
+
+msgid "At most %d front ends can be added."
+msgstr "ويمكن إضافة أكثر من %d نهاية أمامية."
+
+msgid "Give the front end a name."
+msgstr "أعطِ الجبهةَ النهايةَ a اسم."
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr "ولا يمكن أن يكون للنهاية الأمامية نفس العنوان الذي يحمله هذا الرقم WordPress، وأن تنقل رقم WordPress إلى عنوان آخر (مثلاً Cms.example.com) أولاً."
+
+msgid "Another front end already has this address."
+msgstr "نهاية أخرى لها بالفعل هذا العنوان"
+
+msgid "The language \"%s\" is not on this site."
+msgstr "اللغة %s ليست في هذا الموقع"
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr "\"الطريق المسبق يبدأ بـ \"/ \" (مثلاً، (آبي) و (الاستعراض)"
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr "يجب أن يكون السر 24 شخص على الأقل استخدم زر الجينات"
+
+msgid "The secret could not be stored securely on this server."
+msgstr "السر لا يمكن تخزينه بأمان على هذا الخادم"
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr "يحتاج جهاز ويب إلى سر حتى النهاية الأمامية يمكن التحقق من أن المكالمة تأتي من هذا الموقع."
+
+msgid "Choose what WordPress does with its own pages."
+msgstr "اختر ما يفعله WordPress بصفحاته الخاصة"
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr "أضف نهاية أمامية أولاً، 917101 صفحة للزوار ومحركات البحث فيها"
+
+msgid "Enter the webhook address and the secret first."
+msgstr "أدخل العنوان و السر أولاً"
+
+msgid "Sent without waiting for the answer."
+msgstr "أرسل دون انتظار الإجابة."
+
+msgid "The front end accepted the call."
+msgstr "النهاية الأمامية قبلت المكالمة"
+
+msgid "The front end answered with HTTP %d."
+msgstr "\"النهاية الأمامية أجابت على \"HTTP %d"
+
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr "ولم تُضاف بعد أي نهاية للواجهة؛ ولكن لا توجد نهاية أمامية للتوجه إلى الموقع سوى 917101 عمل، بل وصلات، وعناوين كانتونية، وشبكة ويب."
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr "وفشلت آخر مكالمة على شبكة الإنترنت: %s، وفتح سجل التوصيل على الصفحة الرئيسية."
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr "لا يوجد اعادة ترتيب على الشبكة العالمية لـ %s هذه النهايات الأمامية تظهر تغيرات فقط عندما تنفجر مخبأها"
+
+msgid "%d front end, webhook set."
+msgid_plural "%d front ends, webhooks set."
+msgstr[0] "%d نهايات واجهة، موقع على الإنترنت."
+msgstr[1] "\"%d\" في النهاية الأمامية، \"ويهوك\" جاهز"
+msgstr[2] "%d نهايات واجهة، موقع على الإنترنت."
+msgstr[3] "%d نهايات واجهة، موقع على الإنترنت."
+msgstr[4] "%d نهايات واجهة، موقع على الإنترنت."
+msgstr[5] "%d نهايات واجهة، موقع على الإنترنت."
+
+msgid "Headless front ends"
+msgstr "الواجهة بلا رأس"

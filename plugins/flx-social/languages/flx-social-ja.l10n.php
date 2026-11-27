@@ -462,7 +462,7 @@ return array(
   'Add the "Instagram" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator.' => '「Instagram」製品をメタアプリに追加します(Instagram ログインによる API セットアップ)。製品ページの Instagram アプリ ID/シークレットをここに入力します。リダイレクト URL は以下です。アカウントはビジネスまたはクリエイターである必要があります。',
   'Instagram (Instagram login)' => 'インスタグラム(インスタグラムログイン)',
   'Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay "Private"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google.' => 'Google Cloud › API: YouTube Data API v3 (およびビジネス向け: マイ ビジネス アカウント管理、ビジネス情報、Google マイ ビジネス API) を有効にします。 › OAuth クライアント (Web アプリケーション) › 以下の承認されたリダイレクト URL。監査されていないプロジェクトでは、YouTube にアップロードされたビデオは「非公開」のままになります。 Google API監査を申請して公開してください。ビジネス プロフィール API には、Google からのアクセス承認が必要です。',
-  'YouTube channel' => 'YouTube channel',
+  'YouTube channel' => 'YouTubeチャンネル',
   'Google Business location' => 'Google ビジネスの場所',
   'developer.x.com › Project › App › User authentication settings: permission "Read and write", type "Web App", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read).' => 'developer.x.com › プロジェクト › アプリ › ユーザー認証設定: 権限「読み取りおよび書き込み」、タイプ「Web アプリ」、コールバック URI は以下のアドレスです。ここに「キーとトークン」の API キーとシークレットを入力します。以下の層を選択します (無料層には書き込み制限が低く、メトリクスは読み取られません)。',
   'X account' => 'Xアカウント',
@@ -1116,6 +1116,5 @@ return array(
   'Zamanlanan ve yayımlanan gönderiler burada görünür.' => 'スケジュールされた投稿と公開された投稿がここに表示されます。',
   'Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.' => 'サイト内のソーシャル メディア管理: アカウント リンク (パネルからのキー)、アカウントごとのコンテンツ、スケジュール、ネットワーク編集/削除、カレンダー、ダッシュボード、Flux AI ライティング アシスタンス、MCP ツール。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google ビジネス、WhatsApp.',
   'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.' => 'サイト内のソーシャル メディア管理: アカウント リンク (パネルからのキー)、アカウントごとのコンテンツ、スケジュール、ネットワーク編集/削除、カレンダー、ダッシュボード、Flux AI ライティング アシスタンス、MCP ツール。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google ビジネス、WhatsApp.',
-
  ),
 );

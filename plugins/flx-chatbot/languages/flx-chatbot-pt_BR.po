@@ -1199,3 +1199,12 @@ msgstr "Janela de bate-papo com suporte de inteligência artificial para o site:
 
 msgid "Still answering. Please wait a moment."
 msgstr "Ainda está respondendo. Por favor, espere um momento."
+
+msgid "Answers site chats"
+msgstr "Respostas bate-papos no site"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript é necessário para esta tela."
+
+msgid "Chat on WhatsApp"
+msgstr "Conversar em WhatsApp"

@@ -22,7 +22,7 @@
     "%s row\u0000%s rows": "%s satır\u0000%s satır",
     "JavaScript is required for this screen.": "Bu ekran için JavaScript gerekir.",
     "Backups › Dashboard": "Yedekler › Panel",
-    "Dashboard": "Panel",
+    "Dashboard": "Pano",
     "Backups › Settings": "Yedekler › Ayarlar",
     "Settings": "Ayarlar",
     "Permanently delete this backup?": "Bu yedek kalıcı olarak silinsin mi?",
@@ -241,7 +241,7 @@
     "%1$s / %2$s used (%3$s%%).": "%1$s / %2$s kullanılıyor (%%%3$s).",
     "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups.": "Yeni yedek için en eski kilitsiz yedekler silinecek; kotayı artırın veya kilitli yedekleri gözden geçirin.",
     "There are no backups yet. Take the first one from the dashboard with \"Back up now\".": "Henüz hiç yedek yok. Panelden \"Şimdi yedek al\" ile ilk yedeği alın.",
-    "%1$s (%2$s): %3$s": "%1$s (%2$s): %3$s",
+    "%1$s (%2$s): %3$s": "%1$s ( %2$s ) : %3$s",
     "for all plugin and theme updates": "tüm eklenti ve tema güncellemelerinde",
     "for FluxWP package updates only": "yalnız FluxWP paketlerinin güncellemelerinde",
     "Off: no backup is taken before updates.": "Kapalı: güncellemelerden önce yedek alınmıyor.",
@@ -553,6 +553,7 @@
     "Extra paths left out, one per line, relative to the WordPress root folder; * works as a wildcard.": "Dışarıda bırakılacak ek yollar, satır başına bir tane, WordPress kök klasörüne göreli; * joker olarak çalışır.",
     "Take a safety backup of the database before restoring it.": "Veritabanı geri yüklenmeden önce güvenlik yedeği al.",
     "Delete backup files when the plugin is deleted.": "Eklenti silinince yedek dosyalarını sil.",
-    "The settings after the change.": "Değişiklikten sonra ayarlar."
+    "The settings after the change.": "Değişiklikten sonra ayarlar.",
+    "%s%%": "%%%s"
   }
 }

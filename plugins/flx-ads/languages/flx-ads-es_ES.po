@@ -1,0 +1,794 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: es_ES\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Sees ad conversions"
+msgstr "Ver conversiones de anuncios"
+
+msgid "Ads"
+msgstr "Anuncios"
+
+msgid "Manages ads and tracking settings"
+msgstr "Gestiona anuncios y ajustes de seguimiento"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "Which ad brought which donation"
+msgstr "Que anuncio trajo que donación"
+
+msgid "Report"
+msgstr "Informe"
+
+msgid "Campaigns"
+msgstr "Campañas"
+
+msgid "Suggestions"
+msgstr "Sugerencias"
+
+msgid "Studio"
+msgstr "estudio"
+
+msgid "Season plan"
+msgstr "Plan de temporada"
+
+msgid "Tests"
+msgstr "Pruebas"
+
+msgid "Donor value"
+msgstr "Valor donante"
+
+msgid "Ad spend"
+msgstr "Gasto de anuncios"
+
+msgid "Audiences"
+msgstr "Audiences"
+
+msgid "Send log"
+msgstr "Enviar registro"
+
+msgid "Ad link"
+msgstr "Enlace de anuncios"
+
+msgid "You are not allowed to view this page."
+msgstr "No tienes permiso para ver esta página."
+
+msgid "Ad tracking settings"
+msgstr "Ajustes de seguimiento de anuncios"
+
+msgid "Change ad tracking settings"
+msgstr "Cambiar la configuración de seguimiento de anuncios"
+
+msgid "Test ad platform connection"
+msgstr "Prueba de conexión de plataforma de anuncios"
+
+msgid "Ad conversion send log"
+msgstr "Conversión de anuncios enviar registro"
+
+msgid "Send a conversion again"
+msgstr "Enviar una conversión de nuevo"
+
+msgid "Add ad spend"
+msgstr "Agregar el gasto de anuncio"
+
+msgid "Delete manual ad spend"
+msgstr "Eliminar el gasto manual de anuncios"
+
+msgid "Update Meta ad spend now"
+msgstr "Actualizar Meta anuncio gastar ahora"
+
+msgid "Donor value by campaign (LTV, CAC)"
+msgstr "Valor de donante por campaña (LTV, CAC)"
+
+msgid "Meta audiences"
+msgstr "Metas audiencias"
+
+msgid "Create a Meta audience"
+msgstr "Crear un público Meta"
+
+msgid "Create a lookalike audience"
+msgstr "Crear un público parecido"
+
+msgid "Update a Meta audience now"
+msgstr "Actualizar un público Meta ahora"
+
+msgid "Delete a Meta audience"
+msgstr "Eliminar un público Meta"
+
+msgid "Meta campaigns"
+msgstr "Metas campañas"
+
+msgid "Meta campaign details"
+msgstr "Meta fichas de campaña"
+
+msgid "Pause or turn on in Meta"
+msgstr "Pausa o encender en Meta"
+
+msgid "Change daily budget in Meta"
+msgstr "Cambio de presupuesto diario en Meta"
+
+msgid "Ad suggestions"
+msgstr "Sugerencias"
+
+msgid "Apply an ad suggestion"
+msgstr "Aplicar una sugerencia de anuncio"
+
+msgid "Dismiss an ad suggestion"
+msgstr "Sugiere un anuncio"
+
+msgid "Add a season date"
+msgstr "Añadir una fecha de temporada"
+
+msgid "Delete a season date"
+msgstr "Eliminar una fecha de temporada"
+
+msgid "Ad tests"
+msgstr "Pruebas de anuncios"
+
+msgid "Start an ad test"
+msgstr "Iniciar una prueba de anuncio"
+
+msgid "End an ad test"
+msgstr "Finalizar una prueba de anuncio"
+
+msgid "Delete an ad test"
+msgstr "Eliminar una prueba de anuncio"
+
+msgid "Campaign planning context"
+msgstr "Contexto de planificación de campañas"
+
+msgid "Campaign drafts"
+msgstr "Proyectos de campaña"
+
+msgid "Save a campaign draft"
+msgstr "Guardar un proyecto de campaña"
+
+msgid "Create draft in Meta (paused)"
+msgstr "Crear borrador en Meta (pausa)"
+
+msgid "Delete a campaign draft"
+msgstr "Suprímase un proyecto de campaña"
+
+msgid "Ad conversions"
+msgstr "Conversiones de anuncios"
+
+msgid "Audience not found."
+msgstr "Audiencia no encontrada."
+
+msgid "Everyone with ad consent"
+msgstr "Todo el mundo con consentimiento previo"
+
+msgid "Donors and customers (paid at least once)"
+msgstr "Donantes y clientes (pagados al menos una vez)"
+
+msgid "Value group: %s"
+msgstr "Grupo de valor: %s"
+
+msgid "Segment: %s"
+msgstr "Segmento: %s"
+
+msgid "Show ads to them"
+msgstr "Mostrar anuncios a ellos"
+
+msgid "Exclude from ads"
+msgstr "Excluido de los anuncios"
+
+msgid "Flux CRM and a Meta ad account with an ads_management key are needed."
+msgstr "Flux CRM y una cuenta de anuncio Meta con una clave ads_gestión son necesarios."
+
+msgid "Enter a name and pick a group."
+msgstr "Escriba un nombre y seleccione un grupo."
+
+msgid "Pick one of your own audiences as the source."
+msgstr "Escoge una de tus propias audiencias como fuente."
+
+msgid "%1$s · lookalike %2$d%% %3$s"
+msgstr "%1$s · parecido al %2$d % %3$s"
+
+msgid "Not from ads"
+msgstr "No de los anuncios"
+
+msgid "(not set)"
+msgstr "(no se establece)"
+
+msgid "A/B test"
+msgstr "Prueba A/B"
+
+msgid "Holdout (lift)"
+msgstr "Soporte (conductor)"
+
+msgid "Choose the test type."
+msgstr "Elija el tipo de prueba."
+
+msgid "The end date is before the start date."
+msgstr "La fecha final es antes de la fecha de inicio."
+
+msgid "Pick a campaign and two different ads in it."
+msgstr "Escoge una campaña y dos anuncios diferentes en ella."
+
+msgid "Both ads must be in the chosen campaign."
+msgstr "Ambos anuncios deben estar en la campaña elegida."
+
+msgid "Pick an audience that ads are shown to."
+msgstr "Escoge un público al que se muestran los anuncios."
+
+msgid "The holdout share must be between 5% and 50%."
+msgstr "La cuota de retención debe ser entre 5% y 50%."
+
+msgid "This audience already has a running holdout test."
+msgstr "Esta audiencia ya tiene una prueba de fuga."
+
+msgid "Test not found."
+msgstr "Prueba no encontrada."
+
+msgid "The audience of this test was deleted."
+msgstr "El público de esta prueba fue eliminado."
+
+msgid "Not enough data yet: wait until both ads have clicks."
+msgstr "Aún no hay suficientes datos: espere hasta que ambos anuncios tengan clics."
+
+msgid "payments per click"
+msgstr "pagos por clic"
+
+msgid "Too little data yet: each ad needs at least 50 clicks (1,000 impressions while payments are few). Let it run longer."
+msgstr "Muy pocos datos todavía: cada anuncio necesita al menos 50 clics (1,000 impresiones mientras que los pagos son pocos). Deja que funcione más tiempo."
+
+msgid "No clear winner yet on %1$s (confidence %2$s%%; 95%% is needed). Let it run longer."
+msgstr "Todavía no hay ganador claro en %1$s (confianza %2$s %; 95%% es necesario). Dejar que funcione más tiempo."
+
+msgid "\"%1$s\" wins on %2$s with %3$s%% confidence. You can pause \"%4$s\"."
+msgstr "\" %1$s\" gana en %2$s con %3$s % de confianza. Puedes pausar \" %4$s\"."
+
+msgid "Not enough data yet."
+msgstr "Aún no hay suficientes datos."
+
+msgid "Ads work: people who could see them gave %1$s%% more often. About %2$s extra donors and %3$s extra income came from the ads (confidence %4$s%%)."
+msgstr "Trabajo de anuncios: personas que podían verlas dieron %1$s % más a menudo. Cerca de %2$s donantes adicionales y %3$s ingresos extras provenían de los anuncios (confianza %4$s %%)."
+
+msgid "People who did not see the ads gave more often. The ads to this audience are not adding donations; try other text or another audience."
+msgstr "Las personas que no vieron los anuncios dieron más a menudo. Los anuncios a este público no están agregando donaciones; prueba otro texto u otro público."
+
+msgid "The holdout group is still small (%s people; at least 100 are needed). Use a larger audience or share, or wait for it to grow."
+msgstr "El grupo de retención es todavía pequeño ( %s personas; al menos 100 son necesarias). Use un público más grande o compartir, o espere a que crezca."
+
+msgid "No clear difference yet between people who could see the ads and the holdout (confidence %s%%; 95%% is needed)."
+msgstr "Aún no hay diferencia clara entre las personas que podían ver los anuncios y el standout (confianza %s %; 95% es necesario)."
+
+msgid "Last 7 days"
+msgstr "últimos 7 días"
+
+msgid "Last 30 days"
+msgstr "últimos 30 días"
+
+msgid "Last 90 days"
+msgstr "últimos 90 días"
+
+msgid "Active"
+msgstr "Activo"
+
+msgid "Paused"
+msgstr "En pausa"
+
+msgid "Campaign paused"
+msgstr "Campaña de pausa"
+
+msgid "Ad set paused"
+msgstr "Se detuvo el conjunto de anuncios"
+
+msgid "Processing"
+msgstr "Procesamiento"
+
+msgid "Has issues"
+msgstr "Tiene problemas"
+
+msgid "In review"
+msgstr "En revisión"
+
+msgid "Rejected"
+msgstr "Rechazado"
+
+msgid "Approved"
+msgstr "Aprobado"
+
+msgid "Billing needed"
+msgstr "Facturación necesaria"
+
+msgid "Archived"
+msgstr "Archivado"
+
+msgid "Deleted"
+msgstr "Eliminado"
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+msgstr "Introduzca el ID de la cuenta de anuncio Meta y una clave de Marketing API en Ajustes › Meta."
+
+msgid "Campaign not found."
+msgstr "Campaña no encontrada."
+
+msgid "Status can only be Active or Paused."
+msgstr "El estado sólo puede ser activo o usado."
+
+msgid "Enter a daily budget greater than zero."
+msgstr "Introduzca un presupuesto diario superior a cero."
+
+msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr "Este artículo no tiene presupuesto diario aquí (presupuesto de tiempo libre, o el presupuesto se establece en la campaña / conjuntos de anuncios)."
+
+msgid "Pause campaign"
+msgstr "Campaña de pausa"
+
+msgid "Lower budget"
+msgstr "Presupuesto inferior"
+
+msgid "Raise budget"
+msgstr "Presupuesto de aumento"
+
+msgid "Pause weak ad"
+msgstr "Pausa débil ad"
+
+msgid "New ad text"
+msgstr "Nuevo texto de anuncio"
+
+msgid "Season coming"
+msgstr "Temporada que viene"
+
+msgid "Waiting"
+msgstr "esperando"
+
+msgid "Applied"
+msgstr "Aplicadas"
+
+msgid "Dismissed"
+msgstr "Denegado"
+
+msgid "No longer valid"
+msgstr "Ya no es válido"
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr "Pasó %1$s en los últimos 7 días y no trajo ningún pago en el sitio (juzgado después de %2$s )."
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr "Regresar en el gasto de anuncio es %1$s , bajo la mitad de su objetivo %2$s . Bajar el presupuesto diario %3$s → %4$s (-20%%) y mover dinero a mejores campañas."
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr "Regresar en el gasto de anuncio es %1$s con pagos %2$s, bien por encima de su objetivo. Aumentar el presupuesto diario %3$s → %4$s (+20%, lo suficientemente pequeño que Meta mantiene el aprendizaje)."
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr "Click rate %1$s % while the other ads in this ad set average %2$s %%; it has spent %3$s . Pausing it moves the budget to the better ads."
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr "La gente vio estos anuncios %s veces cada uno en 7 días; los resultados generalmente bajan después de 4. Escribe nuevas variantes de texto en Studio o amplía el público."
+
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] "%1$s comienza en %2$s día. Escribe la campaña ahora para que Meta tenga tiempo de revisar y aprender."
+msgstr[1] "%1$s comienza en %2$s días. Escribe la campaña ahora así que Meta tiene tiempo para revisar y aprender."
+
+msgid "Last year it brought %1$s payments and %2$s."
+msgstr "El año pasado trajo %1$s pagos y %2$s ."
+
+msgid "This suggestion is already closed."
+msgstr "Esta sugerencia ya está cerrada."
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr "Esta sugerencia no tiene nada que cambiar en Meta; abrir Studio o desestimarlo."
+
+msgid "Suggestion not found."
+msgstr "Sugerencia no encontrada."
+
+msgid "Ramadan and Eid"
+msgstr "Ramadán y Eid"
+
+msgid "Mother's Day (donate in her name)"
+msgstr "Día de la Madre (donar en su nombre)"
+
+msgid "National Tree Planting Day (11 November)"
+msgstr "Día Nacional de Planeo de Árboles (11 de noviembre)"
+
+msgid "Teachers' Day (donate in their name)"
+msgstr "Día de los Maestros (donar en su nombre)"
+
+msgid "Black Friday and Giving Tuesday"
+msgstr "Viernes Negro y el martes"
+
+msgid "Year-end giving"
+msgstr "Fin de año"
+
+msgid "Enter a name and a start date."
+msgstr "Introduzca un nombre y una fecha de inicio."
+
+msgid "Too many dates; delete old ones first."
+msgstr "Demasiados fechas; eliminar las viejas primero."
+
+msgid "Date not found."
+msgstr "No se encontró la fecha."
+
+msgid "Campaign for %1$s (%2$s – %3$s)."
+msgstr "Campaña para %1$s ( %2$s – %3$s )."
+
+msgid "Last year the same period brought %1$s payments and %2$s."
+msgstr "El año pasado el mismo período trajo %1$s pagos y %2$s ."
+
+msgid "Ad channel"
+msgstr "Canal de anuncios"
+
+msgid "Campaign"
+msgstr "Campaña"
+
+msgid "Ad (utm_content)"
+msgstr "Ad (utm_content)"
+
+msgid "Source / medium"
+msgstr "Fuente / medio"
+
+msgid "Landing page"
+msgstr "Página de aterrizaje"
+
+msgid "First ad touch"
+msgstr "Primer toque ad"
+
+msgid "Fill in the ID and the key first."
+msgstr "Rellene la identificación y la clave primero."
+
+msgid "Connected to \"%s\". Enter a test event code to see a test event in Events Manager."
+msgstr "Conectado a \" %s\". Introduzca un código de prueba para ver un evento de prueba en Events Manager."
+
+msgid "Enter the test event code from TikTok Events Manager › Test events, then test again."
+msgstr "Introduzca el código de prueba del evento de TikTok Events Manager › Test events, y luego vuelva a probar."
+
+msgid "Google accepted the test event (validation only; nothing was recorded)."
+msgstr "Google aceptó el evento de prueba (sólo validación; nada se registró)."
+
+msgid "Enter the ad account ID and a key first."
+msgstr "Introduzca el ID de cuenta de anuncio y una clave primero."
+
+msgid "Meta answered too slowly; try again later."
+msgstr "Meta respondió muy lentamente; inténtelo de nuevo más tarde."
+
+msgid "Too many rows; only part of the period was read."
+msgstr "Demasiadas filas; sólo parte del período fue leída."
+
+msgid "Donations / sales (conversions)"
+msgstr "Donaciones / ventas (conversiones)"
+
+msgid "Visits to the page"
+msgstr "Visitas a la página"
+
+msgid "Awareness (reach)"
+msgstr "Sensibilización (reach)"
+
+msgid "Donate now"
+msgstr "Donate ahora"
+
+msgid "Learn more"
+msgstr "Más información"
+
+msgid "Shop now"
+msgstr "Compra ahora"
+
+msgid "Sign up"
+msgstr "Regístrate"
+
+msgid "Draft"
+msgstr "Borrador"
+
+msgid "In Meta (paused)"
+msgstr "En Meta (pausa)"
+
+msgid "Not sent"
+msgstr "No enviado"
+
+msgid "Give the campaign a name."
+msgstr "Dale un nombre a la campaña."
+
+msgid "Enter the page the ads open (a full https:// address)."
+msgstr "Introduzca la página los anuncios abiertos (una dirección https:// completa)."
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr "Añadir al menos un conjunto de anuncios (que ve los anuncios)."
+
+msgid "Add at least one ad with a text and a headline."
+msgstr "Añadir al menos un anuncio con un texto y un título."
+
+msgid "Draft not found."
+msgstr "Borrador no encontrado."
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr "Este borrador ya está en Meta. Editar allí, o duplicarlo aquí."
+
+msgid "Too many drafts; delete old ones first."
+msgstr "Demasiados borradores; eliminar los viejos primero."
+
+msgid "%s (copy)"
+msgstr "%s(copiar)"
+
+msgid "Meta ad account ID and Marketing API key (Settings › Meta)"
+msgstr "Meta ad account ID and Marketing API key (Configuraciones › Meta)"
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr "ID de página de Facebook (Configuración › Meta)"
+
+msgid "This draft is already in Meta."
+msgstr "Este borrador ya está en Meta."
+
+msgid "Missing: %s."
+msgstr "Desaparecido: %s."
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr "Flux AI no está listo. Instale Flux AI &lt; MCP y agregue una llave modelo."
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr "Escribe un breve resumen: para qué es la campaña y para quién debe llegar."
+
+msgid "The AI answer could not be read; try again."
+msgstr "La respuesta de la AI no podía leerse; intente de nuevo."
+
+msgid "Ad conversion"
+msgstr "Conversión de anuncios"
+
+msgid "Ad source"
+msgstr "Fuente de anuncios"
+
+msgid "No payment from this contact came through an ad."
+msgstr "Ningún pago de este contacto llegó a través de un anuncio."
+
+msgid "First came through: %s"
+msgstr "Primero atravesó: %s"
+
+msgid "Ad report"
+msgstr "Informe adicional"
+
+msgid "Other campaigns (UTM)"
+msgstr "Otras campañas (UTM)"
+
+msgid "No ad (direct, search, other sites)"
+msgstr "No anuncio (direct, búsqueda, otros sitios)"
+
+msgid "Ad conversions report"
+msgstr "Informe de conversiones de anuncios"
+
+msgid "Ad tracking status"
+msgstr "Estado de seguimiento de los anuncios"
+
+msgid "Similar to: %s"
+msgstr "Similar a: %s"
+
+msgid "(removed group)"
+msgstr "(grupo retirado)"
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr "Una campaña de pausa con %1$d anuncios y %2$d anuncios se crea en Meta. Nada se muestra o se gasta hasta que se enciende bajo Campañas."
+
+msgid "Now"
+msgstr "Ahora"
+
+msgid "Prepare now"
+msgstr "Prepárate ahora."
+
+msgid "Later"
+msgstr "Más tarde"
+
+msgid "running"
+msgstr "corriendo."
+
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] "en %s día"
+msgstr[1] "en %s días"
+
+msgid "Sales"
+msgstr "Ventas"
+
+msgid "Leads"
+msgstr "Plomo"
+
+msgid "Traffic"
+msgstr "Tráfico"
+
+msgid "Engagement"
+msgstr "Compromiso"
+
+msgid "Awareness"
+msgstr "Concienciación"
+
+msgid "App promotion"
+msgstr "Promoción de aplicaciones"
+
+msgid "%s / day"
+msgstr "%s / día"
+
+msgid "%s total"
+msgstr "Total %s"
+
+msgid "all genders"
+msgstr "todas las cuestiones de género"
+
+msgid "men"
+msgstr "hombres"
+
+msgid "women"
+msgstr "mujeres"
+
+msgid "%1$d–%2$d, %3$s, %4$s"
+msgstr "%1$d – %2$d , %3$s , %4$s"
+
+msgid "audiences +%1$d / −%2$d"
+msgstr "audiencias + %1$d / − %2$d"
+
+msgid "unknown"
+msgstr "desconocida"
+
+msgid "%s spent"
+msgstr "%s gastados"
+
+msgid "Panel"
+msgstr "panel"
+
+msgid "Daily budget %1$s → %2$s"
+msgstr "Presupuesto diario %1$s → %2$s"
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr "Establecer el presupuesto diario de \" %1$s\" a %2$s en Meta?"
+
+msgid "Apply: %s a day"
+msgstr "Aplicar: %s al día"
+
+msgid "Pause \"%s\" in Meta?"
+msgstr "Pausa \" %s\" en Meta?"
+
+msgid "Apply: pause"
+msgstr "Aplicar: pausa"
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr "Una campaña es juzgada después de %s gastar en 7 días."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr "Una campaña se juzga después de gastar el doble de su costo promedio por pago en 7 días (ahora %s)."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr "Una campaña es juzgada después de gastar el doble de su costo promedio por pago en 7 días."
+
+msgid "Spend"
+msgstr "gastar"
+
+msgid "Link clicks"
+msgstr "Pulsores de enlace"
+
+msgid "Payments on the site"
+msgstr "Pagos en el sitio"
+
+msgid "Payments per click"
+msgstr "Pagos por clic"
+
+msgid "Cost per payment"
+msgstr "Costo por pago"
+
+msgid "People"
+msgstr "gente"
+
+msgid "Gave at least once"
+msgstr "Gave al menos una vez"
+
+msgid "Income"
+msgstr "Ingresos"
+
+msgid "Per person"
+msgstr "Por persona"
+
+msgid "Could see ads"
+msgstr "Podría ver anuncios"
+
+msgid "Audience \"%1$s\", %2$s%% held out"
+msgstr "Audiencia \" %1$s \", %2$s % retenido"
+
+msgid "open-ended"
+msgstr "abierta"
+
+msgid "%1$s (%2$s people)"
+msgstr "%1$s ( %2$s personas)"
+
+msgid "There is no winner yet."
+msgstr "Aún no hay ganador."
+
+msgid "Enter an amount greater than zero."
+msgstr "Ingrese una cantidad mayor que cero."
+
+msgid "Spend not found."
+msgstr "No se ha encontrado nada."
+
+msgid "Sent"
+msgstr "Enviado"
+
+msgid "Failed"
+msgstr "Fallido"
+
+msgid "visitor did not accept cookies"
+msgstr "visitante no aceptó cookies"
+
+msgid "already sent from the browser"
+msgstr "ya enviado desde el navegador"
+
+msgid "platform turned off"
+msgstr "plataforma apagada"
+
+msgid "order deleted"
+msgstr "orden suprimido"
+
+msgid "Row not found."
+msgstr "Row no encontró."
+
+msgid "E-mail newsletter"
+msgstr "Boletín electrónico"
+
+msgid "Paid social"
+msgstr "Pagados sociales"
+
+msgid "Search ad (cpc)"
+msgstr "Búsqueda (cpc)"
+
+msgid "Video ad"
+msgstr "Anuncio de vídeo"
+
+msgid "Organic post"
+msgstr "Puesto orgánico"
+
+msgid "E-mail"
+msgstr "correo electrónico"
+
+msgid "Unknown platform."
+msgstr "Plataforma desconocida."
+
+msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
+msgstr "Encendido pero el ID no es válido o no. Nada se rastrea."
+
+msgid "Browser pixel only. Without the server key, bank-transfer donations approved later and visitors with ad blockers are not counted."
+msgstr "Pixel navegador solamente. Sin la llave del servidor, las donaciones de transferencia bancaria aprobadas más tarde y los visitantes con bloqueos de anuncios no se cuentan."
+
+msgid "Pixel and server events are set up. Last test passed."
+msgstr "Los eventos de píxel y servidor están establecidos."
+
+msgid "Last connection test failed:"
+msgstr "La última prueba de conexión falló:"
+
+msgid "Pixel and server events are set up. Run \"Test\" once to check the key."
+msgstr "Los eventos de píxel y servidor se establecen. Ejecute \"Test\" una vez para comprobar la clave."
+
+msgid "Ad platforms"
+msgstr "Plataformas de anuncios"
+
+msgid "No ad platform is on. The ad report still works from UTM links and click IDs."
+msgstr "No hay plataforma de anuncios. El informe de anuncios todavía funciona desde enlaces UTM y IDs de clic."
+
+msgid "Server conversions"
+msgstr "Conversiones de servidor"
+
+msgid "%1$d failed, %2$d waiting. Last retry run: %3$s."
+msgstr "%1$d falló, %2$d esperando. Última vuelta: %3$s ."
+
+msgid "never"
+msgstr "nunca"
+
+msgid "Meta ad spend"
+msgstr "Meta ad gastar"
+
+msgid "Last update failed:"
+msgstr "Última actualización falló:"
+
+msgid "Spend read %s."
+msgstr "Paso leer %s ."
+
+msgid "Not read yet; opening the Flux Ads screen starts it."
+msgstr "Aún no se lee; la apertura de la pantalla de anuncios Flux comienza."
+
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "El público %d se actualiza diariamente."
+msgstr[1] "%d audiencias se actualizan diariamente."
+
+msgid "Cookie consent"
+msgstr "Consentimiento de cookies"
+
+msgid "The theme cookie banner is off, so ad pixels load without asking. Under KVKK/GDPR marketing cookies need consent: turn the banner on in Appearance › Theme Settings."
+msgstr "El banner temático de cookies está apagado, por lo que se cargan los píxeles sin preguntar. Bajo las cookies de marketing de KVKK/GDPR las cookies necesitan consentimiento: enciende el banner en Apariance › Ajustes de Tema."
+
+msgid "Theme Settings"
+msgstr "Configuración del tema"

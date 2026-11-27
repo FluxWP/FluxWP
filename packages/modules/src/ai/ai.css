@@ -71,7 +71,7 @@
 .flxai-input{min-height:32px;padding:4px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--flux-surface2);color:var(--flux-text);font-size:13px;max-width:100%;min-width:200px}
 .flxai-input.is-small{min-width:0;width:100px}
 textarea.flxai-input{width:100%;max-width:560px}
-.flxai-check{display:inline-flex;align-items:center;gap:6px;font-size:13px;margin-right:12px}
+.flxai-check{display:inline-flex;align-items:center;gap:6px;font-size:13px;margin-inline-end:12px}
 .flxai-hint{color:var(--flux-muted,#6b7280);font-size:12px;line-height:1.5;margin:4px 0}
 .flxai-savebar{position:sticky;bottom:0;display:flex;justify-content:flex-end;padding:12px 0;background:var(--flux-bg,#f4f2ee)}
 .flxai-btn.is-primary{background:var(--ac);border-color:var(--ac);color:#fff!important}
@@ -187,6 +187,7 @@ textarea.flxai-input{width:100%;max-width:560px}
 .flxai-app .flxai-meter{border-radius:14px;padding:12px 14px}
 .flxai-app .flxai-card>h2>.flxai-bill-head{width:100%}
 .flxai-app .flxai-field{grid-template-columns:200px 1fr;border-top:0;padding:8px 0}
+@media(max-width:640px){.flxai-app .flxai-field{grid-template-columns:minmax(0,1fr)}}
 .flxai-app .flxai-field input.flxai-input:not(.is-small):not([type=checkbox]){width:300px;max-width:100%}
 .flxai-app .flxai-kpi-k{font-size:12px;font-weight:600;color:var(--mut,var(--flux-text-muted));text-transform:uppercase;letter-spacing:.03em}
 .flxai-app .flxai-kpi-v{font-size:22px;font-weight:700}

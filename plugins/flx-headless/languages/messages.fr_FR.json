@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "format": "fluxwp-package-translations/v1",
+    "locale": "fr_FR"
+  },
+  "messages": {
+    "Settings": "Paramètres",
+    "Serves headless front ends over GraphQL": "Servit les extrémités avant sans tête sur GraphQL",
+    "Headless": "Headless",
+    "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen.": "Cet écran a besoin de Flux GraphQL (0.4.0 ou plus récent). Installez ou mettez à jour à partir de l'écran FluxWP Packages.",
+    "This front end does not exist any more.": "Cette extrémité avant n'existe plus.",
+    "At most %d front ends can be added.": "Au plus %d extrémités avant peuvent être ajoutées.",
+    "Give the front end a name.": "Donnez un nom à l'avant.",
+    "Enter the front end address with https:// (http:// only for localhost).": "Saisissez l &apos; adresse avant avec https:// (http:// uniquement pour localhost).",
+    "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first.": "L'extrémité avant ne peut pas avoir la même adresse que cette WordPress . Déplacer WordPress à une autre adresse (p. ex. cms.example.com) d'abord.",
+    "Another front end already has this address.": "Une autre extrémité avant a déjà cette adresse.",
+    "Enter the webhook address with https:// (http:// only for localhost).": "Entrez l &apos; adresse Webhook avec https:// (http:// uniquement pour localhost).",
+    "The language \"%s\" is not on this site.": "La langue \" %s \" n'est pas sur ce site.",
+    "The preview path starts with \"/\" (e.g. /api/preview).": "Le chemin de prévisualisation commence par \"/\" (p. ex. /api/preview).",
+    "The secret must be at least 24 characters. Use the Generate button.": "Le secret doit être d'au moins 24 caractères. Utilisez le bouton Générer.",
+    "The secret could not be stored securely on this server.": "Le secret ne pouvait pas être stocké en toute sécurité sur ce serveur.",
+    "A webhook needs a secret so the front end can check that the call comes from this site.": "Un webhook a besoin d'un secret pour que l'avant puisse vérifier que l'appel vient de ce site.",
+    "Choose what WordPress does with its own pages.": "Choisissez ce que WordPress fait avec ses propres pages.",
+    "Add a front end first; WordPress pages point visitors and search engines to it.": "Ajouter une première extrémité avant; WordPress pages pointent les visiteurs et les moteurs de recherche à elle.",
+    "Enter the webhook address and the secret first.": "Entrez l'adresse webhook et le secret d'abord.",
+    "Sent without waiting for the answer.": "Envoyé sans attendre la réponse.",
+    "The front end accepted the call.": "L'avant a accepté l'appel.",
+    "The front end answered with HTTP %d.": "L'extrémité avant a répondu avec HTTP %d .",
+    "Home": "Accueil",
+    "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at.": "Aucune extrémité avant n'est encore ajoutée; GraphQL fonctionne, mais les liens, les adresses canoniques et le webhook n'ont pas de extrémité avant pour pointer.",
+    "The last webhook call failed for: %s. Open the delivery log on the Headless page.": "Le dernier appel webhook a échoué pour: %s . Ouvrez le journal de livraison sur la page Headless.",
+    "No revalidate webhook for: %s. These front ends show changes only when their cache runs out.": "Pas de revalidate webhook pour: %s . Ces extrémités avant montrent des changements seulement lorsque leur cache s'épuise.",
+    "%d front end, webhook set.\u0000%d front ends, webhooks set.": "%d avant, set de webhook.\u0000%d les extrémités avant, les crochets.",
+    "Headless front ends": "Fin avant sans tête"
+  }
+}

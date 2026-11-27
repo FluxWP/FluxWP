@@ -1,0 +1,1043 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Manages the site files (Flux Files)"
+msgstr "Обработка файлов с места (флюксные файлы)"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Browse, edit and share the site files"
+msgstr "Броуз, редактирование и обмен файлами на объекте"
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Flux Files needs JavaScript."
+msgstr "Флюксы нужны JavaScript."
+
+msgid "Something went wrong. Try again."
+msgstr "Что-то пошло не так."
+
+msgid "Location"
+msgstr "Расположение"
+
+msgid "Site root"
+msgstr "Корень суши"
+
+msgid "Browser"
+msgstr "Браузер"
+
+msgid "Editor"
+msgstr "Редактор"
+
+msgid "Upload"
+msgstr "Загрузить"
+
+msgid "New"
+msgstr "Новый"
+
+msgid "More"
+msgstr "Подробнее"
+
+msgid "Read-only: file changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "Только по чтению: на этом объекте отключены файлы (DISALLOW_FILE_MODS)."
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Forward"
+msgstr "Вперед"
+
+msgid "Folder"
+msgstr "Папка"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Search in this folder…"
+msgstr "Поищи в этой папке..."
+
+msgid "Also search inside text and code files"
+msgstr "Кроме того, поиск внутри текстовых и кодовых файлов"
+
+msgid "Content"
+msgstr "Содержание"
+
+msgid "List or grid"
+msgstr "Перечень или сетка"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "Drop files or folders to upload"
+msgstr "Бросать файлы или склады для загрузки"
+
+msgid "Show or hide files"
+msgstr "Покажи или прячь файлы"
+
+msgid "Choose a file on the left to edit it."
+msgstr "Выбери файл слева, чтобы отредактировать его."
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Trash"
+msgstr "мусор"
+
+msgid "Activity"
+msgstr "Деятельность"
+
+msgid "Results for \"%s\""
+msgstr "Результаты для %s"
+
+msgid "Name · A to Z"
+msgstr "Наименование А-З"
+
+msgid "Name · Z to A"
+msgstr "Name ∙ Z to A"
+
+msgid "Modified · newest"
+msgstr "Модифицированные ∙ новые"
+
+msgid "Modified · oldest"
+msgstr "Модифицированные: старейшие"
+
+msgid "Size · largest"
+msgstr "Размеры - наибольший"
+
+msgid "Size · smallest"
+msgstr "Размеры - наименьший"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "No results"
+msgstr "Нет результатов"
+
+msgid "This folder is empty"
+msgstr "Эта папка пуста."
+
+msgid "Drag files here or use Upload."
+msgstr "Засунь файлы сюда или загрузи."
+
+msgid "%s items"
+msgstr "%s элементы"
+
+msgid "1 item"
+msgstr "1 пункт"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Modified"
+msgstr "Модифицированный"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Permissions"
+msgstr "Разрешения"
+
+msgid "Original location"
+msgstr "Местонахождение"
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "Showing the first results only. Search in a smaller folder for more."
+msgstr "Ищите в меньших папочках."
+
+msgid "Protected: cannot be moved, renamed or deleted"
+msgstr "Защищенные: не могут быть перемещены, переименованы или исключены"
+
+msgid "Contains secrets: never shared with AI"
+msgstr "В нем содержатся секреты: никогда не делился с МА"
+
+msgid "WordPress core file"
+msgstr "WordPress базовое досье"
+
+msgid "%s selected"
+msgstr "%s выбрано"
+
+msgid "%s on clipboard"
+msgstr "%s на клипборде"
+
+msgid "Storage"
+msgstr "Хранение"
+
+msgid "measuring…"
+msgstr "Измерить..."
+
+msgid "%s used"
+msgstr "%s используется"
+
+msgid "Hosting account: %1$s files, measured %2$s"
+msgstr "Хостинг: %1$s файл, измеренный %2$s"
+
+msgid "Cut"
+msgstr "Снято"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Paste"
+msgstr "Paste"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Download as ZIP"
+msgstr "Загрузка в ZIP"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Clear selection"
+msgstr "Очистить выбор"
+
+msgid "Upload files"
+msgstr "Загрузка файлов"
+
+msgid "Upload folder"
+msgstr "Загрузка"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "New file"
+msgstr "Новый файл"
+
+msgid "New folder"
+msgstr "Новая папка"
+
+msgid "Folder info"
+msgstr "Источник информации"
+
+msgid "File info"
+msgstr "Файл"
+
+msgid "Copy path"
+msgstr "Обратный путь"
+
+msgid "Path from the site root"
+msgstr "Паф из корня сайта"
+
+msgid "Full server path"
+msgstr "Путь полного сервера"
+
+msgid "Web address (URL)"
+msgstr "Веб-адрес (URL)"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Archive…"
+msgstr "Архивы..."
+
+msgid "The ZIP file is created in this folder."
+msgstr "Дело ZIP создано в этой папке."
+
+msgid "Extract"
+msgstr "Extract"
+
+msgid "Duplicate"
+msgstr "Дублировать"
+
+msgid "Copy or move"
+msgstr "Принято или нет."
+
+msgid "Move to…"
+msgstr "Двигайтесь..."
+
+msgid "Copy to…"
+msgstr "Принял..."
+
+msgid "Show in folder"
+msgstr "Покажись в папке."
+
+msgid "Permissions…"
+msgstr "Разрешения..."
+
+msgid "Share on site"
+msgstr "Доля на объекте"
+
+msgid "Stop sharing"
+msgstr "Прекратить делиться"
+
+msgid "Version history"
+msgstr "История верования"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "%s items cut. Open a folder and paste."
+msgstr "%s единицы отрезаны, откройте папку и пасты."
+
+msgid "Cut. Open a folder and paste."
+msgstr "Открывай папку и пасты."
+
+msgid "%s items copied. Open a folder and paste."
+msgstr "%s скопированное имущество, откройте папку и пасты."
+
+msgid "Copied. Open a folder and paste."
+msgstr "Открой папку и пасты."
+
+msgid "Move \"%s\" to the trash?"
+msgstr "Переместить %s в мусорку?"
+
+msgid "Move %s items to the trash?"
+msgstr "Перенести %s в мусор?"
+
+msgid "You can restore it from the trash."
+msgstr "Ты можешь восстановить его из мусора."
+
+msgid "%s items moved to the trash."
+msgstr "%s вещи перевезены в мусор."
+
+msgid "Some items could not be processed"
+msgstr "Некоторые предметы не могут быть обработаны"
+
+msgid "Already exists"
+msgstr "Уже существует"
+
+msgid "%s items already exist in the target folder. Replace them? The replaced files go to the trash."
+msgstr "%s единицы уже существуют в целевой папке."
+
+msgid "Overwrite"
+msgstr "Overwrite"
+
+msgid "Skip"
+msgstr "Пропустить"
+
+msgid "Skipped"
+msgstr "Пропущено"
+
+msgid "%s items moved."
+msgstr "Перевезено %s единицы."
+
+msgid "%s items copied."
+msgstr "Скопировано %s."
+
+msgid "Folder name"
+msgstr "Имя папки"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Created."
+msgstr "Успокоились."
+
+msgid "Working…"
+msgstr "Работаю..."
+
+msgid "Archive created."
+msgstr "Архив создан."
+
+msgid "\"%s\" will be extracted into a new folder next to it."
+msgstr "\" %s\" будет выведен в новую папку."
+
+msgid "Extracted %s files."
+msgstr "Выдержка %s."
+
+msgid "Shared on the site"
+msgstr "Доля на объекте"
+
+msgid "Visitors can browse and download this folder where you add the shortcode below (copied). Add it to any page or post."
+msgstr "Посетители могут загружать и загружать эту папку, если добавлять шорткод ниже (копировально)."
+
+msgid "No longer shared."
+msgstr "Больше не делится."
+
+msgid "Calculate"
+msgstr "Рассчитать"
+
+msgid "Calculating…"
+msgstr "Расчет..."
+
+msgid "%s files"
+msgstr "%s files"
+
+msgid "1 file"
+msgstr "1 файл"
+
+msgid "partial"
+msgstr "частичный"
+
+msgid "Not writable"
+msgstr "Не подлежит критике."
+
+msgid "Notes"
+msgstr "Примечания"
+
+msgid "Image"
+msgstr "Изображение"
+
+msgid "Video"
+msgstr "Видео"
+
+msgid "Audio"
+msgstr "Аудио"
+
+msgid "PDF document"
+msgstr "Документ PDF"
+
+msgid "Archive"
+msgstr "Архив"
+
+msgid "Code"
+msgstr "Код"
+
+msgid "Document"
+msgstr "Документ"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Font"
+msgstr "Шрифт"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Owner"
+msgstr "Владелец"
+
+msgid "Group"
+msgstr "Группа"
+
+msgid "Everyone"
+msgstr "Все"
+
+msgid "Read"
+msgstr "Читать"
+
+msgid "Write"
+msgstr "Написать"
+
+msgid "Execute"
+msgstr "Execute"
+
+msgid "Write access for everyone is not allowed."
+msgstr "Написать доступ для всех не разрешается."
+
+msgid "Numeric value"
+msgstr "Нумерическое значение"
+
+msgid "Usual values: 644 for files, 755 for folders."
+msgstr "Обычные значения: 644 для файлов, 755 для буклетов."
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "Choose this folder"
+msgstr "Выбери эту папку."
+
+msgid "Loading…"
+msgstr "Загрузка..."
+
+msgid "No subfolders"
+msgstr "Никаких подлодок"
+
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "Each save keeps the previous content. The last %s versions of a file are kept."
+msgstr "Каждая сэкономленная хранит прежнее содержание, а последние %s версии досье хранятся."
+
+msgid "No earlier versions yet."
+msgstr "До сих пор нет."
+
+msgid "Difference from the current file"
+msgstr "Различия из нынешнего файла"
+
+msgid "Restore this version"
+msgstr "Восстановить эту версию"
+
+msgid "The file goes back to this version. The current content is kept as a new version."
+msgstr "Материалы обновляются в этом варианте, а содержание в настоящее время сохраняется в качестве новой версии."
+
+msgid "Restored."
+msgstr "Восстановлена."
+
+msgid "Panel"
+msgstr "Панель"
+
+msgid "AI chat"
+msgstr "Я болтаю."
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Site"
+msgstr "Сайт"
+
+msgid "%s unchanged lines"
+msgstr "%s без изменений"
+
+msgid "No changes."
+msgstr "Никаких изменений."
+
+msgid "Uploading %1$s / %2$s"
+msgstr "Загрузка %1$s / %2$s"
+
+msgid "%s files uploaded"
+msgstr "%s Загруженные файлы"
+
+msgid "1 file uploaded"
+msgstr "1 файл загружен"
+
+msgid "Upload failed"
+msgstr "Загрузка не сработала"
+
+msgid "\"%s\" already exists. Replace it? The old file is kept as a version."
+msgstr "\" %s\" уже существует."
+
+msgid "Items are deleted for good after %s days."
+msgstr "После %s дня предметы опускаются в хорошем состоянии."
+
+msgid "Items stay until you empty the trash."
+msgstr "Оставайтесь там, пока не выпустите мусор."
+
+msgid "Empty trash"
+msgstr "Пустая мусорка"
+
+msgid "The trash is empty"
+msgstr "Грязь пуста."
+
+msgid "Kept until %s"
+msgstr "До %s"
+
+msgid "Restore"
+msgstr "Восстановить"
+
+msgid "Delete permanently"
+msgstr "Удалить навсегда"
+
+msgid "This cannot be undone."
+msgstr "Это не может быть разоблачено."
+
+msgid "Everything in the trash will be deleted permanently. This cannot be undone."
+msgstr "Все в мусоре будет навсегда исключено, и это не может быть отключено."
+
+msgid "Restored to %s"
+msgstr "Восстановление до %s"
+
+msgid "%s items deleted."
+msgstr "%s исключить."
+
+msgid "All"
+msgstr "Все"
+
+msgid "No activity yet"
+msgstr "Никакой активности пока нет."
+
+msgid "Load more"
+msgstr "Загрузить больше"
+
+msgid "%s events"
+msgstr "%s"
+
+msgid "1 event"
+msgstr "1 мероприятие"
+
+msgid "Created"
+msgstr "Создано"
+
+msgid "Edited"
+msgstr "Edited"
+
+msgid "Renamed"
+msgstr "Renamed"
+
+msgid "Moved"
+msgstr "Переведены"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Moved to trash"
+msgstr "Перемещено в корзину"
+
+msgid "Restored"
+msgstr "Восстановлен"
+
+msgid "Deleted permanently"
+msgstr "Удалено навсегда"
+
+msgid "Permissions changed"
+msgstr "Изменения в объеме выбросов"
+
+msgid "Archived"
+msgstr "В архиве"
+
+msgid "Extracted"
+msgstr "Вычитанные"
+
+msgid "Uploaded"
+msgstr "Загружено"
+
+msgid "Version restored"
+msgstr "Реконструкция верфии"
+
+msgid "Settings changed"
+msgstr "Изменения"
+
+msgid "Shared on site"
+msgstr "Доля на объекте"
+
+msgid "Sharing stopped"
+msgstr "Остановка"
+
+msgid "View"
+msgstr "Посмотреть"
+
+msgid "Show hidden files"
+msgstr "Скрытые файлы"
+
+msgid "Files starting with a dot, such as .htaccess."
+msgstr "Фильмы начинаются с точки, например... доступ."
+
+msgid "Safety"
+msgstr "Безопасность"
+
+msgid "Keep trash for (days)"
+msgstr "Хранить мусор в день."
+
+msgid "0 keeps items until you empty the trash."
+msgstr "0 хранит вещи, пока ты не опустишь мусор."
+
+msgid "Versions per file"
+msgstr "Версия на файл"
+
+msgid "Disk quota (GB)"
+msgstr "Дискная квота (ГБ)"
+
+msgid "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only."
+msgstr "Ваш план хостинга диска, например 100. Употребление измеряется по всему счету хостинга 0 показывает только использование."
+
+msgid "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."
+msgstr "Содержимое, содержавшееся в предыдущих материалах, хранилось на каждом сбережении (текстовые файлы до 3 МВ). 0 выключает их."
+
+msgid "AI and MCP"
+msgstr "ИИ и MCP"
+
+msgid "Flux AI chat can list, read and search files, and asks you before every change. wp-config.php, .env and key files are never shared."
+msgstr "Флюкс АИ может перечислять, читать и искать файлы, и просит вас до каждой смены."
+
+msgid "External MCP clients may change files"
+msgstr "Внешние клиенты MCP могут менять файлы"
+
+msgid "Off: Claude, ChatGPT and other MCP clients can only read. On: they can write, move and delete (to the trash)."
+msgstr "Снимки: Клод, ЧатГПТ и другие MCP клиенты могут читать только: они могут писать, перемещаться и удалять (в мусор)."
+
+msgid "AI may write code files"
+msgstr "ИИ может записывать файлы кодов"
+
+msgid "Lets AI change .php, .js, .css, .html, .htaccess and similar files. WordPress core and protected files stay off-limits."
+msgstr "Пусть AI меняет...php, js, .cs, .html, ...htaccess and similar files. WordPress core and protected files stay off-limits."
+
+msgid "This lets AI change more of the site. Every change is still logged in Activity and earlier versions are kept. Continue?"
+msgstr "Это позволяет АИ менять сайт, и все изменения все еще включены в актерскую деятельность, и в предыдущих вариантах сохраняются."
+
+msgid "Shared folders"
+msgstr "Обменные склады"
+
+msgid "Folders in uploads that visitors can browse with the [flx_files] shortcode. Right-click a folder › Share on site."
+msgstr "Фолдеры в загрузке, которые посетители могут сбрасывать с [flx_files] коротким кодом."
+
+msgid "No shared folders."
+msgstr "Обычные папки нет."
+
+msgid "Show in browser"
+msgstr "Показ в Броузере"
+
+msgid "\"%s\" has unsaved changes. Close it anyway?"
+msgstr "\" %s\" имеет несравненные изменения."
+
+msgid "Unsaved changes"
+msgstr "Несохраненные изменения"
+
+msgid "Close without saving"
+msgstr "Близко, без спасения."
+
+msgid "Find"
+msgstr "Найти."
+
+msgid "Copy content"
+msgstr "Содержание оригинала"
+
+msgid "Explain with AI"
+msgstr "Объяснение с МА"
+
+msgid "Explain the selection with AI"
+msgstr "Объяснить выбор с МА"
+
+msgid "Edit with AI"
+msgstr "Редактировать с помощью ИИ"
+
+msgid "Line %1$s, column %2$s"
+msgstr "Строка %1$s, колонка %2$s"
+
+msgid "%s lines"
+msgstr "%s линия"
+
+msgid "Unsaved"
+msgstr "Unsaved"
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "This file holds passwords or keys. It is never sent to AI; be careful when sharing it."
+msgstr "Этот файл содержит пароли или ключи, он никогда не передается в МА; быть осторожным при его разделении."
+
+msgid "WordPress core file: changes are lost when WordPress updates."
+msgstr "WordPress базовое досье: изменения утрачиваются, когда обновляется WordPress."
+
+msgid "The server does not allow writing this file; it is opened read-only."
+msgstr "сервер не разрешает писать это дело; он открыт только для чтения."
+
+msgid "This is a WordPress core file. A mistake can break the site and the change is lost on the next WordPress update. Save anyway? The previous content is kept as a version."
+msgstr "Это основной файл WordPress, ошибка может сломать место, и изменение утрачивается в следующем обновлении WordPress."
+
+msgid "This file controls the site configuration. A mistake can take the site down. Save anyway? The previous content is kept as a version."
+msgstr "Этот файл контролирует конфигурацию участка, ошибка может снимать место, и в любом случае, если прежнее содержание будет сохранено в качестве варианта."
+
+msgid "Replace with"
+msgstr "Заменить текстом"
+
+msgid "Replace"
+msgstr "Заменить"
+
+msgid "Replace all"
+msgstr "Заменить все"
+
+msgid "%s replaced."
+msgstr "%s заменена."
+
+msgid "AI is working…"
+msgstr "Я работаю..."
+
+msgid "What should change?"
+msgstr "Что должно измениться?"
+
+msgid "e.g. Add a comment above each function / Fix the syntax error on line 12"
+msgstr "e.g. Добавить комментарий выше каждой функции / Исправить ошибку синтакса на строке 12"
+
+msgid "AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save."
+msgstr "Я предлагаю перемены и показываю разницу."
+
+msgid "Suggest a change"
+msgstr "Предлагаемые изменения"
+
+msgid "Apply in editor"
+msgstr "Применить в редакторе"
+
+msgid "Up one level"
+msgstr "Первый уровень"
+
+msgid "Applied in the editor. Review it and press Save."
+msgstr "Приложен к редактору, рассматривает и нажимает на Сэйв."
+
+msgid "Explain file"
+msgstr "Объяснение дела"
+
+msgid "Edit file with AI"
+msgstr "Правка файла с AI"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and choose a model."
+msgstr "Flux AI не готов. MCP и выбирает модель."
+
+msgid "This file may contain passwords or keys, so it is never sent to AI."
+msgstr "Этот файл может содержать пароли или ключи, так что он никогда не отправляется в AI."
+
+msgid "The file is too large for AI (limit %s). Select a smaller file."
+msgstr "Дело слишком крупное для МА (ограничение %s). Выберите меньшее досье."
+
+msgid "Write what to change."
+msgstr "Напиши, что менять."
+
+msgid "AI did not return a change."
+msgstr "Я не вернулся."
+
+msgid "This path points outside the site folder."
+msgstr "Этот путь выходит за пределы участка."
+
+msgid "File or folder not found."
+msgstr "Филь или папка не найдены."
+
+msgid "Invalid path."
+msgstr "Неверный путь."
+
+msgid "Invalid name."
+msgstr "Недействительное имя."
+
+msgid "The parent folder does not exist."
+msgstr "Родительская папка не существует."
+
+msgid "This is not a folder."
+msgstr "Это не папка."
+
+msgid "The folder could not be read (permissions)."
+msgstr "Папка не была снята (пропуски)."
+
+msgid "This is not a file."
+msgstr "Это не файл."
+
+msgid "The file could not be read (permissions)."
+msgstr "Файл не может быть снят (пропуски)."
+
+msgid "The file is larger than %s and cannot be opened in the editor. Download it instead."
+msgstr "Дело больше %s и не может быть открыто в редакторе."
+
+msgid "This is a binary file and cannot be opened in the editor."
+msgstr "Это библиотечный файл, который не может быть открыт в редакторе."
+
+msgid "File changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "Изменения в протяженности на этом объекте являются инвалидами (DISALLOW_FILE_MODS)."
+
+msgid "This folder is managed by Flux Files."
+msgstr "Эту папку управляют Флюкс Филс."
+
+msgid "Editing code files is disabled on this site (DISALLOW_FILE_EDIT)."
+msgstr "На этом объекте отключены файлы кодов редактирования (DISALLOW_FILE_EDIT)."
+
+msgid "AI cannot change protected or WordPress core files."
+msgstr "AI cannot change protected or WordPress основные файлы."
+
+msgid "AI is not allowed to write code files. Enable it in Flux Files › Settings."
+msgstr "МА не имеет права писать файлы кодов."
+
+msgid "A folder with this name already exists."
+msgstr "С этим именем уже существует папка."
+
+msgid "A file with this name already exists."
+msgstr "Дело с этим именем уже существует."
+
+msgid "The file changed on the server since you opened it. Reload it or save a copy."
+msgstr "Дело изменилось на сервере с тех пор, как вы открыли его, перезарядили или сохранили копию."
+
+msgid "The file is not writable (permissions)."
+msgstr "Дело не подлежит оформлению (выпуски)."
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "Файл не может быть составлен (выбросы или дисковое пространство)."
+
+msgid "A file or folder with this name already exists."
+msgstr "Дело или папка с этим именем уже существует."
+
+msgid "The folder could not be created (permissions)."
+msgstr "Папка не была создана (процедуры)."
+
+msgid "This file or folder is protected and cannot be moved, renamed or deleted."
+msgstr "Этот файл или папка защищены и не могут быть перенесены, переименованы или исключены."
+
+msgid "A folder cannot be moved into itself."
+msgstr "Не может быть, чтобы папка была сама по себе."
+
+msgid "Could not move (permissions)."
+msgstr "Невозможно двигаться (выбросы)."
+
+msgid "AI cannot read or copy protected files."
+msgstr "Я не могу читать или копировать защищенные файлы."
+
+msgid "A folder cannot be copied into itself."
+msgstr "С папочкой нельзя справиться сам."
+
+msgid "The folder has more than %s files; copy it with SSH or a backup tool."
+msgstr "У папки больше, чем у папки. %s - файлы; копировать их с SSH или с помощью резервного инструмента."
+
+msgid "Could not copy (permissions or disk space)."
+msgstr "Невозможно копировать (выбросы или дисковое пространство)."
+
+msgid "AI can only delete folders with fewer than 2,000 files."
+msgstr "Я могу удалить только буклеты с менее чем 2000 файлов."
+
+msgid "Could not move to the trash (permissions)."
+msgstr "Не мог переехать в мусор (выбросы)."
+
+msgid "Permissions can only be changed from the Flux Files screen."
+msgstr "Разрешения могут быть изменены только с экрана Flux Files."
+
+msgid "Enter permissions as three digits, e.g. 644 or 755."
+msgstr "Допускается на три цифры, например 644 или 755."
+
+msgid "World-writable permissions (e.g. 777) are not allowed."
+msgstr "Мировые разрешения (например, 777) не допускаются."
+
+msgid "Permissions could not be changed."
+msgstr "Разрешения не могут быть изменены."
+
+msgid "Type at least 2 characters."
+msgstr "Тип не менее двух знаков."
+
+msgid "The PHP zip extension is not available on this server."
+msgstr "На этом сервере отсутствует распространение PHP ципов."
+
+msgid "Nothing selected."
+msgstr "Ничего не выбранного."
+
+msgid "The archive could not be created."
+msgstr "Архив не мог быть создан."
+
+msgid "Too many files for one archive."
+msgstr "Слишком много файлов для одного архива."
+
+msgid "This archive could not be opened."
+msgstr "Этот архив не может быть открыт."
+
+msgid "Too many files in this archive."
+msgstr "Слишком много файлов в архиве."
+
+msgid "The archive contains unsafe paths and was not extracted."
+msgstr "Архив содержит небезопасные пути и не был извлечен."
+
+msgid "Not enough disk space to extract this archive."
+msgstr "Недостаточно дискового пространства для извлечения этого архива."
+
+msgid "This folder is not shared. Open Flux Files, right-click the folder and choose \"Share on site\"."
+msgstr "Открывайте Флюксы, направьте папку и выберите \"Шарь на месте\"."
+
+msgid "Search files…"
+msgstr "Обычные файлы..."
+
+msgid "Search files"
+msgstr "Обычные файлы"
+
+msgid "%1$d result for \"%2$s\""
+msgid_plural "%1$d results for \"%2$s\""
+msgstr[0] "%1$d результат %2$s"
+msgstr[1] "%1$d результаты %2$s"
+msgstr[2] "%1$d результаты %2$s"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "No files found."
+msgstr "Никаких файлов."
+
+msgid "This folder is empty."
+msgstr "Эта папка пуста."
+
+msgid "List files"
+msgstr "Список файлов"
+
+msgid "Read file"
+msgstr "Файл для чтения"
+
+msgid "File activity"
+msgstr "Вид деятельности"
+
+msgid "Files in trash"
+msgstr "Фильмы в мусоре"
+
+msgid "Write file"
+msgstr "Письменный файл"
+
+msgid "Edit file (find and replace)"
+msgstr "Файл редактирования (окончается и заменяется)"
+
+msgid "Create folder"
+msgstr "Создать папку"
+
+msgid "Move or rename"
+msgstr "Переведено или переименовано"
+
+msgid "Delete (to trash)"
+msgstr "Исключить (в мусор)"
+
+msgid "Restore from trash"
+msgstr "Ресторан из мусора"
+
+msgid "Unknown action."
+msgstr "Неизвестное действие."
+
+msgid "The upload failed. The file may be larger than the server allows."
+msgstr "Загрузка не сработала, файл может быть больше, чем позволяет сервер."
+
+msgid "The upload failed. Try again."
+msgstr "Загрузка провалилась, попробуй еще раз."
+
+msgid "Not enough disk space."
+msgstr "Недостаточно дискового пространства."
+
+msgid "The upload was interrupted. Try again."
+msgstr "Загрузка была прервана."
+
+msgid "Only folders inside the uploads folder can be shared on the site."
+msgstr "На этом объекте могут быть размещены только патрубки внутри загрузочной папки."
+
+msgid "Version not found."
+msgstr "Версия не найдена."
+
+msgid "This item is no longer in the trash."
+msgstr "Этот предмет больше не в мусорке."
+
+msgid "Could not restore (permissions)."
+msgstr "Невозможно восстановить (выбросы)."
+
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d"
+msgstr[1] "%d элементы"
+msgstr[2] "%d элементы"
+
+msgid "Trash and versions folder"
+msgstr "Папка для каталогов и версий"
+
+msgid "Deleted files and earlier versions are kept in a private folder closed to the web."
+msgstr "Удаленные файлы и более ранние варианты хранятся в закрытом помещении в Интернете."
+
+msgid "The private folder under wp-content cannot be written. Deleting and versioning will fail; check the wp-content permissions."
+msgstr "Не может быть написана личная папка под вентиляционным контентом."
+
+msgid "ZIP support"
+msgstr "Поддержка ЗИП"
+
+msgid "Folders can be downloaded as ZIP, archived and extracted."
+msgstr "Папки можно загружать в качестве ZIP, архивировать и извлекать."
+
+msgid "The PHP zip extension is missing; ZIP download, archive and extract are off. Enable \"zip\" in the hosting PHP extensions."
+msgstr "Пропуск PHP цип отсутствует; загрузка, архив и экстракция ZIP отключены."
+
+msgid "File changes"
+msgstr "Изменения скорости"
+
+msgid "DISALLOW_FILE_MODS is on: Flux Files is read-only."
+msgstr "ДИСАЛЛО_ФИЛЕ-МОДС включен: Флюксы - это только для чтения."
+
+msgid "Only administrators can use Flux Files. wp-config.php, .htaccess and WordPress core folders are protected from deletion."
+msgstr "Только администраторы могут использовать фильы Flux, а вентиляционные листки, вентиляционные и WordPress стержневые патрубки защищены от исключения."
+
+msgid "DISALLOW_FILE_EDIT is on: code files (.php, .htaccess …) cannot be edited or uploaded."
+msgstr "DESALOW_FILE_EDIT включен: файлы кодов (.php, .htacess ...) не могут быть отредактированы или загружены."
+
+msgid "AI and MCP file access"
+msgstr "AI and MCP Доступ к файлам"
+
+msgid "External MCP clients can change and delete files. Turn this off when you no longer need it."
+msgstr "Внешние клиенты MCP могут изменить и исключить файлы, выключить их, когда тебе больше не нужно."
+
+msgid "AI chat asks before every change; external MCP clients can only read. Secret files are never shared."
+msgstr "I talk asks before every change; external MCP Клиенты могут читать только секретные файлы никогда не делятся."
+
+msgid "Trash cleanup"
+msgstr "Траш-уборка"
+
+msgid "The trash was last cleaned %s. It is also cleaned when an administrator opens Flux Files."
+msgstr "Последний мусор был очищен %s и он также очищен, когда администратор открывает Флукс Филс."

@@ -398,7 +398,7 @@ msgid "Save"
 msgstr "Kaydet"
 
 msgid "Yetkiniz yok."
-msgstr "Yetkiniz yok."
+msgstr "Yetkiniz Yok."
 
 msgid "This push service is not allowed."
 msgstr "Bu bildirim servisine izin verilmiyor."

@@ -1,0 +1,1039 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Manages the site files (Flux Files)"
+msgstr "サイトファイル(Flux Files)を管理します。"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Browse, edit and share the site files"
+msgstr "サイトファイルを閲覧、編集、共有します。"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Flux Files needs JavaScript."
+msgstr "Flux Files が必要です。 JavaScript."
+
+msgid "Something went wrong. Try again."
+msgstr "何かがおかしくなった。もう一度やってみなさい。"
+
+msgid "Location"
+msgstr "場所"
+
+msgid "Site root"
+msgstr "サイトルート"
+
+msgid "Browser"
+msgstr "ブラウザ"
+
+msgid "Editor"
+msgstr "編集者"
+
+msgid "Upload"
+msgstr "アップロード"
+
+msgid "New"
+msgstr "新しい"
+
+msgid "More"
+msgstr "もっと見る"
+
+msgid "Read-only: file changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "読み込み専用: 本サイトではファイル変更が無効になっています(DISALLOW_FILE_MODS)。"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Forward"
+msgstr "進む"
+
+msgid "Folder"
+msgstr "フォルダー"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Search in this folder…"
+msgstr "このフォルダで検索します。"
+
+msgid "Also search inside text and code files"
+msgstr "テキストやコードファイル内も検索します。"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "List or grid"
+msgstr "一覧またはグリッド"
+
+msgid "Refresh"
+msgstr "リフレッシュ"
+
+msgid "Drop files or folders to upload"
+msgstr "アップロードするファイルやフォルダをドロップします。"
+
+msgid "Show or hide files"
+msgstr "ファイルを表示または非表示にします。"
+
+msgid "Choose a file on the left to edit it."
+msgstr "編集する左のファイルを選択します。"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Trash"
+msgstr "ゴミ箱"
+
+msgid "Activity"
+msgstr "活動"
+
+msgid "Results for \"%s\""
+msgstr "%s の結果をまとめます。"
+
+msgid "Name · A to Z"
+msgstr "名前・AからZまで"
+
+msgid "Name · Z to A"
+msgstr "名前・ZからAへ"
+
+msgid "Modified · newest"
+msgstr "更新・最新。"
+
+msgid "Modified · oldest"
+msgstr "修正・最古。"
+
+msgid "Size · largest"
+msgstr "サイズ・最大。"
+
+msgid "Size · smallest"
+msgstr "サイズ・最小。"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "No results"
+msgstr "結果はありません"
+
+msgid "This folder is empty"
+msgstr "このフォルダは空です"
+
+msgid "Drag files here or use Upload."
+msgstr "ファイルをドラッグするか、アップロードを使用します。"
+
+msgid "%s items"
+msgstr "%sアイテム"
+
+msgid "1 item"
+msgstr "1品目"
+
+msgid "Actions"
+msgstr "アクション"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Modified"
+msgstr "修正済み"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Permissions"
+msgstr "権限"
+
+msgid "Original location"
+msgstr "所在地"
+
+msgid "Deleted"
+msgstr "削除されました"
+
+msgid "Showing the first results only. Search in a smaller folder for more."
+msgstr "検索結果は最初のみ、より小さなフォルダで検索します。"
+
+msgid "Protected: cannot be moved, renamed or deleted"
+msgstr "保護: 移動、名前の変更、削除ができません。"
+
+msgid "Contains secrets: never shared with AI"
+msgstr "秘密を含む: AIと共有されることはない"
+
+msgid "WordPress core file"
+msgstr "WordPress コアファイル"
+
+msgid "%s selected"
+msgstr "%sが選択されました"
+
+msgid "%s on clipboard"
+msgstr "%s クリップボードに"
+
+msgid "Storage"
+msgstr "ストレージ"
+
+msgid "measuring…"
+msgstr "測定..."
+
+msgid "%s used"
+msgstr "%s"
+
+msgid "Hosting account: %1$s files, measured %2$s"
+msgstr "ホスティング アカウント: %1$s ファイル、測定 %2$s"
+
+msgid "Cut"
+msgstr "切り取り"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Paste"
+msgstr "過去"
+
+msgid "Download"
+msgstr "ダウンロード"
+
+msgid "Download as ZIP"
+msgstr "ZIPとしてダウンロードします。"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Clear selection"
+msgstr "選択をクリア"
+
+msgid "Upload files"
+msgstr "アップロードファイル"
+
+msgid "Upload folder"
+msgstr "フォルダをアップロードします。"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "New file"
+msgstr "新規ファイル"
+
+msgid "New folder"
+msgstr "新しいフォルダー"
+
+msgid "Folder info"
+msgstr "フォルダ情報"
+
+msgid "File info"
+msgstr "ファイル情報"
+
+msgid "Copy path"
+msgstr "経路"
+
+msgid "Path from the site root"
+msgstr "サイトルートからのパス"
+
+msgid "Full server path"
+msgstr "フルサーバーパス"
+
+msgid "Web address (URL)"
+msgstr "ウェブアドレス(URL)"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Archive…"
+msgstr "アーカイブ..."
+
+msgid "The ZIP file is created in this folder."
+msgstr "このフォルダに ZIP ファイルが作成されます。"
+
+msgid "Extract"
+msgstr "エキス"
+
+msgid "Duplicate"
+msgstr "重複"
+
+msgid "Copy or move"
+msgstr "コピーまたは移動"
+
+msgid "Move to…"
+msgstr "移動します。"
+
+msgid "Copy to…"
+msgstr "コピーして..."
+
+msgid "Show in folder"
+msgstr "フォルダに表示します。"
+
+msgid "Permissions…"
+msgstr "許可..."
+
+msgid "Share on site"
+msgstr "サイト上で共有します。"
+
+msgid "Stop sharing"
+msgstr "共有を停止する"
+
+msgid "Version history"
+msgstr "バージョン履歴"
+
+msgid "Rename"
+msgstr "名前の変更"
+
+msgid "%s items cut. Open a folder and paste."
+msgstr "%s アイテムをカットし、フォルダを開いて貼り付けます。"
+
+msgid "Cut. Open a folder and paste."
+msgstr "切り取り、フォルダを開き、貼り付けます。"
+
+msgid "%s items copied. Open a folder and paste."
+msgstr "%s 項目 コピー フォルダを開いて貼り付けます。"
+
+msgid "Copied. Open a folder and paste."
+msgstr "コピーして、フォルダを開いて貼り付けます。"
+
+msgid "Move \"%s\" to the trash?"
+msgstr "%s\"をゴミ箱に移動しますか?"
+
+msgid "Move %s items to the trash?"
+msgstr "移転 %s ゴミ箱に?"
+
+msgid "You can restore it from the trash."
+msgstr "ゴミ箱から復元できます。"
+
+msgid "%s items moved to the trash."
+msgstr "%s 物品がゴミ箱に移動。"
+
+msgid "Some items could not be processed"
+msgstr "加工できないものもあります。"
+
+msgid "Already exists"
+msgstr "存在します"
+
+msgid "%s items already exist in the target folder. Replace them? The replaced files go to the trash."
+msgstr "対象フォルダに既に %s 個の項目が存在すれば、 置き換える? 置換されたファイルがゴミ箱に移動します。"
+
+msgid "Overwrite"
+msgstr "上書き"
+
+msgid "Skip"
+msgstr "スキップ"
+
+msgid "Skipped"
+msgstr "スキップされました"
+
+msgid "%s items moved."
+msgstr "%s 項目移動。"
+
+msgid "%s items copied."
+msgstr "%s コピー。"
+
+msgid "Folder name"
+msgstr "フォルダ名"
+
+msgid "Create"
+msgstr "作成"
+
+msgid "Created."
+msgstr "作成。"
+
+msgid "Working…"
+msgstr "働いています..."
+
+msgid "Archive created."
+msgstr "アーカイブ作成。"
+
+msgid "\"%s\" will be extracted into a new folder next to it."
+msgstr "%s\" は、その隣の新しいフォルダに抽出されます。"
+
+msgid "Extracted %s files."
+msgstr "%s ファイルを抽出しました。"
+
+msgid "Shared on the site"
+msgstr "サイト上で共有します。"
+
+msgid "Visitors can browse and download this folder where you add the shortcode below (copied). Add it to any page or post."
+msgstr "訪問者は、以下のショートコード(コピー)を追加し、このフォルダを閲覧してダウンロードすることができます。"
+
+msgid "No longer shared."
+msgstr "共有は不要。"
+
+msgid "Calculate"
+msgstr "計算する"
+
+msgid "Calculating…"
+msgstr "計算中..."
+
+msgid "%s files"
+msgstr "%s ファイル"
+
+msgid "1 file"
+msgstr "1ファイルです。"
+
+msgid "partial"
+msgstr "部分的な"
+
+msgid "Not writable"
+msgstr "書けない"
+
+msgid "Notes"
+msgstr "注意事項"
+
+msgid "Image"
+msgstr "画像"
+
+msgid "Video"
+msgstr "ビデオ"
+
+msgid "Audio"
+msgstr "オーディオ"
+
+msgid "PDF document"
+msgstr "PDF文書"
+
+msgid "Archive"
+msgstr "アーカイブ"
+
+msgid "Code"
+msgstr "コード"
+
+msgid "Document"
+msgstr "文書"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "Font"
+msgstr "フォント"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Owner"
+msgstr "オーナー"
+
+msgid "Group"
+msgstr "グループ"
+
+msgid "Everyone"
+msgstr "みんな"
+
+msgid "Read"
+msgstr "読む"
+
+msgid "Write"
+msgstr "書く"
+
+msgid "Execute"
+msgstr "執行"
+
+msgid "Write access for everyone is not allowed."
+msgstr "全員への書き込みアクセスは許可されていません。"
+
+msgid "Numeric value"
+msgstr "数値"
+
+msgid "Usual values: 644 for files, 755 for folders."
+msgstr "通常の値: 644 ファイル、755 フォルダー。"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Saved."
+msgstr "保存されました。"
+
+msgid "Choose this folder"
+msgstr "このフォルダを選択します。"
+
+msgid "Loading…"
+msgstr "読み込み中..."
+
+msgid "No subfolders"
+msgstr "サブフォルダなし"
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Each save keeps the previous content. The last %s versions of a file are kept."
+msgstr "最後の %s バージョンは、保存されます。"
+
+msgid "No earlier versions yet."
+msgstr "以前のバージョンはまだありません。"
+
+msgid "Difference from the current file"
+msgstr "現在のファイルとの違い"
+
+msgid "Restore this version"
+msgstr "このバージョンを復元する"
+
+msgid "The file goes back to this version. The current content is kept as a new version."
+msgstr "ファイルはこのバージョンに戻り、現在のコンテンツは新しいバージョンとして保存されます。"
+
+msgid "Restored."
+msgstr "復元。"
+
+msgid "Panel"
+msgstr "パネル"
+
+msgid "AI chat"
+msgstr "AIチャット"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Site"
+msgstr "サイト"
+
+msgid "%s unchanged lines"
+msgstr "%s 線変更なし"
+
+msgid "No changes."
+msgstr "変更はありません。"
+
+msgid "Uploading %1$s / %2$s"
+msgstr "%1$s/%2$s アップロード"
+
+msgid "%s files uploaded"
+msgstr "%s ファイルアップロード"
+
+msgid "1 file uploaded"
+msgstr "アップロードしたファイルです。"
+
+msgid "Upload failed"
+msgstr "アップロードが失敗"
+
+msgid "\"%s\" already exists. Replace it? The old file is kept as a version."
+msgstr "%s\" がすでに存在します 置き換えます? 古いファイルはバージョンとして保存されています"
+
+msgid "Items are deleted for good after %s days."
+msgstr "アイテムは後日削除されます。 %s 数日だ"
+
+msgid "Items stay until you empty the trash."
+msgstr "ゴミを空にするまでアイテムは残ります。"
+
+msgid "Empty trash"
+msgstr "空ゴミ"
+
+msgid "The trash is empty"
+msgstr "ゴミは空です"
+
+msgid "Kept until %s"
+msgstr "まで保つ %s"
+
+msgid "Restore"
+msgstr "復元"
+
+msgid "Delete permanently"
+msgstr "完全に削除"
+
+msgid "This cannot be undone."
+msgstr "これは解くことはできません。"
+
+msgid "Everything in the trash will be deleted permanently. This cannot be undone."
+msgstr "ゴミ箱の中身は全部永久に消され、取り壊すことはできません。"
+
+msgid "Restored to %s"
+msgstr "に復元します。 %s"
+
+msgid "%s items deleted."
+msgstr "%s 項目を削除しました。"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "No activity yet"
+msgstr "まだ活動していない"
+
+msgid "Load more"
+msgstr "さらにロードする"
+
+msgid "%s events"
+msgstr "%s イベント"
+
+msgid "1 event"
+msgstr "1つのイベント"
+
+msgid "Created"
+msgstr "作成されました"
+
+msgid "Edited"
+msgstr "編集"
+
+msgid "Renamed"
+msgstr "改称"
+
+msgid "Moved"
+msgstr "移転"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Moved to trash"
+msgstr "ゴミ箱に移動しました"
+
+msgid "Restored"
+msgstr "復元されました"
+
+msgid "Deleted permanently"
+msgstr "永久削除"
+
+msgid "Permissions changed"
+msgstr "許可が変更された"
+
+msgid "Archived"
+msgstr "アーカイブ済み"
+
+msgid "Extracted"
+msgstr "抽出"
+
+msgid "Uploaded"
+msgstr "アップロードされました"
+
+msgid "Version restored"
+msgstr "バージョンが復元される"
+
+msgid "Settings changed"
+msgstr "設定変更"
+
+msgid "Shared on site"
+msgstr "サイト上で共有"
+
+msgid "Sharing stopped"
+msgstr "共有が止まった"
+
+msgid "View"
+msgstr "見る"
+
+msgid "Show hidden files"
+msgstr "隠しファイルを表示します。"
+
+msgid "Files starting with a dot, such as .htaccess."
+msgstr "ドットから始まるファイル、例えば.htaccessです。"
+
+msgid "Safety"
+msgstr "安全性"
+
+msgid "Keep trash for (days)"
+msgstr "ゴミを(何日も)捨てる"
+
+msgid "0 keeps items until you empty the trash."
+msgstr "ゴミを空にするまで、0 はアイテムを保管します。"
+
+msgid "Versions per file"
+msgstr "ファイルごとにバージョン"
+
+msgid "Disk quota (GB)"
+msgstr "ディスククォータ(GB)"
+
+msgid "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only."
+msgstr "ホスティングプランのディスクスペース、例えば100. 使用状況は、ホスティングアカウント全体について測定されます。"
+
+msgid "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."
+msgstr "保存するたびに保存されたコンテンツ(テキストファイルは最大3 MB)がオフになります。"
+
+msgid "AI and MCP"
+msgstr "AIとMCP"
+
+msgid "Flux AI chat can list, read and search files, and asks you before every change. wp-config.php, .env and key files are never shared."
+msgstr "Flux AIチャットは、ファイルをリスト、読み、検索でき、すべての変更の前に尋ねます。wp-config.php、.env、およびキーファイルは決して共有されません。"
+
+msgid "External MCP clients may change files"
+msgstr "外見 MCP クライアントはファイルを変更できます"
+
+msgid "Off: Claude, ChatGPT and other MCP clients can only read. On: they can write, move and delete (to the trash)."
+msgstr "オフ: クロード、チャットGPTなど。 MCP クライアントは、読み取ることしかできない。オン: (ゴミ箱に)書き、移動、削除できる。"
+
+msgid "AI may write code files"
+msgstr "AIがコードファイルを書く可能性"
+
+msgid "Lets AI change .php, .js, .css, .html, .htaccess and similar files. WordPress core and protected files stay off-limits."
+msgstr "AIが.php、.js、.css、.html、.htaccess、および同様のファイルを変更する場合、コアファイルと保護ファイルは制限外のままである。"
+
+msgid "This lets AI change more of the site. Every change is still logged in Activity and earlier versions are kept. Continue?"
+msgstr "これによって、AIはサイトの多くを変更できるようになる。変更がすべて、まだActiveにログインしている。以前のバージョンが保たれる。継続する?"
+
+msgid "Shared folders"
+msgstr "共有フォルダ"
+
+msgid "Folders in uploads that visitors can browse with the [flx_files] shortcode. Right-click a folder › Share on site."
+msgstr "[flx_files] ショートコードで訪問者が閲覧できるアップロード先フォルダーです。フォルダーを右クリックし、「サイトで共有」を選択してください。"
+
+msgid "No shared folders."
+msgstr "共有フォルダはありません。"
+
+msgid "Show in browser"
+msgstr "ブラウザで表示します。"
+
+msgid "\"%s\" has unsaved changes. Close it anyway?"
+msgstr "%s\" が保存不能な変更をしました"
+
+msgid "Unsaved changes"
+msgstr "未保存の変更"
+
+msgid "Close without saving"
+msgstr "貯蓄無しの閉鎖"
+
+msgid "Find"
+msgstr "検索"
+
+msgid "Copy content"
+msgstr "内容のコピー"
+
+msgid "Explain with AI"
+msgstr "AIでの説明"
+
+msgid "Explain the selection with AI"
+msgstr "AIで選択を説明します。"
+
+msgid "Edit with AI"
+msgstr "AIで編集する"
+
+msgid "Line %1$s, column %2$s"
+msgstr "系統 %1$sカラム %2$s"
+
+msgid "%s lines"
+msgstr "%s 線"
+
+msgid "Unsaved"
+msgstr "未保存"
+
+msgid "Saved"
+msgstr "保存されました"
+
+msgid "This file holds passwords or keys. It is never sent to AI; be careful when sharing it."
+msgstr "このファイルにはパスワードやキーが含まれており、AIに送信されることはありません。"
+
+msgid "WordPress core file: changes are lost when WordPress updates."
+msgstr "WordPress コアファイル: WordPress が更新された時に変更が失われます。"
+
+msgid "The server does not allow writing this file; it is opened read-only."
+msgstr "サーバーはこのファイルを書くことを許可しません。"
+
+msgid "This is a WordPress core file. A mistake can break the site and the change is lost on the next WordPress update. Save anyway? The previous content is kept as a version."
+msgstr "これは WordPress 変更が失われる場合、エラーが発生します。 WordPress 以前のコンテンツはバージョンとして保存されます。"
+
+msgid "This file controls the site configuration. A mistake can take the site down. Save anyway? The previous content is kept as a version."
+msgstr "このファイルはサイト構成をコントロールします ミスがサイトをダウンさせる可能性があります とにかく保存します 前のコンテンツはバージョンとして保持されます"
+
+msgid "Replace with"
+msgstr "置き換える"
+
+msgid "Replace"
+msgstr "交換する"
+
+msgid "Replace all"
+msgstr "すべて置き換える"
+
+msgid "%s replaced."
+msgstr "%s 置き換えられた"
+
+msgid "AI is working…"
+msgstr "AIが機能している。"
+
+msgid "What should change?"
+msgstr "何が変わるべきか?"
+
+msgid "e.g. Add a comment above each function / Fix the syntax error on line 12"
+msgstr "例えば、各関数の上にコメントを追加 / 12行目の構文エラーを修正します。"
+
+msgid "AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save."
+msgstr "変更を推奨し、差分を表示するAIは、適用して保存を押すまで何も保存されません。"
+
+msgid "Suggest a change"
+msgstr "変更を提案する"
+
+msgid "Apply in editor"
+msgstr "編集部"
+
+msgid "Up one level"
+msgstr "レベル1"
+
+msgid "Applied in the editor. Review it and press Save."
+msgstr "エディタで適用し、それを確認して、[保存]を押します。"
+
+msgid "Explain file"
+msgstr "ファイルの説明"
+
+msgid "Edit file with AI"
+msgstr "AIでファイルを編集します。"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and choose a model."
+msgstr "Flux AIは準備が整っていない。Flux AIとFlux AIをインストールする MCP モデルを選びます"
+
+msgid "This file may contain passwords or keys, so it is never sent to AI."
+msgstr "このファイルにはパスワードやキーが含まれているため、AIに送信されることはありません。"
+
+msgid "The file is too large for AI (limit %s). Select a smaller file."
+msgstr "ファイルはAIには大きすぎる(限度) %s))小さなファイルを選択します。"
+
+msgid "Write what to change."
+msgstr "変更点を書きなさい。"
+
+msgid "AI did not return a change."
+msgstr "AIは変化を返さなかった。"
+
+msgid "This path points outside the site folder."
+msgstr "このパスは、サイトフォルダの外側を指します。"
+
+msgid "File or folder not found."
+msgstr "ファイルまたはフォルダが見つかりません。"
+
+msgid "Invalid path."
+msgstr "無効なパスです。"
+
+msgid "Invalid name."
+msgstr "名前が無効。"
+
+msgid "The parent folder does not exist."
+msgstr "親フォルダは存在しません。"
+
+msgid "This is not a folder."
+msgstr "これはフォルダではありません。"
+
+msgid "The folder could not be read (permissions)."
+msgstr "フォルダを読み取ることができません(権限)。"
+
+msgid "This is not a file."
+msgstr "これはファイルではありません。"
+
+msgid "The file could not be read (permissions)."
+msgstr "ファイルを読み取ることができません(アクセス許可)。"
+
+msgid "The file is larger than %s and cannot be opened in the editor. Download it instead."
+msgstr "ファイルは、より大きいです。 %s 編集部から開くことができません。"
+
+msgid "This is a binary file and cannot be opened in the editor."
+msgstr "これはバイナリファイルであり、エディタで開くことはできません。"
+
+msgid "File changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "本サイトでは、ファイル変更が無効になっています(DISALLOW_FILE_MODS)。"
+
+msgid "This folder is managed by Flux Files."
+msgstr "このフォルダは Flux Files によって管理されます。"
+
+msgid "Editing code files is disabled on this site (DISALLOW_FILE_EDIT)."
+msgstr "本サイトでは、編集コードファイルが無効になっています(DISALLOW_FILE_EDIT)。"
+
+msgid "AI cannot change protected or WordPress core files."
+msgstr "AIは保護や変更ができない。 WordPress コアファイルだ"
+
+msgid "AI is not allowed to write code files. Enable it in Flux Files › Settings."
+msgstr "コードファイルは、AIが記述できないので、Flux Files  ??  Settingsで有効にします。"
+
+msgid "A folder with this name already exists."
+msgstr "この名前のフォルダがすでに存在します。"
+
+msgid "A file with this name already exists."
+msgstr "この名前のファイルがすでに存在します。"
+
+msgid "The file changed on the server since you opened it. Reload it or save a copy."
+msgstr "ファイルが開いた後、サーバー上で変更され、再読み込みまたはコピーを保存します。"
+
+msgid "The file is not writable (permissions)."
+msgstr "ファイルは、書き込み可能(権限)ではありません。"
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "ファイルは、(アクセス許可またはディスクスペース) を書くことができませんでした。"
+
+msgid "A file or folder with this name already exists."
+msgstr "この名前のファイルまたはフォルダがすでに存在します。"
+
+msgid "The folder could not be created (permissions)."
+msgstr "フォルダの作成ができません(アクセス許可)。"
+
+msgid "This file or folder is protected and cannot be moved, renamed or deleted."
+msgstr "このファイルまたはフォルダは保護されており、移動、名前の変更、削除することはできません。"
+
+msgid "A folder cannot be moved into itself."
+msgstr "フォルダ自体は移動できません。"
+
+msgid "Could not move (permissions)."
+msgstr "移動できません(許可)。"
+
+msgid "AI cannot read or copy protected files."
+msgstr "保護されたファイルをAIが読み取ることもコピーすることもできない。"
+
+msgid "A folder cannot be copied into itself."
+msgstr "フォルダ自体はコピーできません。"
+
+msgid "The folder has more than %s files; copy it with SSH or a backup tool."
+msgstr "フォルダには以上のものがあります %s ファイルをSSHやバックアップツールでコピーします。"
+
+msgid "Could not copy (permissions or disk space)."
+msgstr "コピーできません(アクセス許可またはディスクスペース)。"
+
+msgid "AI can only delete folders with fewer than 2,000 files."
+msgstr "削除できるフォルダは2,000ファイル未満です。"
+
+msgid "Could not move to the trash (permissions)."
+msgstr "ゴミ箱(許可)に移動できませんでした。"
+
+msgid "Permissions can only be changed from the Flux Files screen."
+msgstr "アクセス許可は、Flux Files画面からのみ変更できます。"
+
+msgid "Enter permissions as three digits, e.g. 644 or 755."
+msgstr "644 または 755 の 3 桁のパーミッションを入力します。"
+
+msgid "World-writable permissions (e.g. 777) are not allowed."
+msgstr "ワールドライターブルな許可(例:777)は認められません。"
+
+msgid "Permissions could not be changed."
+msgstr "許可は変更できません。"
+
+msgid "Type at least 2 characters."
+msgstr "少なくとも2文字をタイプする。"
+
+msgid "The PHP zip extension is not available on this server."
+msgstr "PHP zip 拡張はこのサーバーでは使用できません。"
+
+msgid "Nothing selected."
+msgstr "何も選択されていない。"
+
+msgid "The archive could not be created."
+msgstr "アーカイブの作成ができませんでした。"
+
+msgid "Too many files for one archive."
+msgstr "アーカイブ1つにファイルが多すぎる。"
+
+msgid "This archive could not be opened."
+msgstr "このアーカイブは開くことができませんでした。"
+
+msgid "Too many files in this archive."
+msgstr "このアーカイブにあるファイルが多すぎる。"
+
+msgid "The archive contains unsafe paths and was not extracted."
+msgstr "アーカイブには安全でないパスが含まれ、抽出されていません。"
+
+msgid "Not enough disk space to extract this archive."
+msgstr "このアーカイブを抽出するのに十分なディスクスペースはありません。"
+
+msgid "This folder is not shared. Open Flux Files, right-click the folder and choose \"Share on site\"."
+msgstr "このフォルダは共有されません。 Flux Filesを開き、フォルダを右クリックし、[サイト上で共有]を選択します。"
+
+msgid "Search files…"
+msgstr "検索ファイル..."
+
+msgid "Search files"
+msgstr "検索ファイル"
+
+msgid "%1$d result for \"%2$s\""
+msgid_plural "%1$d results for \"%2$s\""
+msgstr[0] "%1$d 結果が%2$s\""
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "No files found."
+msgstr "ファイルは見つかりません。"
+
+msgid "This folder is empty."
+msgstr "このフォルダは空です。"
+
+msgid "List files"
+msgstr "リストファイル"
+
+msgid "Read file"
+msgstr "読み込むファイル"
+
+msgid "File activity"
+msgstr "ファイルアクティビティ"
+
+msgid "Files in trash"
+msgstr "ゴミ箱のファイル"
+
+msgid "Write file"
+msgstr "ファイルを書きます。"
+
+msgid "Edit file (find and replace)"
+msgstr "ファイルを編集します。"
+
+msgid "Create folder"
+msgstr "フォルダを作成します。"
+
+msgid "Move or rename"
+msgstr "移転、または改名する"
+
+msgid "Delete (to trash)"
+msgstr "ゴミを捨てる"
+
+msgid "Restore from trash"
+msgstr "ゴミから復元します。"
+
+msgid "Unknown action."
+msgstr "未知のアクション。"
+
+msgid "The upload failed. The file may be larger than the server allows."
+msgstr "アップロードが失敗し、サーバーが許可するファイルよりもファイルが大きくなる可能性があります。"
+
+msgid "The upload failed. Try again."
+msgstr "アップロードが失敗した。もう一度やってみて。"
+
+msgid "Not enough disk space."
+msgstr "ディスク容量が十分ではない。"
+
+msgid "The upload was interrupted. Try again."
+msgstr "アップロードが中断された。もう一度試してみて。"
+
+msgid "Only folders inside the uploads folder can be shared on the site."
+msgstr "アップロードフォルダ内のフォルダのみをサイト上で共有できます。"
+
+msgid "Version not found."
+msgstr "バージョンが見つかりません。"
+
+msgid "This item is no longer in the trash."
+msgstr "このアイテムはもはやゴミ箱にはありません。"
+
+msgid "Could not restore (permissions)."
+msgstr "復元(許可)ができません。"
+
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%dアイテム"
+
+msgid "Trash and versions folder"
+msgstr "ゴミ箱とバージョンフォルダ"
+
+msgid "Deleted files and earlier versions are kept in a private folder closed to the web."
+msgstr "削除されたファイルと以前のバージョンは、ウェブに閉じたプライベートフォルダに保持されます。"
+
+msgid "The private folder under wp-content cannot be written. Deleting and versioning will fail; check the wp-content permissions."
+msgstr "wp-content の下のプライベートフォルダは、書けません。"
+
+msgid "ZIP support"
+msgstr "ZIPサポート"
+
+msgid "Folders can be downloaded as ZIP, archived and extracted."
+msgstr "フォルダは ZIP としてダウンロード、アーカイブ、抽出できます。"
+
+msgid "The PHP zip extension is missing; ZIP download, archive and extract are off. Enable \"zip\" in the hosting PHP extensions."
+msgstr "PHP zip 拡張が欠落している。ZIP のダウンロード、アーカイブ、抽出がオフになっている。ホスティングの PHP 拡張で \"zip\" を有効にする。"
+
+msgid "File changes"
+msgstr "ファイルの変更"
+
+msgid "DISALLOW_FILE_MODS is on: Flux Files is read-only."
+msgstr "DISALLOW_FILE_MODS はオンです。"
+
+msgid "Only administrators can use Flux Files. wp-config.php, .htaccess and WordPress core folders are protected from deletion."
+msgstr "管理者のみが FluxFiles.wp-config.php、.htaccess、WordPress コアフォルダを削除から保護できます。"
+
+msgid "DISALLOW_FILE_EDIT is on: code files (.php, .htaccess …) cannot be edited or uploaded."
+msgstr "DISALLOW_FILE_EDIT は、 .php ファイル、 .htaccess ...) の編集、アップロードができません。"
+
+msgid "AI and MCP file access"
+msgstr "AIと MCP ファイルアクセス"
+
+msgid "External MCP clients can change and delete files. Turn this off when you no longer need it."
+msgstr "外見 MCP クライアントはファイルを変更、削除でき、不要になったらこれをオフにします。"
+
+msgid "AI chat asks before every change; external MCP clients can only read. Secret files are never shared."
+msgstr "AIチャットは、変更前に要求されます。 MCP クライアントは、秘密ファイルは決して共有されません。"
+
+msgid "Trash cleanup"
+msgstr "ゴミ処理"
+
+msgid "The trash was last cleaned %s. It is also cleaned when an administrator opens Flux Files."
+msgstr "ゴミが最後にきれいにされた %s管理者が Flux Files を開くと、そのファイルもクリーニングされます。"

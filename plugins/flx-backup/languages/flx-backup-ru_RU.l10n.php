@@ -332,7 +332,7 @@ return array(
   '%1$s old backup deleted for the quota: %2$s' . chr(0) . '%1$s old backups deleted for the quota: %2$s' => '%1$s старая резервная копия удалена для квоты: %2$s' . chr(0) . '%1$s старые резервные копии удалены по квоте: %2$s' . chr(0) . '%1$s старые резервные копии удалены по квоте: %2$s',
   '%s backup past its retention period was deleted.' . chr(0) . '%s backups past their retention period were deleted.' => 'Резервная копия %s, срок хранения которой истек, удалена.' . chr(0) . 'Резервные копии %s с истекшим сроком хранения были удалены.' . chr(0) . 'Резервные копии %s с истекшим сроком хранения были удалены.',
   'Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting.' => 'Выполняет автоматическое резервное копирование перед каждым обновлением плагина/темы, запланированное полное резервное копирование, управление квотами и сроками хранения, панель управления хранилищем с диаграммами и выборочным восстановлением. Совместим с общим хостингом Hostinger.',
-  'context_fd86717aca41%s%%' => '%s%%',
+  'context_fd86717aca41%s%%' => '%s %',
   'The archive file is deleted too.' => 'Архивный файл тоже удаляется.',
   'Status' => 'Статус',
   'Restore is only available in the panel.' => 'Восстановление доступно только в панели.',
@@ -693,6 +693,6 @@ return array(
   'İlerleme' => 'Прогресс',
   'Şimdi yedekle' => 'Резервное копирование сейчас',
   'Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır.' => 'Создайте первую резервную копию с помощью функции «Создать резервную копию сейчас». Восстановление осуществляется в панели.',
-
+  'JavaScript is required for this screen.' => 'Для этого экрана требуется JavaScript.',
  ),
 );

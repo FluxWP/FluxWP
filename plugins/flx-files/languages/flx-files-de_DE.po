@@ -1,0 +1,1041 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Manages the site files (Flux Files)"
+msgstr "Verwaltet die Site-Dateien (Flux-Dateien)"
+
+msgid "Open"
+msgstr "Offen"
+
+msgid "Browse, edit and share the site files"
+msgstr "Durchsuchen, bearbeiten und teilen Sie die Seitendateien"
+
+msgid "You are not allowed to do this."
+msgstr "Dies ist Ihnen nicht gestattet."
+
+msgid "Flux Files needs JavaScript."
+msgstr "Flux Dateien braucht JavaScript ."
+
+msgid "Something went wrong. Try again."
+msgstr "Etwas ging schief."
+
+msgid "Location"
+msgstr "Standort"
+
+msgid "Site root"
+msgstr "Stammverzeichnis der Website"
+
+msgid "Browser"
+msgstr "Browser-Software"
+
+msgid "Editor"
+msgstr "Herausgeber"
+
+msgid "Upload"
+msgstr "Hochladen"
+
+msgid "New"
+msgstr "Neu"
+
+msgid "More"
+msgstr "Mehr"
+
+msgid "Read-only: file changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "Nur lesen: Dateiänderungen werden auf dieser Seite deaktiviert (DISALLOW_FILE_MODS)."
+
+msgid "Back"
+msgstr "Zurück"
+
+msgid "Forward"
+msgstr "Vorwärts"
+
+msgid "Folder"
+msgstr "Ordner"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Search in this folder…"
+msgstr "Suche in diesem Ordner..."
+
+msgid "Also search inside text and code files"
+msgstr "Suchen Sie auch innerhalb von Text- und Codedateien"
+
+msgid "Content"
+msgstr "Inhalt"
+
+msgid "List or grid"
+msgstr "Liste oder Raster"
+
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+msgid "Drop files or folders to upload"
+msgstr "Dateien oder Ordner zum Upload löschen"
+
+msgid "Show or hide files"
+msgstr "Dateien anzeigen oder verbergen"
+
+msgid "Choose a file on the left to edit it."
+msgstr "Wählen Sie links eine Datei, um sie zu bearbeiten."
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Trash"
+msgstr "Müll"
+
+msgid "Activity"
+msgstr "Tätigkeit"
+
+msgid "Results for \"%s\""
+msgstr "Ergebnisse für \" %s \""
+
+msgid "Name · A to Z"
+msgstr "Name · A bis Z"
+
+msgid "Name · Z to A"
+msgstr "Name · Z bis A"
+
+msgid "Modified · newest"
+msgstr "Geändert · neu"
+
+msgid "Modified · oldest"
+msgstr "Geändert · älteste"
+
+msgid "Size · largest"
+msgstr "Größe · größte"
+
+msgid "Size · smallest"
+msgstr "Größe · kleinste"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "No results"
+msgstr "Keine Ergebnisse"
+
+msgid "This folder is empty"
+msgstr "Dieser Ordner ist leer"
+
+msgid "Drag files here or use Upload."
+msgstr "Ziehen Sie Dateien hier oder verwenden Sie Upload."
+
+msgid "%s items"
+msgstr "%s-Elemente"
+
+msgid "1 item"
+msgstr "1 Position"
+
+msgid "Actions"
+msgstr "Aktionen"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Modified"
+msgstr "Geändert"
+
+msgid "Size"
+msgstr "Größe"
+
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+msgid "Original location"
+msgstr "Original Standort"
+
+msgid "Deleted"
+msgstr "Gelöscht"
+
+msgid "Showing the first results only. Search in a smaller folder for more."
+msgstr "Nur die ersten Ergebnisse anzeigen. Suchen Sie in einem kleineren Ordner für mehr."
+
+msgid "Protected: cannot be moved, renamed or deleted"
+msgstr "Geschützt: nicht bewegt, umbenannt oder gelöscht werden"
+
+msgid "Contains secrets: never shared with AI"
+msgstr "Enthält Geheimnisse: nie mit KI geteilt"
+
+msgid "WordPress core file"
+msgstr "WordPress Kerndatei"
+
+msgid "%s selected"
+msgstr "%s ausgewählt"
+
+msgid "%s on clipboard"
+msgstr "%s auf Zwischenablage"
+
+msgid "Storage"
+msgstr "Lagerung"
+
+msgid "measuring…"
+msgstr "Messen..."
+
+msgid "%s used"
+msgstr "%s gebraucht"
+
+msgid "Hosting account: %1$s files, measured %2$s"
+msgstr "Hosting-Konto: %1$s Dateien, gemessen %2$s"
+
+msgid "Cut"
+msgstr "Schneiden"
+
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "Paste"
+msgstr "Paste"
+
+msgid "Download"
+msgstr "Herunterladen"
+
+msgid "Download as ZIP"
+msgstr "Download als ZIP"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Clear selection"
+msgstr "Klare Auswahl"
+
+msgid "Upload files"
+msgstr "Dateien hochladen"
+
+msgid "Upload folder"
+msgstr "Hochladen Ordner"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "New file"
+msgstr "Neue Datei"
+
+msgid "New folder"
+msgstr "Neuer Ordner"
+
+msgid "Folder info"
+msgstr "Info zum Ordner"
+
+msgid "File info"
+msgstr "Datei-Info"
+
+msgid "Copy path"
+msgstr "Kopie des Pfades"
+
+msgid "Path from the site root"
+msgstr "Pfad von der Wurzel der Seite"
+
+msgid "Full server path"
+msgstr "Voller Serverpfad"
+
+msgid "Web address (URL)"
+msgstr "Webadresse (URL)"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "Archive…"
+msgstr "Archiv..."
+
+msgid "The ZIP file is created in this folder."
+msgstr "Die ZIP-Datei wird in diesem Ordner erstellt."
+
+msgid "Extract"
+msgstr "Extrakt"
+
+msgid "Duplicate"
+msgstr "Duplizieren"
+
+msgid "Copy or move"
+msgstr "Kopieren oder verschieben"
+
+msgid "Move to…"
+msgstr "Gehen Sie zu..."
+
+msgid "Copy to…"
+msgstr "Verstanden..."
+
+msgid "Show in folder"
+msgstr "Zeigen Sie in Ordner"
+
+msgid "Permissions…"
+msgstr "Berechtigungen..."
+
+msgid "Share on site"
+msgstr "Teilen auf der Website"
+
+msgid "Stop sharing"
+msgstr "Hören Sie auf zu teilen"
+
+msgid "Version history"
+msgstr "Versionshistorie"
+
+msgid "Rename"
+msgstr "Umbenennen"
+
+msgid "%s items cut. Open a folder and paste."
+msgstr "%s Elemente schneiden. Öffnen Sie einen Ordner und fügen Sie ein."
+
+msgid "Cut. Open a folder and paste."
+msgstr "Schneiden. Öffnen Sie einen Ordner und fügen Sie ein."
+
+msgid "%s items copied. Open a folder and paste."
+msgstr "%s Artikel kopiert. Öffnen Sie einen Ordner und fügen Sie ein."
+
+msgid "Copied. Open a folder and paste."
+msgstr "Gespickt. Öffnen Sie einen Ordner und fügen Sie ein."
+
+msgid "Move \"%s\" to the trash?"
+msgstr "\" %s \" in den Müll schieben?"
+
+msgid "Move %s items to the trash?"
+msgstr "Verschieben Sie %s Artikel in den Müll?"
+
+msgid "You can restore it from the trash."
+msgstr "Sie können es aus dem Müll wiederherstellen."
+
+msgid "%s items moved to the trash."
+msgstr "%s Gegenstände bewegten sich in den Müll."
+
+msgid "Some items could not be processed"
+msgstr "Einige Artikel konnten nicht bearbeitet werden"
+
+msgid "Already exists"
+msgstr "Es gibt bereits"
+
+msgid "%s items already exist in the target folder. Replace them? The replaced files go to the trash."
+msgstr "%s Elemente existieren bereits im Zielordner. Ersetzen Sie sie? Die ersetzten Dateien gehen zum Müll."
+
+msgid "Overwrite"
+msgstr "Überschrift"
+
+msgid "Skip"
+msgstr "Überspringen"
+
+msgid "Skipped"
+msgstr "Übersprungen"
+
+msgid "%s items moved."
+msgstr "%s Artikel bewegt."
+
+msgid "%s items copied."
+msgstr "%s Artikel kopiert."
+
+msgid "Folder name"
+msgstr "Ordnername"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Created."
+msgstr "Erstellt."
+
+msgid "Working…"
+msgstr "Arbeiten..."
+
+msgid "Archive created."
+msgstr "Archiv erstellt."
+
+msgid "\"%s\" will be extracted into a new folder next to it."
+msgstr "\" %s \" wird in einen neuen Ordner neben ihm extrahiert."
+
+msgid "Extracted %s files."
+msgstr "Ausgewählte %s Dateien."
+
+msgid "Shared on the site"
+msgstr "Geteilt auf der Website"
+
+msgid "Visitors can browse and download this folder where you add the shortcode below (copied). Add it to any page or post."
+msgstr "Besucher können diesen Ordner durchsuchen und herunterladen, in dem Sie den Kurzcode unten (gezeichnet) hinzufügen."
+
+msgid "No longer shared."
+msgstr "Nicht mehr geteilt."
+
+msgid "Calculate"
+msgstr "Berechnen"
+
+msgid "Calculating…"
+msgstr "Berechnen..."
+
+msgid "%s files"
+msgstr "%s Dateien"
+
+msgid "1 file"
+msgstr "1 Datei"
+
+msgid "partial"
+msgstr "teilweise"
+
+msgid "Not writable"
+msgstr "Nicht schreibbar"
+
+msgid "Notes"
+msgstr "Notizen"
+
+msgid "Image"
+msgstr "Bild"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Audio"
+msgstr "Audio- und Audiotechnik"
+
+msgid "PDF document"
+msgstr "PDF-Dokument"
+
+msgid "Archive"
+msgstr "Archiv"
+
+msgid "Code"
+msgstr "Code"
+
+msgid "Document"
+msgstr "Dokument"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Font"
+msgstr "Schriftart"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Owner"
+msgstr "Besitzer"
+
+msgid "Group"
+msgstr "Gruppe"
+
+msgid "Everyone"
+msgstr "Jeder"
+
+msgid "Read"
+msgstr "Lesen"
+
+msgid "Write"
+msgstr "Schreiben"
+
+msgid "Execute"
+msgstr "Durchführung"
+
+msgid "Write access for everyone is not allowed."
+msgstr "Schreibzugriff für jeden ist nicht erlaubt."
+
+msgid "Numeric value"
+msgstr "Zahlenwert"
+
+msgid "Usual values: 644 for files, 755 for folders."
+msgstr "Übliche Werte: 644 für Dateien, 755 für Ordner."
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Saved."
+msgstr "Gespeichert."
+
+msgid "Choose this folder"
+msgstr "Wählen Sie diesen Ordner"
+
+msgid "Loading…"
+msgstr "Laden…"
+
+msgid "No subfolders"
+msgstr "Keine Unterordner"
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Next"
+msgstr "Als nächstes"
+
+msgid "Each save keeps the previous content. The last %s versions of a file are kept."
+msgstr "Die letzten %s Versionen einer Datei werden gespeichert."
+
+msgid "No earlier versions yet."
+msgstr "Noch keine früheren Versionen."
+
+msgid "Difference from the current file"
+msgstr "Unterschied aus der aktuellen Datei"
+
+msgid "Restore this version"
+msgstr "Stellen Sie diese Version wieder her"
+
+msgid "The file goes back to this version. The current content is kept as a new version."
+msgstr "Die Datei geht zurück zu dieser Version. Der aktuelle Inhalt wird als neue Version gehalten."
+
+msgid "Restored."
+msgstr "Restauriert."
+
+msgid "Panel"
+msgstr "Armaturenbrett"
+
+msgid "AI chat"
+msgstr "Knall-Chat"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Site"
+msgstr "Website"
+
+msgid "%s unchanged lines"
+msgstr "%s unveränderte Linien"
+
+msgid "No changes."
+msgstr "Keine Änderungen."
+
+msgid "Uploading %1$s / %2$s"
+msgstr "Hochladen %1$s / %2$s"
+
+msgid "%s files uploaded"
+msgstr "%s Dateien hochgeladen"
+
+msgid "1 file uploaded"
+msgstr "1 Datei hochgeladen"
+
+msgid "Upload failed"
+msgstr "Hochladen fehlgeschlagen"
+
+msgid "\"%s\" already exists. Replace it? The old file is kept as a version."
+msgstr "\" %s \" existiert bereits. Ersetzen Sie es? Die alte Datei wird als Version gehalten."
+
+msgid "Items are deleted for good after %s days."
+msgstr "Artikel werden nach %s Tagen gut gelöscht."
+
+msgid "Items stay until you empty the trash."
+msgstr "Gegenstände bleiben, bis Sie den Müll leeren."
+
+msgid "Empty trash"
+msgstr "Leerer Müll"
+
+msgid "The trash is empty"
+msgstr "Der Müll ist leer"
+
+msgid "Kept until %s"
+msgstr "Kept bis %s"
+
+msgid "Restore"
+msgstr "Wiederherstellen"
+
+msgid "Delete permanently"
+msgstr "Dauerhaft löschen"
+
+msgid "This cannot be undone."
+msgstr "Das kann nicht rückgängig gemacht werden."
+
+msgid "Everything in the trash will be deleted permanently. This cannot be undone."
+msgstr "Alles im Müll wird dauerhaft gelöscht, das kann nicht aufgelöst werden."
+
+msgid "Restored to %s"
+msgstr "Restauriert auf %s"
+
+msgid "%s items deleted."
+msgstr "%s Artikel gelöscht."
+
+msgid "All"
+msgstr "Alle"
+
+msgid "No activity yet"
+msgstr "Noch keine Aktivität"
+
+msgid "Load more"
+msgstr "Mehr laden"
+
+msgid "%s events"
+msgstr "%s Veranstaltungen"
+
+msgid "1 event"
+msgstr "1 Ereignis"
+
+msgid "Created"
+msgstr "Erstellt"
+
+msgid "Edited"
+msgstr "Bearbeitet"
+
+msgid "Renamed"
+msgstr "Umbenannt"
+
+msgid "Moved"
+msgstr "Bewegung"
+
+msgid "Copied"
+msgstr "Kopiert"
+
+msgid "Moved to trash"
+msgstr "In den Papierkorb verschoben"
+
+msgid "Restored"
+msgstr "Restauriert"
+
+msgid "Deleted permanently"
+msgstr "Dauerhaft gelöscht"
+
+msgid "Permissions changed"
+msgstr "Genehmigungen geändert"
+
+msgid "Archived"
+msgstr "Archiviert"
+
+msgid "Extracted"
+msgstr "Ausgenommen"
+
+msgid "Uploaded"
+msgstr "Hochgeladen"
+
+msgid "Version restored"
+msgstr "Version restauriert"
+
+msgid "Settings changed"
+msgstr "Einstellungen geändert"
+
+msgid "Shared on site"
+msgstr "Geteilt auf der Website"
+
+msgid "Sharing stopped"
+msgstr "Teilen stoppen"
+
+msgid "View"
+msgstr "Ansicht"
+
+msgid "Show hidden files"
+msgstr "Versteckte Dateien anzeigen"
+
+msgid "Files starting with a dot, such as .htaccess."
+msgstr "Dateien, die mit einem Punkt beginnen, wie .htaccess."
+
+msgid "Safety"
+msgstr "Sicherheit"
+
+msgid "Keep trash for (days)"
+msgstr "Müll für (Tage)"
+
+msgid "0 keeps items until you empty the trash."
+msgstr "0 hält Sachen, bis du den Müll leerst."
+
+msgid "Versions per file"
+msgstr "Versionen pro Datei"
+
+msgid "Disk quota (GB)"
+msgstr "Disk Quote (GB)"
+
+msgid "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only."
+msgstr "Ihr Hosting-Plan-Speicher, z.B. 100. Die Nutzung wird für das gesamte Hosting-Konto gemessen. 0 zeigt nur die Nutzung."
+
+msgid "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."
+msgstr "Frühere Inhalte auf jedem Speicher gespeichert (Textdateien bis zu 3 MB). 0 schaltet es aus."
+
+msgid "AI and MCP"
+msgstr "KI und MCP"
+
+msgid "Flux AI chat can list, read and search files, and asks you before every change. wp-config.php, .env and key files are never shared."
+msgstr "Flux AI-Chat kann Dateien auflisten, lesen und suchen, und fragt Sie vor jeder Änderung. wp-config.php, .env und Schlüsseldateien werden nie geteilt."
+
+msgid "External MCP clients may change files"
+msgstr "Externe MCP Clients können Dateien ändern"
+
+msgid "Off: Claude, ChatGPT and other MCP clients can only read. On: they can write, move and delete (to the trash)."
+msgstr "Off: Claude, ChatGPT und andere MCP Clients können nur lesen. Auf: sie können schreiben, verschieben und löschen (auf den Müll)."
+
+msgid "AI may write code files"
+msgstr "AI kann Codedateien schreiben"
+
+msgid "Lets AI change .php, .js, .css, .html, .htaccess and similar files. WordPress core and protected files stay off-limits."
+msgstr "Lassen Sie AI .php, .js, .css, .html, .htaccess und ähnliche Dateien ändern. WordPress Kern und geschützte Dateien bleiben off-limits."
+
+msgid "This lets AI change more of the site. Every change is still logged in Activity and earlier versions are kept. Continue?"
+msgstr "Damit kann KI mehr von der Seite ändern. Jede Änderung ist noch in Aktivität angemeldet und ältere Versionen werden beibehalten."
+
+msgid "Shared folders"
+msgstr "Geteilte Ordner"
+
+msgid "Folders in uploads that visitors can browse with the [flx_files] shortcode. Right-click a folder › Share on site."
+msgstr "Ordner in Uploads, die Besucher mit dem [flx_files] Shortcode durchsuchen können. Rechtsklicken Sie auf einen Ordner › Teilen auf der Website."
+
+msgid "No shared folders."
+msgstr "Keine geteilten Ordner."
+
+msgid "Show in browser"
+msgstr "Zeigen Sie im Browser"
+
+msgid "\"%s\" has unsaved changes. Close it anyway?"
+msgstr "\" %s \" hat sich nicht verändert."
+
+msgid "Unsaved changes"
+msgstr "Nicht gespeicherte Änderungen"
+
+msgid "Close without saving"
+msgstr "Schließen ohne Speichern"
+
+msgid "Find"
+msgstr "Finden Sie hier"
+
+msgid "Copy content"
+msgstr "Inhalt kopieren"
+
+msgid "Explain with AI"
+msgstr "Erklären mit KI"
+
+msgid "Explain the selection with AI"
+msgstr "Erklären Sie die Auswahl mit AI"
+
+msgid "Edit with AI"
+msgstr "Mit KI bearbeiten"
+
+msgid "Line %1$s, column %2$s"
+msgstr "Zeile %1$s — Spalte %2$s"
+
+msgid "%s lines"
+msgstr "%s Zeilen"
+
+msgid "Unsaved"
+msgstr "Unerschrocken"
+
+msgid "Saved"
+msgstr "Gespeichert"
+
+msgid "This file holds passwords or keys. It is never sent to AI; be careful when sharing it."
+msgstr "Diese Datei enthält Passwörter oder Schlüssel. Es wird nie an AI gesendet; seien Sie vorsichtig, wenn Sie es teilen."
+
+msgid "WordPress core file: changes are lost when WordPress updates."
+msgstr "WordPress Kerndatei: Änderungen werden verloren, wenn WordPress Updates."
+
+msgid "The server does not allow writing this file; it is opened read-only."
+msgstr "Der Server erlaubt es nicht, diese Datei zu schreiben; es wird nur lesbar geöffnet."
+
+msgid "This is a WordPress core file. A mistake can break the site and the change is lost on the next WordPress update. Save anyway? The previous content is kept as a version."
+msgstr "Dies ist eine WordPress Core-Datei. Ein Fehler kann die Website brechen und die Änderung ist auf dem nächsten WordPress Update verloren. Speichern Sie sowieso? Der vorherige Inhalt wird als Version gehalten."
+
+msgid "This file controls the site configuration. A mistake can take the site down. Save anyway? The previous content is kept as a version."
+msgstr "Diese Datei steuert die Website-Konfiguration. Ein Fehler kann die Website nach unten nehmen. Speichern Sie sowieso? Der vorherige Inhalt wird als Version gehalten."
+
+msgid "Replace with"
+msgstr "Ersetzen mit"
+
+msgid "Replace"
+msgstr "Ersetzen"
+
+msgid "Replace all"
+msgstr "Ersetzen Sie alle"
+
+msgid "%s replaced."
+msgstr "%s ersetzt."
+
+msgid "AI is working…"
+msgstr "KI arbeitet..."
+
+msgid "What should change?"
+msgstr "Was sollte sich ändern?"
+
+msgid "e.g. Add a comment above each function / Fix the syntax error on line 12"
+msgstr "z.B. Fügen Sie einen Kommentar über jede Funktion / Fix den Syntax-Fehler auf Zeile 12"
+
+msgid "AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save."
+msgstr "KI schlägt eine Änderung vor und zeigt den Unterschied. Nichts wird gespeichert, bis Sie es anwenden und drücken Speichern."
+
+msgid "Suggest a change"
+msgstr "Eine Änderung vorschlagen"
+
+msgid "Apply in editor"
+msgstr "Bewerben Sie sich im Editor"
+
+msgid "Up one level"
+msgstr "Auf einer Ebene"
+
+msgid "Applied in the editor. Review it and press Save."
+msgstr "Angewendet im Editor. Überprüfen Sie es und drücken Sie Speichern."
+
+msgid "Explain file"
+msgstr "Datei erklären"
+
+msgid "Edit file with AI"
+msgstr "Datei mit KI bearbeiten"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and choose a model."
+msgstr "Flux AI ist nicht bereit. Installieren Sie Flux AI & MCP und wählen Sie ein Modell."
+
+msgid "This file may contain passwords or keys, so it is never sent to AI."
+msgstr "Diese Datei kann Passwörter oder Schlüssel enthalten, so dass sie nie an AI gesendet wird."
+
+msgid "The file is too large for AI (limit %s). Select a smaller file."
+msgstr "Die Datei ist zu groß für AI (Begrenzung %s ). Wählen Sie eine kleinere Datei."
+
+msgid "Write what to change."
+msgstr "Schreiben Sie, was Sie ändern sollen."
+
+msgid "AI did not return a change."
+msgstr "KI hat keine Veränderung zurückgegeben."
+
+msgid "This path points outside the site folder."
+msgstr "Dieser Pfad zeigt außerhalb des Site-Ordners."
+
+msgid "File or folder not found."
+msgstr "Datei oder Ordner nicht gefunden."
+
+msgid "Invalid path."
+msgstr "Ungültiger Pfad."
+
+msgid "Invalid name."
+msgstr "Ungültiger Name."
+
+msgid "The parent folder does not exist."
+msgstr "Der Elternordner existiert nicht."
+
+msgid "This is not a folder."
+msgstr "Das ist kein Ordner."
+
+msgid "The folder could not be read (permissions)."
+msgstr "Der Ordner konnte nicht gelesen werden (Permissionen)."
+
+msgid "This is not a file."
+msgstr "Das ist keine Datei."
+
+msgid "The file could not be read (permissions)."
+msgstr "Die Datei konnte nicht gelesen werden (Permissionen)."
+
+msgid "The file is larger than %s and cannot be opened in the editor. Download it instead."
+msgstr "Die Datei ist größer als %s und kann nicht im Editor geöffnet werden."
+
+msgid "This is a binary file and cannot be opened in the editor."
+msgstr "Dies ist eine binäre Datei und kann nicht im Editor geöffnet werden."
+
+msgid "File changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "Dateiänderungen werden auf dieser Seite deaktiviert (DISALLOW_FILE_MODS)."
+
+msgid "This folder is managed by Flux Files."
+msgstr "Dieser Ordner wird von Flux Files verwaltet."
+
+msgid "Editing code files is disabled on this site (DISALLOW_FILE_EDIT)."
+msgstr "Das Editieren von Codedateien wird auf dieser Seite deaktiviert (DISALLOW_FILE_EDIT)."
+
+msgid "AI cannot change protected or WordPress core files."
+msgstr "AI kann nicht geschützte oder WordPress Kerndateien ändern."
+
+msgid "AI is not allowed to write code files. Enable it in Flux Files › Settings."
+msgstr "AI ist nicht erlaubt, Codedateien zu schreiben. Aktivieren Sie es in Flux Dateien › Einstellungen."
+
+msgid "A folder with this name already exists."
+msgstr "Ein Ordner mit diesem Namen existiert bereits."
+
+msgid "A file with this name already exists."
+msgstr "Eine Datei mit diesem Namen existiert bereits."
+
+msgid "The file changed on the server since you opened it. Reload it or save a copy."
+msgstr "Die Datei änderte sich auf dem Server, da Sie sie geöffnet haben."
+
+msgid "The file is not writable (permissions)."
+msgstr "Die Datei ist nicht schreibbar (Permissionen)."
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "Die Datei konnte nicht geschrieben werden (Permissionen oder Festplattenspeicher)."
+
+msgid "A file or folder with this name already exists."
+msgstr "Es existiert bereits eine Datei oder ein Ordner mit diesem Namen."
+
+msgid "The folder could not be created (permissions)."
+msgstr "Der Ordner konnte nicht erstellt werden (Permissionen)."
+
+msgid "This file or folder is protected and cannot be moved, renamed or deleted."
+msgstr "Diese Datei oder ein Ordner ist geschützt und kann nicht verschoben, umbenannt oder gelöscht werden."
+
+msgid "A folder cannot be moved into itself."
+msgstr "Ein Ordner kann nicht in sich selbst bewegt werden."
+
+msgid "Could not move (permissions)."
+msgstr "Nicht bewegen (Berechtigungen)."
+
+msgid "AI cannot read or copy protected files."
+msgstr "AI kann geschützte Dateien nicht lesen oder kopieren."
+
+msgid "A folder cannot be copied into itself."
+msgstr "Ein Ordner kann nicht in sich kopiert werden."
+
+msgid "The folder has more than %s files; copy it with SSH or a backup tool."
+msgstr "Der Ordner hat mehr als %s Dateien; kopieren Sie es mit SSH oder einem Backup-Tool."
+
+msgid "Could not copy (permissions or disk space)."
+msgstr "Kann nicht kopieren (Permissionen oder Festplattenspeicher)."
+
+msgid "AI can only delete folders with fewer than 2,000 files."
+msgstr "AI kann nur Ordner mit weniger als 2.000 Dateien löschen."
+
+msgid "Could not move to the trash (permissions)."
+msgstr "Könnte nicht in den Müll (Befreiungen) bewegen."
+
+msgid "Permissions can only be changed from the Flux Files screen."
+msgstr "Berechtigungen können nur vom Bildschirm Flux Files geändert werden."
+
+msgid "Enter permissions as three digits, e.g. 644 or 755."
+msgstr "Geben Sie Berechtigungen als drei Ziffern ein, z.B. 644 oder 755."
+
+msgid "World-writable permissions (e.g. 777) are not allowed."
+msgstr "World-writable Berechtigungen (z.B. 777) sind nicht erlaubt."
+
+msgid "Permissions could not be changed."
+msgstr "Die Genehmigungen konnten nicht geändert werden."
+
+msgid "Type at least 2 characters."
+msgstr "Geben Sie mindestens 2 Zeichen ein."
+
+msgid "The PHP zip extension is not available on this server."
+msgstr "Die PHP Zip-Erweiterung ist auf diesem Server nicht verfügbar."
+
+msgid "Nothing selected."
+msgstr "Nichts ausgewählt."
+
+msgid "The archive could not be created."
+msgstr "Das Archiv konnte nicht erstellt werden."
+
+msgid "Too many files for one archive."
+msgstr "Zu viele Dateien für ein Archiv."
+
+msgid "This archive could not be opened."
+msgstr "Dieses Archiv konnte nicht geöffnet werden."
+
+msgid "Too many files in this archive."
+msgstr "Zu viele Dateien in diesem Archiv."
+
+msgid "The archive contains unsafe paths and was not extracted."
+msgstr "Das Archiv enthält unsichere Pfade und wurde nicht extrahiert."
+
+msgid "Not enough disk space to extract this archive."
+msgstr "Nicht genug Speicherplatz, um dieses Archiv zu extrahieren."
+
+msgid "This folder is not shared. Open Flux Files, right-click the folder and choose \"Share on site\"."
+msgstr "Dieser Ordner wird nicht geteilt. Öffnen Sie Flux-Dateien, klicken Sie mit der rechten Maustaste auf den Ordner und wählen Sie \"Vor Ort teilen\"."
+
+msgid "Search files…"
+msgstr "Dateien suchen..."
+
+msgid "Search files"
+msgstr "Suche nach Dateien"
+
+msgid "%1$d result for \"%2$s\""
+msgid_plural "%1$d results for \"%2$s\""
+msgstr[0] "%1$d Ergebnis für \" %2$s \""
+msgstr[1] "%1$d Ergebnisse für \" %2$s \""
+
+msgid "Clear"
+msgstr "Leeren"
+
+msgid "No files found."
+msgstr "Keine Dateien gefunden."
+
+msgid "This folder is empty."
+msgstr "Dieser Ordner ist leer."
+
+msgid "List files"
+msgstr "Listendateien"
+
+msgid "Read file"
+msgstr "Datei lesen"
+
+msgid "File activity"
+msgstr "Aktivität der Datei"
+
+msgid "Files in trash"
+msgstr "Dateien in Müll"
+
+msgid "Write file"
+msgstr "Schreiben Sie die Datei"
+
+msgid "Edit file (find and replace)"
+msgstr "Datei bearbeiten (finden und ersetzen)"
+
+msgid "Create folder"
+msgstr "Ordner erstellen"
+
+msgid "Move or rename"
+msgstr "Bewegen oder Umbenennung"
+
+msgid "Delete (to trash)"
+msgstr "Löschen (auf Müll)"
+
+msgid "Restore from trash"
+msgstr "Wiederherstellen von Müll"
+
+msgid "Unknown action."
+msgstr "Unbekannte Aktion."
+
+msgid "The upload failed. The file may be larger than the server allows."
+msgstr "Die Datei kann größer sein als der Server erlaubt."
+
+msgid "The upload failed. Try again."
+msgstr "Der Upload ist fehlgeschlagen."
+
+msgid "Not enough disk space."
+msgstr "Nicht genug Speicherplatz."
+
+msgid "The upload was interrupted. Try again."
+msgstr "Der Upload wurde unterbrochen."
+
+msgid "Only folders inside the uploads folder can be shared on the site."
+msgstr "Nur Ordner innerhalb des Uploads-Ordners können auf der Website geteilt werden."
+
+msgid "Version not found."
+msgstr "Version nicht gefunden."
+
+msgid "This item is no longer in the trash."
+msgstr "Dieser Artikel ist nicht mehr im Müll."
+
+msgid "Could not restore (permissions)."
+msgstr "Nicht wiederherstellen können (Berechtigungen)."
+
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d Artikel"
+msgstr[1] "%d-Elemente"
+
+msgid "Trash and versions folder"
+msgstr "Papier- und Versionen-Ordner"
+
+msgid "Deleted files and earlier versions are kept in a private folder closed to the web."
+msgstr "Gelöschte Dateien und frühere Versionen werden in einem privaten Ordner, der im Web geschlossen ist, aufbewahrt."
+
+msgid "The private folder under wp-content cannot be written. Deleting and versioning will fail; check the wp-content permissions."
+msgstr "Der private Ordner unter wp-Content kann nicht geschrieben werden. Löschen und Vervielfältigung wird scheitern; Überprüfen Sie die wp-Content-Berechtigungen."
+
+msgid "ZIP support"
+msgstr "ZIP-Unterstützung"
+
+msgid "Folders can be downloaded as ZIP, archived and extracted."
+msgstr "Ordner können als ZIP heruntergeladen, archiviert und extrahiert werden."
+
+msgid "The PHP zip extension is missing; ZIP download, archive and extract are off. Enable \"zip\" in the hosting PHP extensions."
+msgstr "Die PHP Zip-Erweiterung fehlt; ZIP-Download, Archiv und Auszug sind aus. Aktivieren Sie \"zip\" in den Hosting PHP Erweiterungen."
+
+msgid "File changes"
+msgstr "Änderungen der Datei"
+
+msgid "DISALLOW_FILE_MODS is on: Flux Files is read-only."
+msgstr "DISALLOW_FILE_MODS ist auf: Flux-Dateien werden nur gelesen."
+
+msgid "Only administrators can use Flux Files. wp-config.php, .htaccess and WordPress core folders are protected from deletion."
+msgstr "Nur Administratoren können Flux Files verwenden. wp-config.php, .htaccess und WordPress Kernordner sind vor der Löschung geschützt."
+
+msgid "DISALLOW_FILE_EDIT is on: code files (.php, .htaccess …) cannot be edited or uploaded."
+msgstr "DISALLOW_FILE_EDIT ist auf: Codedateien (.php, .htaccess ...) können nicht editiert oder hochgeladen werden."
+
+msgid "AI and MCP file access"
+msgstr "AI und MCP Dateizugriff"
+
+msgid "External MCP clients can change and delete files. Turn this off when you no longer need it."
+msgstr "Externe MCP Clients können Dateien ändern und löschen. Schalten Sie diese aus, wenn Sie sie nicht mehr benötigen."
+
+msgid "AI chat asks before every change; external MCP clients can only read. Secret files are never shared."
+msgstr "KI-Chat fragt vor jeder Änderung; externe MCP Clients können nur lesen. Geheime Dateien werden nie geteilt."
+
+msgid "Trash cleanup"
+msgstr "Müllreinigung"
+
+msgid "The trash was last cleaned %s. It is also cleaned when an administrator opens Flux Files."
+msgstr "Der Müll wurde zuletzt gereinigt %s . Es wird auch gereinigt, wenn ein Administrator öffnet Flux Dateien."

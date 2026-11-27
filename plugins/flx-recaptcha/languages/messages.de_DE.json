@@ -8,7 +8,7 @@
   "messages": {
     "Settings": "Einstellungen",
     "Protects forms against spam and bot attacks": "Schützt Formulare vor Spam- und Bot-Angriffen",
-    "reCAPTCHA": "reCAPTCHA",
+    "reCAPTCHA": "ANHANG",
     "Enter the site key first.": "Geben Sie zuerst den Site-Schlüssel ein.",
     "Enter the secret key.": "Geben Sie den geheimen Schlüssel ein.",
     "Loading Google reCAPTCHA…": "Google reCAPTCHA wird geladen...",
@@ -146,6 +146,14 @@
     "Automatic": "Automatisch",
     "google.com": "google.com",
     "recaptcha.net": "recaptcha.net",
-    "It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address.": "Es schützt Anmeldung, Registrierung, Passwort-Zurücksetzung, Kommentar, WooCommerce-Konto und -Zahlung, Flux Donate-Spendenformular und Flux Forms-Einsendungen vor Spam und Bot-Angriffen mit Google reCAPTCHA (v3 unsichtbar oder v2-Kachel). Welches Formular beibehalten wird, wird über das Panel ein- und ausgeschaltet; Flux Speed ​​ist mit benutzerdefinierten Anmeldeadressen kompatibel."
+    "It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address.": "Es schützt Anmeldung, Registrierung, Passwort-Zurücksetzung, Kommentar, WooCommerce-Konto und -Zahlung, Flux Donate-Spendenformular und Flux Forms-Einsendungen vor Spam und Bot-Angriffen mit Google reCAPTCHA (v3 unsichtbar oder v2-Kachel). Welches Formular beibehalten wird, wird über das Panel ein- und ausgeschaltet; Flux Speed ​​ist mit benutzerdefinierten Anmeldeadressen kompatibel.",
+    "Choose v2 or v3.": "Wählen Sie v2 oder v3.",
+    "A key can only contain letters, numbers, \"-\" and \"_\".": "Ein Schlüssel kann nur Buchstaben, Zahlen, \"-\" und \"_\" enthalten.",
+    "The bot threshold must be between 0.1 and 0.9.": "Die Bot-Schwelle muss zwischen 0,1 und 0,9 liegen.",
+    "Choose the Google host.": "Wählen Sie den Google-Host.",
+    "Choose the checkbox theme.": "Wählen Sie das Checkbox-Thema.",
+    "Choose the checkbox size.": "Wählen Sie die Checkbox-Größe.",
+    "Enter an IP address or a range like 198.51.100.0/24.": "Geben Sie eine IP-Adresse oder einen Bereich wie 198.51.100.0/24 ein.",
+    "This form is not known.": "Diese Form ist nicht bekannt."
   }
 }

@@ -1288,7 +1288,7 @@ msgid "Call"
 msgstr "Ligar"
 
 msgid "Yetkiniz yok."
-msgstr "Yetkiniz yok."
+msgstr "Você não tem permissão para fazer isso."
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr "Lado do servidor do desktop e aplicativo móvel FluxWP: login OAuth 2.0 (PKCE), dispositivos e push, visualização do aplicativo (configuração), exibições de plug-ins (manifesto), sessão do painel. Os clientes MCP também se conectam via OAuth."
@@ -1349,3 +1349,105 @@ msgstr "O número de telefone foi removido da sua conta %s"
 
 msgid "The token does not include the scope this request needs."
 msgstr "O token não inclui o escopo que esta solicitação exige."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript é necessário para esta tela."
+
+msgid "Open in app"
+msgstr "Abrir no aplicativo"
+
+msgid "Open in the FluxWP app"
+msgstr "Abra no aplicativo FluxWP"
+
+msgid "Opening the app…"
+msgstr "Abrindo o aplicativo..."
+
+msgid "The app did not open. Install it, then come back and press the button again."
+msgstr "O aplicativo não abriu. Instalá-lo, em seguida, volte e pressione o botão novamente."
+
+msgid "Download on the App Store"
+msgstr "Baixar na App Store"
+
+msgid "Get it on Google Play"
+msgstr "Disponível no Google Play"
+
+msgid "Download for Mac"
+msgstr "Baixar para Mac"
+
+msgid "Open the app"
+msgstr "Abra o aplicativo"
+
+msgid "This push service is not allowed."
+msgstr "Este serviço de push não é permitido."
+
+msgid "Invalid subscription keys."
+msgstr "Chaves de assinatura inválidas."
+
+msgid "Browser notifications need a signed-in browser session."
+msgstr "As notificações do navegador precisam de uma sessão de navegador assinada."
+
+msgid "Notifications are turned off on this site."
+msgstr "As notificações são desligadas neste site."
+
+msgid "Notifications on"
+msgstr "Notificações sobre"
+
+msgid "Notifications blocked"
+msgstr "Notificações bloqueadas"
+
+msgid "Get notifications in this browser, also when the site is closed."
+msgstr "Receba notificações neste navegador, também quando o site está fechado."
+
+msgid "Stop notifications in this browser."
+msgstr "Parar notificações neste navegador."
+
+msgid "Notifications are blocked for this site in the browser settings."
+msgstr "As notificações são bloqueadas para este site nas configurações do navegador."
+
+msgid "Notifications could not be turned on"
+msgstr "Notificações não podem ser ativadas"
+
+msgid "This browser"
+msgstr "Este navegador"
+
+msgid "Notification types"
+msgstr "Tipos de notificação"
+
+msgid "Applies to all your devices, also the mobile app."
+msgstr "Aplica-se a todos os seus dispositivos, também o aplicativo móvel."
+
+msgid "No notification types are available yet."
+msgstr "Ainda não estão disponíveis tipos de notificação."
+
+msgid "Could not save, try again."
+msgstr "Não pude salvar, tentar outra vez."
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Browser notifications (Web Push)"
+msgstr "Notificações do navegador (Web Push)"
+
+msgid "Browsers allow notifications only on https sites."
+msgstr "Os navegadores permitem notificações apenas em sites https."
+
+msgid "Ready. Users turn them on per browser with Notifications in the admin bar."
+msgstr "Pronto. Os usuários os ativam por navegador com notificações na barra de admin."
+
+msgid "PHP OpenSSL cannot sign P-256 keys here; browsers do not get notifications. Mobile app push still works."
+msgstr "PHP OpenSSL não pode assinar chaves P-256 aqui; navegadores não recebem notificações."
+
+msgid "Live connection (realtime)"
+msgstr "Conexão ao vivo (em tempo real)"
+
+msgid "The realtime service runs but has no public address (FLX_REALTIME_URL); apps poll."
+msgstr "O serviço em tempo real é executado, mas não tem endereço público (FLX_REALTIME_URL); pesquisa de aplicativos."
+
+msgid "Panel and app get changes at once."
+msgstr "Painel e aplicativo obter mudanças de uma só vez."
+
+msgid "Not checked yet; shown after the next app sign-in."
+msgstr "Ainda não verificado; mostrado após o próximo login do aplicativo."
+
+msgid "The realtime service is not answering; apps poll until it is back."
+msgstr "O serviço em tempo real não está respondendo; pesquisas de aplicativos até que ele esteja de volta."

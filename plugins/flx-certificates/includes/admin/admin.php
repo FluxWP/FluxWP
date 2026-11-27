@@ -19,26 +19,26 @@ add_action( 'admin_menu', 'flxs_admin_menu' );
 
 function flxs_admin_menu() {
 	$cap_use = flxs_can_manage() ? 'flxs_manage' : 'flxs_use';
-	add_menu_page( 'Sertifikalar', 'Sertifikalar', $cap_use, 'flxs', 'flxs_screen_page', 'none', 26 );
-	add_submenu_page( 'flxs', 'Tüm Sertifikalar', 'Tüm Sertifikalar', $cap_use, 'flxs', 'flxs_screen_page' );
+	add_menu_page( __( 'Certificates', 'flx-certificates' ), __( 'Certificates', 'flx-certificates' ), $cap_use, 'flxs', 'flxs_screen_page', 'none', 26 );
+	add_submenu_page( 'flxs', __( 'All Certificates', 'flx-certificates' ), __( 'All Certificates', 'flx-certificates' ), $cap_use, 'flxs', 'flxs_screen_page' );
 	if ( flxs_can_dashboard() ) {
-		add_submenu_page( 'flxs', 'Dashboard', 'Dashboard', flxs_can_manage() ? 'flxs_manage' : 'flxs_dashboard', 'flxs-dashboard', 'flxs_screen_page', 0 );
+		add_submenu_page( 'flxs', __( 'Dashboard', 'flx-certificates' ), __( 'Dashboard', 'flx-certificates' ), flxs_can_manage() ? 'flxs_manage' : 'flxs_dashboard', 'flxs-dashboard', 'flxs_screen_page', 0 );
 	}
 	// 2.0.2: with Flux CRM the events live in CRM › Events; no Events item here (the old address redirects there).
 	if ( function_exists( 'flxcrm_events_url' ) ) {
-		add_submenu_page( 'options.php', 'Etkinlikler', 'Etkinlikler', 'flxs_manage', 'flxs-etkinlikler', '__return_null' );
+		add_submenu_page( 'options.php', __( 'Events', 'flx-certificates' ), __( 'Events', 'flx-certificates' ), 'flxs_manage', 'flxs-etkinlikler', '__return_null' );
 	} else {
-		add_submenu_page( 'flxs', 'Etkinlikler', 'Etkinlikler', 'flxs_manage', 'flxs-etkinlikler', 'flxs_screen_page', 1 );
+		add_submenu_page( 'flxs', __( 'Events', 'flx-certificates' ), __( 'Events', 'flx-certificates' ), 'flxs_manage', 'flxs-etkinlikler', 'flxs_screen_page', 1 );
 	}
-	add_submenu_page( 'flxs', 'Yeni Sertifika', 'Yeni Sertifika', $cap_use, 'flxs-yeni', 'flxs_screen_page' );
-	add_submenu_page( 'flxs', 'Kişiler', 'Kişiler', $cap_use, 'flxs-kisiler', 'flxs_screen_page' );
-	add_submenu_page( 'flxs', 'Gönderim Kuyruğu', 'Gönderim Kuyruğu', $cap_use, 'flxs-kuyruk', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', __( 'New certificate', 'flx-certificates' ), __( 'New certificate', 'flx-certificates' ), $cap_use, 'flxs-yeni', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', __( 'People', 'flx-certificates' ), __( 'People', 'flx-certificates' ), $cap_use, 'flxs-kisiler', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', __( 'Send queue', 'flx-certificates' ), __( 'Send queue', 'flx-certificates' ), $cap_use, 'flxs-kuyruk', 'flxs_screen_page' );
 	if ( flxs_can_bulk() ) {
-		add_submenu_page( 'flxs', 'Toplu Gönderim', 'Toplu Gönderim', $cap_use, 'flxs-toplu', 'flxs_screen_page' );
+		add_submenu_page( 'flxs', __( 'Bulk send', 'flx-certificates' ), __( 'Bulk send', 'flx-certificates' ), $cap_use, 'flxs-toplu', 'flxs_screen_page' );
 	}
-	add_submenu_page( 'flxs', 'Şablonlar', 'Şablonlar', 'flxs_manage', 'flxs-sablonlar', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', __( 'Templates', 'flx-certificates' ), __( 'Templates', 'flx-certificates' ), 'flxs_manage', 'flxs-sablonlar', 'flxs_screen_page' );
 	// Sağlayıcılar ekranı kaldırıldı (v1.3.0): WhatsApp/SMS/e-posta ayarları Flux Mail'de; eski adres (gizli sayfa) oraya yönlenir.
-	$old = add_submenu_page( 'options.php', 'Sağlayıcılar', 'Sağlayıcılar', 'flxs_manage', 'flxs-saglayicilar', '__return_null' );
+	$old = add_submenu_page( 'options.php', __( 'Providers', 'flx-certificates' ), __( 'Providers', 'flx-certificates' ), 'flxs_manage', 'flxs-saglayicilar', '__return_null' );
 	add_action(
 		'load-' . $old,
 		function () {
@@ -46,8 +46,8 @@ function flxs_admin_menu() {
 			exit;
 		}
 	);
-	add_submenu_page( 'flxs', 'Kayıtlar (Log)', 'Kayıtlar (Log)', 'flxs_manage', 'flxs-kayitlar', 'flxs_screen_page' );
-	add_submenu_page( 'flxs', 'Sertifika Ayarları', 'Ayarlar', 'flxs_manage', 'flxs-ayarlar', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', __( 'Logs', 'flx-certificates' ), __( 'Logs', 'flx-certificates' ), 'flxs_manage', 'flxs-kayitlar', 'flxs_screen_page' );
+	add_submenu_page( 'flxs', __( 'Certificate settings', 'flx-certificates' ), __( 'Settings', 'flx-certificates' ), 'flxs_manage', 'flxs-ayarlar', 'flxs_screen_page' );
 	add_submenu_page( 'flxs', __( 'System check', 'flx-certificates' ), __( 'System check', 'flx-certificates' ), 'flxs_manage', 'flxs-sistem', 'flxs_screen_page' );
 }
 
@@ -80,7 +80,7 @@ add_action(
 		$bar->add_node(
 			array(
 				'id'    => 'flxs-new',
-				'title' => '<span class="ab-icon dashicons dashicons-awards" style="top:2px"></span><span class="ab-label">Sertifika</span>',
+				'title' => '<span class="ab-icon dashicons dashicons-awards" style="top:2px"></span><span class="ab-label">' . esc_html__( 'Certificate', 'flx-certificates' ) . '</span>',
 				'href'  => admin_url( 'admin.php?page=flxs-yeni' ),
 			)
 		);

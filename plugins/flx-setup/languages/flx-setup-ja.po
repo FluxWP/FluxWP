@@ -158,7 +158,7 @@ msgid "Preset not found."
 msgstr "プリセットが見つかりません。"
 
 msgid "Apply"
-msgstr "申し込む"
+msgstr "適用"
 
 msgid "What"
 msgstr "何"
@@ -212,7 +212,7 @@ msgid "Profile"
 msgstr "プロフィール"
 
 msgid "Time"
-msgstr "時間"
+msgstr "時刻"
 
 msgid "Action"
 msgstr "アクション"
@@ -1179,7 +1179,7 @@ msgid "Bulk action"
 msgstr "一括アクション"
 
 msgid "Bulk actions"
-msgstr "一括アクション"
+msgstr "一括操作"
 
 msgid "Deactivate"
 msgstr "非アクティブ化"
@@ -1923,44 +1923,257 @@ msgstr "更新サーバーで一時的なエラーが発生しました。1分�
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr "ダウンロードに失敗しました(HTTP %1$d: %2$s)。%3$s"
 
-msgid "Install Flux GraphQL"
-msgstr "Flux GraphQL をインストール"
+msgid "Select all changes"
+msgstr "変更をすべて選択します。"
 
-msgid "Activate Flux GraphQL"
-msgstr "Flux GraphQL を有効化"
+msgid "Select all protected values (overwrite)"
+msgstr "保護された値をすべて選択します。"
 
-msgid "Flux GraphQL settings"
-msgstr "Flux GraphQL の設定"
+msgid "Select %s"
+msgstr "%sを選択します"
 
-msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
-msgstr "%1$s には PHP %2$s 以降が必要です。このサイトは PHP %3$s で動作しています。ホスティングのパネルで PHP のバージョンを上げてください。"
+msgid "Apply selected changes (%d)"
+msgstr "選択された変更(%d)を適用する"
 
-msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
-msgstr "Flux GraphQL サーバーが動作していないため、%s はデータを読み込めません。Flux GraphQL の設定を開いて修正してください。"
+msgid "The sign-in link expired. Start again with \"Sign in with FluxWP\"."
+msgstr "サインインリンクが切れました。 FluxWP\"."
 
-msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
-msgstr "%s がデータを読み込むには Flux GraphQL が必要です。インストールして有効化してください (数秒で終わります)。"
+msgid "FluxWP did not return a key. Try again."
+msgstr "FluxWP 鍵は返せません。もう一度お試しください。"
 
-msgid "PHP version"
-msgstr "PHP バージョン"
+msgid "FluxWP could not be reached: %s"
+msgstr "FluxWP 手が届かなかったのです %s"
 
-msgid "PHP %s. FluxWP GraphQL packages run on it."
-msgstr "PHP %s。FluxWP の GraphQL パッケージはこのバージョンで動作します。"
+msgid "FluxWP answered with HTTP %d."
+msgstr "FluxWP HTTPで答えます %d."
 
-msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
-msgstr "PHP %1$s。新しい FluxWP パッケージ (Flux GraphQL とそれを使うパッケージ) には PHP %2$s 以降が必要です。ホスティングのパネルで上げてください。"
+msgid "This site is not connected to a FluxWP account."
+msgstr "本サイトは、接続していません。 FluxWP アカウント"
 
-msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
-msgstr "Flux GraphQL %s はインストール済みで動作しています。別途インストールされた WPGraphQL との競合はありません。"
+msgid "Another request is renewing the session. Try again in a moment."
+msgstr "セッションの更新もお願い致します。もう一度お試しください。"
 
-msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
-msgstr "Flux GraphQL は有効ですが、GraphQL サーバーが動作していません (多くの場合、別途インストールされた未対応の WPGraphQL が原因です)。GraphQL 画面はオフです。"
+msgid "Connecting failed. Try again."
+msgstr "接続が失敗した。もう一度やってみて。"
 
-msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
-msgstr "次のパッケージには有効になっていない Flux GraphQL が必要です: %s。画面はデータを読み込めません。"
+msgid "Connected to your FluxWP account. Your plan's packages are on the Packages screen."
+msgstr "接続します。 FluxWP アカウント。プランのパッケージはパッケージ画面にある。"
 
-msgid "Flux GraphQL is installed but not active. No active package needs it."
-msgstr "Flux GraphQL はインストールされていますが有効ではありません。必要とする有効なパッケージはありません。"
+msgid "Connecting was cancelled on FluxWP."
+msgstr "FluxWP で接続がキャンセルされました。"
 
-msgid "Flux GraphQL"
-msgstr "Flux GraphQL"
+msgid "Disconnected. Installed plugins keep working; updates of paid packages stop."
+msgstr "プラグインのインストールが継続し、有料パッケージの更新が停止します。"
+
+msgid "Plan information refreshed."
+msgstr "計画情報は更新されます。"
+
+msgid "FluxWP %1$s · %2$s"
+msgstr "FluxWP %1$s ・ %2$s"
+
+msgid "Subscription ended: the Free plan applies, paid updates are paused."
+msgstr "サブスクリプション終了:無料プランが適用され、有料の更新が一時停止されます。"
+
+msgid "Renews or ends on %s"
+msgstr "更新または終了します。 %s"
+
+msgid "Sets: %s"
+msgstr "セット:%s"
+
+msgid "%d sites connected"
+msgstr "%d 接続されたサイト"
+
+msgid "%1$d of %2$d sites"
+msgstr "%2$d サイトから %1$d まで"
+
+msgid "Checked %s"
+msgstr "%sをチェックしました "
+
+msgid "Connect your FluxWP account"
+msgstr "FluxWP アカウントを接続します。"
+
+msgid "Sign in or sign up on fluxwp.com: this site gets its update key and the packages of your plan automatically. The Free plan needs no card."
+msgstr "ログインまたはfluxwp.comでサインアップ: このサイトは、その更新キーとあなたの計画のパッケージを自動的に取得. 無料のプランは、カードを必要としません。"
+
+msgid "Manage account"
+msgstr "アカウント管理"
+
+msgid "Refresh"
+msgstr "リフレッシュ"
+
+msgid "Disconnect"
+msgstr "断線"
+
+msgid "Sign in with FluxWP"
+msgstr "サインインします。 FluxWP"
+
+msgid "Choose one of the listed periods."
+msgstr "リストの期間の1つを選択します。"
+
+msgid "FluxWP account"
+msgstr "FluxWP account"
+
+msgid "Connected, plan %s."
+msgstr "接続、%s を計画します。"
+
+msgid "Not connected. Sign in with FluxWP to get the packages of your plan."
+msgstr "接続されていない。 FluxWP プランのパッケージを手に入れるためだ"
+
+msgid "Select at least one change."
+msgstr "少なくとも1つの変更を選択します。"
+
+msgid "The selected changes are no longer available. Refresh the preview."
+msgstr "選択した変更は、プレビューを更新しなくなりました。"
+
+msgid "Also select the required items: %s"
+msgstr "必要なアイテムも選択します。 %s"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript この画面には必須です。"
+
+msgid "Contact"
+msgstr "お問い合わせ"
+
+msgid "The server asked us to slow down, trying again shortly…"
+msgstr "サーバーが減速して、すぐにもう一度試して欲しいと私たちに頼みました。"
+
+msgid "The update engine is not available: the old Flux Updater plugin is still active. Deactivate it."
+msgstr "アップデートエンジンは使用できません: 古いFlux Updaterプラグインはまだアクティブです。"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "FluxWP"
+msgstr "FluxWP"
+
+msgid "Themes"
+msgstr "テーマ"
+
+msgid "WordPress & translations"
+msgstr "WordPress 訳"
+
+msgid "Folder"
+msgstr "フォルダー"
+
+msgid "Slug"
+msgstr "ナメクジ"
+
+msgid "Category"
+msgstr "カテゴリ"
+
+msgid "Released"
+msgstr "リリース"
+
+msgid "Translation"
+msgstr "訳"
+
+msgid "Core"
+msgstr "コア"
+
+msgid "General"
+msgstr "一般"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Author"
+msgstr "著者"
+
+msgid "Automatic updates are turned off for this site."
+msgstr "本サイトは自動更新がオフになっています。"
+
+msgid "Automatic updates turned on for %d package."
+msgid_plural "Automatic updates turned on for %d packages."
+msgstr[0] "自動更新がオンになりました。 %d パッケージだ"
+
+msgid "Automatic updates turned off for %d package."
+msgid_plural "Automatic updates turned off for %d packages."
+msgstr[0] "自動更新がオフになりました。 %d パッケージだ"
+
+msgid "Update backup retention is set on the Flux Backup settings page."
+msgstr "バックアップの更新の保持は、Flux Backupの設定ページで設定します。"
+
+msgid "Enter 1 to 365 days."
+msgstr "1日から365日。"
+
+msgid "Filter packages"
+msgstr "フィルタパッケージ"
+
+msgid "Updates available"
+msgstr "アップデートあり"
+
+msgid "Search plugins and themes"
+msgstr "プラグインやテーマを検索。"
+
+msgid "Search plugins and themes…"
+msgstr "プラグインやテーマを検索。"
+
+msgid "Only updates"
+msgstr "更新のみ"
+
+msgid "Plugins, themes and updates"
+msgstr "プラグイン、テーマ、アップデート"
+
+msgid "Turn on automatic updates"
+msgstr "自動更新を有効にします。"
+
+msgid "Turn off automatic updates"
+msgstr "自動更新を無効にします。"
+
+msgid "Auto-update"
+msgstr "自動更新"
+
+msgid "Nothing matches this filter."
+msgstr "このフィルターには何一つマッチしない。"
+
+msgid "No updates yet."
+msgstr "まだアップデートはありません。"
+
+msgid "Updating %s…"
+msgstr "%s を更新しました。"
+
+msgid "Retry failed ones"
+msgstr "失敗したものを再試行する"
+
+msgid "Before updating %d packages"
+msgstr "%d パッケージを更新する前に"
+
+msgid "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support."
+msgstr "これは FluxWP パッケージアドレスは、期待される署名された形式ではありませんので、インストールされていませんでした。 FluxWP サポート"
+
+msgid "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute."
+msgstr "パッケージの署名がダウンロードできません(%s). パッケージがインストールされていませんでした. すぐに再度試してみてください。"
+
+msgid "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support."
+msgstr "%1$s %2$s は、有効な FluxWP シグネチャ(HTTP %3$d)がないので、インストールされていません。"
+
+msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
+msgstr "FluxWP の署名 %1$s %2$s は、ダウンロードしたファイルと一致しないため、インストールされていません。"
+
+msgid "Translations"
+msgstr "翻訳"
+
+msgid "New translations: %s"
+msgstr "新訳:%s"
+
+msgid "All translations are up to date."
+msgstr "すべての翻訳は最新です。"
+
+msgid "%d update"
+msgid_plural "%d updates"
+msgstr[0] "%d 更新"
+
+msgid "On for all FluxWP packages (FluxWP Panel › Settings)."
+msgstr "すべての FluxWP パッケージで有効です（FluxWP パネル › 設定）。"
+
+msgid "No download available"
+msgstr "ダウンロードはできません。"
+
+msgid "Not installed: %s"
+msgstr "未設置:%s"
+
+msgid "WordPress.org still offers a newer translation: %s. The file could not be written or the language folder is read-only."
+msgstr "WordPress .org は、新しい翻訳版 %s を提供しています。"
+
+msgid "%s updated."
+msgstr "%s を更新しました。"

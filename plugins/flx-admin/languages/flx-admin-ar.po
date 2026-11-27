@@ -458,7 +458,7 @@ msgid "Admin"
 msgstr "المشرف"
 
 msgid "Dashboard"
-msgstr "لوحة القيادة"
+msgstr "لوحة التحكم"
 
 msgid "General"
 msgstr "عام"
@@ -1043,7 +1043,7 @@ msgid "Filters"
 msgstr "المرشحات"
 
 msgid "Clear"
-msgstr "واضح"
+msgstr "مسح"
 
 msgid "Pagination"
 msgstr "ترقيم الصفحات"
@@ -1236,3 +1236,54 @@ msgstr "الشهر السابق"
 
 msgid "Next month"
 msgstr "الشهر التالي"
+
+msgid "Learn more"
+msgstr "تعلم المزيد"
+
+msgid "Dismiss"
+msgstr "استبعاد"
+
+msgid "or"
+msgstr "أو"
+
+msgid "This role does not exist."
+msgstr "ولا يوجد هذا الدور."
+
+msgid "This permission is not in the table."
+msgstr "هذا الأذن ليس على الطاولة"
+
+msgid "There is no backup to restore."
+msgstr "لا يوجد دعم لإعادة الأمور"
+
+msgid "A layout needs at least one menu item."
+msgstr "التصميم يحتاج على الأقل بند قائمة واحدة."
+
+msgid "Choose a menu item."
+msgstr "اختر بند قائمة الطعام"
+
+msgid "Unknown menu action."
+msgstr "عمل قائمة غير معروف"
+
+msgid "Unread WhatsApp"
+msgstr "Unread WhatsApp"
+
+msgid "The logo must be an image from the media library."
+msgstr "لا بد أن الشعار صورة من مكتبة الإعلام"
+
+msgid "Choose 30, 60 or 120 seconds."
+msgstr "اختر 30 أو 60 أو 120 ثانية"
+
+msgid "Enter a color like #1F2937."
+msgstr "أدخل لون مثل رقم 1F2937."
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "لم يتم العثور على الملف المُحمّل، قم بتحميله مجدداً."
+
+msgid "The file could not be saved on the server."
+msgstr "الملف لا يمكن إنقاذه على الخادم"
+
+msgid "Choose auto, light or dark."
+msgstr "اختر سيارة أو ضوء أو مظلم"
+
+msgid "You do not have permission to do this."
+msgstr "ليس لديك الإذن للقيام بذلك."

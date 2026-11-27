@@ -349,6 +349,8 @@
     "No backups": "Sin copias de seguridad",
     "Back up": "hacer copia de seguridad",
     "Progress": "Progreso",
-    "Take the first backup with Back up now. Restore is done in the panel.": "Realice la primera copia de seguridad con Copia de seguridad ahora. La restauración se realiza en el panel."
+    "Take the first backup with Back up now. Restore is done in the panel.": "Realice la primera copia de seguridad con Copia de seguridad ahora. La restauración se realiza en el panel.",
+    "JavaScript is required for this screen.": "JavaScript es necesario para esta pantalla.",
+    "%s%%": "%s %%"
   }
 }

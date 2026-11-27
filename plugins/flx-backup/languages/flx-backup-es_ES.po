@@ -1049,3 +1049,9 @@ msgstr "Progreso"
 
 msgid "Take the first backup with Back up now. Restore is done in the panel."
 msgstr "Realice la primera copia de seguridad con Copia de seguridad ahora. La restauración se realiza en el panel."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript es necesario para esta pantalla."
+
+msgid "%s%%"
+msgstr "%s %%"

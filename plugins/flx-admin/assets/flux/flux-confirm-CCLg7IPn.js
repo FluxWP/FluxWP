@@ -1,0 +1,1 @@
+function e(e,t=!1){return typeof window>`u`?Promise.resolve(!1):window.flxDialog?window.flxDialog.confirm({message:e,danger:t}):Promise.resolve(window.confirm(e))}export{e as t};

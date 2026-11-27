@@ -119,7 +119,7 @@ msgid "SMS"
 msgstr "SMS"
 
 msgid "WhatsApp"
-msgstr "WhatsApp"
+msgstr "WhatsApp kez"
 
 msgid "Ad audiences"
 msgstr "Reklam kitleleri"
@@ -476,7 +476,7 @@ msgid "CRM settings"
 msgstr "CRM ayarları"
 
 msgid "%1$s: %2$s / %3$s"
-msgstr "%1$s: %2$s / %3$s"
+msgstr "%1$s : %2$s / %3$s"
 
 msgid "Done. Reloading the page…"
 msgstr "Bitti. Sayfa yenileniyor…"
@@ -1083,7 +1083,7 @@ msgid "Order #%s"
 msgstr "Sipariş #%s"
 
 msgid "Form #%d"
-msgstr "Form #%d"
+msgstr "Form # %d"
 
 msgid "SMS sent"
 msgstr "SMS gönderildi"
@@ -1165,3 +1165,385 @@ msgstr "İzinler"
 
 msgid "People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI."
 msgstr "Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden."
+
+msgid "Sees contacts, segments and the CRM overview"
+msgstr "Kişileri, segmentleri ve CRM genel bakışını görür"
+
+msgid "Edits contacts, segments, journeys and CRM settings"
+msgstr "Kişileri, segmentleri, yolculukları ve CRM ayarlarını düzenler"
+
+msgid "Events"
+msgstr "Etkinlikler"
+
+msgid "Journeys"
+msgstr "Yolculuklar"
+
+msgid "Delete the selected contacts?"
+msgstr "Seçili kişiler silinsin mi?"
+
+msgid "Type the contact's name exactly to delete it."
+msgstr "Silmek için kişinin adını aynen yazın."
+
+msgid "Back to %s"
+msgstr "%s sayfasına dön"
+
+msgid "The send was cancelled."
+msgstr "Gönderim iptal edildi."
+
+msgid "The send is paused."
+msgstr "Gönderim duraklatıldı."
+
+msgid "The send continues."
+msgstr "Gönderim devam ediyor."
+
+msgid "%s messages queued in Flux Mail."
+msgstr "%s mesaj Flux Mail kuyruğuna eklendi."
+
+msgid "More actions"
+msgstr "Diğer işlemler"
+
+msgid "Delete permanently"
+msgstr "Kalıcı olarak sil"
+
+msgid "This timeline entry will be deleted."
+msgstr "Bu zaman tüneli kaydı silinecek."
+
+msgid "Delete entry"
+msgstr "Kaydı sil"
+
+msgid "allowed"
+msgstr "izin var"
+
+msgid "not allowed"
+msgstr "izin yok"
+
+msgid "List journeys"
+msgstr "Yolculukları listele"
+
+msgid "Save journey draft"
+msgstr "Yolculuk taslağını kaydet"
+
+msgid "Turn journey on or pause it"
+msgstr "Yolculuğu aç ya da duraklat"
+
+msgid "Delete journey"
+msgstr "Yolculuğu sil"
+
+msgid "This contact still has records in: %s. Merge it into another contact instead of deleting it."
+msgstr "Bu kişinin şurada hâlâ kaydı var: %s. Silmek yerine başka bir kişiyle birleştirin."
+
+msgid "CRM event: %1$s (%2$s)"
+msgstr "CRM etkinliği: %1$s (%2$s)"
+
+msgid "Event name"
+msgstr "Etkinlik adı"
+
+msgid "Event date"
+msgstr "Etkinlik tarihi"
+
+msgid "Event time"
+msgstr "Etkinlik saati"
+
+msgid "Event place"
+msgstr "Etkinlik yeri"
+
+msgid "Event page"
+msgstr "Etkinlik sayfası"
+
+msgid "First name"
+msgstr "Ad"
+
+msgid "Event not found."
+msgstr "Etkinlik bulunamadı."
+
+msgid "Flux Mail is not active; messages are sent through it."
+msgstr "Flux Mail etkin değil; mesajlar onun üzerinden gider."
+
+msgid "Pick at least one channel."
+msgstr "En az bir kanal seçin."
+
+msgid "Write the message."
+msgstr "Mesajı yazın."
+
+msgid "Personal values (%s) need a newer Flux Mail that keeps a value for each recipient. Update Flux Mail or take them out of the text."
+msgstr "Kişiye özel değerler (%s) her alıcıya ayrı değer taşıyan yeni bir Flux Mail ister. Flux Mail'i güncelleyin ya da bunları metinden çıkarın."
+
+msgid "No active connection for this channel in Flux Mail."
+msgstr "Flux Mail'de bu kanal için etkin bağlantı yok."
+
+msgid "No one to send to on this channel."
+msgstr "Bu kanalda gönderilecek kimse yok."
+
+msgid "%1$s · event message (%2$s)"
+msgstr "%1$s · etkinlik mesajı (%2$s)"
+
+msgid "Open the file"
+msgstr "Dosyayı aç"
+
+msgid "Journey message"
+msgstr "Yolculuk mesajı"
+
+msgid "Journey step skipped"
+msgstr "Yolculuk adımı atlandı"
+
+msgid "Enters a value group (RFM)"
+msgstr "Bir değer grubuna (RFM) girince"
+
+msgid "Gets a tag"
+msgstr "Etiket alınca"
+
+msgid "Gets a role"
+msgstr "Rol alınca"
+
+msgid "Something happens (timeline event)"
+msgstr "Bir şey olunca (zaman tüneli olayı)"
+
+msgid "Is added to the CRM"
+msgstr "CRM'e eklenince"
+
+msgid "Wait"
+msgstr "Bekle"
+
+msgid "Send e-mail"
+msgstr "E-posta gönder"
+
+msgid "Send WhatsApp"
+msgstr "WhatsApp gönder"
+
+msgid "Send SMS"
+msgstr "SMS gönder"
+
+msgid "Continue only if"
+msgstr "Yalnız şu durumda devam et"
+
+msgid "Value group is"
+msgstr "Değer grubu şu ise"
+
+msgid "Has tag"
+msgstr "Etiketi varsa"
+
+msgid "Does not have tag"
+msgstr "Etiketi yoksa"
+
+msgid "Has paid since the journey started"
+msgstr "Yolculuk başladığından beri ödeme yaptıysa"
+
+msgid "Has not paid since the journey started"
+msgstr "Yolculuk başladığından beri ödeme yapmadıysa"
+
+msgid "Draft"
+msgstr "Taslak"
+
+msgid "Paused"
+msgstr "Duraklatıldı"
+
+msgid "Give the journey a name."
+msgstr "Yolculuğa bir ad verin."
+
+msgid "Pick what starts the journey."
+msgstr "Yolculuğu neyin başlatacağını seçin."
+
+msgid "Pick the value group, tag, role or event that starts the journey."
+msgstr "Yolculuğu başlatan değer grubunu, etiketi, rolü ya da olayı seçin."
+
+msgid "Every e-mail step needs a subject and a text."
+msgstr "Her e-posta adımının konusu ve metni olmalı."
+
+msgid "Every message step needs a text."
+msgstr "Her mesaj adımının metni olmalı."
+
+msgid "Add at least one step that does something (message or tag)."
+msgstr "İş yapan en az bir adım ekleyin (mesaj ya da etiket)."
+
+msgid "Journey not found."
+msgstr "Yolculuk bulunamadı."
+
+msgid "Flux Mail is not active for this channel."
+msgstr "Bu kanal için Flux Mail etkin değil."
+
+msgid "No permission for this channel."
+msgstr "Bu kanal için izin yok."
+
+msgid "No e-mail address."
+msgstr "E-posta adresi yok."
+
+msgid "No phone number."
+msgstr "Telefon numarası yok."
+
+msgid "Not sent."
+msgstr "Gönderilmedi."
+
+msgid "%1$s · %2$s skipped: %3$s"
+msgstr "%1$s · %2$s atlandı: %3$s"
+
+msgid "%d step"
+msgid_plural "%d steps"
+msgstr[0] "%d adım"
+msgstr[1] "%d adım"
+
+msgid "goal: %s"
+msgstr "hedef: %s"
+
+msgid "Welcome new donors"
+msgstr "Yeni bağışçılara hoş geldin"
+
+msgid "Thank you, {first_name}"
+msgstr "Teşekkürler {first_name}"
+
+msgid "Dear {first_name},\n\nThank you for your first donation to {site}. Here is what your support makes possible…"
+msgstr "Sevgili {first_name},\n\n{site} için yaptığınız ilk bağış için teşekkür ederiz. Desteğinizin neleri mümkün kıldığını anlatmak istedik…"
+
+msgid "Hello {first_name}, a short update from {site} on the work your donation supported. Thank you for being with us."
+msgstr "Merhaba {first_name}, bağışınızın desteklediği çalışmalarla ilgili {site} olarak kısa bir haber vermek istedik. Yanımızda olduğunuz için teşekkürler."
+
+msgid "Win back donors at risk"
+msgstr "Uzaklaşan bağışçıları geri kazan"
+
+msgid "We miss you, {first_name}"
+msgstr "Sizi özledik {first_name}"
+
+msgid "Dear {first_name},\n\nIt has been a while. This is what we have been doing at {site} since your last donation…"
+msgstr "Sevgili {first_name},\n\nUzun zaman oldu. Son bağışınızdan bu yana {site} olarak yaptıklarımızı paylaşmak istedik…"
+
+msgid "Hello {first_name}, our new campaign at {site} has started. Would you like to support it again?"
+msgstr "Merhaba {first_name}, {site} olarak yeni kampanyamız başladı. Yeniden destek olmak ister misiniz?"
+
+msgid "Win-back: no answer"
+msgstr "Geri kazanım: yanıt yok"
+
+msgid "The entry could not be saved."
+msgstr "Giriş kurtarılamadı."
+
+msgid "The entry was not found."
+msgstr "Giriş bulunamadı."
+
+msgid "Only notes, calls and meetings you added can be deleted."
+msgstr "Sadece eklediğiniz notlar, aramalar ve toplantılar silinebilir."
+
+msgid "Unknown action."
+msgstr "Bilinmeyen işlem."
+
+msgid "Select at least one contact."
+msgstr "En az bir kişi seçin."
+
+msgid "Too many contacts selected."
+msgstr "Çok fazla kişi seçildi."
+
+msgid "Give a tag name."
+msgstr "Bir etiket adı ver."
+
+msgid "Pick a role."
+msgstr "Bir rol seç."
+
+msgid "Pick the card to keep and at least one other card."
+msgstr "Kalacak kartı ve en az bir başka kartı seçin."
+
+msgid "e.g. National Forestation Day"
+msgstr "ör. 11 Kasım Milli Ağaçlandırma Günü"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Time"
+msgstr "Saat"
+
+msgid "Short description (on the site card and at the top of the page)"
+msgstr "Kısa açıklama (sitede kartta ve sayfa başında görünür)"
+
+msgid "Image"
+msgstr "Görsel"
+
+msgid "Place"
+msgstr "Yer adı"
+
+msgid "Location announced on"
+msgstr "Konum açıklanma tarihi"
+
+msgid "Address / directions"
+msgstr "Adres / tarif"
+
+msgid "Map link or coordinates"
+msgstr "Harita linki ya da koordinat"
+
+msgid "Google Maps link or 41.1612, 28.9271"
+msgstr "Google Maps linki ya da 41.1612, 28.9271"
+
+msgid "Page on the site"
+msgstr "Sitedeki sayfa"
+
+msgid "Internal note (not shown on the site)"
+msgstr "İç not (sitede görünmez)"
+
+msgid "Empty: 10 days before the event."
+msgstr "Boşsa etkinlikten 10 gün önce."
+
+msgid "Event"
+msgstr "Etkinlik"
+
+msgid "Location"
+msgstr "Konum"
+
+msgid "Internal note"
+msgstr "İç not"
+
+msgid "The event could not be saved."
+msgstr "Olay kurtarılamadı."
+
+msgid "The event name cannot be empty."
+msgstr "Etkinlik adı boş olamaz."
+
+msgid "The page could not be created: the theme has no event post type."
+msgstr "Sayfa oluşturulamadı: temada etkinlik yazı türü yok."
+
+msgid "Install and turn on Flux Mail to send e-mail, WhatsApp and SMS to the people of this event."
+msgstr "Bu etkinliğin kişilerine e-posta, WhatsApp ve SMS göndermek için Flux Mail'i kurup etkinleştirin."
+
+msgid "Sending"
+msgstr "Gönderiliyor"
+
+msgid "Planned"
+msgstr "Planlandı"
+
+msgid "Waiting for reports"
+msgstr "Raporlar bekleniyor"
+
+msgid "Check"
+msgstr "Kontrol edin"
+
+msgid "Sent"
+msgstr "Gönderildi"
+
+msgid "not found"
+msgstr "bulunamadı"
+
+msgid "No date"
+msgstr "Tarih yok"
+
+msgid "Today"
+msgstr "Bugün"
+
+msgid "In %s day"
+msgid_plural "In %s days"
+msgstr[0] "%s gün kaldı"
+msgstr[1] "%s gün kaldı"
+
+msgid "Over, still open"
+msgstr "Geçti, hâlâ açık"
+
+msgid "Site name"
+msgstr "Site adı"
+
+msgid "Organisation phone"
+msgstr "Kurum telefonu"
+
+msgid "(no name)"
+msgstr "(adsız)"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "Yüklenen dosya bulunamadı. Yeniden yükleyin."
+
+msgid "Unknown template."
+msgstr "Bilinmeyen şablon."
+
+msgid "Unknown source."
+msgstr "Bilinmeyen kaynak."

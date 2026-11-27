@@ -317,7 +317,7 @@ msgid "Plain (?p=) links are in use; choose the \"Post name\" structure for lang
 msgstr "Es werden einfache (?p=) Links verwendet. Wählen Sie für Sprachadressen die Struktur „Beitragsname“."
 
 msgid "Name (%s)"
-msgstr "Name (%s)"
+msgstr "Name ( %s )"
 
 msgid "Description (%s)"
 msgstr "Beschreibung (%s)"
@@ -327,3 +327,45 @@ msgstr "Wenn es leer bleibt, werden der türkische Name und die Beschreibung ang
 
 msgid "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
 msgstr "Macht die Website mehrsprachig: Sprachadressen wie /en/, Übersetzung pro Seite, Beitrag, Projekt und Veranstaltung, sprachspezifische visuelle Darstellung, Hreflang und kanonisch, Englischempfehlung für diejenigen, die von außerhalb der Türkei kommen, Sprachauswahl; Sprachunterstützung für Flux AI & MCP und Flux AI-Tools."
+
+msgid "JavaScript is required for this screen."
+msgstr "Für diesen Bildschirm ist JavaScript erforderlich."
+
+msgid "A language code has 2–3 letters and, optionally, a region such as pt-br."
+msgstr "Ein Sprachcode hat 2–3 Buchstaben und optional eine Region wie pt-br."
+
+msgid "A language can be listed only once."
+msgstr "Eine Sprache kann nur einmal gelistet werden."
+
+msgid "A WordPress locale has letters, digits and an underscore, e.g. en_US."
+msgstr "Ein WordPress Locale hat Buchstaben, Ziffern und einen Unterstrich, z.B. en_US."
+
+msgid "This language is not in the catalog."
+msgstr "Diese Sprache ist nicht im Katalog."
+
+msgid "The default language must be one of the listed languages and cannot be removed."
+msgstr "Die Standardsprache muss eine der aufgeführten Sprachen sein und kann nicht entfernt werden."
+
+msgid "Unknown suggestion mode."
+msgstr "Unbekannter Vorschlagsmodus."
+
+msgid "The suggested language must be one of the listed languages."
+msgstr "Die vorgeschlagene Sprache muss eine der aufgeführten Sprachen sein."
+
+msgid "Unknown switcher style."
+msgstr "Unbekannter Schalterstil."
+
+msgid "Unknown switcher position."
+msgstr "Unbekannte Schaltstellung."
+
+msgid "Use two-letter country codes (TR, CY…)."
+msgstr "Verwenden Sie zweibuchstaben Ländercodes (TR, CY...)."
+
+msgid "This content type does not exist."
+msgstr "Dieser Inhaltstyp existiert nicht."
+
+msgid "Unknown site text."
+msgstr "Unbekannter Seitentext."
+
+msgid "Site texts belong to a language other than the default one."
+msgstr "Site-Texte gehören zu einer anderen Sprache als der Standard."

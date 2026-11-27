@@ -40,6 +40,11 @@
     "tryDemo": "Experimente a demonstração",
     "footer": "{{name}} · conexão segura, sua senha nunca é armazenada no aplicativo"
   },
+  "screenLoadError": {
+    "title": "Não foi possível carregar esta tela",
+    "body": "Se o plugin foi apenas atualizado, o cache do navegador ou site ainda pode segurar arquivos antigos. Recarregar a página (Ctrl/Cmd + Shift + R); se persistir, purgar o cache do site.",
+    "reload": "Recarregar página"
+  },
   "errors": {
     "invalid_url": "Este endereço não é válido.",
     "unreachable": "Não foi possível acessar o site. Verifique o endereço e sua conexão.",

@@ -528,3 +528,36 @@ msgstr "閉じる"
 
 msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
 msgstr "/wiki の下のサイト上の開発者 wiki: マークダウン ページ、セクション、ページ ツリーと目次、詳細なインスタント検索、SEO に優しい出力。 LLM フレンドリー: 各ページを開いて .md、/wiki/llms.txt、llms-full.txt としてコピーし、ChatGPT / Claude で開きます。 Flux AI を使用した「Ask the Wiki」および MCP ツール (検索、読み取り、リスト、書き込み)。プラグインとテーマを作成し、プラグインを AI 搭載にするためのガイドが付属しています。"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript この画面には必須です。"
+
+msgid "You cannot edit this page."
+msgstr "このページは編集できません。"
+
+msgid "The parent page was not found."
+msgstr "親ページが見つかりません。"
+
+msgid "A page cannot be placed under itself."
+msgstr "ページ自体の下に配置することはできません。"
+
+msgid "This status is not available."
+msgstr "このステータスは利用できません。"
+
+msgid "You cannot delete this page."
+msgstr "このページは削除できません。"
+
+msgid "The page could not be deleted."
+msgstr "ページは削除できませんでした。"
+
+msgid "You cannot manage sections."
+msgstr "セクションは管理できません。"
+
+msgid "A section name is required."
+msgstr "セクション名が必要です。"
+
+msgid "Section not found."
+msgstr "セクションが見つからない。"
+
+msgid "The section could not be deleted."
+msgstr "セクションを削除できませんでした。"

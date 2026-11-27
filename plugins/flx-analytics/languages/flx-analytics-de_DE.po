@@ -278,7 +278,7 @@ msgid "Tablet"
 msgstr "Tablette"
 
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Desktop-PC"
 
 msgid "Other"
 msgstr "Andere"
@@ -545,7 +545,7 @@ msgid "Device"
 msgstr "Gerät"
 
 msgid "Browser"
-msgstr "Browser"
+msgstr "Browser-Software"
 
 msgid "Operating system"
 msgstr "Betriebssystem"
@@ -1473,3 +1473,9 @@ msgstr "Gerade jetzt"
 
 msgid "Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools."
 msgstr "Cookie-freie, keine personenbezogenen Daten enthaltende Website-Statistiken: Besucher, Aufrufe, meistgelesene Seiten, verweisende Websites, Kanal, Gerät/Browser, Kampagne (UTM), Klickereignisse und Spendenkonvertierungen. Die Daten verbleiben auf der Website; Liest mit künstlicher Intelligenz Flux AI / Flux AI & MCP-Tools."
+
+msgid "View statistics"
+msgstr "Statistik ansehen"
+
+msgid "Logged-in people"
+msgstr "Eingeloggte Personen"

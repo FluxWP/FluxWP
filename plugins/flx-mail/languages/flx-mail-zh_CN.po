@@ -1271,7 +1271,7 @@ msgid "Each row shows something the site needs and whether it is in place. Fix e
 msgstr "每一行都显示站点需要的内容以及它是否到位。首先修复错误;还要查看警告。"
 
 msgid "OK"
-msgstr "好的"
+msgstr "确定"
 
 msgid "Warning"
 msgstr "警告"
@@ -2200,7 +2200,7 @@ msgid "Table prefix"
 msgstr "表前缀"
 
 msgid "The password is only sent to the bridge; it isn't stored in WordPress."
-msgstr "The password is only sent to the bridge; it isn't stored in WordPress."
+msgstr "密码只发送给桥梁;密码储存在桥梁内 WordPress."
 
 msgid "Changing the store closes the numbers' connections and they need a new QR scan. Continue?"
 msgstr "更改商店会关闭号码的连接,他们需要重新扫描二维码。继续?"
@@ -2224,7 +2224,7 @@ msgid "This Flux WPAPI version doesn't support changing server settings from Wor
 msgstr "此 Flux WPAPI 版本不支持从 WordPress 更改服务器设置。更新桥梁。"
 
 msgid "WhatsApp · Flux WPAPI"
-msgstr "WhatsApp · Flux WPAPI"
+msgstr "WhatsApp 妇女促进会联合会"
 
 msgid "The Flux WPAPI bridge installed as a Node.js app on Hostinger. The address is e.g. https://wa.example.com; the API key is the bridge panel's general API key; the instance is the name you give this number (created on \"Connect\" if it does not exist)."
 msgstr "Flux WPAPI 桥作为 Node.js 应用程序安装在 Hostinger 上。地址是例如 https://wa.example.com; API 密钥是桥接面板的通用 API 密钥;该实例是您为该编号指定的名称(如果不存在,则在“连接”时创建)。"
@@ -2326,7 +2326,7 @@ msgid "Permanent access token (System User token)"
 msgstr "永久访问令牌(系统用户令牌)"
 
 msgid "App Secret"
-msgstr "App Secret"
+msgstr "AApp 机密"
 
 msgid "Graph API version"
 msgstr "图API版本"
@@ -2649,6 +2649,376 @@ msgstr "已拒绝（未填写 App Secret）"
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr "验证传入的 webhook 来自 Meta。在填写之前，传入事件会被拒绝。"
 
-#: includes/helpers.php
+msgid "Manages communication"
+msgstr "服务通信"
+
+msgid "Write the message to see how it will look."
+msgstr "撰写信息,看看看它如何看待。"
+
+msgid "Ayşe Yılmaz"
+msgstr "简·史密斯"
+
+msgid "Variables are shown filled in for %s; the length changes with each name."
+msgstr "可变数 %s;每名字的长度变化。"
+
+msgid "Text message"
+msgstr "文本电文"
+
+msgid "%1$s / %2$s characters · %3$s SMS"
+msgstr "%1$s / %2$s 特征 %3$s SMS"
+
+msgid "This message is sent and billed as %1$s SMS. Keep it under %2$s characters for a single SMS."
+msgstr "发送和提出这一信息 %1$s SMS. 保持现状 %2$s 单一性质 SMS."
+
+msgid "Longer than 6 SMS: Netgsm rejects messages over its maximum length (code 20). Shorten the text."
+msgstr "长度大于6 SMS:Netgsm 拒绝最长期限(第20条)的电文。"
+
+msgid "%1$s recipients × %2$s SMS = %3$s SMS credits."
+msgstr "%1$s 接受者:%2$s SMS = %3$s SMS 笔贷款。"
+
+msgid "Not supported in SMS and may arrive as \"?\" or be dropped: %s"
+msgstr "未获得支助 SMS 并可作为 dropped? 或 dropped投: %s"
+
+msgid "Turkish characters are on: one SMS holds 155 characters, longer messages 146 per part. ç ğ ı ş Ğ İ Ş count as two characters."
+msgstr "土耳其特征如下: SMS messages  messages  messages  count  count  count  count  count"
+
+msgid "Turkish characters are off: ş, ğ, ı, ç, ö, ü are sent as s, g, i, c, o, u. One SMS holds 160 characters, longer messages 153 per part."
+msgstr "土耳其的特性是:ş、ğ、ç、ç、ç、ö、ü、ü、ü被送成 s、 g、 o、 o、 messages、u、u、u、 holds、 holds、 holds、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages、 messages等。"
+
+msgid "Sent as an informational message (no İYS check). For promotional content turn on the İYS filter in the Netgsm connection."
+msgstr "作为信息信息(无 informationYS检查),在Netgsm连接的YYS过.器上转载宣传内容。"
+
+msgid "Commercial message: Netgsm does not deliver to numbers without İYS consent."
+msgstr "商业信息:未经YS同意,Netgsm不会发送到数字。"
+
+msgid "%1$s / %2$s characters"
+msgstr "%1$s / %2$s"
+
+msgid "WhatsApp accepts at most 4,096 characters in one message. Shorten the text."
+msgstr "WhatsApp 接受一封信中最多4 096个字,缩短案文。"
+
+msgid "WhatsApp Cloud API: free text only reaches people who wrote to you in the last 24 hours. Others need an approved template."
+msgstr "WhatsApp Cloud API :自由文本只送达过去24小时写给你的人,而其他人则需要一个经核准的模板。"
+
+msgid "This WhatsApp account is not connected right now. Connect it under Connections before sending."
+msgstr "This WhatsApp 账户现在没有连结权利,在发送前根据指令加以连接。"
+
+msgid "Bulk messages to people who have not saved your number can get the number restricted by WhatsApp. Send to people who expect your message and keep a delay between messages."
+msgstr "向那些没有节省你人数的人发出布尔克信息,可以使数字受到限制 WhatsApp向希望你发出信息、在信息之间保持拖延的人致敬。"
+
+msgid "*bold*, _italic_, ~strikethrough~ and ```monospace``` are shown formatted. Links become clickable."
+msgstr "*bold*, _italic_, tristrikethrough and and ```monospace``` 链接可以划出格式。"
+
+msgid "Replied \"%s\""
+msgstr "Rep %s\""
+
+msgid "AI assistant"
+msgstr "人工智能助手"
+
+msgid "Added by %s"
+msgstr "加 %s"
+
+msgid "Added by staff"
+msgstr "工作人员增加"
+
+msgid "People who asked not to be messaged. <strong>Blocked</strong>: nothing is sent on any channel. <strong>No promotions</strong>: they replied STOP, so only promotional messages stop on that channel; information messages and chats they start still go through."
+msgstr "People who asked not to be messaged. <strong>Blocked</strong>:任何渠道均未发送任何信息。 <strong>无晋升</strong>:他们回答了STOP,因此,只有通过这一渠道发出宣传信息;他们开始的信息和混乱仍然在不断。"
+
+msgid "Phone, email or reason"
+msgstr "电话、电子邮件或理由"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "All types"
+msgstr "所有类型"
+
+msgid "Blocked"
+msgstr "被阻止"
+
+msgid "No promotions"
+msgstr "无晋升"
+
+msgid "%s people"
+msgstr "%s 人民"
+
+msgid "Add to the blocklist"
+msgstr "列入冻结名单"
+
+msgid "No promotions · WhatsApp"
+msgstr "没有晋升; WhatsApp"
+
+msgid "No promotions · SMS"
+msgstr "没有晋升; SMS"
+
+msgid "Blocked · all channels"
+msgstr "所有渠道都被封锁"
+
+msgid "Reason (optional)"
+msgstr "理由(合理)"
+
+msgid "e.g. Asked on the phone"
+msgstr "例如,电话询问"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Person"
+msgstr "人"
+
+msgid "When and how"
+msgstr "时间和方式"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "No matching entries."
+msgstr "没有匹配条目。"
+
+msgid "Nobody is on the blocklist."
+msgstr "没有人被列入冻结名单。"
+
+msgid "Open chat"
+msgstr "打开聊天"
+
+msgid "Contact card"
+msgstr "联系卡"
+
+msgid "Reason"
+msgstr "原因"
+
+msgid "They wrote"
+msgstr "他们写信"
+
+msgid "After"
+msgstr "之后"
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "Messages will be sent to this person again on all channels. Remove only if they asked for it."
+msgstr "信息将再次通过各种渠道发送给此人,只有在他们要求时才予以删除。"
+
+msgid "Promotional messages will be sent to this person again. Remove only if they asked for it."
+msgstr "将再次向此人发送宣传信息,只有在他们提出要求时才予以删除。"
+
+msgid "Full blocks are kept by Flux Chat. Install it to block people on all channels from here and from chats."
+msgstr "全块地由Flux Chat. st住,从这里和从混乱中封锁人们。"
+
+msgid "STOP keywords and replies"
+msgstr "STOP 关键词和答复"
+
+msgid "Enter a valid phone number."
+msgstr "请输入有效的电话号码。"
+
+msgid "Blocked. Nothing will be sent to this person on any channel."
+msgstr "锁定:任何渠道都不得将任何人送至此人。"
+
+msgid "Added to the opt-out list."
+msgstr "列入选拔名单。"
+
+msgid "Removed from the blocklist. Messages will be sent to this person again."
+msgstr "从封条名单中删除,将再次向此人发送信件。"
+
+msgid "Pause"
+msgstr "暂停"
+
+msgid "Estimated finish:"
+msgstr "估计成份:"
+
+msgid "Resume"
+msgstr "简历"
+
+msgid "Site time now:"
+msgstr "现时:"
+
+msgid "Variation: {Hello|Hi|Good day} picks one at random for each person, so the same text does not go out hundreds of times."
+msgstr "变式:{哈罗 ?? 喜日}随便挑一个人,所以同一种文字不会发出数百次。"
+
+msgid "Image, video or file (optional)"
+msgstr "图像、视频或文档(格式)"
+
+msgid "Choose from media"
+msgstr "从媒体中选择"
+
+msgid "An image or video goes with the message as its caption; a PDF goes as a separate file after the message."
+msgstr "图像或录像带上信息,即信息封存;PDF在信息发出后作为单独档案。"
+
+msgid "Promotional message (not sent to people who replied STOP; the opt-out line is added at the bottom)"
+msgstr "宣传信息(未发送给答复STOP的人;选拔线在底部增加)"
+
+msgid "Turn off only for information messages people expect, such as event details or a receipt."
+msgstr "仅为人们所期望的信息传递信息,例如活动细节或收据。"
+
+msgid "Paused"
+msgstr "已暂停"
+
+msgid "%1$s · continues at %2$s"
+msgstr "%1$s 持续时间 %2$s"
+
+msgid "Estimated finish: %1$s (%2$s)"
+msgstr "估计完成:%1$s(%2$s)"
+
+msgid "Sending paused. Press Resume to continue where it stopped."
+msgstr "发送暂停。 继续按下已停止的恢复 。"
+
+msgid "Sending resumed."
+msgstr "延期。"
+
+msgid "%s reached"
+msgstr "%s"
+
+msgid "%s read"
+msgstr "%s 改为:"
+
+msgid "%s replied"
+msgstr "%s 答复"
+
+msgid "%s opted out"
+msgstr "%s 选择退出"
+
+msgid "All people, who allowed this channel (%s)"
+msgstr "允许这一渠道的所有人(%s )"
+
+msgid "Opted out of promotional messages (replied STOP): not sent"
+msgstr "选用的宣传信息( 重新停止): 未发送"
+
 msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
 msgstr "WhatsApp Cloud API 无法向群组发送消息。请为群组消息选择 Evolution API 或 Flux WPAPI 连接。"
+
+msgid "If you don't want messages like this, reply STOP."
+msgstr "如果你不想这样的话,请回答STOP。"
+
+msgid "Done, you won't get promotional messages from us anymore. You can still write to us any time. To get them again, reply START."
+msgstr ".,쓣.듓컒쏇퓙듎뗃떽듙뷸뗄탅쾢ꆣ쓣뮹뿉틔 write죎뫎쪱뫲쿲컒쏇랢탅ꆣ캪쇋쪹쯻쏇퓙듎믘 START, START믘ꆶ裁武条约ꆷꆣ"
+
+msgid "Welcome back, you will get our messages again."
+msgstr "回想,你将再次发出我们的信息。"
+
+msgid "Removed from the opt-out list. Promotional messages will be sent to this person again."
+msgstr "删除选择退出名单,将再次向此人发送宣传信息。"
+
+msgid "Typed list"
+msgstr "型号"
+
+msgid "%s has no email address"
+msgid_plural "%s have no email address"
+msgstr[0] "%s 无电子邮件地址"
+
+msgid "%s has no valid phone number"
+msgid_plural "%s have no valid phone number"
+msgstr[0] "%s 无有效电话号码"
+
+msgid "email"
+msgstr "email"
+
+msgid "%1$s has not given %2$s permission"
+msgid_plural "%1$s have not given %2$s permission"
+msgstr[0] "%1$s 尚未提交 %2$s 许可"
+
+msgid "%s is already on the list"
+msgid_plural "%s are already on the list"
+msgstr[0] "%s 已在清单上列出"
+
+msgid "this list is empty"
+msgstr "此列表为空"
+
+msgid "%1$s: %2$s of %3$s added (%4$s)."
+msgstr "%1$s: %2$s of %3$s 加(a)%4$s)."
+
+msgid "%s person unsubscribed earlier and was left out."
+msgid_plural "%s people unsubscribed earlier and were left out."
+msgstr[0] "%s 以前没有受崇拜,而被弃绝的人。"
+
+msgid "This password is defined in wp-config.php and cannot be changed here."
+msgstr "这一密码在混凝土conf中界定,在这里不能改变。"
+
+msgid "File upload is not available."
+msgstr "无法装卸。"
+
+msgid "Choose an email."
+msgstr "选择电子邮件。"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Ban protection (bulk sends)"
+msgstr "禁止保护( 封套发送)"
+
+msgid "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
+msgstr "WhatsApp 限制迅速发送许多类似信息的数量,这些限制仅适用于从查询中发送的大宗信息;在cha和单项信息中的答复不被拖延。"
+
+msgid "Minimum wait between messages (sec)"
+msgstr "信息之间的最低限度等候(请)"
+
+msgid "Maximum wait between messages (sec)"
+msgstr "信息之间最大程度的等候(ec)"
+
+msgid "Each wait is a random time between the minimum and the maximum, so the sending does not look like a machine."
+msgstr "每次等待是最短和最长时间的随机时间,因此,发货人不像一个机器。"
+
+msgid "Take a break every … messages"
+msgstr "打破........................"
+
+msgid "0 = no break."
+msgstr "0 = 无间歇。"
+
+msgid "Break length (min)"
+msgstr "过长(分钟)"
+
+msgid "Bulk messages per hour (at most)"
+msgstr "每小时(大多数)"
+
+msgid "0 = no limit."
+msgstr "0=无限额。"
+
+msgid "Bulk messages per day (at most)"
+msgstr "每日 messages告(大多数)"
+
+msgid "Counted over the last 24 hours. The rest of the list waits and continues by itself. 0 = no limit."
+msgstr "过去24小时内 Co,其余的名单等待,继续保留。 0=无限。"
+
+msgid "Warm up a new number (daily limit starts at 20 and grows by 20 every day)"
+msgstr "升新数字(每日平均限制从20岁开始,增长到20岁)"
+
+msgid "Quiet hours: from"
+msgstr "法定时数:"
+
+msgid "Quiet hours: until"
+msgstr "法定时数:"
+
+msgid "Bulk messages are not sent in these hours (site time zone); the queue continues in the morning."
+msgstr "这些时数(现场时区)没有发送过ul电讯; que时继续 que。"
+
+msgid "Skip numbers that do not have WhatsApp (checked before sending)"
+msgstr "尚未得到的小数量 WhatsApp (发送前核对)"
+
+msgid "Pause bulk sending for 30 minutes after … failures in a row"
+msgstr "连续连续30分钟后暂停散装散装发送"
+
+msgid "Many failures in a row usually mean the number was disconnected or restricted. 0 = never pause."
+msgstr "行内的许多故障通常意味着数字不相连或受到限制。 0 = 从未停用。"
+
+msgid "Show \"typing…\" for a time that fits the message length"
+msgstr "显示“ typeping...” , 以匹配信件长度的时间"
+
+msgid "Paused after failures in a row"
+msgstr "在row子里失败后被 Pa住"
+
+msgid "Quiet hours"
+msgstr "法定时数"
+
+msgid "Waiting between messages"
+msgstr "信息之间的距离"
+
+msgid "Hourly limit reached"
+msgstr "达到小时限时"
+
+msgid "Daily limit reached"
+msgstr "每日津贴"
+
+msgid "Bulk WhatsApp paused: %s"
+msgstr "Bulk WhatsApp 暂停: %s"
+
+msgid "Several messages in a row failed, so bulk sending was paused for 30 minutes. Check that the number is connected; the queue continues by itself."
+msgstr "row中的一些信息没有成功,因此散装的发送时间为30分钟,检查数字是否相连;问题本身继续存在。"

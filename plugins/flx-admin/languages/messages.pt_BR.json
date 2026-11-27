@@ -120,7 +120,7 @@
     "Good night": "Boa noite",
     "Summary": "Resumo",
     "l, F j, Y": "eu, F j, Y",
-    "%1$s, %2$s": "%1$s, %2$s",
+    "%1$s, %2$s": "%1$s , %2$s",
     "Edit modules": "Editar módulos",
     "Add the dashboard to your home screen": "Adicione o painel à sua tela inicial",
     "Opens full screen like an app and shows unread counts on its badge.": "Abre em tela inteira como um aplicativo e mostra contagens não lidas em seu selo.",
@@ -399,6 +399,23 @@
     "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.\u0000%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.",
     "Select date": "Selecionar data",
     "Previous month": "Mês anterior",
-    "Next month": "Próximo mês"
+    "Next month": "Próximo mês",
+    "Learn more": "Saiba mais",
+    "Dismiss": "Dispensar",
+    "or": "ou",
+    "This role does not exist.": "Este papel não existe.",
+    "This permission is not in the table.": "Esta permissão não está na mesa.",
+    "There is no backup to restore.": "Não há backup para restaurar.",
+    "A layout needs at least one menu item.": "Um layout precisa de pelo menos um item de menu.",
+    "Choose a menu item.": "Escolha um item de menu.",
+    "Unknown menu action.": "Ação de menu desconhecida.",
+    "Unread WhatsApp": "Sem fios WhatsApp",
+    "The logo must be an image from the media library.": "O logotipo deve ser uma imagem da biblioteca de mídia.",
+    "Choose 30, 60 or 120 seconds.": "Escolha 30, 60 ou 120 segundos.",
+    "Enter a color like #1F2937.": "Digite uma cor como #1F2937.",
+    "The uploaded file was not found. Upload it again.": "O arquivo carregado não foi encontrado.",
+    "The file could not be saved on the server.": "O arquivo não poderia ser salvo no servidor.",
+    "Choose auto, light or dark.": "Escolha auto, luz ou escuro.",
+    "You do not have permission to do this.": "Você não tem permissão para fazer isso."
   }
 }

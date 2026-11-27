@@ -95,7 +95,7 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid "reCAPTCHA"
-msgstr "reCAPTCHA"
+msgstr "ANHANG"
 
 msgid "Save"
 msgstr "Speichern"
@@ -209,7 +209,7 @@ msgid "Width"
 msgstr "Breite"
 
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Desktop-PC"
 
 msgid "Mobile"
 msgstr "Mobil"
@@ -347,7 +347,7 @@ msgid "Red"
 msgstr "Rot"
 
 msgid "Clear"
-msgstr "Klar"
+msgstr "Leeren"
 
 msgid "Search"
 msgstr "Suchen"
@@ -377,7 +377,7 @@ msgid "Heading"
 msgstr "Überschrift"
 
 msgid "Link"
-msgstr "Link"
+msgstr "Link zur Seite"
 
 msgid "Price"
 msgstr "Preis"
@@ -494,7 +494,7 @@ msgid "Stop"
 msgstr "Stopp"
 
 msgid "Pause"
-msgstr "Pause"
+msgstr "Pausieren"
 
 msgid "Resume"
 msgstr "Lebenslauf"
@@ -620,13 +620,13 @@ msgid "Properties"
 msgstr "Eigenschaften"
 
 msgid "Apply"
-msgstr "Bewerben"
+msgstr "Anwenden"
 
 msgid "Logo"
-msgstr "Logo"
+msgstr "Logo und Logo"
 
 msgid "Website"
-msgstr "Website"
+msgstr "Webseite"
 
 msgid "Bold"
 msgstr "Fett"
@@ -647,7 +647,7 @@ msgid "Payments"
 msgstr "Zahlungen"
 
 msgid "Plugin"
-msgstr "Plugin"
+msgstr "Plugins"
 
 msgid "Version"
 msgstr "Version"
@@ -704,7 +704,7 @@ msgid "Site"
 msgstr "Website"
 
 msgid "WordPress"
-msgstr "WordPress"
+msgstr "ANHANG"
 
 msgid "Reason"
 msgstr "Grund"
@@ -752,7 +752,7 @@ msgid "Secret key"
 msgstr "Geheimer Schlüssel"
 
 msgid "Dashboard"
-msgstr "Armaturenbrett"
+msgstr "Übersicht"
 
 msgid "7 days"
 msgstr "7 Tage"
@@ -947,7 +947,7 @@ msgid "Clear log"
 msgstr "Protokoll löschen"
 
 msgid "Time"
-msgstr "Zeit"
+msgstr "Uhrzeit"
 
 msgid "Steps"
 msgstr "Schritte"
@@ -1634,7 +1634,7 @@ msgid "Help"
 msgstr "Hilfe"
 
 msgid "Maps"
-msgstr "Maps"
+msgstr "Karten"
 
 msgid "Find video tutorials in the adjacent box and click the document button for tutorials and articles."
 msgstr "Suchen Sie nach Video-Tutorials im Feld nebenan und klicken Sie auf die Schaltfläche „Dokument“, um Tutorials und Artikel anzuzeigen."
@@ -1706,7 +1706,7 @@ msgid "Copy Shortcode"
 msgstr "Shortcode kopieren"
 
 msgid "ShortCode"
-msgstr "ShortCode"
+msgstr "Kurzer Code"
 
 msgid "Copy Confirmation Code"
 msgstr "Bestätigungscode kopieren"
@@ -1778,10 +1778,10 @@ msgid "Private form"
 msgstr "Privates Formular"
 
 msgid "Label size"
-msgstr "Label size"
+msgstr "Etikettengröße"
 
 msgid "XLarge"
-msgstr "XLarge"
+msgstr "XLarsch"
 
 msgid "XXLarge"
 msgstr "XXLarge"
@@ -1844,7 +1844,7 @@ msgid "Switch %s"
 msgstr "Schalter %s"
 
 msgid "Handle"
-msgstr "Handle"
+msgstr "Griff"
 
 msgid "%s color"
 msgstr "%s Farbe"
@@ -1862,7 +1862,7 @@ msgid "Longitude"
 msgstr "Längengrad"
 
 msgid "e.g."
-msgstr "e.g."
+msgstr "z."
 
 msgid "(Avoid adding JavaScript or jQuery codes to HTML for security reasons.)"
 msgstr "(Vermeiden Sie aus Sicherheitsgründen das Hinzufügen von JavaScript- oder jQuery-Codes zu HTML.)"
@@ -1919,7 +1919,7 @@ msgid "Continue with Free Plus"
 msgstr "Weiter mit Free Plus"
 
 msgid "Pro"
-msgstr "Pro"
+msgstr "Produziert"
 
 msgid "For professionals who want the complete, clean experience."
 msgstr "Für Profis, die ein umfassendes, sauberes Erlebnis wünschen."
@@ -1970,7 +1970,7 @@ msgid "Keep Pro"
 msgstr "KeepPro"
 
 msgid "Keep Free Plus"
-msgstr "Keep Free Plus"
+msgstr "Kostenloses Plus"
 
 msgid "Switch to Free Plus"
 msgstr "Zu Free Plus wechseln‘, ‚en‘]]"
@@ -2279,7 +2279,7 @@ msgid "When a new message is received through an Flux Forms form, an alert email
 msgstr "Wenn eine neue Nachricht über ein Flux Forms-Formular eingeht, wird eine Warn-E-Mail an den Site-Administrator gesendet."
 
 msgid "reCAPTCHA v2"
-msgstr "reCAPTCHA v2"
+msgstr "991101"
 
 msgid "silentCAPTCHA Spam Protection"
 msgstr "silentCAPTCHA Spam-Schutz"
@@ -2321,7 +2321,7 @@ msgid "The file size exceeds the maximum allowed limit of NN MB"
 msgstr "Die Dateigröße überschreitet den maximal zulässigen Grenzwert von NN MB"
 
 msgid "Zip"
-msgstr "Zip"
+msgstr "ZUR VERBREITUNG"
 
 msgid "Alert!"
 msgstr "Alarm!"
@@ -2642,7 +2642,7 @@ msgid "Method payment"
 msgstr "Zahlungsmethode"
 
 msgid "product"
-msgstr "product"
+msgstr "Erzeugnis"
 
 msgid "value"
 msgstr "Wert"
@@ -2696,7 +2696,7 @@ msgid "Error Code"
 msgstr "Fehlercode"
 
 msgid "Public Key"
-msgstr "Public Key"
+msgstr "Öffentlicher Schlüssel"
 
 msgid "XSmall"
 msgstr "XKlein"
@@ -2792,10 +2792,10 @@ msgid "Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful feat
 msgstr "Führen Sie für nur %1$s%2$s %3$s/Jahr ein Upgrade auf Pro durch und erhalten Sie Zugriff auf leistungsstarke Funktionen, darunter erweiterte Formularfelder, Zahlungsintegrationen, bedingte Logik, mehrstufige Formulare, Datei-Uploads, Sicherheit und Spam-Schutz sowie Prioritätsunterstützung.%4$sPro-Funktionen anzeigen%5$s"
 
 msgid "Add-on"
-msgstr "Add-on"
+msgstr "Aufschlüsselung"
 
 msgid "Add-ons"
-msgstr "Add-ons"
+msgstr "Erweiterungen"
 
 msgid "Stripe Payment Add-on"
 msgstr "Stripe-Zahlungs-Add-on"
@@ -2825,7 +2825,7 @@ msgid "All formats"
 msgstr "Alle Formate"
 
 msgid "EFB SMS Add-on"
-msgstr "EFB SMS Add-on"
+msgstr "EFB SMS Aufschlüsselung"
 
 msgid "Enable SMS functionality in your forms with the EFB SMS add-on, allowing you to validate mobile numbers and send confirmation codes via SMS, as well as receive notifications through SMS service."
 msgstr "Aktivieren Sie die SMS-Funktionalität in Ihren Formularen mit dem EFB-SMS-Add-on, sodass Sie Mobiltelefonnummern validieren und Bestätigungscodes per SMS senden sowie Benachrichtigungen über den SMS-Dienst erhalten können."
@@ -2891,10 +2891,10 @@ msgid "Please enter a number that is less than or equal to NN"
 msgstr "Bitte geben Sie eine Zahl ein, die kleiner oder gleich NN ist"
 
 msgid "Max"
-msgstr "Max"
+msgstr "Max."
 
 msgid "Min"
-msgstr "Min"
+msgstr "Min."
 
 msgid "Minimum entry must be lower than the maximum entry"
 msgstr "Der Mindesteintrag muss niedriger sein als der Höchsteintrag"
@@ -2930,7 +2930,7 @@ msgid "NPS Table Matrix"
 msgstr "NPS-Tabellenmatrix"
 
 msgid "Jalali Date"
-msgstr "Jalali Date"
+msgstr "Jalali Datum"
 
 msgid "Hijri Date"
 msgstr "Hijri-Datum"
@@ -2960,19 +2960,19 @@ msgid "Display the IP addresses of users in the response box."
 msgstr "Zeigen Sie die IP-Adressen der Benutzer im Antwortfeld an."
 
 msgid "Persia Payment Add-on"
-msgstr "Persia Payment Add-on"
+msgstr "Persien-Zahlung Add-on"
 
 msgid "The Persia payment add-on for Flux Forms enables you to connect your website with Persia payment to process payments, donations, and online orders."
 msgstr "Mit dem Persia Payment-Add-on für Flux Forms können Sie Ihre Website mit Persia Payment verbinden, um Zahlungen, Spenden und Online-Bestellungen abzuwickeln."
 
 msgid "Jalali Date Add-on"
-msgstr "Jalali Date Add-on"
+msgstr "Jalali Datum hinzufügen"
 
 msgid "The Jalali Date add-on allows you to add a Jalali date field to your forms and create any type of form that includes this Shamsi date field."
 msgstr "Mit dem Jalali-Datums-Add-on können Sie Ihren Formularen ein Jalali-Datumsfeld hinzufügen und jede Art von Formular erstellen, das dieses Shamsi-Datumsfeld enthält."
 
 msgid "Hijri Date Add-on"
-msgstr "Hijri Date Add-on"
+msgstr "Hijri Datum hinzufügen"
 
 msgid "The Hijri Date add-on allows you to add a Hijri date field to your forms and create any type of form that includes this field."
 msgstr "Mit dem Hijri-Datums-Add-on können Sie Ihren Formularen ein Hijri-Datumsfeld hinzufügen und jede Art von Formular erstellen, das dieses Feld enthält."
@@ -3152,7 +3152,7 @@ msgid "Static"
 msgstr "Statisch"
 
 msgid "Webhook"
-msgstr "Webhook"
+msgstr "Web-Seite"
 
 msgid "Redirect"
 msgstr "Weiterleiten"
@@ -3446,7 +3446,7 @@ msgid "Max Duration (seconds)"
 msgstr "Maximale Dauer (Sekunden)"
 
 msgid "480p"
-msgstr "480p"
+msgstr "480 %"
 
 msgid "720p (HD)"
 msgstr "720p (HD)"
@@ -3836,7 +3836,7 @@ msgid "Your request was completed successfully. %1$s %2$s"
 msgstr "Ihre Anfrage wurde erfolgreich abgeschlossen.%1$s %2$s"
 
 msgid "PayPal"
-msgstr "PayPal"
+msgstr "Über uns"
 
 msgid "To use %1$s features in your forms, you need to get your %2$s keys."
 msgstr "Um %1$s-Funktionen in Ihren Formularen verwenden zu können, müssen Sie Ihre %2$s-Schlüssel erhalten."
@@ -4157,19 +4157,19 @@ msgid "Professional"
 msgstr "Professionell"
 
 msgid "Modern Dark"
-msgstr "Modern Dark"
+msgstr "Modernes Dunkel"
 
 msgid "Minimal Clean"
 msgstr "Minimal sauber"
 
 msgid "Elegant"
-msgstr "Elegant"
+msgstr "Elegantes Design"
 
 msgid "Colorful"
 msgstr "Bunt"
 
 msgid "Shortcodes"
-msgstr "Shortcodes"
+msgstr "Kurzcodes"
 
 msgid "Drag blocks here to build your email template"
 msgstr "Ziehen Sie Blöcke hierher, um Ihre E-Mail-Vorlage zu erstellen"
@@ -4805,7 +4805,7 @@ msgid "Select a Date"
 msgstr "Wählen Sie ein Datum"
 
 msgid "ex: example@mail.com"
-msgstr "ex: example@mail.com"
+msgstr "ex: ex.@mail.com"
 
 msgid "How can we help you?"
 msgstr "Wie können wir Ihnen helfen?"
@@ -4964,7 +4964,7 @@ msgid "Straightening and Perming"
 msgstr "Glättung und Dauerwelle"
 
 msgid "Wash & Go"
-msgstr "Wash & Go"
+msgstr "Wash &amp; Go"
 
 msgid "Waxing"
 msgstr "Wachsen"
@@ -6233,7 +6233,7 @@ msgid "For Private Chats:"
 msgstr "Für private Chats:"
 
 msgid "Message @userinfobot"
-msgstr "Message @userinfobot"
+msgstr "Nachricht an uns"
 
 msgid "Copy your numeric user ID"
 msgstr "Kopieren Sie Ihre numerische Benutzer-ID"
@@ -7256,10 +7256,10 @@ msgid "Auto-filled via External API"
 msgstr "Automatisch ausgefüllt über externe API"
 
 msgid "PayPal %s"
-msgstr "PayPal %s"
+msgstr "Über uns %s"
 
 msgid "Stripe %s"
-msgstr "Stripe %s"
+msgstr "Streifen %s"
 
 msgid "All Statuses"
 msgstr "Alle Status"
@@ -7367,7 +7367,7 @@ msgid "and Bootstrap Icon. Created by"
 msgstr "und Bootstrap-Symbol. Erstellt von"
 
 msgid "Google Sheet"
-msgstr "Google Sheet"
+msgstr "Google-Buchstabe"
 
 msgid "Sync Form Responses to Google Sheets"
 msgstr "Formularantworten mit Google Sheets synchronisieren"
@@ -7547,7 +7547,7 @@ msgid "Spreadsheet ID"
 msgstr "Tabellen-ID"
 
 msgid "tab"
-msgstr "tab"
+msgstr "Registerkarte"
 
 msgid "Choose Sheet"
 msgstr "Blatt auswählen"
@@ -8261,7 +8261,7 @@ msgid "Error Monitor"
 msgstr "Fehlerüberwachung"
 
 msgid "WordPress Core"
-msgstr "WordPress Core"
+msgstr "WordPress Kern"
 
 msgid "Line"
 msgstr "Linie"
@@ -8282,7 +8282,7 @@ msgid "jQuery is not properly loaded or available. AJAX and interactive form fea
 msgstr "jQuery ist nicht ordnungsgemäß geladen oder verfügbar. AJAX- und interaktive Formularfunktionen funktionieren möglicherweise nicht ordnungsgemäß."
 
 msgid "WhiteStudio.team"
-msgstr "WhiteStudio.team"
+msgstr "WhiteStudio."
 
 msgid "EFB"
 msgstr "EFB"
@@ -8459,7 +8459,7 @@ msgid "Client-Side and Server-Side Form Validation"
 msgstr "Clientseitige und serverseitige Formularvalidierung"
 
 msgid "Google reCAPTCHA v2 Spam Protection"
-msgstr "Google reCAPTCHA v2 Spam Protection"
+msgstr "Google reCAPTCHA v2 Spamschutz"
 
 msgid "CAPTCHA-Free Spam Protection with Honeypot and Signed Single-Use Tokens"
 msgstr "CAPTCHA-freier Spam-Schutz mit Honeypot und signierten Single-Use-Tokens"
@@ -8744,7 +8744,7 @@ msgid "Custom Title (optional):"
 msgstr "Benutzerdefinierter Titel (optional):"
 
 msgid "Shortcode:"
-msgstr "Shortcode:"
+msgstr "Kurzcode:"
 
 msgid "Run the email check"
 msgstr "Führen Sie die E-Mail-Prüfung durch"
@@ -8852,7 +8852,7 @@ msgid "Your emails are not reaching anybody"
 msgstr "Ihre E-Mails erreichen niemanden"
 
 msgid "grade %s"
-msgstr "grade %s"
+msgstr "Klasse %s"
 
 msgid "What you should do"
 msgstr "Was Sie tun sollten"
@@ -8927,7 +8927,7 @@ msgid "Flux Forms couldn't locate the form settings. Please check your settings 
 msgstr "Flux Forms konnte die Formulareinstellungen nicht finden. Bitte überprüfen Sie Ihre Einstellungen oder wenden Sie sich an den Support, um Hilfe zu erhalten."
 
 msgid "Y/m/d \\a\\t g:ia"
-msgstr "Y/m/d \\a\\t g:ia"
+msgstr "Y/m/d"
 
 msgid "Too many attempts. Please wait a few minutes and try again."
 msgstr "Zu viele Versuche. Bitte warten Sie ein paar Minuten und versuchen Sie es erneut."
@@ -9146,3 +9146,157 @@ msgstr "Konnte keine Verbindung zu Stripe herstellen: %s"
 
 msgid "Stripe API error (HTTP %d)."
 msgstr "Stripe-API-Fehler (HTTP %d)."
+
+msgid "Form submission"
+msgstr "Formularübermittlung"
+
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "Öffentliches Formular, Umfragen und Anmeldungen, die über GraphQL gesendet werden."
+
+msgid "Manages forms and responses"
+msgstr "Formen und Antworten verwalten"
+
+msgid "Opens the form builder"
+msgstr "Öffnet den Formbauer"
+
+msgid "Opens the forms panel"
+msgstr "Öffnet das Formularpanel"
+
+msgid "Manages form add-ons"
+msgstr "Formulare verwalten Add-ons"
+
+msgid "WooCommerce"
+msgstr "ANHANG"
+
+msgid "Flux Forms: choices"
+msgstr "Flux-Formulare: Auswahl"
+
+msgid "Flux Forms: advanced"
+msgstr "Flux-Formulare: fortgeschritten"
+
+msgid "Flux Forms: payment"
+msgstr "Flux Formulare: Zahlung"
+
+msgid "Flux Forms: content"
+msgstr "Flux Formen: Inhalt"
+
+msgid "The form structure is not valid."
+msgstr "Die Formstruktur ist nicht gültig."
+
+msgid "This form type is not supported."
+msgstr "Dieser Formulartyp wird nicht unterstützt."
+
+msgid "This form was changed somewhere else after you opened it."
+msgstr "Dieses Formular wurde anderswo geändert, nachdem Sie es geöffnet haben."
+
+msgid "WooCommerce checkout"
+msgstr "WooCommerce-Kaufabwicklung"
+
+msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
+msgstr "Sie werden wählen, wie Sie zahlen (Karte, Banküberweisung...) auf der sicheren Checkout-Seite."
+
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "Vervollständigen Sie die Zahlung im Fenster, das geöffnet wurde. Diese Seite geht weiter, wenn sie erledigt ist."
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "Das Zahlungsfenster wurde gesperrt. Lassen Sie Pop-ups für diese Website und versuchen Sie es erneut."
+
+msgid "The payment was not completed. You can try again."
+msgstr "Die Zahlung wurde nicht abgeschlossen. Sie können es noch einmal versuchen."
+
+msgid "The order is received; the payment is confirmed when it arrives."
+msgstr "Die Bestellung wird erhalten; die Zahlung wird bestätigt, wenn sie ankommt."
+
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "Zahlung abgeschlossen. Sie können dieses Fenster schließen und in das Formular zurück."
+
+msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
+msgstr "Die Bestellung wird erhalten; die Zahlung wird bestätigt, wenn sie ankommt. Sie können dieses Fenster schließen und in das Formular zurück."
+
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "Die Zahlung wurde nicht abgeschlossen. Sie können dieses Fenster schließen und versuchen Sie es erneut auf dem Formular."
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "Flux Donate ist aktiv, hat aber keine Zahlungen übernommen (filter flxb_own_payments ist aus?)."
+
+msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
+msgstr "Zahlungsformulare werden auf der WooCommerce Kasse ( %1$s; %2$s ) bezahlt."
+
+msgid "No payment form exists. WooCommerce is needed only to take payments."
+msgstr "Es gibt kein Zahlungsformular. WooCommerce ist nur für Zahlungen erforderlich."
+
+msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
+msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
+msgstr[0] "WooCommerce hat keine aktivierte Zahlungsmethode: %d Zahlungsformular kann keine Zahlungen eingehen."
+msgstr[1] "WooCommerce hat keine aktivierte Zahlungsmethode: %d Zahlungsformulare können keine Zahlungen eingehen."
+
+msgid "WooCommerce is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "WooCommerce ist nicht aktiv: %d Zahlungsformular zeigt \"Online-Zahlung ist nicht verfügbar\"."
+msgstr[1] "WooCommerce ist nicht aktiv: %d Zahlungsformulare zeigen \"Online-Zahlung ist nicht verfügbar\"."
+
+msgid "Payment methods"
+msgstr "Zahlungsmethoden"
+
+msgid "Card payment"
+msgstr "Kartenzahlung"
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "Um Online-Zahlungen mit einem Zahlungsformular zu nehmen, installieren und aktivieren Sie WooCommerce und aktivieren Sie eine Zahlungsmethode."
+
+msgid "The form was not found."
+msgstr "Das Formular wurde nicht gefunden."
+
+msgid "Write a reply."
+msgstr "Schreiben Sie eine Antwort."
+
+msgid "The response was not found."
+msgstr "Die Antwort wurde nicht gefunden."
+
+msgid "The reply could not be saved."
+msgstr "Die Antwort konnte nicht gespeichert werden."
+
+msgid "The settings could not be saved."
+msgstr "Die Einstellungen konnten nicht gespeichert werden."
+
+msgid "Choose between 1 and 7 days."
+msgstr "Wählen Sie zwischen 1 und 7 Tagen."
+
+msgid "Unknown track code style."
+msgstr "Unbekannter Track-Code-Stil."
+
+msgid "Unknown SMS sender."
+msgstr "Unbekannt SMS Absender."
+
+msgid "Enter a colour like #1a2b3c."
+msgstr "Geben Sie eine Farbe wie #1a2b3c ein."
+
+msgid "Enter a valid e-mail address."
+msgstr "Geben Sie eine gültige E-Mail-Adresse ein."
+
+msgid "Use numbers like +12345678900, separated by commas."
+msgstr "Verwenden Sie Zahlen wie +12345678900, getrennt durch Kommas."
+
+msgid "The template must contain the shortcode_message shortcode."
+msgstr "Die Vorlage muss den Shortcode_message Shortcode enthalten."
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "Warten Sie einen Moment und versuchen Sie es wieder."
+
+msgid "The form could not be sent."
+msgstr "Das Formular konnte nicht gesendet werden."
+
+msgid "This form cannot be sent here."
+msgstr "Dieses Formular kann hier nicht gesendet werden."
+
+msgid "The tracking code was not found."
+msgstr "Der Tracking-Code wurde nicht gefunden."
+
+msgid "Upload the file again."
+msgstr "Laden Sie die Datei erneut hoch."
+
+msgid "The confirmation code is not valid."
+msgstr "Der Bestätigungscode ist nicht gültig."
+
+msgid "Choose one of the listed options."
+msgstr "Wählen Sie eine der aufgeführten Optionen."

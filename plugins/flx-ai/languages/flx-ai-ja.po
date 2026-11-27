@@ -1542,3 +1542,1276 @@ msgstr "接続できる人: flxai_mcp 権限を持つユーザー。投稿を編
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr "このアカウントではアシスタントを接続できません（MCP 権限が必要です）。"
+
+msgid "Flux GraphQL is not active, so FluxWP screens cannot open."
+msgstr "GraphQL はアクティブではないため、FluxWP 画面は開きません。"
+
+msgid "Chat history"
+msgstr "チャット履歴"
+
+msgid "Scheduled tasks"
+msgstr "スケジュールされたタスク"
+
+msgid "Skills"
+msgstr "技術"
+
+msgid "Connections"
+msgstr "接続"
+
+msgid "This action is no longer waiting for approval."
+msgstr "この行動は承認をもはや待っていません。"
+
+msgid "The file could not be uploaded."
+msgstr "ファイルをアップロードできませんでした。"
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr "%s はサポートしていません。"
+
+msgid "The file is too large (max %s)."
+msgstr "ファイルが大きすぎる(max) %s)."
+
+msgid "The image could not be read."
+msgstr "画像が読めなかった。"
+
+msgid "File not found."
+msgstr "ファイルが見つかりません。"
+
+msgid "Web search"
+msgstr "ウェブ検索"
+
+msgid "Web search is turned off."
+msgstr "ウェブ検索がオフになっています。"
+
+msgid "No search provider key; agents can still read web pages but cannot search."
+msgstr "検索プロバイダーキーはありません。エージェントはウェブページを読み取ることができますが、検索することはできません。"
+
+msgid "Using %1$s. This month: %2$s searches."
+msgstr "%1$s ... 今月の検索:%2$s。"
+
+msgid "Flux Cloud session could not be renewed: %s"
+msgstr "%s の Flux Cloud セッションは更新できませんでした。"
+
+msgid "\"%s\" is not a hex color (e.g. #0A5A40)."
+msgstr "%s\" は六角色ではありません (例: #0A5A40)。"
+
+msgid "%s is too long (at most 30 KB)."
+msgstr "%s は長すぎる(最大30KB)。"
+
+msgid "The brand kit can hold at most 20 documents."
+msgstr "ブランドキットには最大20のドキュメントが格納できます。"
+
+msgid "Could not read the image %s."
+msgstr "%s の画像が読めません。"
+
+msgid "The images are too large in total (at most 30 MB)."
+msgstr "画像は合計で大きすぎる(最大30 MB)。"
+
+msgid "No visual renderer (Gotenberg) is set: Flux AI & MCP › Settings › Visual renderer."
+msgstr "視覚的レンダラ(Gotenberg)が設定されていない: Flux AI & MCP  ??  Settings  ??  Visual renderer。"
+
+msgid "Brand kit"
+msgstr "ブランドキット"
+
+msgid "Update brand kit"
+msgstr "ブランドキットを更新します。"
+
+msgid "Render design"
+msgstr "レンダリング設計"
+
+msgid "There is no workspace here; pass the HTML in \"html\"."
+msgstr "ワークスペースはありません。HTML を \"html\" に渡します。"
+
+msgid "This file is outside your workspace."
+msgstr "このファイルはワークスペースの外側にあります。"
+
+msgid "Text to replace was not found in the design: %s"
+msgstr "置換するテキストは、デザインに含まれません。 %s"
+
+msgid "The text occurs %1$d times; make it unique or set all=true: %2$s"
+msgstr "テキストは %1$d time; それを一意にするか、all=trueにします。 %2$s"
+
+msgid "The design HTML is empty."
+msgstr "デザインHTMLは空です。"
+
+msgid "The design HTML is too large (at most 400 KB). Pass images with \"images\", not inline."
+msgstr "デザインHTMLが大きすぎる(最大400KB) 画像に「画像」を渡すと、インライン化はできない。"
+
+msgid "Design"
+msgstr "デザイン"
+
+msgid "There is no workspace here; pass attachment_id or url."
+msgstr "ワークスペースはありません。"
+
+msgid "File not found: %s"
+msgstr "ファイルが見つかりません:%s"
+
+msgid "The image is too large (at most 15 MB)."
+msgstr "画像が大きすぎる(最大15MB)。"
+
+msgid "Not an image (PNG, JPEG, WebP, GIF or SVG): %s"
+msgstr "画像(PNG、JPEG、WebP、GIF、SVG)ではありません。 %s"
+
+msgid "Give path, attachment_id or url for each image."
+msgstr "画像ごとにパス、attachment_id、url を指定します。"
+
+msgid "Attachment #%d is not an image."
+msgstr "添付ファイル #%d は画像ではありません。"
+
+msgid "The file is not an image (PNG, JPEG, WebP, GIF or SVG)."
+msgstr "ファイルは画像(PNG、JPEG、WebP、GIF、SVG)ではありません。"
+
+msgid "Images can only be saved in your own folder (%s)."
+msgstr "画像は、自分のフォルダ(%s)に保存できます。"
+
+msgid "View image"
+msgstr "画像"
+
+msgid "Give at least one image."
+msgstr "少なくとも1つの画像を与えます。"
+
+msgid "Collect images"
+msgstr "画像収集"
+
+msgid "Edit image"
+msgstr "編集画面"
+
+msgid "SVG files cannot be edited; use them as they are."
+msgstr "SVGファイルは編集できません。"
+
+msgid "The image could not be opened."
+msgstr "画像が開くことができませんでした。"
+
+msgid "Scheduled task"
+msgstr "スケジュールされたタスク"
+
+msgid "Attach file"
+msgstr "ファイルを添付する"
+
+msgid "Dictate"
+msgstr "音声入力"
+
+msgid "You can attach up to %s files."
+msgstr "添付できます。 %s ファイルだ"
+
+msgid "%s is too large."
+msgstr "%s 大きくなりすぎます"
+
+msgid "Microphone permission was not given."
+msgstr "マイクの許可は与えられなかった。"
+
+msgid "Scheduled task · %s"
+msgstr "スケジュールタスク ・ %s"
+
+msgid "1 error"
+msgstr "1エラー"
+
+msgid "%s tools"
+msgstr "%s 道具"
+
+msgid "1 tool"
+msgstr "ツール 1"
+
+msgid "%s rejected"
+msgstr "%s 拒否された"
+
+msgid "1 rejected"
+msgstr "断りました"
+
+msgid "No messages yet."
+msgstr "まだメッセージはありません。"
+
+msgid "Workspace"
+msgstr "ワークスペース"
+
+msgid "Exit full screen"
+msgstr "全画面表示"
+
+msgid "Full screen"
+msgstr "全画面表示"
+
+msgid "Change in the assistant's folder"
+msgstr "アシスタントのフォルダを変更します。"
+
+msgid "Change request #%s: waiting for your approval"
+msgstr "変更要求 #%s : 承認待ちです。"
+
+msgid "Change request #%s: rejected"
+msgstr "変更要求 #%s : 拒否"
+
+msgid "Change request #%s: merged"
+msgstr "リクエストの変更#%s: 合併"
+
+msgid "View diff"
+msgstr "参照"
+
+msgid "Empty folder"
+msgstr "空のフォルダー"
+
+msgid "The file is too large to show a diff."
+msgstr "ファイルが大きすぎると差分が表示されます。"
+
+msgid "No differences."
+msgstr "違いはありません。"
+
+msgid "Merged"
+msgstr "合併"
+
+msgid "Rejected"
+msgstr "拒否されました"
+
+msgid "Partly merged"
+msgstr "一部合併"
+
+msgid "Saved"
+msgstr "保存されました"
+
+msgid "added"
+msgstr "追加されました"
+
+msgid "changed"
+msgstr "変わった"
+
+msgid "deleted"
+msgstr "削除済み"
+
+msgid "Change request"
+msgstr "リクエストの変更"
+
+msgid "Change"
+msgstr "変更"
+
+msgid "%s files"
+msgstr "%s ファイル"
+
+msgid "Merge"
+msgstr "合併"
+
+msgid "Merge this"
+msgstr "マージします"
+
+msgid "Files"
+msgstr "ファイル"
+
+msgid "Once the chat starts, its folder and the assistant's changes appear here."
+msgstr "チャットが開始すると、そのフォルダーとアシスタントの変更がここに表示されます。"
+
+msgid "The workspace needs the Flux Files plugin. You can install it from FluxWP Panel › Packages."
+msgstr "ワークスペースには Flux Files プラグインが必要です。"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Open in Flux Files"
+msgstr "Flux ファイルで開きます。"
+
+msgid "The folder is empty. Notes, reports and drafts the assistant writes appear here."
+msgstr "フォルダーは空です。ノート、レポート、およびアシスタントの書き込みがここに表示されます。"
+
+msgid "Allowed folders"
+msgstr "フォルダを許可します。"
+
+msgid "No changes yet. What the assistant writes to its own folder shows here as commits, and changes it proposes to site files as change requests."
+msgstr "アシスタントが独自のフォルダに書き込んだものにはコミットとして表示され、変更要求としてサイトファイルに提案されている。"
+
+msgid "File access for this task"
+msgstr "このタスクのファイルアクセス"
+
+msgid "File access for this chat"
+msgstr "このチャットのファイルアクセス"
+
+msgid "Only its own folder"
+msgstr "独自のフォルダのみ"
+
+msgid "The assistant sees only this chat's folder and the folders you allow below."
+msgstr "アシスタントは、このチャットのフォルダーと、下に許可するフォルダーのみを表示します。"
+
+msgid "Can read the whole site"
+msgstr "サイト全体を読むことができます。"
+
+msgid "The assistant can read the site's files; every file it wants to change comes to you as a change request."
+msgstr "アシスタントはサイトのファイルを読むことができます。変更したいすべてのファイルが変更要求としてあなたに来ます。"
+
+msgid "One folder per line (relative to the site root). Changes in these folders also wait for your approval."
+msgstr "サイトルートに比して1行あたりのフォルダ数、これらのフォルダの変更も承認待ちです。"
+
+msgid "Rules that always apply"
+msgstr "常に適用されるルール"
+
+msgid "The assistant cannot directly change any file outside its own folder."
+msgstr "アシスタントは、独自のフォルダの外部にあるファイルを直接変更することはできません。"
+
+msgid "Other chats' and tasks' folders are closed; skill files are read-only."
+msgstr "他のチャットやタスクのフォルダは閉じている。スキルファイルは読み取り専用である。"
+
+msgid "Files with passwords and keys (wp-config, .env, .sql) and WordPress core are never opened."
+msgstr "パスワードとキー(wp-config、.env、.sql)を持つファイル。 WordPress コアは決して開けません"
+
+msgid "At most 50 files per turn and 1 MB per file can be written."
+msgstr "ファイル1回あたり最大50ファイル、1MBまで記述可能。"
+
+msgid "The file changed in the meantime and was not applied: %s"
+msgstr "ファイルは、その間変更され、適用されなかった:%s"
+
+msgid "Reject the change request?"
+msgstr "変更要求は拒否しますか?"
+
+msgid "No files change; the assistant is told it was rejected."
+msgstr "ファイルの変更はありません。アシスタントは、拒否されたと通知されます。"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Code"
+msgstr "コード"
+
+msgid "Discard"
+msgstr "廃棄する"
+
+msgid "E-mail"
+msgstr "電子メール"
+
+msgid "Contact"
+msgstr "お問い合わせ"
+
+msgid "WhatsApp group"
+msgstr "WhatsAppグループ"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Chats"
+msgstr "チャット"
+
+msgid "/ commands"
+msgstr "/ コマンド"
+
+msgid "Hide panel"
+msgstr "パネル隠れ"
+
+msgid "Search chats…"
+msgstr "検索チャット。"
+
+msgid "Results"
+msgstr "結果"
+
+msgid "Recent chats"
+msgstr "最近のチャット"
+
+msgid "The archive is empty."
+msgstr "アーカイブは空です。"
+
+msgid "No command found."
+msgstr "コマンドは見つかりません。"
+
+msgid "Commands"
+msgstr "コマンド"
+
+msgid "Apps"
+msgstr "アプリ"
+
+msgid "Archived"
+msgstr "アーカイブ済み"
+
+msgid "Visual report"
+msgstr "ビジュアルレポート"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Open full screen"
+msgstr "全画面で開く"
+
+msgid "View"
+msgstr "見る"
+
+msgid "Recently used"
+msgstr "最近使用した"
+
+msgid "All models"
+msgstr "全てのモデル"
+
+msgid "%s more models: narrow your search."
+msgstr "%s モデルを増やす: 検索を絞り込む。"
+
+msgid "Bubble"
+msgstr "バブル"
+
+msgid "Right panel"
+msgstr "右パネル"
+
+msgid "Small window at the bottom right"
+msgstr "右下の小さな窓。"
+
+msgid "On the right, pushes the page"
+msgstr "右のページを押します。"
+
+msgid "The left menu stays in place"
+msgstr "左メニューはそのままです。"
+
+msgid "%s / 1024"
+msgstr "%s / 1024"
+
+msgid "Trigger test"
+msgstr "トリガーテスト"
+
+msgid "%s% correct"
+msgstr "%s% 正解"
+
+msgid "%1$s of %2$s prompts · %3$s · %4$s"
+msgstr "%1$s です %2$s プロンプト ・ %3$s · %4$s"
+
+msgid "Stopped early (time limit); run again for the rest."
+msgstr "早めに(時間制限)、残りのために再度実行します。"
+
+msgid "Prompt"
+msgstr "プロンプト"
+
+msgid "Expected"
+msgstr "期待"
+
+msgid "Picked skills"
+msgstr "スキルを選ぶ"
+
+msgid "Use"
+msgstr "使用する"
+
+msgid "Do not use"
+msgstr "使用しないでください。"
+
+msgid "%1$s/%2$s checks"
+msgstr "%1$s / %2$s チェック"
+
+msgid "%1$s in · %2$s out tokens · %3$s · %4$s s"
+msgstr "%1$s において %2$s トークンを出力します。 %3$s · %4$s ス)"
+
+msgid "Test #%s"
+msgstr "テスト #%s"
+
+msgid "Check"
+msgstr "チェックする"
+
+msgid "With skill"
+msgstr "技術"
+
+msgid "Without"
+msgstr "なし"
+
+msgid "No results yet."
+msgstr "まだ結果は出ません。"
+
+msgid "Running…"
+msgstr "実行中..."
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Slug"
+msgstr "ナメクジ"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Recipient"
+msgstr "受信者"
+
+msgid "Subject"
+msgstr "件名"
+
+msgid "Invalid or blocked address. Use a public https address."
+msgstr "ブロックされたアドレスは、パブリック https アドレスを使用します。"
+
+msgid "The server needs sign-in. Use \"Connect\" in Flux AI & MCP › Connections."
+msgstr "サーバーにはサインインが必要です。FLAX AI & MCP  ??  Connections の「Connect」を使用してください。"
+
+msgid "The server rejected the credentials (401)."
+msgstr "サーバーは、資格情報(401)を拒否しました。"
+
+msgid "The server answered with HTTP %d."
+msgstr "サーバーはHTTPで答えた %d."
+
+msgid "The server did not return a valid MCP response."
+msgstr "サーバーは、有効にしませんでした MCP 応答だ"
+
+msgid "Connection not found."
+msgstr "接続が見つかりません。"
+
+msgid "Resources"
+msgstr "リソース"
+
+msgid "Read resource"
+msgstr "リソースを読む"
+
+msgid "Could not find the sign-in (OAuth) settings of this server. Enter a token instead, or check the address."
+msgstr "サーバーのサインイン(OAuth)設定が見つかりません。"
+
+msgid "This server does not support PKCE (S256), which OAuth 2.1 requires."
+msgstr "OAuth 2.1 が要求する PKCE (S256) をサポートしていない。"
+
+msgid "This server does not allow automatic client registration. Create an OAuth client at the provider and enter its client ID (and secret) in the connection settings."
+msgstr "クライアントの自動登録ができないサーバです。 OAuth プロバイダーのクライアントから接続設定でクライアントID(とシークレット)を入力します。"
+
+msgid "Automatic client registration failed. Enter a client ID in the connection settings."
+msgstr "接続設定でクライアントIDを入力すると、クライアントの自動登録が失敗します。"
+
+msgid "Sign-in failed: %s"
+msgstr "サインイン失敗:%s"
+
+msgid "Sign in again."
+msgstr "もう一度サインインします。"
+
+msgid "Sign-in session expired. Try again."
+msgstr "サインインセッションが終了しました。もう一度お試しください。"
+
+msgid "Sign-in was cancelled or refused (%s)."
+msgstr "サインインは中止または拒否された(%s)。"
+
+msgid "MCP connection: %s"
+msgstr "MCP 関連性 %s"
+
+msgid "%d tool available."
+msgid_plural "%d tools available."
+msgstr[0] "%d ツールが利用可能です。"
+
+msgid "Not checked yet."
+msgstr "まだチェックされていません。"
+
+msgid "AI image"
+msgstr "AI画像"
+
+msgid "Generate image"
+msgstr "画像生成"
+
+msgid "SVG cannot be used as a reference; render it to PNG first (flxai_design_render) or use a PNG logo."
+msgstr "SVG は参照として使用できません。PNG に最初にレンダリングするか、PNG のロゴを使用します。"
+
+msgid "Flux Cloud (account AI credits)"
+msgstr "フラックスクラウド(アカウントAIクレジット)"
+
+msgid "E-mail address"
+msgstr "メールアドレス"
+
+msgid "Phone number"
+msgstr "電話番号"
+
+msgid "Notify the task owner"
+msgstr "タスクのオーナーに通知します。"
+
+msgid "This tool only works while a scheduled task is running."
+msgstr "このツールは、スケジュールされたタスクが実行されている間のみ動作します。"
+
+msgid "Find notification recipients"
+msgstr "通知受信者を見つける"
+
+msgid "AI task report"
+msgstr "AIタスクレポート"
+
+msgid "Sent to the task owner when a scheduled AI task has something to report."
+msgstr "スケジュールされたAIタスクが報告すべきものがある場合、タスクの所有者に送信します。"
+
+msgid "Task name"
+msgstr "タスク名"
+
+msgid "Report summary"
+msgstr "概要"
+
+msgid "Report link"
+msgstr "レポートリンク"
+
+msgid "Daily AI briefing"
+msgstr "日報AIブリーフィング"
+
+msgid "Yesterday: 12 donations, 4,350 TL in total. 2 receipts are waiting for approval."
+msgstr "昨日: 12 の寄付、合計で 4,350 TL.2 レシートが承認を待っています。"
+
+msgid "Completed"
+msgstr "完了"
+
+msgid "AI task: {gorev}"
+msgstr "AIタスク:{gorev}"
+
+msgid "Open the report"
+msgstr "レポートを開きます。"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "AI task: %s"
+msgstr "AIタスク:%s"
+
+msgid "The task could not finish: %s"
+msgstr "作業が終了できなかった:%s"
+
+msgid "An action is waiting for your approval."
+msgstr "アクションが承認を待っています。"
+
+msgid "panel"
+msgstr "パネル"
+
+msgid "my e-mail"
+msgstr "メールが"
+
+msgid "OAuth sign-in for MCP is off."
+msgstr "OAuth MCP のサインインはオフです。"
+
+msgid "Connecting assistants with sign-in is turned off on this site."
+msgstr "本サイトでは、サインインでアシスタントを接続できません。"
+
+msgid "Unknown application. Remove the connector and add it again."
+msgstr "未知のアプリケーション. コネクタを削除し、再度追加します。"
+
+msgid "This return address is not registered for the application."
+msgstr "この返却先アドレスは、申請のために登録されていません。"
+
+msgid "The page expired. Start connecting again from the assistant."
+msgstr "ページが切れました。アシスタントから再度接続を開始します。"
+
+msgid "%1$s wants to connect to %2$s"
+msgstr "%1$s つながりたいのです %2$s"
+
+msgid "The assistant uses the site's MCP tools with your permissions."
+msgstr "アシスタントはサイトの使用 MCP 道具の許可が下りるのです"
+
+msgid "New content is created as a draft; deleting only moves to trash."
+msgstr "新しいコンテンツはドラフトとして作成され、削除はゴミ箱に移動します。"
+
+msgid "You can end the connection any time under Flux AI & MCP › MCP."
+msgstr "接続は、FLAX AI & MCP  ??  MCP の下でいつでも終了できます。"
+
+msgid "After approval you return to %s."
+msgstr "承認後、あなたは戻ってください。 %s."
+
+msgid "Deny"
+msgstr "拒否する"
+
+msgid "Allow"
+msgstr "許可する"
+
+msgid "Connect assistant"
+msgstr "コネクトアシスタント"
+
+msgid "Back to site"
+msgstr "サイトに戻る"
+
+msgid "Could not take the screenshot (HTTP %d)."
+msgstr "スクリーンショット(HTTP %d)は受け取れません。"
+
+msgid "Page screenshot"
+msgstr "ページスクリーンショット"
+
+msgid "You cannot view this content."
+msgstr "このコンテンツは閲覧できません。"
+
+msgid "Only this site's addresses can be captured."
+msgstr "このサイトのアドレスのみキャプチャできます。"
+
+msgid "Content not found."
+msgstr "内容は見つかりません。"
+
+msgid "The model provider"
+msgstr "モデルプロバイダー"
+
+msgid "%s quota is used up for now (daily or monthly limit)."
+msgstr "%s クォータは、現在(毎日または毎月の制限)が使用されています。"
+
+msgid "%s rate limit reached: too many requests at once. Try again in a minute."
+msgstr "%s レート制限に達しました:一度にリクエストが多すぎる。"
+
+msgid "%s is temporarily unavailable."
+msgstr "%s 一時的に利用できなくなります"
+
+msgid "Flux Cloud did not answer."
+msgstr "Flux Cloudは答えなかった。"
+
+msgid "Start an empty chat."
+msgstr "空のチャットを開始します。"
+
+msgid "Show or hide the chat list: running, recent and archived chats."
+msgstr "チャットリストを表示または非表示にします。"
+
+msgid "Find an earlier chat by title or content."
+msgstr "タイトルやコンテンツで以前のチャットを見つけます。"
+
+msgid "Files, change requests and settings of this chat."
+msgstr "ファイル、このチャットの要求や設定を変更します。"
+
+msgid "Attach a file"
+msgstr "ファイルを添付"
+
+msgid "Image, PDF or document for the assistant to read."
+msgstr "アシスタントが読むための画像、PDF、または文書。"
+
+msgid "Create a scheduled task: "
+msgstr "スケジュールされたタスクを作成します。"
+
+msgid "Have the assistant run something on its own at set times and notify you or others."
+msgstr "設定した時間にアシスタントに自分で何かを実行させ、あなたまたは他の人に通知します。"
+
+msgid "List my scheduled tasks and their last reports."
+msgstr "予定されているタスクと最後のレポートをリストアップします。"
+
+msgid "My tasks"
+msgstr "私のタスク"
+
+msgid "Scheduled tasks, next runs and last reports."
+msgstr "スケジュールされたタスク、次の実行、最後のレポート。"
+
+msgid "Create a new skill: "
+msgstr "新しいスキルを作成します。"
+
+msgid "New skill"
+msgstr "新しい技術"
+
+msgid "Save reusable instructions you can call later with /name."
+msgstr "name で後で呼び出すことができる再利用可能な命令を保存します。"
+
+msgid "Change model"
+msgstr "チェンジモデル"
+
+msgid "Pick the AI model for this chat."
+msgstr "このチャットのAIモデルを選択してください。"
+
+msgid "MCP server of %s: read and manage the site content and the tools of its FluxWP plugins."
+msgstr "MCP のサーバー %s : サイトの内容と FluxWP プラグインのツールを読み、管理します。"
+
+msgid "The input is not valid JSON; nothing was run."
+msgstr "入力は有効なJSONではない。"
+
+msgid "Change not found."
+msgstr "変更は見つかりません。"
+
+msgid "Some files were not applied: %s"
+msgstr "いくつかのファイルが適用されませんでした。 %s"
+
+msgid "This connection does not sign in with OAuth."
+msgstr "この接続は、サインインしません。 OAuth."
+
+msgid "Unknown tool or permission: %s"
+msgstr "不明の道具や許可:%s"
+
+msgid "Only read-only tools can run without asking: %s"
+msgstr "%s: 読み取り専用ツールのみが要求なく実行できます。"
+
+msgid "This is another user's personal connection."
+msgstr "これは、他のユーザーの個人的な接続です。"
+
+msgid "Key not found."
+msgstr "鍵は見つかりません。"
+
+msgid "The prompt cache must be off, 5 minutes or 1 hour."
+msgstr "プロンプトキャッシュはオフ、5分または1時間でなければなりません。"
+
+msgid "Effort must be low, medium or high."
+msgstr "努力は中程度か高いかのどちらかでなければならない。"
+
+msgid "Choose a model from the list."
+msgstr "リストからモデルを選択します。"
+
+msgid "Choose a search provider from the list."
+msgstr "リストから検索プロバイダーを選択します。"
+
+msgid "Flux Cloud use must be auto, always or off."
+msgstr "Flux Cloudの使用は、常に自動またはオフでなければなりません。"
+
+msgid "This key is not one Flux AI uses."
+msgstr "このキーは、Flux AIが使用するものではありません。"
+
+msgid "Choose a file to upload."
+msgstr "アップロードするファイルを選択します。"
+
+msgid "The file could not be read."
+msgstr "ファイルを読み取れませんでした。"
+
+msgid "Skill not found."
+msgstr "スキルは見つからない。"
+
+msgid "Unknown system."
+msgstr "不明なシステム。"
+
+msgid "Unknown setting: %s"
+msgstr "不明な設定:%s"
+
+msgid "Task not found."
+msgstr "タスクが見つかりません。"
+
+msgid "That plugin does not offer this tool under the same name."
+msgstr "そのプラグインは、同じ名前でこのツールを提供していません。"
+
+msgid "Virtual shell"
+msgstr "仮想シェル"
+
+msgid "Add trigger test prompts first (some that should use the skill, some that should not)."
+msgstr "最初にトリガーテストプロンプトを追加します(スキルを使用する必要があるもの、そうでないものもあります)。"
+
+msgid "Test not found. Add a functional test with a prompt and expectations."
+msgstr "テストが見つかりません プロンプトと期待を持って機能テストを追加します。"
+
+msgid "Daily briefing"
+msgstr "日報"
+
+msgid "Short morning report: yesterday's donations and orders, unanswered messages, site issues and what needs you today."
+msgstr "短い朝のレポート:昨日の寄付と注文、未回答のメッセージ、サイトの問題、そして今日あなたを必要としているもの。"
+
+msgid "Turns data, plans or explanations into an interactive one-page visual report (Tailwind, charts, diagrams) you open in the chat."
+msgstr "データ、計画、説明を、チャットで開いたインタラクティブな 1 ページ ビジュアル レポート (Tailwind、チャート、図) に変換します。"
+
+msgid "Site health check"
+msgstr "サイトヘルスチェック"
+
+msgid "Checks system checks, speed and SEO audit results; reports only what changed or needs action."
+msgstr "システムチェック、スピード、SEOの監査結果を確認し、変更されたもの、またはアクションが必要なものだけを報告します。"
+
+msgid "Skill creator"
+msgstr "スキルクリエイター"
+
+msgid "Creates, reviews and tests skills in the Agent Skills format. Use when the user wants a new skill, wants to improve one or asks why a skill does not trigger."
+msgstr "Agent Skills 形式でスキルの作成、レビュー、テストを行う。新しいスキルを希望する場合、改善したい場合、またはスキルがトリガーされない理由を尋ねられる。"
+
+msgid "Cover design"
+msgstr "カバーデザイン"
+
+msgid "Brand-style visuals with text as PNG/JPEG in several sizes from one brief: event covers, campaign and donation announcements, posts, stories, WhatsApp status, link previews, thank-you and quote cards, step infographics, carousel pages. Use for \"cover\", \"poster\", \"event visual\", \"story\", \"post image\", \"banner\"."
+msgstr "イベントカバー、キャンペーン、寄付の発表、投稿、ストーリー、など、いくつかのサイズでPNG / JPEGとしてテキストでブランドスタイルのビジュアル。 WhatsApp ステータス、リンクプレビュー、感謝状、引用カード、ステップインフォグラフィック、カルーセルページ。「カバー」、「ポスター」、「イベントビジュアル」、「ストーリー」、「ポストイメージ」、「バナー」に使用します。"
+
+msgid "Social media"
+msgstr "ソーシャルメディア"
+
+msgid "Voice builder"
+msgstr "音声ビルダー"
+
+msgid "Learns who you are and how you write from a short interview and 3-5 writing samples; saves about-me.md and voice.md to the brand kit. The other social media skills read them. Use for \"learn my voice\", \"set up my content system\"."
+msgstr "短いインタビューと3~5回のサンプルから、自分が誰なのか、どのように書くのかを学びます。ブランドキットに、about-me.mdとvoice.mdを保存します。他のソーシャルメディアのスキルが読みます。「自分の声を学ぶ」「コンテンツシステムを設定する」に使用します。"
+
+msgid "Newsletter voice"
+msgstr "ニュースレターの声"
+
+msgid "Adds newsletter-specific writing rules on top of the voice profile (newsletter-voice.md), from past issues or one of 6 archetypes. Use for \"learn my newsletter style\", \"set up my newsletter\"."
+msgstr "過去の問題や6つのアーキタイプのうちの1つから、音声プロフィール(ニュースレター-voice.md)の上にニュースレター固有の書き方を追加し、\"ニュースレタースタイルを学ぶ\"、\"ニュースレターを設定する\" に使用します。"
+
+msgid "Post writer"
+msgstr "ポストライター"
+
+msgid "Writes LinkedIn and social media posts in your voice from a topic, notes or a transcript. Use for \"write a post\", \"draft a post about…\"."
+msgstr "トピック、ノート、または転写からLinkedInとソーシャルメディアの投稿を音声で書きます。"
+
+msgid "Post formatter"
+msgstr "ポストフォーマッタ"
+
+msgid "Turns a topic into a ready-to-publish post with a named framework (PAS, AIDA, BAB, STAR, SLAY), mobile-formatted. Use for \"format this as a post\", \"write it as PAS\"."
+msgstr "トピックを、名前付きフレームワーク(PAS、AIDA、BAB、STAR、SLAY)で、モバイルフォーマットした、公開準備の整った記事に変換します。"
+
+msgid "Hook generator"
+msgstr "フック発生装置"
+
+msgid "Six short two-line opening hooks for a post topic, using your real numbers and experience. Use for \"write me hooks\", \"hook ideas\"."
+msgstr "記事のトピックに6つの短い2行のオープニングフック、実際の数字と経験を使用して「フックを書いて」、\"フックのアイデア\"のために使用します。"
+
+msgid "Post scorer"
+msgstr "ポストスコア"
+
+msgid "Scores a post draft against your own past performance (export or pasted posts) or with a labelled editorial review. Use for \"score my post\", \"rate this post\"."
+msgstr "過去のパフォーマンス(エクスポートまたは貼り付けた投稿)やラベル付き編集レビューに対してポストドラフトをスコア付けします。"
+
+msgid "Content matrix"
+msgstr "コンテンツマトリックス"
+
+msgid "Pairs your 3-5 content pillars with 8 formats for 24-40 post ideas in one table. Use for \"post ideas\", \"content plan for the month\", \"what should I post\"."
+msgstr "投稿のアイデア、今月のコンテンツプラン、投稿すべき内容の8つのフォーマットで3~5つのコンテンツ柱を1つのテーブルにまとめます。"
+
+msgid "Niche research"
+msgstr "ニッチ研究"
+
+msgid "Finds up to 20 dated stories from the last 7 days in a niche with web search, with links and post angles. Use for \"what's trending\", \"this week's news in…\", \"research my niche\"."
+msgstr "ウェブ検索で過去7日間の20の年代記事を、リンクや投稿の角度で検索します。「トレンド」や「今週のニュース」、「私のニッチを調査」に使用します。"
+
+msgid "Graphic designer"
+msgstr "グラフィックデザイナー"
+
+msgid "Designs the image for a post: a structured HTML graphic rendered to PNG or an AI infographic (whiteboard or branded). Use for \"design a graphic for my post\", \"make an image for this post\"."
+msgstr "ポストのイメージをデザインする: PNG または AI インフォグラフィック (ホワイトボードまたはブランド) にレンダリングされた構造化された HTML グラフィック. 使用の「私の投稿のグラフィックをデザインする」「この記事の画像を作成する」。"
+
+msgid "Carousel"
+msgstr "カルーセル"
+
+msgid "Builds a branded multi-slide carousel (1080x1350): brief, approval, then one image prompt or render per slide. Use for \"carousel\", \"turn this into slides\"."
+msgstr "ブランドマルチスライドカルーセル(1080x1350):簡単な、承認、それから1つの画像プロンプトまたはスライドあたりのレンダリング. 使用 \"カルーセル\"、\"スライドにこれを回します。"
+
+msgid "Whiteboard infographic"
+msgstr "ホワイトボード・インフォグラフィック"
+
+msgid "Turns a post, newsletter or note into a hand-drawn whiteboard infographic (brief + image prompt or generated image). Use for \"whiteboard infographic\", \"hand-drawn graphic\"."
+msgstr "ポスト、ニュースレター、またはノートを手描きのホワイトボードインフォグラフィック(手描きの画像+画像プロンプトまたは生成された画像)に変換し、\"ホワイトボードインフォグラフィック\"、\"手描きのグラフィック\"に使用する。"
+
+msgid "Quote post"
+msgstr "引用"
+
+msgid "Writes short original quotes and a matching quote graphic for a caption. Use for \"quote post\", \"quote graphic\", \"motivational post\"."
+msgstr "引用記事、引用グラフィック、動機付け記事の短い原文引用と、引用グラフィックの一致を書いてください。"
+
+msgid "Pinned comment"
+msgstr "コメントをピン止め"
+
+msgid "Writes a deadpan pinned/first comment for a post together with a matching image prompt. Use for \"pinned comment\", \"first comment\"."
+msgstr "記事のデッドパンをピン止め/ファーストコメントと一致させる画像プロンプトを書いて「ピン止めコメント」、「ファーストコメント」に使用します。"
+
+msgid "Profile optimizer"
+msgstr "プロフィールオプティマイザ"
+
+msgid "Rewrites a LinkedIn profile: headline options, about, experience, featured section and banner/photo image prompts. Use for \"optimize my profile\", \"rewrite my headline\"."
+msgstr "LinkedInのプロフィールを書き直す: 見出しのオプション、約、経験、特集セクション、バナー/写真の画像プロンプト. 「プロフィールを最適化」、「見出しを書き換える」に使用する。"
+
+msgid "YouTube thumbnail"
+msgstr "YouTubeのサムネイル"
+
+msgid "Turns a video title into a high-click branded YouTube thumbnail prompt or image. Use for \"thumbnail\", \"YouTube cover\"."
+msgstr "動画タイトルを、YouTubeのサムネイルプロンプトや画像に、\"thumbnail\"や\"YouTube cover\"として使用します。"
+
+msgid "Reels scripting"
+msgstr "リールスクリプティング"
+
+msgid "Writes a Reel/short video script in your voice from a reference video's transcript and your content. Use for \"script a reel\", \"turn this into a reel\"."
+msgstr "参照ビデオの書き起こしとコンテンツから、音声にリール/ショートビデオスクリプトを書き込む. 使用\"スクリプトリール\"、\"これをリールに変える\"。"
+
+msgid "Analytics dashboard"
+msgstr "アナリティクスダッシュボード"
+
+msgid "Turns a LinkedIn Analytics export (CSV) into an interactive visual report and 5 data-backed recommendations. Use for \"analyse my LinkedIn\", \"build my dashboard\"."
+msgstr "LinkedIn Analyticsエクスポート(CSV)をインタラクティブなビジュアルレポートと5つのデータバックアップのレコメンデーションに変換し、\"LinkedInの分析\"や\"ダッシュボードの構築\"に使用する。"
+
+msgid "The skill needs a name (lowercase letters, numbers and dashes)."
+msgstr "スキルには名前(小文字、数字、ダッシュ)が必要です。"
+
+msgid "\"%s\" is not a valid skill name: use up to 64 lowercase letters, numbers and single dashes, not starting or ending with a dash."
+msgstr "%s\" は有効なスキルネームではない。最大 64 の小文字、数字、単一のダッシュを使用し、ダッシュで開始または終了しない。"
+
+msgid "Skill names cannot contain \"claude\" or \"anthropic\" (reserved)."
+msgstr "スキルネームには「クレード」や「人類的」を含めることはできません(予約)。"
+
+msgid "The folder \"%1$s\" must have the same name as the skill (\"%2$s\")."
+msgstr "フォルダ \"%1$s\" は、スキルと同じ名前 (\"%2$s\") でなければなりません。"
+
+msgid "Write a description: what the skill does and when to use it. The assistant picks skills by this."
+msgstr "スキルが何をし、いつそれを使うかの説明を書き、アシスタントがこれによってスキルを選ぶ。"
+
+msgid "The description can be at most 1024 characters."
+msgstr "記述は最大1024文字にすることができます。"
+
+msgid "The name and description cannot contain < or > characters."
+msgstr "名前と説明は含まれません。 < or > キャラクター"
+
+msgid "Compatibility can be at most 500 characters."
+msgstr "互換性は最大500文字まで可能です。"
+
+msgid "Give the skill a name."
+msgstr "スキルに名前を付けます。"
+
+msgid "Write the skill instructions."
+msgstr "スキルの指示を書きなさい。"
+
+msgid "A skill named \"%s\" already exists."
+msgstr "という技%s「すでにある。"
+
+msgid "Invalid file path. Use something like references/guide.md."
+msgstr "ファイルパスが無効です。"
+
+msgid "SKILL.md is edited with the skill form or flxai_skill_save."
+msgstr "スキルフォームまたはflxai_skill_saveで編集します。"
+
+msgid "This file type is not allowed in a skill folder."
+msgstr "このファイルタイプは、スキルフォルダ内では許可されていません。"
+
+msgid "The skill has no file \"%s\"."
+msgstr "スキルには「%s」ファイルはありません。"
+
+msgid "Binary file (image, font, archive…); it can be used as a template or attachment but not read as text."
+msgstr "バイナリファイル(画像、フォント、アーカイブなど)。テンプレートや添付ファイルとして使用できますが、テキストとして読み込めません。"
+
+msgid "A skill file can be at most 5 MB."
+msgstr "スキルファイルは最大5MBまで可能です。"
+
+msgid "A skill folder can hold at most 200 files."
+msgstr "スキルフォルダは、最大200ファイルに保持できます。"
+
+msgid "The zip PHP extension is not available on this server."
+msgstr "zip PHP 拡張はこのサーバーでは使用できません。"
+
+msgid "The zip file could not be created."
+msgstr "zipファイルは作成できません。"
+
+msgid "The zip file could not be opened."
+msgstr "zipファイルが開けませんでした。"
+
+msgid "The zip is too large (at most 500 files and 30 MB)."
+msgstr "zipは、大きすぎる(最大500ファイル、30 MB)。"
+
+msgid "The instructions file must be named exactly SKILL.md (capital letters)."
+msgstr "命令ファイルは、正確にSKILL.md(大文字)と命名する必要があります。"
+
+msgid "No SKILL.md found in the zip."
+msgstr "zip.md には SKILL.md が含まれていない。"
+
+msgid "README.md is not part of a skill folder and was skipped; put documentation in SKILL.md or references/."
+msgstr "README.mdはスキルフォルダの一部ではなく、スキップされた。"
+
+msgid "Skipped: %s"
+msgstr "スキップ:%s"
+
+msgid "\"%s\" has scripts. They are stored but not run on this server."
+msgstr "\"%s「スクリプトがあって、それらは保存されていますが、このサーバー上では実行されません。"
+
+msgid "This does not look like a SKILL.md file (it must start with a --- header)."
+msgstr "これは、SKILL.mdファイルのようには見えない(--- ヘッダーで開始する必要がある)。"
+
+msgid "List skills"
+msgstr "リストスキル"
+
+msgid "Read a skill"
+msgstr "スキルを読む"
+
+msgid "Read a skill file"
+msgstr "スキルファイルを読む"
+
+msgid "Create or update a skill"
+msgstr "スキルの作成または更新。"
+
+msgid "Write a skill file"
+msgstr "スキルファイルを書きます。"
+
+msgid "Test a skill"
+msgstr "スキルを試す"
+
+msgid "Delete a skill"
+msgstr "スキルを削除します"
+
+msgid "Every hour"
+msgstr "毎時"
+
+msgid "Every %s hours"
+msgstr "全て %s 数時間"
+
+msgid "Weekdays at %s"
+msgstr "平日 %s"
+
+msgid "Every %1$s at %2$s"
+msgstr "%1$s から %2$s"
+
+msgid "Monthly on day %1$s at %2$s"
+msgstr "日替わり %1$s で %2$s"
+
+msgid "Once: %s"
+msgstr "旧:%s"
+
+msgid "Every day at %s"
+msgstr "%sで毎日"
+
+msgid "Write what the task should do."
+msgstr "タスクが何をすべきかを書きなさい。"
+
+msgid "Pick a future date and time for a one-time task."
+msgstr "一度のタスクの将来の日時を選択します。"
+
+msgid "Skill not found: %s"
+msgstr "スキル不在:%s"
+
+msgid "You can have at most %s scheduled tasks."
+msgstr "出来る限り %s スケジュールされたタスクです"
+
+msgid "The task owner can no longer use the AI chat, or Flux AI chat is turned off."
+msgstr "タスクのオーナーは、もはやAIチャットを使うことができず、またはFlux AIチャットがオフになっています。"
+
+msgid "List scheduled tasks"
+msgstr "スケジュールされたタスクを一覧表示"
+
+msgid "Create a scheduled task"
+msgstr "スケジュールされたタスクを作成します。"
+
+msgid "You cannot use the AI chat, so you cannot create tasks."
+msgstr "AIチャットは使えませんので、タスクの作成はできません。"
+
+msgid "Update a scheduled task"
+msgstr "スケジュールされたタスクを更新します。"
+
+msgid "Delete a scheduled task"
+msgstr "スケジュールされたタスクを削除します。"
+
+msgid "Read a scheduled task report"
+msgstr "スケジュールされたタスクレポートを読む"
+
+msgid "Run a scheduled task now"
+msgstr "スケジュールされたタスクを今すぐ実行します。"
+
+msgid "Scheduled AI tasks"
+msgstr "スケジュール付きAIタスク"
+
+msgid "%1$s tasks are more than 15 minutes late. Last check: %2$s. Make sure WP-Cron or a server cron calls wp-cron.php."
+msgstr "%1$s タスクは 15 分以上遅れている。最後のチェック: %2$s . WP-Cron または Server Cron が wp-cron.php を呼び出すことを確認する。"
+
+msgid "%1$s active tasks. Last check: %2$s."
+msgstr "%1$s アクティブタスクです %2$s."
+
+msgid "Speech to text needs an OpenAI, Gemini or OpenRouter key (Flux AI & MCP › Settings)."
+msgstr "音声からテキストへ OpenAIジェミニア OpenRouter キー (Flux AI & ) MCP 設定)。"
+
+msgid "No audio was received."
+msgstr "音声は受信されなかった。"
+
+msgid "This audio format is not supported."
+msgstr "このオーディオフォーマットはサポートされていません。"
+
+msgid "Speech to text failed (%1$d): %2$s"
+msgstr "音声からテキストへの変換が失敗した(%1$d) : %2$s"
+
+msgid "The recording is too long."
+msgstr "レコーディングが長すぎる。"
+
+msgid "Visual reports need Flux Files (workspace)."
+msgstr "ビジュアルレポートには、Flux Files(ワークスペース)が必要です。"
+
+msgid "Report"
+msgstr "レポート"
+
+msgid "The report is too large."
+msgstr "レポートは大きすぎる。"
+
+msgid "Create a visual report"
+msgstr "ビジュアルレポートを作成します。"
+
+msgid "This tool only works in the AI chat."
+msgstr "このツールはAIチャットでのみ機能します。"
+
+msgid "This file is not part of the workspace."
+msgstr "このファイルはワークスペースの一部ではありません。"
+
+msgid "Invalid or blocked address. Only public http(s) addresses can be read."
+msgstr "無効またはブロックされたアドレス パブリックhttpアドレスのみが読み込めます。"
+
+msgid "Web search is turned off in Flux AI & MCP › Settings › Web."
+msgstr "ウェブ検索は、FLAX AI & MCP ?? 設定 ?? ウェブでオフにします。"
+
+msgid "No web search provider key. Enter one in Flux AI & MCP › Settings › Web."
+msgstr "Web 検索プロバイダーキーなし Flux AI & MCP  ??  設定  ??  Web に入力します。"
+
+msgid "Monthly web search limit (%d) reached. You can raise it in Flux AI & MCP › Settings › Web."
+msgstr "月間ウェブ検索制限(%d)に達し、Flux AI & MCP ?? 設定 ?? Web.comで引き上げることができます。"
+
+msgid "Search query is empty."
+msgstr "検索クエリは空です。"
+
+msgid "Brave Search rejected the API key."
+msgstr "ブレバーサーチは API キー"
+
+msgid "Brave Search rate or plan limit reached. Try again later."
+msgstr "勇気を出して、検索レートやプラン制限に達し、後でもう一度試してみてください。"
+
+msgid "Search failed (HTTP %1$d). %2$s"
+msgstr "検索が失敗しました。 %1$d). %2$s"
+
+msgid "Reading web pages is turned off in Flux AI & MCP › Settings › Web."
+msgstr "ページは、FLAX AI & MCP ?? 設定 ?? Webでオフにします。"
+
+msgid "The page could not be read (HTTP %d)."
+msgstr "ページは読み込めません(HTTP %d)。"
+
+msgid "This content type cannot be read as text: %s"
+msgstr "%s はテキストとして読み込めません。"
+
+msgid "Read web page"
+msgstr "ページを読む"
+
+msgid "Invalid path."
+msgstr "無効なパスです。"
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "ファイルは、(アクセス許可またはディスクスペース) を書くことができませんでした。"
+
+msgid "Outside this workspace. You may only use your own folder (%s) and the folders allowed for this chat or task."
+msgstr "このワークスペースの外では、自分のフォルダ(%s)と、このチャットやタスクが許可されているフォルダのみ使用できます。"
+
+msgid "AI changes"
+msgstr "AIの変化"
+
+msgid "This change request is already closed."
+msgstr "この変更要求は既に終了しています。"
+
+msgid "Flux Files is required to apply file changes."
+msgstr "ファイル変更を適用するには、Flux Filesが必要です。"
+
+msgid "Change request #%1$d was merged: %2$d file(s) changed."
+msgstr "リクエストの変更#%1$d 統合されました %2$d file が変更されました。"
+
+msgid "Change request #%1$d was partly merged: %2$d file(s) applied, %3$d rejected."
+msgstr "リクエストの変更#%1$d 部分的に統合されました %2$d ファイルが適用されます。 %3$d 拒否した"
+
+msgid "Change request #%d was rejected; no files were changed."
+msgstr "変更要求 #%d は拒否されました。"
+
+msgid "You cannot change this task."
+msgstr "この仕事を変えることはできません。"
+
+msgid "This folder is not part of the workspace."
+msgstr "このフォルダはワークスペースの一部ではありません。"
+
+msgid "Only text files in this chat's own folder can be edited."
+msgstr "このチャットのフォルダにあるテキストファイルのみを編集できます。"
+
+msgid "The file is too large."
+msgstr "ファイルが大きすぎます。"
+
+msgid "Unexpected indentation on line %d of the header."
+msgstr "オンライン上の予期せぬインデント %d ヘッダーの"
+
+msgid "A list item cannot follow a key on line %d of the header."
+msgstr "リスト項目は、オンラインでキーをフォローできません。 %d ヘッダーの"
+
+msgid "Line %d of the header is not \"key: value\"."
+msgstr "系統 %d ヘッダーのkey:valueは、\"key:value\"ではありません。"
+
+msgid "A key cannot follow a list item on line %d of the header."
+msgstr "オンラインの項目リストにキーが従えない。 %d ヘッダーの"
+
+msgid "A quoted value in the header is not closed."
+msgstr "ヘッダーの引用値は閉じられません。"
+
+msgid "No OpenRouter key in Flux AI settings."
+msgstr "いえ OpenRouter Flux AI設定のキー。"
+
+msgid "No Anthropic key in Flux AI settings."
+msgstr "Flux AI設定のアントロピックキーはありません。"
+
+msgid "No OpenRouter or Anthropic key in Flux AI settings."
+msgstr "ノー OpenRouter あるいは Flux AI 設定の Anthropic Key です。"
+
+msgid "No OpenRouter or Anthropic key in Flux AI settings. Enter one there; Flux AI sends the requests."
+msgstr "OpenRouter キー、または Anthropic キーが Flux AI 設定に含まれません。"
+
+msgid "Only the Anthropic key is set: every request uses a Claude model. Add an OpenRouter key in Flux AI for other models."
+msgstr "アントロピックキーのみが設定されます: すべてのリクエストはクロードモデルを使用します。 OpenRouter フラックスAIのキーとなるもの。"
+
+msgid "Requests use the OpenRouter key in Flux AI settings."
+msgstr "リクエストは、以下を使用します。 OpenRouter Flux AI設定のキー。"
+
+msgid "Claude models use the Anthropic key, other models the OpenRouter key in Flux AI settings."
+msgstr "クロードモデルは、他のモデルでAnthropicキーを使用します。 OpenRouter Flux AI設定のキー。"
+
+msgid "OpenRouter did not accept the key in Flux AI settings."
+msgstr "OpenRouter フラックスAIの設定で鍵が受け入れられませんでした。"
+
+msgid "The OpenRouter key in Flux AI works. Spent so far: $%s, no spending limit on the key (set one on OpenRouter)."
+msgstr "と OpenRouter フラックスAIの鍵は機能します%sキーの消費制限はありません。 OpenRouter)."
+
+msgid "The OpenRouter key in Flux AI works. Spent so far: $%1$s of the $%2$s limit."
+msgstr "訳語 と OpenRouter フラックスAIの鍵は機能します。%1$s です%2$s 限界だ"
+
+msgid "Anthropic did not accept the key in Flux AI settings."
+msgstr "Anthropicは、Flux AI設定のキーを受け入れませんでした。"
+
+msgid "The Anthropic key in Flux AI works."
+msgstr "Flux AIのAnthropic Keyが機能します。"

@@ -995,7 +995,7 @@ msgid "Yes"
 msgstr "si"
 
 msgid "No"
-msgstr "No"
+msgstr "No."
 
 msgid "Message"
 msgstr "Mensaje"
@@ -1220,7 +1220,7 @@ msgid "Yesterday"
 msgstr "ayer"
 
 msgid "Today"
-msgstr "hoy"
+msgstr "Hoy"
 
 msgid "Connection error"
 msgstr "Error de conexión"
@@ -2438,7 +2438,7 @@ msgid "Every year on %1$s at %2$s"
 msgstr "Cada año en %1$s en %2$s"
 
 msgid "%1$s: %2$s"
-msgstr "%1$s: %2$s"
+msgstr "%1$s : %2$s"
 
 msgid "First: %s"
 msgstr "Primero: %s"
@@ -2576,7 +2576,7 @@ msgid "Day of month"
 msgstr "Día del mes"
 
 msgid "Time"
-msgstr "tiempo"
+msgstr "Hora"
 
 msgid "no number"
 msgstr "sin numero"
@@ -3020,7 +3020,7 @@ msgid "If empty, the account in WooCommerce › Payments › Bank transfer is us
 msgstr "Si está vacía, se utiliza la cuenta en WooCommerce › Pagos › Transferencia bancaria."
 
 msgid "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
-msgstr "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
+msgstr "Variables: {first_name} , {name} , {donation} , {amount} , {quantity} , {bank} , {certificate_link} , {agent} , {brand} , {date} ."
 
 msgid "AI connection"
 msgstr "Conexión de IA"
@@ -3158,7 +3158,7 @@ msgid "Transfer description"
 msgstr "Descripción de la transferencia"
 
 msgid "Variables: {type}, {name}, {amount}, {quantity}"
-msgstr "Variables: {type}, {name}, {amount}, {quantity}"
+msgstr "Variables: {type} , {name} , {amount} , {quantity}"
 
 msgid "Donation page URL"
 msgstr "URL de la página de donación"
@@ -3332,7 +3332,7 @@ msgid "Message sent to the staff member before the certificate"
 msgstr "Mensaje enviado al miembro del personal antes del certificado."
 
 msgid "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
-msgstr "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
+msgstr "Variables: {ad} , {bagisci} , {bagis} , {no} , {brand} ."
 
 msgid "How many times staff can resend a donation's certificate"
 msgstr "¿Cuántas veces el personal puede reenviar el certificado de donación?"
@@ -4987,6 +4987,36 @@ msgstr "Continuación: tras un malentendido, la queja lo cierra al instante"
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "La reacción de despedida es 👍 o 🤲, nunca 🙏"
 
+msgid "Schedules call-center reports"
+msgstr "Informes de los centros de llamadas"
+
+msgid "Can receive a call-center report"
+msgstr "Puede recibir un informe de centro de llamadas"
+
+msgid "Can receive the general call-center report"
+msgstr "Puede recibir el informe del centro de llamadas general"
+
+msgid "Uses the call center"
+msgstr "Usa el centro de llamadas"
+
+msgid "Manages the call center"
+msgstr "Gestiona el centro de llamadas"
+
+msgid "(updates are sent to this address too)"
+msgstr "(las notificaciones también se envían a esta dirección)"
+
+msgid "Proxy"
+msgstr "apoderado"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "Por favor responda \"Estoy de acuerdo\" para dar su proxy."
+
+msgid "at least %s"
+msgstr "mínimo %s"
+
+msgid "Sent from the chat"
+msgstr "Enviado desde el chat"
+
 msgid "Promotional messages"
 msgstr "Mensajes promocionales"
 
@@ -4999,11 +5029,26 @@ msgstr "No se envían mensajes promocionales ni recordatorios. Las respuestas a 
 msgid "The person replied STOP to promotional messages."
 msgstr "La persona respondió STOP a los mensajes promocionales."
 
-msgid "at least %s"
-msgstr "mínimo %s"
+msgid "The upload has expired. Please add the file again."
+msgstr "La carga ha expirado. Por favor, agregue el archivo de nuevo."
 
-msgid "(updates are sent to this address too)"
-msgstr "(las notificaciones también se envían a esta dirección)"
+msgid "The chat could not be opened."
+msgstr "No se podía abrir la charla."
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "Sólo el remitente o un administrador puede editar este mensaje."
+
+msgid "This message can't be edited on this channel."
+msgstr "Este mensaje no puede ser editado en este canal."
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "El límite de tiempo para la edición ha pasado ( WhatsApp permite 15 minutos)."
+
+msgid "The message can't be empty."
+msgstr "El mensaje no puede estar vacío."
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp no editó el mensaje."
 
 msgid "Assistant languages"
 msgstr "Idiomas del asistente"

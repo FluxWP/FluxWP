@@ -1,8 +1,7 @@
 {
   "_meta": {
     "format": "fluxwp-package-translations/v1",
-    "locale": "tr_TR",
-    "status": "preserved"
+    "locale": "tr_TR"
   },
   "messages": {
     "Presets": "Ön ayarlar",
@@ -75,7 +74,7 @@
     "Removal": "Kaldırma",
     "Skipped": "Atlandı",
     "Profile": "Profil",
-    "Time": "Zaman",
+    "Time": "Saat",
     "Action": "İşlem",
     "Source": "Kaynak",
     "Result": "Sonuç",
@@ -507,7 +506,7 @@
     "Server": "Sunucu",
     "Set under Connection above": "Yukarıdaki Bağlantı ayarı",
     "Key saved": "Anahtar kayıtlı",
-    "GitHub (public)": "GitHub (public)",
+    "GitHub (public)": "GitHub (halka açık)",
     "Move up": "Yukarı",
     "Turn on": "Kaynağı aç",
     "Turn off": "Kapat",
@@ -564,7 +563,7 @@
     "installed, inactive": "kurulu, etkin değil",
     "Add %s too": "%s eklentisini de ekle",
     "Will also be installed / activated:": "Birlikte kurulacak / etkinleştirilecek:",
-    "wordpress.org": "wordpress.org",
+    "wordpress.org": "WordPress.org",
     "Remove": "Çıkar",
     "%1$s was deselected: it does not work without %2$s.": "%1$s seçimden çıkarıldı: %2$s olmadan çalışmaz.",
     "For %1$s these will also be installed and activated: %2$s. Continue?": "%1$s için şunlar da kurulup etkinleştirilecek: %2$s. Devam edilsin mi?",

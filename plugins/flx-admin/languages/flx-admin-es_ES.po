@@ -341,10 +341,10 @@ msgid "Summary"
 msgstr "Resumen"
 
 msgid "l, F j, Y"
-msgstr "l, F j, Y"
+msgstr "I, F j, Y"
 
 msgid "%1$s, %2$s"
-msgstr "%1$s, %2$s"
+msgstr "%1$s , %2$s"
 
 msgid "Edit modules"
 msgstr "Editar módulos"
@@ -955,7 +955,7 @@ msgid "Overdue"
 msgstr "Vencido"
 
 msgid "Today"
-msgstr "hoy"
+msgstr "Hoy"
 
 msgid "Done in the last 7 days"
 msgstr "Hecho en los últimos 7 días"
@@ -1200,3 +1200,54 @@ msgstr "Mes anterior"
 
 msgid "Next month"
 msgstr "Mes siguiente"
+
+msgid "Learn more"
+msgstr "Más información"
+
+msgid "Dismiss"
+msgstr "Descartar"
+
+msgid "or"
+msgstr "o"
+
+msgid "This role does not exist."
+msgstr "Este papel no existe."
+
+msgid "This permission is not in the table."
+msgstr "Este permiso no está en la mesa."
+
+msgid "There is no backup to restore."
+msgstr "No hay respaldo para restaurar."
+
+msgid "A layout needs at least one menu item."
+msgstr "Un diseño necesita al menos un elemento de menú."
+
+msgid "Choose a menu item."
+msgstr "Elija un elemento de menú."
+
+msgid "Unknown menu action."
+msgstr "Acción de menú desconocido."
+
+msgid "Unread WhatsApp"
+msgstr "Unread WhatsApp"
+
+msgid "The logo must be an image from the media library."
+msgstr "El logotipo debe ser una imagen de la biblioteca de medios."
+
+msgid "Choose 30, 60 or 120 seconds."
+msgstr "Elige 30, 60 o 120 segundos."
+
+msgid "Enter a color like #1F2937."
+msgstr "Introduzca un color como #1F2937."
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "El archivo subido no fue encontrado. Sube de nuevo."
+
+msgid "The file could not be saved on the server."
+msgstr "El archivo no se puede guardar en el servidor."
+
+msgid "Choose auto, light or dark."
+msgstr "Elige auto, luz o oscuridad."
+
+msgid "You do not have permission to do this."
+msgstr "No tienes permiso para hacer esto."

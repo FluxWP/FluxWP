@@ -352,6 +352,16 @@ return array(
   'kapat' => 'قريب',
   'Sitede /wiki altında geliştirici wiki\'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude\'da aç. Flux AI ile "Wiki\'ye sor" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir.' => 'ويكي المطور في الموقع ضمن /wiki: صفحات Markdown والأقسام وشجرة الصفحات وجدول المحتويات والبحث الفوري التفصيلي والمخرجات الملائمة لتحسين محركات البحث. متوافق مع LLM: يتم فتح كل صفحة ونسخها بتنسيق .md و/wiki/llms.txt وllms-full.txt، ويتم فتحها في ChatGPT / Claude. أدوات "اسأل Wiki" وMCP (البحث والقراءة والقائمة والكتابة) باستخدام Flux AI. يأتي مزودًا بأدلة لكتابة المكونات الإضافية والموضوعات، وإنشاء مكونات إضافية مدعومة بالذكاء الاصطناعي.',
   'Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. "Ask the Wiki" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.' => 'ويكي المطور في الموقع ضمن /wiki: صفحات Markdown والأقسام وشجرة الصفحات وجدول المحتويات والبحث الفوري التفصيلي والمخرجات الملائمة لتحسين محركات البحث. متوافق مع LLM: يتم فتح كل صفحة ونسخها بتنسيق .md و/wiki/llms.txt وllms-full.txt، ويتم فتحها في ChatGPT / Claude. أدوات "اسأل Wiki" وMCP (البحث والقراءة والقائمة والكتابة) باستخدام Flux AI. يأتي مزودًا بأدلة لكتابة المكونات الإضافية والموضوعات، وإنشاء مكونات إضافية مدعومة بالذكاء الاصطناعي.',
-
+  'JavaScript is required for this screen.' => 'JavaScript مطلوب لهذه الشاشة.',
+  'You cannot edit this page.' => 'لا يمكنك تحرير هذه الصفحة',
+  'The parent page was not found.' => 'لم يتم العثور على الصفحة الأم.',
+  'A page cannot be placed under itself.' => 'ولا يمكن وضع صفحة تحت حد ذاتها.',
+  'This status is not available.' => 'وهذا الوضع غير متاح.',
+  'You cannot delete this page.' => 'لا يمكنك حذف هذه الصفحة',
+  'The page could not be deleted.' => 'ولا يمكن حذف الصفحة.',
+  'You cannot manage sections.' => 'لا يمكنك إدارة الأقسام.',
+  'A section name is required.' => 'هناك حاجة إلى اسم القسم.',
+  'Section not found.' => 'القسم لم يعثر عليه',
+  'The section could not be deleted.' => 'ولا يمكن حذف هذا الفرع.',
  ),
 );

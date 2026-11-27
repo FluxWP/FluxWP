@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.8.3
+- Yönetim ekranı için ortak tarih seçicinin dil ve sağdan sola yazım desteği güncellendi.
+
 ## 0.8.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

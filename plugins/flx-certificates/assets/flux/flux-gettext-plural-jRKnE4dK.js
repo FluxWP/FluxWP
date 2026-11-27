@@ -1,0 +1,1 @@
+function e(e,t,n){if(e.length<2)return e[0];let r=Math.abs(n);if(t===`ar`&&e.length===6){let t=r%100;return e[r===0?0:r===1?1:r===2?2:t>=3&&t<=10?3:t>=11&&t<=99?4:5]}if(t===`ru`&&e.length===3){let t=r%10,n=r%100;return t===1&&n!==11?e[0]:t>=2&&t<=4&&(n<12||n>14)?e[1]:e[2]}return e[(t===`fr`||t===`pt-br`?r<=1:r===1)?0:1]}export{e as t};

@@ -743,7 +743,7 @@ function LineChart({ S, t, f, showTip, hideTip }: BodyProps) {
   return (
     <div className="flxfd-chart" ref={ref}>
       {width ? (
-        <svg viewBox={'0 0 ' + W + ' ' + H} width={W} height={H} role="img" aria-label={t('Daily responses') + ': ' + f.num(total) + ' ' + t('responses')}>
+        <svg viewBox={'0 0 ' + W + ' ' + H} width={W} height={H} direction="ltr" role="img" aria-label={t('Daily responses') + ': ' + f.num(total) + ' ' + t('responses')}>
           <g className="flxfd-gl">
             {Array.from({ length: ticks + 1 }, (_, g) => {
               const gv = (top / ticks) * g;
@@ -831,7 +831,7 @@ function BarChart({ S, t, f, showTip, hideTip, openForm }: BodyProps) {
   return (
     <div className="flxfd-chart" ref={ref}>
       {width ? (
-        <svg viewBox={'0 0 ' + W + ' ' + H} width={W} height={H} role="img" aria-label={t('Responses by form')}>
+        <svg viewBox={'0 0 ' + W + ' ' + H} width={W} height={H} direction="ltr" role="img" aria-label={t('Responses by form')}>
           {rows.map((r, i) => {
             const y0 = i * ROW;
             const w = Math.max(r.n ? 4 : 0, (r.n / top) * iw);
@@ -904,7 +904,7 @@ function PayChart({ S, t, f, showTip, hideTip }: BodyProps) {
   return (
     <div className="flxfd-chart" ref={ref}>
       {width ? (
-        <svg viewBox={'0 0 ' + W + ' ' + H} width={W} height={H} role="img" aria-label={t('Payment status')}>
+        <svg viewBox={'0 0 ' + W + ' ' + H} width={W} height={H} direction="ltr" role="img" aria-label={t('Payment status')}>
           {segs.map((g, i) => (
             <rect key={i} x={g.x} y={0} width={g.w} height={H} rx={4} fill={PAY[g.s.s] ?? PREV} onMouseMove={(ev) => showTip(ev, label(g.s.s), lines(g.s))} onMouseLeave={hideTip} />
           ))}
@@ -958,7 +958,7 @@ function Heatmap({ S, t, f, showTip, hideTip }: BodyProps) {
   return (
     <div className="flxfd-chart flxfd-chart--heat" ref={ref}>
       {width ? (
-        <svg viewBox={'0 0 ' + W + ' ' + H} width={W} height={H} role="img" aria-label={t('When responses arrive') + ' — ' + t('Day of week and hour of day')}>
+        <svg viewBox={'0 0 ' + W + ' ' + H} width={W} height={H} direction="ltr" role="img" aria-label={t('When responses arrive') + ' — ' + t('Day of week and hour of day')}>
           {hours.map((hr) => (
             <text key={hr} x={LBL + hr * (cell + GAP)} y={11} className="flxfd-axis-t">
               {pad(hr)}

@@ -540,6 +540,8 @@
     "Data of the Chatbot settings screen (the values are in flxSettings.chatbot).": "Chatbot ayar ekranının verisi (değerler flxSettings.chatbot içinde).",
     "Saves chatbot settings the way the settings form does (values are cleaned and limited). Only the fields you send change.": "Chatbot ayarlarını ayar formuyla aynı şekilde kaydeder (değerler temizlenir ve sınırlanır). Yalnız gönderdiğiniz alanlar değişir.",
     "The settings to change.": "Değişecek ayarlar.",
-    "Settings after saving.": "Kaydettikten sonraki ayarlar."
+    "Settings after saving.": "Kaydettikten sonraki ayarlar.",
+    "JavaScript is required for this screen.": "Bu ekran için JavaScript gerekir.",
+    "Chat on WhatsApp": "WhatsApp'tan yazın"
   }
 }

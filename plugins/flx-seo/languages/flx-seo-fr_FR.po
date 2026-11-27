@@ -41,7 +41,7 @@ msgid "Turn on the WebMCP search tool"
 msgstr "Activez l'outil de recherche WebMCP"
 
 msgid "Adds toolname/tooldescription to the search form so browser agents see it as a tool."
-msgstr "Adds toolname/tooldescription to the search form so browser agents see it as a tool."
+msgstr "Ajoute le nom d'outil/l'abonnement au formulaire de recherche pour que les agents du navigateur le voient comme un outil."
 
 msgid "Turn on security headers"
 msgstr "Activer les en-têtes de sécurité"
@@ -320,7 +320,7 @@ msgid "Turn on SEO output and write the home description (150–160 characters).
 msgstr "Activez la sortie SEO et rédigez la description de la maison (150 à 160 caractères)."
 
 msgid "Canonical link missing or duplicated"
-msgstr "Canonical link missing or duplicated"
+msgstr "Lien canonique manquant ou doublé"
 
 msgid "Each page needs exactly one rel=canonical. If another plugin or the theme also adds one, turn one off."
 msgstr "Chaque page a besoin d’exactement un rel=canonical. Si un autre plugin ou le thème en ajoute également un, désactivez-en un."
@@ -1212,3 +1212,147 @@ msgstr "Meta titre/description, canonique, Open Graph, schéma (organisation, si
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "PageSpeed a expiré ; cette étape a été ignorée."
+
+msgid "Searches this website and returns matching pages and posts with their title and address."
+msgstr "Effectuez des recherches sur ce site Web et retournez des pages correspondantes et des messages avec leur titre et adresse."
+
+msgid "How many results to return (1-20)"
+msgstr "Combien de résultats pour revenir (1-20)"
+
+msgid "Reads a page of this website as Markdown (title, description and main content). Without an address, reads the current page."
+msgstr "Lire une page de ce site Web comme Markdown (titre, description et contenu principal). Sans adresse, lit la page actuelle."
+
+msgid "Page address on this website; empty for the current page"
+msgstr "Adresse de page sur ce site Web; vide pour la page actuelle"
+
+msgid "Returns a short overview of this website (llms.txt): what it is about and its main pages."
+msgstr "Retourne un bref aperçu de ce site Web (llms.txt): ce qu'il s'agit et ses pages principales."
+
+msgid "Turn on Content-Signal in robots.txt"
+msgstr "Allumez le contenu dans robots.txt"
+
+msgid "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings."
+msgstr "Ajoute une ligne Content-Signal (recherche, ai-input, ai-train) aux robots.txt afin que les rampeurs sachent comment le contenu peut être utilisé. Les valeurs sont définies dans SEO › Paramètres."
+
+msgid "Serve Markdown to agents"
+msgstr "Servir Markdown aux agents"
+
+msgid "Pages answer Accept: text/markdown with a Markdown version of the main content; far fewer tokens than HTML."
+msgstr "Réponse des pages Accepter : texte/marque à l'aide d'une version Markdown du contenu principal; beaucoup moins de jetons que HTML."
+
+msgid "WebMCP tools are registered"
+msgstr "Les outils WebMCP sont enregistrés"
+
+msgid "Markdown is served to agents"
+msgstr "Markdown est servi aux agents"
+
+msgid "Content signals are declared"
+msgstr "Les signaux de contenu sont déclarés"
+
+msgid "Organization and contact pages are complete"
+msgstr "Organisation et pages de contact sont complètes"
+
+msgid "MCP Server Card is published"
+msgstr "MCP Carte de serveur est publié"
+
+msgid "Flux AI & MCP"
+msgstr "Flux AI & MCP"
+
+msgid "No Content-Signal in robots.txt"
+msgstr "Pas de contenu-Signal dans robots.txt"
+
+msgid "A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under \"User-agent: *\" yourself."
+msgstr "Une ligne Content-Signal (e.g. search=yes, ai-input=yes, ai-train=no) indique aux crawlers comment votre contenu peut être utilisé. Flux SEO l'ajoute aux robots générés.txt; définir les valeurs dans SEO › Paramètres. Si un robot manuscrit.txt s'assoit dans la racine du site, ajouter la ligne sous *User-."
+
+msgid "Sitemap has no lastmod dates"
+msgstr "Plan du site n'a pas de date de dernièremod"
+
+msgid "Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there."
+msgstr "Chaque entrée de sitemap devrait porter <lastmod> pour que les moteurs de recherche et les agents sachent ce qui a changé. Flux SEO l'ajoute à la carte de site WordPress et son index; si un autre plugin construit le plan de site, tournez sur lastmod là."
+
+msgid "Organization schema is missing contact details"
+msgstr "Le schéma de l'organisation manque de coordonnées"
+
+msgid "Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty)."
+msgstr "Remplissez le téléphone et l'adresse afin qu'un agent puisse répondre aux questions sur l'organisation sans deviner: SEO › Organisation, ou le profil organisationnel dans Flux Setup (Flux SEO le lit lorsque ses propres champs sont vides)."
+
+msgid "About, contact or legal page is not linked from the home page"
+msgstr "A propos, contact ou page juridique n'est pas lié à la page d'accueil"
+
+msgid "Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read."
+msgstr "Lien vers la page d'accueil (généralement la page d'accueil) et vers la page d'accueil. Un mailto : lien ne compte pas comme page de contact; les agents recherchent une page qu'ils peuvent lire."
+
+msgid "Markdown is not served when an agent asks for it"
+msgstr "Markdown n'est pas servi quand un agent le demande."
+
+msgid "For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when \"Serve Markdown\" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the \"Flux SEO Markdown\" block is at the top of .htaccess."
+msgstr "Pour Accepter: texte/marquer la page devrait répondre avec une version Markdown; il coûte des agents beaucoup moins de jetons que HTML. Flux SEO fait cela quand \"Serve Markdown\" est sur. Si HTML revient toujours, un cache de page répond en premier: purger le cache (LiteSpeed: Purge All) et vérifier que le bloc \"Flux SEO Markdown\" est en haut de .htaccess."
+
+msgid "No WebMCP tools are registered on page load"
+msgstr "Aucun outil WebMCP n'est enregistré sur la charge de page"
+
+msgid "Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on."
+msgstr "Les agents du navigateur recherchent des outils enregistrés avec navigateur.modelContext.registerTool() ou des formulaires marqués avec le nom d'outil/toldescription. Flux SEO enregistre la recherche, la page de lecture et les outils d'overview lorsque WebMCP est sur."
+
+msgid "No MCP Server Card"
+msgstr "No MCP Carte de serveur"
+
+msgid "Agents discover the site's MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this."
+msgstr "Les agents découvrent le serveur MCP du site à partir de /.well-known/mcp/server-card.json (nom, version, finpoint, capacités). Flux AI & MCP le publie lorsque son serveur MCP est sur (Flux AI & MCP › MCP ). Sans Flux AI & MCP le site n'a pas de serveur MCP; vous pouvez ignorer cela."
+
+msgid "Hidden from search engines (noindex)."
+msgstr "Caché à partir des moteurs de recherche (noindex)."
+
+msgid "Title is long (%d characters); Google cuts after about 60."
+msgstr "Le titre est long (%d caractères); Google coupe après environ 60."
+
+msgid "Title is very short; write a title that describes the topic."
+msgstr "Le titre est très court; écrivez un titre qui décrit le sujet."
+
+msgid "No meta description; it is built from the content automatically."
+msgstr "Aucune description de méta ; elle est construite automatiquement à partir du contenu."
+
+msgid "Meta description is long (%d characters)."
+msgstr "La description de la méta est longue (%d caractères)."
+
+msgid "Meta description is short (%d characters)."
+msgstr "La description de la méta est courte (%d caractères)."
+
+msgid "No featured image (it will not show in shares or Google Discover)."
+msgstr "Pas d'image en vedette (il ne montrera pas en actions ou Google Discover)."
+
+msgid "%d images have no alt text (filled in automatically from the image name; write a meaningful alt text)."
+msgstr "%d images n'ont pas de texte alt (remplis automatiquement à partir du nom de l'image; écrivez un texte alt significatif)."
+
+msgid "%d images have no alt text."
+msgstr "%d images n'ont pas de texte alt."
+
+msgid "The page has %d H1 headings; there must be only one."
+msgstr "La page a %d H1 titres; il ne doit y avoir qu'une seule."
+
+msgid "The page has no main heading (H1)."
+msgstr "La page n'a pas de titre principal (H1)."
+
+msgid "The content has an H1; the page title is already the H1. Make sub-headings H2."
+msgstr "Le contenu a un H1; le titre de la page est déjà le H1. Faire des sous-positions H2."
+
+msgid "The content is short (%d words). 300+ words are recommended."
+msgstr "Le contenu est court (%d mots). 300 mots et plus sont recommandés."
+
+msgid "Long content has no sub-heading (H2)."
+msgstr "Le contenu long n'a pas de sous-position (H2)."
+
+msgid "The focus keyword is not in the title."
+msgstr "Le mot clé n'est pas dans le titre."
+
+msgid "The focus keyword is not in the description."
+msgstr "Le mot clé n'est pas dans la description."
+
+msgid "No internal links (link to related pages)."
+msgstr "Aucun lien interne (lien vers des pages connexes)."
+
+msgid "Content not found."
+msgstr "Le contenu n'est pas trouvé."
+
+msgid "You are not allowed to edit this content."
+msgstr "Vous n'êtes pas autorisé à modifier ce contenu."
