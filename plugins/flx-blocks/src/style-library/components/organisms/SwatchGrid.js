@@ -185,6 +185,7 @@ function SwatchGridGroup({
 	// `mapPaletteToSwatchGroups`): while the group itself is mid-delete, its heading (and the
 	// Rename/Delete menu and Add-color tile it hosts) must read as inert too, not just its swatches.
 	const isGroupPendingDelete = Boolean(group.pendingDelete);
+	const displayLabel = group.displayLabel ?? group.label;
 
 	return (
 		<div
@@ -202,12 +203,12 @@ function SwatchGridGroup({
 				<SectionHeading
 					leading={
 						!isGroupPendingDelete ? (
-							<DragHandle handleProps={groupSortable.handleProps} label={groupHandleLabel(group.label)} />
+							<DragHandle handleProps={groupSortable.handleProps} label={groupHandleLabel(displayLabel)} />
 						) : null
 					}
 					actions={!isGroupPendingDelete && groupActions ? groupActions(group) : null}
 				>
-					{group.label}
+					{displayLabel}
 				</SectionHeading>
 			</div>
 			<DndContext {...contextProps}>
@@ -301,6 +302,7 @@ function SwatchGridGroup({
  */
 export function SwatchGroupGhost({ group, selectedId, addLabel, groupActions }) {
 	const reservePillSlot = group.items.some((item) => Boolean(item.pill));
+	const displayLabel = group.displayLabel ?? group.label;
 
 	return (
 		<div
@@ -309,10 +311,10 @@ export function SwatchGroupGhost({ group, selectedId, addLabel, groupActions }) 
 			aria-hidden="true"
 		>
 			<SectionHeading
-				leading={<DragHandle label={groupHandleLabel(group.label)} />}
+				leading={<DragHandle label={groupHandleLabel(displayLabel)} />}
 				actions={groupActions ? groupActions(group) : null}
 			>
-				{group.label}
+				{displayLabel}
 			</SectionHeading>
 			<div className="flx-blocks-style-library__swatch-group-grid">
 				{group.items.map((item) => (

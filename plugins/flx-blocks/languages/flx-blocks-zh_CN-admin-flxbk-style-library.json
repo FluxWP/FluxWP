@@ -939,6 +939,63 @@
       ],
       "block title\u0004Tab": [
         "制表符"
+      ],
+      "Accent": [
+        "强调色"
+      ],
+      "Main 1": [
+        "主色 1"
+      ],
+      "Main 2": [
+        "主色 2"
+      ],
+      "Main 3": [
+        "主色 3"
+      ],
+      "Button Hover": [
+        "按钮悬停"
+      ],
+      "Contrast": [
+        "对比色"
+      ],
+      "Strongest": [
+        "最强"
+      ],
+      "Strong": [
+        "强"
+      ],
+      "Medium": [
+        "中等"
+      ],
+      "Subtle": [
+        "柔和"
+      ],
+      "Notices and Feedback": [
+        "通知和反馈"
+      ],
+      "Success": [
+        "成功"
+      ],
+      "Warning": [
+        "警告"
+      ],
+      "Error": [
+        "错误"
+      ],
+      "Info": [
+        "信息"
+      ],
+      "Extended": [
+        "扩展颜色"
+      ],
+      "Complement": [
+        "互补色"
+      ],
+      "Alert": [
+        "提醒"
+      ],
+      "Rating": [
+        "评分"
       ]
     }
   }

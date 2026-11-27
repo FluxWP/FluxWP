@@ -157,8 +157,7 @@ export function Settings() {
                   </td>
                   <td data-label={t('On')}>
                     <label className="flxcrm-switch">
-                      <input type="checkbox" checked={d.sources[x.key]?.enabled ?? false} onChange={(e) => set({ sources: { ...d.sources, [x.key]: { enabled: e.currentTarget.checked, role: d.sources[x.key]?.role ?? '' } } })} />
-                      <span style={{ position: 'absolute', left: -9999 }}>{x.label}</span>
+                      <input type="checkbox" aria-label={x.label} checked={d.sources[x.key]?.enabled ?? false} onChange={(e) => set({ sources: { ...d.sources, [x.key]: { enabled: e.currentTarget.checked, role: d.sources[x.key]?.role ?? '' } } })} />
                     </label>
                   </td>
                   <td data-label={t('Role')}>

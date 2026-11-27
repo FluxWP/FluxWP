@@ -423,10 +423,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
           >
             {can && (
               <form className="flxcrm-composer" onSubmit={(e) => void addNote(e)}>
-                <label className="screen-reader-text" htmlFor="flxcrm-note" style={{ position: 'absolute', left: -9999 }}>
-                  {t('Note')}
-                </label>
-                <textarea id="flxcrm-note" rows={2} value={note} required placeholder={t('Add a note: talked on the phone, call again about the qurban…')} onChange={(e) => setNote(e.currentTarget.value)} />
+                <textarea id="flxcrm-note" aria-label={t('Note')} rows={2} value={note} required placeholder={t('Add a note: talked on the phone, call again about the qurban…')} onChange={(e) => setNote(e.currentTarget.value)} />
                 <div className="flxcrm-composer__bar">
                   <select value={noteType} aria-label={t('Type')} onChange={(e) => setNoteType(e.currentTarget.value as FlxContactNoteType)}>
                     {manual.map((m) => (
@@ -586,7 +583,7 @@ export function ContactCard({ id, go }: { id: string; go: (to: string) => void }
                           <span key={x.key} className={'flxcrm-consent' + (on ? ' is-on' : '')}>
                             <Ic n={on ? 'check' : 'x'} size={13} />
                             <span>{x.label}</span>
-                            <span style={{ position: 'absolute', left: -9999 }}>{on ? t('allowed') : t('not allowed')}</span>
+                            <span className="flxcrm-sr">{on ? t('allowed') : t('not allowed')}</span>
                           </span>
                         );
                       })}

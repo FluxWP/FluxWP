@@ -936,6 +936,63 @@
       ],
       "block title\u0004Tab": [
         "tab"
+      ],
+      "Accent": [
+        "Akzent"
+      ],
+      "Main 1": [
+        "Hauptfarbe 1"
+      ],
+      "Main 2": [
+        "Hauptfarbe 2"
+      ],
+      "Main 3": [
+        "Hauptfarbe 3"
+      ],
+      "Button Hover": [
+        "Schaltfläche bei Hover"
+      ],
+      "Contrast": [
+        "Kontrast"
+      ],
+      "Strongest": [
+        "Sehr stark"
+      ],
+      "Strong": [
+        "Stark"
+      ],
+      "Medium": [
+        "Mittel"
+      ],
+      "Subtle": [
+        "Dezent"
+      ],
+      "Notices and Feedback": [
+        "Hinweise und Feedback"
+      ],
+      "Success": [
+        "Erfolg"
+      ],
+      "Warning": [
+        "Warnung"
+      ],
+      "Error": [
+        "Fehler"
+      ],
+      "Info": [
+        "Info"
+      ],
+      "Extended": [
+        "Erweiterte Farben"
+      ],
+      "Complement": [
+        "Komplementärfarbe"
+      ],
+      "Alert": [
+        "Hinweis"
+      ],
+      "Rating": [
+        "Bewertung"
       ]
     }
   }

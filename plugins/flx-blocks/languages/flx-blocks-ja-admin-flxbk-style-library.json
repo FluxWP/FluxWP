@@ -939,6 +939,63 @@
       ],
       "block title\u0004Tab": [
         "タブ"
+      ],
+      "Accent": [
+        "アクセント"
+      ],
+      "Main 1": [
+        "メイン 1"
+      ],
+      "Main 2": [
+        "メイン 2"
+      ],
+      "Main 3": [
+        "メイン 3"
+      ],
+      "Button Hover": [
+        "ボタンのホバー"
+      ],
+      "Contrast": [
+        "コントラスト"
+      ],
+      "Strongest": [
+        "最も強い"
+      ],
+      "Strong": [
+        "強い"
+      ],
+      "Medium": [
+        "中間"
+      ],
+      "Subtle": [
+        "控えめ"
+      ],
+      "Notices and Feedback": [
+        "通知とフィードバック"
+      ],
+      "Success": [
+        "成功"
+      ],
+      "Warning": [
+        "警告"
+      ],
+      "Error": [
+        "エラー"
+      ],
+      "Info": [
+        "情報"
+      ],
+      "Extended": [
+        "追加の色"
+      ],
+      "Complement": [
+        "補色"
+      ],
+      "Alert": [
+        "注意"
+      ],
+      "Rating": [
+        "評価"
       ]
     }
   }

@@ -939,6 +939,63 @@
       ],
       "block title\u0004Tab": [
         "tab"
+      ],
+      "Accent": [
+        "Accent"
+      ],
+      "Main 1": [
+        "Principale 1"
+      ],
+      "Main 2": [
+        "Principale 2"
+      ],
+      "Main 3": [
+        "Principale 3"
+      ],
+      "Button Hover": [
+        "Bouton au survol"
+      ],
+      "Contrast": [
+        "Contraste"
+      ],
+      "Strongest": [
+        "Très fort"
+      ],
+      "Strong": [
+        "Fort"
+      ],
+      "Medium": [
+        "Moyen"
+      ],
+      "Subtle": [
+        "Discret"
+      ],
+      "Notices and Feedback": [
+        "Notifications et retours"
+      ],
+      "Success": [
+        "Succès"
+      ],
+      "Warning": [
+        "Avertissement"
+      ],
+      "Error": [
+        "Erreur"
+      ],
+      "Info": [
+        "Information"
+      ],
+      "Extended": [
+        "Couleurs supplémentaires"
+      ],
+      "Complement": [
+        "Complémentaire"
+      ],
+      "Alert": [
+        "Alerte"
+      ],
+      "Rating": [
+        "Note"
       ]
     }
   }

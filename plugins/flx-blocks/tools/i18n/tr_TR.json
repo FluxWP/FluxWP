@@ -3489,5 +3489,14 @@
 "Settings after the change.": "Değişiklikten sonraki ayarlar.",
 "Unknown block.": "Bilinmeyen blok.",
 "Choose Small, Large or Fullwidth.": "Küçük, Büyük ya da Tam genişlik seçin.",
-"Enter a width between 200 and 4000 px.": "200 ile 4000 px arasında bir genişlik girin."
+"Enter a width between 200 and 4000 px.": "200 ile 4000 px arasında bir genişlik girin.",
+"Main 1": "Ana 1",
+"Main 2": "Ana 2",
+"Main 3": "Ana 3",
+"Button Hover": "Düğme üzerine gelince",
+"Contrast": "Kontrast",
+"Strongest": "En güçlü",
+"Strong": "Güçlü",
+"Notices and Feedback": "Bildirimler ve geri bildirim",
+"Extended": "Ek renkler"
 }

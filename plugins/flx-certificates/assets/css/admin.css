@@ -481,6 +481,7 @@ html.flxa-dark .flxs-wrap{--gd:var(--flxa-accent-strong);--ink:var(--flxa-text);
 
 /* The range fits its filter row even when translated date labels are long. */
 @media (max-width:782px) {
+	.flxs-card button.button { max-inline-size: 100%; white-space: normal; overflow-wrap: anywhere; }
 	.flxs-dash__dates {
 		display:grid;
 		grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
