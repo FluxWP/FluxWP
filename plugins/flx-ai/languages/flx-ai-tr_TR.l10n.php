@@ -1750,5 +1750,7 @@ return array(
   'Anthropic did not accept the key in Flux AI settings.' => 'Anthropic, Flux AI ayarlarındaki anahtarı kabul etmedi.',
   'The Anthropic key in Flux AI works.' => 'Flux AI\'daki Anthropic anahtarı çalışıyor.',
   'No Anthropic key in Flux AI settings.' => 'Flux AI ayarlarında Anthropic anahtarı yok.',
+  'Pro' => 'Pro',
+  'Your Flux Cloud plan does not include this model. Upgrade the plan or enter your own key.' => 'Flux Cloud planınız bu modeli içermiyor. Planı yükseltin ya da kendi anahtarınızı girin.',
  ),
 );

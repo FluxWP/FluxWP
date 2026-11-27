@@ -14,4 +14,7 @@ query FlxAiOverview($days: Int = 30, $source: String) {
     name
     configured
   }
+  flxAiSettingsOptions {
+    providersReady
+  }
 }

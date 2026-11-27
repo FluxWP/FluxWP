@@ -1729,7 +1729,7 @@
 			else fetchModels().catch(function (e) { var l = els.pop.querySelector('.pop-list'); if (l) l.innerHTML = '<div class="pop-empty">' + esc(e.message) + '</div>'; });
 		}
 		/* Model listesi tarayıcıda önbelleklenir (anında açılır), 6 saatte bir arka planda tazelenir. */
-		var MKEY = 'flxai-models';
+		var MKEY = 'flxai-models-2'; // 2: locked (Flux Cloud plan) flag
 		function setModels(list) {
 			S.models = list;
 			S.modelLabels = {};
@@ -1740,7 +1740,7 @@
 			S.modelsReq = api('GET', 'models').then(function (r) {
 				S.modelsReq = null;
 				var list = (r.models || []).filter(function (m) { return m.tools; }).map(function (m) {
-					return { id: m.id, name: m.name, family: m.family || '', provider: m.provider || '', ctx: m.ctx || 0, in: m.in, out: m.out };
+					return { id: m.id, name: m.name, family: m.family || '', provider: m.provider || '', ctx: m.ctx || 0, in: m.in, out: m.out, locked: !!m.locked };
 				});
 				setModels(list);
 				try { localStorage.setItem(MKEY, JSON.stringify({ t: Date.now(), m: list })); } catch (e) {}
@@ -1762,6 +1762,8 @@
 		function fmtCtx(n) { return n >= 1000000 ? (Math.round(n / 100000) / 10) + 'M' : n >= 1000 ? Math.round(n / 1000) + 'K' : ''; }
 		function modelRow(m, cur) {
 			var meta = [m.id, fmtCtx(m.ctx), '$' + (+m.in).toFixed(2) + ' / $' + (+m.out).toFixed(2)].filter(Boolean).join(' · ');
+			// Flux Cloud plan does not include it: grey, "Pro" badge, not selectable.
+			if (m.locked) return '<div class="ci locked' + (m.id === cur ? ' cur' : '') + '" title="' + esc(t('Flux Cloud planınız bu modeli içermiyor. Planı yükseltin ya da kendi anahtarınızı girin.')) + '"><div class="ct"><b>' + esc(m.name) + ' <span class="pro">' + esc(t('Pro')) + '</span></b><small>' + esc(meta) + '</small></div>' + (m.id === cur ? '<span class="vi ok">' + ic('check') + '</span>' : '') + '</div>';
 			return '<div class="ci' + (m.id === cur ? ' cur' : '') + '" data-model="' + esc(m.id) + '"><div class="ct"><b>' + esc(m.name) + '</b><small>' + esc(meta) + '</small></div>' + (m.id === cur ? '<span class="vi ok">' + ic('check') + '</span>' : '') + '</div>';
 		}
 		function renderModels() {
@@ -1783,9 +1785,11 @@
 				var h = norm(m.id + ' ' + m.name + ' ' + m.family), hc = h.replace(/\s+/g, '');
 				return words.every(function (w) { return h.indexOf(w) >= 0 || hc.indexOf(w) >= 0; });
 			});
+			// Open models first, the ones the Flux Cloud plan does not include after them.
+			list = list.filter(function (m) { return !m.locked; }).concat(list.filter(function (m) { return m.locked; }));
 			var cur = (S.chat && S.chat.model) || ui.model || '';
 			var h = '<div class="ci' + (!cur ? ' cur' : '') + '" data-model=""><div class="ct"><b>' + esc(t('Varsayılan')) + '</b><small>' + esc(S.boot ? S.boot.modelLabel : '') + '</small></div>' + (!cur ? '<span class="vi ok">' + ic('check') + '</span>' : '') + '</div>';
-			var recent = (ui.recentModels || []).filter(function (id) { return S.modelLabels[id]; });
+			var recent = (ui.recentModels || []).filter(function (id) { return S.modelLabels[id] && !S.models.some(function (m) { return m.id === id && m.locked; }); });
 			if (!words.length && !S.mfam && recent.length) {
 				h += '<div class="pop-sec">' + esc(t('Son kullanılanlar')) + '</div>' + recent.map(function (id) { return modelRow(S.models.filter(function (m) { return m.id === id; })[0], cur); }).join('');
 				h += '<div class="pop-sec">' + esc(t('Tüm modeller')) + ' <small>' + S.models.length + '</small></div>';

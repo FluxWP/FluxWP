@@ -148,6 +148,58 @@ function flx_ai_relay_info() {
 }
 
 /** Body as Anthropic's OpenAI-compatible endpoint takes it (OpenRouter-only fields left out). */
+/**
+ * JSON schema objects that PHP decoded to empty arrays ({} became []) go back to objects, else strict APIs
+ * (Anthropic: "parameters.properties: Input should be a valid dictionary") refuse the tool.
+ */
+function flxai_relay_schema( $s ) {
+	if ( ! is_array( $s ) ) {
+		return $s;
+	}
+	foreach ( array( 'properties', 'patternProperties', '$defs', 'definitions' ) as $k ) {
+		if ( array_key_exists( $k, $s ) && is_array( $s[ $k ] ) ) {
+			$o = array();
+			foreach ( $s[ $k ] as $n => $sub ) {
+				$o[ $n ] = array() === $sub ? new stdClass() : flxai_relay_schema( $sub );
+			}
+			$s[ $k ] = $o ? $o : new stdClass();
+		}
+	}
+	foreach ( array( 'items', 'additionalProperties', 'not' ) as $k ) {
+		if ( isset( $s[ $k ] ) && is_array( $s[ $k ] ) ) {
+			$s[ $k ] = $s[ $k ] ? flxai_relay_schema( $s[ $k ] ) : new stdClass();
+		}
+	}
+	foreach ( array( 'anyOf', 'oneOf', 'allOf' ) as $k ) {
+		if ( isset( $s[ $k ] ) && is_array( $s[ $k ] ) ) {
+			$s[ $k ] = array_map( 'flxai_relay_schema', $s[ $k ] );
+		}
+	}
+	return $s;
+}
+
+/** Tool definitions with their parameter schemas as JSON objects. */
+function flxai_relay_tools( array $body ) {
+	if ( empty( $body['tools'] ) || ! is_array( $body['tools'] ) ) {
+		return $body;
+	}
+	foreach ( $body['tools'] as $i => $t ) {
+		if ( ! is_array( $t ) || ! isset( $t['function'] ) || ! is_array( $t['function'] ) ) {
+			continue;
+		}
+		$p = $t['function']['parameters'] ?? array();
+		$p = is_array( $p ) ? $p : array();
+		if ( ! isset( $p['type'] ) ) {
+			$p['type'] = 'object';
+		}
+		if ( 'object' === $p['type'] && ! isset( $p['properties'] ) ) {
+			$p['properties'] = array();
+		}
+		$body['tools'][ $i ]['function']['parameters'] = flxai_relay_schema( $p );
+	}
+	return $body;
+}
+
 function flxai_relay_anthropic_body( array $body, $model ) {
 	unset( $body['usage'], $body['plugins'], $body['reasoning'], $body['seed'], $body['provider'], $body['transforms'] );
 	$body['model'] = $model;
@@ -202,6 +254,7 @@ function flx_ai_relay( array $body, array $opts = array() ) {
 		$headers['HTTP-Referer'] = (string) ( $opts['referer'] ?? home_url( '/' ) );
 		$headers['X-Title']      = (string) ( $opts['title'] ?? get_bloginfo( 'name' ) . ' · Flux AI' );
 	}
+	$body   = flxai_relay_tools( $body );
 	$url    = $route['base'] . '/chat/completions';
 	$stream = ! empty( $body['stream'] ) && isset( $opts['on_sse'] ) && is_callable( $opts['on_sse'] ) && function_exists( 'curl_init' );
 	if ( $stream ) {

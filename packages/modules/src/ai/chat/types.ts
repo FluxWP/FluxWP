@@ -166,6 +166,8 @@ export interface ModelInfo {
   ctx: number;
   in: number;
   out: number;
+  /** Runs on Flux Cloud credits and the plan does not include it. */
+  locked?: boolean;
 }
 
 export type Decisions = Record<string, 'approve' | 'reject'>;

@@ -201,6 +201,8 @@ function flxai_js_strings() {
 		'Tam ekran aç' => __( 'Open full screen', 'flx-ai' ),
 		'Görünüm' => __( 'View', 'flx-ai' ),
 		'Tümü' => __( 'All', 'flx-ai' ),
+		'Pro' => __( 'Pro', 'flx-ai' ),
+		'Flux Cloud planınız bu modeli içermiyor. Planı yükseltin ya da kendi anahtarınızı girin.' => __( 'Your Flux Cloud plan does not include this model. Upgrade the plan or enter your own key.', 'flx-ai' ),
 		'Son kullanılanlar' => __( 'Recently used', 'flx-ai' ),
 		'Tüm modeller' => __( 'All models', 'flx-ai' ),
 		/* translators: %s: number of models */

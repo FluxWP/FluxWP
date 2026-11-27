@@ -1,5 +1,10 @@
 # Flux AI — Değişiklikler
 
+## 0.37.3
+- Flux Cloud: Claude anahtarıyla giden araçlı isteklerde "tools.0.function.parameters.properties: Input should be a valid dictionary" hatası giderildi. Aktarım, parametresiz araçların boş `properties` (ve iç içe şema) alanlarını JSON nesnesi olarak gönderir.
+- Model seçici (sohbet paneli ve Flux AI sohbet ekranı): site Flux Cloud kredisiyle çalışıyorsa ve plan yalnız temel modelleri içeriyorsa, plana dahil olmayan modeller gri, "Pro" rozetli, seçilemez ve listenin sonunda; açık modeller üstte. `/models` yanıtında `locked` ve `upgrade_url`.
+- Genel bakış: Flux Cloud kredisi kullanılırken "Henüz API anahtarı girilmedi" uyarısı çıkmaz.
+
 ## 0.37.2
 - Aktarım (relay) Anthropic anahtarını da kullanır: Flux AI › Ayarlar'da Claude (Anthropic) anahtarı varsa Claude modelleri ona, diğer modeller OpenRouter anahtarına gider; yalnız Anthropic anahtarı varsa her istek Claude modeliyle gider (Claude olmayan model Flux AI varsayılan Claude modeline ya da `claude-haiku-4.5`'e döner). Maliyet Anthropic fiyat tablosundan hesaplanır.
 - `flx_ai_relay()` `$opts['provider']`: `auto` (varsayılan), `openrouter` ya da `anthropic`; seçilen sağlayıcının anahtarı yoksa açık hata. `flx_ai_relay_info()` yeni alanlar: `providers` (sağlayıcı → anahtar sonu), `keys` (görünen metin). Anahtar denetimi iki anahtarı da sınar.

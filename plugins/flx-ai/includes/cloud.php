@@ -91,6 +91,28 @@ function flxai_cloud_model_id( $provider, $id ) {
 	return (string) apply_filters( 'flxai_cloud_model_id', $id, $provider );
 }
 
+/**
+ * The model runs on Flux Cloud credits and the account's plan does not include it (plan with basic models only).
+ * Uses the patterns Flux Cloud sends (`basic`, fnmatch on OpenRouter ids).
+ */
+function flxai_cloud_model_locked( $model ) {
+	$p = flxai_parse_model( (string) $model );
+	if ( ! flxai_cloud_for( $p['provider'] ) ) {
+		return false;
+	}
+	$c = flxai_cloud_status();
+	if ( ! is_array( $c ) || 'basic' !== (string) ( $c['models'] ?? '' ) ) {
+		return false;
+	}
+	$id = strtolower( flxai_cloud_model_id( $p['provider'], $p['id'] ) );
+	foreach ( (array) ( $c['basic'] ?? array() ) as $pat ) {
+		if ( is_string( $pat ) && '' !== $pat && fnmatch( strtolower( $pat ), $id ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
 /** Keeps the numbers an answer brings (flx_cloud: credits, left, used, monthly). */
 function flxai_cloud_note( $nums ) {
 	if ( ! is_array( $nums ) ) {
