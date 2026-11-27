@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.7.1
+- FluxWP hesabına bağlanırken "FluxWP Panel is too old to connect" hatası: REST API'yi gizleyen/kısıtlayan siteler (görünmez siteler, güvenlik eklentileri) sahiplik kanıtı isteğine 404 dönüyordu ve fluxwp.com bunu "eski sürüm" sayıyordu. Kanıt isteği artık diğer eklentilerden önce yanıtlanır.
+
 ## 1.7.0
 - Paketler ekranı klasik sayfayla birebir: alt başlık, "Güncellemeleri kontrol et" altında son kontrol ve sonuç satırı (bildirim çubuğu yerine), Google kartı klasik görünümde.
 - Sunucuya ulaşılamıyor ve FluxWP paketi listelenemiyorsa bağlantı formu (sunucu adresi, site anahtarı, güncelleme sonrası kontrol, otomatik güncelleme, kullanım verisi) yine Paketler sayfasında; bağlantı kartında "Bağlantıyı test et".
