@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.48.1
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 2.48.0
 - **Flux Donate artık kart almaz; ödeme yalnız WooCommerce'in ödeme yöntemleriyle (kart için Flux POS).** Donate'in kendi ödeme sistemi kaldırıldı: iyzico ödeme yöntemi ve kart alanları, EsnekPOS adaptörü ve sayfadaki kart formu, ödeme yöntemleri yetenek tablosu ve tek kart kuralı ("Kart ödeme yöntemi", "Kart ödeme ekranı", "En çok taksit", "Diğer ödeme eklentilerini blokta göster" ayarları), iyzico bildirim adresi, Flux Commerce aboneliği için iyzico kart sağlayıcısı, Flux Forms ödeme katmanındaki Stripe / iyzico / test sağlayıcıları ve Bağışlar › Ödemeler sayfası. Tek kart kuralı, blokta gösterim ve ödeme logoları Flux POS'ta.
 - **Aylık bağış Flux POS'un kayıtlı kartıyla.** Aylık satırı olan siparişte ödeme sayfasında yalnız Flux POS "Kart ile öde" çıkar ve Flux POS kartı ödeme kuruluşunda saklar (şimdilik Stripe hesabı). Her ay saatlik görev (`flxb_renewals`) yenileme siparişini açar ve kartı Flux POS ile çeker; Flux POS siparişi öder, bağış kaydı siparişten yazılır. Çekilemezse 1 ve 3 gün sonra yeniden denenir, sonra "ödemesi gecikti" olur ve bağışçıya e-posta gider. Cevabı gelmeyen çekim tekrarlanmaz. Kart saklayan Flux POS hesabı yoksa aylık seçeneği kapalıdır.

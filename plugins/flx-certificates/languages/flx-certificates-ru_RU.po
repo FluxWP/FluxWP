@@ -713,7 +713,7 @@ msgid "Goal: %s saplings"
 msgstr "Цель: саженцы %s"
 
 msgid "%s%%"
-msgstr "%s%%"
+msgstr "%s %"
 
 msgid "Completed event"
 msgstr "Завершенное мероприятие"
@@ -840,7 +840,7 @@ msgid "Queued to send"
 msgstr "В очереди на отправку"
 
 msgid "Send queue"
-msgstr "Отправить очередь"
+msgstr "Очередь отправки"
 
 msgid "Sends appear here."
 msgstr "Отправления появляются здесь."
@@ -1018,3 +1018,702 @@ msgstr "Карты пока нет: до указания места ссылк�
 
 msgid "Person not found."
 msgstr "Персона не найдена."
+
+msgid "Creates and sees certificates"
+msgstr "Создает и видит сертификаты"
+
+msgid "Manages certificates"
+msgstr "Удостоверения на работу"
+
+msgid "Sends certificates in bulk"
+msgstr "Сертификат навалом/насыпью"
+
+msgid "Sees the certificate dashboard"
+msgstr "Видит панель управления сертификатами"
+
+msgid "Sees only certificates they created or referred"
+msgstr "Видит только сертификаты, которые они создали или на которые ссылались."
+
+msgid "All Certificates"
+msgstr "Все сертификаты"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "Bulk send"
+msgstr "Массовая отправка"
+
+msgid "Providers"
+msgstr "Провайдеры"
+
+msgid "Logs"
+msgstr "Журналы"
+
+msgid "Certificate settings"
+msgstr "Устройства сертификатов"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "certificates"
+msgstr "сертификаты"
+
+msgid "Only certificates that you created."
+msgstr "Только сертификаты, которые вы создали."
+
+msgid "Sapling donations, certificates and deliveries."
+msgstr "Пожертвования, сертификаты и поставки."
+
+msgid "Loading…"
+msgstr "Загрузка..."
+
+msgid "%1$s: %2$s saplings, %3$s certificates"
+msgstr "%1$s : %2$s сапелляторы, %3$s сертификаты"
+
+msgid "%2$s saplings during %1$s"
+msgstr "%2$s сапелляционное отверстие в течение %1$s"
+
+msgid "%s failed"
+msgstr "%s не сработало"
+
+msgid "%s first-time recipients"
+msgstr "%s получателя впервые"
+
+msgid "%s sent"
+msgstr "%s sent"
+
+msgid "%s waiting"
+msgstr "%s ждет"
+
+msgid "30 days"
+msgstr "30 дней"
+
+msgid "7 days"
+msgstr "7 дней"
+
+msgid "90 days"
+msgstr "90 дней"
+
+msgid "All"
+msgstr "Все"
+
+msgid "All staff"
+msgstr "Все сотрудники"
+
+msgid "Archive"
+msgstr "Архив"
+
+msgid "Average saplings"
+msgstr "Средние отверстия"
+
+msgid "Avg."
+msgstr "Авг."
+
+msgid "Busiest day"
+msgstr "Бузисный день"
+
+msgid "Busiest month"
+msgstr "Бузисный месяц"
+
+msgid "Channel and status"
+msgstr "Канал и статус"
+
+msgid "Chart"
+msgstr "Диаграмма"
+
+msgid "Compared with the previous %s days"
+msgstr "По сравнению с предыдущими %s"
+
+msgid "Could not load data:"
+msgstr "Не может быть данных о нагрузках:"
+
+msgid "Cumulative"
+msgstr "кумулятивный"
+
+msgid "Daily certificates"
+msgstr "Ежедневные сертификаты"
+
+msgid "Daily saplings"
+msgstr "Ежедневные сапллинги"
+
+msgid "Daily saplings chart"
+msgstr "Ежедневная карта саплингов"
+
+msgid "Day"
+msgstr "День"
+
+msgid "Days of the week"
+msgstr "Дни недели"
+
+msgid "Delivery"
+msgstr "Доставка"
+
+msgid "End date"
+msgstr "Дата окончания"
+
+msgid "Excluding %s revoked"
+msgstr "Исключая %s"
+
+msgid "Month"
+msgstr "Месяц"
+
+msgid "Monthly certificates"
+msgstr "Ежемесячные сертификаты"
+
+msgid "Monthly saplings"
+msgstr "Ежемесячные саперы"
+
+msgid "No certificates in this period."
+msgstr "В этот период сертификатов не было."
+
+msgid "No data."
+msgstr "Нет данных."
+
+msgid "No deliveries in this period."
+msgstr "За этот период никаких поставок не поступало."
+
+msgid "No new people"
+msgstr "Нет новых людей"
+
+msgid "No people registered in this period."
+msgstr "За этот период не было зарегистрировано ни одного человека."
+
+msgid "Per certificate"
+msgstr "Свидетельство"
+
+msgid "Referring staff"
+msgstr "Сотрудники, давшие рекомендацию"
+
+msgid "Same as the previous period"
+msgstr "То же, что и предыдущий период"
+
+msgid "Sapling goal"
+msgstr "Цель отбора проб"
+
+msgid "Saplings by day of the week"
+msgstr "Сборки в день недели"
+
+msgid "Saplings collected"
+msgstr "Собранные отверстия"
+
+msgid "Saplings gifted to date"
+msgstr "Саженцы, подаренные на сегодня"
+
+msgid "Saplings · certificates"
+msgstr "Отборки - сертификаты"
+
+msgid "Start date"
+msgstr "Дата начала"
+
+msgid "Table"
+msgstr "Таблица"
+
+msgid "This month"
+msgstr "В этом месяце"
+
+msgid "This year"
+msgstr "В этом году"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Top 10"
+msgstr "Top 10"
+
+msgid "Top sapling donors"
+msgstr "Крупнейшие дарители саженцев"
+
+msgid "Total saplings"
+msgstr "Общее количество саплингов"
+
+msgid "Waiting"
+msgstr "Ожидание"
+
+msgid "Without a referrer"
+msgstr "Без рекомендателя"
+
+msgid "Without an event"
+msgstr "Без мероприятия"
+
+msgid "new"
+msgstr "новый"
+
+msgid "Sapling target (optional)"
+msgstr "Цель по отбору проб (факультативно)"
+
+msgid "Extra saplings (donations without a certificate)"
+msgstr "Дополнительные сапелляторы (дотации без сертификата)"
+
+msgid "Saplings of the person"
+msgstr "Отборы человека"
+
+msgid "Certificates of the person"
+msgstr "Свидетельства личности"
+
+msgid "Certificate number"
+msgstr "Номер сертификата"
+
+msgid "saplings"
+msgstr "саженцы"
+
+msgid "+%s extra"
+msgstr "+ %s"
+
+msgid "target %s"
+msgstr "целевой показатель %s"
+
+msgid "Certificate dashboard"
+msgstr "Панель сертификатов"
+
+msgid "Add the certificates without an event (%s) to this event"
+msgstr "Добавить сертификаты без события (%s) к этому событию"
+
+msgid "The event name cannot be empty."
+msgstr "Имя события не может быть пустым."
+
+msgid "The person could not be saved."
+msgstr "Спасти человека не удалось."
+
+msgid "The certificate could not be saved."
+msgstr "Сертификат не может быть спасен."
+
+msgid "Certificate not found."
+msgstr "Сертификат не найден."
+
+msgid "You cannot edit this certificate."
+msgstr "Вы не можете отредактировать это свидетельство."
+
+msgid "That event is closed. Choose an open event."
+msgstr "Это событие закрыто, выберите открытое мероприятие."
+
+msgid "Only a manager can backdate a certificate."
+msgstr "Только управляющий может подтвердить свидетельство."
+
+msgid "That issue date is not valid."
+msgstr "Эта дата недействительна."
+
+msgid "Only a manager can delete a certificate."
+msgstr "Только управляющий может удалить сертификат."
+
+msgid "That channel is not valid."
+msgstr "Этот канал недействительн."
+
+msgid "That action is not valid."
+msgstr "Это действие недействительно."
+
+msgid "A revoked certificate cannot be sent."
+msgstr "Отклоненное свидетельство не может быть отправлено."
+
+msgid "Choose a channel."
+msgstr "Выбери канал."
+
+msgid "File upload is not available."
+msgstr "Загрузка не имеется."
+
+msgid "No file was uploaded."
+msgstr "Никаких файлов не было загружено."
+
+msgid "That phone number belongs to someone else."
+msgstr "Этот номер телефона принадлежит кому-то другому."
+
+msgid "That e-mail belongs to someone else."
+msgstr "Это письмо принадлежит кому-то другому."
+
+msgid "That phone number is not valid."
+msgstr "Этот номер телефона недействительн."
+
+msgid "Only a manager can delete a person."
+msgstr "Только управляющий может удалить человека."
+
+msgid "That e-mail address is not valid."
+msgstr "Этот адрес электронной почты не является действительным."
+
+msgid "The full name is required."
+msgstr "Полное имя требуется."
+
+msgid "This person has certificates. Delete the certificates first."
+msgstr "У этого лица есть сертификаты."
+
+msgid "That event is closed or does not exist. A closed event cannot take certificates."
+msgstr "Это событие закрыто или не существует."
+
+msgid "That is not a valid PDF."
+msgstr "Это не действительная PDF."
+
+msgid "That is not a valid image (JPEG expected)."
+msgstr "Это не является действительной картиной (как ожидается, ГПЭ)."
+
+msgid "The file is too large."
+msgstr "Файл слишком большой."
+
+msgid "The file could not be written. Check the uploads folder permissions."
+msgstr "Дело не может быть написано. Проверьте разрешения папки."
+
+msgid "The person has no e-mail address."
+msgstr "У этого человека нет адреса электронной почты."
+
+msgid "The person has no phone number."
+msgstr "У этого человека нет номера телефона."
+
+msgid "Enter an e-mail address."
+msgstr "Введите адрес электронной почты."
+
+msgid "Enter a phone number."
+msgstr "Введите номер телефона."
+
+msgid "Enter a valid phone number or e-mail address."
+msgstr "Введите действительный номер телефона или адрес электронной почты."
+
+msgid "The message could not be sent."
+msgstr "Сообщение не удалось отправить."
+
+msgid "The message text is empty."
+msgstr "Текст сообщения пуст."
+
+msgid "The message could not be queued."
+msgstr "Сообщение не может быть сжатым."
+
+msgid "There is no active connection for %s. Set one up in Flux Mail."
+msgstr "Нет никакой активной связи для %s. Установить одну в Flux Mail."
+
+msgid "%s: the date format is not valid."
+msgstr "%s: дата недействительна."
+
+msgid "%s is required."
+msgstr "Требуется %s."
+
+msgid "That phone number belongs to another person (#%d) and was not added."
+msgstr "Этот номер телефона принадлежит другому лицу (# %d) и не был добавлен."
+
+msgid "That e-mail belongs to another person (#%d) and was not added."
+msgstr "Эта электронная почта принадлежит другому лицу (# %d) и не была добавлена."
+
+msgid "l, F j, Y"
+msgstr "л, Ф ж, Й"
+
+msgid "F j"
+msgstr "Ф Дж"
+
+msgid "F j, Y"
+msgstr "Ф дж, Й"
+
+msgid "General"
+msgstr "Общий"
+
+msgid "Staff can only see the certificates they create"
+msgstr "Сотрудники могут видеть только те сертификаты, которые они создают"
+
+msgid "Additional fonts"
+msgstr "Дополнительные шрифты"
+
+msgid "Choose a font file (TTF/OTF)"
+msgstr "Выберите файл шрифта (TTF/OTF)"
+
+msgid "Keep logs (days, 0 = indefinitely)"
+msgstr "Ведите журнал регистрации (дни, 0 = бесконечно)"
+
+msgid "Image (JPG/PNG)"
+msgstr "Фото (JPG/PNG)"
+
+msgid "All actions"
+msgstr "Все меры"
+
+msgid "Issuing organization (on the certificate page and LinkedIn)"
+msgstr "Организация, выписывающая сертификаты (на странице свидетельства и на связке)"
+
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "Staff permissions"
+msgstr "Разрешения персонала"
+
+msgid "Height (pt)"
+msgstr "Высота (п)"
+
+msgid "PDF (recommended)"
+msgstr "PDF (рекомендуется)"
+
+msgid "Link address"
+msgstr "Адрес ссылки"
+
+msgid "No records."
+msgstr "Никаких записей."
+
+msgid "Font name"
+msgstr "Имя шрифта"
+
+msgid "With sample data"
+msgstr "С данными выборки"
+
+msgid "Provider"
+msgstr "Поставщик"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Certificate Staff"
+msgstr "Сертификат"
+
+msgid "Custom"
+msgstr "Пользовательский"
+
+msgid "How?"
+msgstr "Как?"
+
+msgid "Certificate number format"
+msgstr "Формат свидетельства"
+
+msgid "Hide certificate pages from search engines (noindex, recommended for personal data)"
+msgstr "Скрыть страницы сертификатов из поисковых систем (нет индекса, рекомендуется для личных данных)"
+
+msgid "Maximum retry attempts"
+msgstr "Максимальные попытки повторного судебного разбирательства"
+
+msgid "Send certificate links to their holders"
+msgstr "Отправить ссылки на сертификаты их держателям"
+
+msgid "Recipient, number, text…"
+msgstr "Получатель, номер, смс..."
+
+msgid "Provider response"
+msgstr "Ответ поставщика"
+
+msgid "All users"
+msgstr "Все пользователи"
+
+msgid "Enabled"
+msgstr "Включено"
+
+msgid "All deliveries for this certificate"
+msgstr "Все поставки для этого сертификата"
+
+msgid "WhatsApp (*bold*, _italic_)"
+msgstr "WhatsApp (*золото*, _italic_)"
+
+msgid "Title (og:title)"
+msgstr "Название (оже: название)"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Message registered people"
+msgstr "Сообщения зарегистрированных лиц"
+
+msgid "Certificate title (on the page and in messages as {sertifika})"
+msgstr "Название свидетельства (на странице и в сообщениях в виде {sertifika})"
+
+msgid "All channels"
+msgstr "Все каналы"
+
+msgid "Link sharing preview"
+msgstr "Предварительный просмотр ссылки"
+
+msgid "Sender"
+msgstr "Отправитель"
+
+msgid "Default messages"
+msgstr "По умолчанию сообщения"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "All registered people"
+msgstr "Все зарегистрированные лица"
+
+msgid "Recipient"
+msgstr "Получатель"
+
+msgid "“Find my certificate” page"
+msgstr "▪ Найдите мой сертификат"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Delete all certificate data when uninstalling the plugin"
+msgstr "Удалить все данные сертификата, когда разобрать подсказку"
+
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Date format"
+msgstr "Формат даты"
+
+msgid "Allow staff to send in bulk"
+msgstr "Разрешить персоналу направлять массовые грузы"
+
+msgid "Email subject"
+msgstr "Тема письма"
+
+msgid "Import template"
+msgstr "Ввезти шаблон"
+
+msgid "No messages."
+msgstr "Никаких сообщений."
+
+msgid "Maximum messages per run"
+msgstr "Максимальная продолжительность каждого рейса"
+
+msgid "Template name (shown in the dashboard)"
+msgstr "Название шаблона (вывешивается в приборной панели)"
+
+msgid "Solid color"
+msgstr "Сплошной цвет"
+
+msgid "Width (pt)"
+msgstr "Протяженность (п)"
+
+msgid "Email body"
+msgstr "Тело электронной почты"
+
+msgid "Process now"
+msgstr "Обработать сейчас"
+
+msgid "Choose or upload a file"
+msgstr "Выберите или загрузите файл"
+
+msgid "To a list of numbers or email addresses"
+msgstr "На список номеров или адресов электронной почты"
+
+msgid "remove"
+msgstr "Удалить"
+
+msgid "Code length"
+msgstr "Длина кода"
+
+msgid "You do not have permission to send messages in bulk."
+msgstr "У вас нет разрешения отправлять сообщения навалом."
+
+msgid "Send certificate links or a custom message to multiple recipients. Preview the message before adding it to the send queue."
+msgstr "Отправьте ссылки на сертификат или сообщение нескольких получателей. Просмотр сообщения перед добавлением в очередь отправки."
+
+msgid "Recipients"
+msgstr "Получатели"
+
+msgid "Template (all valid certificates issued with this template)"
+msgstr "Типовая форма (все действительные свидетельства, выданные с помощью этого шаблона)"
+
+msgid "To send only specific certificates, select them in the certificate list and choose a send action."
+msgstr "Для отправки только конкретных сертификатов, выбрать их в списке сертификатов и отправить."
+
+msgid "Holders of the “%s” certificate"
+msgstr "Держатели свидетельства Δ %s Δ"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Leave this blank to use the default certificate message from the template or settings."
+msgstr "Оставьте это пустым для использования сообщения сертификата по умолчанию из шаблона или настройок."
+
+msgid "Subject"
+msgstr "Тема"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Plugin activated"
+msgstr "Задействовано"
+
+msgid "Certificate created"
+msgstr "Выпуск свидетельства"
+
+msgid "Certificate updated"
+msgstr "Обновление свидетельства"
+
+msgid "Event saved"
+msgstr "Сохранённое событие"
+
+msgid "Event closed (archived)"
+msgstr "Мероприятие закрыто (захвачено)"
+
+msgid "Event reopened"
+msgstr "Возобновление мероприятия"
+
+msgid "Event deleted"
+msgstr "Вид событий удален"
+
+msgid "Certificate revoked"
+msgstr "Отмена свидетельства"
+
+msgid "Certificate restored"
+msgstr "Доставка свидетельства"
+
+msgid "Certificate deleted"
+msgstr "Удаление свидетельства"
+
+msgid "Certificates exported to Excel"
+msgstr "Сертификаты, экспортируемые в Excel"
+
+msgid "Files generated on the server"
+msgstr "Файлы, генерируемые на сервере"
+
+msgid "Server file generation failed"
+msgstr "Неверное поколение файлов сервера"
+
+msgid "Person added"
+msgstr "Выпущено"
+
+msgid "Person updated"
+msgstr "Обновленная информация"
+
+msgid "Person deleted"
+msgstr "Лицо удалено"
+
+msgid "Template saved"
+msgstr "Шаблон сохранен."
+
+msgid "Template deleted"
+msgstr "Изъять шаблон"
+
+msgid "Provider saved"
+msgstr "Экономия поставщика"
+
+msgid "Provider deleted"
+msgstr "Удаляется поставщик"
+
+msgid "Provider test"
+msgstr "Испытание поставщика"
+
+msgid "Settings saved"
+msgstr "Настройки сохранены."
+
+msgid "Message queued"
+msgstr "Сообщение в очереди"
+
+msgid "Message sent"
+msgstr "Сообщение отправлено"
+
+msgid "Message failed"
+msgstr "Не удалось получить сообщение"
+
+msgid "Message scheduled for retry"
+msgstr "Сообщение, запланированное для повторного испытания"
+
+msgid "Message cancelled"
+msgstr "Сообщение отменено"
+
+msgid "Bulk send started"
+msgstr "Начали отправку"
+
+msgid "Number added to contacts"
+msgstr "Число добавленных сообщений"
+
+msgid "Number removed from contacts"
+msgstr "Число удаленных из контактов"
+
+msgid "View certificate"
+msgstr "Просмотреть сертификат"
+
+msgid "View in queue"
+msgstr "Вид в очереди"
+
+msgid "You do not have permission to download logs."
+msgstr "У вас нет разрешения на загрузку журналов."

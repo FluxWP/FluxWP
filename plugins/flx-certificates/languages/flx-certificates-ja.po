@@ -968,3 +968,702 @@ msgstr "地図はまだありません: 場所が入力されるまで、リン�
 
 msgid "Person not found."
 msgstr "人物が見つかりません。"
+
+msgid "Creates and sees certificates"
+msgstr "証明書の作成と参照"
+
+msgid "Manages certificates"
+msgstr "証明書の管理"
+
+msgid "Sends certificates in bulk"
+msgstr "一括送信します。"
+
+msgid "Sees the certificate dashboard"
+msgstr "証明書ダッシュボードが表示されます"
+
+msgid "Sees only certificates they created or referred"
+msgstr "自分が作成または参照した証明書のみが表示されます"
+
+msgid "All Certificates"
+msgstr "全ての証明書"
+
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+msgid "Bulk send"
+msgstr "一括送信"
+
+msgid "Providers"
+msgstr "プロバイダー"
+
+msgid "Logs"
+msgstr "ログ"
+
+msgid "Certificate settings"
+msgstr "証明書の設定"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "certificates"
+msgstr "証明書"
+
+msgid "Only certificates that you created."
+msgstr "作成した証明書のみ。"
+
+msgid "Sapling donations, certificates and deliveries."
+msgstr "寄付、証明書、配送を販売。"
+
+msgid "Loading…"
+msgstr "読み込み中..."
+
+msgid "%1$s: %2$s saplings, %3$s certificates"
+msgstr "%1$s : %2$s 苗木 %3$s 証書"
+
+msgid "%2$s saplings during %1$s"
+msgstr "%2$s 中子 %1$s"
+
+msgid "%s failed"
+msgstr "%s 失敗"
+
+msgid "%s first-time recipients"
+msgstr "%s 初回受賞者"
+
+msgid "%s sent"
+msgstr "%s 送信します"
+
+msgid "%s waiting"
+msgstr "%s お待ち"
+
+msgid "30 days"
+msgstr "30日"
+
+msgid "7 days"
+msgstr "7日間"
+
+msgid "90 days"
+msgstr "90日"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "All staff"
+msgstr "スタッフ全員"
+
+msgid "Archive"
+msgstr "アーカイブ"
+
+msgid "Average saplings"
+msgstr "平均苗木"
+
+msgid "Avg."
+msgstr "エイブ。"
+
+msgid "Busiest day"
+msgstr "忙しい日"
+
+msgid "Busiest month"
+msgstr "一番忙しい月"
+
+msgid "Channel and status"
+msgstr "チャネルとステータス"
+
+msgid "Chart"
+msgstr "チャート"
+
+msgid "Compared with the previous %s days"
+msgstr "以前に比べて %s 日"
+
+msgid "Could not load data:"
+msgstr "データの読み込みができませんでした。"
+
+msgid "Cumulative"
+msgstr "累積"
+
+msgid "Daily certificates"
+msgstr "日券"
+
+msgid "Daily saplings"
+msgstr "日帰りの苗木"
+
+msgid "Daily saplings chart"
+msgstr "日刊苗木図"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Days of the week"
+msgstr "曜日"
+
+msgid "Delivery"
+msgstr "デリバリ"
+
+msgid "End date"
+msgstr "終了日"
+
+msgid "Excluding %s revoked"
+msgstr "%s を除いた。"
+
+msgid "Month"
+msgstr "月"
+
+msgid "Monthly certificates"
+msgstr "月次証明書"
+
+msgid "Monthly saplings"
+msgstr "月例"
+
+msgid "No certificates in this period."
+msgstr "この期間は証明書はありません。"
+
+msgid "No data."
+msgstr "データがありません。"
+
+msgid "No deliveries in this period."
+msgstr "この期間は配送なし。"
+
+msgid "No new people"
+msgstr "新しい人はいない"
+
+msgid "No people registered in this period."
+msgstr "この期間に登録された人はいません。"
+
+msgid "Per certificate"
+msgstr "証明書1件"
+
+msgid "Referring staff"
+msgstr "紹介担当者"
+
+msgid "Same as the previous period"
+msgstr "前の時期と同じ。"
+
+msgid "Sapling goal"
+msgstr "目的の解決"
+
+msgid "Saplings by day of the week"
+msgstr "曜日による苗木"
+
+msgid "Saplings collected"
+msgstr "採集"
+
+msgid "Saplings gifted to date"
+msgstr "これまでに贈られた苗木"
+
+msgid "Saplings · certificates"
+msgstr "苗木・証明書"
+
+msgid "Start date"
+msgstr "開始日"
+
+msgid "Table"
+msgstr "テーブル"
+
+msgid "This month"
+msgstr "今月"
+
+msgid "This year"
+msgstr "今年は"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Top 10"
+msgstr "トップ10"
+
+msgid "Top sapling donors"
+msgstr "苗木の寄付数上位"
+
+msgid "Total saplings"
+msgstr "総苗木"
+
+msgid "Waiting"
+msgstr "待っています"
+
+msgid "Without a referrer"
+msgstr "紹介者なし"
+
+msgid "Without an event"
+msgstr "イベントなし"
+
+msgid "new"
+msgstr "新しい"
+
+msgid "Sapling target (optional)"
+msgstr "対象品の販売(オプション)"
+
+msgid "Extra saplings (donations without a certificate)"
+msgstr "追加で苗木(証明書なしの寄付)"
+
+msgid "Saplings of the person"
+msgstr "者の子"
+
+msgid "Certificates of the person"
+msgstr "本人の証明書"
+
+msgid "Certificate number"
+msgstr "証明書番号"
+
+msgid "saplings"
+msgstr "苗木"
+
+msgid "+%s extra"
+msgstr "%s 追加"
+
+msgid "target %s"
+msgstr "目標 %s"
+
+msgid "Certificate dashboard"
+msgstr "証明書ダッシュボード"
+
+msgid "Add the certificates without an event (%s) to this event"
+msgstr "イベントなしの証明書(%s)をこのイベントに追加します。"
+
+msgid "The event name cannot be empty."
+msgstr "イベント名は空にはできません。"
+
+msgid "The person could not be saved."
+msgstr "その人は救われなかった。"
+
+msgid "The certificate could not be saved."
+msgstr "証明書は保存できませんでした。"
+
+msgid "Certificate not found."
+msgstr "証明書が見つかりません。"
+
+msgid "You cannot edit this certificate."
+msgstr "この証明書は編集できません。"
+
+msgid "That event is closed. Choose an open event."
+msgstr "そのイベントは閉まっている。オープンイベントを選ぶ。"
+
+msgid "Only a manager can backdate a certificate."
+msgstr "証明書をバックアップできるのは、マネージャのみです。"
+
+msgid "That issue date is not valid."
+msgstr "その発行日は有効ではありません。"
+
+msgid "Only a manager can delete a certificate."
+msgstr "証明書は、管理人のみが削除できます。"
+
+msgid "That channel is not valid."
+msgstr "そのチャンネルは有効ではありません。"
+
+msgid "That action is not valid."
+msgstr "その行為は無効です。"
+
+msgid "A revoked certificate cannot be sent."
+msgstr "無効となった証明書は送信できません。"
+
+msgid "Choose a channel."
+msgstr "チャンネルを選択してください。"
+
+msgid "File upload is not available."
+msgstr "ファイルのアップロードはできません。"
+
+msgid "No file was uploaded."
+msgstr "ファイルはアップロードされていません。"
+
+msgid "That phone number belongs to someone else."
+msgstr "その電話番号は誰かのものだ。"
+
+msgid "That e-mail belongs to someone else."
+msgstr "そのメールは誰かのものだ。"
+
+msgid "That phone number is not valid."
+msgstr "その電話番号は有効ではありません。"
+
+msgid "Only a manager can delete a person."
+msgstr "管理人だけが人を削除できます。"
+
+msgid "That e-mail address is not valid."
+msgstr "そのメールアドレスは有効ではありません。"
+
+msgid "The full name is required."
+msgstr "フルネームが必要です。"
+
+msgid "This person has certificates. Delete the certificates first."
+msgstr "この人は証明書を持っています。まず証明書を削除します。"
+
+msgid "That event is closed or does not exist. A closed event cannot take certificates."
+msgstr "イベントが閉じているか、存在しないか。"
+
+msgid "That is not a valid PDF."
+msgstr "それは有効なPDFではありません。"
+
+msgid "That is not a valid image (JPEG expected)."
+msgstr "それは、有効な画像(JPEGが期待)ではありません。"
+
+msgid "The file is too large."
+msgstr "ファイルが大きすぎます。"
+
+msgid "The file could not be written. Check the uploads folder permissions."
+msgstr "ファイルが書けませんので、アップロードフォルダの許可を確認してください。"
+
+msgid "The person has no e-mail address."
+msgstr "人はメールアドレスを持っていません。"
+
+msgid "The person has no phone number."
+msgstr "人は電話番号を持っていません。"
+
+msgid "Enter an e-mail address."
+msgstr "メールアドレスを入力してください。"
+
+msgid "Enter a phone number."
+msgstr "電話番号を入力してください。"
+
+msgid "Enter a valid phone number or e-mail address."
+msgstr "有効な電話番号またはメールアドレスを入力してください。"
+
+msgid "The message could not be sent."
+msgstr "メッセージを送信できませんでした。"
+
+msgid "The message text is empty."
+msgstr "メッセージテキストは空です。"
+
+msgid "The message could not be queued."
+msgstr "メッセージがキューに入れられません。"
+
+msgid "There is no active connection for %s. Set one up in Flux Mail."
+msgstr "%s は、Flux Mail に設定して、アクティブ接続はありません。"
+
+msgid "%s: the date format is not valid."
+msgstr "%s : 日付形式が有効ではありません。"
+
+msgid "%s is required."
+msgstr "%sは必須です。"
+
+msgid "That phone number belongs to another person (#%d) and was not added."
+msgstr "その電話番号は、他の人(#%d)に属し、追加されていませんでした。"
+
+msgid "That e-mail belongs to another person (#%d) and was not added."
+msgstr "そのメールは、他の人(#%d)に属し、追加されていませんでした。"
+
+msgid "l, F j, Y"
+msgstr "l、F、j、Y"
+
+msgid "F j"
+msgstr "Fj"
+
+msgid "F j, Y"
+msgstr "Fj、Y"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Staff can only see the certificates they create"
+msgstr "スタッフは、作成した証明書のみを見ることができます。"
+
+msgid "Additional fonts"
+msgstr "フォントの追加"
+
+msgid "Choose a font file (TTF/OTF)"
+msgstr "フォントファイル(TTF/OTF)を選択します。"
+
+msgid "Keep logs (days, 0 = indefinitely)"
+msgstr "ログを保持(日、0 = 無限)"
+
+msgid "Image (JPG/PNG)"
+msgstr "画像(JPG/PNG)"
+
+msgid "All actions"
+msgstr "すべてのアクション"
+
+msgid "Issuing organization (on the certificate page and LinkedIn)"
+msgstr "発行機関(認証ページ、LinkedIn)"
+
+msgid "Save settings"
+msgstr "設定を保存する"
+
+msgid "Action"
+msgstr "アクション"
+
+msgid "Staff permissions"
+msgstr "スタッフの許可"
+
+msgid "Height (pt)"
+msgstr "高さ(PT)"
+
+msgid "PDF (recommended)"
+msgstr "PDF(推奨)"
+
+msgid "Link address"
+msgstr "リンクアドレス"
+
+msgid "No records."
+msgstr "記録はありません。"
+
+msgid "Font name"
+msgstr "文字名"
+
+msgid "With sample data"
+msgstr "サンプルデータで"
+
+msgid "Provider"
+msgstr "プロバイダー"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "Time"
+msgstr "時刻"
+
+msgid "Certificate Staff"
+msgstr "証明書スタッフ"
+
+msgid "Custom"
+msgstr "カスタム"
+
+msgid "How?"
+msgstr "どうやって?"
+
+msgid "Certificate number format"
+msgstr "証明書番号形式"
+
+msgid "Hide certificate pages from search engines (noindex, recommended for personal data)"
+msgstr "検索エンジンから証明書ページを非表示にします。"
+
+msgid "Maximum retry attempts"
+msgstr "最大再試行"
+
+msgid "Send certificate links to their holders"
+msgstr "保有者への証明書リンクを送信します。"
+
+msgid "Recipient, number, text…"
+msgstr "受信者、番号、テキスト..."
+
+msgid "Provider response"
+msgstr "プロバイダの応答"
+
+msgid "All users"
+msgstr "すべてのユーザー"
+
+msgid "Enabled"
+msgstr "有効"
+
+msgid "All deliveries for this certificate"
+msgstr "この証明書のすべての配信"
+
+msgid "WhatsApp (*bold*, _italic_)"
+msgstr "WhatsApp (*bold*, _italic_)"
+
+msgid "Title (og:title)"
+msgstr "タイトル(またはタイトル)"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Message registered people"
+msgstr "登録者"
+
+msgid "Certificate title (on the page and in messages as {sertifika})"
+msgstr "証明書のタイトル(ページ上およびメッセージ中) {sertifika})"
+
+msgid "All channels"
+msgstr "すべてのチャンネル"
+
+msgid "Link sharing preview"
+msgstr "リンク共有プレビュー"
+
+msgid "Sender"
+msgstr "送信者"
+
+msgid "Default messages"
+msgstr "デフォルトメッセージ"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "All registered people"
+msgstr "登録者全員"
+
+msgid "Recipient"
+msgstr "受信者"
+
+msgid "“Find my certificate” page"
+msgstr "「証明書の検索」ページ"
+
+msgid "Data"
+msgstr "データ"
+
+msgid "Delete all certificate data when uninstalling the plugin"
+msgstr "プラグインのアンインストール時にすべての証明書データを削除します。"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Date format"
+msgstr "日付形式"
+
+msgid "Allow staff to send in bulk"
+msgstr "スタッフが一括送信できます。"
+
+msgid "Email subject"
+msgstr "メールの件名"
+
+msgid "Import template"
+msgstr "インポートテンプレート"
+
+msgid "No messages."
+msgstr "メッセージなし。"
+
+msgid "Maximum messages per run"
+msgstr "実行ごとに最大メッセージ"
+
+msgid "Template name (shown in the dashboard)"
+msgstr "テンプレート名(ダッシュボードに表示されます)"
+
+msgid "Solid color"
+msgstr "ソリッドカラー"
+
+msgid "Width (pt)"
+msgstr "幅(PT)"
+
+msgid "Email body"
+msgstr "メール本体"
+
+msgid "Process now"
+msgstr "今すぐ処理してください"
+
+msgid "Choose or upload a file"
+msgstr "ファイルを選択するか、アップロードします。"
+
+msgid "To a list of numbers or email addresses"
+msgstr "番号やメールアドレスの一覧に。"
+
+msgid "remove"
+msgstr "取り除く"
+
+msgid "Code length"
+msgstr "コード長"
+
+msgid "You do not have permission to send messages in bulk."
+msgstr "一括送信の許可はありません。"
+
+msgid "Send certificate links or a custom message to multiple recipients. Preview the message before adding it to the send queue."
+msgstr "複数の受信者に証明書リンクまたはカスタムメッセージを送信し、送信キューに追加する前にメッセージをプレビューします。"
+
+msgid "Recipients"
+msgstr "受信者"
+
+msgid "Template (all valid certificates issued with this template)"
+msgstr "テンプレート(このテンプレートで発行される有効な証明書)"
+
+msgid "To send only specific certificates, select them in the certificate list and choose a send action."
+msgstr "特定の証明書のみを送信するには、証明書リストでそれらを選択し、送信アクションを選択します。"
+
+msgid "Holders of the “%s” certificate"
+msgstr "の保有者。%s証明書"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Leave this blank to use the default certificate message from the template or settings."
+msgstr "テンプレートまたは設定からデフォルトの証明書メッセージを使用するには、この空白のままにします。"
+
+msgid "Subject"
+msgstr "件名"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "Plugin activated"
+msgstr "プラグインの有効化"
+
+msgid "Certificate created"
+msgstr "作成"
+
+msgid "Certificate updated"
+msgstr "証明書を更新しました。"
+
+msgid "Event saved"
+msgstr "イベント保存"
+
+msgid "Event closed (archived)"
+msgstr "イベント閉館(アーカイブ)"
+
+msgid "Event reopened"
+msgstr "イベント再開。"
+
+msgid "Event deleted"
+msgstr "イベント削除"
+
+msgid "Certificate revoked"
+msgstr "証明書が取り消された"
+
+msgid "Certificate restored"
+msgstr "復元"
+
+msgid "Certificate deleted"
+msgstr "証明書削除"
+
+msgid "Certificates exported to Excel"
+msgstr "Excel への証明書のエクスポート"
+
+msgid "Files generated on the server"
+msgstr "サーバー上で生成されたファイル"
+
+msgid "Server file generation failed"
+msgstr "サーバーファイル生成が失敗しました。"
+
+msgid "Person added"
+msgstr "追加"
+
+msgid "Person updated"
+msgstr "更新された人"
+
+msgid "Person deleted"
+msgstr "削除される人"
+
+msgid "Template saved"
+msgstr "テンプレートが保存されました"
+
+msgid "Template deleted"
+msgstr "テンプレート削除"
+
+msgid "Provider saved"
+msgstr "プロバイダー保存"
+
+msgid "Provider deleted"
+msgstr "プロバイダーを削除します。"
+
+msgid "Provider test"
+msgstr "プロバイダーテスト"
+
+msgid "Settings saved"
+msgstr "設定が保存されました"
+
+msgid "Message queued"
+msgstr "メッセージキュー"
+
+msgid "Message sent"
+msgstr "メッセージが送信されました"
+
+msgid "Message failed"
+msgstr "メッセージが失敗しました。"
+
+msgid "Message scheduled for retry"
+msgstr "再試行予定のメッセージ"
+
+msgid "Message cancelled"
+msgstr "メッセージのキャンセル"
+
+msgid "Bulk send started"
+msgstr "バルク送信開始。"
+
+msgid "Number added to contacts"
+msgstr "連絡先に追加される番号"
+
+msgid "Number removed from contacts"
+msgstr "連絡先から削除された番号"
+
+msgid "View certificate"
+msgstr "証明書を表示"
+
+msgid "View in queue"
+msgstr "キューのビュー"
+
+msgid "You do not have permission to download logs."
+msgstr "ログのダウンロード許可はありません。"

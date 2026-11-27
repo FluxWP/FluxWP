@@ -236,13 +236,13 @@ msgid "Sheep or goat"
 msgstr "Schaf oder Ziege"
 
 msgid "Iftar"
-msgstr "Iftar"
+msgstr "Pflanzliche Erzeugnisse"
 
 msgid "General donation"
 msgstr "Allgemeine Spende"
 
 msgid "Partner"
-msgstr "Partner"
+msgstr "Partnerländer"
 
 msgid "Report"
 msgstr "Bericht"
@@ -284,7 +284,7 @@ msgid "Add donation"
 msgstr "Spende hinzufügen"
 
 msgid "Dashboard"
-msgstr "Armaturenbrett"
+msgstr "Übersicht"
 
 msgid "Payments"
 msgstr "Zahlungen"
@@ -697,7 +697,7 @@ msgid "Started"
 msgstr "Begonnen"
 
 msgid "WooCommerce"
-msgstr "WooCommerce"
+msgstr "ANHANG"
 
 msgid "Template"
 msgstr "Vorlage"
@@ -898,7 +898,7 @@ msgid "The file could not be saved."
 msgstr "Die Datei konnte nicht gespeichert werden."
 
 msgid "WhatsApp"
-msgstr "WhatsApp"
+msgstr "ANHANG"
 
 msgid "We have your receipt. We will let you know once the payment is confirmed."
 msgstr "Wir haben Ihre Quittung. Wir informieren Sie, sobald die Zahlung bestätigt ist."
@@ -1042,7 +1042,7 @@ msgid "Each line shows something the site needs and whether it is in place. Fix 
 msgstr "Jede Zeile zeigt etwas, das die Site benötigt, und ob es vorhanden ist. Beheben Sie zuerst die Fehler. Warnungen sind einen Blick wert."
 
 msgid "OK"
-msgstr "Okay"
+msgstr "OK"
 
 msgid "Warning"
 msgstr "Warnung"
@@ -1318,7 +1318,7 @@ msgid "This link is not valid. Please contact us to cancel your recurring donati
 msgstr "Dieser Link ist ungültig. Bitte kontaktieren Sie uns, um Ihre wiederkehrende Spende zu stornieren."
 
 msgid "%1$s · %2$s"
-msgstr "%1$s · %2$s"
+msgstr "%1$s — %2$s"
 
 msgid "Recurring donation canceled"
 msgstr "Wiederkehrende Spende abgebrochen"
@@ -1639,13 +1639,13 @@ msgid "Add at least one option with a price, or allow a free amount."
 msgstr "Fügen Sie mindestens eine Option mit einem Preis hinzu oder lassen Sie einen kostenlosen Betrag zu."
 
 msgid "Vacip"
-msgstr "Vacip"
+msgstr "Impfstoff"
 
 msgid "Adak"
-msgstr "Adak"
+msgstr "Gelübde"
 
 msgid "Akika"
-msgstr "Akika"
+msgstr "Aqiqah"
 
 msgid "Healing"
 msgstr "Heilung"
@@ -1672,7 +1672,7 @@ msgid "Charity (kurban, ramazan, general)"
 msgstr "Wohltätigkeit (Kurban, Ramazan, General)"
 
 msgid "Ramazan"
-msgstr "Ramazan"
+msgstr "Das ist ein Traum."
 
 msgid "Kurban share (cattle)"
 msgstr "Kurban-Anteil (Rinder)"
@@ -1690,7 +1690,7 @@ msgid "Sahur"
 msgstr "Sahur"
 
 msgid "Fitre"
-msgstr "Fitre"
+msgstr "Passend für"
 
 msgid "Extra tab"
 msgstr "Extra-Tab"
@@ -2292,7 +2292,7 @@ msgid "Skipped: %s"
 msgstr "Übersprungen: %s"
 
 msgid "due"
-msgstr "due"
+msgstr "Verbindlichkeiten"
 
 msgid "late"
 msgstr "spät"
@@ -2487,7 +2487,7 @@ msgid "Cancel payment"
 msgstr "Zahlung abbrechen"
 
 msgid "order #%s"
-msgstr "order #%s"
+msgstr "Bestellnummer: %s"
 
 msgid "Payment awaiting approval"
 msgstr "Zahlung wartet auf Genehmigung"
@@ -4486,7 +4486,7 @@ msgid "Apply to all"
 msgstr "Auf alle anwenden"
 
 msgid "e.g. Ali Yılmaz"
-msgstr "e.g. Ali Yılmaz"
+msgstr "z.B. Ali Yılmaz"
 
 msgid "No receipt is expected for this donation."
 msgstr "Für diese Spende wird keine Quittung erwartet."
@@ -5667,3 +5667,391 @@ msgid "%s more"
 msgid_plural "%s more"
 msgstr[0] "%s weitere"
 msgstr[1] "%s weitere"
+
+msgid "Payment forms are paid on the WooCommerce checkout, which is not available: activate WooCommerce and turn on \"Flux Forms payment forms continue on the WooCommerce checkout\". Visitors see \"Online payment is not available at the moment.\""
+msgstr "Zahlungsformulare werden auf der WooCommerce Checkout, die nicht verfügbar ist, bezahlt: WooCommerce aktivieren und \"Flux Forms Zahlungsformulare weiterhin auf der WooCommerce Checkout\" einschalten. Besucher sehen \"Online-Zahlung ist momentan nicht verfügbar.\""
+
+msgid "The recurring donation was canceled. No further charges will be made."
+msgstr "Die wiederkehrende Spende wurde storniert. Es werden keine weiteren Gebühren erhoben."
+
+msgid "This box could not be shown."
+msgstr "Diese Box konnte nicht gezeigt werden."
+
+msgid "Box: %s"
+msgstr "Feld: %s"
+
+msgid "Drag to move"
+msgstr "Zum Verschieben ziehen"
+
+msgid "Fold or unfold"
+msgstr "Falten oder Entfalten"
+
+msgid "Website checkout"
+msgstr "Online-Check"
+
+msgid "Cancel this recurring donation? No further charges will be made."
+msgstr "Stornierung dieser wiederkehrenden Spende? Keine weiteren Gebühren werden erhoben."
+
+msgid "Donation amount of the person"
+msgstr "Spendenmenge der Person"
+
+msgid "Donation quantity of the person"
+msgstr "Spendenmenge der Person"
+
+msgid "Donation date"
+msgstr "Spendedatum"
+
+msgid "%s: quantity"
+msgstr "%s : Menge"
+
+msgid "%s: amount"
+msgstr "%s : Betrag"
+
+msgid "%1$s names for %2$s units: the extra names go on the first certificate"
+msgstr "%1$s Namen für %2$s Einheiten: die zusätzlichen Namen gehen auf das erste Zertifikat"
+
+msgid "%s recurring donation could not be charged after all attempts and is now past due. The donor was e-mailed."
+msgid_plural "%s recurring donations could not be charged after all attempts and are now past due. The donors were e-mailed."
+msgstr[0] "%s wiederkehrende Spende konnte nach allen Versuchen nicht angeklagt werden und ist nun vorbei. Der Spender wurde per E-Mail verschickt."
+msgstr[1] "%s wiederkehrende Spenden konnten nach allen Versuchen nicht angeklagt werden und sind nun fällig. Die Spender wurden per E-Mail verschickt."
+
+msgid "Last run: %s. Recurring card charges are checked every hour."
+msgstr "Letzter Lauf: %s . Alle Stunden werden wiederkehrende Kartengebühren überprüft."
+
+msgid "%d recurring donation stopped after its card was declined on every attempt."
+msgid_plural "%d recurring donations stopped after their cards were declined on every attempt."
+msgstr[0] "%d wiederkehrende Spende blieb stehen, nachdem seine Karte bei jedem Versuch abgelehnt wurde."
+msgstr[1] "%d wiederkehrende Spenden blieben stehen, nachdem ihre Karten bei jedem Versuch abgelehnt wurden."
+
+msgid "Missing or weak in wp-config.php: %s. The donors' cancel links of recurring donations are signed with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or links already sent stop working."
+msgstr "Fehlend oder schwach in wp-config.php: %s . Die Stornierungslinks von wiederkehrenden Spenden werden mit diesen Schlüsseln signiert; Setzen Sie einmal eindeutige Werte ( https://api.wordpress.org/secret-key/1.1/salt/) und ändern Sie sie nicht danach, oder Links bereits gesendet Stop-Arbeit."
+
+msgid "Set in wp-config.php. The donors' cancel links of recurring donations are signed with them: do not change them, or links already sent stop working."
+msgstr "In wp-config.php. Die Stornierungslinks von wiederkehrenden Spenden werden mit ihnen unterschrieben: nicht ändern, oder Links bereits gesendet Stop-Arbeit."
+
+msgid "Message sent to owner"
+msgstr "Nachricht an den Eigentümer gesendet"
+
+msgid "The message is empty."
+msgstr "Die Nachricht ist leer."
+
+msgid "One basket: every item in it is paid and changes together."
+msgstr "Ein Korb: jeder Artikel in ihm wird bezahlt und ändert sich zusammen."
+
+msgid "Items subtotal"
+msgstr "Teilsumme"
+
+msgid "via %1$s · %2$s"
+msgstr "über %1$s · %2$s"
+
+msgid "Net"
+msgstr "Netz"
+
+msgid "%1$d. %2$s"
+msgstr "%1$d. %2$s"
+
+msgid "Card"
+msgstr "Karte"
+
+msgid "Card holder"
+msgstr "Kartenhalter"
+
+msgid "Amount charged"
+msgstr "Betrag"
+
+msgid "Bank reference"
+msgstr "Referenz der Bank"
+
+msgid "Authorization code"
+msgstr "Zulassungscode"
+
+msgid "Transaction ID"
+msgstr "Transaktions-ID"
+
+msgid "Mode"
+msgstr "Modus"
+
+msgid "Test"
+msgstr "Testen"
+
+msgid "Extra details"
+msgstr "Extra Details"
+
+msgid "Write the note first."
+msgstr "Schreiben Sie zuerst die Notiz."
+
+msgid "Note added."
+msgstr "Anmerkung hinzugefügt."
+
+msgid "The note was not found."
+msgstr "Die Notiz wurde nicht gefunden."
+
+msgid "Note deleted."
+msgstr "Anmerkung gelöscht."
+
+msgid "(none)"
+msgstr "(neins)"
+
+msgid "Today"
+msgstr "Heute"
+
+msgid "%1$s records (%2$s units) will be written. Paid: %3$s, waiting for payment: %4$s. Nothing is sent to anyone."
+msgstr "%1$s Aufzeichnungen ( %2$s Einheiten) werden geschrieben. Bezahlt: %3$s , auf Zahlung warten: %4$s . Nichts wird an jeden gesendet."
+
+msgid "The action could not be completed."
+msgstr "Die Aktion konnte nicht abgeschlossen werden."
+
+msgid "This recurring donation cannot be canceled here."
+msgstr "Diese wiederkehrende Spende kann hier nicht storniert werden."
+
+msgid "The shop is not available on this site."
+msgstr "Der Shop ist auf dieser Seite nicht verfügbar."
+
+msgid "Donation lookup is not available."
+msgstr "Spende-Lookup ist nicht verfügbar."
+
+msgid "Monthly donations are paid by card; the card is stored by the payment provider and charged once a month."
+msgstr "Monatliche Spenden werden von der Karte bezahlt; die Karte wird vom Zahlungsanbieter gespeichert und einmal im Monat berechnet."
+
+msgid "Close without saving"
+msgstr "Schließen ohne Speichern"
+
+msgid "Monthly donations: Flux POS stores the card."
+msgstr "Monatliche Spenden: Flux POS speichert die Karte."
+
+msgid "Monthly donations are off: they need a Flux POS card account that can store cards (Stripe today)."
+msgstr "Monatliche Spenden sind aus: Sie brauchen ein Flux POS Kartenkonto, das Karten speichern kann (Stripe heute)."
+
+msgid "Enter an amount between 0 and the amount left."
+msgstr "Geben Sie einen Betrag zwischen 0 und den linken Betrag ein."
+
+msgid "Saves the fields of every order box on this page."
+msgstr "Speichert die Felder jeder Bestellung Box auf dieser Seite."
+
+msgid "The order boxes could not be saved."
+msgstr "Die Bestellboxen konnten nicht gespeichert werden."
+
+msgid "No notes yet."
+msgstr "Noch keine Notizen."
+
+msgid "to the donor"
+msgstr "an den Spender"
+
+msgid "Delete this note?"
+msgstr "Diese Notiz löschen?"
+
+msgid "Add a note…"
+msgstr "Eine Notiz hinzufügen..."
+
+msgid "Note type"
+msgstr "Anmerkungstyp"
+
+msgid "Private note"
+msgstr "Privater Hinweis"
+
+msgid "Note to the donor (sent by e-mail)"
+msgstr "Hinweis an den Spender (sende per E-Mail)"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "Please write a name for every person."
+msgstr "Bitte schreiben Sie einen Namen für jede Person."
+
+msgid "Other people"
+msgstr "Sonstige Personen"
+
+msgid "Create my %s account with the details I entered"
+msgstr "Erstellen Sie mein %s Konto mit den angegebenen Details"
+
+msgid "Pay %s"
+msgstr "Zahl %s"
+
+msgid "Pay"
+msgstr "Teilen"
+
+msgid "Please accept the terms to continue."
+msgstr "Bitte akzeptieren Sie die Bedingungen, die weitergehen sollen."
+
+msgid "Secure, encrypted payment. Card details are not stored on this site."
+msgstr "Sichere, verschlüsselte Zahlung. Kartendetails werden auf dieser Seite nicht gespeichert."
+
+msgid "No card method is enabled; donations can only be paid by bank transfer. Add a POS account in Flux POS."
+msgstr "Es ist keine Kartenmethode aktiviert; Spenden können nur per Banküberweisung bezahlt werden."
+
+msgid "Flux POS stores the card at the first payment; a renewal order is opened and charged every month."
+msgstr "Flux POS speichert die Karte bei der ersten Zahlung; ein Erneuerungsauftrag wird jeden Monat eröffnet und berechnet."
+
+msgid "Monthly donations are off: they need Flux POS with a card account that can store cards (Stripe today) and its \"Pay by card\" method enabled."
+msgstr "Monatliche Spenden sind aus: Sie benötigen Flux POS mit einem Kartenkonto, das Karten speichern kann (Stripe Today) und seine \"Pay by Card\" Methode aktiviert."
+
+msgid "Please write your phone number."
+msgstr "Bitte schreiben Sie Ihre Telefonnummer."
+
+msgid "Please write your e-mail address."
+msgstr "Bitte schreiben Sie Ihre E-Mail-Adresse."
+
+msgid "We e-mail you a link to set your password. Your donations and certificates are then under My account."
+msgstr "Wir senden Ihnen einen Link, um Ihr Passwort festzulegen. Ihre Spenden und Zertifikate sind dann unter Mein Konto."
+
+msgid "Signed in as %s."
+msgstr "Unterzeichnet als %s ."
+
+msgid "Change in My account"
+msgstr "Änderung meines Kontos"
+
+msgid "Not you? Log out"
+msgstr "Nicht du?"
+
+msgid "Person %s"
+msgstr "Person %s"
+
+msgid "e.g. Ayşe Yılmaz"
+msgstr "z.B. Ayşe Yılmaz"
+
+msgid "The same amount is taken from your card every month. You can stop it any time from your account."
+msgstr "Derselbe Betrag wird jeden Monat von Ihrer Karte übernommen. Sie können es jederzeit von Ihrem Konto aus stoppen."
+
+msgid "For someone else"
+msgstr "Für jemanden anderen"
+
+msgid "Add another person with their own certificate"
+msgstr "Fügen Sie eine andere Person mit eigenem Zertifikat hinzu"
+
+msgid "Every person gets their own certificate. The remaining saplings go on the first certificate."
+msgstr "Jede Person bekommt ihr eigenes Zertifikat. Die restlichen Saplings gehen auf das erste Zertifikat."
+
+msgid "How often"
+msgstr "Wie oft"
+
+msgid "One-time donation"
+msgstr "Einmalspende"
+
+msgid "Monthly donation"
+msgstr "Monatliche Spende"
+
+msgid "Payments are taken securely by %s."
+msgstr "Die Zahlungen werden mit %s sicher übernommen."
+
+msgid "Quick choice"
+msgstr "Schnelle Wahl"
+
+msgid "Other amount"
+msgstr "Sonstiger Betrag"
+
+msgid "Choose the donation amount"
+msgstr "Wählen Sie den Spendenbetrag"
+
+msgid "Most chosen"
+msgstr "Ausgewählt"
+
+msgid "Heading over the amount"
+msgstr "Über den Betrag"
+
+msgid "\"Other amount\" button"
+msgstr "\"Andere Menge\" Taste"
+
+msgid "Amount buttons"
+msgstr "Anzahl der Tasten"
+
+msgid "Quantity options as large amount buttons (1, 3, 5, 10 …) with the currency menu beside the heading and an \"Other amount\" field under them."
+msgstr "Mengenoptionen als große Mengentasten (1, 3, 5, 10 ...) mit dem Währungsmenü neben der Überschrift und einem Feld \"Andere Menge\" unter ihnen."
+
+msgid "Two columns"
+msgstr "Zwei Spalten"
+
+msgid "Contact and payment as cards on the left; the summary, the terms box and the pay button on the right. On phones one column with a pay bar at the bottom."
+msgstr "Kontakt und Zahlung als Karten auf der linken Seite; die Zusammenfassung, die Bedingungen Box und die Bezahlung Taste auf der rechten Seite. Auf Telefonen eine Spalte mit einer Bezahlungsleiste unten."
+
+msgid "Quick quantities"
+msgstr "Schnelle Mengen"
+
+msgid "Buttons of an option with a quantity, comma separated. Empty = the built-in list."
+msgstr "Tasten einer Option mit einer Menge, Komma getrennt. Leere = die eingebaute Liste."
+
+msgid "\"Most chosen\" badge on"
+msgstr "\"Die meisten ausgesuchten\" Abzeichen auf"
+
+msgid "The quantity that is highlighted in the amount buttons view. Empty = none."
+msgstr "Die Menge, die in der Anzahl-Tasten Ansicht hervorgehoben wird. Leer = keine."
+
+msgid "Donors can also write their own amount (\"Other amount\") for the types on the form"
+msgstr "Spender können auch ihre eigene Menge (\"Andere Menge\") für die Typen auf dem Formular schreiben"
+
+msgid "Lowest own amount (%s)"
+msgstr "Niedrigster Eigenbetrag ( %s )"
+
+msgid "Used when the donation type sets no minimum. It is not shown up front: a warning appears under the field when a lower amount is sent."
+msgstr "Verwendet, wenn der Spendetyp kein Minimum festlegt, wird er nicht vorgeschaltet: eine Warnung erscheint unter dem Feld, wenn ein niedriger Betrag gesendet wird."
+
+msgid "Lowest own amount in the other currencies"
+msgstr "Niedrigster Eigenbetrag in den anderen Währungen"
+
+msgid "Quick amounts"
+msgstr "Schnelle Mengen"
+
+msgid "Amount buttons of types that take an amount written by the donor, with an \"Other amount\" button beside them. Comma separated; empty = no buttons in that currency. Amounts set on a donation type win."
+msgstr "Anzahl Tasten von Typen, die einen Betrag von dem Spender geschrieben nehmen, mit einer \"Andere Menge\" Taste neben ihnen. Comma getrennt; leer = keine Schaltflächen in dieser Währung. Beträge auf einem Spende-Typ Gewinn gesetzt."
+
+msgid "\"One-time donation / Monthly donation\" tabs over the form (shown when a payment method can take monthly payments)"
+msgstr "\"Einmalige Spende / Monatliche Spende\" Tabs über das Formular (gezeigt, wann eine Zahlungsmethode monatliche Zahlungen annehmen kann)"
+
+msgid "Texts per language"
+msgstr "Texte pro Sprache"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Empty = the built-in text in the visitor's language. A preset can fill these."
+msgstr "Leere = der eingebaute Text in der Sprache des Besuchers. Ein Preset kann diese ausfüllen."
+
+msgid "A · Steps: photo band with the page title over the form (the type picture)"
+msgstr "A · Schritte: Fotoband mit dem Seitentitel über das Formular (Typbild)"
+
+msgid "Checkout page layout"
+msgstr "Layout der Check-Seite"
+
+msgid "Show \"Add a note to your order\" at the checkout"
+msgstr "Zeigen Sie \"Eine Notiz zu Ihrer Bestellung hinzufügen\" am Checkout"
+
+msgid "Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)"
+msgstr "Die Gäste können ein Konto beim Checkout mit den eingegebenen Daten erstellen (das Passwort wird an sie per E-Mail verschickt)"
+
+msgid "On phones keep the total and the button fixed at the bottom (form and checkout)"
+msgstr "Auf Telefonen halten die Gesamt- und die Schaltfläche unten fixiert (Form und Checkout)"
+
+msgid "Card payment comes first, before bank transfer"
+msgstr "Kartenzahlung kommt zuerst, vor Banküberweisung"
+
+msgid "Short checkout: phone and e-mail both asked at the top, fewer notes under the card form"
+msgstr "Kurzer Checkout: Telefon und E-Mail beide oben gefragt, weniger Notizen unter dem Kartenformular"
+
+msgid "Show the coupon box when the cart holds only donations"
+msgstr "Zeigen Sie die Couponbox, wenn der Warenkorb nur Spenden hält"
+
+msgid "Address book: donors keep addresses under My Account and pick them at the checkout (turn off when you post nothing)"
+msgstr "Adressbuch: Donors halten Adressen unter Mein Konto und wählen Sie sie beim Checkout (Ausschalten, wenn Sie nichts posten)"
+
+msgid "single payment"
+msgstr "Einzelzahlung"
+
+msgid "%d installments"
+msgstr "%d Installationen"
+
+msgid "No payment has been taken for this order yet."
+msgstr "Für diese Bestellung wurde noch keine Zahlung geleistet."
+
+msgid "\"%1$s\" repeats monthly (recurring donation #%2$d); the card is stored at the payment provider."
+msgstr "\" %1$s \" wiederholt monatlich (wiederkehrende Spende # %2$d); die Karte wird beim Zahlungsanbieter gespeichert."
+
+msgid "Card, monthly"
+msgstr "Karte, monatlich"
+
+msgid "Card payments are processed with 3D Secure by a licensed bank or payment institution. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account."
+msgstr "Kartenzahlungen werden mit 3D Secure von einer lizenzierten Bank oder einer Zahlungseinrichtung verarbeitet. Kartendaten werden auf dieser Seite nicht gespeichert. Für Banküberweisungen wird die Spende bestätigt, wenn das Geld das Assoziierungskonto erreicht."
+
+msgid "Hello"
+msgstr "Hallo."
+
+msgid "Any trouble? Write to us on WhatsApp"
+msgstr "Haben Sie Probleme? Schreiben Sie uns auf WhatsApp"

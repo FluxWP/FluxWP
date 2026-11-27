@@ -1,0 +1,88 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Serves headless front ends over GraphQL"
+msgstr "Servit les extrémités avant sans tête sur GraphQL"
+
+msgid "Headless"
+msgstr "Headless"
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr "Cet écran a besoin de Flux GraphQL (0.4.0 ou plus récent). Installez ou mettez à jour à partir de l'écran FluxWP Packages."
+
+msgid "This front end does not exist any more."
+msgstr "Cette extrémité avant n'existe plus."
+
+msgid "At most %d front ends can be added."
+msgstr "Au plus %d extrémités avant peuvent être ajoutées."
+
+msgid "Give the front end a name."
+msgstr "Donnez un nom à l'avant."
+
+msgid "Enter the front end address with https:// (http:// only for localhost)."
+msgstr "Saisissez l &apos; adresse avant avec https:// (http:// uniquement pour localhost)."
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr "L'extrémité avant ne peut pas avoir la même adresse que cette WordPress . Déplacer WordPress à une autre adresse (p. ex. cms.example.com) d'abord."
+
+msgid "Another front end already has this address."
+msgstr "Une autre extrémité avant a déjà cette adresse."
+
+msgid "Enter the webhook address with https:// (http:// only for localhost)."
+msgstr "Entrez l &apos; adresse Webhook avec https:// (http:// uniquement pour localhost)."
+
+msgid "The language \"%s\" is not on this site."
+msgstr "La langue \" %s \" n'est pas sur ce site."
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr "Le chemin de prévisualisation commence par \"/\" (p. ex. /api/preview)."
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr "Le secret doit être d'au moins 24 caractères. Utilisez le bouton Générer."
+
+msgid "The secret could not be stored securely on this server."
+msgstr "Le secret ne pouvait pas être stocké en toute sécurité sur ce serveur."
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr "Un webhook a besoin d'un secret pour que l'avant puisse vérifier que l'appel vient de ce site."
+
+msgid "Choose what WordPress does with its own pages."
+msgstr "Choisissez ce que WordPress fait avec ses propres pages."
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr "Ajouter une première extrémité avant; WordPress pages pointent les visiteurs et les moteurs de recherche à elle."
+
+msgid "Enter the webhook address and the secret first."
+msgstr "Entrez l'adresse webhook et le secret d'abord."
+
+msgid "Sent without waiting for the answer."
+msgstr "Envoyé sans attendre la réponse."
+
+msgid "The front end accepted the call."
+msgstr "L'avant a accepté l'appel."
+
+msgid "The front end answered with HTTP %d."
+msgstr "L'extrémité avant a répondu avec HTTP %d ."
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr "Aucune extrémité avant n'est encore ajoutée; GraphQL fonctionne, mais les liens, les adresses canoniques et le webhook n'ont pas de extrémité avant pour pointer."
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr "Le dernier appel webhook a échoué pour: %s . Ouvrez le journal de livraison sur la page Headless."
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr "Pas de revalidate webhook pour: %s . Ces extrémités avant montrent des changements seulement lorsque leur cache s'épuise."
+
+msgid "%d front end, webhook set."
+msgid_plural "%d front ends, webhooks set."
+msgstr[0] "%d avant, set de webhook."
+msgstr[1] "%d les extrémités avant, les crochets."
+
+msgid "Headless front ends"
+msgstr "Fin avant sans tête"

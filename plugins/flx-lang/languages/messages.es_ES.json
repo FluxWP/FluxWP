@@ -114,6 +114,20 @@
     "Name (%s)": "Nombre (%s)",
     "Description (%s)": "Descripción (%s)",
     "If left empty, the Turkish name and description are shown.": "Si se deja vacío, se muestran el nombre y la descripción en turco.",
-    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI."
+    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI.",
+    "JavaScript is required for this screen.": "JavaScript es necesario para esta pantalla.",
+    "A language code has 2–3 letters and, optionally, a region such as pt-br.": "Un código de idioma tiene 2-3 letras y, opcionalmente, una región como pt-br.",
+    "A language can be listed only once.": "Un idioma se puede enumerar sólo una vez.",
+    "A WordPress locale has letters, digits and an underscore, e.g. en_US.": "Un WordPress local tiene letras, dígitos y un subrayado, por ejemplo en_US.",
+    "This language is not in the catalog.": "Este idioma no está en el catálogo.",
+    "The default language must be one of the listed languages and cannot be removed.": "El idioma predeterminado debe ser uno de los idiomas enumerados y no puede ser eliminado.",
+    "Unknown suggestion mode.": "Modo de sugerencia desconocido.",
+    "The suggested language must be one of the listed languages.": "El idioma sugerido debe ser uno de los idiomas enumerados.",
+    "Unknown switcher style.": "Estilo de conmutador desconocido.",
+    "Unknown switcher position.": "Posición de conmutador desconocido.",
+    "Use two-letter country codes (TR, CY…).": "Use códigos de dos letras (TR, CY...).",
+    "This content type does not exist.": "Este tipo de contenido no existe.",
+    "Unknown site text.": "Texto desconocido del sitio.",
+    "Site texts belong to a language other than the default one.": "Los textos del sitio pertenecen a un idioma que no sea el predeterminado."
   }
 }

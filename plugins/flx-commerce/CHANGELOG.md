@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.8.1
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.8.0
 - Mağaza ekranları klasik görünümle birebir: her sekmenin kendi başlığı ve açıklaması, düğmeler (CSV indir, Yeniden oluştur, dönem seçici) başlığın sağında.
 - Tutarlar klasik kısa biçimde (₺318, ₺12,5 K); dönem satırı ve grafik tarihleri yazıyla ("28 Ekim 2026 · karşılaştırma: 28 Eyl – 27 Eki").

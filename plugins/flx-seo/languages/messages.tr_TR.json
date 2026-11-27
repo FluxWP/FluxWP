@@ -26,7 +26,7 @@
     "Adds toolname/tooldescription to the search form so browser agents see it as a tool.": "Arama formuna toolname/tooldescription eklenir; tarayıcıdaki ajanlar formu araç olarak görür.",
     "Turn on security headers": "Güvenlik başlıklarını aç",
     "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Do not turn on if the site is embedded in other sites with an iframe.": "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups ve temel CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Site başka sitelerde iframe ile gösteriliyorsa açmayın.",
-    "HSTS includeSubDomains": "HSTS includeSubDomains",
+    "HSTS includeSubDomains": "HSTS dahilSubDomains",
     "If every subdomain is HTTPS, HSTS also covers subdomains.": "Tüm alt alan adları HTTPS ise HSTS alt alan adlarını da kapsar.",
     "Turn on Content-Signal in robots.txt": "robots.txt'de Content-Signal'ı aç",
     "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings.": "robots.txt'ye Content-Signal satırı (search, ai-input, ai-train) ekler; tarayıcılar içeriğin nasıl kullanılabileceğini bilir. Değerler SEO › Ayarlar'da.",

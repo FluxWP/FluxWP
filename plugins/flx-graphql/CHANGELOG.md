@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.6
+- Yönetim ekranları için dil katalogları güncellendi. Ortak takvimde arayüz dili yönetim profilini izler.
+
+
 ## 0.8.5
 - Ortak ekran katmanı form alanlarını dar ekran içinde tutar. Geniş tablolardaki ekran okuyucu etiketleri sayfayı yatay büyütmez; seçili sekme pencere boyutu değiştiğinde ve sayfa içi geçişlerde görünür kalır.
 

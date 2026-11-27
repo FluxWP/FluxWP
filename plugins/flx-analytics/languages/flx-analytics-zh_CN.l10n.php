@@ -988,6 +988,7 @@ return array(
   'Şu an' => '现在',
   'Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.' => '无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。',
   'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.' => '无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。',
-
+  'View statistics' => '视觉统计',
+  'Logged-in people' => '登录入户人数',
  ),
 );

@@ -1,5 +1,9 @@
 # Değişiklik günlüğü
 
+## 0.6.1
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.6.0
 - Sosyal Medya ekranları eski klasik düzenle birebir: Pano (üst çubukta dönem + yenile, ikonlu kutular, eksenli günlük grafik, ağ tablosu, yaklaşanlar), Paylaşımlar (başlıkta arama, sekmeler + hesap/benimkiler, kart satırlar, … menüsü), Takvim (Ay/Liste üstte, hesap süzgeci, ayrı gün kutuları), Hesaplar (başlıkta "Hesap bağla" penceresi) ve Ayarlar (Genel, Uygulamalar, Ağ ayarları, Otomatik paylaşım, Kayıt sekmeleri; değişiklik anında kaydedilir).
 

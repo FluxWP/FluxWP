@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.5
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.10.4
 - wp-admin'de sayfalar eski klasik düzende: her bölüm kendi alt menü sayfası, üstte sekme çubuğu yok; bölüm açıklaması başlığın altında. Tarih seçiciler ve bütçe alanı sütunu dolduruyor, Ayarlar'daki kimlik alanları eski genişlikte, Reklam bağlantısı'nda Sayfa alanı tam satır.
 

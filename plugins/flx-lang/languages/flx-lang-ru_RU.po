@@ -327,3 +327,45 @@ msgstr "Если оставить пустым, отображаются тур�
 
 msgid "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
 msgstr "Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI."
+
+msgid "JavaScript is required for this screen."
+msgstr "Для этого экрана требуется JavaScript."
+
+msgid "A language code has 2–3 letters and, optionally, a region such as pt-br."
+msgstr "В языковом кодексе имеется 2-3 буквы и, факультативно, такой регион, как пт-бр."
+
+msgid "A language can be listed only once."
+msgstr "Язык можно перечислить только один раз."
+
+msgid "A WordPress locale has letters, digits and an underscore, e.g. en_US."
+msgstr "A WordPress У местных есть письма, цифры и подсказка, например в США."
+
+msgid "This language is not in the catalog."
+msgstr "Этот язык не в каталоге."
+
+msgid "The default language must be one of the listed languages and cannot be removed."
+msgstr "Этот язык не может быть одним из языков, перечисленных в перечне, и его нельзя исключить."
+
+msgid "Unknown suggestion mode."
+msgstr "Неизвестный способ предложения."
+
+msgid "The suggested language must be one of the listed languages."
+msgstr "Предлагаемая формулировка должна быть одним из перечисленных языков."
+
+msgid "Unknown switcher style."
+msgstr "Неизвестный стиль коммутатора."
+
+msgid "Unknown switcher position."
+msgstr "Неизвестное положение коммутатора."
+
+msgid "Use two-letter country codes (TR, CY…)."
+msgstr "Использовать коды двух стран (TR, CY...)."
+
+msgid "This content type does not exist."
+msgstr "Этот тип содержания отсутствует."
+
+msgid "Unknown site text."
+msgstr "Неизвестный текст на объекте."
+
+msgid "Site texts belong to a language other than the default one."
+msgstr "Тексты на месте относятся к иному языку, чем неисповедаемый."

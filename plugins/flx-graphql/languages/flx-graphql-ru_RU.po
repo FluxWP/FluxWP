@@ -1,0 +1,950 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Flux GraphQL"
+msgstr "Flux GraphQL"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "You do not have permission to do this."
+msgstr "У вас нет разрешения на это."
+
+msgid "One GraphQL API for the FluxWP plugins. Screens in wp-admin, the FluxWP desktop and mobile apps and a headless front end all read the same typed schema."
+msgstr "Одна GraphQL API для плугин FluxWP. &quot; Screens in wp-admin &quot; , FluxWP настольных и мобильных приложений, а также безголовая передняя часть прочитает одну и ту же схему."
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "The separate WPGraphQL plugin was deactivated; the built-in copy is in use."
+msgstr "Отдельный плугин WPGraphQL был отключен; встроенная копия используется."
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Endpoint"
+msgstr "Конечная точка"
+
+msgid "WPGraphQL"
+msgstr "WPGraphQL"
+
+msgid "%s (built in)"
+msgstr "%s (покраска встроена)"
+
+msgid "%s (separate plugin)"
+msgstr "%s (отдельный плугин)"
+
+msgid "not loaded"
+msgstr "не загружается"
+
+msgid "working"
+msgstr "работаю"
+
+msgid "off"
+msgstr "выкл."
+
+msgid "Known queries"
+msgstr "Знание запросов"
+
+msgid "%1$d from %2$d packages"
+msgstr "%1$d из %2$d упаковок"
+
+msgid "Upload endpoint"
+msgstr "Конечная точка нагрузки"
+
+msgid "Use the Flux GraphQL version"
+msgstr "Использовать вариант Flux GraphQL"
+
+msgid "Open GraphiQL IDE"
+msgstr "Открыть графический IDE"
+
+msgid "Access"
+msgstr "Доступ"
+
+msgid "Only queries shipped with FluxWP packages (recommended)"
+msgstr "Только запросы, отгруженные с FluxWP пакетом (рекомендованные)"
+
+msgid "Administrators may also send any query"
+msgstr "Администраторы могут также направлять любые вопросы"
+
+msgid "Anyone may send any query (public headless API)"
+msgstr "Любой может направлять любой запрос (открытый без головы API)"
+
+msgid "Which queries run"
+msgstr "Которые занимаются вопросами"
+
+msgid "Persisted queries keep the API small and let LiteSpeed cache public reads."
+msgstr "Персидные запросы содержат API малый и позволяют читать лекции из литов Speed."
+
+msgid "Front-end origins"
+msgstr "Происхождение"
+
+msgid "Sites allowed to call /graphql from the browser, one per line. This site is always allowed."
+msgstr "Ситуалы могут звонить из браузера по одному на линию, и это место всегда разрешено."
+
+msgid "GraphiQL IDE for administrators"
+msgstr "IDE для администраторов"
+
+msgid "Also lets administrators run any query while it is on."
+msgstr "А также позволяет администраторам задавать любые вопросы, пока они находятся."
+
+msgid "Public schema introspection"
+msgstr "Интроспективность в общественном масштабе"
+
+msgid "Administrators can always read the schema."
+msgstr "Администраторы всегда могут читать схему."
+
+msgid "Debug messages for administrators"
+msgstr "Сообщения о нарушениях для администраторов"
+
+msgid "Limits"
+msgstr "Пределы"
+
+msgid "Deepest nesting"
+msgstr "Глубочайшие недовольства"
+
+msgid "Highest complexity"
+msgstr "Самая сложная"
+
+msgid "Records per page"
+msgstr "Отчеты за страницу"
+
+msgid "Queries per batch"
+msgstr "Кваэры на одну партию"
+
+msgid "Public cache"
+msgstr "Государственные тайники"
+
+msgid "sec"
+msgstr "sec"
+
+msgid "Largest upload"
+msgstr "Большая загрузка"
+
+msgid "The FluxWP form fields could not load. Reinstall Flux GraphQL."
+msgstr "Поля формы FluxWP не могут загрузиться."
+
+msgid "Shared hosting: keep the limits low. A query that goes over them is refused before it runs."
+msgstr "Обычный хостинг: не выдерживайте пределов."
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "GraphQL server"
+msgstr "GraphQL сервер"
+
+msgid "Flux GraphQL settings"
+msgstr "Flux GraphQL settings"
+
+msgid "Built-in WPGraphQL %s is running."
+msgstr "Ведется строительство WPGraphQL %s."
+
+msgid "A separately installed WPGraphQL %1$s is running instead of the built-in %2$s. It works, but its updates are not tested with FluxWP. Use the built-in copy unless another plugin needs the separate one."
+msgstr "Вместо &quot; встроенного в %2$s &quot; работает отдельно установленная WPGraphQL %1$s, однако ее обновленные данные не испытываются с FluxWP. Использование встроенного копия, если только другой плюгин не нуждается в отдельном."
+
+msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP screens cannot open. Deactivate it to use the built-in copy."
+msgstr "В настоящее время действует отдельно установленная WPGraphQL %1$s. FluxWP нуждается в %2$s или новичке и ниже %3$s, поэтому FluxWP экраны не могут открыться."
+
+msgid "The built-in WPGraphQL files are missing. Reinstall Flux GraphQL from FluxWP Panel › Packages."
+msgstr "Построенные файлы WPGraphQL отсутствуют."
+
+msgid "GraphQL queries"
+msgstr "GraphQL Запросы"
+
+msgid "Anyone may send any GraphQL query. Keep this only for a public headless front end; depth and complexity limits still apply."
+msgstr "Любой может направить любой запрос GraphQL и оставить это только для публичного безнаказанным; все еще применяются предельные значения глубины и сложности."
+
+msgid "Only queries shipped with FluxWP packages run (%d known)."
+msgid_plural "Only queries shipped with FluxWP packages run (%d known)."
+msgstr[0] "Только запросы были отправлены с FluxWP упаковкой (известна %d."
+msgstr[1] "Только запросы были отправлены с FluxWP упаковкой (известна %d."
+msgstr[2] "Только запросы были отправлены с FluxWP упаковкой (известна %d."
+
+msgid "GraphQL types"
+msgstr "GraphQL типы"
+
+msgid "Some GraphQL fields were refused because they break the FluxWP rules: %s. Update the package that adds them."
+msgstr "Было отказано примерно в GraphQL поле, поскольку они нарушили правила FluxWP: %s. Обновление пакета, который добавляет их."
+
+msgid "Flux GraphQL: the separately installed WPGraphQL %s is not supported, so FluxWP GraphQL screens are off."
+msgstr "Flux GraphQL: отдельно установленное значение WPGraphQL %s не поддерживается, поэтому выключено FluxWP GraphQL."
+
+msgid "The user making the request and what they may do."
+msgstr "Пользователь обращается с просьбой и что он может сделать."
+
+msgid "Whether the request is signed in."
+msgstr "Подписывается ли просьба."
+
+msgid "User ID; empty for a visitor."
+msgstr "Идентификация пользователя; пуста для посетителя."
+
+msgid "Display name; empty for a visitor."
+msgstr "Имя отображения; пустое для посетителя."
+
+msgid "Whether the user manages the site (manage_options)."
+msgstr "Управляют ли пользователь сайтом (управление/отборы)."
+
+msgid "Capabilities from the FluxWP catalog that the user has."
+msgstr "Возможности из каталога FluxWP, который у пользователя."
+
+msgid "Whether the user has this capability."
+msgstr "У пользователя есть ли такие возможности."
+
+msgid "Capability name, e.g. flxg_use."
+msgstr "Наименование потенциала, например флксг_use."
+
+msgid "A capability a FluxWP package checks."
+msgstr "A. Возможность a FluxWP Упаковочные проверки."
+
+msgid "What the capability allows, in the user's language."
+msgstr "Что позволяет пользовательскому языку."
+
+msgid "Group label (usually the package); empty when not given."
+msgstr "Групповое обозначение (обычно упаковка); пустое место, если оно не указано."
+
+msgid "Package slug that declares it; empty when not given."
+msgstr "Шлюпка упаковки, которая объявляет ее пустой, если она не указана."
+
+msgid "Whether the current user has it."
+msgstr "Есть ли у нынешнего пользователя."
+
+msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
+msgstr "Посетитель получает ложную просьбу и не имеет никаких возможностей."
+
+msgid "The FluxWP capability catalog, with what the current user has."
+msgstr "Каталог о потенциале FluxWP с тем, что имеет нынешний пользователь."
+
+msgid "Where a page sits in a list."
+msgstr "Там, где страница сидит в списке."
+
+msgid "More records follow this page."
+msgstr "Больше записей следует на этой странице."
+
+msgid "Records come before this page."
+msgstr "Записи идут перед этой страницой."
+
+msgid "Cursor of the first record on this page."
+msgstr "Пресвятник первого протокола на этой странице."
+
+msgid "Cursor of the last record on this page; pass it as \"after\" for the next page."
+msgstr "Пресвятник последней записи на этой странице, передайте ее как \"после\" на следующую страницу."
+
+msgid "One %s in a list, with its cursor."
+msgstr "Один %s в списке, с его куратором."
+
+msgid "Opaque cursor of this record."
+msgstr "Опаковщик этого рекорда."
+
+msgid "The record."
+msgstr "Записи."
+
+msgid "A page of %s records."
+msgstr "На странице %s."
+
+msgid "Records with their cursors."
+msgstr "Записи с их курьерами."
+
+msgid "Records of this page."
+msgstr "Записи этой страницы."
+
+msgid "Paging information."
+msgstr "Информацию о пинге."
+
+msgid "All matching records (null when counting would be slow)."
+msgstr "Все совпадающие записи (число, когда подсчет будет медленным)."
+
+msgid "Records per page (at most %d)."
+msgstr "Отчеты за страницу (на большинстве %d)."
+
+msgid "Cursor to continue after (pageInfo.endCursor)."
+msgstr "Прокрутка продолжится после (pageInfo.endCoursor)."
+
+msgid "The page cursor is not valid."
+msgstr "Страница недействительна."
+
+msgid "Please sign in again."
+msgstr "Пожалуйста, подпишите снова."
+
+msgid "The record was not found."
+msgstr "Запись не была найдена."
+
+msgid "Some fields are not valid."
+msgstr "Некоторые области не имеют силы."
+
+msgid "The record was changed by someone else. Reload and try again."
+msgstr "Запись была изменена кем-то другим."
+
+msgid "Too many requests. Wait a moment and try again."
+msgstr "Слишком много запросов."
+
+msgid "Something went wrong. Please try again."
+msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз."
+
+msgid "This query is not known to the site. Update the app or the FluxWP packages."
+msgstr "Этот вопрос не известен сайту, в котором обновлено приложение или FluxWP пакет."
+
+msgid "Only queries shipped with FluxWP packages may run on this site."
+msgstr "На этом объекте могут находиться только вопросы, отгруженные с FluxWP."
+
+msgid "The ID is not valid."
+msgstr "Идентификация недействительна."
+
+msgid "Global ID."
+msgstr "Глобальный идентификатор."
+
+msgid "Database ID."
+msgstr "Идентификация базы данных."
+
+msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
+msgstr "Проблемы с вкладом, чтобы показаться рядом с полями формы, когда мутация преуспела."
+
+msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
+msgstr "Направление в группы установленных FluxWP пакетов (от флкс_settings_schema)."
+
+msgid "Panel settings of the installed FluxWP packages."
+msgstr "Направление групповых площадок для установленных FluxWP пакета."
+
+msgid "Changes panel settings. Only the groups and fields you send are written."
+msgstr "Только те группы и поля, которые вы посылаете, написаны."
+
+msgid "Settings after the change."
+msgstr "Устанавливается после смены."
+
+msgid "This setting cannot be changed here."
+msgstr "Здесь нельзя изменить эту обстановку."
+
+msgid "Changes to %s. Only the fields you send are changed."
+msgstr "Изменения до %s. Только те поля, которые вы посылаете, изменились."
+
+msgid "A list or object is expected."
+msgstr "Ожидается, что будет составлен список или предмет."
+
+msgid "This choice is not available."
+msgstr "Этот выбор отсутствует."
+
+msgid "Enter a colour like #1F6FEB."
+msgstr "Введи цвет, как 1F6FEB."
+
+msgid "Free-form JSON value (object, list, string, number or boolean)."
+msgstr "Значение бесплатного СПОН (цель, перечень, стринг, число или кулак)."
+
+msgid "A problem with the input of a mutation, shown next to the form field."
+msgstr "Проблема с вводом мутации, которая проявляется рядом с областью."
+
+msgid "Stable code: INVALID_INPUT, CONFLICT, …"
+msgstr "Стабильный код: InVALID_INPUT, CONFLICT, ..."
+
+msgid "Message in the user's language."
+msgstr "Сообщение на языке пользователя."
+
+msgid "Input field (dotted path) the problem belongs to."
+msgstr "Проблема заключается в том, что в этом поле (ввергнутый путь) существует."
+
+msgid "A point in time with labels in the user's language."
+msgstr "Время от времени с лейблами на языке пользователя."
+
+msgid "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+msgstr "ISO 8601 в UTC (2026-11-15T14:59:00Z)."
+
+msgid "Unix timestamp."
+msgstr "Уникс-темп."
+
+msgid "Date and time for display, in the site time zone and the user's language."
+msgstr "Дата и время отображения, в зоне времени и на языке пользователя."
+
+msgid "Relative time for display (\"5 minutes ago\")."
+msgstr "Относительное время для отображения (5 минут назад)."
+
+msgid "Date only, in the site time zone and the user's language."
+msgstr "Только дата, в зоне времени и на языке пользователя."
+
+msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
+msgstr "Сроки и сроки представления таблиц (16.10.2026 14:24 на турецком языке)."
+
+msgid "An amount of money."
+msgstr "Деньги."
+
+msgid "Amount in the currency unit (150.5)."
+msgstr "Сумма в валютной единице (150,5)."
+
+msgid "ISO 4217 code (TRY, USD)."
+msgstr "ISO 4217 Код (TRY, USD)."
+
+msgid "Amount with the currency sign for display."
+msgstr "Сумма с валютным знаком для выставления."
+
+msgid "A phone number."
+msgstr "Номер телефона."
+
+msgid "E.164 form (+905301234567); empty when the number is not valid."
+msgstr "E.164 форма (+905301234567); пустой, если номер недействителен."
+
+msgid "Digits only (905301234567)."
+msgstr "Только рисунки (905301234567)."
+
+msgid "Number as entered, for display."
+msgstr "Номер записан, для отображения."
+
+msgid "A stored file."
+msgstr "Замкнутый файл."
+
+msgid "File ID (upload ID or the package's own ID)."
+msgstr "Идентификационный номер файла (загрузка идентификационных данных или собственное удостоверение упаковки)."
+
+msgid "File name."
+msgstr "Фильмное имя."
+
+msgid "MIME type."
+msgstr "Тип МИМЕ."
+
+msgid "Size in bytes."
+msgstr "Размер в байтах."
+
+msgid "Download address (may need the same sign-in)."
+msgstr "Адрес загрузки (может, потребуется тот же номер)."
+
+msgid "The file is an image."
+msgstr "Дело - это изображение."
+
+msgid "Thumbnail address for images."
+msgstr "Адрес Тумбнеля для изображений."
+
+msgid "A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
+msgstr "Лицо (донор, клиент, контакт)."
+
+msgid "Person ID in the shared people table."
+msgstr "Идентификационные данные Персона за общим столом."
+
+msgid "Full name."
+msgstr "Полное имя."
+
+msgid "E-mail address."
+msgstr "Адрес электронной почты."
+
+msgid "Phone number."
+msgstr "Номер телефона."
+
+msgid "Picture address."
+msgstr "Фотографический адрес."
+
+msgid "You are not allowed to manage plugins."
+msgstr "Вам не разрешено управлять плугинами."
+
+msgid "This screen needs JavaScript."
+msgstr "Этот экран нуждается в JavaScript."
+
+msgid "Loading the screen…"
+msgstr "Заряжаю экран..."
+
+msgid "A separately installed WPGraphQL plugin is active and FluxWP cannot use it. Deactivate it under Plugins; FluxWP has its own copy."
+msgstr "Отдельно установленный плугин WPGraphQL активен и FluxWP не может его использовать; отключить его под плугинами; FluxWP имеет свой собственный экземпляр."
+
+msgid "Flux GraphQL is not ready on this site. Check Flux GraphQL under Plugins."
+msgstr "Flux GraphQL на этом объекте не готов."
+
+msgid "The screen files of this plugin are missing. Update or reinstall the plugin."
+msgstr "Фильмы с экрана этого плугина пропали, обновлены или восстанавливают плугин."
+
+msgid "If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache."
+msgstr "Если плугин был только что обновлен, то мясник или сайт может по-прежнему хранить старые файлы. &lt; &lt; Сверх загрузить страницу &gt; &gt; (Ctrl/Cmd + Shift + R); если она будет продолжаться, то накачает сайт."
+
+msgid "This screen could not be loaded"
+msgstr "Не удалось загрузить этот экран"
+
+msgid "Reload page"
+msgstr "Обновить страницу"
+
+msgid "Uploads are not accepted for this screen."
+msgstr "На этот экран не допускаются загрузки."
+
+msgid "You do not have permission to upload files here."
+msgstr "У вас нет разрешения на загрузку файлов."
+
+msgid "Too many uploads. Wait a few minutes and try again."
+msgstr "Слишком много загрузок, подождите несколько минут и попробуйте еще раз."
+
+msgid "The file did not arrive. Try again."
+msgstr "Дело не прибыло, попробуй еще раз."
+
+msgid "The file is larger than %s."
+msgstr "Дело больше, чем %s."
+
+msgid "This file type is not allowed."
+msgstr "Этот тип файла недопустим."
+
+msgid "The file could not be saved on the server."
+msgstr "Дело не может быть сохранено на сервере."
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "Загруженное досье не было найдено, и оно снова загрузилось."
+
+msgid "A name and value shown under a cart line (variation attribute or line detail)."
+msgstr "Наименование и величина, показанные в графе &quot; Карта &quot; (атриатив или линейная деталь)."
+
+msgid "Label."
+msgstr "Лебель."
+
+msgid "Value as plain text."
+msgstr "Значение как простой текст."
+
+msgid "Quantities a cart line accepts."
+msgstr "Квартира принимает."
+
+msgid "Lowest quantity."
+msgstr "Меньшее количество."
+
+msgid "Highest quantity."
+msgstr "Больше всего."
+
+msgid "The quantity is a multiple of this."
+msgstr "Это количество много."
+
+msgid "Whether the shopper may change the quantity (false for fixed lines such as a donation)."
+msgstr "Может ли магазинчик изменить количество (продажа по фиксированным линиям, таким, как пожертвование)."
+
+msgid "A line in the cart."
+msgstr "Линия в тележке."
+
+msgid "Cart item key; flxCartItemUpdate and flxCartItemRemove take it."
+msgstr "Ключ от карточки; флэкскарттернативный и флэкскарт-Тэм-Ремоув забрали его."
+
+msgid "What the line is: \"product\", or a name a package gives its own lines (Flux Donate: \"donation\"). Filter flx_gql_cart_item_kind."
+msgstr "Какова линия: \"продукт\", или название упаковки дает свои собственные линии (Flux Donate: \"donation\"). Filter flx_gql_cart_item_kind."
+
+msgid "WooCommerce product (or variation) database ID."
+msgstr "WooCommerce продукт (или вариационные данные)"
+
+msgid "WooCommerce product type (simple, variation …)."
+msgstr "WooCommerce тип продукта (простое, изменение ...)."
+
+msgid "Product name."
+msgstr "Название продукта."
+
+msgid "SKU; empty when the product has none."
+msgstr "SKU;порожнео, когда продукт не имеет."
+
+msgid "Product page; null for products without a page."
+msgstr "Продуктная страница; недействительным для продуктов без страницы."
+
+msgid "First product image; null without an image."
+msgstr "Первый образ продукта; не имеет изображения."
+
+msgid "Alternative text of the image."
+msgstr "Альтернативный текст изображения."
+
+msgid "Quantity."
+msgstr "Квалентность."
+
+msgid "Quantities this line accepts."
+msgstr "Квартиры, которые эта линия принимает."
+
+msgid "Only one of this product per order."
+msgstr "Только один из этих продуктов на заказ."
+
+msgid "Price of one unit."
+msgstr "Цены на одну единицу."
+
+msgid "Regular price of one unit (before a sale)."
+msgstr "Регулярная цена одной единицы (до продажи)."
+
+msgid "Line total before coupons."
+msgstr "Полная линия до купонов."
+
+msgid "Line total after coupons, without tax."
+msgstr "Полная линия после купонов, без налога."
+
+msgid "Tax of the line."
+msgstr "Налог на линии."
+
+msgid "Chosen variation attributes."
+msgstr "Выборочные атрибуты изменений."
+
+msgid "Line details other plugins add (e.g. a donation's names and certificate)."
+msgstr "Линейные детали, другие плюгины добавляют (например, имена и сертификаты пожертвования)."
+
+msgid "A coupon applied to the cart."
+msgstr "Купон на тележке."
+
+msgid "Coupon code."
+msgstr "Код пара."
+
+msgid "WooCommerce discount type (percent, fixed_cart …)."
+msgstr "WooCommerce скидочный тип (процент, фиксированный_cart ...)."
+
+msgid "Discount without tax."
+msgstr "Не облагай налогом."
+
+msgid "Tax part of the discount."
+msgstr "Налоговая часть скидки."
+
+msgid "A fee added to the cart (e.g. a payment fee)."
+msgstr "Заплата была добавлена к карточке (например, плата за выплату)."
+
+msgid "Fee key."
+msgstr "Ключ."
+
+msgid "Fee name."
+msgstr "Имя."
+
+msgid "Fee without tax."
+msgstr "Не налогоплательщик."
+
+msgid "Tax of the fee."
+msgstr "Налог на сбор."
+
+msgid "One tax rate in the cart totals."
+msgstr "Одна налоговая ставка на карте."
+
+msgid "Tax name."
+msgstr "Налоговое имя."
+
+msgid "Rate as WooCommerce shows it."
+msgstr "Это показывает уровень WooCommerce."
+
+msgid "Amount."
+msgstr "Сумма."
+
+msgid "Cart totals, as WooCommerce calculated them."
+msgstr "По подсчетам, по расчетам WooCommerce."
+
+msgid "ISO 4217 currency of the cart."
+msgstr "ИСО 4217 валюта карточки."
+
+msgid "Lines before coupons, without tax."
+msgstr "Линии до купонов, без налогов."
+
+msgid "Tax of the lines."
+msgstr "Налог на линии."
+
+msgid "Fees without tax."
+msgstr "Не облагай налог."
+
+msgid "Coupon discounts without tax."
+msgstr "Пара скидок без налога."
+
+msgid "Shipping without tax; null until shipping is calculated."
+msgstr "Перевозка без уплаты налогов; невозмещение до расчетов."
+
+msgid "All taxes."
+msgstr "Все налоги."
+
+msgid "Amount to pay."
+msgstr "Сумма, которую нужно заплатить."
+
+msgid "Taxes by rate."
+msgstr "Налоги по ставке."
+
+msgid "A shipping option."
+msgstr "Отправление."
+
+msgid "Rate ID for flxCartShippingRateSelect."
+msgstr "Номера для выбора FIxCartShippRateSelect."
+
+msgid "Shipping method (flat_rate, free_shipping …)."
+msgstr "Метод перевозки (флат-трат, бесплатная перегрузка...)."
+
+msgid "Name."
+msgstr "Имя."
+
+msgid "Description; may be empty."
+msgstr "Описание; может быть пустым."
+
+msgid "Delivery time; may be empty."
+msgstr "Время доставки; может быть пустым."
+
+msgid "Price without tax."
+msgstr "Цены без налога."
+
+msgid "Whether this option is chosen."
+msgstr "Выбирается ли этот вариант."
+
+msgid "A group of lines shipped together and its shipping options."
+msgstr "Группа линий отправилась вместе и ее варианты перевозок."
+
+msgid "Package ID."
+msgstr "Упаковка."
+
+msgid "Package name."
+msgstr "Упаковка."
+
+msgid "Shipping options."
+msgstr "Варианты отгрузки."
+
+msgid "E-mail; null on the shipping address."
+msgstr "Электронная почта; нет на адрес отгрузки."
+
+msgid "A billing or shipping address of the cart."
+msgstr "Счёт или отгрузочный адрес тележки."
+
+msgid "A problem with the cart the shopper has to fix before paying (e.g. a product went out of stock)."
+msgstr "Проблема с картой, которую должен починить магазин, прежде чем платить (например, товар вышел из запасов)."
+
+msgid "WooCommerce error code."
+msgstr "Код ошибки WooCommerce."
+
+msgid "Message in the shopper's language."
+msgstr "Послание на языке магазинчика."
+
+msgid "Where the payment step continues. Payment stays on the WooCommerce Store API checkout; card data never goes through GraphQL."
+msgstr "В тех случаях, когда плата продолжается, платежи остаются на чеке WooCommerce; данные карточки никогда не поступают через GraphQL."
+
+msgid "Store API checkout URL (POST with the same Cart-Token, billing address and payment method)."
+msgstr "Сохраните адрес выписки API (POST с одним и тем же адресом, адресом выставления счетов и методом оплаты)."
+
+msgid "The site's checkout page; null when WooCommerce is not loaded."
+msgstr "На странице слежения; ничто, если WooCommerce не загружено."
+
+msgid "The site's cart page; null when WooCommerce is not loaded."
+msgstr "На телестранице сайта: ничто, если WooCommerce не загружено."
+
+msgid "The shopper's WooCommerce cart (Store API)."
+msgstr "Карт магазинчика WooCommerce (Store API)."
+
+msgid "Cart token. Send it back as the Cart-Token header (headless front end, mobile); it is also in the Cart-Token response header. Null when WooCommerce gave none."
+msgstr "Отправь его обратно в качестве заголовка карт-Токена (безголовный передний конец, подвижный); он также находится в заголовке срабатывания карт-Токана."
+
+msgid "Store API nonce for the same-site cookie session (Nonce header). Null when WooCommerce gave none."
+msgstr "Неиспользование тары API для одного и того же сеанса печенья (заголовок Нонса)."
+
+msgid "Number of units in the cart (quantities added up)."
+msgstr "Количество единиц в карточке (включено количество)."
+
+msgid "Lines."
+msgstr "Линии."
+
+msgid "Applied coupons."
+msgstr "Прикладные купоны."
+
+msgid "Fees."
+msgstr "Феи."
+
+msgid "Totals."
+msgstr "Всего."
+
+msgid "Whether the order needs a payment (false for a free cart)."
+msgstr "Требует ли этот приказ выплаты (заплата бесплатной карточки)."
+
+msgid "Whether the order is shipped (false for donations and virtual products)."
+msgstr "Отправляется ли заказ (направление пожертвований и виртуальных продуктов)."
+
+msgid "Whether shipping was calculated for the current address."
+msgstr "Определяется ли судоходство по текущему адресу."
+
+msgid "Shipping packages and their options."
+msgstr "Грузовые пакеты и их варианты."
+
+msgid "IDs of the payment gateways available for this cart (payment_method of the checkout)."
+msgstr "Идентификационные номера платежных шлюзов, имеющихся для этой тележки (платежей по методу выписки)."
+
+msgid "Features a gateway must support for this cart (e.g. products, subscriptions)."
+msgstr "Подготовку ворота должна обеспечивать эта карточка (например, продукты, подписка)."
+
+msgid "Problems to fix before paying."
+msgstr "Проблемы, которые нужно решить, прежде чем платить."
+
+msgid "Billing address."
+msgstr "Адрес Биллинга."
+
+msgid "Shipping address."
+msgstr "Адрес отгрузки."
+
+msgid "Where the payment step continues."
+msgstr "Там, где продолжается выплата."
+
+msgid "A variation attribute."
+msgstr "Атрибуты изменения."
+
+msgid "Attribute name or taxonomy (e.g. pa_color)."
+msgstr "Имя или таксономия (например, pa_color)."
+
+msgid "Chosen value."
+msgstr "Выборная ценность."
+
+msgid "Address fields to change; fields left out keep their value."
+msgstr "Адресные поля для перемен; поля оставляются в стороне, сохраняя свою ценность."
+
+msgid "The shopper's cart (Cart-Token session or the WooCommerce session cookie). Never cached."
+msgstr "Машина магазинчика (сессия в карт-Токкене или сеанс в WooCommerce) никогда не прикасалась."
+
+msgid "The cart after the change; null when the change failed."
+msgstr "Тележка после изменения; не имеет силы, когда изменение не сработало."
+
+msgid "Adds a product to the cart (Store API cart/add-item)."
+msgstr "Добавляет продукт в карточку (столпа API карт/добавок к отрубу)."
+
+msgid "Product or variation database ID."
+msgstr "Идентификация базы данных о продуктах или изменениях."
+
+msgid "Quantity; default 1."
+msgstr "Количество; по умолчанию 1."
+
+msgid "Variation attributes for a variable product."
+msgstr "атрибуты переменного продукта."
+
+msgid "Key of the line that was added or increased; null when the change failed."
+msgstr "Ключ добавленной или расширенной линии; недействительным, когда изменение не увенчалось успехом."
+
+msgid "Changes the quantity of a cart line; 0 removes it."
+msgstr "Изменяет количество тележки; 0 удаляет ее."
+
+msgid "Cart item key."
+msgstr "Ключ от карточки."
+
+msgid "New quantity."
+msgstr "Новое количество."
+
+msgid "Removes a cart line."
+msgstr "Снимает линию."
+
+msgid "Empties the cart."
+msgstr "Начинает тележку."
+
+msgid "Applies a coupon."
+msgstr "Я приклеил купон."
+
+msgid "Removes a coupon."
+msgstr "Снимает купон."
+
+msgid "Chooses a shipping option."
+msgstr "Выбирает вариант судоходства."
+
+msgid "Rate ID (FlxCartShippingRate.rateId)."
+msgstr "Идентификатор тарифа (FlxCartShippingRate.rateId)."
+
+msgid "Shipping package; left out = every package."
+msgstr "Грузовая упаковка; оставлена = каждая упаковка."
+
+msgid "Changes the billing and/or shipping address; totals, taxes and shipping options follow."
+msgstr "Изменения в адресе выставления счетов и/или отгрузки; в этой связи используются общие суммы, налоги и варианты отгрузки."
+
+msgid "Billing address fields to change."
+msgstr "Убийство адресов для перемен."
+
+msgid "Shipping address fields to change."
+msgstr "Перевозка поля для изменения."
+
+msgid "First name."
+msgstr "Имя."
+
+msgid "Last name."
+msgstr "Фамилия."
+
+msgid "Company."
+msgstr "Компания."
+
+msgid "Address line 1."
+msgstr "Адресная линия 1."
+
+msgid "Address line 2."
+msgstr "Адресная линия 2."
+
+msgid "City."
+msgstr "Город."
+
+msgid "State or province code."
+msgstr "Государственный или провинциальный кодекс."
+
+msgid "Postcode."
+msgstr "Почтовый код."
+
+msgid "ISO 3166-1 alpha-2 country code."
+msgstr "ISO 3166-1 алфа-2 код страны."
+
+msgid "E-mail."
+msgstr "E-mail."
+
+msgid "Phone."
+msgstr "Телефон."
+
+msgid "Choose a product."
+msgstr "Выбери продукт."
+
+msgid "The quantity must be at least 1."
+msgstr "Количество должно составлять не менее 1."
+
+msgid "The quantity cannot be negative."
+msgstr "Это количество не может быть отрицательным."
+
+msgid "Enter a coupon code."
+msgstr "Введи код купона."
+
+msgid "The shop is not available on this site."
+msgstr "На этом объекте магазина нет."
+
+msgid "Your cart has expired. Please reload the page."
+msgstr "Твоя карта уже истекла, пожалуйста, перепиши страницу."
+
+msgid "The cart could not be changed. Please reload the page."
+msgstr "Машина не может быть изменена, пожалуйста, перегрузите страницу."
+
+msgid "Select date"
+msgstr "Выбрать дату"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "Tomorrow"
+msgstr "Завтра"
+
+msgid "Next week"
+msgstr "На следующей неделе"
+
+msgid "In 2 weeks"
+msgstr "Через 2 недели"
+
+msgid "This Friday"
+msgstr "В эту пятницу"
+
+msgid "No date"
+msgstr "Без даты"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Month"
+msgstr "Месяц"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Previous month"
+msgstr "Предыдущий месяц"
+
+msgid "Next month"
+msgstr "Следующий месяц"
+
+msgid "Previous year"
+msgstr "Предыдущий год"
+
+msgid "Next year"
+msgstr "Следующий год"
+
+msgid "Choose month"
+msgstr "Выбрать месяц"
+
+msgid "Choose year"
+msgstr "Выбрать год"
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgid "Notice"
+msgstr "Уведомление"
+
+msgid "This cannot be undone."
+msgstr "Это действие нельзя отменить."
+
+msgid "To confirm, type %s"
+msgstr "Для подтверждения введите %s"

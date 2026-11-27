@@ -647,7 +647,7 @@ msgid "Contact added to the blocklist: %s"
 msgstr "Контакт добавлен в черный список: %s"
 
 msgid "Chat not found."
-msgstr "Chat not found."
+msgstr "Чейт не нашел."
 
 msgid "No records found."
 msgstr "Записи не найдены."
@@ -737,7 +737,7 @@ msgid "Instructions cannot be empty."
 msgstr "Инструкции не могут быть пустыми."
 
 msgid "Title and content are required."
-msgstr "Title and content are required."
+msgstr "Должность и содержание требуются."
 
 msgid "Jane Smith"
 msgstr "Джейн Смит"
@@ -1676,7 +1676,7 @@ msgid "Assign"
 msgstr "Назначить"
 
 msgid "Chat closed"
-msgstr "Chat closed"
+msgstr "Закрытая палата"
 
 msgid "{n} (me)"
 msgstr "{n}(я)"
@@ -2969,7 +2969,7 @@ msgid "The {first_name}, {name}, {brand}, {site}, {date} variables can be used i
 msgstr "В текстах можно использовать переменные {first_name}, {name}, {brand}, {site}, {date}."
 
 msgid "Chat labels"
-msgstr "Chat labels"
+msgstr "Знаки штафтов"
 
 msgid "Label chats and filter the list (e.g. Donation, Complaint, Follow-up)."
 msgstr "Пометьте чаты и отфильтруйте список (например, «Пожертвование», «Жалоба», «Последующие действия»)."
@@ -4987,6 +4987,36 @@ msgstr "Продолжение: после недопонимания жалоб
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "Реакция на прощание — 👍 или 🤲, никогда 🙏"
 
+msgid "Schedules call-center reports"
+msgstr "Списки с докладами, составленными в центрах телефонных переговоров"
+
+msgid "Can receive a call-center report"
+msgstr "Может получить отчет о центре внимания."
+
+msgid "Can receive the general call-center report"
+msgstr "Могут получить отчет об общем центре вызова"
+
+msgid "Uses the call center"
+msgstr "Использует телефонный центр"
+
+msgid "Manages the call center"
+msgstr "Управление телефонным центром"
+
+msgid "(updates are sent to this address too)"
+msgstr "(уведомления приходят и на этот адрес)"
+
+msgid "Proxy"
+msgstr "Прокси"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "Пожалуйста, ответьте \"Я согласен\" на ваш прокси."
+
+msgid "at least %s"
+msgstr "не менее %s"
+
+msgid "Sent from the chat"
+msgstr "Отправлено из чата"
+
 msgid "Promotional messages"
 msgstr "Рекламные сообщения"
 
@@ -4999,11 +5029,26 @@ msgstr "Рекламные сообщения и напоминания не о�
 msgid "The person replied STOP to promotional messages."
 msgstr "Человек ответил STOP на рекламные сообщения."
 
-msgid "at least %s"
-msgstr "не менее %s"
+msgid "The upload has expired. Please add the file again."
+msgstr "Загрузка истекла, пожалуйста, включите файл снова."
 
-msgid "(updates are sent to this address too)"
-msgstr "(уведомления приходят и на этот адрес)"
+msgid "The chat could not be opened."
+msgstr "Обсуждения не могли быть открыты."
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "Только отправитель или администратор может отредактировать это сообщение."
+
+msgid "This message can't be edited on this channel."
+msgstr "Это сообщение нельзя отредактировать на этом канале."
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "Предельный срок для редактирования истек ( WhatsApp допускает 15 минут)."
+
+msgid "The message can't be empty."
+msgstr "Сообщение не может быть пустым."
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp не отредактировал сообщение."
 
 msgid "Assistant languages"
 msgstr "Языки ассистента"

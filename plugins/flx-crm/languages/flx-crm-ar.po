@@ -1173,3 +1173,390 @@ msgstr "الموافقات"
 
 msgid "People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI."
 msgstr "الناس والتسويق: المتبرع، العميل، المتطوع والمرشح في بطاقة شخص واحد؛ الجدول الزمني، العلامات، أذونات KVKK، درجة RFM ومخاطر الخسارة، القطاعات الديناميكية. يجمع البيانات من مستخدمي Flux Donate وFlux Commerce وFlux Chat وFlux Forms وWordPress؛ الشحن عبر Flux Mail، AI Flux AI."
+
+msgid "Sees contacts, segments and the CRM overview"
+msgstr "يعرض جهات الاتصال والشرائح ونظرة عامة على إدارة علاقات العملاء"
+
+msgid "Edits contacts, segments, journeys and CRM settings"
+msgstr "اتصالات مع شركة إيديتس وقطع ورحلاتها وبيئات إدارة المخاطر المؤسسية"
+
+msgid "Events"
+msgstr "الأحداث"
+
+msgid "Journeys"
+msgstr "الرحلات"
+
+msgid "Delete the selected contacts?"
+msgstr "تحذف الاتصالات المختارة؟"
+
+msgid "Type the contact's name exactly to delete it."
+msgstr "صنف اسم الاتصال بالضبط لحذفه."
+
+msgid "Back to %s"
+msgstr "العودة إلى %s"
+
+msgid "The send was cancelled."
+msgstr "تم إلغاء الإرسال"
+
+msgid "The send is paused."
+msgstr "تم إيقاف إرسالها"
+
+msgid "The send continues."
+msgstr "الرساله مستمرة"
+
+msgid "%s messages queued in Flux Mail."
+msgstr "%s رسالة تم تصفيتها في ملف فلكس."
+
+msgid "More actions"
+msgstr "المزيد من الإجراءات"
+
+msgid "Delete permanently"
+msgstr "حذف نهائيا"
+
+msgid "This timeline entry will be deleted."
+msgstr "سيحذف هذا الجدول الزمني."
+
+msgid "Delete entry"
+msgstr "يحذف القيد"
+
+msgid "allowed"
+msgstr "مسموح به"
+
+msgid "not allowed"
+msgstr "غير مسموح به"
+
+msgid "List journeys"
+msgstr "الرحلات المدرجة في القائمة"
+
+msgid "Save journey draft"
+msgstr "مشروع رحلة إنقاذ"
+
+msgid "Turn journey on or pause it"
+msgstr "أديروا الرحلة أو أوقفوها"
+
+msgid "Delete journey"
+msgstr "رحلة تحذف"
+
+msgid "This contact still has records in: %s. Merge it into another contact instead of deleting it."
+msgstr "ولا يزال هذا الاتصال مسجلا في: %s، ودمجه في اتصال آخر بدلا من حذفه."
+
+msgid "CRM event: %1$s (%2$s)"
+msgstr "مناسبة إدارة المخاطر المؤسسية: %1$s (%2$s)"
+
+msgid "Event name"
+msgstr "اسم الحدث"
+
+msgid "Event date"
+msgstr "تاريخ الحدث"
+
+msgid "Event time"
+msgstr "وقت الحدث"
+
+msgid "Event place"
+msgstr "مكان الحدث"
+
+msgid "Event page"
+msgstr "مناسبة"
+
+msgid "First name"
+msgstr "الاسم الأول"
+
+msgid "Event not found."
+msgstr "لم يعثر على أي شيء."
+
+msgid "Pick at least one channel."
+msgstr "اختر قناة واحدة على الأقل"
+
+msgid "Write the message."
+msgstr "اكتب الرسالة"
+
+msgid "Personal values (%s) need a newer Flux Mail that keeps a value for each recipient. Update Flux Mail or take them out of the text."
+msgstr "وتحتاج القيم الشخصية (%s) إلى مايل جديد يحافظ على قيمة كل متلقي، ويستكمل ملف فلكس أو يخرجه من النص."
+
+msgid "No active connection for this channel in Flux Mail."
+msgstr "لا صلة نشطة لهذه القناة في \"فلوكس ماييل\"."
+
+msgid "No one to send to on this channel."
+msgstr "لا أحد يرسل إلى هذه القناة."
+
+msgid "%1$s · event message (%2$s)"
+msgstr "%1$s :: رسالة مناسبة%2$s)"
+
+msgid "Open the file"
+msgstr "افتح الملف"
+
+msgid "Journey message"
+msgstr "رسالة جورني"
+
+msgid "Journey step skipped"
+msgstr "خطوّة (جورني)"
+
+msgid "Enters a value group (RFM)"
+msgstr "(ج) يُنشئ مجموعة قيمة"
+
+msgid "Gets a tag"
+msgstr "حصلت على بطاقة"
+
+msgid "Gets a role"
+msgstr "حصلت على دور"
+
+msgid "Something happens (timeline event)"
+msgstr "شيء ما يحدث (حدث زمني)"
+
+msgid "Is added to the CRM"
+msgstr "يضاف إلى إدارة المخاطر المؤسسية"
+
+msgid "Wait"
+msgstr "انتظر"
+
+msgid "Send e-mail"
+msgstr "إرسال بريد إلكتروني"
+
+msgid "Send WhatsApp"
+msgstr "إرسال WhatsApp"
+
+msgid "Send SMS"
+msgstr "إرسال SMS"
+
+msgid "Continue only if"
+msgstr "استمر فقط إذا"
+
+msgid "Value group is"
+msgstr "مجموعة القيمة"
+
+msgid "Has tag"
+msgstr "لديه علامة"
+
+msgid "Does not have tag"
+msgstr "ليس لديه علامة"
+
+msgid "Has paid since the journey started"
+msgstr "قد دفع منذ أن بدأت الرحلة"
+
+msgid "Has not paid since the journey started"
+msgstr "لم يدفع منذ أن بدأت الرحلة"
+
+msgid "Draft"
+msgstr "مسودة"
+
+msgid "Paused"
+msgstr "متوقف مؤقتًا"
+
+msgid "Give the journey a name."
+msgstr "أعطِ الرحلةَ a اسم."
+
+msgid "Pick what starts the journey."
+msgstr "اختر ما الذي سيبدأ الرحلة"
+
+msgid "Pick the value group, tag, role or event that starts the journey."
+msgstr "اختر مجموعة القيمة أو العلامة أو الدور أو الحدث الذي يبدأ الرحلة."
+
+msgid "Every e-mail step needs a subject and a text."
+msgstr "كل خطوة بالبريد الإلكتروني تحتاج إلى موضوع ونص"
+
+msgid "Every message step needs a text."
+msgstr "كل خطوة في الرسالة تحتاج إلى نص"
+
+msgid "Add at least one step that does something (message or tag)."
+msgstr "يضاف على الأقل خطوة واحدة تفعل شيئا (العرض أو البطاقة)."
+
+msgid "Journey not found."
+msgstr "(جورني) لم يعثر عليه"
+
+msgid "Flux Mail is not active for this channel."
+msgstr "(فلوكس ميل) ليس نشطاً في هذه القناة."
+
+msgid "No permission for this channel."
+msgstr "لا تصريح لهذه القناة."
+
+msgid "No e-mail address."
+msgstr "لا عنوان بريد إلكتروني."
+
+msgid "No phone number."
+msgstr "لا رقم هاتف."
+
+msgid "Not sent."
+msgstr "لم ترسل"
+
+msgid "%1$s · %2$s skipped: %3$s"
+msgstr "%1$s - %2$s متجاوزة: %3$s"
+
+msgid "%d step"
+msgid_plural "%d steps"
+msgstr[0] "%d خطوات"
+msgstr[1] "%d خطوة"
+msgstr[2] "%d خطوات"
+msgstr[3] "%d خطوات"
+msgstr[4] "%d خطوات"
+msgstr[5] "%d خطوات"
+
+msgid "goal: %s"
+msgstr "الهدف: %s"
+
+msgid "Welcome new donors"
+msgstr "الترحيب بالمانحين الجدد"
+
+msgid "Thank you, {first_name}"
+msgstr "شكراً لكم، {first_name}"
+
+msgid "Dear {first_name},\n\nThank you for your first donation to {site}. Here is what your support makes possible…"
+msgstr "عزيزي {first_name}، شكراً لك على تبرعك الأول إلى {site}"
+
+msgid "Hello {first_name}, a short update from {site} on the work your donation supported. Thank you for being with us."
+msgstr "مرحباً {first_name}، تحديث قصير من {site} عن العمل الذي دعمته تبرعك، شكراً لك لكونك معنا"
+
+msgid "Win back donors at risk"
+msgstr "فوز الجهات المانحة المعرضة للخطر"
+
+msgid "We miss you, {first_name}"
+msgstr "نحن نفتقدك، {first_name}"
+
+msgid "Dear {first_name},\n\nIt has been a while. This is what we have been doing at {site} since your last donation…"
+msgstr "عزيزي {first_name} لقد مر وقت طويل هذا ما كنا نفعله في {site} منذ تبرعك الأخير"
+
+msgid "Hello {first_name}, our new campaign at {site} has started. Would you like to support it again?"
+msgstr "مرحباً {first_name} حملتنا الجديدة في {site} بدأت هل تريد أن تدعمها مجدداً؟"
+
+msgid "Win-back: no answer"
+msgstr "عودتك: لا إجابة"
+
+msgid "The entry could not be saved."
+msgstr "لا يمكن إنقاذ الدخول."
+
+msgid "The entry was not found."
+msgstr "لم يتم العثور على الدخول"
+
+msgid "Only notes, calls and meetings you added can be deleted."
+msgstr "فقط الملاحظات والمكالمات والاجتماعات التي أضيفتها يمكن حذفها"
+
+msgid "Unknown action."
+msgstr "عمل غير معروف."
+
+msgid "Select at least one contact."
+msgstr "اختار على الأقل اتصال واحد."
+
+msgid "Too many contacts selected."
+msgstr "الكثير من الاتصالات المختارة."
+
+msgid "Give a tag name."
+msgstr "أعطِ اسمَ علامةَ."
+
+msgid "Pick a role."
+msgstr "إختر دور"
+
+msgid "Pick the card to keep and at least one other card."
+msgstr "اختر البطاقة لتحتفظ بها و على الأقل بطاقة واحدة أخرى"
+
+msgid "e.g. National Forestation Day"
+msgstr "مثل اليوم الوطني للتشجير"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid "Short description (on the site card and at the top of the page)"
+msgstr "وصف قصير (على بطاقة الموقع وعلى رأس الصفحة)"
+
+msgid "Image"
+msgstr "صورة"
+
+msgid "Place"
+msgstr "المكان"
+
+msgid "Location announced on"
+msgstr "الموقع المعلن عنه"
+
+msgid "Address / directions"
+msgstr "العنوان/التوجهات"
+
+msgid "Map link or coordinates"
+msgstr "وصلة الخرائط أو إحداثياتها"
+
+msgid "Google Maps link or 41.1612, 28.9271"
+msgstr "صلة خرائط غوغل أو 41.1612، 28.9271"
+
+msgid "Page on the site"
+msgstr "الصفحة"
+
+msgid "Internal note (not shown on the site)"
+msgstr "مذكرة داخلية (لم تظهر في الموقع)"
+
+msgid "Empty: 10 days before the event."
+msgstr "فارغ: قبل 10 أيام من الحدث."
+
+msgid "Event"
+msgstr "حدث"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Internal note"
+msgstr "ملاحظة داخلية"
+
+msgid "The event could not be saved."
+msgstr "لم يكن من الممكن إنقاذ الحدث"
+
+msgid "The event name cannot be empty."
+msgstr "لا يمكن أن يكون اسم الحدث فارغاً"
+
+msgid "The page could not be created: the theme has no event post type."
+msgstr "ولا يمكن إنشاء الصفحة: ليس للموضوع أي نوع من أنواع المناسبات."
+
+msgid "Install and turn on Flux Mail to send e-mail, WhatsApp and SMS to the people of this event."
+msgstr "(إتركي (فلوكس ماييل) وإرسال البريد الإلكتروني، WhatsApp و SMS إلى شعب هذا الحدث."
+
+msgid "Sending"
+msgstr "إرسال"
+
+msgid "Planned"
+msgstr "المخطط لها"
+
+msgid "Waiting for reports"
+msgstr "تنتظر التقارير"
+
+msgid "Check"
+msgstr "تحقق"
+
+msgid "Sent"
+msgstr "تم الإرسال"
+
+msgid "not found"
+msgstr "لم يتم العثور عليه"
+
+msgid "No date"
+msgstr "بلا تاريخ"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "In %s day"
+msgid_plural "In %s days"
+msgstr[0] "في %s يوم"
+msgstr[1] "In %s اليوم"
+msgstr[2] "في %s يوم"
+msgstr[3] "في %s يوم"
+msgstr[4] "في %s يوم"
+msgstr[5] "في %s يوم"
+
+msgid "Over, still open"
+msgstr "حول، ما زالَ مفتوحاً"
+
+msgid "Site name"
+msgstr "اسم الموقع"
+
+msgid "Organisation phone"
+msgstr "هاتف المنظمة"
+
+msgid "(no name)"
+msgstr "(بدون اسم)"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "لم يتم العثور على الملف المُحمّل، قم بتحميله مجدداً."
+
+msgid "Unknown template."
+msgstr "نموذج غير معروف"
+
+msgid "Unknown source."
+msgstr "مصدر غير معروف"

@@ -509,7 +509,7 @@ msgid "Coupon used"
 msgstr "Coupon utilisé"
 
 msgid "Today"
-msgstr "Aujourd'hui"
+msgstr "Aujourd’hui"
 
 msgid "Yesterday"
 msgstr "Hier"
@@ -1473,3 +1473,9 @@ msgstr "En ce moment"
 
 msgid "Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools."
 msgstr "Statistiques du site sans cookies et sans données personnelles : visiteurs, vues, pages les plus lues, sites référents, canal, appareil/navigateur, campagne (UTM), événements de clic et conversions de dons. Les données restent sur le site ; Lit avec l'intelligence artificielle Outils Flux AI / Flux AI & MCP."
+
+msgid "View statistics"
+msgstr "Voir les statistiques"
+
+msgid "Logged-in people"
+msgstr "Personnes connectées"

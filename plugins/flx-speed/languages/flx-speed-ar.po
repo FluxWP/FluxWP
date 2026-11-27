@@ -76,6 +76,9 @@ msgstr "تصغير ملفات JS"
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr "بالنسبة للنصوص البرمجية للموضوع والمكونات الإضافية، يتم استخدام الشقيق .min إذا كان أحدث من المصدر؛ وإلا فسيتم إنشاء نسخة بدون تعليقات ومسافات بادئة (يتم الاحتفاظ بفواصل الأسطر). يتم ترك الحزم التي تقوم بتحميل الأجزاء المتعلقة بموقعها والبرامج النصية ذات الترجمات بمفردها."
 
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "يظل jQuery محظورًا دائمًا (قد تستدعيه البرامج النصية الأقدم المضمنة في الصفحة مباشرة). يقوم WordPress نفسه بإسقاط التأجيل للبرامج النصية التي تحتوي على برنامج نصي مضمن بعدها أو التي يعتمد عليها برنامج نصي للحظر."
+
 msgid "Defer head scripts"
 msgstr "تأجيل البرامج النصية الرئيسية"
 
@@ -1500,3 +1503,138 @@ msgstr "العلم"
 
 msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
 msgstr "أداء الموقع في مكان واحد: الاستعلامات لكل طلب، وأخطاء PHP، وطلبات HTTP الخارجية (لوحة المطور)، وسجلات الطلبات البطيئة/الخاطئة، والخادم (وحدة المعالجة المركزية، وذاكرة الوصول العشوائي، والقرص، وOPcache)، وقاعدة البيانات، والتحميل التلقائي، والكرون، وفحص النظام. يقرأها الذكاء الاصطناعي جميعًا باستخدام أدوات Flux AI & MCP / Flux AI."
+
+msgid "View Flux Speed"
+msgstr "عرض Flux Speed"
+
+msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
+msgstr "مخبأان للجسم في نفس الوقت: SQLite أعترض (كاش) واحد فقط يمكنه أن يملك خِصاً من ذنبه"
+
+msgid "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite is not used. Switch to SQLite below to fix it."
+msgstr "(SQLite) (كاش) المعترض ناشط لكن الشارب الجسمي ينتمي إلى (بلوغين) آخر، لذا (SQLite) لم يُستخدم، تحويل إلى SQLite أدناه لإصلاحه"
+
+msgid "SQLite Object Cache is active but object-cache.php is missing, so nothing is cached. Use \"Repair\" to recreate it."
+msgstr "SQLite وجه (كاش) نشط لكن الشارب المفقود مفقود لذا لا يوجد شيء مخبأ"
+
+msgid "LiteSpeed Cache object cache is on but object-cache.php belongs to another plugin. Turn one of them off."
+msgstr "مخبأ (ليت سبيد كاش) مشتعل لكن شارب الجسم ينتمي إلى بلوجين آخر أطفئ واحداً منهم"
+
+msgid "LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache."
+msgstr "مخبأ \"المبيد السبيد كاش\" جاهز Redis لكن الخادم ليس لديه Redis PHP التمديد؛ WordPress صمتاً يتراجع إلى أي خبز ثابت"
+
+msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
+msgstr "ويُحدد مخبأ ليت سبيد كاش ليت سبيد لميماكبيد، ولكن التمديد الذي تم فرزه في عام PHP مفقود، أو إذا تمكن من ذلك في شركة هوستنغر (Advanced . PHP Configuration . Memcached) أو استخدام SQLite Object Cache بدلا من ذلك."
+
+msgid "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on."
+msgstr "Redis مُعدّة لهذا الموقع لكنّ الشارب المُفقود، لذا لا يوجد شيء مُخبأ."
+
+msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
+msgstr "لا يزال الشارب من SQLite لا يزال تحت السيطرة رغم أن البلوغين ليس نشطاً، ويزيله الإصلاح أو يعيد تشغيله."
+
+msgid "Another page cache plugin (%s) is installed next to LiteSpeed Cache (advanced-cache.php). Two page caches serve stale pages; keep only LiteSpeed Cache."
+msgstr "ويجري تركيب صفحة أخرى من &quot; مضخة &quot; (%s) بجوار &quot; ليت سبيد كاش &quot; (الشارب المزيف) وصفحة واحدة من المخبأ تخدم صفحات المظلة؛ ولا تحتفظ إلا بـ &quot; ليت سبيد كاش &quot; ."
+
+msgid "You are not allowed to install plugins."
+msgstr "ليس مسموحاً لكِ بتركيب المزلاجات"
+
+msgid "Plugin installs are disabled on this site (DISALLOW_FILE_MODS). Install it from your hosting panel."
+msgstr "تم تعطيل النسيجات في هذا الموقع (ديلاو) ضعه من لوحة الاستضافة"
+
+msgid "The plugin could not be written to disk (file permissions or FTP credentials). Install it from Plugins › Add New."
+msgstr "ولا يمكن كتابة البلوغ إلى أقراص (التصاريح الصغيرة أو وثائق تفويض القوات المسلحة) وتركيبه من البلوغينز  Add إضافة جديدة."
+
+msgid "You are not allowed to activate plugins."
+msgstr "ليس مسموحاً لك بتنشيط المزمار"
+
+msgid "The plugin is not installed."
+msgstr "الـ \"بلوجين\" لم يتم تركيبه"
+
+msgid "LiteSpeed Cache is not active."
+msgstr "(ليبي سبيد كاش) ليس نشطاً"
+
+msgid "The PHP sqlite3 extension is missing. Enable it in your hosting PHP settings first."
+msgstr "تمدّد (PHP) الـ (سيكليت 3) مفقوداً، إسمح له بإستضافتك (PHP) أولاً"
+
+msgid "object-cache.php belongs to another plugin (%s). Turn that plugin's object cache off first."
+msgstr "صابورة الجسم تعود إلى بلوغين آخر (أ)%sأطفئي مخبأ الـ\"بلوجين\" أولاً"
+
+msgid "SQLite Object Cache is active but it did not write object-cache.php (wp-content may not be writable). Open Settings › Object Cache to finish."
+msgstr "SQLite الجسم (كاش) نشط لكنه لم يكتب شارب الجسم (لا يمكن أن يكون ملوثاً) مفتوحاً"
+
+msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcached in hPanel first, then try again."
+msgstr "لا يوجد ميماكبيد أو رقم Redis PHP، أما في (هستنتينغر) فيمكن (ميمكد) في (هبنل) أولاً، ثم حاول مرة أخرى."
+
+msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
+msgstr "تم إنقاذ الموقع لكن (ليت سبيد كاش) لم يكتب شيئاً بعد"
+
+msgid "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable."
+msgstr "Redis الجسم كاش نشط ولكن لا يمكن كتابة الشارب (لا يجوز أن يكون المقطع قابلاً للكتابة)."
+
+msgid "The test request returned HTTP %d."
+msgstr "وأعاد طلب الاختبار حامض السلفونيك الكيميائي HTTP %d."
+
+msgid "Cache conflict"
+msgstr "الصراع في شارب"
+
+msgid "Persistent object cache is on (%s)."
+msgstr "مخبأ الجسم الثابت يعمل (%s)"
+
+msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
+msgstr "لا يوجد مخبأ للأجسام الثابتة: كل طلب يقرأ الخيارات والاستفسارات من قاعدة البيانات مرة أخرى."
+
+msgid "Page cache"
+msgstr "ذاكرة التخزين المؤقت للصفحة"
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
+msgstr "الخادم هو (ليت سبيد) لكن مخبأ (ليت سبيد كاش) مطفأ"
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache plugin is not active, so pages are not cached."
+msgstr "الخادم هو (ليت سبيد) لكن (ليبيد كاش) ليس نشطاً، لذا الصفحات ليست مخبأة."
+
+msgid "Cache status"
+msgstr "حالة ذاكرة التخزين المؤقت"
+
+msgid "Unknown operation."
+msgstr "عملية غير معروفة."
+
+msgid "Plugin installed and activated."
+msgstr "تم تركيب البلوجين و تفعيله"
+
+msgid "Plugin activated."
+msgstr "تم تفعيل البلوجين"
+
+msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
+msgstr "مخبأ الوجه الآن SQLite وجه (كاش) إجري الإختبار أدناه لتأكيده"
+
+msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
+msgstr "مخبأ الوجه الآن (ليزبد كاش) أجري الاختبار تحته لتأكيده"
+
+msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
+msgstr "تم تفعيل (لويت سبيد كاش) وهى مخبأ جسمها تنتهى عندما تُحمّل هذه الصفحة"
+
+msgid "Object cache turned off."
+msgstr "تم إيقاف مخبأ الوجه."
+
+msgid "Object cache repaired."
+msgstr "تم إصلاح مخبأ الوجه"
+
+msgid "Page cache turned on and purged."
+msgstr "إستدرت المخبأة و تطهيرت"
+
+msgid "Page cache turned off and purged."
+msgstr "اغلقت المخبأة و تطهيرت"
+
+msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
+msgstr "جميع المخبأات تم تطهيرها (الصفحة السريعة، و CSS/JS، و الجسم الكافي)."
+
+msgid "Object cache emptied."
+msgstr "مُفرغة مُخدّرات الوجه."
+
+msgid "Communication"
+msgstr "الاتصالات"
+
+msgid "Integrations"
+msgstr "التكامل"
+
+msgid "AI"
+msgstr "AI"

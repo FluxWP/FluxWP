@@ -534,7 +534,7 @@ return array(
   'Free (no cost, low write limit, no metrics)' => 'Kostenlos (keine Kosten, niedriges Schreiblimit, keine Metriken)',
   'Basic (paid monthly)' => 'Basic (monatlich bezahlt)',
   'Pro (paid monthly)' => 'Pro (monatlich bezahlt)',
-  'Pay-as-you-go' => 'Pay-as-you-go',
+  'Pay-as-you-go' => 'Zahl-as-you-go',
   'X: a video or GIF is shared on its own.' => 'X: Ein Video oder GIF wird einzeln geteilt.',
   'The monthly limit of %d posts set for X has been reached.' => 'Das für X festgelegte monatliche Limit von %d-Beiträgen wurde erreicht.',
   'First enter the API Key and API Key Secret under Settings › Apps › X.' => 'Geben Sie zunächst den API-Schlüssel und das API-Schlüsselgeheimnis unter Einstellungen › Apps › X ein.',
@@ -1116,6 +1116,5 @@ return array(
   'Zamanlanan ve yayımlanan gönderiler burada görünür.' => 'Geplante und veröffentlichte Beiträge werden hier angezeigt.',
   'Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.' => 'Social-Media-Verwaltung innerhalb der Website: Kontoverknüpfung (Tasten aus dem Panel), Inhalte pro Konto, Planung, Netzwerkbearbeitung/-löschung, Kalender, Dashboard, Flux AI-Schreibunterstützung und MCP-Tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.',
   'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.' => 'Social-Media-Verwaltung innerhalb der Website: Kontoverknüpfung (Tasten aus dem Panel), Inhalte pro Konto, Planung, Netzwerkbearbeitung/-löschung, Kalender, Dashboard, Flux AI-Schreibunterstützung und MCP-Tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.',
-
  ),
 );

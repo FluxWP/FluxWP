@@ -218,7 +218,7 @@ msgid "The minimum donation is %s."
 msgstr "En düşük bağış tutarı %s."
 
 msgid "Saplings"
-msgstr "Fidanlar"
+msgstr "Fidan"
 
 msgid "Sapling donation"
 msgstr "Fidan bağışı"
@@ -284,7 +284,7 @@ msgid "Add donation"
 msgstr "Bağış ekle"
 
 msgid "Dashboard"
-msgstr "Panel"
+msgstr "Pano"
 
 msgid "Payments"
 msgstr "Ödemeler"
@@ -457,7 +457,7 @@ msgid "Approve"
 msgstr "Onayla"
 
 msgid "Cancel"
-msgstr "İptal et"
+msgstr "Vazgeç"
 
 msgid "Code"
 msgstr "Kod"
@@ -697,7 +697,7 @@ msgid "Started"
 msgstr "Başlangıç"
 
 msgid "WooCommerce"
-msgstr "WooCommerce"
+msgstr "WooCommerce kez"
 
 msgid "Template"
 msgstr "Şablon"
@@ -796,7 +796,7 @@ msgid "Every month"
 msgstr "Her ay"
 
 msgid "Online"
-msgstr "Online"
+msgstr "Çevrim içi"
 
 msgid "Link copied"
 msgstr "Bağlantı kopyalandı"
@@ -898,7 +898,7 @@ msgid "The file could not be saved."
 msgstr "Dosya kaydedilemedi."
 
 msgid "WhatsApp"
-msgstr "WhatsApp"
+msgstr "WhatsApp kez"
 
 msgid "We have your receipt. We will let you know once the payment is confirmed."
 msgstr "Dekontunuzu aldık. Ödeme onaylanınca size haber vereceğiz."
@@ -3954,6 +3954,12 @@ msgstr "%s ile bağış şu anda burada ödenemiyor."
 msgid "The donation product could not be found."
 msgstr "Bağış ürünü bulunamadı."
 
+msgid "The shop is not available on this site."
+msgstr "Mağaza bu sitede kullanılamıyor."
+
+msgid "Donation lookup is not available."
+msgstr "Bağış sorgulama kullanılamıyor."
+
 msgid "This recurring donation cannot be canceled here."
 msgstr "Bu düzenli bağış buradan iptal edilemez."
 
@@ -4454,10 +4460,6 @@ msgstr "Bağışınız"
 
 msgid "from %s"
 msgstr "%s'den başlayan"
-
-#. translators: %s: payment provider name (EsnekPOS, PayTR…)
-msgid "Payments are taken securely by %s."
-msgstr "Ödemeler %s güvencesiyle alınmaktadır."
 
 msgid "Payments are taken securely by iyzico."
 msgstr "Ödemeler iyzico güvencesiyle alınmaktadır."
@@ -5150,7 +5152,7 @@ msgid "Test provider"
 msgstr "Test sağlayıcısı"
 
 msgid "%1$s (%2$s)"
-msgstr "%1$s (%2$s)"
+msgstr "%1$s ( %2$s )"
 
 msgid "Last test %1$s: %2$s"
 msgstr "Son test %1$s: %2$s"
@@ -5732,9 +5734,6 @@ msgstr "Kartla ödemede telefon gerekli; bankanız onay kodunu bu numaraya gönd
 msgid "%d installments"
 msgstr "%d taksit"
 
-msgid "%1$s × installment · total %2$s"
-msgstr "%1$s × taksit · toplam %2$s"
-
 msgid "Installment options appear once the card number is entered."
 msgstr "Kart numarasını girince taksit seçenekleri görünür."
 
@@ -5861,6 +5860,9 @@ msgstr "%1$s × %3$s = %2$s"
 msgid "Expiry"
 msgstr "Son kullanma"
 
+msgid "MM/YY"
+msgstr "AA/YY"
+
 msgid "Create my %s account with the details I entered"
 msgstr "Girdiğim bilgilerle %s hesabımı oluştur"
 
@@ -5933,7 +5935,6 @@ msgstr "Kaydetmeden kapat"
 msgid "On phones keep the total and the button fixed at the bottom (form and checkout)"
 msgstr "Telefonda toplam ve düğme altta sabit dursun (form ve ödeme sayfası)"
 
-#, php-format
 msgid "Person %s"
 msgstr "%s. kişi"
 
@@ -5952,77 +5953,29 @@ msgstr "Lütfen her kişi için bir ad yazın."
 msgid "Other people"
 msgstr "Diğer kişiler"
 
-msgid "this page"
-msgstr "bu sayfa"
+msgid "Payment forms are paid on the WooCommerce checkout, which is not available: activate WooCommerce and turn on \"Flux Forms payment forms continue on the WooCommerce checkout\". Visitors see \"Online payment is not available at the moment.\""
+msgstr "Ödeme formları WooCommerce ödeme sayfasında ödenir ve bu sayfa şu an kullanılamıyor: WooCommerce'i etkinleştirin ve \"Flux Forms ödeme formları WooCommerce ödeme sayfasında devam eder\" ayarını açın. Ziyaretçiler \"Online ödeme şu anda kullanılamıyor.\" uyarısını görür."
 
-msgid "One basket: every item in it is paid and changes together."
-msgstr "Tek sepet: içindeki kalemler birlikte ödenir ve birlikte değişir."
+msgid "The recurring donation was canceled. No further charges will be made."
+msgstr "Düzenli bağış iptal edildi. Bundan sonra çekim yapılmayacak."
 
-msgid "Items subtotal"
-msgstr "Kalemler ara toplamı"
+msgid "This box could not be shown."
+msgstr "Bu kutu gösterilemedi."
 
-msgid "via %1$s · %2$s"
-msgstr "%1$s · %2$s"
+msgid "Box: %s"
+msgstr "Kutu: %s"
 
-msgid "Net"
-msgstr "Net"
+msgid "Drag to move"
+msgstr "Taşımak için sürükleyin"
 
-msgid "Edit names"
-msgstr "Adları düzenle"
-
-msgid "%1$d. %2$s"
-msgstr "%1$d. %2$s"
-
-msgid "More actions"
-msgstr "Diğer işlemler"
+msgid "Fold or unfold"
+msgstr "Daralt ya da aç"
 
 msgid "Website checkout"
 msgstr "Web sitesi ödemesi"
 
-msgid "Choose a new status"
-msgstr "Yeni durumu seçin"
-
-msgid "Enter an amount between 0 and the amount left."
-msgstr "0 ile kalan tutar arasında bir tutar girin."
-
-msgid "Date when the row has none"
-msgstr "Satırda tarih yoksa"
-
-msgid "Same as the row above"
-msgstr "Üstteki satırın tarihi"
-
-msgid "The target date of the row"
-msgstr "Satırdaki hedef tarih"
-
-msgid "A day I choose"
-msgstr "Seçtiğim bir gün"
-
-msgid "Today"
-msgstr "Bugün"
-
-msgid "Imported records are history: no e-mail, WhatsApp message, certificate or ad conversion is sent to anyone."
-msgstr "İçe aktarılan kayıtlar geçmiş kayıttır: kimseye e-posta, WhatsApp mesajı, sertifika ya da reklam dönüşümü gitmez."
-
-msgid "Nothing is sent to donors or staff while importing (no e-mail, WhatsApp or certificate)."
-msgstr "Aktarım sırasında bağışçılara ve personele hiçbir şey gönderilmez (e-posta, WhatsApp, sertifika yok)."
-
-msgid "Only ready rows are counted. After changing a match, press \"Apply and check again\" to update it."
-msgstr "Yalnız hazır satırlar sayılır. Bir eşlemeyi değiştirince güncellemek için \"Uygula ve yeniden kontrol et\"e basın."
-
-msgid "(none)"
-msgstr "(yok)"
-
-msgid "%1$s records (%2$s units) will be written. Paid: %3$s, waiting for payment: %4$s. Nothing is sent to anyone."
-msgstr "%1$s kayıt (%2$s adet) yazılacak. Ödenen: %3$s, ödeme bekleyen: %4$s. Kimseye bir şey gönderilmez."
-
-msgid "Start the import?"
-msgstr "Aktarım başlasın mı?"
-
-msgid "You changed something: press \"Apply and check again\" first."
-msgstr "Bir şey değiştirdiniz: önce \"Uygula ve yeniden kontrol et\"e basın."
-
-msgid "%1$s names for %2$s units: the extra names go on the first certificate"
-msgstr "%2$s adet için %1$s ad: fazla adlar ilk sertifikaya yazılır"
+msgid "Cancel this recurring donation? No further charges will be made."
+msgstr "Bu düzenli bağış iptal edilsin mi? Bundan sonra çekim yapılmayacak."
 
 msgid "Donation amount of the person"
 msgstr "Kişinin bağış tutarı"
@@ -6039,98 +5992,27 @@ msgstr "%s: adet"
 msgid "%s: amount"
 msgstr "%s: tutar"
 
-msgid "%1$s / %2$s"
-msgstr "%1$s / %2$s"
+msgid "%1$s names for %2$s units: the extra names go on the first certificate"
+msgstr "%2$s adet için %1$s ad: fazla adlar ilk sertifikaya yazılır"
 
-msgid "%1$s × %2$s"
-msgstr "%1$s × %2$s"
+msgid "%s recurring donation could not be charged after all attempts and is now past due. The donor was e-mailed."
+msgid_plural "%s recurring donations could not be charged after all attempts and are now past due. The donors were e-mailed."
+msgstr[0] "%s düzenli bağış tüm denemelere rağmen tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçıya e-posta gönderildi."
+msgstr[1] "%s düzenli bağış tüm denemelere rağmen tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçılara e-posta gönderildi."
 
-msgid "+ Add note"
-msgstr "+ Not ekle"
+msgid "Last run: %s. Recurring card charges are checked every hour."
+msgstr "Son çalışma: %s. Düzenli kart çekimleri her saat kontrol ediliyor."
 
-msgid "+ Add person"
-msgstr "+ Kişi ekle"
+msgid "%d recurring donation stopped after its card was declined on every attempt."
+msgid_plural "%d recurring donations stopped after their cards were declined on every attempt."
+msgstr[0] "%d düzenli bağış, kart her denemede reddedildiği için durdu."
+msgstr[1] "%d düzenli bağış, kartları her denemede reddedildiği için durdu."
 
-msgid "+ Add referral and note"
-msgstr "+ Referans ve not ekle"
+msgid "Missing or weak in wp-config.php: %s. The donors' cancel links of recurring donations are signed with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or links already sent stop working."
+msgstr "wp-config.php'de eksik veya zayıf: %s. Düzenli bağışların bağışçıya giden iptal bağlantıları bu anahtarlarla imzalanır; bir kez benzersiz değerler girin (https://api.wordpress.org/secret-key/1.1/salt/) ve sonra değiştirmeyin, yoksa gönderilmiş bağlantılar çalışmaz."
 
-msgid "Different unit price"
-msgstr "Farklı birim fiyat"
-
-msgid "E-mail allowed"
-msgstr "E-posta izni"
-
-msgid "Each person gets one unit and their own certificate; the remaining units go to the first person. A certificate without WhatsApp or e-mail goes to the donor."
-msgstr "Her kişi 1 adet ve kendi sertifikasını alır, kalan adetler 1. kişide. WhatsApp ya da e-postası boş kişinin sertifikası bağışçıya gider."
-
-msgid "Full name"
-msgstr "Ad soyad"
-
-msgid "Matched on phone or e-mail"
-msgstr "Telefon ya da e-postayla eşleşir"
-
-msgid "No donation type (free amount)"
-msgstr "Bağış türü yok (serbest tutar)"
-
-msgid "Optional"
-msgstr "İsteğe bağlı"
-
-msgid "SMS allowed"
-msgstr "SMS izni"
-
-msgid "This donation is on behalf of other people (one certificate each)"
-msgstr "Bu bağış başka kişiler adına (her kişiye ayrı sertifika)"
-
-msgid "WhatsApp + e-mail"
-msgstr "WhatsApp + e-posta"
-
-msgid "to the donor"
-msgstr "bağışçıya"
-
-msgid "Card information"
-msgstr "Kart bilgileri"
-
-msgid "Security code"
-msgstr "Güvenlik kodu"
-
-msgid "iyzico keys are missing."
-msgstr "iyzico anahtarları eksik."
-
-msgid "No stored card for this subscription."
-msgstr "Bu abonelik için kayıtlı kart yok."
-
-msgid "Subscription"
-msgstr "Abonelik"
-
-msgid "iyzico keeps your card and the subscription renews from it automatically. You can remove the card or cancel any time in My account."
-msgstr "Kartınızı iyzico saklar, abonelik bu karttan otomatik yenilenir. Kartı kaldırmak ya da iptal etmek için Hesabım'a gidebilirsiniz."
-
-msgid "Heading over the amount"
-msgstr "Tutarın üstündeki başlık"
-
-msgid "\"Other amount\" button"
-msgstr "\"Diğer tutar\" düğmesi"
-
-msgid "Quick amounts"
-msgstr "Hızlı tutarlar"
-
-msgid "Amount buttons of types that take an amount written by the donor, with an \"Other amount\" button beside them. Comma separated; empty = no buttons in that currency. Amounts set on a donation type win."
-msgstr "Bağışçının tutar yazabildiği türlerde hazır tutar düğmeleri; yanında \"Diğer tutar\" düğmesi olur. Virgülle ayırın; boş = o para biriminde düğme yok. Bağış türünde girilen tutarlar önceliklidir."
-
-msgid "Texts per language"
-msgstr "Dile göre metinler"
-
-msgid "Language"
-msgstr "Dil"
-
-msgid "Empty = the built-in text in the visitor's language. A preset can fill these."
-msgstr "Boş = ziyaretçinin dilindeki hazır metin. Ön ayar bunları doldurabilir."
-
-msgid "Write your own"
-msgstr "Kendiniz yazın"
-
-msgid "For someone else"
-msgstr "Başkası adına"
+msgid "Set in wp-config.php. The donors' cancel links of recurring donations are signed with them: do not change them, or links already sent stop working."
+msgstr "wp-config.php'de tanımlı. Düzenli bağışların bağışçıya giden iptal bağlantıları bunlarla imzalanır: değiştirmeyin, yoksa gönderilmiş bağlantılar çalışmaz."
 
 msgid "Message sent to owner"
 msgstr "Sahibine mesaj gönderildi"
@@ -6138,8 +6020,20 @@ msgstr "Sahibine mesaj gönderildi"
 msgid "The message is empty."
 msgstr "Mesaj boş."
 
-msgid "single payment"
-msgstr "tek çekim"
+msgid "One basket: every item in it is paid and changes together."
+msgstr "Tek sepet: içindeki kalemler birlikte ödenir ve birlikte değişir."
+
+msgid "Items subtotal"
+msgstr "Kalemler ara toplamı"
+
+msgid "via %1$s · %2$s"
+msgstr "%1$s · %2$s"
+
+msgid "Net"
+msgstr "Net"
+
+msgid "%1$d. %2$s"
+msgstr "%1$d. %2$s"
 
 msgid "Card"
 msgstr "Kart"
@@ -6163,25 +6057,43 @@ msgid "Mode"
 msgstr "Mod"
 
 msgid "Test"
-msgstr "Test"
+msgstr "Test et"
 
-msgid "No payment has been taken for this order yet."
-msgstr "Bu sipariş için henüz ödeme alınmadı."
+msgid "Extra details"
+msgstr "Ekstra detaylar"
 
-msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
-msgstr "Kart sahibinin adını kartta yazdığı gibi tam yazın (en az 6 harf)."
+msgid "Write the note first."
+msgstr "Önce notu yazın."
 
-msgid "This box could not be shown."
-msgstr "Bu kutu gösterilemedi."
+msgid "Note added."
+msgstr "Not eklendi."
 
-msgid "Box: %s"
-msgstr "Kutu: %s"
+msgid "The note was not found."
+msgstr "Not bulunamadı."
 
-msgid "Drag to move"
-msgstr "Taşımak için sürükleyin"
+msgid "Note deleted."
+msgstr "Not silindi."
 
-msgid "Fold or unfold"
-msgstr "Daralt ya da aç"
+msgid "(none)"
+msgstr "(yok)"
+
+msgid "Today"
+msgstr "Bugün"
+
+msgid "%1$s records (%2$s units) will be written. Paid: %3$s, waiting for payment: %4$s. Nothing is sent to anyone."
+msgstr "%1$s kayıt (%2$s adet) yazılacak. Ödenen: %3$s, ödeme bekleyen: %4$s. Kimseye bir şey gönderilmez."
+
+msgid "Monthly donations are paid by card; the card is stored by the payment provider and charged once a month."
+msgstr "Aylık bağışlar kartla ödenir; kart ödeme kuruluşunda saklanır ve ayda bir tahsil edilir."
+
+msgid "Monthly donations: Flux POS stores the card."
+msgstr "Aylık bağışlar: kartı Flux POS saklar."
+
+msgid "Monthly donations are off: they need a Flux POS card account that can store cards (Stripe today)."
+msgstr "Aylık bağışlar kapalı: kart saklayabilen bir Flux POS kart hesabı gerekir (şimdilik Stripe)."
+
+msgid "Enter an amount between 0 and the amount left."
+msgstr "0 ile kalan tutar arasında bir tutar girin."
 
 msgid "Saves the fields of every order box on this page."
 msgstr "Bu sayfadaki tüm sipariş kutularının alanlarını kaydeder."
@@ -6191,6 +6103,9 @@ msgstr "Sipariş kutuları kaydedilemedi."
 
 msgid "No notes yet."
 msgstr "Henüz not yok."
+
+msgid "to the donor"
+msgstr "bağışçıya"
 
 msgid "Delete this note?"
 msgstr "Bu not silinsin mi?"
@@ -6210,48 +6125,6 @@ msgstr "Bağışçıya not (e-postayla gider)"
 msgid "Add"
 msgstr "Ekle"
 
-msgid "Write the note first."
-msgstr "Önce notu yazın."
-
-msgid "Note added."
-msgstr "Not eklendi."
-
-msgid "The note was not found."
-msgstr "Not bulunamadı."
-
-msgid "Note deleted."
-msgstr "Not silindi."
-
-msgid "Order notes"
-msgstr "Sipariş notları"
-
-msgid "Payment forms are paid on the WooCommerce checkout, which is not available: activate WooCommerce and turn on \"Flux Forms payment forms continue on the WooCommerce checkout\". Visitors see \"Online payment is not available at the moment.\""
-msgstr "Ödeme formları WooCommerce ödeme sayfasında ödenir ve bu sayfa şu an kullanılamıyor: WooCommerce'i etkinleştirin ve \"Flux Forms ödeme formları WooCommerce ödeme sayfasında devam eder\" ayarını açın. Ziyaretçiler \"Online ödeme şu anda kullanılamıyor.\" uyarısını görür."
-
-msgid "The recurring donation was canceled. No further charges will be made."
-msgstr "Düzenli bağış iptal edildi. Bundan sonra çekim yapılmayacak."
-
-msgid "Cancel this recurring donation? No further charges will be made."
-msgstr "Bu düzenli bağış iptal edilsin mi? Bundan sonra çekim yapılmayacak."
-
-msgid "Last run: %s. Recurring card charges are checked every hour."
-msgstr "Son çalışma: %s. Düzenli kart çekimleri her saat kontrol ediliyor."
-
-msgid "Missing or weak in wp-config.php: %s. The donors' cancel links of recurring donations are signed with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or links already sent stop working."
-msgstr "wp-config.php'de eksik veya zayıf: %s. Düzenli bağışların bağışçıya giden iptal bağlantıları bu anahtarlarla imzalanır; bir kez benzersiz değerler girin (https://api.wordpress.org/secret-key/1.1/salt/) ve sonra değiştirmeyin, yoksa gönderilmiş bağlantılar çalışmaz."
-
-msgid "Set in wp-config.php. The donors' cancel links of recurring donations are signed with them: do not change them, or links already sent stop working."
-msgstr "wp-config.php'de tanımlı. Düzenli bağışların bağışçıya giden iptal bağlantıları bunlarla imzalanır: değiştirmeyin, yoksa gönderilmiş bağlantılar çalışmaz."
-
-msgid "Monthly donations are paid by card; the card is stored by the payment provider and charged once a month."
-msgstr "Aylık bağışlar kartla ödenir; kart ödeme kuruluşunda saklanır ve ayda bir tahsil edilir."
-
-msgid "Monthly donations: Flux POS stores the card."
-msgstr "Aylık bağışlar: kartı Flux POS saklar."
-
-msgid "Monthly donations are off: they need a Flux POS card account that can store cards (Stripe today)."
-msgstr "Aylık bağışlar kapalı: kart saklayabilen bir Flux POS kart hesabı gerekir (şimdilik Stripe)."
-
 msgid "No card method is enabled; donations can only be paid by bank transfer. Add a POS account in Flux POS."
 msgstr "Etkin kart yöntemi yok; bağışlar yalnız havale/EFT ile ödenebilir. Flux POS'ta bir POS hesabı ekleyin."
 
@@ -6261,6 +6134,39 @@ msgstr "Kart ilk ödemede Flux POS ile saklanır; her ay bir yenileme siparişi 
 msgid "Monthly donations are off: they need Flux POS with a card account that can store cards (Stripe today) and its \"Pay by card\" method enabled."
 msgstr "Aylık bağışlar kapalı: kart saklayabilen bir kart hesabı (şimdilik Stripe) olan Flux POS ve açık \"Kart ile öde\" yöntemi gerekir."
 
+msgid "For someone else"
+msgstr "Başkası adına"
+
+msgid "Payments are taken securely by %s."
+msgstr "Ödemeler %s güvencesiyle alınmaktadır."
+
+msgid "Heading over the amount"
+msgstr "Tutarın üstündeki başlık"
+
+msgid "\"Other amount\" button"
+msgstr "\"Diğer tutar\" düğmesi"
+
+msgid "Quick amounts"
+msgstr "Hızlı tutarlar"
+
+msgid "Amount buttons of types that take an amount written by the donor, with an \"Other amount\" button beside them. Comma separated; empty = no buttons in that currency. Amounts set on a donation type win."
+msgstr "Bağışçının tutar yazabildiği türlerde hazır tutar düğmeleri; yanında \"Diğer tutar\" düğmesi olur. Virgülle ayırın; boş = o para biriminde düğme yok. Bağış türünde girilen tutarlar önceliklidir."
+
+msgid "Texts per language"
+msgstr "Dile göre metinler"
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "Empty = the built-in text in the visitor's language. A preset can fill these."
+msgstr "Boş = ziyaretçinin dilindeki hazır metin. Ön ayar bunları doldurabilir."
+
+msgid "single payment"
+msgstr "tek çekim"
+
+msgid "No payment has been taken for this order yet."
+msgstr "Bu sipariş için henüz ödeme alınmadı."
+
 msgid "\"%1$s\" repeats monthly (recurring donation #%2$d); the card is stored at the payment provider."
 msgstr "\"%1$s\" her ay tekrarlanıyor (düzenli bağış #%2$d); kart ödeme kuruluşunda saklanıyor."
 
@@ -6269,16 +6175,3 @@ msgstr "Kart, aylık"
 
 msgid "Card payments are processed with 3D Secure by a licensed bank or payment institution. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account."
 msgstr "Kartla ödemeler lisanslı bir banka ya da ödeme kuruluşu üzerinden 3D Secure ile alınır. Kart bilgileri bu sitede saklanmaz. Havale/EFT ile yapılan bağışlar, para dernek hesabına ulaştığında onaylanır."
-
-msgid "Card and the last failed attempt; empty without one."
-msgstr "Kart ve son başarısız deneme; yoksa boş."
-
-msgid "%d recurring donation stopped after its card was declined on every attempt."
-msgid_plural "%d recurring donations stopped after their cards were declined on every attempt."
-msgstr[0] "%d düzenli bağış, kart her denemede reddedildiği için durdu."
-msgstr[1] "%d düzenli bağış, kartları her denemede reddedildiği için durdu."
-
-msgid "%s recurring donation could not be charged after all attempts and is now past due. The donor was e-mailed."
-msgid_plural "%s recurring donations could not be charged after all attempts and are now past due. The donors were e-mailed."
-msgstr[0] "%s düzenli bağış tüm denemelere rağmen tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçıya e-posta gönderildi."
-msgstr[1] "%s düzenli bağış tüm denemelere rağmen tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçılara e-posta gönderildi."

@@ -76,6 +76,9 @@ msgstr "Минимизировать JS-файлы"
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr "Для сценариев тем и плагинов используется родственный .min, если он новее, чем исходный; в противном случае создается копия без комментариев и отступов (переносы строк сохраняются). Банды, загружающие чанки относительно своего местоположения, и скрипты с переводами остаются в покое."
 
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "jQuery всегда остается блокирующим (более старые встроенные скрипты на странице могут вызывать его напрямую). Сам WordPress удаляет отсрочку для скриптов, после которых есть встроенный скрипт или от которых зависит скрипт блокировки."
+
 msgid "Defer head scripts"
 msgstr "Отложить выполнение головных сценариев"
 
@@ -1500,3 +1503,138 @@ msgstr "Флаг"
 
 msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
 msgstr "Производительность сайта в одном месте: запросы по каждому запросу, ошибки PHP, внешние HTTP-запросы (панель разработчика), журналы медленных/ошибочных запросов, сервер (ЦП, ОЗУ, диск, OPcache), база данных, автозагрузка, cron и проверка системы. ИИ читает их все с помощью инструментов Flux AI и MCP / Flux AI."
+
+msgid "View Flux Speed"
+msgstr "Скорость потока"
+
+msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
+msgstr "В то же время на территории страны находятся два предметных тайника: тараканы с литовым покрытием и SQLite тайник с объектами, только один может иметь свой предметный тайник.Фп; выбирает один ниже."
+
+msgid "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite is not used. Switch to SQLite below to fix it."
+msgstr "SQLite Объектная тайна активна, но у нее не было никаких признаков, поэтому ее не используют SQLite ниже для ее починки."
+
+msgid "SQLite Object Cache is active but object-cache.php is missing, so nothing is cached. Use \"Repair\" to recreate it."
+msgstr "SQLite Объект Часы активны, но у нас пропали следы, так что ничего не приклеено."
+
+msgid "LiteSpeed Cache object cache is on but object-cache.php belongs to another plugin. Turn one of them off."
+msgstr "Кольца для оленей, но перчатки для объекта.Фп принадлежит другому плугину."
+
+msgid "LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache."
+msgstr "Установка для обезболивающих под воздействием лийта Speed Cache составляет Redis, однако у сервера нет Redis PHP; WordPress молчаливо возвращается в нет стойких тайн."
+
+msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
+msgstr "Устанавливается тайник с объектами в Мемкхеде, однако распространение смещенного PHP отсутствует. &quot; Хозяин &quot; позволяет ему в хифанеле ( &quot; PHP Configuration &quot; Memcached &quot; ) или использовать вместо этого SQLite Object Cache."
+
+msgid "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on."
+msgstr "Redis для этого участка, но у нас нет никаких следов, так что ничего не прикреплено."
+
+msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
+msgstr "Протестовые тайники.Фп с SQLite Обечная тайна до сих пор в вап-континенте, хотя плугин не работает."
+
+msgid "Another page cache plugin (%s) is installed next to LiteSpeed Cache (advanced-cache.php). Two page caches serve stale pages; keep only LiteSpeed Cache."
+msgstr "Рядом с Лайт-Шпиадом (вместимостью %s) устанавливается еще один каштановый псевдосек (вводный тайник). Две страницы на странице служат застойным страницам; держат только лайт-Спид Каче."
+
+msgid "You are not allowed to install plugins."
+msgstr "Вам не разрешается устанавливать плугины."
+
+msgid "Plugin installs are disabled on this site (DISALLOW_FILE_MODS). Install it from your hosting panel."
+msgstr "На этом объекте отключены плугинальные установки (DISALLOW_FILE_MODS)."
+
+msgid "The plugin could not be written to disk (file permissions or FTP credentials). Install it from Plugins › Add New."
+msgstr "Плюгин не может быть записан для диска (разрешения на увольнение или полномочия СПС). Установка его из Plugins &quot; Add New."
+
+msgid "You are not allowed to activate plugins."
+msgstr "Вам не разрешено активировать плугины."
+
+msgid "The plugin is not installed."
+msgstr "Плюгин не установлен."
+
+msgid "LiteSpeed Cache is not active."
+msgstr "Лайтспид Чаш не активен."
+
+msgid "The PHP sqlite3 extension is missing. Enable it in your hosting PHP settings first."
+msgstr "Продление PHP кв. клите3 пропало."
+
+msgid "object-cache.php belongs to another plugin (%s). Turn that plugin's object cache off first."
+msgstr "Фп принадлежит другому плугину (%s) и вначале выключите его от персонажа."
+
+msgid "SQLite Object Cache is active but it did not write object-cache.php (wp-content may not be writable). Open Settings › Object Cache to finish."
+msgstr "SQLite Объект тайник активен, но не писал об учебе.ф (в крыльце не может быть описано)."
+
+msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcached in hPanel first, then try again."
+msgstr "На принимающем устройстве Мемкхэп не продлевается, или Redis PHP, а на хозяйке сначала можно получить мемкхат в фанеле, а затем попробовать еще раз."
+
+msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
+msgstr "Установка была спасена, но Лейт-Спид Кэш не писала о предметных тайниках."
+
+msgid "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable."
+msgstr "Redis Объективная тайна активна, но не может быть списана с предметными тайками."
+
+msgid "The test request returned HTTP %d."
+msgstr "Испытательная просьба возвратила HTTP %d."
+
+msgid "Cache conflict"
+msgstr "Конфликт в связи с частыми частыми часами"
+
+msgid "Persistent object cache is on (%s)."
+msgstr "Стойкие стойкие стойкие стойкие стойкие стойки (%s)."
+
+msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
+msgstr "Никакой хронической нерастворной тайники: каждая просьба читает варианты и запросы из базы данных вновь."
+
+msgid "Page cache"
+msgstr "Кэш страниц"
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
+msgstr "Сервер - Лейт-Спид, но тайна на странице \"Лит-Спид\" отключена."
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache plugin is not active, so pages are not cached."
+msgstr "сервер - LiteSpeed, но плужок для персиков из Лейтспида не активен, поэтому страницы не откачиваются."
+
+msgid "Cache status"
+msgstr "Состояние боли"
+
+msgid "Unknown operation."
+msgstr "Неизвестная операция."
+
+msgid "Plugin installed and activated."
+msgstr "Устанавливается и активируется плугин."
+
+msgid "Plugin activated."
+msgstr "Включается плугин."
+
+msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
+msgstr "Протестовые тайны сейчас SQLite Оборонить причину, проверить ниже."
+
+msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
+msgstr "Протестовые тайники теперь Лейт-Спид Чаш."
+
+msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
+msgstr "При загрузке на эту страницу была активирована тайна с покрытием, на которой производится замедление, а затем проводится испытание ниже."
+
+msgid "Object cache turned off."
+msgstr "Протестовые тайники выключились."
+
+msgid "Object cache repaired."
+msgstr "Устройство отсека."
+
+msgid "Page cache turned on and purged."
+msgstr "На странице появились тайники и очищены."
+
+msgid "Page cache turned off and purged."
+msgstr "Отключились и очищены."
+
+msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
+msgstr "Все тараканы очищены (LiteSpeed page, CSS/JS and object cache)."
+
+msgid "Object cache emptied."
+msgstr "Протестовые тайники опорожняются."
+
+msgid "Communication"
+msgstr "Общение"
+
+msgid "Integrations"
+msgstr "Интеграции"
+
+msgid "AI"
+msgstr "AI"

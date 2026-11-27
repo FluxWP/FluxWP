@@ -901,3 +901,321 @@ msgstr "联系方式"
 
 msgid "Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications."
 msgstr "WooCommerce 商店的销售面板、客户、销售报告、带有收据上传的汇票/电子转帐、简单付款页面、免费送货栏、Google Merchant 产品 Feed 和 WhatsApp/电子邮件通知。"
+
+msgid "Sees store reports"
+msgstr "种子储存报告"
+
+msgid "Manages the store"
+msgstr "仓库的装卸"
+
+msgid "Edits shop orders"
+msgstr "编辑商店订单"
+
+msgid "Subscriptions"
+msgstr "订阅"
+
+msgid "Hidden product"
+msgstr "隐藏产品"
+
+msgid "Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page."
+msgstr "商店、搜查或item片中没有显示;顾客不能打开产品页面,只能通过链接(例如定价页) Sol,只有编辑看产品页面。"
+
+msgid "Hidden product: only editors see this page. Customers buy it through a link."
+msgstr "园产品:只有编辑看这个页面,顾客通过链接购买。"
+
+msgid "Awaiting first payment"
+msgstr "等待第一次付款"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Payment overdue"
+msgstr "逾期未交的款项"
+
+msgid "Ended"
+msgstr "结束"
+
+msgid "Renews on %s"
+msgstr "续:%s"
+
+msgid "Was due on %s"
+msgstr "到期 %s"
+
+msgid "Valid until %s"
+msgstr "有效期直到 %s"
+
+msgid "Ended on %s"
+msgstr "结束日期 %s"
+
+msgid "You have no subscriptions yet."
+msgstr "你们还没有订阅。"
+
+msgid "Renews automatically from your card %s."
+msgstr "从您的卡片自动更新 %s."
+
+msgid "%1$s will be charged to your card on %2$s."
+msgstr "%1$s 将记入你的卡内。 %2$s."
+
+msgid "Renewal order #%1$s is waiting for payment: %2$s"
+msgstr "Renewal order #%1$s 正在等待付款: %2$s"
+
+msgid "Bank details and receipt"
+msgstr "银行细节和收款"
+
+msgid "Pay now"
+msgstr "现付"
+
+msgid "Last order #%s"
+msgstr "最后命令# %s"
+
+msgid "Renew now"
+msgstr "续"
+
+msgid "Remove the card? Renewals will then be paid with the payment link we e-mail you."
+msgstr "取消卡片? 然后再用我们电子邮件的付款链接支付新卡。"
+
+msgid "Remove card"
+msgstr "搬运卡"
+
+msgid "Turn off renewal? The subscription stays valid until the end of the current period."
+msgstr "离职续聘? 订购的有效期到本期结束。"
+
+msgid "Cancel subscription"
+msgstr "订阅"
+
+msgid "Turn renewal back on"
+msgstr "续延"
+
+msgid "Start again"
+msgstr "再次开始"
+
+msgid "Card stored for automatic subscription renewals: %s."
+msgstr "自动订购续存的货物: %s."
+
+msgid "Subscription renewal charged to the stored card (%1$s), transaction %2$s."
+msgstr "存入卡片的登记续签%1$s),交易 %2$s."
+
+msgid "Automatic card charge failed after the last attempt: %s. The customer was sent the payment link."
+msgstr "最近一次尝试(%s)之后,自动卡收费失败,客户被发送到付款链接。"
+
+msgid "Automatic card charge failed: %1$s. Retrying in %2$d day(s)."
+msgstr "自动卡片收费失败: %1$s.  Re %2$d day(s)."
+
+msgid "Subscription"
+msgstr "订阅"
+
+msgid "Sold as a monthly or yearly subscription (Flux Commerce). Renewals arrive as orders."
+msgstr "每月或每年的订购(Flux Commerce),再生作为订购。"
+
+msgid "Monthly price (%s)"
+msgstr "月价(%s )"
+
+msgid "Empty = no monthly option."
+msgstr "空=无月选项。"
+
+msgid "Yearly price (%s)"
+msgstr "年价(%s )"
+
+msgid "Empty = no yearly option."
+msgstr "空=无年度选项。"
+
+msgid "or"
+msgstr "或"
+
+msgid "Subscribe"
+msgstr "订阅"
+
+msgid "Billing period"
+msgstr "计费周期"
+
+msgid "Save %s%%"
+msgstr "休假 %s%%"
+
+msgid "Renews automatically; we send a reminder before every renewal. You can cancel any time from My account."
+msgstr "自动更新;在每次延期之前发出提醒函,你可以从我的账户中取消任何时间。"
+
+msgid "This product is not a subscription."
+msgstr "这一产品不是订阅的。"
+
+msgid "The product could not be added to the cart."
+msgstr "产品无法添加到汽车上。"
+
+msgid "Subscription #%d created; it starts when the payment arrives."
+msgstr "订阅 #%d 设立;从付款到付款时开始。"
+
+msgid "Subscription #%1$d started; next renewal %2$s."
+msgstr "订阅 #%1$d 开始;下次更新 %2$s."
+
+msgid "Subscription #%1$d renewed until %2$s."
+msgstr "订阅 #%1$d 续 期 %2$s."
+
+msgid "Subscription ended; the renewal order is no longer needed."
+msgstr "订阅结束;再生订单不再需要。"
+
+msgid "Only an active subscription can be renewed."
+msgstr "只有积极订阅才能续签。"
+
+msgid "A renewal order for this period was already created."
+msgstr "已经为这一时期制定了一个延期令。"
+
+msgid "Renewal order for subscription #%1$d (period ends %2$s)."
+msgstr "订购新订购单#%1$d (期末) %2$s)."
+
+msgid "First name"
+msgstr "名字"
+
+msgid "Period end"
+msgstr "期末"
+
+msgid "Payment link"
+msgstr "付款链接"
+
+msgid "Monthly"
+msgstr "每月"
+
+msgid "Subscription renewal reminder"
+msgstr "订阅续签通知"
+
+msgid "Goes to the customer when the renewal order is created and again on the last day if it is unpaid."
+msgstr "在更新订单设立时向客户提出,如果未支付,则在最后一天再次向客户提出。"
+
+msgid "Your {urun} subscription renews on {bitis}"
+msgstr "Your {urun} 订阅续 {bitis}"
+
+msgid "Time to renew, {ad}"
+msgstr "延长时间,{ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. Amount: {tutar}."
+msgstr "Your {urun} 订阅(美元){donem}续) {bitis}数额: {tutar}."
+
+msgid "Subscription renews by card"
+msgstr "卡片续"
+
+msgid "Goes to the customer before a renewal that will be charged to the stored card."
+msgstr "在将记入所储存卡的更新之前向客户收取费用。"
+
+msgid "Card"
+msgstr "卡"
+
+msgid "Renewal coming up, {ad}"
+msgstr "恢复即将开始 {ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. {tutar} will be charged to your card {kart}; you do not need to do anything."
+msgstr "Your {urun} 订阅(美元){donem}续) {bitis}. {tutar} 将记入贵卡。 {kart};你不需要做任何事情。"
+
+msgid "To change the card or turn off renewal, go to My account › Subscriptions."
+msgstr "为了改变卡片或回转,请到我的帐号 -- -- 订阅。"
+
+msgid "My subscriptions"
+msgstr "我的订阅"
+
+msgid "Subscription card charge failed"
+msgstr "订阅卡片费没有支付"
+
+msgid "Goes to the customer when the stored card could not be charged after the last attempt."
+msgstr "在最后一次尝试之后无法对储存的卡收取费用时,向客户收取费用。"
+
+msgid "We could not renew your {urun} subscription"
+msgstr "我们不能再延长你的任期。 {urun} 订阅"
+
+msgid "Payment needed, {ad}"
+msgstr "所需付款,{ad}"
+
+msgid "We could not charge {tutar} to your card {kart} for your {urun} subscription. Please pay with the button below so the subscription continues."
+msgstr "我们无法收取费用 {tutar} to your card {kart} for your {urun} 订阅:请向以下 but子支付订阅费,以便继续订购。"
+
+msgid "Subscription ended"
+msgstr "截止"
+
+msgid "Goes to the customer when a subscription ends."
+msgstr "在订户结束时向客户征求意见。"
+
+msgid "Your {urun} subscription has ended"
+msgstr "Your {urun} 订阅已结束"
+
+msgid "Your subscription has ended"
+msgstr "你的订阅已告结束"
+
+msgid "Hello {ad}, your {urun} subscription has ended. You can start it again at any time."
+msgstr "Hello {ad}, 你 {urun} 订阅已经结束,你可以随时再次开始订阅。"
+
+msgid "Yearly"
+msgstr "每年"
+
+msgid "year"
+msgstr "年份"
+
+msgid "month"
+msgstr "月"
+
+msgid "Recipient: %1$s · IBAN: %2$s · Reference: %3$s"
+msgstr "受益者:%1$s;IBAN:%2$s;参考:%3$s;"
+
+msgid "Your %s subscription has ended"
+msgstr "Your %s 订阅已结束"
+
+msgid "Hello %1$s, your %2$s subscription has ended. You can start it again at any time: %3$s"
+msgstr "Hello %1$s, 你 %2$s 订阅已告结束,你可随时再次开始订阅: %3$s"
+
+msgid "Your %1$s subscription renews on %2$s"
+msgstr "Your %1$s 订阅续 %2$s"
+
+msgid "Hello %1$s, your %2$s subscription renews on %3$s. %4$s will be charged to your card %5$s; you do not need to do anything. Manage it here: %6$s"
+msgstr "Hello %1$s, 你 %2$s 订阅续 %3$s. %4$s 将记入贵卡。 %5$s你不需要做任何事情,在这里管理: %6$s"
+
+msgid "We could not renew your %s subscription"
+msgstr "我们不能再延长你的任期。 %s 订阅"
+
+msgid "Hello %1$s, we could not charge %2$s to your card %3$s for your %4$s subscription. Please pay here so it continues: %5$s"
+msgstr "Hello %1$s,我们无法收取费用 %2$s to your card %3$s for your %4$s 订阅:请在此支付: %5$s"
+
+msgid "Hello %1$s, your %2$s subscription (%3$s) renews on %4$s. Amount: %5$s. Pay here: %6$s"
+msgstr "Hello %1$s, 你 %2$s 订阅(美元)%3$s续) %4$s数额: %5$s. 支付: %6$s"
+
+msgid "WooCommerce is required."
+msgstr "WooCommerce. 需要。"
+
+msgid "The cart is not available."
+msgstr "手推车不可用 。"
+
+msgid "That billing period is not offered."
+msgstr "提出这一提款期。"
+
+msgid "The note could not be saved."
+msgstr "该说明无法幸免。"
+
+msgid "The note is too long."
+msgstr "这份说明太长。"
+
+msgid "Subscription not found."
+msgstr "未找到说明。"
+
+msgid "This subscription cannot be changed."
+msgstr "这种订阅方式不能改变。"
+
+msgid "Unknown action."
+msgstr "未知的行动。"
+
+msgid "Your subscription has ended."
+msgstr "你的订阅已告结束。"
+
+msgid "Renewal is off. Your subscription stays valid until %s."
+msgstr "更新不复存在,订购有效期至 %s."
+
+msgid "The customer removed the stored card; this renewal is paid with the payment link."
+msgstr "客户取走了储存的卡片;这一续约由付款链接支付。"
+
+msgid "The card was removed. We will e-mail you a payment link before each renewal."
+msgstr "卡被取消,我们将在每次更新之前向你们发送付款链接。"
+
+msgid "Renewal is back on."
+msgstr "再生。"
+
+msgid "Subscription renewals"
+msgstr "订阅续约"
+
+msgid "The renewal job has not run for more than 6 hours. Check the server cron (wp-cron.php); renewal orders and reminders wait until it runs."
+msgstr "更新工作不超过6个小时,检查服务器ron(w上.)和续延令和催复通知等候。"
+
+msgid "%1$s open subscriptions. Last run: %2$s"
+msgstr "%1$s 公开订阅,最后:%2$s"

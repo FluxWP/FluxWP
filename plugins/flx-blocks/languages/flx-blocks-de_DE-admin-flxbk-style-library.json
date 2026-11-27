@@ -1,0 +1,999 @@
+{
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "de_DE",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Settings": [
+        "Einstellungen"
+      ],
+      "Style Library": [
+        "Bibliothek"
+      ],
+      "None": [
+        "Keine"
+      ],
+      "Spacing": [
+        "Spaziergänge"
+      ],
+      "Border Radius": [
+        "Grenzradius"
+      ],
+      "Border Width": [
+        "Die Grenzen der Breite"
+      ],
+      "Icon Sizes": [
+        "Icon Größen"
+      ],
+      "Shadow": [
+        "Schatten"
+      ],
+      "Font Size": [
+        "Schriftgröße"
+      ],
+      "Palette": [
+        "Palette"
+      ],
+      "Border": [
+        "Grenze"
+      ],
+      "Button": [
+        "Knopf"
+      ],
+      "Icon": [
+        "Symbol"
+      ],
+      "Close": [
+        "Schließen"
+      ],
+      "Save": [
+        "Speichern"
+      ],
+      "px": [
+        "px"
+      ],
+      "list item separator\u0004, ": [
+        ", "
+      ],
+      "Default": [
+        "Standard"
+      ],
+      "Name": [
+        "Name"
+      ],
+      "Custom": [
+        "Benutzerdefiniert"
+      ],
+      "Auto": [
+        "Automatisch"
+      ],
+      "Gradient": [
+        "Farbverlauf"
+      ],
+      "Cancel": [
+        "Abbrechen"
+      ],
+      "Individual": [
+        "Einzelperson"
+      ],
+      "Linked": [
+        "Verlinkt"
+      ],
+      "Solid": [
+        "Fest"
+      ],
+      "Dashed": [
+        "Dashed"
+      ],
+      "Dotted": [
+        "mit einem Gehalt an"
+      ],
+      "Double": [
+        "Doppelzimmer"
+      ],
+      "Device": [
+        "Gerät"
+      ],
+      "Color": [
+        "Farbe"
+      ],
+      "Left": [
+        "Links"
+      ],
+      "Top": [
+        "Top-Qualität"
+      ],
+      "Hover": [
+        "Hover"
+      ],
+      "Normal": [
+        "Normal"
+      ],
+      "Active": [
+        "Aktiv"
+      ],
+      "Add": [
+        "Hinzufügen"
+      ],
+      "Delete": [
+        "Löschen"
+      ],
+      "Clear": [
+        "Leeren"
+      ],
+      "Right": [
+        "Richtig"
+      ],
+      "Bottom": [
+        "Boden"
+      ],
+      "Reset": [
+        "Zurücksetzen"
+      ],
+      "auto": [
+        "Auto"
+      ],
+      "Background": [
+        "Hintergrund"
+      ],
+      "Desktop": [
+        "Desktop-PC"
+      ],
+      "Tablet": [
+        "Tablette"
+      ],
+      "Mobile": [
+        "Mobil"
+      ],
+      "div": [
+        "Div"
+      ],
+      "Weight": [
+        "Gewicht"
+      ],
+      "Size": [
+        "Größe"
+      ],
+      "-": [
+        "-"
+      ],
+      "Uppercase": [
+        "Oberkörper"
+      ],
+      "Lowercase": [
+        "Kleiner Fall"
+      ],
+      "Capitalize": [
+        "Kapital"
+      ],
+      "Font Family": [
+        "Schriftfamilie"
+      ],
+      "Padding": [
+        "Polsterung"
+      ],
+      "20%": [
+        "20%"
+      ],
+      "40%": [
+        "40%"
+      ],
+      "50%": [
+        "50%"
+      ],
+      "75%": [
+        "75%"
+      ],
+      "80%": [
+        "80%"
+      ],
+      "100%": [
+        "100%"
+      ],
+      "Create": [
+        "Erstellen"
+      ],
+      "Margin": [
+        "Rand"
+      ],
+      "label": [
+        "Etikettierung"
+      ],
+      "value": [
+        "Wert"
+      ],
+      "form": [
+        "Formblatt"
+      ],
+      "button": [
+        "Knopfdruck"
+      ],
+      "icon": [
+        "Symbol"
+      ],
+      "image": [
+        "Bild"
+      ],
+      "Border Color": [
+        "Rahmenfarbe"
+      ],
+      "text": [
+        "Text"
+      ],
+      "heading": [
+        "Warenbezeichnung"
+      ],
+      "Heading": [
+        "Überschrift"
+      ],
+      "section": [
+        "Abschnitt"
+      ],
+      "number": [
+        "Anzahl"
+      ],
+      "Text": [
+        "Text"
+      ],
+      "header": [
+        "Kopf"
+      ],
+      "block title\u0004Icon": [
+        "Symbol"
+      ],
+      "svg": [
+        "Svg"
+      ],
+      "list": [
+        "Liste"
+      ],
+      "info": [
+        "Informationen"
+      ],
+      "1": [
+        "1"
+      ],
+      "hide": [
+        "verstecken"
+      ],
+      "separator": [
+        "Separatoren"
+      ],
+      "Tab": [
+        "tab"
+      ],
+      "Saving…": [
+        "Sparen..."
+      ],
+      "Favorite": [
+        "Favorit"
+      ],
+      "Color Palette": [
+        "Farbpalette"
+      ],
+      "Breakpoint": [
+        "Bruch"
+      ],
+      "Drag to reorder": [
+        "Zum Neuanordnen ziehen"
+      ],
+      "Reset %1$s to %2$s": [
+        "%1$s bis %2$s zurücksetzen"
+      ],
+      "From %s": [
+        "Von %s"
+      ],
+      "From theme": [
+        "Vom Thema"
+      ],
+      "X": [
+        "X"
+      ],
+      "Y": [
+        "Y"
+      ],
+      "Blur": [
+        "Verwundet"
+      ],
+      "Spread": [
+        "Spread"
+      ],
+      "Inset": [
+        "Inset"
+      ],
+      "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here.": [
+        "%1$d Farbe in dieser Palette folgt noch %2$s . Bis Sie es in dieser Palette anpassen, wird es in %2$s auch hier aktualisieren."
+      ],
+      "Learn more": [
+        "Erfahren Sie mehr"
+      ],
+      "Search fonts…": [
+        "Suche Schriftarten..."
+      ],
+      "No fonts found": [
+        "Keine Schriftarten gefunden"
+      ],
+      "Keep typing to narrow the list": [
+        "Schreibe weiter, um die Liste zu verengen"
+      ],
+      "Options loaded.": [
+        "Optionen geladen."
+      ],
+      "Loading options…": [
+        "Ladeoptionen..."
+      ],
+      "Swatch view": [
+        "Swatch-Ansicht"
+      ],
+      "Grid view": [
+        "Blick auf das Netz"
+      ],
+      "List view": [
+        "Liste der"
+      ],
+      "Set \"%s\" as the active library?": [
+        "Setzen Sie \" %s \" als aktive Bibliothek?"
+      ],
+      "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor.": [
+        "Ihre Website verwendet derzeit \" %1$s \". Setzen \" %2$s \", da aktiv die Farben, Typografie, Abstand und andere Stile auf Ihrer ganzen Website sofort verändert - am vorderen Ende und im Editor."
+      ],
+      "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over.": [
+        "Sie können jederzeit zurückschalten, aber alle benutzerdefinierten Werte in \" %s \" bleiben in dieser Bibliothek - sie werden nicht kopiert."
+      ],
+      "Setting active…": [
+        "Aktive Einstellung..."
+      ],
+      "Set as active": [
+        "Als aktiv"
+      ],
+      "Set \"%s\" as the active palette?": [
+        "Setzen Sie \" %s \" als aktive Palette?"
+      ],
+      "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor.": [
+        "Ihre Website verwendet derzeit \" %1$s \". Setzen \" %2$s \", da aktiv die Farben auf Ihrer ganzen Website sofort ändert — am vorderen Ende und im Editor."
+      ],
+      "Add Color Group": [
+        "Farbe Gruppe hinzufügen"
+      ],
+      "Group name": [
+        "Gruppenname"
+      ],
+      "A color group named \"%s\" already exists.": [
+        "Es existiert bereits eine Farbgruppe namens \" %s \"."
+      ],
+      "Loading…": [
+        "Laden…"
+      ],
+      "Base Styles": [
+        "Grundstilen"
+      ],
+      "Block Presets": [
+        "Block-Voreinstellungen"
+      ],
+      "Create Library": [
+        "Bibliothek erstellen"
+      ],
+      "Library title": [
+        "Bibliothekstitel"
+      ],
+      "A library named \"%s\" already exists.": [
+        "Eine Bibliothek namens \" %s \" existiert bereits."
+      ],
+      "Creating…": [
+        "Wird erstellt..."
+      ],
+      "Create Color Palette": [
+        "Erstellen von Farbpaletten"
+      ],
+      "Palette name": [
+        "Name der Palette"
+      ],
+      "A palette named \"%s\" already exists.": [
+        "Eine Palette namens \" %s \" existiert bereits."
+      ],
+      "Delete Color Group?": [
+        "Farbgruppe löschen?"
+      ],
+      "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette.": [
+        "Löschen Sie die Gruppe \" %1$s \" und ihre %2$d Farbe? Dies entfernt sie von jeder Palette."
+      ],
+      "Deleting…": [
+        "Löschen..."
+      ],
+      "Resetting…": [
+        "Zurücksetzen..."
+      ],
+      "Reset Library": [
+        "Zurück zur Übersicht"
+      ],
+      "Delete Library": [
+        "Löschen Sie die"
+      ],
+      "Reset '%s' to its default values?": [
+        "' %s ' auf seine Standardwerte zurücksetzen?"
+      ],
+      "Delete '%s'? Its tokens and presets are removed permanently.": [
+        "Löschen Sie ' %s '? Seine Token und Presets werden dauerhaft entfernt."
+      ],
+      "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor.": [
+        "Dies ist auch Ihre aktive Bibliothek, so dass Ihre Website wird \" %s \" stattdessen. Seine Farben, Typografie, Distanz und andere Stile gehen live über Ihre Website sofort - am vorderen Ende und im Editor."
+      ],
+      "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor.": [
+        "Dies ist auch Ihre aktive Bibliothek, so dass Ihre Website eine andere benötigt. Die Bibliothek, die Sie unten wählen, geht sofort live – Farben, Typografie, Distanz und andere Stile ändern sich über Ihre Website am vorderen Ende und im Editor."
+      ],
+      "Which library should your site use instead?": [
+        "Welche Bibliothek sollte Ihre Website stattdessen verwenden?"
+      ],
+      "Select a library…": [
+        "Wählen Sie eine Bibliothek aus..."
+      ],
+      "Delete \"%s\"?": [
+        "„%s“ löschen?"
+      ],
+      "Reset \"%s\"?": [
+        "Zurücksetzen \" %s \"?"
+      ],
+      "Its color overrides are removed permanently.": [
+        "Seine Farbüberschreitungen werden dauerhaft entfernt."
+      ],
+      "Its colors return to the shipped baseline. The palette itself stays.": [
+        "Seine Farben kommen in die ausgelieferte Basislinie zurück. Die Palette selbst bleibt."
+      ],
+      "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor.": [
+        "Dies ist auch Ihre aktive Palette, so dass Ihre Website wird \" %s \" stattdessen. Seine Farben gehen live über Ihre Website sofort - am vorderen Ende und im Editor."
+      ],
+      "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor.": [
+        "Dies ist auch Ihre aktive Palette, so dass Ihre Website eine andere benötigt. Die Palette, die Sie unten wählen, geht sofort live - seine Farben ändern sich über Ihre Website am vorderen Ende und im Editor."
+      ],
+      "Which palette should your site use instead?": [
+        "Welche Palette sollte Ihre Website stattdessen verwenden?"
+      ],
+      "Select a palette…": [
+        "Wählen Sie eine Palette aus..."
+      ],
+      "Not available in the current theme": [
+        "Nicht verfügbar im aktuellen Thema"
+      ],
+      "These presets came from another theme. Your changes to them are kept until that theme is active again.": [
+        "Diese Presets stammen aus einem anderen Thema. Ihre Änderungen an ihnen werden gehalten, bis dieses Thema wieder aktiv ist."
+      ],
+      "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept.": [
+        "Die eigenen Werte des Themas für diese Voreinstellung können nicht in einer Voreinstellung gespeichert werden, so dass nur Ihre Änderungen gespeichert werden können."
+      ],
+      "The theme's own values for this preset were not recorded, so only your changes can be kept.": [
+        "Die eigenen Werte des Themas für diese Voreinstellung wurden nicht aufgezeichnet, so dass nur Ihre Änderungen gespeichert werden können."
+      ],
+      "Keep as custom preset": [
+        "Halten Sie als benutzerdefiniertes Preset"
+      ],
+      "Keep changes as custom preset": [
+        "Ändern Sie sich als benutzerdefinierte Voreinstellung"
+      ],
+      "Discard changes": [
+        "Änderungen der Karte anzeigen"
+      ],
+      "Active library": [
+        "Aktive Bibliothek"
+      ],
+      "Your site uses this library.": [
+        "Ihre Website verwendet diese Bibliothek."
+      ],
+      "Not the active library": [
+        "Nicht die aktive Bibliothek"
+      ],
+      "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles.": [
+        "Das Einrichten als aktiv macht diese Bibliothek zu einem Ihrer Website verwendet. Ihre Website schaltet ihre Farben, Größen und Stile."
+      ],
+      "Edit library": [
+        "Bibliothek bearbeiten"
+      ],
+      "Library": [
+        "Bibliothek"
+      ],
+      "New Library": [
+        "Neue Bibliothek"
+      ],
+      "Active palette": [
+        "Aktive Palette"
+      ],
+      "Your site uses this palette.": [
+        "Ihre Website verwendet diese Palette."
+      ],
+      "Not the active palette": [
+        "Nicht die aktive Palette"
+      ],
+      "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette.": [
+        "Die Einstellung als aktiv macht diese Palette zu einem Ihrer Website verwendet. Einzelne Blöcke können immer noch auf eine andere Palette geschaltet werden."
+      ],
+      "Edit palette": [
+        "Palette bearbeiten"
+      ],
+      "Drag to reorder %s": [
+        "Ziehen Sie den Reorder %s"
+      ],
+      "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values.": [
+        "Sie haben keine Änderungen an ' %s '. Speichern Sie sie, oder verwerfen Sie sie, um zurück zu den gespeicherten Werten."
+      ],
+      "You have unsaved changes. Save them, or discard them to go back to the saved values.": [
+        "Sie haben keine Änderungen. Speichern Sie sie, oder verwerfen Sie sie, um zurück zu den gespeicherten Werten."
+      ],
+      "Unsaved Changes": [
+        "Unerwünschte Veränderungen"
+      ],
+      "Discard": [
+        "Verwerfen"
+      ],
+      "Corner Radius": [
+        "Der Weg der Welt"
+      ],
+      "Add Border Radius": [
+        "Grenzradius hinzufügen"
+      ],
+      "New Radius": [
+        "Neuer Radius"
+      ],
+      "Radius": [
+        "Radius"
+      ],
+      "Add Border Width": [
+        "Border Width hinzufügen"
+      ],
+      "New Border Width": [
+        "Neue Bordüre Breite"
+      ],
+      "Loading %s…": [
+        "Belastung %s ..."
+      ],
+      "%s loaded.": [
+        "%s geladen."
+      ],
+      "Add color": [
+        "Farbe hinzufügen"
+      ],
+      "Edit %s": [
+        "%s bearbeiten"
+      ],
+      "Color group": [
+        "Farbgruppe"
+      ],
+      "This palette could not be loaded.": [
+        "Diese Palette konnte nicht geladen werden."
+      ],
+      "Settings loaded.": [
+        "Einstellungen geladen."
+      ],
+      "Edit color": [
+        "Farbe bearbeiten"
+      ],
+      "Add Icon Size": [
+        "Icon Größe hinzufügen"
+      ],
+      "New Icon Size": [
+        "Neue Icon Größe"
+      ],
+      "This screen is coming soon.": [
+        "Dieser Bildschirm kommt bald."
+      ],
+      "Adding…": [
+        "Ich bin..."
+      ],
+      "Preset saved.": [
+        "Voreinstellung gespeichert."
+      ],
+      "Preset deleted.": [
+        "Voreinstellung gelöscht."
+      ],
+      "Preset reset.": [
+        "Zurücksetzen voreingestellt."
+      ],
+      "Theme preset": [
+        "Thema voreingestellt"
+      ],
+      "Styled by your theme. Flux Block Editor can't read or change these styles.": [
+        "Mit Ihrem Thema. Flux Block Editor kann diese Stile nicht lesen oder ändern."
+      ],
+      "Changes saved under another theme still apply to it. Reset removes them.": [
+        "Änderungen, die unter einem anderen Thema gespeichert werden, gelten noch für es. Reset entfernt sie."
+      ],
+      "Edit preset": [
+        "Voreinstellung bearbeiten"
+      ],
+      "Edit token": [
+        "Bearbeiten von Token"
+      ],
+      "Add Shadow": [
+        "Schatten hinzufügen"
+      ],
+      "New Shadow": [
+        "Neue Schatten"
+      ],
+      "Add Spacing": [
+        "Spaziergänge hinzufügen"
+      ],
+      "New Spacing": [
+        "Neue Spaziergänge"
+      ],
+      "Visualize your font": [
+        "Visualisieren Sie Ihre Schrift"
+      ],
+      "Add Favorite": [
+        "Zu Favoriten hinzufügen"
+      ],
+      "Adding Favorite…": [
+        "In den Warenkorb"
+      ],
+      "Remove Favorite": [
+        "Entfernen Sie die Favoriten"
+      ],
+      "Removing Favorite…": [
+        "Entfernen von Favorit..."
+      ],
+      "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site.": [
+        "Pins diese Schrift auf die Spitze Ihrer Schriftwähler, hier und im Editor. Es ändert keinen Text auf Ihrer Website."
+      ],
+      "Unpins this font from the top of your font pickers. Text already using it stays as it is.": [
+        "Legt diese Schrift von oben auf eurer Schriftart-Pickers. Text schon mit ihm bleibt, wie es ist."
+      ],
+      "%s removed from favorites.": [
+        "%s von Favoriten entfernen."
+      ],
+      "%s added to favorites.": [
+        "%s zu Favoriten hinzugefügt."
+      ],
+      "Font": [
+        "Schriftart"
+      ],
+      "Typography": [
+        "Typologie"
+      ],
+      "Add Size": [
+        "Größe hinzufügen"
+      ],
+      "New Font Size": [
+        "Neue Schriftgröße"
+      ],
+      "Set the colors your site uses. Change a color here and it updates everywhere it's applied.": [
+        "Stellen Sie die Farben Ihrer Website verwendet. Ändern Sie eine Farbe hier und es aktualisiert überall, wo es angewendet wird."
+      ],
+      "Set the text sizes your site uses, and pick the fonts you want close to hand.": [
+        "Legen Sie die Textgrößen, die Ihre Website verwendet, und wählen Sie die Schriftarten, die Sie in der Nähe von Hand wollen."
+      ],
+      "Set the border radius options your site uses, so buttons, images and cards stay consistent.": [
+        "Setzen Sie die Grenzradius-Optionen, die Ihre Website verwendet, so bleiben Tasten, Bilder und Karten konsistent."
+      ],
+      "Set the border thickness options your site uses, so borders match across your blocks.": [
+        "Setzen Sie die Grenzdickenoptionen Ihre Website verwendet, so dass Grenzen über Ihre Blöcke passen."
+      ],
+      "Set the padding and margin steps your site uses, so gaps stay consistent from block to block.": [
+        "Legen Sie die Polsterung und den Rand Schritten Ihre Website verwendet, so dass Lücken bleiben konsistent von Block zu Block."
+      ],
+      "Set the sizes your icons can use, so icons stay consistent wherever they appear.": [
+        "Legen Sie die Größen, die Ihre Icons verwenden können, so bleiben Icons konsistent, wo immer sie erscheinen."
+      ],
+      "Set the shadow styles your site uses, so depth looks consistent across your blocks.": [
+        "Legen Sie die Schatten-Stile Ihre Website verwendet, so Tiefe sieht konsistent über Ihre Blöcke."
+      ],
+      "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand.": [
+        "Speichern Sie die Tasten-Stile als Voreinstellungen, so können Sie einen ganzen Look in einem Klick anwenden, anstatt jede Option per Hand einzustellen."
+      ],
+      "Save image styles as presets, so rounding, shadows and spacing stay the same across your images.": [
+        "Speichern Sie Bild-Styles als Presets, so dass Runden, Schatten und Abstand über Ihre Bilder gleich bleiben."
+      ],
+      "Save row styles as presets, so the sections of a page share the same background and rounding.": [
+        "Speichern Sie Zeilen-Stile als Voreinstellungen, so dass die Abschnitte einer Seite den gleichen Hintergrund und Rundung teilen."
+      ],
+      "Save section styles as presets, so the columns inside your rows share the same background and rounding.": [
+        "Sparen Sie Sektionsstilen als Voreinstellungen, so dass die Spalten innerhalb Ihrer Zeilen den gleichen Hintergrund und die Rundung teilen."
+      ],
+      "Save icon styles as presets, so icons keep the same size and color wherever you use them.": [
+        "Speichern Sie Icon-Stile als Presets, so dass Icons die gleiche Größe und Farbe, wo immer Sie sie verwenden."
+      ],
+      "Save text styles as presets, so headings and paragraphs read the same from page to page.": [
+        "Speichern Sie Text-Stile als Voreinstellungen, so lesen Überschriften und Absätze die gleichen von Seite zu Seite."
+      ],
+      "Something went wrong. Please try again.": [
+        "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+      ],
+      "Enter a library title.": [
+        "Geben Sie einen Bibliothekstitel ein."
+      ],
+      "A library with that title already exists.": [
+        "Eine Bibliothek mit diesem Titel existiert bereits."
+      ],
+      "Choose which library your site should use instead.": [
+        "Wählen Sie, welche Bibliothek Ihre Website stattdessen verwenden sollte."
+      ],
+      "Enter a palette name.": [
+        "Geben Sie einen Palettennamen ein."
+      ],
+      "A palette with that name already exists.": [
+        "Eine Palette mit diesem Namen existiert bereits."
+      ],
+      "Choose which palette your site should use instead.": [
+        "Wählen Sie, welche Palette Ihre Website stattdessen verwenden sollte."
+      ],
+      "Enter a color group name.": [
+        "Geben Sie einen Farbgruppennamen ein."
+      ],
+      "A color group with that name already exists.": [
+        "Es existiert bereits eine Farbgruppe mit diesem Namen."
+      ],
+      "Custom Colors": [
+        "Benutzerdefinierte Farben"
+      ],
+      "Saving failed.": [
+        "Das Sparen ist gescheitert."
+      ],
+      "Another change to this library is already in progress.": [
+        "Eine weitere Änderung dieser Bibliothek ist bereits im Gange."
+      ],
+      "Palette activated.": [
+        "Palette aktiviert."
+      ],
+      "Palette created.": [
+        "Palette erstellt."
+      ],
+      "Palette renamed.": [
+        "Palette umbenannt."
+      ],
+      "Palette deleted.": [
+        "Palette gelöscht."
+      ],
+      "Palette reset.": [
+        "Palette zurückgesetzt."
+      ],
+      "Swatch saved.": [
+        "Swatch ist gerettet."
+      ],
+      "Swatch deleted.": [
+        "Swatch gelöscht."
+      ],
+      "Swatch reset.": [
+        "Swatch zurückgesetzt."
+      ],
+      "New Color": [
+        "Neue Farbe"
+      ],
+      "Color added.": [
+        "Farbe hinzugefügt."
+      ],
+      "Color group added.": [
+        "Farbgruppe hinzugefügt."
+      ],
+      "Color group renamed.": [
+        "Farbgruppe umbenannt."
+      ],
+      "Color group deleted.": [
+        "Farbgruppe gelöscht."
+      ],
+      "Token created.": [
+        "Token erstellt."
+      ],
+      "Token saved.": [
+        "Token gerettet."
+      ],
+      "Token deleted.": [
+        "Token gelöscht."
+      ],
+      "Token reset.": [
+        "Token-Reset."
+      ],
+      "Token order saved.": [
+        "Tokenauftrag gespeichert."
+      ],
+      "100 Thin": [
+        "100 Dünn"
+      ],
+      "200 Extra Light": [
+        "200 Extra Licht"
+      ],
+      "300 Light": [
+        "300 Licht"
+      ],
+      "400 Regular": [
+        "400 Regulärer"
+      ],
+      "500 Medium": [
+        "500 mittel"
+      ],
+      "600 Semi Bold": [
+        "600 Halb-Kolben"
+      ],
+      "700 Bold": [
+        "700 Bold"
+      ],
+      "900 Black": [
+        "900 Schwarz"
+      ],
+      "Transform": [
+        "Transformieren"
+      ],
+      "Add Text Style": [
+        "Textstil hinzufügen"
+      ],
+      "New Text Style": [
+        "Neue Text-Stil"
+      ],
+      "Border and Shadow": [
+        "Grenzen und Schatten"
+      ],
+      "Add Button": [
+        "Hinzufügen von Knopf"
+      ],
+      "New Button": [
+        "Neue Taste"
+      ],
+      "Add Section Style": [
+        "Fügen Sie Abschnitt Stil"
+      ],
+      "New Section Style": [
+        "Neue Sektion Stil"
+      ],
+      "Add Image Style": [
+        "Bild-Stil hinzufügen"
+      ],
+      "New Image Style": [
+        "Neues Bild Stil"
+      ],
+      "Add Row Style": [
+        "Hinzufügen von Row Style"
+      ],
+      "New Row Style": [
+        "Neue Row Style"
+      ],
+      "Add Icon Style": [
+        "Icon Style hinzufügen"
+      ],
+      "New Icon Style": [
+        "Neues Icon Style"
+      ],
+      "Matches the design system value": [
+        "Passt auf den Design-Systemwert"
+      ],
+      "Overrides the design system value": [
+        "Überwindet den Design-System-Wert"
+      ],
+      "Reset to the design system value": [
+        "Zurücksetzen auf den Design-Systemwert"
+      ],
+      "Reverted to default": [
+        "Zurück zum Standard"
+      ],
+      "This token was deleted from the Style Library. The default applies until you pick a new value or reset.": [
+        "Dieser Token wurde aus der Style Library gelöscht. Die Standardeinstellung gilt, bis Sie einen neuen Wert oder einen neuen Reset auswählen."
+      ],
+      "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset.": [
+        "Diese Option stammt aus dem Flux-Thema, das nicht mehr aktiv ist. Der Standard gilt, bis Sie einen neuen Wert oder einen Neuwert auswählen."
+      ],
+      "Border style": [
+        "Border Stil"
+      ],
+      "Border style (%s)": [
+        "Bordart ( %s )"
+      ],
+      "%1$s: %2$s": [
+        "%1$s: %2$s"
+      ],
+      "%s Border Color": [
+        "%s Grenzfarbe"
+      ],
+      "Previous color format": [
+        "Vorheriges Farbformat"
+      ],
+      "Next color format": [
+        "Nächstes Farbformat"
+      ],
+      "No favorite fonts yet.": [
+        "Noch keine Lieblings-Fonts."
+      ],
+      "Manage favorites in the Style Library": [
+        "Favoriten in der Stilbibliothek verwalten"
+      ],
+      "Favorites": [
+        "Favoriten"
+      ],
+      "Inherited": [
+        "Vererbt"
+      ],
+      "Custom value": [
+        "Zollwert"
+      ],
+      "Unit": [
+        "Einheit"
+      ],
+      "Theme default": [
+        "Thema Standard"
+      ],
+      "Default (%s)": [
+        "Standard ( %s )"
+      ],
+      "Inherited (%s)": [
+        "Erbsen ( %s )"
+      ],
+      "block keyword\u0004form": [
+        "Formblatt"
+      ],
+      "block keyword\u0004header": [
+        "Kopf"
+      ],
+      "block keyword\u0004img": [
+        "Impfstoff"
+      ],
+      "block keyword\u0004image": [
+        "Bild"
+      ],
+      "block keyword\u0004info": [
+        "Informationen"
+      ],
+      "block keyword\u0004icon": [
+        "Symbol"
+      ],
+      "block keyword\u0004menu": [
+        "Menü schließen"
+      ],
+      "block title\u0004Tab": [
+        "tab"
+      ],
+      "Accent": [
+        "Akzent"
+      ],
+      "Main 1": [
+        "Hauptfarbe 1"
+      ],
+      "Main 2": [
+        "Hauptfarbe 2"
+      ],
+      "Main 3": [
+        "Hauptfarbe 3"
+      ],
+      "Button Hover": [
+        "Schaltfläche bei Hover"
+      ],
+      "Contrast": [
+        "Kontrast"
+      ],
+      "Strongest": [
+        "Sehr stark"
+      ],
+      "Strong": [
+        "Stark"
+      ],
+      "Medium": [
+        "Mittel"
+      ],
+      "Subtle": [
+        "Dezent"
+      ],
+      "Notices and Feedback": [
+        "Hinweise und Feedback"
+      ],
+      "Success": [
+        "Erfolg"
+      ],
+      "Warning": [
+        "Warnung"
+      ],
+      "Error": [
+        "Fehler"
+      ],
+      "Info": [
+        "Info"
+      ],
+      "Extended": [
+        "Erweiterte Farben"
+      ],
+      "Complement": [
+        "Komplementärfarbe"
+      ],
+      "Alert": [
+        "Hinweis"
+      ],
+      "Rating": [
+        "Bewertung"
+      ]
+    }
+  }
+}

@@ -30,3 +30,15 @@ The runner writes `audit.json`, mobile screenshots and screenshots for detected 
 Remote providers and media are blocked in the browser. Mail and server-side external HTTP must also be disabled in the fixture. This checks browser layout, not external provider functionality or native iOS/Android behavior. Do not commit authentication state, screenshots, fixture databases or generated audit results.
 
 For package smoke tests with a separate CLI updater and PHP development server, disable OPcache in that server. The updater's CLI process cannot invalidate another process's cached PHP files; otherwise an immediate upgrade check can mix cached previous files with new files.
+
+### Locale coverage
+
+Run the audit with the WordPress user's profile language set to each supported locale. Keep the site language different when checking that translated screen data follows the user. Use `--locale` to assert the actual HTML language and text direction and `--text-out` to include visible headings, controls and accessible labels for review. For a local fixture with per-context locale overrides, pass its cookie name with `--locale-cookie`. The cookie must select the WordPress user locale on that fixture.
+
+```bash
+node tools/tests/responsive/audit.mjs \
+  --url http://127.0.0.1:8877 --inventory /tmp/flux-inventory.json \
+  --out /tmp/flux-responsive-ar --locale ar --text-out
+```
+
+The supported audit locales are `en_US`, `tr_TR`, `de_DE`, `es_ES`, `fr_FR`, `pt_BR`, `ja`, `zh_CN`, `ar` and `ru_RU`. Text evidence requires manual review. Product names, user records, provider names, code and URLs can legitimately be identical across languages. To reuse a local browser sign-in, pass its Playwright storage state with `--auth-state` and keep that file outside the repository.

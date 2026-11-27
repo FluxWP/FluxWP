@@ -1103,7 +1103,7 @@ msgid "You are not allowed to do this."
 msgstr "Вам не разрешено это делать."
 
 msgid "Chat not found."
-msgstr "Chat not found."
+msgstr "Чейт не нашел."
 
 msgid "Flux AI is not set up yet: enter an API key and model in Flux AI & MCP › Settings."
 msgstr "Flux AI еще не настроен: введите ключ API и модель в Flux AI & MCP › Настройки."
@@ -1554,3 +1554,1278 @@ msgstr "Кто может подключаться: пользователи с 
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr "Ваша учётная запись не может подключить ассистента (нужна возможность MCP)."
+
+msgid "Flux GraphQL is not active, so FluxWP screens cannot open."
+msgstr "Flux GraphQL не работает, так что FluxWP экраны не могут открыться."
+
+msgid "Chat history"
+msgstr "История Черепа"
+
+msgid "Scheduled tasks"
+msgstr "Запланированные задачи"
+
+msgid "Skills"
+msgstr "Квалификация"
+
+msgid "Connections"
+msgstr "Соединения"
+
+msgid "This action is no longer waiting for approval."
+msgstr "Это действие больше не ждет одобрения."
+
+msgid "The file could not be uploaded."
+msgstr "Не удалось загрузить файл."
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr "Этот тип файла не подкрепляется. %s"
+
+msgid "The file is too large (max %s)."
+msgstr "Дело слишком крупное (макс. %s)."
+
+msgid "The image could not be read."
+msgstr "Снимок нельзя читать."
+
+msgid "File not found."
+msgstr "Файл не найден."
+
+msgid "Web search"
+msgstr "Веб-сайты"
+
+msgid "Web search is turned off."
+msgstr "Поиск в интернете отключен."
+
+msgid "No search provider key; agents can still read web pages but cannot search."
+msgstr "Ключ для поиска не имеется; агенты все еще могут читать веб-страницы, но не могут искать."
+
+msgid "Using %1$s. This month: %2$s searches."
+msgstr "Использовать %1$s в этом месяце: %2$s обыска."
+
+msgid "Flux Cloud session could not be renewed: %s"
+msgstr "Сессия &quot; Флюкс &quot; не может быть возобновлена: %s"
+
+msgid "\"%s\" is not a hex color (e.g. #0A5A40)."
+msgstr "\" %s\" - это не цвет гекса (например, 0A5A40)."
+
+msgid "%s is too long (at most 30 KB)."
+msgstr "%s является слишком длинным (на уровне не более 30 КБ)."
+
+msgid "The brand kit can hold at most 20 documents."
+msgstr "Клеймо может иметь около 20 документов."
+
+msgid "Could not read the image %s."
+msgstr "Не могла прочитать изображение %s."
+
+msgid "The images are too large in total (at most 30 MB)."
+msgstr "Снимки являются слишком большими в целом (на большинстве 30 БМ)."
+
+msgid "No visual renderer (Gotenberg) is set: Flux AI & MCP › Settings › Visual renderer."
+msgstr "Визуальный передатчик (Готенберг) не установлен: Flux AI &quot; MCP &quot; Settings  &quot; Visual renderer."
+
+msgid "Brand kit"
+msgstr "Набор для стекол"
+
+msgid "Update brand kit"
+msgstr "Обновление набора брэндов"
+
+msgid "Render design"
+msgstr "Конструкция референтов"
+
+msgid "There is no workspace here; pass the HTML in \"html\"."
+msgstr "Здесь нет рабочих мест, передайте ГТМЛ в \"html\"."
+
+msgid "This file is outside your workspace."
+msgstr "Это дело за пределами твоего рабочего пространства."
+
+msgid "Text to replace was not found in the design: %s"
+msgstr "Текст, который заменяет, не был найден в конструкции: %s"
+
+msgid "The text occurs %1$d times; make it unique or set all=true: %2$s"
+msgstr "Текст составляет %1$d раз; он уникальный или уникальный: %2$s"
+
+msgid "The design HTML is empty."
+msgstr "Конструкция HTML пуста."
+
+msgid "The design HTML is too large (at most 400 KB). Pass images with \"images\", not inline."
+msgstr "Конструкция HTML является слишком большой (на уровне 400 KB). Передает изображения с \"имжами\", а не интернациональным."
+
+msgid "Design"
+msgstr "Дизайн"
+
+msgid "There is no workspace here; pass attachment_id or url."
+msgstr "Здесь нет рабочих мест; передняя привязка - Сид или урль."
+
+msgid "File not found: %s"
+msgstr "Файл не найден: %s"
+
+msgid "The image is too large (at most 15 MB)."
+msgstr "Слишком большой (не более 15 МБ)."
+
+msgid "Not an image (PNG, JPEG, WebP, GIF or SVG): %s"
+msgstr "Не изображение (PNG, JPEG, WebP, GIF или SVG): %s"
+
+msgid "Give path, attachment_id or url for each image."
+msgstr "Положите дорогу, крепость кид или урль для каждого изображения."
+
+msgid "Attachment #%d is not an image."
+msgstr "Аттака No %d - это не изображение."
+
+msgid "The file is not an image (PNG, JPEG, WebP, GIF or SVG)."
+msgstr "Файл не является изображением (PNG, JPEG, WebP, GIF или SVG)."
+
+msgid "Images can only be saved in your own folder (%s)."
+msgstr "Имейсы могут быть спасены только в вашей собственной папке (%s)."
+
+msgid "View image"
+msgstr "Вид"
+
+msgid "Give at least one image."
+msgstr "Дай хотя бы один образ."
+
+msgid "Collect images"
+msgstr "Сбор изображений"
+
+msgid "Edit image"
+msgstr "Правка изображения"
+
+msgid "SVG files cannot be edited; use them as they are."
+msgstr "СВГ файлы не могут быть редактированы; использовать их так, как они есть."
+
+msgid "The image could not be opened."
+msgstr "Снимок не может быть открыт."
+
+msgid "Scheduled task"
+msgstr "Запланированная задача"
+
+msgid "Attach file"
+msgstr "Прикрепить файл"
+
+msgid "Dictate"
+msgstr "Диктовать"
+
+msgid "You can attach up to %s files."
+msgstr "Вы можете прикрепить к %s файлу."
+
+msgid "%s is too large."
+msgstr "%s слишком большой."
+
+msgid "Microphone permission was not given."
+msgstr "Разрешение на микрофон не дано."
+
+msgid "Scheduled task · %s"
+msgstr "Запланированная задача %s"
+
+msgid "1 error"
+msgstr "1 ошибка"
+
+msgid "%s tools"
+msgstr "%s"
+
+msgid "1 tool"
+msgstr "1 инструмент"
+
+msgid "%s rejected"
+msgstr "%s отклонен"
+
+msgid "1 rejected"
+msgstr "1 отклонено"
+
+msgid "No messages yet."
+msgstr "Пока никаких сообщений."
+
+msgid "Workspace"
+msgstr "Workspace"
+
+msgid "Exit full screen"
+msgstr "Полный экран"
+
+msgid "Full screen"
+msgstr "Полный экран"
+
+msgid "Change in the assistant's folder"
+msgstr "Перемены в папке помощника"
+
+msgid "Change request #%s: waiting for your approval"
+msgstr "Запрос на изменение No %s: ожидание Вашего одобрения"
+
+msgid "Change request #%s: rejected"
+msgstr "Просьба об изменении No %s: отклонена"
+
+msgid "Change request #%s: merged"
+msgstr "Просьба об изменении No %s: объединенная"
+
+msgid "View diff"
+msgstr "Вид"
+
+msgid "Empty folder"
+msgstr "Пустая папка"
+
+msgid "The file is too large to show a diff."
+msgstr "файл слишком большой, чтобы показать дифф."
+
+msgid "No differences."
+msgstr "Никаких различий."
+
+msgid "Merged"
+msgstr "Слияние"
+
+msgid "Rejected"
+msgstr "Отклонено"
+
+msgid "Partly merged"
+msgstr "Частично сливаются"
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "added"
+msgstr "добавлено"
+
+msgid "changed"
+msgstr "Изменение"
+
+msgid "deleted"
+msgstr "удалено"
+
+msgid "Change request"
+msgstr "Просьба об изменении"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "%s files"
+msgstr "%s files"
+
+msgid "Merge"
+msgstr "Merge"
+
+msgid "Merge this"
+msgstr "Собрать это."
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "Once the chat starts, its folder and the assistant's changes appear here."
+msgstr "Как только начнется разговор, здесь появляются его папка и ассистентка."
+
+msgid "The workspace needs the Flux Files plugin. You can install it from FluxWP Panel › Packages."
+msgstr "В рабочее пространство нужен плукс-фильм, а вы можете поместить его из FluxWP Группа &quot; Пакеты."
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Open in Flux Files"
+msgstr "Открыто в флюксах"
+
+msgid "The folder is empty. Notes, reports and drafts the assistant writes appear here."
+msgstr "Фолдер пуст."
+
+msgid "Allowed folders"
+msgstr "Допускаемые патрубки"
+
+msgid "No changes yet. What the assistant writes to its own folder shows here as commits, and changes it proposes to site files as change requests."
+msgstr "Что ассистент пишет в свою собственную папку здесь, как обязательные, и вносит изменения в файлы, которые он предлагает использовать в качестве просьб о внесении изменений."
+
+msgid "File access for this task"
+msgstr "Обеспечение доступа к этой задаче"
+
+msgid "File access for this chat"
+msgstr "Дорога для этого разговора"
+
+msgid "Only its own folder"
+msgstr "Только его собственный папка"
+
+msgid "The assistant sees only this chat's folder and the folders you allow below."
+msgstr "Помощник видит только туфельку болтовни и папки, которые вы допускаете ниже."
+
+msgid "Can read the whole site"
+msgstr "Можно прочесть весь сайт"
+
+msgid "The assistant can read the site's files; every file it wants to change comes to you as a change request."
+msgstr "Помощник может прочитать файлы сайта, каждый файл, который он хочет изменить, относится к вам как к запросу на изменение."
+
+msgid "One folder per line (relative to the site root). Changes in these folders also wait for your approval."
+msgstr "Одна папка на одну линию (относится к корню участка). Изменения в этих папках также ждут вашего одобрения."
+
+msgid "Rules that always apply"
+msgstr "Правила, которые всегда применяются"
+
+msgid "The assistant cannot directly change any file outside its own folder."
+msgstr "Помощник не может напрямую изменить досье за пределами своей собственной папки."
+
+msgid "Other chats' and tasks' folders are closed; skill files are read-only."
+msgstr "Другие чаты и задания закрыты; файлы с квалификацией только для чтения."
+
+msgid "Files with passwords and keys (wp-config, .env, .sql) and WordPress core are never opened."
+msgstr "Фильмы с паролем и ключами (wp-config, .env, .sql) и WordPress ядро никогда не открываются."
+
+msgid "At most 50 files per turn and 1 MB per file can be written."
+msgstr "В большинстве случаев 50 файлов в одну очередь и 1 МБ в каждом файле могут быть составлены."
+
+msgid "The file changed in the meantime and was not applied: %s"
+msgstr "В то же время дело было изменено и не было применено: %s"
+
+msgid "Reject the change request?"
+msgstr "Отклонить просьбу об изменении?"
+
+msgid "No files change; the assistant is told it was rejected."
+msgstr "Никаких изменений в файлах не произошло; ассистенту сообщили, что он был отклонен."
+
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Code"
+msgstr "Код"
+
+msgid "Discard"
+msgstr "Отбросить"
+
+msgid "E-mail"
+msgstr "Электронная почта"
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "WhatsApp group"
+msgstr "Группа WhatsApp"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Chats"
+msgstr "Чаты"
+
+msgid "/ commands"
+msgstr "/ командования"
+
+msgid "Hide panel"
+msgstr "Дискуссия по отоплению"
+
+msgid "Search chats…"
+msgstr "Обычные разговоры..."
+
+msgid "Results"
+msgstr "Результаты"
+
+msgid "Recent chats"
+msgstr "Недавние разговоры"
+
+msgid "The archive is empty."
+msgstr "Архив пуст."
+
+msgid "No command found."
+msgstr "Команда не найдена."
+
+msgid "Commands"
+msgstr "Команды"
+
+msgid "Apps"
+msgstr "Приложения"
+
+msgid "Archived"
+msgstr "В архиве"
+
+msgid "Visual report"
+msgstr "Визуальный доклад"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Open full screen"
+msgstr "Открыть на весь экран"
+
+msgid "View"
+msgstr "Посмотреть"
+
+msgid "Recently used"
+msgstr "Недавно использовано"
+
+msgid "All models"
+msgstr "Все модели"
+
+msgid "%s more models: narrow your search."
+msgstr "%s больше моделей: сузить поиск."
+
+msgid "Bubble"
+msgstr "Пузырь"
+
+msgid "Right panel"
+msgstr "Правовая панель"
+
+msgid "Small window at the bottom right"
+msgstr "Маленькое окно на дне"
+
+msgid "On the right, pushes the page"
+msgstr "Справа, нажимает страницу."
+
+msgid "The left menu stays in place"
+msgstr "Левый меню остается на месте."
+
+msgid "%s / 1024"
+msgstr "%s / 1024"
+
+msgid "Trigger test"
+msgstr "Испытание на герметичность"
+
+msgid "%s% correct"
+msgstr "%s %"
+
+msgid "%1$s of %2$s prompts · %3$s · %4$s"
+msgstr "%1$s из %2$s; %3$s %4$s"
+
+msgid "Stopped early (time limit); run again for the rest."
+msgstr "Остановился раньше (временный предел); снова бегал на остальную."
+
+msgid "Prompt"
+msgstr "Подскажите"
+
+msgid "Expected"
+msgstr "Ожидаемые"
+
+msgid "Picked skills"
+msgstr "Квалификационные навыки"
+
+msgid "Use"
+msgstr "Использование"
+
+msgid "Do not use"
+msgstr "Не используется"
+
+msgid "%1$s/%2$s checks"
+msgstr "Проверка %1$s %2$s"
+
+msgid "%1$s in · %2$s out tokens · %3$s · %4$s s"
+msgstr "%1$s - %2$s - из токена %3$s · %4$s s"
+
+msgid "Test #%s"
+msgstr "Испытание No %s"
+
+msgid "Check"
+msgstr "Проверить"
+
+msgid "With skill"
+msgstr "С квалифицированных кадров"
+
+msgid "Without"
+msgstr "Без проблем"
+
+msgid "No results yet."
+msgstr "Пока никаких результатов."
+
+msgid "Running…"
+msgstr "Бег..."
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Summary"
+msgstr "Резюме"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Slug"
+msgstr "Слизень"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Recipient"
+msgstr "Получатель"
+
+msgid "Subject"
+msgstr "Тема"
+
+msgid "Invalid or blocked address. Use a public https address."
+msgstr "Неверный или заблокированный адрес. Используйте публичный адрес https."
+
+msgid "The server needs sign-in. Use \"Connect\" in Flux AI & MCP › Connections."
+msgstr "Службе нужен знак. MCP &quot; Соединения."
+
+msgid "The server rejected the credentials (401)."
+msgstr "сервер отклонил полномочия (401)."
+
+msgid "The server answered with HTTP %d."
+msgstr "На сервере ответил HTTP %d."
+
+msgid "The server did not return a valid MCP response."
+msgstr "сервер не представил действительного ответа MCP."
+
+msgid "Connection not found."
+msgstr "Соединение не найдено."
+
+msgid "Resources"
+msgstr "Ресурсы"
+
+msgid "Read resource"
+msgstr "Кадровые ресурсы"
+
+msgid "Could not find the sign-in (OAuth) settings of this server. Enter a token instead, or check the address."
+msgstr "Не смог найти прицепа (OAuth) этого сервера, вместо этого установить символ или проверить адрес."
+
+msgid "This server does not support PKCE (S256), which OAuth 2.1 requires."
+msgstr "Этот сервер не поддерживает PKCE (S256), что требует OAuth 2.1."
+
+msgid "This server does not allow automatic client registration. Create an OAuth client at the provider and enter its client ID (and secret) in the connection settings."
+msgstr "Этот сервер не допускает автоматической регистрации клиентов, создавая OAuth клиента в поставщике и вводя удостоверение личности клиента (и секретную информацию) в соединительных условиях."
+
+msgid "Automatic client registration failed. Enter a client ID in the connection settings."
+msgstr "Автоматическая регистрация клиентов провалилась."
+
+msgid "Sign-in failed: %s"
+msgstr "Подписи не сработали: %s"
+
+msgid "Sign in again."
+msgstr "Подпишите снова."
+
+msgid "Sign-in session expired. Try again."
+msgstr "Сессия в связи с сигналом истекла."
+
+msgid "Sign-in was cancelled or refused (%s)."
+msgstr "Регистрация была отменена или отклонена (%s)."
+
+msgid "MCP connection: %s"
+msgstr "MCP подсоединение: %s"
+
+msgid "%d tool available."
+msgid_plural "%d tools available."
+msgstr[0] "%d имевшийся инструмент."
+msgstr[1] "%d имевшиеся средства."
+msgstr[2] "%d имевшиеся средства."
+
+msgid "Not checked yet."
+msgstr "Еще не проверено."
+
+msgid "AI image"
+msgstr "Изображение IA"
+
+msgid "Generate image"
+msgstr "Построенное изображение"
+
+msgid "SVG cannot be used as a reference; render it to PNG first (flxai_design_render) or use a PNG logo."
+msgstr "SVG не может использоваться в качестве эталона; передает его на PNG (флксай_design_render) или использует логотип ППГ."
+
+msgid "Flux Cloud (account AI credits)"
+msgstr "&quot; поток туман &quot; (кредиты счета &quot; АИ &quot; )"
+
+msgid "E-mail address"
+msgstr "Адрес электронной почты"
+
+msgid "Phone number"
+msgstr "Номер телефона"
+
+msgid "Notify the task owner"
+msgstr "Уведомить владельца предприятия"
+
+msgid "This tool only works while a scheduled task is running."
+msgstr "Этот инструмент работает только в то время, когда выполняется запланированная задача."
+
+msgid "Find notification recipients"
+msgstr "Найти получателей уведомлений"
+
+msgid "AI task report"
+msgstr "Доклад о задачах МА"
+
+msgid "Sent to the task owner when a scheduled AI task has something to report."
+msgstr "Отправлялся владельцу, когда намеченная задача МА должна что-то сообщить."
+
+msgid "Task name"
+msgstr "Название задачи"
+
+msgid "Report summary"
+msgstr "Резюме"
+
+msgid "Report link"
+msgstr "Связь между докладами"
+
+msgid "Daily AI briefing"
+msgstr "Ежедневный брифинг для МА"
+
+msgid "Yesterday: 12 donations, 4,350 TL in total. 2 receipts are waiting for approval."
+msgstr "Вчера: 12 пожертвований, в общей сложности 4350 ТЛ. 2 квитанции ожидают утверждения."
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "AI task: {gorev}"
+msgstr "Задача МА: {gorev}"
+
+msgid "Open the report"
+msgstr "Открыть доклад"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "AI task: %s"
+msgstr "Задача МА: %s"
+
+msgid "The task could not finish: %s"
+msgstr "Эта задача не могла завершиться: %s"
+
+msgid "An action is waiting for your approval."
+msgstr "Действия ждут твоего одобрения."
+
+msgid "panel"
+msgstr "panel"
+
+msgid "my e-mail"
+msgstr "Моя почта."
+
+msgid "OAuth sign-in for MCP is off."
+msgstr "OAuth подпись для MCP отключена."
+
+msgid "Connecting assistants with sign-in is turned off on this site."
+msgstr "На этом сайте выключаются помощники по связям с подписью."
+
+msgid "Unknown application. Remove the connector and add it again."
+msgstr "Неизвестная заявка, сними соединитель и прибавьте ее снова."
+
+msgid "This return address is not registered for the application."
+msgstr "Этот адрес возвращения не зарегистрирован для подачи заявления."
+
+msgid "The page expired. Start connecting again from the assistant."
+msgstr "Начинаем связываться с помощником."
+
+msgid "%1$s wants to connect to %2$s"
+msgstr "%1$s хочет подключиться к %2$s"
+
+msgid "The assistant uses the site's MCP tools with your permissions."
+msgstr "Помощник использует инструменты MCP с вашего разрешения."
+
+msgid "New content is created as a draft; deleting only moves to trash."
+msgstr "В качестве проекта создается новое содержание; исключение лишь переходит к мусору."
+
+msgid "You can end the connection any time under Flux AI & MCP › MCP."
+msgstr "Вы можете положить конец соединению в любое время под Flux AI &quot; MCP &quot; MCP."
+
+msgid "After approval you return to %s."
+msgstr "После одобрения вы вернулись к %s."
+
+msgid "Deny"
+msgstr "Запретить"
+
+msgid "Allow"
+msgstr "Разрешить"
+
+msgid "Connect assistant"
+msgstr "Помощник по связи"
+
+msgid "Back to site"
+msgstr "Вернуться на сайт"
+
+msgid "Could not take the screenshot (HTTP %d)."
+msgstr "Не мог взять скриншот (HTTP %d)."
+
+msgid "Page screenshot"
+msgstr "Стр."
+
+msgid "You cannot view this content."
+msgstr "Вы не можете видеть это содержание."
+
+msgid "Only this site's addresses can be captured."
+msgstr "Только адреса этого сайта могут быть собраны."
+
+msgid "Content not found."
+msgstr "Контент не найден."
+
+msgid "The model provider"
+msgstr "Типовой поставщик"
+
+msgid "%s quota is used up for now (daily or monthly limit)."
+msgstr "В настоящее время квота составляет %s (в среднем или в месяц)."
+
+msgid "%s rate limit reached: too many requests at once. Try again in a minute."
+msgstr "Достигнут предельный уровень %s: слишком много заявок одновременно."
+
+msgid "%s is temporarily unavailable."
+msgstr "%s временно отсутствует."
+
+msgid "Flux Cloud did not answer."
+msgstr "Флюкс Клод не ответил."
+
+msgid "Start an empty chat."
+msgstr "Начни пустую болтовню."
+
+msgid "Show or hide the chat list: running, recent and archived chats."
+msgstr "Покажите или спрячьте список чатов: бегать, недавние и архивные разговоры."
+
+msgid "Find an earlier chat by title or content."
+msgstr "Найдите более раннюю беседу по названию или содержанию."
+
+msgid "Files, change requests and settings of this chat."
+msgstr "Фильмы, просьбы об изменении и условия этого разговора."
+
+msgid "Attach a file"
+msgstr "Прикрепить файл"
+
+msgid "Image, PDF or document for the assistant to read."
+msgstr "Фотография, PDF или документ для прочтения помощником."
+
+msgid "Create a scheduled task: "
+msgstr "Создать запланированную задачу:"
+
+msgid "Have the assistant run something on its own at set times and notify you or others."
+msgstr "Пусть ассистент управлял чем-то самостоятельно в установленные сроки и уведомляет вас или других."
+
+msgid "List my scheduled tasks and their last reports."
+msgstr "Перечислите мои запланированные задачи и их последние доклады."
+
+msgid "My tasks"
+msgstr "Мои задачи"
+
+msgid "Scheduled tasks, next runs and last reports."
+msgstr "Запланированные задачи, последующие задания и последние доклады."
+
+msgid "Create a new skill: "
+msgstr "Создать новый опыт:"
+
+msgid "New skill"
+msgstr "Новые навыки"
+
+msgid "Save reusable instructions you can call later with /name."
+msgstr "Спаси повторно используемые инструкции, которые ты можешь позвонить позже с/названием."
+
+msgid "Change model"
+msgstr "Модель изменения"
+
+msgid "Pick the AI model for this chat."
+msgstr "Выбери модель АИ для разговора."
+
+msgid "MCP server of %s: read and manage the site content and the tools of its FluxWP plugins."
+msgstr "MCP сервер %s: читать и управлять содержанием объекта и инструментами его FluxWP плугин."
+
+msgid "The input is not valid JSON; nothing was run."
+msgstr "Ввод не является действительным, и никто не был запущен."
+
+msgid "Change not found."
+msgstr "Изменения не найдены."
+
+msgid "Some files were not applied: %s"
+msgstr "Некоторые файлы не были применены: %s"
+
+msgid "This connection does not sign in with OAuth."
+msgstr "Эта связь не подписывается с OAuth."
+
+msgid "Unknown tool or permission: %s"
+msgstr "Неизвестный инструмент или разрешение: %s"
+
+msgid "Only read-only tools can run without asking: %s"
+msgstr "Только средства, предназначенные для чтения, могут использоваться без запроса: %s"
+
+msgid "This is another user's personal connection."
+msgstr "Это личная связь другого пользователя."
+
+msgid "Key not found."
+msgstr "Ключ не найден."
+
+msgid "The prompt cache must be off, 5 minutes or 1 hour."
+msgstr "Скорейшие тайники должны быть отключены на 5 минут или 1 час."
+
+msgid "Effort must be low, medium or high."
+msgstr "Эффорт должен быть низким, средним или высоким."
+
+msgid "Choose a model from the list."
+msgstr "Выбери образец из списка."
+
+msgid "Choose a search provider from the list."
+msgstr "Выберите из списка поставщика поисков."
+
+msgid "Flux Cloud use must be auto, always or off."
+msgstr "Использование Flux Cloud должно быть авто, всегда или вне."
+
+msgid "This key is not one Flux AI uses."
+msgstr "Этот ключ не используется для Flux AI."
+
+msgid "Choose a file to upload."
+msgstr "Выбери файл для загрузки."
+
+msgid "The file could not be read."
+msgstr "Файл не может быть прочитан."
+
+msgid "Skill not found."
+msgstr "Квалифика не найдена."
+
+msgid "Unknown system."
+msgstr "Неизвестная система."
+
+msgid "Unknown setting: %s"
+msgstr "Неизвестная установка: %s"
+
+msgid "Task not found."
+msgstr "Задача не найдена."
+
+msgid "That plugin does not offer this tool under the same name."
+msgstr "Этот плугин не предлагает этого инструмента под тем же названием."
+
+msgid "Virtual shell"
+msgstr "Виртуальная скорлупа"
+
+msgid "Add trigger test prompts first (some that should use the skill, some that should not)."
+msgstr "Добавить испытание на курение первым (некоторые из них должны использовать навыки, некоторые из которых не должны)."
+
+msgid "Test not found. Add a functional test with a prompt and expectations."
+msgstr "Добавить функциональное испытание с оперативными и ожидаемыми результатами."
+
+msgid "Daily briefing"
+msgstr "Ежедневный брифинг"
+
+msgid "Short morning report: yesterday's donations and orders, unanswered messages, site issues and what needs you today."
+msgstr "Краткое утреннее сообщение: вчерашние пожертвования и заказы, беспочвенные сообщения, проблемы с сайтом и то, что вам нужно сегодня."
+
+msgid "Turns data, plans or explanations into an interactive one-page visual report (Tailwind, charts, diagrams) you open in the chat."
+msgstr "Включает данные, планы или пояснения в интерактивный одностраничный визуальный отчет (Тайлвинд, карты, диаграммы), который вы открываете в чате."
+
+msgid "Site health check"
+msgstr "Проверка состояния здоровья"
+
+msgid "Checks system checks, speed and SEO audit results; reports only what changed or needs action."
+msgstr "Проверяет результаты проверки систем, оперативность и ОСБ; сообщает только о том, что изменилось или что требуется принять меры."
+
+msgid "Skill creator"
+msgstr "Создатель навыков"
+
+msgid "Creates, reviews and tests skills in the Agent Skills format. Use when the user wants a new skill, wants to improve one or asks why a skill does not trigger."
+msgstr "Создает, анализирует и анализирует навыки в формате агента Скиллса, использует, когда пользователь хочет получить новую квалификацию, хочет улучшить одну или спрашивает, почему квалификация не спровоцирует."
+
+msgid "Cover design"
+msgstr "Проектирование покрытия"
+
+msgid "Brand-style visuals with text as PNG/JPEG in several sizes from one brief: event covers, campaign and donation announcements, posts, stories, WhatsApp status, link previews, thank-you and quote cards, step infographics, carousel pages. Use for \"cover\", \"poster\", \"event visual\", \"story\", \"post image\", \"banner\"."
+msgstr "Фотография с изображениями \"PNG/JPEG\" в нескольких размерах от одного краткого сообщения: объявления о проведении мероприятий, объявления о донорировании, посты, истории, WhatsApp статус, связующие предвидения, спасибо и цитаты, ступеньки на фографах, страницы для каруселя."
+
+msgid "Social media"
+msgstr "Социальные сети"
+
+msgid "Voice builder"
+msgstr "Строитель &quot; Голоса &quot;"
+
+msgid "Learns who you are and how you write from a short interview and 3-5 writing samples; saves about-me.md and voice.md to the brand kit. The other social media skills read them. Use for \"learn my voice\", \"set up my content system\"."
+msgstr "Учитесь, кто вы есть, и как вы пишете из короткого интервью и 3-5 пишут образцы, за исключением того, что я имею в виду, и голосу, который смеется на подборку марок, а другие навыки социальных СМИ читают их, используют для \"выслушай мой голос\", \"закрепи мою систему содержания\"."
+
+msgid "Newsletter voice"
+msgstr "Новосточный голос"
+
+msgid "Adds newsletter-specific writing rules on top of the voice profile (newsletter-voice.md), from past issues or one of 6 archetypes. Use for \"learn my newsletter style\", \"set up my newsletter\"."
+msgstr "Добавляет правила написания информационных бюллетеней в дополнение к профилю голоса (новотлет-воа.мd), из прошлых выпусков или из шести архетипов."
+
+msgid "Post writer"
+msgstr "Почтовый писатель"
+
+msgid "Writes LinkedIn and social media posts in your voice from a topic, notes or a transcript. Use for \"write a post\", \"draft a post about…\"."
+msgstr "Напишите Линнединг и социальные посты в вашем голосе из темы, записок или стенограммы, используйте \"запиши почту\", \"оформите пост о...\""
+
+msgid "Post formatter"
+msgstr "Должность для рассмотрения вопросов"
+
+msgid "Turns a topic into a ready-to-publish post with a named framework (PAS, AIDA, BAB, STAR, SLAY), mobile-formatted. Use for \"format this as a post\", \"write it as PAS\"."
+msgstr "Превратит тему в готовый к публикации пост с названной системой (ПАС, АИДА, БАБ, СТАР, СЛАЙ), мобильной формой."
+
+msgid "Hook generator"
+msgstr "Генератор"
+
+msgid "Six short two-line opening hooks for a post topic, using your real numbers and experience. Use for \"write me hooks\", \"hook ideas\"."
+msgstr "Шесть коротких двухканальных крючек для почтовых тем, используя ваши настоящие номера и опыт, используйте \"запиши мне крючки\", \"посмотрите идеи\"."
+
+msgid "Post scorer"
+msgstr "Пластик"
+
+msgid "Scores a post draft against your own past performance (export or pasted posts) or with a labelled editorial review. Use for \"score my post\", \"rate this post\"."
+msgstr "Направляет почтовый проект против вашей собственной прошлой деятельности (экспорт или постов) или с ярко выраженным редакционным обзором."
+
+msgid "Content matrix"
+msgstr "Матрица контента"
+
+msgid "Pairs your 3-5 content pillars with 8 formats for 24-40 post ideas in one table. Use for \"post ideas\", \"content plan for the month\", \"what should I post\"."
+msgstr "Положите на три-пять столовых с 8 форматами на 24-40 постных идей в одном столе, используйте \"почтенные идеи\", \"континентный план на месяц\", \"что мне стоит записать\"."
+
+msgid "Niche research"
+msgstr "Исследования в Ниче"
+
+msgid "Finds up to 20 dated stories from the last 7 days in a niche with web search, with links and post angles. Use for \"what's trending\", \"this week's news in…\", \"research my niche\"."
+msgstr "Находит до 20 сюжетов за последние 7 дней в нише с интернет-поиском, с звеньями и почтовыми углами. \"Вот эта неделя в новостях...\" \"Исследуйте мою нишу\"."
+
+msgid "Graphic designer"
+msgstr "Графический дизайнер"
+
+msgid "Designs the image for a post: a structured HTML graphic rendered to PNG or an AI infographic (whiteboard or branded). Use for \"design a graphic for my post\", \"make an image for this post\"."
+msgstr "Снимает изображение для поста: структурированная графическая схема HTML, выставленная ППГ или АН-фография (белый борт или бренд), используемая для \"определения графики для моего поста\", \"снимите изображение для этой должности\"."
+
+msgid "Carousel"
+msgstr "Carousel"
+
+msgid "Builds a branded multi-slide carousel (1080x1350): brief, approval, then one image prompt or render per slide. Use for \"carousel\", \"turn this into slides\"."
+msgstr "Покупает клеймо с многослойдной корочкой (1080x1350): краткую, допущенную, затем одно изображение быстро или с помощью одного слайда, используемое для &quot; карусель &quot; , &quot; включите это в слайды."
+
+msgid "Whiteboard infographic"
+msgstr "Инфографический досок"
+
+msgid "Turns a post, newsletter or note into a hand-drawn whiteboard infographic (brief + image prompt or generated image). Use for \"whiteboard infographic\", \"hand-drawn graphic\"."
+msgstr "Включает почту, информационный бюллетень или записку в детскую картонную картонную картонную картонную картонную картонную картонную картонную картонную картографию (брифель + изображение быстро или генерируется)."
+
+msgid "Quote post"
+msgstr "Должность"
+
+msgid "Writes short original quotes and a matching quote graphic for a caption. Use for \"quote post\", \"quote graphic\", \"motivational post\"."
+msgstr "Напишите короткие оригинальные цитаты и цитататы, совпадающие с графиной для капсулы, используйте цитаты, графический, моральный пост."
+
+msgid "Pinned comment"
+msgstr "Замечание"
+
+msgid "Writes a deadpan pinned/first comment for a post together with a matching image prompt. Use for \"pinned comment\", \"first comment\"."
+msgstr "Напишет заклинание/первый комментарий на должность вместе с соответствующим изображением, используется для \"подкрепленного коммента\", \"первый комментарий\"."
+
+msgid "Profile optimizer"
+msgstr "Оптимизация профиля"
+
+msgid "Rewrites a LinkedIn profile: headline options, about, experience, featured section and banner/photo image prompts. Use for \"optimize my profile\", \"rewrite my headline\"."
+msgstr "Переписывает профиль &quot; LinkedIn &quot; : варианты заголовка, опыт, специализация и изображение баннера/фото, использование для \"оптимизации моего профиля\", \"переписать мою заголовку\"."
+
+msgid "YouTube thumbnail"
+msgstr "Миниатюра YouTube"
+
+msgid "Turns a video title into a high-click branded YouTube thumbnail prompt or image. Use for \"thumbnail\", \"YouTube cover\"."
+msgstr "Включает видеофильм в высококлику, напечатанную на бутылке \"Ютуб\" быстро или изображение."
+
+msgid "Reels scripting"
+msgstr "Сценарий"
+
+msgid "Writes a Reel/short video script in your voice from a reference video's transcript and your content. Use for \"script a reel\", \"turn this into a reel\"."
+msgstr "Напишет видео-сценарий \"Рель/шорт\" в твоем голосе из справочной видеозаписи и вашего содержания, используется для \"сценки реля\", \"включите это в рельс\"."
+
+msgid "Analytics dashboard"
+msgstr "Аналитическая доска"
+
+msgid "Turns a LinkedIn Analytics export (CSV) into an interactive visual report and 5 data-backed recommendations. Use for \"analyse my LinkedIn\", \"build my dashboard\"."
+msgstr "Включает экспорт \"Интерналитиков\" (CSV) в интерактивный визуальный доклад и пять рекомендаций, подкрепленных данными."
+
+msgid "The skill needs a name (lowercase letters, numbers and dashes)."
+msgstr "Квалификация нуждается в названии (нижние буквы, номера и сажи)."
+
+msgid "\"%s\" is not a valid skill name: use up to 64 lowercase letters, numbers and single dashes, not starting or ending with a dash."
+msgstr "\" %s\" не является действительным квалификационным именем: использовать до 64 нижние буквы, номера и одиночные таблички, не начиная и не заканчивая приливом."
+
+msgid "Skill names cannot contain \"claude\" or \"anthropic\" (reserved)."
+msgstr "Квалификационные названия не могут содержать \"клод\" или \"антропический\" (зарезервирован)."
+
+msgid "The folder \"%1$s\" must have the same name as the skill (\"%2$s\")."
+msgstr "У папки %1$s должно быть такое же имя, как и у мастера (\"%2$s\")."
+
+msgid "Write a description: what the skill does and when to use it. The assistant picks skills by this."
+msgstr "Напишите описание: что делает мастерство и когда его использовать."
+
+msgid "The description can be at most 1024 characters."
+msgstr "Описание может быть не менее 1024 героев."
+
+msgid "The name and description cannot contain < or > characters."
+msgstr "Наименование и описание не могут содержать < or > героя."
+
+msgid "Compatibility can be at most 500 characters."
+msgstr "Сопоставимость может составлять не более 500 персонажей."
+
+msgid "Give the skill a name."
+msgstr "Назовите навык."
+
+msgid "Write the skill instructions."
+msgstr "Напишите инструкции."
+
+msgid "A skill named \"%s\" already exists."
+msgstr "Уже существует мастерство по имени %s."
+
+msgid "Invalid file path. Use something like references/guide.md."
+msgstr "Используй что-то вроде справок/гуида."
+
+msgid "SKILL.md is edited with the skill form or flxai_skill_save."
+msgstr "SKILL.md редактируется с помощью квалифицированных форм или флксай_skill_save."
+
+msgid "This file type is not allowed in a skill folder."
+msgstr "Этот тип файла не допускается в квалифицированных папках."
+
+msgid "The skill has no file \"%s\"."
+msgstr "У мастерства нет файла %s."
+
+msgid "Binary file (image, font, archive…); it can be used as a template or attachment but not read as text."
+msgstr "Двоичный файл (имейдж, шрифт, архив...); он может использоваться в качестве шаблона или вложения, но не может быть истолкован в качестве текста."
+
+msgid "A skill file can be at most 5 MB."
+msgstr "Квалификационный файл может составлять не менее 5 МБ."
+
+msgid "A skill folder can hold at most 200 files."
+msgstr "У лыжного папки есть около 200 файлов."
+
+msgid "The zip PHP extension is not available on this server."
+msgstr "На этом сервере отсутствует распространение цип PHP."
+
+msgid "The zip file could not be created."
+msgstr "Записи не могут быть созданы."
+
+msgid "The zip file could not be opened."
+msgstr "Запись не могла быть открыта."
+
+msgid "The zip is too large (at most 500 files and 30 MB)."
+msgstr "Цип слишком большой (на большинстве 500 файлов и 30 МБ)."
+
+msgid "The instructions file must be named exactly SKILL.md (capital letters)."
+msgstr "Файл инструкций должен быть точно назван SKILL.md (капиталовые буквы)."
+
+msgid "No SKILL.md found in the zip."
+msgstr "В ципе нет СКИЛЛЛ.м."
+
+msgid "README.md is not part of a skill folder and was skipped; put documentation in SKILL.md or references/."
+msgstr "README.md не является частью квалифицированных кадров, и он был пропущен; помещает документацию в SKILL.md или ссылки/."
+
+msgid "Skipped: %s"
+msgstr "Пропущено: %s"
+
+msgid "\"%s\" has scripts. They are stored but not run on this server."
+msgstr "\" %s\" имеет сценарии, они хранятся, но не работают на сервере."
+
+msgid "This does not look like a SKILL.md file (it must start with a --- header)."
+msgstr "Это не похоже на файл SKILL.md (он должен начинаться с... заголовка)."
+
+msgid "List skills"
+msgstr "Навыки составления списков"
+
+msgid "Read a skill"
+msgstr "Читай навыки"
+
+msgid "Read a skill file"
+msgstr "Прочитай файл с квалификацией"
+
+msgid "Create or update a skill"
+msgstr "Создание или обновление навыков"
+
+msgid "Write a skill file"
+msgstr "Напишите квалификационный файл."
+
+msgid "Test a skill"
+msgstr "Испытание на лыжах"
+
+msgid "Delete a skill"
+msgstr "Удалить квалификация"
+
+msgid "Every hour"
+msgstr "Каждый час"
+
+msgid "Every %s hours"
+msgstr "Каждые %s часа"
+
+msgid "Weekdays at %s"
+msgstr "Еженедельные дни в %s"
+
+msgid "Every %1$s at %2$s"
+msgstr "Каждый %1$s при %2$s"
+
+msgid "Monthly on day %1$s at %2$s"
+msgstr "Ежемесячно %1$s при %2$s"
+
+msgid "Once: %s"
+msgstr "Один раз: %s"
+
+msgid "Every day at %s"
+msgstr "Каждый день на %s"
+
+msgid "Write what the task should do."
+msgstr "Напишите, что должна делать задача."
+
+msgid "Pick a future date and time for a one-time task."
+msgstr "Выбери будущую дату и время для одноразовой задачи."
+
+msgid "Skill not found: %s"
+msgstr "Квалификация не найдена: %s"
+
+msgid "You can have at most %s scheduled tasks."
+msgstr "У тебя будет около %s запланированной задачи."
+
+msgid "The task owner can no longer use the AI chat, or Flux AI chat is turned off."
+msgstr "Владелец предприятия больше не может использовать чаты с АИ, или чат с Flux AI отключен."
+
+msgid "List scheduled tasks"
+msgstr "Запланированные задачи"
+
+msgid "Create a scheduled task"
+msgstr "Создание запланированной задачи"
+
+msgid "You cannot use the AI chat, so you cannot create tasks."
+msgstr "Ты не можешь использовать чат из МА, так что ты не можешь создавать задачи."
+
+msgid "Update a scheduled task"
+msgstr "Обновление запланированной задачи"
+
+msgid "Delete a scheduled task"
+msgstr "Исключить запланированную задачу"
+
+msgid "Read a scheduled task report"
+msgstr "Прочти запланированный доклад о выполнении задач"
+
+msgid "Run a scheduled task now"
+msgstr "Запланированная задача сейчас"
+
+msgid "Scheduled AI tasks"
+msgstr "Запланированные задачи в области ИИ"
+
+msgid "%1$s tasks are more than 15 minutes late. Last check: %2$s. Make sure WP-Cron or a server cron calls wp-cron.php."
+msgstr "%1$s Завершается более 15 минут. %2$s- Убедись, что WP-Крон или серверный крон позвонит в верф-крон."
+
+msgid "%1$s active tasks. Last check: %2$s."
+msgstr "%1$s активная работа, последний осмотр: %2$s"
+
+msgid "Speech to text needs an OpenAI, Gemini or OpenRouter key (Flux AI & MCP › Settings)."
+msgstr "Для тексту необходимо OpenAI, Gemini или OpenRouter ключ (Flux AI MCP &quot; Settings)."
+
+msgid "No audio was received."
+msgstr "Никаких аудиоматериалов получено не было."
+
+msgid "This audio format is not supported."
+msgstr "Этот аудиоформат не поддерживается."
+
+msgid "Speech to text failed (%1$d): %2$s"
+msgstr "Скорость текста провалилась (%1$d ): %2$s"
+
+msgid "The recording is too long."
+msgstr "Запись слишком длинная."
+
+msgid "Visual reports need Flux Files (workspace)."
+msgstr "Визуальные отчеты необходимы для Flux Files (рабочий промежуток)."
+
+msgid "Report"
+msgstr "Отчет"
+
+msgid "The report is too large."
+msgstr "Доклад слишком большой."
+
+msgid "Create a visual report"
+msgstr "Создать визуальный отчет"
+
+msgid "This tool only works in the AI chat."
+msgstr "Этот инструмент работает только в чате МА."
+
+msgid "This file is not part of the workspace."
+msgstr "Этот файл не входит в рабочее пространство."
+
+msgid "Invalid or blocked address. Only public http(s) addresses can be read."
+msgstr "Адрес недействительных или заблокированных адресов можно прочитать только по адресу (адресам) для общественности."
+
+msgid "Web search is turned off in Flux AI & MCP › Settings › Web."
+msgstr "Веб-поиск выключен из Flux AI MCP &quot; Settings &quot; Web."
+
+msgid "No web search provider key. Enter one in Flux AI & MCP › Settings › Web."
+msgstr "Вход одного в Flux AI MCP &gt; Settings &gt; Web."
+
+msgid "Monthly web search limit (%d) reached. You can raise it in Flux AI & MCP › Settings › Web."
+msgstr "Ежемесячное ограничение поиска в Интернете (%d) достигло предела, и вы можете поднять его в Flux AI MCP &quot; Settings &quot; Web."
+
+msgid "Search query is empty."
+msgstr "Поиск пуст."
+
+msgid "Brave Search rejected the API key."
+msgstr "Брайв Ирч отверг ключ API."
+
+msgid "Brave Search rate or plan limit reached. Try again later."
+msgstr "Попробуем еще раз."
+
+msgid "Search failed (HTTP %1$d). %2$s"
+msgstr "Поиск провалился (HTTP %1$d). %2$s"
+
+msgid "Reading web pages is turned off in Flux AI & MCP › Settings › Web."
+msgstr "Читающие веб-страницы выключены в &quot; Flux AI &quot; MCP &quot; Settings &quot; Web."
+
+msgid "The page could not be read (HTTP %d)."
+msgstr "Эту страницу нельзя читать (HTTP %d)."
+
+msgid "This content type cannot be read as text: %s"
+msgstr "Этот тип содержания нельзя читать как текст: %s"
+
+msgid "Read web page"
+msgstr "Веб-страница"
+
+msgid "Invalid path."
+msgstr "Неверный путь."
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "Файл не может быть составлен (выбросы или дисковое пространство)."
+
+msgid "Outside this workspace. You may only use your own folder (%s) and the folders allowed for this chat or task."
+msgstr "Вы можете использовать только свою собственную папку (%s) и кладовые, которые могут быть использованы для этого разговора или работы."
+
+msgid "AI changes"
+msgstr "Изменения в ИС"
+
+msgid "This change request is already closed."
+msgstr "Эта просьба о внесении изменений уже закрыта."
+
+msgid "Flux Files is required to apply file changes."
+msgstr "Флюксы должны вносить изменения в файлы."
+
+msgid "Change request #%1$d was merged: %2$d file(s) changed."
+msgstr "Просьба об изменении No %1$d была объединена: документ(ы) %2$d изменился."
+
+msgid "Change request #%1$d was partly merged: %2$d file(s) applied, %3$d rejected."
+msgstr "Просьба об изменении No %1$d была частично объединена: подан(ы) %2$d файл(ы), отклонено %3$d."
+
+msgid "Change request #%d was rejected; no files were changed."
+msgstr "Просьба об изменении No %d была отклонена; никаких файлов не изменилось."
+
+msgid "You cannot change this task."
+msgstr "Ты не можешь изменить эту задачу."
+
+msgid "This folder is not part of the workspace."
+msgstr "Эта папка не входит в рабочее пространство."
+
+msgid "Only text files in this chat's own folder can be edited."
+msgstr "Только текстовые файлы в собственной папке этого разговора могут быть отредактированы."
+
+msgid "The file is too large."
+msgstr "Файл слишком большой."
+
+msgid "Unexpected indentation on line %d of the header."
+msgstr "Неожиданное опознание на линии %d головки."
+
+msgid "A list item cannot follow a key on line %d of the header."
+msgstr "Пункт перечня не может следовать за ключом на строке %d заголовка."
+
+msgid "Line %d of the header is not \"key: value\"."
+msgstr "Строка %d не \"ключ: значение\"."
+
+msgid "A key cannot follow a list item on line %d of the header."
+msgstr "Ключ не может следовать перечню на строке %d заголовка."
+
+msgid "A quoted value in the header is not closed."
+msgstr "Цифровая величина в заголовке не закрыта."
+
+msgid "No OpenRouter key in Flux AI settings."
+msgstr "Нет OpenRouter ключи от Flux AI."
+
+msgid "No Anthropic key in Flux AI settings."
+msgstr "Никаких антропических ключей в рекламе Flux AI."
+
+msgid "No OpenRouter or Anthropic key in Flux AI settings."
+msgstr "No OpenRouter или антропический ключ на установках Flux AI."
+
+msgid "No OpenRouter or Anthropic key in Flux AI settings. Enter one there; Flux AI sends the requests."
+msgstr "No OpenRouter или антропический ключ в установках Flux AI. Enter one there; Flux AI sends the requests."
+
+msgid "Only the Anthropic key is set: every request uses a Claude model. Add an OpenRouter key in Flux AI for other models."
+msgstr "Только антропический ключ установлен: каждая просьба использует модель Клода, добавляет ключ в Flux AI для других моделей."
+
+msgid "Requests use the OpenRouter key in Flux AI settings."
+msgstr "Просьбы используют ключ OpenRouter в условиях Flux AI."
+
+msgid "Claude models use the Anthropic key, other models the OpenRouter key in Flux AI settings."
+msgstr "Клодные модели используют антропический ключ, другие модели, ключи от OpenRouter в настройке Flux AI."
+
+msgid "OpenRouter did not accept the key in Flux AI settings."
+msgstr "OpenRouter не принял ключ в настройке Flux AI."
+
+msgid "The OpenRouter key in Flux AI works. Spent so far: $%s, no spending limit on the key (set one on OpenRouter)."
+msgstr "The OpenRouter Ключ в Flux AI работает.%s, никаких ограничений в отношении расходов на ключ (начинает один на OpenRouter)."
+
+msgid "The OpenRouter key in Flux AI works. Spent so far: $%1$s of the $%2$s limit."
+msgstr "Ключ Flux AI работает на OpenRouter долл. США. %1$s долл. США из предельного значения %2$s."
+
+msgid "Anthropic did not accept the key in Flux AI settings."
+msgstr "Антропик не принял ключ в хранилище Flux AI."
+
+msgid "The Anthropic key in Flux AI works."
+msgstr "Антропический ключ в Flux AI работает."

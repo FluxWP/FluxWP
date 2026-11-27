@@ -693,6 +693,6 @@ return array(
   'İlerleme' => '進捗状況',
   'Şimdi yedekle' => '今すぐバックアップしてください',
   'Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır.' => '「今すぐバックアップ」で最初のバックアップを作成します。復元はパネルで行われます。',
-
+  'JavaScript is required for this screen.' => 'JavaScript この画面には必須です。',
  ),
 );

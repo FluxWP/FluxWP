@@ -40,6 +40,11 @@
     "tryDemo": "Probieren Sie die Demo aus",
     "footer": "{{name}} · Sichere Verbindung, Ihr Passwort wird niemals in der App gespeichert"
   },
+  "screenLoadError": {
+    "title": "Diese Ansicht konnte nicht geladen werden",
+    "body": "Wenn das Plugin gerade aktualisiert wurde, kann der Browser oder der Website-Cache noch alte Dateien halten. Hard-Reload der Seite (Ctrl/Cmd + Shift + R); wenn es fortbesteht, spülen Sie den Website-Cache.",
+    "reload": "Seite neu laden"
+  },
   "errors": {
     "invalid_url": "Diese Adresse ist ungültig.",
     "unreachable": "Die Website konnte nicht erreicht werden. Überprüfen Sie die Adresse und Ihre Verbindung.",

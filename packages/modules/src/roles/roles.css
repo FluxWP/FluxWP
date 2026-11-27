@@ -47,6 +47,7 @@
 .flxr-btn.is-primary{background:var(--flxr-ac);border-color:var(--flxr-ac);color:var(--flux-primary-contrast,#fff);font-weight:600}
 .flxr-btn.is-danger{background:var(--flux-danger);border-color:var(--flux-danger);color:#fff;font-weight:600}
 .flxr-btn.is-small{min-height:26px;padding:0 8px;font-size:12px}
+@media(max-width:782px){.flxr-btn{max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}}
 .flxr-h2{margin-top:28px!important;font-size:18px!important}
 .flxr-people{margin:8px 0 12px;padding:0;list-style:none}
 .flxr-people li{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--flxr-bd);margin:0}

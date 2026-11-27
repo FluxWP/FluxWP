@@ -140,7 +140,7 @@ msgid "Flux AI Chatbot"
 msgstr "Flux AI Chatbot"
 
 msgid "Chatbot"
-msgstr "Chatbot"
+msgstr "Ich bin nicht da."
 
 msgid "Chats"
 msgstr "Chats"
@@ -1199,3 +1199,12 @@ msgstr "[[„Von künstlicher Intelligenz unterstütztes Chat-Fenster zur Websit
 
 msgid "Still answering. Please wait a moment."
 msgstr "Die Antwort wird noch geschrieben. Bitte warten Sie einen Moment."
+
+msgid "Answers site chats"
+msgstr "Antworten Website-Chats"
+
+msgid "JavaScript is required for this screen."
+msgstr "Für diesen Bildschirm ist JavaScript erforderlich."
+
+msgid "Chat on WhatsApp"
+msgstr "Chatten Sie auf WhatsApp"

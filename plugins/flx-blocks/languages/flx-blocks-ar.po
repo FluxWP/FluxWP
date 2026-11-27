@@ -1,0 +1,2387 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript مطلوب لهذه الشاشة."
+
+msgid "Block Editor"
+msgstr "محرر بلوك"
+
+msgid "Actionable endpoint for api call."
+msgstr "نقطة نهاية عملية للمكالمة"
+
+msgid "Submission rejected, invalid security token. Reload the page and try again."
+msgstr "الطلب مرفوض، أمن غير صحيح، أعد تحميل الصفحة وحاول مرة أخرى"
+
+msgid "Token invalid"
+msgstr "غير صالحة"
+
+msgid "Submission rejected."
+msgstr "رفض الطلب."
+
+msgid "Third Party Failed"
+msgstr "الطرف الثالث فشل"
+
+msgid "Submission failed"
+msgstr "فشل العرض"
+
+msgid "No Data"
+msgstr "لا توجد بيانات"
+
+msgid "Accept"
+msgstr "قبول"
+
+msgid "Did not accept"
+msgstr "لم تقبل"
+
+msgid "Missing a required field"
+msgstr "مفقودة من الحقل المطلوب"
+
+msgid "Trying to include too many files."
+msgstr "أحاول إدراج الكثير من الملفات"
+
+msgid "File too large"
+msgstr "اطيري كثيراً"
+
+msgid "File could not be uploaded"
+msgstr "الملف لا يمكن تحميله"
+
+msgid "Sorry, you are not allowed to upload this file type."
+msgstr "آسف، لا يسمح لك بتحميل هذا الملف"
+
+msgid "Not enough disk quota on this website."
+msgstr "لا يوجد ما يكفي من حصص الأقراص على هذا الموقع"
+
+msgid "Failed to upload file"
+msgstr "فشل في رفع الملف"
+
+msgid "Submission Failed"
+msgstr "عدم تقديم الطلب"
+
+msgid "Data not found"
+msgstr "البيانات التي لم يعثر عليها"
+
+msgid "Submission Success, Thanks for getting in touch!"
+msgstr "نجاح العرض، شكراً على الاتصال!"
+
+msgid "Submission Failed, reCaptcha spam prevention. Please reload your page and try again."
+msgstr "الرفض، منع الاختراق، يرجى إعادة تحميل صفحتك ومحاولة مرة أخرى."
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Entries"
+msgstr "إدخالات"
+
+msgid "Entries (Pro Only)"
+msgstr "الدخول (الحظر فقط)"
+
+msgid "Forms"
+msgstr "النماذج"
+
+msgid "Form"
+msgstr "النموذج"
+
+msgid "Form Archives"
+msgstr "الاستمارة"
+
+msgid "Form Attributes"
+msgstr "الاستمارة"
+
+msgid "Parent Form:"
+msgstr "-الأسماء الأبوية:"
+
+msgid "Add New Form"
+msgstr "إضافة استمارة جديدة"
+
+msgid "New Form"
+msgstr "نموذج جديد"
+
+msgid "Update Form"
+msgstr "الاستمارة المستكملة"
+
+msgid "Search Forms"
+msgstr "أشكال البحث"
+
+msgid "Not found"
+msgstr "لم يتم العثور عليه"
+
+msgid "Not found in Trash"
+msgstr "لم يعثر عليه في تراش"
+
+msgid "Filter items list"
+msgstr "قائمة أصناف الملفات"
+
+msgid "Contact forms, subscribe forms and others for your site."
+msgstr "استمارات الاتصال و استمارات الاشتراك وغيرها لموقعك"
+
+msgid "You do not have permission to view these posts."
+msgstr "ليس لديكِ إذن لرؤية هذه الوظائف"
+
+msgid "Submission"
+msgstr "Submission"
+
+msgid "MailerLite Misconfiguration"
+msgstr "الخلط بين المايلرليت"
+
+msgid "MailerLite Failed"
+msgstr "المايلرليت الفشل"
+
+msgid "You do not have permission to access GetResponse API data."
+msgstr "ليس لديك تصريح للوصول إلى بيانات (إجابات API)"
+
+msgid "Invalid or disallowed endpoint."
+msgstr "نقطة نهاية غير مستقرة أو غير مهذبة."
+
+msgid "Empty data from GetResponse"
+msgstr "بيانات فارغة من جهاز الرد السريع"
+
+msgid "[block rendering halted]"
+msgstr "[block rendering halted]"
+
+msgid "Please fix the errors to proceed"
+msgstr "من فضلك اصلح الاخطاء"
+
+msgid "is required"
+msgstr "مطلوب"
+
+msgid "does not match"
+msgstr "لا يوجد تطابق"
+
+msgid "is not valid"
+msgstr "غير صحيح"
+
+msgid "requires a unique entry and this value has already been used"
+msgstr "يتطلب دخولاً فريداً، وقد تم بالفعل استخدام هذه القيمة"
+
+msgid "Item"
+msgstr "البند"
+
+msgid "Toggle autoplay"
+msgstr "تَهْزُّ آلياً"
+
+msgid "See more"
+msgstr "شاهدْ أكثر"
+
+msgid "Display lightbox image:"
+msgstr "صورة صندوق الضوء:"
+
+msgid "Previous slide"
+msgstr "الشريحة السابقة"
+
+msgid "Next slide"
+msgstr "الشريحة التالية"
+
+msgid "Go to first slide"
+msgstr "اذهب للنزلق الأول"
+
+msgid "Go to last slide"
+msgstr "اذهب إلى آخر شريحة"
+
+msgid "Go to slide %s"
+msgstr "اذهب للنزهة %s"
+
+msgid "Go to page %s"
+msgstr "اذهب إلى الصفحة %s"
+
+msgid "Start autoplay"
+msgstr "ابدأي بالتشغيل الآلي"
+
+msgid "Pause autoplay"
+msgstr "وقف التشغيل الآلي"
+
+msgid "carousel"
+msgstr "carousel"
+
+msgid "slide"
+msgstr "الازدحام"
+
+msgid "Select a slide to show"
+msgstr "إختار الشريحة لتظهر"
+
+msgid "%s of %s"
+msgstr "%s من %s"
+
+msgid "Days"
+msgstr "أيام"
+
+msgid "Hrs"
+msgstr "Hrs"
+
+msgid "Mins"
+msgstr "المنجم"
+
+msgid "Secs"
+msgstr "Secs"
+
+msgid "Please enable JavaScript in your browser to submit the form"
+msgstr "رجاءً JavaScript في مصففِكَ لإخْدام النموذجِ"
+
+msgid "Google map of %s"
+msgstr "خريطة غوغل %s"
+
+msgid "Child menu"
+msgstr "قائمة طعام الأطفال"
+
+msgid "Child menu of"
+msgstr "قائمة الأطفال"
+
+msgid "Toggle child menu of"
+msgstr "قائمة الأطفال المضحكة"
+
+msgid "No posts"
+msgstr "لا توجد مشاركات"
+
+msgid "%1$s out of %2$s Stars"
+msgstr "%1$s من طراز %2$s"
+
+msgid "Play"
+msgstr "العب"
+
+msgid "Pause"
+msgstr "وقفة"
+
+msgid "Unmute"
+msgstr "غير مقصود"
+
+msgid "Mute"
+msgstr "كتم الصوت"
+
+msgid "Close search"
+msgstr "البحث"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Content is collapsed."
+msgstr "لقد انهارت المسابقة"
+
+msgid "Content continues."
+msgstr "استمر المحتوى."
+
+msgid "Activate the"
+msgstr "تفعيل"
+
+msgid "button to reveal the full content."
+msgstr "الزر لكشف المحتوى الكامل"
+
+msgid "Show More"
+msgstr "\"أظهر المزيد\""
+
+msgid "%1$d out of %2$d stars"
+msgstr "%1$d من %2$d النجوم"
+
+msgid "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply"
+msgstr "هذا الموقع محمية reCAPTCHA وتطبيق سياسة ومصطلحات خدمة جوغل"
+
+msgid "Close Menu"
+msgstr "اقترب من مينو"
+
+msgid "Name Prefix"
+msgstr "الاسم بريفيك"
+
+msgid "First Name"
+msgstr "الاسم الأول"
+
+msgid "Last Name"
+msgstr "الاسم الأخير"
+
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+msgid "Timezone"
+msgstr "المنطقة الزمنية"
+
+msgid "Address Line 1"
+msgstr "العنوان 1"
+
+msgid "Address Line 2"
+msgstr "العنوان 2"
+
+msgid "City"
+msgstr "المدينة"
+
+msgid "State"
+msgstr "الدولة"
+
+msgid "Postal Code"
+msgstr "الرمز البريدي"
+
+msgid "Country"
+msgstr "البلد"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Source"
+msgstr "المصدر"
+
+msgid "You do not have sufficient permissions to export content."
+msgstr "ليس لديك ما يكفي من التصاريح لتصدير محتوى."
+
+msgid "Export"
+msgstr "تصدير"
+
+msgid "Import completed successfully!"
+msgstr "إستيراد اكتمل بنجاح!"
+
+msgid "Export All"
+msgstr "الصادرات"
+
+msgid "Import"
+msgstr "استيراد"
+
+msgid "Upload & Import"
+msgstr "حمولة الواردات"
+
+msgid "You do not have sufficient permissions to import content."
+msgstr "ليس لديك ما يكفي من التصاريح لاستيراد المحتوى"
+
+msgid "Please upload a file to import."
+msgstr "من فضلك تحميل ملف لاستيراده"
+
+msgid "File upload failed."
+msgstr "لقد فشلت الحمولة"
+
+msgid "Invalid file type. Please upload a ZIP file."
+msgstr "من نوع الملفات الغير صالحة، من فضلك قم بتحميل ملف \"زي بي\""
+
+msgid "Invalid data in import file."
+msgstr "بيانات غير صالحة في ملف الاستيراد"
+
+msgid "Invalid import file structure. Missing export.json"
+msgstr "هيكل ملفات الواردات غير المستوفى، مفقودة.(ي)"
+
+msgid "This site does not share its design library."
+msgstr "هذا الموقع لا يتشارك مكتبة تصميمه"
+
+msgid "The library key is missing or wrong."
+msgstr "مفتاح المكتبة مفقود أو خاطئ"
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "My patterns"
+msgstr "أنماطي"
+
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+msgid "Unknown action."
+msgstr "عمل غير معروف."
+
+msgid "Library not found."
+msgstr "المكتبة لم تجد."
+
+msgid "The library could not be reached."
+msgstr "لا يمكن الوصول إلى المكتبة"
+
+msgid "The library refused access. Check the key, and that sharing is on at the other site."
+msgstr "المكتبة رفضت الدخول، تفقد المفتاح، وهذا التقاسم موجود في الموقع الآخر."
+
+msgid "This address is not a Flux design library."
+msgstr "هذا العنوان ليس مكتبة تصميم (فلوكس)"
+
+msgid "Make a duplicate from this."
+msgstr "اصنعي نسخة من هذا"
+
+msgid "Duplicate"
+msgstr "مكررة"
+
+msgid "No post to duplicate has been supplied!"
+msgstr "لم يتم توفير أي وظيفة للازدواجية!"
+
+msgid "Post creation failed, could not find original post: %s"
+msgstr "فشل إنشاء الوظائف، ولم يتمكن من العثور على الوظيفة الأصلية: %s"
+
+msgid "%s (Copy)"
+msgstr "%s (نسخة)"
+
+msgid "%s and higher"
+msgstr "%s وما فوق"
+
+msgid "Inherit"
+msgstr "Inherit"
+
+msgid "Thin 100"
+msgstr "Thin 100"
+
+msgid "Extra-Light 200"
+msgstr "مبلغ 200"
+
+msgid "Light 300"
+msgstr "النور 300"
+
+msgid "Regular"
+msgstr "عادية"
+
+msgid "Medium 500"
+msgstr "متوسطة 500"
+
+msgid "Bold 700"
+msgstr "طراز 700"
+
+msgid "Extra-Bold 800"
+msgstr "مبلغ 800 دولار إضافي"
+
+msgid "Limit results to items of a specific post type."
+msgstr "الحد من النتائج إلى بنود من نوع محدد من الوظائف."
+
+msgid "Include posts by ID."
+msgstr "تشمل الوظائف حسب الهوية."
+
+msgid "Number of results to return."
+msgstr "عدد النتائج التي ستعود"
+
+msgid "Define Type of Query."
+msgstr "تعريف نوع (كوري)"
+
+msgid "Define Query Order."
+msgstr "(تحدّد أمر (كوري"
+
+msgid "Define Query Order By."
+msgstr "حددي أمر (كوري) من قبل"
+
+msgid "Allow Sticky in Query."
+msgstr "(اسمحي لـ (ستيكي) في (كوراي"
+
+msgid "Exclude Category."
+msgstr "لا تشمل الفئة."
+
+msgid "Number of items to offset in query."
+msgstr "عدد البنود التي ستقابلها الاستفسارات."
+
+msgid "The Current Post ID."
+msgstr "بطاقة هوية الوظيفة الحالية"
+
+msgid "Check if using a custom Taxonomy"
+msgstr "تحقق من استخدام التاكسونيوم المعتاد"
+
+msgid "Include posts category."
+msgstr "يشمل فئة الوظائف."
+
+msgid "Include posts tags."
+msgstr "تشمل بطاقات الوظائف."
+
+msgid "Taxonomy Type."
+msgstr "نوع التاكسون."
+
+msgid "The source of the content."
+msgstr "مصدر المحتوى"
+
+msgid "Page of results to return."
+msgstr "صفحة النتائج للعودة."
+
+msgid "Expand Table of Contents"
+msgstr "جدول المحتويات"
+
+msgid "Collapse Table of Contents"
+msgstr "الجدول الزمني للمحتويات"
+
+msgid "Table of Contents"
+msgstr "جدول المحتويات"
+
+msgid "Lottie animation not found"
+msgstr "لم يعثر على مقياس لوتي"
+
+msgid "Lottie animation file contains invalid json"
+msgstr "ملف التشهير باللوتي يحتوي على (جسون) باطل"
+
+msgid "Please enter an animation title"
+msgstr "من فضلك أدخلي لقب التصويب"
+
+msgid "The API Key for Mailerlite account."
+msgstr "مفتاح حساب (ميلرليت) API"
+
+msgid "Query Args for url."
+msgstr "(كوري آرغز) من أجل (أورل)"
+
+msgid "Please enter a vector title"
+msgstr "من فضلك أدخل لقب ناقل"
+
+msgid "Flux Block Editor"
+msgstr "Flux Block Editor"
+
+msgid "Google Fonts load from fonts.googleapis.com, which shares visitor IP addresses with Google. Turn on \"Load Google Fonts Locally\"."
+msgstr "(غوغل فونتز) يتشارك مع (جوجل) عنواناً للزائرين مع (غوغل)"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Form spam protection"
+msgstr "حماية النموذج"
+
+msgid "Flux reCAPTCHA is active and can protect Flux Block Editor forms."
+msgstr "Flux reCAPTCHA يعمل ويستطيع حماية استمارات محرري فلكس."
+
+msgid "Flux reCAPTCHA is not active. Forms use the honeypot check only unless a captcha key is set on the form."
+msgstr "(فلكس) reCAPTCHA ليس نشطاً، لا تستخدم الاستمارات شيك مستودع العسل إلا إذا تم تحديد مفتاح (كابتشا) على الشكل."
+
+msgid "Blocks"
+msgstr "كتل"
+
+msgid "%d block is turned off."
+msgid_plural "%d blocks are turned off."
+msgstr[0] "تم إيقاف %d قطعة."
+msgstr[1] "%d كتلة مطفأة."
+msgstr[2] "تم إيقاف %d قطعة."
+msgstr[3] "تم إيقاف %d قطعة."
+msgstr[4] "تم إيقاف %d قطعة."
+msgstr[5] "تم إيقاف %d قطعة."
+
+msgid "All blocks are on."
+msgstr "جميع المباني جاهزة."
+
+msgid "Data not Found"
+msgstr "البيانات غير المعثر عليها"
+
+msgid "Submission Rejected"
+msgstr "الطلب المقدم"
+
+msgid "reCAPTCHA Failed"
+msgstr "reCAPTCHA فشل"
+
+msgid "Required Field Empty"
+msgstr "إجازات ميدانية مطلوبة"
+
+msgid "Flux Header"
+msgstr "Flux Header"
+
+msgid "Add New Flux Header"
+msgstr "مضافا إليه رئيس جديد"
+
+msgid "Headers"
+msgstr "المرؤوسون"
+
+msgid "Search Flux Headers"
+msgstr "ابحثوا عن رؤوس فلكس"
+
+msgid "Parent Flux Header:"
+msgstr "رئيس الأب (فلوكس)"
+
+msgid "No Flux Header found."
+msgstr "لم يجد (فلكس هيدر)"
+
+msgid "No Flux Header found in Trash."
+msgstr "لا يوجد (فلكس هيدر) في (تراش)"
+
+msgid "Flux Header archives"
+msgstr "Flux Header archives"
+
+msgid "Uploaded to this Flux Header"
+msgstr "مُحمّل على هذا الرؤوس الفاخر"
+
+msgid "Filter Flux Header list"
+msgstr "قائمة المصورين"
+
+msgid "Flux Headers list navigation"
+msgstr "Flux Headers list navigation"
+
+msgid "Flux Headers list"
+msgstr "Flux Headers list"
+
+msgid "Flux Headers that can be inserted into your site."
+msgstr "رعاة الـ (فلكس) الذين يمكن أن يُدخلوا إلى موقعكم"
+
+msgid "Theme Header"
+msgstr "العنوان:"
+
+msgid "%s (Theme)"
+msgstr "%s (موضوع)"
+
+msgid "Add New"
+msgstr "إضافة جديدة"
+
+msgid "Header"
+msgstr "رأس"
+
+msgid "Continue"
+msgstr "متابعة"
+
+msgid "Flux Navigation"
+msgstr "Flux Navigation"
+
+msgid "Add New Flux Navigation"
+msgstr "إضافة ملاحية جديدة"
+
+msgid "Navigations"
+msgstr "الملاحة"
+
+msgid "Search Flux Navigations"
+msgstr "باحثة فيلوكس"
+
+msgid "Parent Flux Navigation:"
+msgstr "الأب فلكس الملاحة:"
+
+msgid "No Flux Navigation found."
+msgstr "لم نجد أي ملاحه"
+
+msgid "No Flux Navigation found in Trash."
+msgstr "لا توجد ملاحه في تراش"
+
+msgid "Flux Navigation archives"
+msgstr "Flux Navigation archives"
+
+msgid "Uploaded to this Flux Navigation"
+msgstr "مُحمّل على هذه الملاحية"
+
+msgid "Filter Flux Navigation list"
+msgstr "قائمة الملاحين المصورين"
+
+msgid "Flux Navigation list navigation"
+msgstr "Flux Navigation list navigation"
+
+msgid "Flux Navigation list"
+msgstr "Flux Navigation list"
+
+msgid "Flux Navigations that can be inserted into your site."
+msgstr "\"الملاحة الفاخرة\" التي يمكن إدخالها إلى موقعك"
+
+msgid "Style Library"
+msgstr "مكتبة نموذجية"
+
+msgid "This site uses the Flux theme in Full Site Editing mode, so site-wide colors are managed in the Site Editor's %s."
+msgstr "هذا الموقع يستعمل موضوع \"فلوكس\" في طريقة \"إدينغ\" الكاملة لذا الألوان على نطاق الموقع تدار في محرر الموقع %s"
+
+msgid "Style Library settings keep applying to the blocks that use them."
+msgstr "تتقدم المكتبة على الطرقات التي تستخدمها"
+
+msgid "Your Library"
+msgstr "مكتبتك"
+
+msgid "Flux Block Editor design tokens are disabled because these tokens have no baseline entry: %s"
+msgstr "تصميم محرري الـ (فلوكس بلوك) معوق لأن هذه الشوكات ليس لها أي مدخل خطي %s"
+
+msgid "None"
+msgstr "لا شيء"
+
+msgid "2X Small"
+msgstr "2X Small"
+
+msgid "Extra Small"
+msgstr "صغيرة"
+
+msgid "Small"
+msgstr "صغير"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "Large"
+msgstr "كبير"
+
+msgid "Extra Large"
+msgstr "المزيد"
+
+msgid "2X Large"
+msgstr "2X Large"
+
+msgid "3X Large"
+msgstr "3X Large"
+
+msgid "4X Large"
+msgstr "4X Large"
+
+msgid "5X Large"
+msgstr "5X Large"
+
+msgid "Full"
+msgstr "كاملة"
+
+msgid "Spacing"
+msgstr "Spacing"
+
+msgid "Gap"
+msgstr "Gap"
+
+msgid "Border Radius"
+msgstr "نصف القطر الحدودي"
+
+msgid "Border Width"
+msgstr "حاصل الحدود"
+
+msgid "Shadow"
+msgstr "Shadow"
+
+msgid "Font Size"
+msgstr "حجم الخط"
+
+msgid "Brand Primary"
+msgstr "البراندي الأول"
+
+msgid "Brand Secondary"
+msgstr "براند ثانوي"
+
+msgid "Neutral 900"
+msgstr "المحايدة 900"
+
+msgid "Neutral 700"
+msgstr "700 محايد"
+
+msgid "Neutral 600"
+msgstr "600 محايد"
+
+msgid "Neutral 500"
+msgstr "المحايدة 500"
+
+msgid "Neutral 100"
+msgstr "المحايدة 100"
+
+msgid "Neutral 50"
+msgstr "المحايدة 50"
+
+msgid "Neutral 0"
+msgstr "المحايدة صفر"
+
+msgid "Complement"
+msgstr "التكملة"
+
+msgid "Success"
+msgstr "النجاح"
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "Alert"
+msgstr "إنذار"
+
+msgid "Warning"
+msgstr "تحذير"
+
+msgid "Rating"
+msgstr "التقييم"
+
+msgid "Palette"
+msgstr "Palette"
+
+msgid "Button Background"
+msgstr "خلفية الزر"
+
+msgid "Button Text"
+msgstr "نص الزر"
+
+msgid "Brand"
+msgstr "العلامة التجارية"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Notices"
+msgstr "الإشعارات"
+
+msgid "Brand Button"
+msgstr "براند بوتون"
+
+msgid "Brand Button (Hover)"
+msgstr "براند بوتون (هوفر)"
+
+msgid "Neutral 300"
+msgstr "المحايدة 300"
+
+msgid "Neutral 200"
+msgstr "المحايدة 200"
+
+msgid "Layout"
+msgstr "التخطيط"
+
+msgid "Row Layout Background"
+msgstr "الخلفية"
+
+msgid "Column Background"
+msgstr "العمود"
+
+msgid "Column Background (Hover)"
+msgstr "العمود الفقري (الساعة)"
+
+msgid "Border"
+msgstr "الحدود"
+
+msgid "Border (Hover)"
+msgstr "الحدود (الساعة)"
+
+msgid "Image Background"
+msgstr "معلومات أساسية"
+
+msgid "Media"
+msgstr "وسائل الإعلام"
+
+msgid "Border Width (Hover)"
+msgstr "حورية الحدود (الساعة)"
+
+msgid "Media Padding"
+msgstr "وسائط الإعلام"
+
+msgid "Style"
+msgstr "النمط"
+
+msgid "Button"
+msgstr "زر"
+
+msgid "Advanced Image"
+msgstr "الصورة المتقدمة"
+
+msgid "Section"
+msgstr "القسم"
+
+msgid "Icon"
+msgstr "أيقونة"
+
+msgid "Advanced Text"
+msgstr "النص المتقدم"
+
+msgid "Sorry, that design token library does not exist."
+msgstr "آسف، تلك المصممة المكتبة غير موجودة."
+
+msgid "The active token library slug, always resolved to an existing library."
+msgstr "\"المكتبة المكسورة النشطة\" \"كانت دائماً مصممة على مكتبة قائمة\""
+
+msgid "The token library slug to make active."
+msgstr "المكتبة المكسورة لتنشط."
+
+msgid "Sorry, you are not allowed to manage design tokens."
+msgstr "آسف، ليس مسموحاً لكِ أن تتدبري أمور التصميم."
+
+msgid "The requested design token library does not exist."
+msgstr "ولا توجد المكتبة المُطلَبة للتصميم."
+
+msgid "The token library was modified since you last read it. Reload and try again."
+msgstr "لقد تم تعديل المكتبة منذ أن قرأتها آخر مرة أعد تحميلها وحاول مرة أخرى"
+
+msgid "The user primitive document invariant failed."
+msgstr "وفشلت الوثيقة البدائية للمستعمل."
+
+msgid "The document contains an unsupported reference to a user primitive."
+msgstr "وتتضمن الوثيقة إشارة غير مدعومة إلى بدائية للمستعمل."
+
+msgid "The design token document failed validation."
+msgstr "ولم تُثبت الوثيقة المرمزة."
+
+msgid "The design token document could not be encoded."
+msgstr "ولا يمكن تشفير الوثيقة المرمزة."
+
+msgid "The design token library could not be saved."
+msgstr "لم يكن من الممكن إنقاذ المكتبة المصممة"
+
+msgid "Bulk replace is not allowed while user-created primitives exist. Delete them first or use PATCH."
+msgstr "ولا يسمح بالاستعاضة عن العبوات، بينما توجد البدائيات المزودة بالبستات المستعملة، وتحذفها أولاً أو تستخدم مادة PATCH."
+
+msgid "A library title cannot be empty."
+msgstr "عنوان المكتبة لا يمكن أن يكون فارغا."
+
+msgid "The library title could not be saved."
+msgstr "لا يمكن إنقاذ عنوان المكتبة."
+
+msgid "The design token library could not be deleted."
+msgstr "ولا يمكن حذف المكتبة المصممة."
+
+msgid "A $type is required to create a new token."
+msgstr "هناك حاجة إلى نوع من الدولارات لخلق رمز جديد."
+
+msgid "Use the user-primitives endpoint to delete a custom primitive."
+msgstr "استخدم نقطة النهاية للمستعملين لحذف البدائي"
+
+msgid "The token path must begin with a valid layer (%s) and name a token below it, with no empty segments."
+msgstr "ويجب أن يبدأ المسار المكسور بطبقة صالحة (%s) وأن يُسمّى مقطعاً تحته، دون أن تكون هناك أجزاء فارغة."
+
+msgid "The token library slug."
+msgstr "-اللوحة المكتبية المُكسورة ."
+
+msgid "The human-readable label for the library, empty when none is stored."
+msgstr "العلامة البشرية القابلة للقراءة للمكتبة فارغة عندما لا يخزن أحد"
+
+msgid "The cache-busting version hash for the library, empty when it renders from baseline."
+msgstr "الصدر المزيف للمكتبة فارغ عندما يصدر من خط الأساس"
+
+msgid "The raw overrides-only DTCG document, empty when the library renders entirely from baseline."
+msgstr "ووثيقة التجاوزات الخام فقط لـ دي تي جي، فارغة عندما تصدر المكتبة بالكامل من خط الأساس."
+
+msgid "Resolved CSS values keyed by token dot-path id."
+msgstr "القيم المُحلّلة لـ (سي إس إس) مُعدّلة بـ (د.د.كِن)"
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id; present only for tokens that carry a shape."
+msgstr "/شكل المشبك الجاهز من قبل المغفلين المغفلين الممنوعين؛ لا يوجد إلا للخراطيم التي تحمل شكلاً"
+
+msgid "Sorry, that token is not registered."
+msgstr "آسف، هذا (توكن) غير مسجل."
+
+msgid "Sorry, that token group does not exist."
+msgstr "آسف، تلك المجموعةِ المُتَكَنّةِ لَيستْ موجودة."
+
+msgid "Sorry, that font family is not available on this site."
+msgstr "آسف، تلك العائلةِ النافعةِ لَيستْ متاحةَ في هذا الموقعِ."
+
+msgid "\"%s\" is a token group, not a single token. Write a token below it instead."
+msgstr "\"%s\" هي مجموعة رمزية، وليس رمزاً واحداً، أكتب رمزاً أسفله بدلاً من ذلك."
+
+msgid "\"%1$s\" is a token, not a group, so \"%2$s\" cannot be written below it."
+msgstr "\"%1$s\" هو رمز، وليس مجموعة، لذلك \"%2$s\" لا يمكن أن تكتب أسفله."
+
+msgid "The human-readable label for the token library."
+msgstr "العلامة البشرية القابلة للقراءة للمكتبة المكسوره"
+
+msgid "The token library slug to write. Defaults to the default library."
+msgstr "المكتبة الكينية للكتابة، تعطل المكتبة المفقودة"
+
+msgid "The overrides-only DTCG document to store."
+msgstr "وثيقة (دي تي جي) فقط لتخزن"
+
+msgid "Optional human-readable label for the token library."
+msgstr "بطاقة اختيارية قابلة للقراءة من البشر للمكتبة المكسوره"
+
+msgid "The token dot-path, e.g. primitive.color.brand."
+msgstr "المُختلِف، مثل البدائيّة."
+
+msgid "The display-label override. Empty or whitespace-only clears the override, equivalent to DELETE."
+msgstr "تخطي علامه العرض، الفراغ أو الحيز الأبيض يزيل التجاوزات، مكافئاً لـ(ديليت)."
+
+msgid "The token's canonical dot-path id, e.g. semantic.color.button-bg."
+msgstr "(الطنين) المُصاب بمرض اللحوم، مثل (السيمانتيك كولور)"
+
+msgid "The version the client last read; empty for a first write. A mismatch is rejected with HTTP 409."
+msgstr "النسخة الأخيرة للزبونة، فارغة للكتابة الأولى، رُفض خطأ مع شركة HTTP 409."
+
+msgid "The token ids in their new order for this group."
+msgstr "المغفلون في طلبهم الجديد لهذه المجموعة"
+
+msgid "The UI-schema group name whose token order is being set."
+msgstr "اسم مجموعة (يو-شيما) الذي يتم تحديد أمره المكسور"
+
+msgid "The font family name to add as a favorite, e.g. Abril Fatface."
+msgstr "اسم العائلة الضبابي الذي يضيفه كمفضل، مثل \"أبريل فاتفيس\"."
+
+msgid "The primitive.*.custom.* namespace is reserved for user-created primitives. Use the user-primitives endpoint."
+msgstr "الشعار البدائي* - يُحتفظ بحيز الاسم لبدائيات مجهزة بالمستعملين، ويستخدم نقطة النهاية لبدائيات المستخدم."
+
+msgid "Whether the design-token registry is active."
+msgstr "وسواء كان السجل المكسور للتصميم نشطاً."
+
+msgid "Whether the library resolved without a corrupt-store failure."
+msgstr "ما إذا كانت المكتبة قد حلت دون فشل في المتاجر الفاسدة"
+
+msgid "The library's stored label, empty when it has none."
+msgstr "بطاقة المكتبة المخزنة فارغة عندما لا يكون لها أي شيء"
+
+msgid "The token library slug the feed was assembled for."
+msgstr "المكتبة الكثيفة تم تجميعها"
+
+msgid "The token structure, grouped for the UI."
+msgstr "الهيكل المكسور، مجمّع للوحدة."
+
+msgid "Per-block preset structure and resolved preview values."
+msgstr "الهيكل المسبق للعقبات وتسوى قيم ما قبل الاستعراض"
+
+msgid "The nav-ready block-presets section, for labeled/picker-driven preset bindings only."
+msgstr "القسم الخاص بمجموعات تجهيزات المناورة، والمتصلة بالعلامات الملزمة مسبقاً والموجهة نحو المناورة فقط."
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id."
+msgstr "/ شكل مشبك مجهز بـ \"كيد دوت-بايد\""
+
+msgid "The REST descriptor (root, namespace, nonce) the app writes edits to."
+msgstr "المجند رقم REST (الموجود، مكان الاسم، غير مرئي) يكتب له الطبع"
+
+msgid "The token library slug to read the feed for."
+msgstr "المكتبة الكينية ترتجف لقراءة الطعام"
+
+msgid "A swatch value or label is required."
+msgstr "ولا بد من وجود قيمة أو بطاقة تبادل."
+
+msgid "A swatch value cannot be empty."
+msgstr "لا يمكن أن تكون قيمة التبديل فارغة"
+
+msgid "A swatch label cannot be empty."
+msgstr "لا يمكن أن تكون علامة التبديل فارغة"
+
+msgid "A swatch label is structural and can only be set on the library's default palette."
+msgstr "وعلامة التبديل هيكلية و يمكن أن توضع فقط على شامة المكتبة"
+
+msgid "The current palette must name a palette the library defines."
+msgstr "يجب أن تُسمّي الشاحب الحاليّة شطيرة تُعرّفها المكتبة."
+
+msgid "The palette id."
+msgstr "\"البطولة\""
+
+msgid "The palette label."
+msgstr "بطاقة الشلاء"
+
+msgid "The ordered color groups, each an ordered list of swatches."
+msgstr "مجموعات الألوان المطلوبة، كل قائمة مطلوبة من المسبحات."
+
+msgid "The color palette failed validation."
+msgstr "لقد فشل التثبت من الألوان"
+
+msgid "The color palette could not be encoded."
+msgstr "لا يمكن تشفير الألوان"
+
+msgid "The color palette could not be saved."
+msgstr "لا يمكن أن ينقذ اللون النبيل."
+
+msgid "The palette label must be a string."
+msgstr "يجب أن تكون علامة الشحوم سلسلة."
+
+msgid "A palette must define at least one color group."
+msgstr "يجب أن تُعرّف النخيل على الأقل مجموعة لون واحدة."
+
+msgid "Each color group must have an id, a label, and a swatches list."
+msgstr "كل مجموعة لون يجب أن يكون لديها حامض، وعلامة، وقائمة بائعات."
+
+msgid "Each swatch must have a token, a label, and a value."
+msgstr "يجب أن يكون لدى كل مسبح رمز وعلامة وقيمة"
+
+msgid "Swatch token \"%s\" does not target a color."
+msgstr "امسحوا \"%s\" لا يستهدفون لون"
+
+msgid "Token \"%s\" appears more than once in the palette."
+msgstr "\"تودّع \"%s\" يظهر أكثر من مرة في النخيل"
+
+msgid "Swatch value aliases a token that does not exist: \"%s\"."
+msgstr "قيمة البرمجيات تُستَخَدِّرُ a رمز الذي لا يَجِدُ: \"%s \"."
+
+msgid "Swatch \"%s\" is part of the shipped palette and cannot be removed."
+msgstr "\"سواتش %s\" جزء من الشلل المشحون ولا يمكن إزالتها."
+
+msgid "Accent"
+msgstr "لهجة"
+
+msgid "Sorry, that palette does not exist."
+msgstr "آسف، تلك النبيلة ليست موجودة."
+
+msgid "Optional token library slug to target; defaults to the active library."
+msgstr "اختيـاريـة مـنـزلـة المكتبـة المكـونـة إلى الهدف؛ وقـد تعـارض على المكتبة الناشطة."
+
+msgid "The swatch token dot-path."
+msgstr "المُباراة المُختلّة."
+
+msgid "The swatch value: a literal color or a {dot.path} alias."
+msgstr "قيمة السحب: لون حرفي أو اسم مستعار رقم {dot.path}."
+
+msgid "The swatch's structural label. Only valid when {id} is the library's default palette — labels are defined once, not per palette."
+msgstr "بطاقة الوصلات الهيكلية، لا تصلح إلا عندما يكون رقم {id} هو شريان المكتبة الافتراضي"
+
+msgid "The palette id to make current."
+msgstr "الشاحب يُصبحُ تياراً."
+
+msgid "A preset slug is required."
+msgstr "هناك حاجة لبقعة مُسبقة."
+
+msgid "The preset's human-readable label."
+msgstr "وسمة ما قبل الصدمة البشرية قابلة للقراءة"
+
+msgid "The preset's property => value map: an alias or literal, a per-corner list, or a responsive envelope."
+msgstr "\"ممتلكات ما قبل البدأ\" \"خارطة القيمة: اسم مستعار أو حرفي، أو قائمة لكل ذرة، أو ظرف مستجيب"
+
+msgid "Which properties this preset genuinely stores itself, as property => true. A bound property absent here is only inherited from the baseline's own definition of the same preset slug, and a control shows it as a muted default rather than as bound."
+msgstr "الذي يُخزّنُ هذا المُسبقِ يُخزّنُ نفسه بشكل حقيقي، كملكيةِ = صحيح، الممتلكات المُحْصَلةُ المُتَغَلَة هنا فقط ورثتْ مِنْ تعريفِ خط الأساسِ الخاصِ لنفس اللفّةِ المُسبقِةِ، والتحكم يُظهرُه كa تخلف مُطْوَوَّل بدلاً مُحْ."
+
+msgid "The classes the theme's own stylesheet paints this preset through, for a preset painted by class rather than by variables."
+msgstr "الصفوف التي ترسمها صحيفة الميول الخاصة للموضوع هذه المُسبقة، لرسم مسبق من قبل الصف وليس بالمتغيرات."
+
+msgid "The values the theme currently renders for this preset, for display only: a control shows them as muted defaults and a save stores only the values that differ."
+msgstr "وتعطي القيم التي يتيحها الموضوع حالياً لهذه المرحلة التمهيدية، للعرض فقط: فالتحكم يُظهرها على أنها تقصير مطحن ومخازن إنقاذ فقط القيم التي تتفاوت."
+
+msgid "Whether the theme's values behind this preset could be read. A preset that is not readable can be previewed and picked but offers nothing to edit."
+msgstr "ما إذا كانت قيم الموضوع وراء هذا المُسبق يمكن قراءتها، إنّه لا يمكن قراءتها مسبقاً، واختيارها، لكنّها لا تقدم شيئاً للتحرّر."
+
+msgid "The block name the preset collection belongs to."
+msgstr "اسم المبنى الذي تنتمي إليه المجموعة السابقة."
+
+msgid "The default preset slug."
+msgstr "الـ (ديفيت) الـمُقَطَّع"
+
+msgid "The preset slugs the library defines beyond the baseline. Deleting one removes it; deleting anything else at most reverts an override."
+msgstr "تُعَرّفُ المُسبقَةَ المكتبةَ خارج خطِ الأساسِ، حذفَ واحد يَزيلُه؛ حذف أيّ شئ آخر في معظم الأحيان يُعيدُ تخطيَه."
+
+msgid "The named presets, keyed by slug."
+msgstr "\"المفترسات المسماة\" \"مُفتاحة بـ \"سلوك"
+
+msgid "The stored theme presets the active theme does not offer, keyed by slug: not listed, not projected, kept until a theme that offers them is active again."
+msgstr "والموضوع المخزن يُفترض أن الموضوع النشط لا يعرضه، مُعدلاً باللوحة: لا يُدرج في القائمة، ولا يُتوقع أن يُحتفظ به إلى أن يكون الموضوع الذي يعرضه ناشطاً مرة أخرى."
+
+msgid "The label the preset was stored with."
+msgstr "العلامة التي تم تخزينها مع."
+
+msgid "The overrides the preset keeps."
+msgstr "التجاوزات تستمر"
+
+msgid "The theme values the preset had when its overrides were last saved."
+msgstr "ويُقدّر الموضوع الذي كانت عليه المُنشأة عندما تمّ إنقاذ تجاوزاتها الأخيرة."
+
+msgid "The design token library could not be encoded."
+msgstr "لا يمكن تشفير المكتبة المصممة."
+
+msgid "Sorry, that block does not accept presets."
+msgstr "آسف، ذلك المبنى لا يقبل المفترسات"
+
+msgid "A preset slug cannot be empty."
+msgstr "لا يمكن أن يكون هناك غباء."
+
+msgid "Each preset must be an object with an optional string label and a token map."
+msgstr "ويجب أن يكون كل مرحلة سابقة موضوعاً يحمل علامة خطية اختيارية وخارطة رمزية."
+
+msgid "A preset cannot set theme-owned keys."
+msgstr "لا يمكن للمرحلة التمهيدية أن تضع مفاتيح مملوكة للموضوع."
+
+msgid "That preset slug is reserved."
+msgstr "هذه الخدعة المسبقة محجوزة"
+
+msgid "A per-corner value is only valid for a dimension property."
+msgstr "ولا تكون القيمة لكل ذرة صالحة إلا بالنسبة لممتلكات ذات بعد."
+
+msgid "A per-corner base value must set every corner; a gap is only valid inside a responsive override."
+msgstr "ويجب أن تحدد القيمة الأساسية لكل ذرة كل زاوية؛ ولا تكون الفجوة صالحة إلا في إطار تجاوز مستجيب."
+
+msgid "A dimension value must not contain a space; compound literals (e.g. calc(), clamp()) are not supported."
+msgstr "ولا يجب أن تتضمن القيمة البُعدية حيزاً؛ ولا تدعم الألياف المركبة (مثلاً الكالسنة، والكلب)."
+
+msgid "A per-corner responsive override requires a per-corner base value for the same property."
+msgstr "يتطلب تجاوز حساسية للذرة الواحدة قيمة أساسية لكل ذرة لنفس الممتلكات."
+
+msgid "A shadow value must be an alias, a literal, or a composite carrying color, offsetX, offsetY, blur and spread."
+msgstr "ولا بد أن تكون القيمة الظلية اسما مستعارا، أو حرفيا، أو لون مركب يحمل لون، أو يعوض، أو يعوض، أو غير واضح، أو ينتشر."
+
+msgid "The default preset must name an existing preset."
+msgstr "يجب أن يُسمّى المُسبق الافتراضي مسبقاً."
+
+msgid "A theme preset cannot be the default preset."
+msgstr "لا يمكن أن يكون الموضوع قبل التقصير."
+
+msgid "A preset can only set properties the block binds."
+msgstr "المُبتدئ يمكنه فقط أن يُحدّد الخواص المُرتبطة بالمبنى"
+
+msgid "A preset alias does not resolve to a token."
+msgstr "الإسم المسبق لا يُريد أن يُحدِث."
+
+msgid "The block vendor segment, e.g. flxbk."
+msgstr "قطاع البائعين في الحي، مثل (فلاكسبيك)."
+
+msgid "The block name segment, e.g. singlebtn."
+msgstr "الجزء الخاص بالأسماء، على سبيل المثال العازب."
+
+msgid "The preset slug."
+msgstr "-المسمار المسبق"
+
+msgid "The preset slug to create or merge."
+msgstr "الخدعة المُسبقة للخلق أو الدمج"
+
+msgid "Optional human-readable label for the preset."
+msgstr "بطاقة اختيارية قابلة للقراءة من قبل الإنسان."
+
+msgid "The preset's property => alias-or-literal token map."
+msgstr "ممتلكات ما قبل الزملاء \"الخريطة المكسورة\""
+
+msgid "The presets to store, keyed by slug."
+msgstr "المفترسات لتخزينها، مجهزة بالبقع."
+
+msgid "Optional default preset slug."
+msgstr "الفشل الاختياري"
+
+msgid "The preset slugs in their new display order."
+msgstr "المُسبقات في طلب عرضهم الجديد"
+
+msgid "The combined design-token editor CSS for every token library."
+msgstr "محرر مصمم لكل مكتبة رمزية"
+
+msgid "The DTCG schema could not be read."
+msgstr "لا يمكن قراءة الكيماويات الـ دي تي جي."
+
+msgid "That custom token does not exist."
+msgstr "هذا التقليد غير موجود"
+
+msgid "The id must be a lowercase kebab-case slug with no dots (e.g. my-color)."
+msgstr "يجب أن يكون الـ (دي) أقل من (كباب) في الحقيبة بدون أي نقاط (مثلاً يا (كولور"
+
+msgid "The group must be a lowercase kebab-case key."
+msgstr "يجب أن تكون المجموعة مُفتاحاً لـ (كباب)"
+
+msgid "That group is not declared for user-created primitives."
+msgstr "ولا يُعلن عن هذه المجموعة بالنسبة للبدائل التي يُمنحها المستخدمون."
+
+msgid "That $type does not support user-created primitives in this version."
+msgstr "وهذا النوع من الدولارات لا يدعم البدائيات المكرّسة للمستعملين في هذه الصيغة."
+
+msgid "That id is used by a system token."
+msgstr "هذا الـ (دي) يستعمل بواسطة نظام ممزق"
+
+msgid "A custom token with that id already exists."
+msgstr "عادات مع هذا العبث موجودة بالفعل"
+
+msgid "That id is reserved by the system."
+msgstr "هذا المقطع محجوز من قبل النظام."
+
+msgid "System primitives cannot be deleted."
+msgstr "ولا يمكن حذف البدائيات النظامية."
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before deleting."
+msgstr "ولهذه البدائية إشارات لا يمكن حلها تلقائياً، وحذفها يدوياً قبل حذفها."
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before renaming."
+msgstr "ولهذه البدائية إشارات لا يمكن حلها تلقائياً، وحذفها يدوياً قبل إعادة تسميتها."
+
+msgid "The stored definition has no $type and cannot be renamed."
+msgstr "التعريف المخزن ليس له نوع من الدولارات ولا يمكن إعادة تسميته."
+
+msgid "The new id is already in use."
+msgstr "الـ (دي) الجديد مستعمل بالفعل"
+
+msgid "The new id is reserved by the system."
+msgstr "ويحتفظ النظام بالنسخة الجديدة."
+
+msgid "The canonical dot-path id of the user primitive."
+msgstr "الـ (دوني) المُتعاطى من البدائية للمُستخدم."
+
+msgid "The human-readable label stored in the provenance map."
+msgstr "العلامة البشرية القابلة للقراءة مخزنة في خريطة المثبت."
+
+msgid "The cache-busting version hash for the token library."
+msgstr "نسخة مُضللة من أجل المكتبة المُكسورة."
+
+msgid "Whether the primitive can be safely deleted (all references are supported)."
+msgstr ":: ما إذا كان يمكن حذف البدائية بأمان (جميع المراجع مدعومة)."
+
+msgid "The id must be a canonical custom primitive path (primitive.<type>.custom.<slug>)."
+msgstr "ويجب أن يكون هذا المسار البدائي الافتراضي (الرسمي <type>. )<slug>."
+
+msgid "The version token the client last read."
+msgstr "النسخة حطمت الزبون آخر قراءة."
+
+msgid "The terminal slug for the new primitive (kebab-case, no dots)."
+msgstr "الرافعة الطرفية للبدائية الجديدة (كباب، لا نقط)."
+
+msgid "The DTCG $type for the new primitive."
+msgstr "نوع دي تي جي للبدائي الجديد."
+
+msgid "The DTCG $value for the new primitive."
+msgstr "قيمة الـ دي تي جي للبدائية الجديدة"
+
+msgid "Optional human-readable label."
+msgstr "-علامة اختيارية قابلة للقراءة من البشر"
+
+msgid "Optional stable machine key for the UI group this primitive should join."
+msgstr "مفتاح آلي ثابت اختياري لمجموعة \"يو آي\" هذا البدائي يجب أن ينضم"
+
+msgid "The canonical dot-path id of the user primitive to delete."
+msgstr "النقطه الخفيه من البدائيه للمستخدم لحذفها"
+
+msgid "The canonical dot-path id of the user primitive to rename."
+msgstr "الـ (دوني) الـ (دب) المُتَعَبّل من المُستخدم البدائي لإعادة تسميته"
+
+msgid "The new terminal slug (kebab-case, no dots)."
+msgstr "الرافعة الطرفية الجديدة (كباب - الحقيبة، لا نقاط)."
+
+msgid "Optional new human-readable label."
+msgstr "وسمة جديدة الاختيارية قابلة للقراءة البشرية."
+
+msgid "Theme %s"
+msgstr "Theme %s"
+
+msgid "Theme Secondary"
+msgstr "الموضوع الثاني"
+
+msgid "Unknown block."
+msgstr "كتلة غير معروفة"
+
+msgid "Choose Small, Large or Fullwidth."
+msgstr "اختر صغير أو كبير أو كاملويت"
+
+msgid "Enter a width between 200 and 4000 px."
+msgstr "أدخلوا ريادة بين 200 و4000 باكس"
+
+msgid "Pattern not found."
+msgstr "(باتر) لم يعثر عليه"
+
+msgid "Enter a valid site address."
+msgstr "أدخل عنوان الموقع الصحيح"
+
+msgid "Pale pink"
+msgstr "زهري اللون"
+
+msgid "Luminous vivid orange"
+msgstr "برتقال مسموع"
+
+msgid "Luminous vivid amber"
+msgstr "ذخيرة من طراز Luminous"
+
+msgid "Light green cyan"
+msgstr "السيان الأخضر الخفيف"
+
+msgid "Vivid green cyan"
+msgstr "سيان خضراء"
+
+msgid "Pale cyan blue"
+msgstr "سيان الأزرق"
+
+msgid "Vivid cyan blue"
+msgstr "فيفيد سيان زرقاء"
+
+msgid "Very light gray"
+msgstr "رمادي خفيف جدا"
+
+msgid "Very dark gray"
+msgstr "رمادي مظلم جدا"
+
+msgid "Config Flux Block Defaults"
+msgstr "قسائم القفل الكونفريغ"
+
+msgid "Config Flux Block visibility settings"
+msgstr "مركز (فيك فليكس) للظهور"
+
+msgid "Config Flux Block Editor Color Palette"
+msgstr "محررة شركة كونفيغ فلكس كولور بليت"
+
+msgid "Google reCaptcha Language"
+msgstr "لغة غوغل ريبتشا"
+
+msgid "Cloudflare Turnstile Site Key"
+msgstr "مفتاح موقع كلودفلير"
+
+msgid "Cloudflare Turnstile Secret Key"
+msgstr "مفتاح سرّي (كلاودفلور)"
+
+msgid "hCaptcha Secret Key"
+msgstr "hCaptcha مفتاح سري"
+
+msgid "MailerLite API Key"
+msgstr "MailerLite API المفتاح"
+
+msgid "Google Maps API Key"
+msgstr "Google Maps API المفتاح"
+
+msgid "Is Flux header notice dismissed"
+msgstr "هل تم رفض مذكرة رئيس (فلكس)"
+
+msgid "ConvertKit API Key"
+msgstr "ConvertKit API المفتاح"
+
+msgid "Mark the Header popover tutorial Complete"
+msgstr "مارك رئيس المدرسة الشعبية"
+
+msgid "Small Template"
+msgstr "النموذج الصغير"
+
+msgid "Large Template"
+msgstr "النموذج الكبير"
+
+msgid "Post default"
+msgstr "العجز في الوظائف"
+
+msgid "Page Default"
+msgstr "الوصف"
+
+msgid "Enable Editor Width"
+msgstr "تفعيل إعداد عرض المحرر"
+
+msgid "Show Block Headers in Admin Bar"
+msgstr "منظمة &quot; بلوك &quot; (Plock Headers)"
+
+msgid "Allows for changes to the editor width on per page/post basis with preset defaults."
+msgstr "يسمح بإدخال تغييرات على عرض المحررين على أساس كل صفحة/فترة على حدة مع التقصير المسبق."
+
+msgid "False"
+msgstr "False"
+
+msgid "True"
+msgstr "True"
+
+msgid "Experimental editor CSS for less excess margins in Gutenberg in an attempt to get a closer WYSIWYG editing experience."
+msgstr "محرر تجريبي لدائرة خدمات الدعم المركزية على هامش أقل فائضاً في غوتنبرغ في محاولة للحصول على خبرة تحريرية أوثق في WYSIWYG."
+
+msgid "px"
+msgstr "px"
+
+msgid "Fullwidth"
+msgstr "كامل الموقع"
+
+msgid "Create rows with nested blocks either in columns or as a container. Give style to your rows with background, overlay, padding, etc."
+msgstr "اصنعوا صفوف مع قطع ملتوية إما في الأعمدة أو كحاوية، امنحوا أسلوباً في صفوفكم مع خلفيات، تأجير، رعي، الخ."
+
+msgid "Create a contact form or marketing form and style it within the block editor."
+msgstr "إنشاء استمارة اتصال أو استمارة تسويق وأسلوب لها داخل المحرّر الرئيسي."
+
+msgid "Advanced Gallery"
+msgstr "معرض متقدم"
+
+msgid "Photo galleries, carousels, and sliders! Enable custom links, captions, and more. Plus, you can select image sizes."
+msgstr "مغالي الصور، الكراوز، والمزلاجات، وصلات العرف، الأصفاد، والأكثر، بالإضافة، يمكنك اختيار أحجام الصور"
+
+msgid "Advanced Button"
+msgstr "(بوتون) المتقدم"
+
+msgid "Create an advanced button or a row of buttons. Style each one including hover controls plus you can use an icon and display them side by side"
+msgstr "اصنع زراً متقدماً أو صفاً من الأزرار، كل واحدة منها تحتوي على أجهزة التحكم بالهوفر بالإضافة إلى أنّك يمكنك استخدام أيكون و عرضها جنباً إلى جنب"
+
+msgid "Add an extra \"wow\" factor to your site with engaging Lottie animations."
+msgstr "أضف عامل إضافي \"مذهل\" إلى موقعك مع جذب \"لوتي\""
+
+msgid "Vector Graphics"
+msgstr "مبيدات الآفات"
+
+msgid "Add custom vector icons and SVGs to enhance your site design."
+msgstr "أضف جهاز التحكم بالحشرات و أجهزة الأشعة فوق البنفسجية لتعزيز تصميم موقعك"
+
+msgid "Advanced Header"
+msgstr "رئيس متقدم"
+
+msgid "Build custom headers in the block editor and full site editing."
+msgstr "بناء مرشدين معتادين في المحرّر الرئيسي و تحرير الموقع بالكامل."
+
+msgid "Manage Headers"
+msgstr "رعاة إدارة"
+
+msgid "Advanced Navigation"
+msgstr "الملاحة المتقدمة"
+
+msgid "Build custom navigation menus"
+msgstr "ملاحة مصممة خصيصا"
+
+msgid "Choose from over 1500+ SVG Icons to add into your page and style the size, colors, background, border, etc."
+msgstr "اختر من أكثر من 1500 + SVG Icons لإضافة إلى صفحتك وأسلوب الحجم، الألوان، الخلفية، الحدود، إلخ."
+
+msgid "Easily create a divider and determine the space around it or just create some space in your content."
+msgstr "من السهل خلق فجوة وتحديد المساحة المحيطة بها أو فقط خلق بعض المساحة في محتوى الخاص بك."
+
+msgid "Create a heading or paragraph and define sizes for desktop, tablet and mobile along with font family, colors, etc."
+msgstr "إنشاء عنوان أو فقرة وتحديد أحجام الحواسيب المكتبية والملفات والهواتف المحمولة إلى جانب الأسرة النافعة والألوان وما إلى ذلك."
+
+msgid "Tabs"
+msgstr "تابس"
+
+msgid "Create custom vertical or horizontal tabs with advanced styling controls. Each tab content is an empty canvas able to contain any other blocks."
+msgstr "(ب) إنشاء سلاسل عمودية أو أفقية حسب الطلب، مع تطبيق ضوابط متطورة على شكل مواضع، وكل محتوى من المقالب هو غطاء فارغ قادر على احتواء أي لبنات أخرى."
+
+msgid "Create a box containing an icon or image and, optionally, a title, description, and learn more text. Style static and hover separately."
+msgstr "إنشاء صندوق يحتوي على أيقونة أو صورة، واختيارياً، عنوان ووصف وتعلم المزيد من النص."
+
+msgid "Accordion"
+msgstr "الوفاق"
+
+msgid "Create beautiful accordions! Each pane can contain any other block, customize title styles, content background, and borders."
+msgstr "اصنعوا الاكورديات الجميلة كل مقلاة يمكن أن تحتوي على أي لبن آخر تصمم أساليب اللقب وخلفية المحتوى والحدود"
+
+msgid "Icon List"
+msgstr "القائمة الثانية"
+
+msgid "Add beautiful icons to your lists and make them more engaging. Over 1500 icons to choose from and unlimited styles."
+msgstr "أضف تطابقاً جميلاً لقوائمك و أجعلهم أكثر إنخراطاً أكثر من 1500 رمز للاختيار من و أساليب غير محدودة"
+
+msgid "Allow your readers to navigate your content easily with a table of contents block. Includes smooth scroll to anchor."
+msgstr "اسمحوا لقراءك أن يبحروا في محتوياتك بسهولة مع طاولة من محتوياتها، بما في ذلك التنظيف السلس إلى المرساة."
+
+msgid "Posts"
+msgstr "المشاركات"
+
+msgid "Display a clean grid of posts anywhere on your site, great for your home page where you want to tease your blog."
+msgstr "اعرض شبكة نظيفة من الوظائف في أي مكان في موقعك، عظيم لصفحة منزلك حيث تريد أن تهز مدونتك."
+
+msgid "Countdown"
+msgstr "العد التنازلي"
+
+msgid "Increase your conversions by adding a sense of urgency to your offering. Pro includes evergreen campaigns as well."
+msgstr "زيادة تحويلاتكم بإضافة إحساس بالإلحاح إلى عرضكم"
+
+msgid "Testimonials"
+msgstr "شهادات"
+
+msgid "Create confidence in your brand or product by showing off beautiful unique testimonials, add as a carousel or a grid."
+msgstr "خلق الثقة في العلامة التجارية أو المنتج الخاص بك من خلال إظهار شهادات فريدة جميلة، إضافة كعربة أو شبكة."
+
+msgid "Video Popup"
+msgstr "Video بوب"
+
+msgid "Beautifully display a thumbnail with overlay and hover effect that links to a video popup on click. Works with local or external videos!"
+msgstr "عرض إبهام جميل ذو تأثيرات مُفرطه ومُثيرة للخراطيم التي تُربط بفيديو على النقر، تعمل بالفيديو المحلي أو الخارجي"
+
+msgid "Version"
+msgstr "الإصدار"
+
+msgid "Last updated"
+msgstr "آخر تحديث"
+
+msgid "Unknown"
+msgstr "غير معروف"
+
+msgid "Previous version"
+msgstr "الصيغة السابقة"
+
+msgid "Has Pro"
+msgstr "لديه بروية"
+
+msgid "Deactivated Blocks"
+msgstr "حواجز مشطوبة"
+
+msgid "Has Block Defaults"
+msgstr "لديه قوارب مقفلة"
+
+msgid "Using Setting Visibility"
+msgstr "استخدام الرؤية"
+
+msgid "Has Custom Colors"
+msgstr "لديه ملوثات زائفة"
+
+msgid "Has reCAPTCHA key"
+msgstr "لديه reCAPTCHA مفتاح"
+
+msgid "Has a maps API key"
+msgstr "لديه خرائط رقم API"
+
+msgid "Has MailerLite key"
+msgstr "مفتاح (ميلرلاي)"
+
+msgid "Has Cloud Library"
+msgstr "مكتبة كلاود"
+
+msgid "No"
+msgstr "لا"
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "On"
+msgstr "على"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Read More"
+msgstr "اقرأ المزيد"
+
+msgid "By"
+msgstr "بواسطة"
+
+msgid "Posted on"
+msgstr "الوظائف"
+
+msgid "Posted in"
+msgstr "الوظائف في"
+
+msgid ", "
+msgstr ", "
+
+msgid "Comment"
+msgstr "التعليق"
+
+msgid "Comments"
+msgstr "التعليقات"
+
+msgid " / "
+msgstr " / "
+
+msgid " - "
+msgstr " - "
+
+msgid " | "
+msgstr " | "
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Default"
+msgstr "الافتراضي"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Custom"
+msgstr "مخصص"
+
+msgid "Auto"
+msgstr "تلقائي"
+
+msgid "Gradient"
+msgstr "التدرج"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Individual"
+msgstr "الأفراد"
+
+msgid "Linked"
+msgstr "Linked"
+
+msgid "Solid"
+msgstr "صلبة"
+
+msgid "Dashed"
+msgstr "سحقًا"
+
+msgid "Dotted"
+msgstr "Dotted"
+
+msgid "Double"
+msgstr "مزدوجة"
+
+msgid "Device"
+msgstr "الجهاز"
+
+msgid "Color"
+msgstr "اللون"
+
+msgid "Left"
+msgstr "اليسار"
+
+msgid "Top"
+msgstr "القمة"
+
+msgid "Hover"
+msgstr "Hover"
+
+msgid "Normal"
+msgstr "عادي"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Add"
+msgstr "أضف"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Clear"
+msgstr "مسح"
+
+msgid "Right"
+msgstr "صحيح"
+
+msgid "Bottom"
+msgstr "الجزء السفلي"
+
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+msgid "auto"
+msgstr "auto"
+
+msgid "Background"
+msgstr "الخلفية"
+
+msgid "Desktop"
+msgstr "سطح المكتب"
+
+msgid "Tablet"
+msgstr "قرص"
+
+msgid "Mobile"
+msgstr "الجوال"
+
+msgid "div"
+msgstr "div"
+
+msgid "Weight"
+msgstr "الوزن"
+
+msgid "Size"
+msgstr "الحجم"
+
+msgid "-"
+msgstr "-"
+
+msgid "Uppercase"
+msgstr "الحقيبة العليا"
+
+msgid "Lowercase"
+msgstr "الحقيبة السفلى"
+
+msgid "Capitalize"
+msgstr "الرسملة"
+
+msgid "Font Family"
+msgstr "عائلة الخطوط"
+
+msgid "Padding"
+msgstr "الحشوة"
+
+msgid "20%"
+msgstr "20%"
+
+msgid "40%"
+msgstr "40%"
+
+msgid "50%"
+msgstr "50%"
+
+msgid "75%"
+msgstr "75%"
+
+msgid "80%"
+msgstr "80%"
+
+msgid "100%"
+msgstr "100%"
+
+msgid "Create"
+msgstr "إنشاء"
+
+msgid "Margin"
+msgstr "الهامش"
+
+msgid "label"
+msgstr "علامة"
+
+msgid "value"
+msgstr "القيمة"
+
+msgid "form"
+msgstr "الشكل"
+
+msgid "button"
+msgstr "الزر"
+
+msgid "icon"
+msgstr "أيقونة"
+
+msgid "image"
+msgstr "صورة"
+
+msgid "Border Color"
+msgstr "لون الحدود"
+
+msgid "text"
+msgstr "نص"
+
+msgid "heading"
+msgstr "متجهة"
+
+msgid "Heading"
+msgstr "العنوان"
+
+msgid "section"
+msgstr "الباب"
+
+msgid "number"
+msgstr "العدد"
+
+msgid "Text"
+msgstr "نص"
+
+msgid "header"
+msgstr "الرأس"
+
+msgid "svg"
+msgstr "Svg"
+
+msgid "list"
+msgstr "القائمة"
+
+msgid "info"
+msgstr "المعلومات"
+
+msgid "1"
+msgstr "1"
+
+msgid "hide"
+msgstr "إخفاء"
+
+msgid "separator"
+msgstr "الفصل"
+
+msgid "Tab"
+msgstr "علامة التبويب"
+
+msgid "Saving…"
+msgstr "جارٍ الحفظ..."
+
+msgid "Favorite"
+msgstr "المفضلة"
+
+msgid "Breakpoint"
+msgstr "نقطة الانطلاق"
+
+msgid "Drag to reorder"
+msgstr "اسحب لإعادة الترتيب"
+
+msgid "Reset %1$s to %2$s"
+msgstr "إعادة التوطين %1$s إلى %2$s"
+
+msgid "From %s"
+msgstr "من %s"
+
+msgid "From theme"
+msgstr "من الموضوع"
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+msgid "Blur"
+msgstr "Blur"
+
+msgid "Spread"
+msgstr "المنتشرة"
+
+msgid "Inset"
+msgstr "Inset"
+
+msgid "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here."
+msgstr "%1$d لون في هذه الشلاء لا يزال يتبع %2$s حتى تصممه في هذه الشلاء، تحريره في %2$s سوف يستكمله هنا أيضا."
+
+msgid "Learn more"
+msgstr "تعلم المزيد"
+
+msgid "Search fonts…"
+msgstr "باحثات..."
+
+msgid "No fonts found"
+msgstr "لا يوجد أي عواطف"
+
+msgid "Keep typing to narrow the list"
+msgstr "استمري بالطباعة لتضييق القائمة"
+
+msgid "Options loaded."
+msgstr "خيارات محشوة"
+
+msgid "Loading options…"
+msgstr "خيارات تحديد الموقع..."
+
+msgid "Grid view"
+msgstr "رؤية غريد"
+
+msgid "List view"
+msgstr "القائمة"
+
+msgid "Set \"%s\" as the active library?"
+msgstr "\"أعد \"%s\" كمكتبة نشطة؟"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor."
+msgstr "موقعك يستعمل حالياً \"%1$s\" وضع \"%2$s\" كتغيير نشط للألوان والطباعة والمباعدة والأسلوبات الأخرى عبر موقعك بالكامل في النهاية الأمامية وفي المحررة"
+
+msgid "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over."
+msgstr "يمكنك التبديل في أي وقت، ولكن أي قيم تقليدية في \"%s\" البقاء في تلك المكتبة..."
+
+msgid "Set as active"
+msgstr "تم تعيينه كعامل نشط"
+
+msgid "Set \"%s\" as the active palette?"
+msgstr "أضبطوا \"%s\" كـ \"الناشطة\" ؟"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor."
+msgstr "موقعك يستعمل حالياً \"%1$s\" وضع \"%2$s\" كتغيير نشط للألوان عبر موقعك بالكامل على الفور"
+
+msgid "Add Color Group"
+msgstr "مجموعة كولورز"
+
+msgid "Group name"
+msgstr "اسم المجموعة"
+
+msgid "A color group named \"%s\" already exists."
+msgstr "مجموعة لون اسمها \"%s\" موجودة بالفعل."
+
+msgid "Loading…"
+msgstr "جارٍ التحميل..."
+
+msgid "Base Styles"
+msgstr "الإطارات القاعدية"
+
+msgid "Create Library"
+msgstr "مكتبة الإنشاء"
+
+msgid "Library title"
+msgstr "عنوان المكتبة"
+
+msgid "A library named \"%s\" already exists."
+msgstr "مكتبة اسمها %s موجودة بالفعل"
+
+msgid "Creating…"
+msgstr "جارٍ الإنشاء..."
+
+msgid "Palette name"
+msgstr "اسم بليت"
+
+msgid "A palette named \"%s\" already exists."
+msgstr "شاحب اسمه %s موجود بالفعل"
+
+msgid "Delete Color Group?"
+msgstr "تحذف مجموعة الكولور؟"
+
+msgid "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette."
+msgstr "تحذف المجموعة \"%1$s\" و لونها %2$d هذا يزيلها من كل شطيرة"
+
+msgid "Deleting…"
+msgstr "حذف..."
+
+msgid "Resetting…"
+msgstr "....."
+
+msgid "Reset Library"
+msgstr "المكتبة المعادة"
+
+msgid "Delete Library"
+msgstr "تحذف المكتبة"
+
+msgid "Reset '%s' to its default values?"
+msgstr "أعيدوا %s إلى قيمهم الافتراضية؟"
+
+msgid "Delete '%s'? Its tokens and presets are removed permanently."
+msgstr "تحذف \"%s\"؟"
+
+msgid "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor."
+msgstr "هذه أيضاً مكتبتك النشطة، لذا موقعك سيستخدم \"%s\" بدلاً من ذلك، ألوانه، رسم الخرائط، المباعدة، والأساليب الأخرى تذهب مباشرة عبر موقعك على الفور - على الجبهة وفي المحررة."
+
+msgid "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor."
+msgstr "هذه أيضاً مكتبتك النشطة، لذا موقعك يحتاج إلى مكتبة أخرى، المكتبة التي تختارها تحتها ستعيش على الفور، الألوان، الطبوغرافيا، المباعدة، والأساليب الأخرى تتغيّر عبر موقعك في الطرف الأمامي وفي المحرّر."
+
+msgid "Which library should your site use instead?"
+msgstr "أي مكتبة يجب أن تستخدمها في موقعك بدلاً من ذلك؟"
+
+msgid "Select a library…"
+msgstr "نختار مكتبة..."
+
+msgid "Delete \"%s\"?"
+msgstr "هل تريد حذف \"%s\"؟"
+
+msgid "Reset \"%s\"?"
+msgstr "إعادة \"%s\" ؟"
+
+msgid "Its color overrides are removed permanently."
+msgstr "تم إزالة التجاوزات لونها بشكل دائم"
+
+msgid "Its colors return to the shipped baseline. The palette itself stays."
+msgstr "لونها يعود إلى خط الأساس المشحنة."
+
+msgid "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor."
+msgstr "هذا أيضاً شطيرتك النشيطة لذا موقعك سيستخدم \"%s\" بدلاً من ذلك، ألوانها تتجه مباشرة إلى موقعك على الفور"
+
+msgid "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor."
+msgstr "هذا أيضاً شطيرتك النشيطة، لذا موقعك يحتاج لواحد آخر، فالألوان التي تختارها تختفي مباشرةً..."
+
+msgid "Which palette should your site use instead?"
+msgstr "أيّ شطيرة يجب أن يستخدمها موقعك بدلاً من ذلك؟"
+
+msgid "Select a palette…"
+msgstr "...اختاروا شاحبة"
+
+msgid "Not available in the current theme"
+msgstr "غير متوافرة في الموضوع الحالي"
+
+msgid "These presets came from another theme. Your changes to them are kept until that theme is active again."
+msgstr "هذه المفترسات جاءت من موضوع آخر تغيراتكم فيها تبقى حتى يصبح هذا الموضوع نشطاً مجدداً"
+
+msgid "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept."
+msgstr "قيم الموضوع الخاصة لهذه المرحلة لا يمكن إنقاذها في مرحلة ما قبلها لذا فقط تغيراتك يمكن الحفاظ عليها"
+
+msgid "The theme's own values for this preset were not recorded, so only your changes can be kept."
+msgstr "قيم الموضوع الخاصة لهذا المسبق لم تُسجّل، لذا فقط تغيراتك يمكن الحفاظ عليها."
+
+msgid "Keep as custom preset"
+msgstr "ابقوا كما هو مُسبق"
+
+msgid "Keep changes as custom preset"
+msgstr "إبقاء التغييرات كما قبل العادة"
+
+msgid "Discard changes"
+msgstr "التغييرات المشطوبة"
+
+msgid "Active library"
+msgstr "المكتبة النشيطة"
+
+msgid "Your site uses this library."
+msgstr "موقعك يستخدم هذه المكتبة"
+
+msgid "Not the active library"
+msgstr "ليس المكتبة النشطة"
+
+msgid "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles."
+msgstr "وضعه كنشط يجعل هذه المكتبة التي يستخدمها موقعك موقعك يتحول إلى ألوانه و أحجامه و اساليبه"
+
+msgid "Edit library"
+msgstr "مكتبة إديت"
+
+msgid "Library"
+msgstr "المكتبة"
+
+msgid "New Library"
+msgstr "المكتبة الجديدة"
+
+msgid "Active palette"
+msgstr "شاحبة نشطة"
+
+msgid "Your site uses this palette."
+msgstr "موقعك يستعمل هذه الشلاء."
+
+msgid "Not the active palette"
+msgstr "ليس النخيل النشط"
+
+msgid "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette."
+msgstr "وضعه كنشط يجعل هذا الشلل الذي يستخدمه موقعك"
+
+msgid "Drag to reorder %s"
+msgstr "السحب إلى إعادة التشغيل %s"
+
+msgid "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values."
+msgstr "لديك تغيرات غير مدروسة إلى%sأنقذهم، أو تخلّص منهم للعودة إلى القيم المنقذة."
+
+msgid "You have unsaved changes. Save them, or discard them to go back to the saved values."
+msgstr "لديك تغيرات غير مدروسة، أنقذهم، أو تخلّص منهم للعودة إلى القيم المنقذة."
+
+msgid "Unsaved Changes"
+msgstr "التغييرات غير المنسَّقة"
+
+msgid "Discard"
+msgstr "تجاهل"
+
+msgid "Add Border Radius"
+msgstr "راديوس الحدودي"
+
+msgid "Radius"
+msgstr "Radius"
+
+msgid "Add Border Width"
+msgstr "أضف أرملة حدودية"
+
+msgid "Loading %s…"
+msgstr "Loading %s…"
+
+msgid "%s loaded."
+msgstr "%s محمل."
+
+msgid "Add color"
+msgstr "اللون"
+
+msgid "Edit %s"
+msgstr "Edit %s"
+
+msgid "Color group"
+msgstr "مجموعة كولور"
+
+msgid "This palette could not be loaded."
+msgstr "هذا الشلل لا يمكن تحميله."
+
+msgid "Settings loaded."
+msgstr "تم تحميلها."
+
+msgid "Edit color"
+msgstr "لون ادي"
+
+msgid "Add Icon Size"
+msgstr "مقاس إيكون"
+
+msgid "This screen is coming soon."
+msgstr "هذه الشاشة قادمة قريباً"
+
+msgid "Adding…"
+msgstr "أضف..."
+
+msgid "Preset saved."
+msgstr "تم إنقاذها"
+
+msgid "Preset deleted."
+msgstr "تم حذفها"
+
+msgid "Preset reset."
+msgstr "إعادة ضبط."
+
+msgid "Theme preset"
+msgstr "المُسبق"
+
+msgid "Styled by your theme. Flux Block Editor can't read or change these styles."
+msgstr "مصممة بموضوعك، محررة \"فلوكس بلوك\" لا تستطيع قراءة أو تغيير هذه الأساليب"
+
+msgid "Changes saved under another theme still apply to it. Reset removes them."
+msgstr "ما زالت التغييرات التي تم ادخارها في إطار موضوع آخر سارية على ذلك."
+
+msgid "Add Shadow"
+msgstr "اضف ظل"
+
+msgid "Add Spacing"
+msgstr "يضاف Spacing"
+
+msgid "New Spacing"
+msgstr "المباعدة الجديدة"
+
+msgid "Visualize your font"
+msgstr "تصوري مظهرك"
+
+msgid "Add Favorite"
+msgstr "مضافا إليه:"
+
+msgid "Adding Favorite…"
+msgstr "أضف النافوري"
+
+msgid "Remove Favorite"
+msgstr "إزالة النافوري"
+
+msgid "Removing Favorite…"
+msgstr "نزيل النافورة"
+
+msgid "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site."
+msgstr "اربط هذا الخط إلى قمة الملتقطين هنا وفي المحرّر، لا يغير أي نص في موقعك."
+
+msgid "Unpins this font from the top of your font pickers. Text already using it stays as it is."
+msgstr "يُفكّرُ هذا العنبِ مِنْ قمةِ مُخلّفاتِكَ المُصوّرةِ، الرسالة تَستعملُه يَبْقى كما هو."
+
+msgid "%s removed from favorites."
+msgstr "%s أزيلت من المفضّلات."
+
+msgid "%s added to favorites."
+msgstr "%s أضاف إلى المفضّلات."
+
+msgid "Font"
+msgstr "الخط"
+
+msgid "Typography"
+msgstr "رسم بياني"
+
+msgid "Add Size"
+msgstr "يضاف الحجم"
+
+msgid "Set the colors your site uses. Change a color here and it updates everywhere it's applied."
+msgstr "ضع الألوان التي يستخدمها موقعك، غيّر لونك هنا، ويحدث في كل مكان يُطبّق."
+
+msgid "Set the text sizes your site uses, and pick the fonts you want close to hand."
+msgstr "جهزوا المراسلات التي تستخدمها مواقعكم واختاروا اللوحات التي تريدونها"
+
+msgid "Set the border radius options your site uses, so buttons, images and cards stay consistent."
+msgstr "ضعي دائرة الحدود خيارات استخدام موقعك لذا الازرار والصور والبطاقات تبقى متسقة"
+
+msgid "Set the border thickness options your site uses, so borders match across your blocks."
+msgstr "حددي خيارات سميكة الحدود التي يستخدمها موقعك، لذا الحدود تتطابق مع مجمّعاتك."
+
+msgid "Set the padding and margin steps your site uses, so gaps stay consistent from block to block."
+msgstr "ضعوا الرصيف و خطوا الهامش الذي يستخدمه موقعكم لذا تبقى الفجوات متماسكة من كتلة إلى أخرى"
+
+msgid "Set the sizes your icons can use, so icons stay consistent wherever they appear."
+msgstr "ضعوا أحجامكم التي يمكن أن تستخدمها أجهزة الإسطوانات، لذا إبقوا ثابتين أينما ظهروا."
+
+msgid "Set the shadow styles your site uses, so depth looks consistent across your blocks."
+msgstr "ضعي اساليب الظل التي يستخدمها موقعك لذا العمق يبدو متسقاً في جميع أنحاء الحي"
+
+msgid "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand."
+msgstr "احفظي اساليب الزر كبش فداء، لذا يمكنكِ أن تُلقي نظرة كاملة في نقر واحد بدلاً من وضع كل خيار بيد."
+
+msgid "Save image styles as presets, so rounding, shadows and spacing stay the same across your images."
+msgstr "احفظوا اساليب الصور كبائعين لذا اجمعوا الظل و المباعدة"
+
+msgid "Save row styles as presets, so the sections of a page share the same background and rounding."
+msgstr "انقذوا اساليب الصف مثل المفترسات لذا قسم الصفحة يتشاركون نفس الخلفية و التقريب"
+
+msgid "Save section styles as presets, so the columns inside your rows share the same background and rounding."
+msgstr "احفظوا اساليب القسم كبش فعمود الأعمدة داخل صفوفكم تتشارك نفس الخلفية و التقريب"
+
+msgid "Save icon styles as presets, so icons keep the same size and color wherever you use them."
+msgstr "احفظ اساليب ايكون كبش فاسد لذا يحافظ ايقونز على نفس الحجم واللون اينما استخدمتهم"
+
+msgid "Save text styles as presets, so headings and paragraphs read the same from page to page."
+msgstr "وفّر أساليب النص كما هي مفترسة، وبالتالي، فإن العناوين والفقرات تُقرأ من الصفحة إلى الصفحة نفسها."
+
+msgid "Something went wrong. Please try again."
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+
+msgid "Enter a library title."
+msgstr "أدخل عنوان المكتبة"
+
+msgid "A library with that title already exists."
+msgstr "مكتبة بهذا العنوان موجودة بالفعل"
+
+msgid "Choose which library your site should use instead."
+msgstr "اختر أي مكتبة يجب أن يستخدمها موقعك بدلاً من ذلك"
+
+msgid "Enter a palette name."
+msgstr "أدخلي اسماً شاحبا"
+
+msgid "A palette with that name already exists."
+msgstr "شاحبة بهذا الاسم موجودة بالفعل"
+
+msgid "Choose which palette your site should use instead."
+msgstr "اختر أي شاحب يجب أن يستخدمه موقعك بدلاً من ذلك"
+
+msgid "Enter a color group name."
+msgstr "أدخلي اسم مجموعة لون."
+
+msgid "A color group with that name already exists."
+msgstr "مجموعة لون بهذا الاسم موجودة بالفعل"
+
+msgid "Custom Colors"
+msgstr "العقيدات العرفية"
+
+msgid "Saving failed."
+msgstr "الإنقاذ فشل"
+
+msgid "Another change to this library is already in progress."
+msgstr "ويجري بالفعل تغيير آخر في هذه المكتبة."
+
+msgid "Palette activated."
+msgstr "تم تنشيط (باليت)"
+
+msgid "Palette created."
+msgstr "لقد خلقت (باليت)"
+
+msgid "Palette renamed."
+msgstr "(باليت) أُعيدت تسميتها."
+
+msgid "Palette deleted."
+msgstr "(باليت) حذفت."
+
+msgid "Palette reset."
+msgstr "إعادة تنصيب (باليت)"
+
+msgid "Swatch saved."
+msgstr "(سواتش) أنقذ."
+
+msgid "Swatch deleted."
+msgstr "مسحة محذوفة."
+
+msgid "Swatch reset."
+msgstr "اعيدوا تشغيل المشاهده"
+
+msgid "New Color"
+msgstr "كولور جديد"
+
+msgid "Color added."
+msgstr "أضافت اللون."
+
+msgid "Color group added."
+msgstr "مجموعة الألوان أضافت."
+
+msgid "Color group renamed."
+msgstr "تم إعادة تسمية مجموعة الألوان."
+
+msgid "Color group deleted."
+msgstr "مجموعة الكولور حذفت"
+
+msgid "Token created."
+msgstr "تم خلقه"
+
+msgid "Token saved."
+msgstr "تم إنقاذ (توكين)"
+
+msgid "Token deleted."
+msgstr "تم حذفها"
+
+msgid "Token reset."
+msgstr "إعادة ضبط."
+
+msgid "Token order saved."
+msgstr "تم حفظ النظام."
+
+msgid "100 Thin"
+msgstr "100 ثين"
+
+msgid "200 Extra Light"
+msgstr "200 جهاز لاسلكية"
+
+msgid "300 Light"
+msgstr "300 خفية"
+
+msgid "400 Regular"
+msgstr "400 نظامي"
+
+msgid "500 Medium"
+msgstr "500"
+
+msgid "700 Bold"
+msgstr "700 Bold"
+
+msgid "800 Extra Bold"
+msgstr "800 عبادة إضافية"
+
+msgid "900 Black"
+msgstr "900 أسود"
+
+msgid "Transform"
+msgstr "Transform"
+
+msgid "Add Text Style"
+msgstr "يضاف النص:"
+
+msgid "New Text Style"
+msgstr "النص الجديد"
+
+msgid "Border and Shadow"
+msgstr "الحدود والظل"
+
+msgid "Add Button"
+msgstr "(أضف (بوتون"
+
+msgid "Add Section Style"
+msgstr "مضافا إليه:"
+
+msgid "New Section Style"
+msgstr "قسم جديد"
+
+msgid "Add Image Style"
+msgstr "مضافا إليها الشكل"
+
+msgid "New Image Style"
+msgstr "طاولات الصور الجديدة"
+
+msgid "Add Row Style"
+msgstr "أضف \"رو ستايل\""
+
+msgid "Add Icon Style"
+msgstr "أضف من طراز Icon Sty"
+
+msgid "New Icon Style"
+msgstr "مسلسل إيكون الجديد"
+
+msgid "Matches the design system value"
+msgstr "تطابق قيمة نظام التصميم"
+
+msgid "Overrides the design system value"
+msgstr "تجاوز قيمة نظام التصميم"
+
+msgid "Reset to the design system value"
+msgstr "إعادة تحديد قيمة نظام التصميم"
+
+msgid "Reverted to default"
+msgstr "أُعيدت إلى التقصير"
+
+msgid "This token was deleted from the Style Library. The default applies until you pick a new value or reset."
+msgstr "تم حذف هذا الرمز من مكتبة الصفيحه المغلقه ينطبق حتى تختار قيمة جديدة أو تعيدها"
+
+msgid "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset."
+msgstr "هذا الخيار جاء من موضوع (فلوكس) الذي لم يعد نشطاً، الفشل ينطبق حتى تختار قيمة جديدة أو تستعيدها"
+
+msgid "Border style"
+msgstr "أسلوب الحدود"
+
+msgid "Border style (%s)"
+msgstr "أسلوب الحدود (%s)"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "%s Border Color"
+msgstr "%s حاجز الحدود"
+
+msgid "Previous color format"
+msgstr "الشكل السابق لللون"
+
+msgid "Next color format"
+msgstr "الشكل التالي لللون"
+
+msgid "No favorite fonts yet."
+msgstr "لا يوجد أثر مفضّل بعد"
+
+msgid "Manage favorites in the Style Library"
+msgstr "المفضّلات في المكتبة"
+
+msgid "Favorites"
+msgstr "المفضلة"
+
+msgid "Inherited"
+msgstr "Inherited"
+
+msgid "Custom value"
+msgstr "القيمة العرفية"
+
+msgid "Unit"
+msgstr "وحدة"
+
+msgid "Theme default"
+msgstr "التخلف عن التنفيذ"
+
+msgid "Default (%s)"
+msgstr "العجز (%s)"
+
+msgid "Inherited (%s)"
+msgstr "مدمجة (%s)"
+
+msgid "img"
+msgstr "غموض"
+
+msgid "menu"
+msgstr "القائمة"

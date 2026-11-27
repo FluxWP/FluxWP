@@ -1073,7 +1073,7 @@ msgid "%s joined the chat"
 msgstr "%sさんがチャットに参加しました"
 
 msgid "You ended the chat."
-msgstr "You ended the chat."
+msgstr "あなたはその話を終えた。"
 
 msgid "The chat has ended."
 msgstr "チャットは終了しました。"
@@ -1121,7 +1121,7 @@ msgid "The message is empty."
 msgstr "メッセージは空です。"
 
 msgid "You're typing too fast. Wait a moment and try again."
-msgstr "You're typing too fast. Wait a moment and try again."
+msgstr "タイプし過ぎですよ。ちょっと待って、もう一度やってみてください。"
 
 msgid "Too many new chats were started. Please try again later."
 msgstr "開始された新しいチャットが多すぎます。後でもう一度試してください。"
@@ -1198,3 +1198,12 @@ msgstr "人工知能がサポートするサイトへのチャット ウィン�
 
 msgid "Still answering. Please wait a moment."
 msgstr "まだ回答しています。しばらくお待ちください。"
+
+msgid "Answers site chats"
+msgstr "答え サイトのチャット"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript この画面には必須です。"
+
+msgid "Chat on WhatsApp"
+msgstr "WhatsApp でチャットします。"

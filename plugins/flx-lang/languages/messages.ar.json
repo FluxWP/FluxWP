@@ -114,6 +114,20 @@
     "Name (%s)": "الاسم (%s)",
     "Description (%s)": "الوصف (%s)",
     "If left empty, the Turkish name and description are shown.": "إذا تركت فارغة، يظهر الاسم والوصف التركي.",
-    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "يجعل الموقع متعدد اللغات: عناوين لغة مثل /en/، ترجمة لكل صفحة، منشور، مشروع وحدث، مرئيات خاصة باللغة، hreflang وcanonical، توصية باللغة الإنجليزية لأولئك القادمين من خارج تركيا، محدد اللغة؛ دعم اللغة لأدوات Flux AI وMCP وFlux AI."
+    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "يجعل الموقع متعدد اللغات: عناوين لغة مثل /en/، ترجمة لكل صفحة، منشور، مشروع وحدث، مرئيات خاصة باللغة، hreflang وcanonical، توصية باللغة الإنجليزية لأولئك القادمين من خارج تركيا، محدد اللغة؛ دعم اللغة لأدوات Flux AI وMCP وFlux AI.",
+    "JavaScript is required for this screen.": "JavaScript مطلوب لهذه الشاشة.",
+    "A language code has 2–3 letters and, optionally, a region such as pt-br.": "وتحتوي مدونة اللغة على رسائل من 2 إلى 3، واختياريا، منطقة مثل ب.",
+    "A language can be listed only once.": "ولا يمكن إدراج لغة إلا مرة واحدة.",
+    "A WordPress locale has letters, digits and an underscore, e.g. en_US.": "A WordPress محلية لها رسائل وأرقام و تأكيد، مثل",
+    "This language is not in the catalog.": "هذه اللغة ليست في السجل.",
+    "The default language must be one of the listed languages and cannot be removed.": "ويجب أن تكون اللغة الافتراضية إحدى اللغات المدرجة في القائمة ولا يمكن إزالتها.",
+    "Unknown suggestion mode.": "طريقة اقتراح غير معروفة.",
+    "The suggested language must be one of the listed languages.": "ويجب أن تكون اللغة المقترحة إحدى اللغات المدرجة في القائمة.",
+    "Unknown switcher style.": "أسلوب غير معروف للمفاتيح",
+    "Unknown switcher position.": "موقع تبديل غير معروف",
+    "Use two-letter country codes (TR, CY…).": "استخدمي رموز البلدان ذات الدقتين (TR, CY...).",
+    "This content type does not exist.": "هذا النوع من المحتوى غير موجود.",
+    "Unknown site text.": "نص موقع غير معروف",
+    "Site texts belong to a language other than the default one.": "النصوص الموقعية تنتمي إلى لغة أخرى غير لغة التقصير."
   }
 }

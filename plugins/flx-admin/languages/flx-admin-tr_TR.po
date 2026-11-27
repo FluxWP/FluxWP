@@ -332,7 +332,7 @@ msgid "l, F j, Y"
 msgstr "j F Y, l"
 
 msgid "%1$s, %2$s"
-msgstr "%1$s, %2$s"
+msgstr "%1$s , %2$s"
 
 msgid "Edit modules"
 msgstr "Modülleri düzenle"
@@ -371,7 +371,7 @@ msgid "My open tasks"
 msgstr "Açık görevlerim"
 
 msgid "Flux Tasks →"
-msgstr "Flux Tasks →"
+msgstr "Akı Görevleri  Flu"
 
 msgid "System check"
 msgstr "Sistem kontrolü"
@@ -437,7 +437,7 @@ msgid "Admin"
 msgstr "Yönetim"
 
 msgid "Dashboard"
-msgstr "Başlangıç"
+msgstr "Pano"
 
 msgid "Filters"
 msgstr "Filtreler"

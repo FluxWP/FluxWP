@@ -74,7 +74,7 @@ msgid "If a certificate is registered with these details, its link will be sent 
 msgstr "如果使用这些详细信息注册了证书,其链接将在几分钟内发送给您。"
 
 msgid "OK"
-msgstr "好的"
+msgstr "确定"
 
 msgid "Warning"
 msgstr "警告"
@@ -695,7 +695,7 @@ msgid "Goal: %s saplings"
 msgstr "目标:%s树苗"
 
 msgid "%s%%"
-msgstr "%s%%"
+msgstr "%s %"
 
 msgid "Completed event"
 msgstr "已完成活动"
@@ -968,3 +968,702 @@ msgstr "尚无地图:在填写位置之前,该链接会打开活动页面。"
 
 msgid "Person not found."
 msgstr "未找到此人。"
+
+msgid "Creates and sees certificates"
+msgstr "创建和查看证书"
+
+msgid "Manages certificates"
+msgstr "管理证书"
+
+msgid "Sends certificates in bulk"
+msgstr "批量的传感证书"
+
+msgid "Sees the certificate dashboard"
+msgstr "查看证书仪表板"
+
+msgid "Sees only certificates they created or referred"
+msgstr "仅查看他们创建或引用的证书"
+
+msgid "All Certificates"
+msgstr "所有证书"
+
+msgid "Dashboard"
+msgstr "仪表盘"
+
+msgid "Bulk send"
+msgstr "批量发送"
+
+msgid "Providers"
+msgstr "供应商"
+
+msgid "Logs"
+msgstr "日志"
+
+msgid "Certificate settings"
+msgstr "验证环境"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "certificates"
+msgstr "证书"
+
+msgid "Only certificates that you created."
+msgstr "只有您创建的证书 。"
+
+msgid "Sapling donations, certificates and deliveries."
+msgstr "捐款、证书和交货数量增加。"
+
+msgid "Loading…"
+msgstr "加载中..."
+
+msgid "%1$s: %2$s saplings, %3$s certificates"
+msgstr "%1$s:%2$s ,,%3$s 份证书"
+
+msgid "%2$s saplings during %1$s"
+msgstr "%2$s 使用期间的树苗 %1$s"
+
+msgid "%s failed"
+msgstr "%s 失败"
+
+msgid "%s first-time recipients"
+msgstr "%s 首次接受者"
+
+msgid "%s sent"
+msgstr "%s sent"
+
+msgid "%s waiting"
+msgstr "%s 等候"
+
+msgid "30 days"
+msgstr "30天"
+
+msgid "7 days"
+msgstr "7天"
+
+msgid "90 days"
+msgstr "90天"
+
+msgid "All"
+msgstr "全部"
+
+msgid "All staff"
+msgstr "所有工作人员"
+
+msgid "Archive"
+msgstr "存档"
+
+msgid "Average saplings"
+msgstr "平均ling"
+
+msgid "Avg."
+msgstr "Avg."
+
+msgid "Busiest day"
+msgstr "布西斯特日"
+
+msgid "Busiest month"
+msgstr "布西斯特月"
+
+msgid "Channel and status"
+msgstr "渠道和地位"
+
+msgid "Chart"
+msgstr "图表"
+
+msgid "Compared with the previous %s days"
+msgstr "与前一个数字相比 %s 天"
+
+msgid "Could not load data:"
+msgstr "无法装入数据 :"
+
+msgid "Cumulative"
+msgstr "累计"
+
+msgid "Daily certificates"
+msgstr "每日证书"
+
+msgid "Daily saplings"
+msgstr "每日ap"
+
+msgid "Daily saplings chart"
+msgstr "每日ap出图"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Days of the week"
+msgstr "周日"
+
+msgid "Delivery"
+msgstr "交付"
+
+msgid "End date"
+msgstr "结束日期"
+
+msgid "Excluding %s revoked"
+msgstr "排除 %s 已撤销"
+
+msgid "Month"
+msgstr "月"
+
+msgid "Monthly certificates"
+msgstr "月度证书"
+
+msgid "Monthly saplings"
+msgstr "每月ap"
+
+msgid "No certificates in this period."
+msgstr "在此期间没有证书。"
+
+msgid "No data."
+msgstr "没有数据。"
+
+msgid "No deliveries in this period."
+msgstr "在此期间没有交货。"
+
+msgid "No new people"
+msgstr "无新人"
+
+msgid "No people registered in this period."
+msgstr "在此期间没有人登记。"
+
+msgid "Per certificate"
+msgstr "每份证书"
+
+msgid "Referring staff"
+msgstr "推荐员工"
+
+msgid "Same as the previous period"
+msgstr "与前一期间相同"
+
+msgid "Sapling goal"
+msgstr "可持续发展目标"
+
+msgid "Saplings by day of the week"
+msgstr "一周的一天前 Sa"
+
+msgid "Saplings collected"
+msgstr "收集的树苗"
+
+msgid "Saplings gifted to date"
+msgstr "迄今赠送的树苗"
+
+msgid "Saplings · certificates"
+msgstr "Sa销证书;"
+
+msgid "Start date"
+msgstr "开始日期"
+
+msgid "Table"
+msgstr "表"
+
+msgid "This month"
+msgstr "这个月"
+
+msgid "This year"
+msgstr "今年"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "Total"
+msgstr "合计"
+
+msgid "Top 10"
+msgstr "Top 10"
+
+msgid "Top sapling donors"
+msgstr "树苗捐赠者排行"
+
+msgid "Total saplings"
+msgstr "ling出总量"
+
+msgid "Waiting"
+msgstr "等待"
+
+msgid "Without a referrer"
+msgstr "无推荐人"
+
+msgid "Without an event"
+msgstr "无活动"
+
+msgid "new"
+msgstr "新的"
+
+msgid "Sapling target (optional)"
+msgstr "扩大目标(合理)"
+
+msgid "Extra saplings (donations without a certificate)"
+msgstr "额外ap(无证书捐赠)"
+
+msgid "Saplings of the person"
+msgstr "人的树苗"
+
+msgid "Certificates of the person"
+msgstr "人证"
+
+msgid "Certificate number"
+msgstr "证书编号"
+
+msgid "saplings"
+msgstr "树苗"
+
+msgid "+%s extra"
+msgstr "+ %s extra"
+
+msgid "target %s"
+msgstr "目标 %s"
+
+msgid "Certificate dashboard"
+msgstr "证书仪表盘"
+
+msgid "Add the certificates without an event (%s) to this event"
+msgstr "增加无活动证明(%s)"
+
+msgid "The event name cannot be empty."
+msgstr "事件名称不能为空 。"
+
+msgid "The person could not be saved."
+msgstr "这个人无法被拯救。"
+
+msgid "The certificate could not be saved."
+msgstr "证书无法节省。"
+
+msgid "Certificate not found."
+msgstr "未找到证书。"
+
+msgid "You cannot edit this certificate."
+msgstr "您不能编辑此证书 。"
+
+msgid "That event is closed. Choose an open event."
+msgstr "这一活动已经结束,选择了一次公开活动。"
+
+msgid "Only a manager can backdate a certificate."
+msgstr "只有一名经理才能更新证书。"
+
+msgid "That issue date is not valid."
+msgstr "问题日期是无效的。"
+
+msgid "Only a manager can delete a certificate."
+msgstr "只有管理人员才能删除证书。"
+
+msgid "That channel is not valid."
+msgstr "这一渠道是无效的。"
+
+msgid "That action is not valid."
+msgstr "这一行动是无效的。"
+
+msgid "A revoked certificate cannot be sent."
+msgstr "无法发送已撤销的证书 。"
+
+msgid "Choose a channel."
+msgstr "选择一个渠道。"
+
+msgid "File upload is not available."
+msgstr "无法装卸。"
+
+msgid "No file was uploaded."
+msgstr "没有上传文件 。"
+
+msgid "That phone number belongs to someone else."
+msgstr "这个电话号码属于别人。"
+
+msgid "That e-mail belongs to someone else."
+msgstr "这一电子邮件属于其他人。"
+
+msgid "That phone number is not valid."
+msgstr "电话号码是无效的。"
+
+msgid "Only a manager can delete a person."
+msgstr "只有管理人员可以删除一个人。"
+
+msgid "That e-mail address is not valid."
+msgstr "电子邮件地址是无效的。"
+
+msgid "The full name is required."
+msgstr "需要全名。"
+
+msgid "This person has certificates. Delete the certificates first."
+msgstr "此人有证书,首先删除证书。"
+
+msgid "That event is closed or does not exist. A closed event cannot take certificates."
+msgstr "这一事件已经结束或不存在,但不能举行非公开活动。"
+
+msgid "That is not a valid PDF."
+msgstr "这不是一个有效的人民国防军。"
+
+msgid "That is not a valid image (JPEG expected)."
+msgstr "这不是一个有效的形象(预计正义与平等协会)。"
+
+msgid "The file is too large."
+msgstr "文件太大。"
+
+msgid "The file could not be written. Check the uploads folder permissions."
+msgstr "无法对卷宗进行书面检查,检查上载重印件的许可。"
+
+msgid "The person has no e-mail address."
+msgstr "此人没有电子邮件地址。"
+
+msgid "The person has no phone number."
+msgstr "此人没有电话号码。"
+
+msgid "Enter an e-mail address."
+msgstr "输入电子邮件地址。"
+
+msgid "Enter a phone number."
+msgstr "输入电话号码。"
+
+msgid "Enter a valid phone number or e-mail address."
+msgstr "输入有效电话号码或电子邮件地址。"
+
+msgid "The message could not be sent."
+msgstr "消息无法发送。"
+
+msgid "The message text is empty."
+msgstr "信息案文是空洞的。"
+
+msgid "The message could not be queued."
+msgstr "不能问讯这一信息。"
+
+msgid "There is no active connection for %s. Set one up in Flux Mail."
+msgstr "没有任何积极联系 %s. 在Flux Mail设立一所。"
+
+msgid "%s: the date format is not valid."
+msgstr "%s:日期格式无效。"
+
+msgid "%s is required."
+msgstr "%s是必需的。"
+
+msgid "That phone number belongs to another person (#%d) and was not added."
+msgstr "电话号码属于另一人(#)%d)未添加。"
+
+msgid "That e-mail belongs to another person (#%d) and was not added."
+msgstr "该电子邮件属于另一人(#)%d)未添加。"
+
+msgid "l, F j, Y"
+msgstr "l、F j、Y"
+
+msgid "F j"
+msgstr "Fj"
+
+msgid "F j, Y"
+msgstr "F j, Y"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Staff can only see the certificates they create"
+msgstr "员工只能看到他们创建的证书"
+
+msgid "Additional fonts"
+msgstr "附加字体"
+
+msgid "Choose a font file (TTF/OTF)"
+msgstr "选择字体文件( TTF/ OTF)"
+
+msgid "Keep logs (days, 0 = indefinitely)"
+msgstr "保持日志( 天, 0 = 无限期)"
+
+msgid "Image (JPG/PNG)"
+msgstr "图像 (JPG/PNG)"
+
+msgid "All actions"
+msgstr "所有行动"
+
+msgid "Issuing organization (on the certificate page and LinkedIn)"
+msgstr "发信组织(证书页和链接)"
+
+msgid "Save settings"
+msgstr "保存设置"
+
+msgid "Action"
+msgstr "行动"
+
+msgid "Staff permissions"
+msgstr "工作人员许可"
+
+msgid "Height (pt)"
+msgstr "高度( 平)"
+
+msgid "PDF (recommended)"
+msgstr "PDF(建议)"
+
+msgid "Link address"
+msgstr "链接地址"
+
+msgid "No records."
+msgstr "没有记录。"
+
+msgid "Font name"
+msgstr "字体名称"
+
+msgid "With sample data"
+msgstr "附有抽样数据"
+
+msgid "Provider"
+msgstr "提供者"
+
+msgid "User"
+msgstr "用户"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Certificate Staff"
+msgstr "证书工作人员"
+
+msgid "Custom"
+msgstr "自定义"
+
+msgid "How?"
+msgstr "怎么会?"
+
+msgid "Certificate number format"
+msgstr "证书编号格式"
+
+msgid "Hide certificate pages from search engines (noindex, recommended for personal data)"
+msgstr "从搜索引擎中隐藏证书页( 没有索引, 推荐个人数据)"
+
+msgid "Maximum retry attempts"
+msgstr "最大尝试尝试重试"
+
+msgid "Send certificate links to their holders"
+msgstr "发送证书链接到其持有者"
+
+msgid "Recipient, number, text…"
+msgstr "收件人、号码、文本..."
+
+msgid "Provider response"
+msgstr "提供方回应"
+
+msgid "All users"
+msgstr "所有用户"
+
+msgid "Enabled"
+msgstr "启用"
+
+msgid "All deliveries for this certificate"
+msgstr "证明书的所有交货"
+
+msgid "WhatsApp (*bold*, _italic_)"
+msgstr "WhatsApp(*bold*, _italic_)"
+
+msgid "Title (og:title)"
+msgstr "标题(注:标题)"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Message registered people"
+msgstr "信息登记者"
+
+msgid "Certificate title (on the page and in messages as {sertifika})"
+msgstr "证书标题(在页上和 {sertifika})"
+
+msgid "All channels"
+msgstr "所有频道"
+
+msgid "Link sharing preview"
+msgstr "链接共享预览"
+
+msgid "Sender"
+msgstr "发件人"
+
+msgid "Default messages"
+msgstr "默认信件"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "All registered people"
+msgstr "所有登记人数"
+
+msgid "Recipient"
+msgstr "收件人"
+
+msgid "“Find my certificate” page"
+msgstr "“找到我的证明书”页"
+
+msgid "Data"
+msgstr "数据"
+
+msgid "Delete all certificate data when uninstalling the plugin"
+msgstr "卸载插件时删除全部证书数据"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "Date format"
+msgstr "日期格式"
+
+msgid "Allow staff to send in bulk"
+msgstr "允许工作人员大批派遣"
+
+msgid "Email subject"
+msgstr "电子邮件主题"
+
+msgid "Import template"
+msgstr "导入模板"
+
+msgid "No messages."
+msgstr "没有留言。"
+
+msgid "Maximum messages per run"
+msgstr "每运行最大信件数"
+
+msgid "Template name (shown in the dashboard)"
+msgstr "模板名称( 显示在仪表板上)"
+
+msgid "Solid color"
+msgstr "纯色"
+
+msgid "Width (pt)"
+msgstr "宽( pt)"
+
+msgid "Email body"
+msgstr "电子邮件正文"
+
+msgid "Process now"
+msgstr "立即处理"
+
+msgid "Choose or upload a file"
+msgstr "选择或上传文件"
+
+msgid "To a list of numbers or email addresses"
+msgstr "数字列表或电子邮件地址"
+
+msgid "remove"
+msgstr "删除"
+
+msgid "Code length"
+msgstr "代码长度"
+
+msgid "You do not have permission to send messages in bulk."
+msgstr "您没有权限以批量方式发送信件 。"
+
+msgid "Send certificate links or a custom message to multiple recipients. Preview the message before adding it to the send queue."
+msgstr "将证书链接或自定义信件发送到多个收件人。 在将信件添加到发送队列前先预览此信件 。"
+
+msgid "Recipients"
+msgstr "收件人"
+
+msgid "Template (all valid certificates issued with this template)"
+msgstr "模板( 使用此模板签发的所有有效证书)"
+
+msgid "To send only specific certificates, select them in the certificate list and choose a send action."
+msgstr "只发送特定证书, 在证书列表中选择它们并选择发送动作 。"
+
+msgid "Holders of the “%s” certificate"
+msgstr "“%s”证书持有人"
+
+msgid "Message"
+msgstr "留言"
+
+msgid "Leave this blank to use the default certificate message from the template or settings."
+msgstr "留此空白以使用模板或设置中的默认证书消息 。"
+
+msgid "Subject"
+msgstr "主题"
+
+msgid "Text"
+msgstr "文字"
+
+msgid "Plugin activated"
+msgstr "启动插件激活"
+
+msgid "Certificate created"
+msgstr "创建证书"
+
+msgid "Certificate updated"
+msgstr "更新证书证书"
+
+msgid "Event saved"
+msgstr "已保存事件"
+
+msgid "Event closed (archived)"
+msgstr "事件结束(存档)"
+
+msgid "Event reopened"
+msgstr "重开活动"
+
+msgid "Event deleted"
+msgstr "删除事件"
+
+msgid "Certificate revoked"
+msgstr "证书证书已撤销"
+
+msgid "Certificate restored"
+msgstr "恢复证书证书"
+
+msgid "Certificate deleted"
+msgstr "删除证书"
+
+msgid "Certificates exported to Excel"
+msgstr "证书导出至Excel"
+
+msgid "Files generated on the server"
+msgstr "在服务器上生成的文件"
+
+msgid "Server file generation failed"
+msgstr "服务器文件生成失败"
+
+msgid "Person added"
+msgstr "新增人"
+
+msgid "Person updated"
+msgstr "更新的人事"
+
+msgid "Person deleted"
+msgstr "人删除"
+
+msgid "Template saved"
+msgstr "模板已保存"
+
+msgid "Template deleted"
+msgstr "删除模板删除"
+
+msgid "Provider saved"
+msgstr "保存的提供者"
+
+msgid "Provider deleted"
+msgstr "删除提供者"
+
+msgid "Provider test"
+msgstr "供应商测试"
+
+msgid "Settings saved"
+msgstr "设置已保存"
+
+msgid "Message queued"
+msgstr "排队排队的"
+
+msgid "Message sent"
+msgstr "消息已发送"
+
+msgid "Message failed"
+msgstr "信件失败"
+
+msgid "Message scheduled for retry"
+msgstr "用于重新输入的已排定信件"
+
+msgid "Message cancelled"
+msgstr "信件已取消"
+
+msgid "Bulk send started"
+msgstr "批量发送开始"
+
+msgid "Number added to contacts"
+msgstr "联系人中添加的数"
+
+msgid "Number removed from contacts"
+msgstr "从联系人中移除的数"
+
+msgid "View certificate"
+msgstr "查看证书"
+
+msgid "View in queue"
+msgstr "在队列中查看"
+
+msgid "You do not have permission to download logs."
+msgstr "您没有下载日志的权限 。"

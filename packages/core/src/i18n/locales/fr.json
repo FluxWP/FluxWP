@@ -40,6 +40,11 @@
     "tryDemo": "Essayez la démo",
     "footer": "{{name}} · connexion sécurisée, votre mot de passe n'est jamais stocké dans l'application"
   },
+  "screenLoadError": {
+    "title": "Cet écran n’a pas pu être chargé",
+    "body": "Si le plugin vient d'être mis à jour, le navigateur ou le cache du site peut toujours contenir de vieux fichiers. Recharger la page (Ctrl/Cmd + Shift + R); si elle persiste, purger le cache du site.",
+    "reload": "Recharger la page"
+  },
   "errors": {
     "invalid_url": "Cette adresse n'est pas valide.",
     "unreachable": "Impossible d'accéder au site. Vérifiez l'adresse et votre connexion.",

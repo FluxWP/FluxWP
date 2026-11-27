@@ -5,7 +5,7 @@ return array(
  'messages' => array(
   'Backups' => 'النسخ الاحتياطية',
   'Backups › Dashboard' => 'النسخ الاحتياطية › لوحة القيادة',
-  'Dashboard' => 'لوحة القيادة',
+  'Dashboard' => 'لوحة التحكم',
   'Backups › Settings' => 'النسخ الاحتياطية › الإعدادات',
   'Settings' => 'الإعدادات',
   'Permanently delete this backup?' => 'هل تريد حذف هذه النسخة الاحتياطية نهائيًا؟',
@@ -332,7 +332,7 @@ return array(
   '%1$s old backup deleted for the quota: %2$s' . chr(0) . '%1$s old backups deleted for the quota: %2$s' => 'تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s' . chr(0) . 'تم حذف النسخة الاحتياطية القديمة لـ%1$s للحصة: %2$s' . chr(0) . 'تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s' . chr(0) . 'تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s' . chr(0) . 'تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s' . chr(0) . 'تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s',
   '%s backup past its retention period was deleted.' . chr(0) . '%s backups past their retention period were deleted.' => 'تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها.' . chr(0) . 'تم حذف النسخة الاحتياطية لـ%s بعد فترة الاحتفاظ بها.' . chr(0) . 'تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها.' . chr(0) . 'تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها.' . chr(0) . 'تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها.' . chr(0) . 'تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها.',
   'Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting.' => 'يأخذ نسخة احتياطية تلقائية قبل كل تحديث للمكون الإضافي/الموضوع، والنسخ الاحتياطية الكاملة المجدولة، وإدارة الحصص والاحتفاظ، ولوحة معلومات التخزين مع المخططات والاستعادة الانتقائية. متوافق مع استضافة Hostinger المشتركة.',
-  'context_fd86717aca41%s%%' => '%s%%',
+  'context_fd86717aca41%s%%' => '%s٪',
   'The archive file is deleted too.' => 'يتم حذف ملف الأرشيف أيضًا.',
   'Status' => 'الحالة',
   'Restore is only available in the panel.' => 'الاستعادة متاحة فقط في اللوحة.',
@@ -693,6 +693,6 @@ return array(
   'İlerleme' => 'التقدم',
   'Şimdi yedekle' => 'قم بالنسخ الاحتياطي الآن',
   'Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır.' => 'خذ النسخة الاحتياطية الأولى مع النسخ الاحتياطي الآن. تتم الاستعادة في اللوحة.',
-
+  'JavaScript is required for this screen.' => 'JavaScript مطلوب لهذه الشاشة.',
  ),
 );

@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.10.6
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.10.5
 - Mobil menü katmanı sitenin kendi markasını gösterir: üstteki logo kurum profilinden (koyu modda açık renk logo), logo yoksa site adı; alttaki slogan kurum profilindeki slogan, boşsa gösterilmez. Önceden tüm sitelerde sabit Yeşil Türkiye logosu ve sloganı vardı. Ön ayar `flx_menu_brand` filtresiyle değiştirebilir.
 - Menü kartlarının simgesi varsayılanda site renginde sade nokta; "Yapraklar" süslemesinde eskisi gibi yaprak.

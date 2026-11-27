@@ -112,6 +112,20 @@
     "Name (%s)": "Name (%s)",
     "Description (%s)": "Description (%s)",
     "If left empty, the Turkish name and description are shown.": "If left empty, the Turkish name and description are shown.",
-    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
+    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.",
+    "JavaScript is required for this screen.": "JavaScript is required for this screen.",
+    "A language code has 2–3 letters and, optionally, a region such as pt-br.": "A language code has 2–3 letters and, optionally, a region such as pt-br.",
+    "A language can be listed only once.": "A language can be listed only once.",
+    "A WordPress locale has letters, digits and an underscore, e.g. en_US.": "A WordPress locale has letters, digits and an underscore, e.g. en_US.",
+    "This language is not in the catalog.": "This language is not in the catalog.",
+    "The default language must be one of the listed languages and cannot be removed.": "The default language must be one of the listed languages and cannot be removed.",
+    "Unknown suggestion mode.": "Unknown suggestion mode.",
+    "The suggested language must be one of the listed languages.": "The suggested language must be one of the listed languages.",
+    "Unknown switcher style.": "Unknown switcher style.",
+    "Unknown switcher position.": "Unknown switcher position.",
+    "Use two-letter country codes (TR, CY…).": "Use two-letter country codes (TR, CY…).",
+    "This content type does not exist.": "This content type does not exist.",
+    "Unknown site text.": "Unknown site text.",
+    "Site texts belong to a language other than the default one.": "Site texts belong to a language other than the default one."
   }
 }

@@ -1199,3 +1199,12 @@ msgstr "Fenêtre de discussion sur le site basée sur l'intelligence artificiell
 
 msgid "Still answering. Please wait a moment."
 msgstr "La réponse est encore en cours. Veuillez patienter un moment."
+
+msgid "Answers site chats"
+msgstr "Réponses aux chats du site"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript est nécessaire pour cet écran."
+
+msgid "Chat on WhatsApp"
+msgstr "Dialogue sur WhatsApp"

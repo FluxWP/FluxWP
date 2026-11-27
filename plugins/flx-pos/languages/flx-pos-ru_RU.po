@@ -1,0 +1,845 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "POS accounts"
+msgstr "Платёжные аккаунты"
+
+msgid "Card payments with banks and payment institutions"
+msgstr "Выплаты с банками и платежными учреждениями"
+
+msgid "Virtual POS"
+msgstr "Виртуальный POS-терминал"
+
+msgid "POS"
+msgstr "POS"
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "The amount must be greater than zero."
+msgstr "Сумма должна быть больше нуля."
+
+msgid "No POS account for this currency."
+msgstr "Никакого счета POS за эту валюту."
+
+msgid "This account needs card details."
+msgstr "Этот счет нуждается в карточке."
+
+msgid "The payment record could not be created."
+msgstr "Отчет о платежах не может быть составлен."
+
+msgid "Transaction not found."
+msgstr "Не найдено сделки."
+
+msgid "Saved card details are missing."
+msgstr "Спасенные карточки пропали."
+
+msgid "This provider does not support charging a saved card."
+msgstr "Этот поставщик не поддерживает сбереженную карточку."
+
+msgid "Choose a provider."
+msgstr "Выбери поставщика."
+
+msgid "test"
+msgstr "тест"
+
+msgid "POS account not found."
+msgstr "Счет с POS не найден."
+
+msgid "No driver for this provider yet."
+msgstr "Водитель этого поставщика пока не работает."
+
+msgid "The payment link is invalid or has expired."
+msgstr "Сумма платежа недействительна или истекла."
+
+msgid "Order %s"
+msgstr "Орден %s"
+
+msgid "General"
+msgstr "Общий"
+
+msgid "The card details have expired; please try again."
+msgstr "Подробности карточки истекли; пожалуйста, попробуйте еще раз."
+
+msgid "Secure payment"
+msgstr "Безопасная оплата"
+
+msgid "Payment form"
+msgstr "Форма платежа"
+
+msgid "Cancel and return to checkout"
+msgstr "Отмени и возвращайся к проверке"
+
+msgid "Going to the secure payment…"
+msgstr "Идёт на гарантированный платеж..."
+
+msgid "Continue"
+msgstr "Продолжить"
+
+msgid "The amount charged by the bank (%1$s) differs from the expected amount (%2$s); check it."
+msgstr "Сумма, взимаемая банком (%1$s), отличается от ожидаемой суммы (%2$s); проверяет."
+
+msgid "Paid by card (%1$s): %2$s, reference %3$s, %4$s."
+msgstr "Выплачена карточкой (%1$s ): %2$s , ссылка %3$s, %4$s."
+
+msgid "%d installments"
+msgstr "%d инстанция"
+
+msgid "single payment"
+msgstr "Единые выплаты"
+
+msgid "Card payment needs a check (%1$s): %2$s"
+msgstr "Картанная выплата требует проверки (%1$s): %2$s"
+
+msgid "Card payment failed (%1$s): %2$s"
+msgstr "Выплата карточки провалилась (в процентах)%1$s): %2$s"
+
+msgid "Redirecting…"
+msgstr "Перенаправление..."
+
+msgid "The payment could not be completed. Please try again or use another card."
+msgstr "Не удалось выполнить платеж. Пожалуйста, попробуйте еще раз или используйте другую карту."
+
+msgid "Name on card"
+msgstr "Фамилия на карту"
+
+msgid "Card number"
+msgstr "Номер карты"
+
+msgid "Expiry (MM/YY)"
+msgstr "Срок действия (ММ/ГГ)"
+
+msgid "Security code (CVC)"
+msgstr "Код безопасности (CVC)"
+
+msgid "Installments"
+msgstr "Рассрочка"
+
+msgid "Single payment"
+msgstr "Единый платеж"
+
+msgid "%1$s installments × %2$s (total %3$s)"
+msgstr "%1$s в рассрочку ×%2$s(всего %3$s)"
+
+msgid "Your card details are protected by your bank's 3D Secure check and are not stored on this site."
+msgstr "Подробности вашей карты защищены чеком 3D вашего банка и не хранятся на этом сайте."
+
+msgid "Check the card number."
+msgstr "Проверь номер карточки."
+
+msgid "Check the expiry date."
+msgstr "Проверь дату истечения срока действия."
+
+msgid "Check the security code."
+msgstr "Проверь код безопасности."
+
+msgid "Enter the name on the card."
+msgstr "Назовите имя на карте."
+
+msgid "Test mode: no real money is charged."
+msgstr "Метод испытания: не заряжаются никакие реальные деньги."
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "The payment will be left unfinished. Close it?"
+msgstr "Оплата останется незавершенной."
+
+msgid "The selected installment is not available for this card."
+msgstr "Для этой карты не имеется выбранного устройства."
+
+msgid "Installment fee (%d installments)"
+msgstr "Плата за установку (%d инстанция)"
+
+msgid "No successful card payment found on this order."
+msgstr "Никаких успешных платежей по карточке на этом ордере не было."
+
+msgid "This transaction cannot be refunded."
+msgstr "Эта операция не может быть рефинансирована."
+
+msgid "The refund amount cannot exceed the paid amount."
+msgstr "Сумма возмещения не может превышать уплаченную сумму."
+
+msgid "The bank did not approve the refund."
+msgstr "Банк не одобрил возврат."
+
+msgid "The card payment was voided at the bank (%s)."
+msgstr "Выплата карточки была аннулирована в банке (%s)."
+
+msgid "Refunded to the card: %s."
+msgstr "Ответ на карточку: %s"
+
+msgid "Block checkout"
+msgstr "Блокировать оформление заказа"
+
+msgid "Payment link"
+msgstr "Ссылка для оплаты"
+
+msgid "Server check"
+msgstr "Проверка сервера"
+
+msgid "Saved cards"
+msgstr "Сохраненные карты"
+
+msgid "Refund from site"
+msgstr "Возврат с сайта"
+
+msgid "Shown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method."
+msgstr "Отображается на странице оформления заказа, созданной с помощью блока Checkout. Классическая проверка ([woocommerce_checkout]) показывает все методы."
+
+msgid "Pays an existing order from its payment link without a cart (call center, \"pay again\")."
+msgstr "Заказывает существующий заказ с его платежной связи без карточки (колл-центр, \"заплатите снова\"."
+
+msgid "The payment is confirmed with the provider from the server before the order is marked paid."
+msgstr "Платеж подтверждается поставщиком с сервера до того, как заказ будет помечен как оплаченный."
+
+msgid "The payer can pay in installments."
+msgstr "Плательщик может заплатить в инстанциях."
+
+msgid "The payer can save the card for the next payment."
+msgstr "Плательщик может сэкономить карточку для следующей выплаты."
+
+msgid "The order's Refund button sends the refund to the provider."
+msgstr "Кнопка о возврате посылает возмещение поставщику."
+
+msgid "Added by Flux POS (the plugin has no block support)."
+msgstr "Добавлена с помощью Flux POS (фугина не имеет блокирующей поддержки)."
+
+msgid "Flux POS adds it once the method is enabled."
+msgstr "Flux POS добавляет его после того, как этот метод будет использован."
+
+msgid "Turn on \"Show other payment plugins on the checkout block\"."
+msgstr "Включите «Показывать другие платежные плагины в блоке оформления заказа»."
+
+msgid "The plugin shows its card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support."
+msgstr "Плюгин показывает поля карт только на классической проверке, использует классическую страницу или просит поставщика заблокировать."
+
+msgid "Most plugins work; try a payment link once."
+msgstr "Большинство плагинов работают; попробуйте ссылку для оплаты один раз."
+
+msgid "Depends on the plugin; ask the provider."
+msgstr "Зависит от плагина; спросите у провайдера."
+
+msgid "On the payment page, if the provider offers it."
+msgstr "На странице платежа, если поставщик предлагает его."
+
+msgid "Refund in the provider's panel, then mark the order refunded."
+msgstr "Возврат в панели провайдера, затем отметьте заказ как возврат."
+
+msgid "The bank's return is verified by signature or a server query; the amount must match."
+msgstr "Возвращение банка проверяется подписью или справкой сервера; сумма должна совпадать."
+
+msgid "The account's installment table is empty."
+msgstr "Счетная таблица пуста."
+
+msgid "The provider does not support refunds from the site."
+msgstr "Поставщик не поддерживает возврат средств с этого объекта."
+
+msgid "Confirmed by hand after the receipt."
+msgstr "Подтверждено вручную после получения."
+
+msgid "Payment details"
+msgstr "Детали оплаты"
+
+msgid "No Flux POS transaction on this order."
+msgstr "Никаких сделок с Flux POS по этому приказу."
+
+msgid "Card"
+msgstr "Карта"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Amount"
+msgstr "Сумма"
+
+msgid "Bank reference"
+msgstr "Банковская справка"
+
+msgid "Authorization code"
+msgstr "Код выдачи разрешений"
+
+msgid "Transaction no"
+msgstr "Операционные операции"
+
+msgid "Mode"
+msgstr "Режим"
+
+msgid "Test"
+msgstr "Тест"
+
+msgid "Live"
+msgstr "Живи"
+
+msgid "All transactions"
+msgstr "Все операции"
+
+msgid "3D Pay (check and charge at the bank)"
+msgstr "3D Плата (проверка и плата в банке)"
+
+msgid "3D Model (check at the bank, charge from the server)"
+msgstr "3D Модель (проверка в банке, плата с сервера)"
+
+msgid "Bank's payment page (3D Host)"
+msgstr "Банковская плата (3D Host)"
+
+msgid "Provider's payment page"
+msgstr "Провидец платит"
+
+msgid "Payment form on the page (iFrame)"
+msgstr "Форма платежа на странице (iFrame)"
+
+msgid "Stripe card fields on the checkout page (Payment Element)"
+msgstr "Поля карточек на странице проверки (элемент пайков)"
+
+msgid "Pay with wallet"
+msgstr "Плати за бумажник"
+
+msgid "Without 3D (only on accounts the bank allows)"
+msgstr "Без 3D (только на счетах банка разрешена)"
+
+msgid "Store number (Client ID)"
+msgstr "Номер магазина (Идентификация ценных бумаг)"
+
+msgid "API user name"
+msgstr "API Наименование пользователя"
+
+msgid "The user created with the API role in the bank panel. Needed for refunds, voids and queries."
+msgstr "Пользователь, созданный с API ролью в банковской панели, нуждается в возврате средств, пористости и запросов."
+
+msgid "API user password"
+msgstr "Пароль пользователя API"
+
+msgid "3D Store Key"
+msgstr "3D &lt; &lt; Ключ &gt; &gt;"
+
+msgid "Merchant number"
+msgstr "Номер Мершан"
+
+msgid "Terminal number"
+msgstr "Терминальный номер"
+
+msgid "Provision user"
+msgstr "Пользователь услуг"
+
+msgid "Provision password"
+msgstr "Пароль"
+
+msgid "3D Secure key"
+msgstr "3D Защитный ключ"
+
+msgid "Refund user (PROVRFN)"
+msgstr "Пользователь возврата (ПРОФН)"
+
+msgid "If empty, the provision user is used."
+msgstr "Если он пуст, то используется пользователь."
+
+msgid "Refund user password"
+msgstr "Пароль пользователя возврата средств"
+
+msgid "Merchant number (MID)"
+msgstr "Номер торгового оборудования (MID)"
+
+msgid "Terminal number (TID)"
+msgstr "Терминальный номер (ТИД)"
+
+msgid "Posnet ID"
+msgstr "ID Posnet"
+
+msgid "Encryption key (ENCKEY)"
+msgstr "Ключ шифрования (ENCKEY)"
+
+msgid "Merchant password"
+msgstr "Пароль &quot; Мерчан &quot;"
+
+msgid "API user code"
+msgstr "Код пользователя API"
+
+msgid "Shop code (ShopCode)"
+msgstr "Код отруба (ShopCode)"
+
+msgid "Merchant key (MerchantPass)"
+msgstr "Ключ &lt; &lt; Меркант &gt; &gt; ( &lt; &lt; МеркантПас &gt; &gt; )"
+
+msgid "Store number (MerchantId)"
+msgstr "Номер магазина (MerchantId)"
+
+msgid "Customer number (CustomerId)"
+msgstr "Количество клиентов (CustomerId)"
+
+msgid "Merchant Safe ID"
+msgstr "Безопасный идентификационный номер торговца"
+
+msgid "Terminal Safe ID"
+msgstr "Термин &lt; &lt; Безопасная идентификация &gt; &gt;"
+
+msgid "Secret key"
+msgstr "Секретный ключ"
+
+msgid "Merchant code (MERCHANT)"
+msgstr "Код &quot; Мерчан &quot; (МЕРХАНТ)"
+
+msgid "API user"
+msgstr "API пользователя"
+
+msgid "API password"
+msgstr "API пароль"
+
+msgid "Dealer type (optional)"
+msgstr "Тип оленя (факультативно)"
+
+msgid "App key (App ID)"
+msgstr "Ключ приложения (Апп- ID)"
+
+msgid "App secret (App Secret)"
+msgstr "Запишите секреты (Апп-Секрет)"
+
+msgid "Merchant key (Merchant Key)"
+msgstr "Ключ Мерканта (Мершант-Ключ)"
+
+msgid "API key"
+msgstr "API-ключ"
+
+msgid "Store number"
+msgstr "Номер склада"
+
+msgid "Store password (Merchant Key)"
+msgstr "Пароль магазина (Merchant Key)"
+
+msgid "Store secret (Merchant Salt)"
+msgstr "Секретный магазин (Merchant Salt)"
+
+msgid "Terminal number (CLIENT_CODE)"
+msgstr "Терминальный номер (CLIENT_CODE)"
+
+msgid "User name"
+msgstr "Наименование пользователя"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Key (GUID)"
+msgstr "Ключ (GUID)"
+
+msgid "Merchant (MERCHANT)"
+msgstr "&quot; Мершант &quot; (МЕРХАНТ)"
+
+msgid "TEST1234 for testing."
+msgstr "ИСПЫТАНИЕ1234 ДЛЯ ИСПЫТАНИЯ."
+
+msgid "Merchant key (MERCHANT_KEY)"
+msgstr "Ключ от наемника (MERCHANT_KEY)"
+
+msgid "Public token (MERCHANT_PUBLIC_TOKEN, for installment rates)"
+msgstr "Общественный символ (MERCHANT_PUBLIC_TOKEN, for installment rates)"
+
+msgid "Dealer code"
+msgstr "Код оленей"
+
+msgid "Client ID"
+msgstr "ID"
+
+msgid "Signing key ID (kid)"
+msgstr "Идентификация ключевого сигнала (попытка)"
+
+msgid "Signing key (k)"
+msgstr "Ключ для обозначения сигнала (k)"
+
+msgid "Payment key (sx)"
+msgstr "Ключ платежа (x)"
+
+msgid "Void/refund key (sx)"
+msgstr "Ключ &lt; &lt; Голосование/возмещение &gt; &gt; (x)"
+
+msgid "API key (test_… or live_…)"
+msgstr "API ключ (испытание... или жизнь...)"
+
+msgid "Publishable key (pk_test_… or pk_live_…)"
+msgstr "Публичный ключ (pk_test_... или pk_live_...)"
+
+msgid "Secret key (sk_… or restricted rk_…)"
+msgstr "Секретный ключ (ск_... или ограниченное ковчег...)"
+
+msgid "Webhook signing secret (whsec_…)"
+msgstr "Вебхук тайна для подписания (whsec_...)"
+
+msgid "In the Stripe Dashboard, Developers › Webhooks: add the notification URL and select the payment_intent.succeeded, payment_intent.processing and payment_intent.payment_failed events."
+msgstr "В Sripe Dashboard разработчики : добавить URL и выбрать платеж_intent.sued, pay_intent. Обработка и платеж_intent. payment_ contracted."
+
+msgid "Statement descriptor suffix (optional, up to 22 characters)"
+msgstr "Изложение описательного знака (факультативно, до 22 знаков)"
+
+msgid "Website index"
+msgstr "Индекс веб-сайта"
+
+msgid "This bank asks for the card again after the 3D return: the card is kept encrypted, tied to the transaction, for at most 20 minutes and opened once on return."
+msgstr "Этот банк просит вернуть карточку снова после возвращения 3D: карточка зашифрована, привязана к операции, в течение не более 20 минут и открыта один раз по возвращении."
+
+msgid "This bank's return signature does not work as documented; every successful return is checked with the bank."
+msgstr "Подпись банка не работает так, как это было задокументировано; все успешные прибыли проверяются в банке."
+
+msgid "The \"Provider's payment page\" model is the iyzico checkout form; the \"Pay with iyzico\" wallet is on that page too."
+msgstr "Модель \"Провидера\" - это бланк проверки iyzico; бумажник \"Пэй с iyzico\" тоже на этой странице."
+
+msgid "Enter this account's notification address as the Notification URL in the PayTR panel (shown on the account screen). Test mode works with the PayTR account's test key."
+msgstr "Уведомительный адрес этого счета как Уведомительный URL в панели ПейТР (показ на экране счета)."
+
+msgid "For a test use merchant TEST1234 and the test key from EsnekPOS's developer page."
+msgstr "Для торгового оборудования для испытаний и ключа для тестирования на странице разработчика ЭснекПОС."
+
+msgid "Enter this account's notification address as the callback address in the Shopier panel. Refunds are made in the Shopier panel."
+msgstr "Введите адрес этого счета в качестве адреса вызова в щите Шопьера."
+
+msgid "Test or live is taken from the key's prefix (test_… / live_…). Turkish lira is not supported."
+msgstr "Испытания или жизнь взяты из предфикса ключа (испытание... живо...). Турецкая лира не поддерживается."
+
+msgid "Card fields are Stripe's Payment Element; card details never reach the site. 3D Secure, Apple Pay and Google Pay are handled by Stripe. Test or live is read from the key prefix and must match the account's test switch. \"Test connection\" also registers the domain for Apple Pay."
+msgstr "Кардные поля - это платный элемент сектора, карточки никогда не доходят до места. 3D Secure, Apple Pay and Google Pay - это проверка или жизнь - это читается из основного префекта и должны соответствовать контрольному переключателю счета. \"Испытательная связь\" также регистрирует достопримечательность для яблочного платежа."
+
+msgid "GiroGate method"
+msgstr "Метод Гиротгейта"
+
+msgid "Banks"
+msgstr "Банки"
+
+msgid "Payment institutions"
+msgstr "Выплатные учреждения"
+
+msgid "Wallets"
+msgstr "Проспекты"
+
+msgid "Meal and gift cards"
+msgstr "Мебель и подарочные карточки"
+
+msgid "Refund"
+msgstr "Возврат"
+
+msgid "Partial refund"
+msgstr "Частичный возврат"
+
+msgid "Void"
+msgstr "Void"
+
+msgid "Status query"
+msgstr "Ход выполнения"
+
+msgid "Installments by card"
+msgstr "Установка карточки"
+
+msgid "Server notification"
+msgstr "Уведомление сервера"
+
+msgid "The result of the previous charge is not in yet."
+msgstr "Результаты предыдущей зарядки еще не получены."
+
+msgid "No result came back."
+msgstr "Никакого результата не было."
+
+msgid "Order #%s"
+msgstr "Заказ No %s"
+
+msgid "The card was not charged."
+msgstr "С карты не были списаны средства."
+
+msgid "Pay"
+msgstr "Поделиться"
+
+msgid "Processing…"
+msgstr "Обработка..."
+
+msgid "The payment form could not be loaded. Refresh the page or choose another method."
+msgstr "Форма платежа не может быть загружена, перепрофилировать страницу или выбрать другой метод."
+
+msgid "Your card details are processed in Stripe's secure fields and are not stored on this site."
+msgstr "Ваши карточки обрабатываются в защищенных полях сектора и не хранятся на этом месте."
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Pending"
+msgstr "Ожидается"
+
+msgid "Paid"
+msgstr "Платный"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "Refunded"
+msgstr "Возвращено"
+
+msgid "Voided"
+msgstr "Избранные"
+
+msgid "Needs a check"
+msgstr "Нужно проверить."
+
+msgid "Enabled"
+msgstr "Включено"
+
+msgid "Show this payment method"
+msgstr "Показать метод платежа"
+
+msgid "Accounts, keys, installments and the display name are managed in the Flux POS panel."
+msgstr "Счета, ключи, установки и дисплеяционное наименование находятся в панели Flux POS."
+
+msgid "Flux POS panel"
+msgstr "Flux POS panel"
+
+msgid "Card payment is not available for this currency."
+msgstr "В этой валюте не имеется платежа в виде карточки."
+
+msgid "Pay by card (Flux POS)"
+msgstr "Плата по карточке (Flux POS)"
+
+msgid "3D Secure card payment through a bank or payment institution."
+msgstr "3D Закрепленный платеж по карте через банк или плательное учреждение."
+
+msgid "Bank / Credit card"
+msgstr "Банк/кредитная карта"
+
+msgid "%s (Flux POS)"
+msgstr "%s (Флукс-посс)"
+
+msgid "Completed on the payment provider's page."
+msgstr "Заполнено на странице поставщика."
+
+msgid "The merchant details are wrong; check the account settings."
+msgstr "Товарные детали ошибаются; проверьте записи счетов."
+
+msgid "The bank's return signature did not match."
+msgstr "Подпись банка не совпадала."
+
+msgid "The bank's return does not belong to this payment."
+msgstr "Возвращение банка не относится к этому платежу."
+
+msgid "No successful sale was found at the bank."
+msgstr "В банке не было найдено ни одной успешной продажи."
+
+msgid "The payment is pending at the provider."
+msgstr "Платежи ожидаются в поставщике."
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "For a payment with several lines, partial refunds are made in the Craftgate panel."
+msgstr "Для оплаты с несколькими статьями частичные суммы возмещаются в группе &quot; Кражгейт &quot; ."
+
+msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
+msgstr "Пожалуйста, напишите полное имя держателя карточки, как это на карточке (по крайней мере 6 букв)."
+
+msgid "The payment could not be started. Please try again."
+msgstr "Не удалось начать платеж. Пожалуйста, попробуйте еще раз."
+
+msgid "Status at the bank: %s"
+msgstr "Состояние банка: %s"
+
+msgid "iyzico put the payment under review."
+msgstr "\"Ийзико\" поставила вопрос о платеже."
+
+msgid "The %s provision response could not be read; check with the bank."
+msgstr "Ответ на положение %s не может быть прочитан; проверка с банком."
+
+msgid "The payment was not completed (%s)."
+msgstr "Платежи не были завершены (%s)."
+
+msgid "The payment method will report the result later."
+msgstr "Метод платежа сообщит об этом позже."
+
+msgid "The transaction was voided at the bank."
+msgstr "Операция была аннулирована в банке."
+
+msgid "The payment was not completed."
+msgstr "Платежи не были завершены."
+
+msgid "Papara refunds only the full amount."
+msgstr "Папара возвращает только всю сумму."
+
+msgid "The card is not eligible for 3D Secure."
+msgstr "Карточка не может быть защищена 3D."
+
+msgid "The payment time ran out; please enter the card details again."
+msgstr "Срок платежа истек; пожалуйста, включите данные о карточке снова."
+
+msgid "The result will come with the PayTR notification."
+msgstr "В результате этого будет получено уведомление о ПФСО."
+
+msgid "%s did not respond."
+msgstr "%s не ответил."
+
+msgid "The bank did not complete the 3D check."
+msgstr "Банк не завершил 3D-проверку."
+
+msgid "The result will come with the Shopier notification."
+msgstr "В результате этого будет получено уведомление Шопьера."
+
+msgid "Stripe keys are missing: a publishable key and a secret key are required."
+msgstr "У нас нет ключи от полосы: требуется издательский ключ и секретный ключ."
+
+msgid "One Stripe key is test and the other is live. Both must be in the same mode."
+msgstr "Один ключ от полосы - это испытание, а другой - живой."
+
+msgid "The account is in test mode but the Stripe keys are live. Enter test keys (sk_test_… / pk_test_…) or turn test mode off."
+msgstr "Счет находится в режиме испытания, но ключи от полосы в прямом эфире."
+
+msgid "The account is live but the Stripe keys are test keys. Enter live keys or turn test mode on."
+msgstr "Счет жив, но ключи от полосы - это испытательные ключи, включающие в себя ключи или режим испытания на поворот."
+
+msgid "The card number is not valid."
+msgstr "Номер карточки недействительн."
+
+msgid "The card number is incorrect."
+msgstr "Номер карточки неверный."
+
+msgid "The card number is incomplete."
+msgstr "Номер карточки неполный."
+
+msgid "The expiry month is invalid."
+msgstr "Истечение срока давности является недействительным."
+
+msgid "The expiry year is invalid."
+msgstr "Год истечения срока действия является недействительным."
+
+msgid "The expiry year is in the past."
+msgstr "Год истечения этого срока уже в прошлом."
+
+msgid "The expiry date is incomplete."
+msgstr "Дата истечения срока действия контракта является неполной."
+
+msgid "The card has expired."
+msgstr "Карточка истекла."
+
+msgid "The security code is invalid."
+msgstr "Код безопасности недействительн."
+
+msgid "The security code is incorrect."
+msgstr "Код безопасности неверный."
+
+msgid "The security code is incomplete."
+msgstr "Код безопасности неполный."
+
+msgid "The postal code failed validation."
+msgstr "Почтовый код не подтвердил."
+
+msgid "Invalid postal code; please correct it and try again."
+msgstr "Инвалидный почтовый код; пожалуйста, поправьте его и попробуйте еще раз."
+
+msgid "The card was declined."
+msgstr "Карта была отклонена."
+
+msgid "The card has insufficient funds or limit."
+msgstr "Карточка не имеет достаточных средств или ограничений."
+
+msgid "The card issuer did not approve the payment."
+msgstr "Выдавший карту эмитент не одобрил платеж."
+
+msgid "The card's transaction limit was exceeded."
+msgstr "Предельный срок операции карточки был превышен."
+
+msgid "The bank requires card authentication (3D Secure)."
+msgstr "Банк требует удостоверения подлинности карточки (3D Secure)."
+
+msgid "3D Secure authentication failed; try again or use another card."
+msgstr "3D Защитный аутентификационный параметр не сработал; снова попробуйте или используйте другую карточку."
+
+msgid "An error occurred while processing the card; please try again."
+msgstr "При обработке карточки произошла ошибка; пожалуйста, попробуйте еще раз."
+
+msgid "The email address is invalid."
+msgstr "Адрес электронной почты недействительн."
+
+msgid "The payment could not be processed; try again or use another method."
+msgstr "Платежи не могут быть обработаны; попробуйте еще раз или использовать другой метод."
+
+msgid "The payment is processing at Stripe."
+msgstr "Плата обрабатывается в стрипсе."
+
+msgid "Waiting for payment authentication."
+msgstr "Жду подтверждения платежа."
+
+msgid "The payment was canceled."
+msgstr "Плата была отменена."
+
+msgid "This provider sends no notifications."
+msgstr "Этот поставщик не направляет никаких уведомлений."
+
+msgid "This provider has no refunds from the site; make them in the provider's panel."
+msgstr "Этот поставщик не имеет возврата с объекта; он помещает их в панель поставщика."
+
+msgid "This provider has no voids from the site."
+msgstr "Этот поставщик не имеет никаких пористости с места."
+
+msgid "This provider has no status query."
+msgstr "Этот поставщик не имеет статуса."
+
+msgid "Error code %s"
+msgstr "Код ошибки %s"
+
+msgid "The payment was not approved."
+msgstr "Выплата не была утверждена."
+
+msgid "%1$s did not respond (HTTP %2$d)."
+msgstr "%1$s не ответил (HTTP %2$d)."
+
+msgid "Redirect: the bank or provider page opens full screen"
+msgstr "Перенаправление: полный экран открыт для банковской или поставщиковой страницы"
+
+msgid "Popup: in a frame, without leaving checkout"
+msgstr "Поуп: в раме, без проверки"
+
+msgid "On site: in a frame, with the site's header and footer"
+msgstr "На стройке: в раме, с заголовком и обувью."
+
+msgid "This provider has no connection test; try a small payment with a test card."
+msgstr "Этот поставщик не имеет подсоединения; попробуйте небольшую плату с испытательной карточкой."
+
+msgid "Connection works, the keys were accepted."
+msgstr "Связные работы, ключи были приняты."
+
+msgid "Automatic"
+msgstr "Автоматический"
+
+msgid "Show all"
+msgstr "Показать все"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce не активен."
+
+msgid "Add a POS account before turning on the Pay by card method."
+msgstr "Добавить счет POS, прежде чем повернуть платеж по методу карточки."
+
+msgid "Refund from the panel"
+msgstr "Возмещение из группы"
+
+msgid "No active POS account; card payments are not taken."
+msgstr "Нет активного счета POS; платежи по карточкам не учитываются."
+
+msgid "An account is in test mode, no real money is charged: %s"
+msgstr "Счет находится в режиме испытания, не заряжается подлинная сумма: %s"
+
+msgid "%d account is active in live mode."
+msgid_plural "%d accounts are active in live mode."
+msgstr[0] "Счет %d действует в режиме реального времени."
+msgstr[1] "%d счета ведутся в режиме реального времени."
+msgstr[2] "%d счета ведутся в режиме реального времени."
+
+msgid "%s: no webhook signing secret. The payment return is still read, but if the payer closes the page before returning the order stays pending. Add the notification URL in the Stripe Dashboard and enter the whsec_… secret."
+msgstr "%s: нет тайна для подписи в интернете, платежное возвращение все еще читается, но если плательщик закроет страницу, прежде чем возвращать заказ, остается на рассмотрении."
+
+msgid "The official WooCommerce Stripe plugin is also active. Pick a single card method in Flux POS › Methods so payers do not see two card options."
+msgstr "Официальный стройный плюгин в полосе WooCommerce также активен, и поэтому плательщики не видят двух вариантов карточки."
+
+msgid "The site is not on HTTPS; banks do not send the card result to the return address and the card form is not secure."
+msgstr "Место не находится на ГТТТПС; банки не отправляют результат карточки обратному адресу, а карточка не защищена."
+
+msgid "Key encryption"
+msgstr "Ключевое шифрование"
+
+msgid "PHP sodium or openssl is missing; POS keys cannot be encrypted."
+msgstr "PHP натрий или открытый сл отсутствует; ключи POS не могут быть зашифрованы."
+
+msgid "Keys are encrypted with the WordPress salts. If the wp-config.php salts change, enter the POS keys again."
+msgstr "Ключи зашифрованы с солями WordPress. если соль верфига меняется, вступайте в ключи POS."
+
+msgid "The check could not run: %s"
+msgstr "Проверка не могла быть выполнена: %s"

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.55.3
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 1.55.2
 - AI asistan ve öneriler, sitede kendi anahtarı yokken FluxWP hesabının Flux Cloud AI kredisiyle çalışır (Flux AI 0.36+): "Yapay zekâ anahtarı ya da modeli girilmemiş" uyarısı kredi açıkken çıkmaz. `flxc_ai_provider_usable()`.
 

@@ -76,6 +76,9 @@ msgstr "缩小 JS 文件"
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr "对于主题和插件脚本,如果比源新,则使用 .min 同级脚本;否则会生成没有注释和缩进的副本(保留换行符)。加载相对于其自身位置的块的包和带有翻译的脚本将被保留。"
 
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "jQuery 始终保持阻塞状态(页面上较旧的内联脚本可能会直接调用它)。 WordPress 本身会删除后面有内联脚本或阻塞脚本所依赖的脚本的延迟。"
+
 msgid "Defer head scripts"
 msgstr "推迟头脚本"
 
@@ -965,7 +968,7 @@ msgid "Turned on. The page cache was cleared; run the site audit or PageSpeed te
 msgstr "已开启。页面缓存被清除;再次运行站点审核或 PageSpeed 测试。"
 
 msgid "Animations (GPU)"
-msgstr "Animations (GPU)"
+msgstr "动画 (GPU)"
 
 msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
 msgstr "动画未在 GPU 上运行:%s。应该用变换/不透明度(主题/预设)重写。"
@@ -1500,3 +1503,138 @@ msgstr "旗帜"
 
 msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
 msgstr "站点性能集中于一处:每个请求查询、PHP 错误、外部 HTTP 请求(开发人员面板)、缓慢/错误请求日志、服务器(CPU、RAM、磁盘、OPcache)、数据库、自动加载、cron 和系统检查。 AI 使用 Flux AI 和 MCP / Flux AI 工具读取所有内容。"
+
+msgid "View Flux Speed"
+msgstr "查看通速"
+
+msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
+msgstr "同时还有两个物体ca:LiteSpeed Cache object cache和 SQLite Object Cache. Only one can own object-cache.php; choose one below."
+
+msgid "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite is not used. Switch to SQLite below to fix it."
+msgstr "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite 未使用w。 SQLite 下文将对此加以确定。"
+
+msgid "SQLite Object Cache is active but object-cache.php is missing, so nothing is cached. Use \"Repair\" to recreate it."
+msgstr "SQLite 对象缓存活动中, 但缺少对象缓存.php, 所以没有缓存。 使用“ Repair” 来重建它 。"
+
+msgid "LiteSpeed Cache object cache is on but object-cache.php belongs to another plugin. Turn one of them off."
+msgstr "liteSpeed 缓存对象缓存已打开, 但对象缓存.php 属于另一个插件。 关闭其中的一个 。"
+
+msgid "LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache."
+msgstr "放置在Cache文ache内 Redis 但服务器没有 Redis PHP 延长; WordPress 沉默地回到没有 persistent固的教区。"
+
+msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
+msgstr "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP 停机坪(高级Pa) PHP fi  Me  Me  Me ach ach ach ach  use 或 使用 SQLite Object Cache instead."
+
+msgid "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on."
+msgstr "Redis 是为该场地设立的,但未发现物体ache,因此没有铺设 object,Redis  Ob回。"
+
+msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
+msgstr "物体-ache SQLite 物体Cache仍然处于cont状态,尽管该pl不活跃,但修复工作将它清除或将pl回去。"
+
+msgid "Another page cache plugin (%s) is installed next to LiteSpeed Cache (advanced-cache.php). Two page caches serve stale pages; keep only LiteSpeed Cache."
+msgstr "另一页ache片(%s)在LiteSpeed Cache(先进-cache.php)附近安装,有两页的ca片用于tal页;只保存LiteSpeed Cache。"
+
+msgid "You are not allowed to install plugins."
+msgstr "您不允许安装插件 。"
+
+msgid "Plugin installs are disabled on this site (DISALLOW_FILE_MODS). Install it from your hosting panel."
+msgstr "lu机的安装在这一地点(DISALLOW_FILE_MODS),从主办小组那里安装。"
+
+msgid "The plugin could not be written to disk (file permissions or FTP credentials). Install it from Plugins › Add New."
+msgstr "无法将插件写入磁盘( 文件权限或 FTP 证书) 。 请从 Plugins {} {} 添加 New 中安装 。"
+
+msgid "You are not allowed to activate plugins."
+msgstr "不允许你激活pl。"
+
+msgid "The plugin is not installed."
+msgstr "pl没有安装。"
+
+msgid "LiteSpeed Cache is not active."
+msgstr "liteSpeed 快取未激活 。"
+
+msgid "The PHP sqlite3 extension is missing. Enable it in your hosting PHP settings first."
+msgstr "The PHP 无法延期3,无法在你的接待中进行 PHP 环境"
+
+msgid "object-cache.php belongs to another plugin (%s). Turn that plugin's object cache off first."
+msgstr "磷酸 object属于另一颗pl(%s )的ache,它先是 object。"
+
+msgid "SQLite Object Cache is active but it did not write object-cache.php (wp-content may not be writable). Open Settings › Object Cache to finish."
+msgstr "SQLite 对象缓存活动, 但并没有写入对象缓存.php (wp- content 可能无法写入)。 打开设置 {} 对象缓存以完成 。"
+
+msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcached in hPanel first, then try again."
+msgstr "没有游击或游击 Redis PHP 延长:在人质后,马卡西nel先在Pa道上 try,然后再次尝试。"
+
+msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
+msgstr "setting场被拯救,但LiteSpeed Cache尚未写作文物-cache.php,LiteSpeed Cache  C Cache  Ob Object and press Save once."
+
+msgid "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable."
+msgstr "Redis 文号Cache是活性的,但物体ache不能被写成(不得打字)。 Redis 和新闻。"
+
+msgid "The test request returned HTTP %d."
+msgstr "测试请求退还了HTTP %d。"
+
+msgid "Cache conflict"
+msgstr "缓缓冲突"
+
+msgid "Persistent object cache is on (%s)."
+msgstr "持久性物体储藏处(%s)"
+
+msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
+msgstr "没有任何 object固的文ache:每一项要求都再次从数据库中读到各种选择和查询,其中一项是从表.Cache读取的。"
+
+msgid "Page cache"
+msgstr "页面缓存"
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
+msgstr "服务器是LiteSpeed,但LiteSpeed Cache页面ache的离去。"
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache plugin is not active, so pages are not cached."
+msgstr "服务器是LiteSpeed,但LiteSpeed Cache plugin不活跃,因此网页不ach。"
+
+msgid "Cache status"
+msgstr "缓存状态"
+
+msgid "Unknown operation."
+msgstr "未知行动。"
+
+msgid "Plugin installed and activated."
+msgstr "插件已安装并激活 。"
+
+msgid "Plugin activated."
+msgstr "插件激活 。"
+
+msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
+msgstr "现在,文ache SQLite Object Cache. Run the test below to confirm."
+
+msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
+msgstr "现在,物体ache正在LiteSpeed Cache.  confirm下试验,以证实。"
+
+msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
+msgstr "推测的Cache已启用,其物体储藏在网页装载时完成;试验情况如下。"
+
+msgid "Object cache turned off."
+msgstr "对象缓存关闭 。"
+
+msgid "Object cache repaired."
+msgstr "修复了喷.ache。"
+
+msgid "Page cache turned on and purged."
+msgstr "海ache转向和清洗。"
+
+msgid "Page cache turned off and purged."
+msgstr "海ache倒下。"
+
+msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
+msgstr "清除了所有的ca(LiteSpeed page, CSS/JS and object cache)。"
+
+msgid "Object cache emptied."
+msgstr "对象缓存已清空 。"
+
+msgid "Communication"
+msgstr "通讯"
+
+msgid "Integrations"
+msgstr "Integrations"
+
+msgid "AI"
+msgstr "AI"

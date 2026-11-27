@@ -1,5 +1,9 @@
 # Flux AI — Değişiklikler
 
+## 0.37.4
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.37.3
 - Flux Cloud: Claude anahtarıyla giden araçlı isteklerde "tools.0.function.parameters.properties: Input should be a valid dictionary" hatası giderildi. Aktarım, parametresiz araçların boş `properties` (ve iç içe şema) alanlarını JSON nesnesi olarak gönderir.
 - Model seçici (sohbet paneli ve Flux AI sohbet ekranı): site Flux Cloud kredisiyle çalışıyorsa ve plan yalnız temel modelleri içeriyorsa, plana dahil olmayan modeller gri, "Pro" rozetli, seçilemez ve listenin sonunda; açık modeller üstte. `/models` yanıtında `locked` ve `upgrade_url`.

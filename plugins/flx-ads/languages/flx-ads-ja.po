@@ -1,0 +1,806 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Sees ad conversions"
+msgstr "広告のコンバージョンを見る"
+
+msgid "Ads"
+msgstr "広告"
+
+msgid "Manages ads and tracking settings"
+msgstr "広告やトラッキング設定を管理します。"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Which ad brought which donation"
+msgstr "どの広告がどの寄付をもたらし"
+
+msgid "Report"
+msgstr "レポート"
+
+msgid "Campaigns"
+msgstr "キャンペーン"
+
+msgid "Suggestions"
+msgstr "提案"
+
+msgid "Studio"
+msgstr "スタジオ"
+
+msgid "Season plan"
+msgstr "季節計画"
+
+msgid "Tests"
+msgstr "テスト"
+
+msgid "Donor value"
+msgstr "ドナー価値"
+
+msgid "Ad spend"
+msgstr "広告費"
+
+msgid "Audiences"
+msgstr "拝観者"
+
+msgid "Send log"
+msgstr "ログを送信する"
+
+msgid "Ad link"
+msgstr "広告リンク"
+
+msgid "You are not allowed to view this page."
+msgstr "このページの閲覧は許可されていません。"
+
+msgid "Ad tracking settings"
+msgstr "広告追跡設定"
+
+msgid "Change ad tracking settings"
+msgstr "広告追跡設定を変更します。"
+
+msgid "Test ad platform connection"
+msgstr "テスト広告プラットフォーム接続"
+
+msgid "Ad conversion send log"
+msgstr "広告変換の送信ログ"
+
+msgid "Send a conversion again"
+msgstr "変換を再度送信します。"
+
+msgid "Add ad spend"
+msgstr "広告費を追加します。"
+
+msgid "Delete manual ad spend"
+msgstr "手動広告費を削除します。"
+
+msgid "Update Meta ad spend now"
+msgstr "メタ広告の予算をアップデート"
+
+msgid "Donor value by campaign (LTV, CAC)"
+msgstr "キャンペーン(LTV、CAC)によるドナー価値"
+
+msgid "Meta audiences"
+msgstr "メタオーディエンス"
+
+msgid "Create a Meta audience"
+msgstr "メタオーディエンスを作成します。"
+
+msgid "Create a lookalike audience"
+msgstr "見栄えのいいオーディエンスを作成します。"
+
+msgid "Update a Meta audience now"
+msgstr "メタオーディエンスをアップデートします。"
+
+msgid "Delete a Meta audience"
+msgstr "メタオーディエンスを削除します。"
+
+msgid "Meta campaigns"
+msgstr "メタキャンペーン"
+
+msgid "Meta campaign details"
+msgstr "メタキャンペーンの詳細"
+
+msgid "Pause or turn on in Meta"
+msgstr "Metaの一時停止または電源を入れます。"
+
+msgid "Change daily budget in Meta"
+msgstr "Metaの日次予算の変更"
+
+msgid "Ad suggestions"
+msgstr "提言"
+
+msgid "Apply an ad suggestion"
+msgstr "広告の提案を申請します。"
+
+msgid "Dismiss an ad suggestion"
+msgstr "広告提案を捨てる"
+
+msgid "Add a season date"
+msgstr "季節の日を追加します。"
+
+msgid "Delete a season date"
+msgstr "シーズン日を削除します。"
+
+msgid "Ad tests"
+msgstr "広告テスト"
+
+msgid "Start an ad test"
+msgstr "広告テストを開始します。"
+
+msgid "End an ad test"
+msgstr "広告テスト"
+
+msgid "Delete an ad test"
+msgstr "広告テストを削除します。"
+
+msgid "Campaign planning context"
+msgstr "キャンペーン・プランニングの状況"
+
+msgid "Campaign drafts"
+msgstr "選挙運動の起草"
+
+msgid "Save a campaign draft"
+msgstr "キャンペーンのドラフトを保存します。"
+
+msgid "Create draft in Meta (paused)"
+msgstr "Metaでドラフトを作成します。"
+
+msgid "Delete a campaign draft"
+msgstr "キャンペーンのドラフトを削除します。"
+
+msgid "Ad conversions"
+msgstr "広告の変換"
+
+msgid "Audience not found."
+msgstr "観客は見つからない。"
+
+msgid "Everyone with ad consent"
+msgstr "広告の同意を持つすべての人"
+
+msgid "Donors and customers (paid at least once)"
+msgstr "ドナーとお客様(少なくとも1回は支払います)"
+
+msgid "Value group: %s"
+msgstr "価値群:%s"
+
+msgid "Segment: %s"
+msgstr "セグメント %s"
+
+msgid "Show ads to them"
+msgstr "広告を表示させる。"
+
+msgid "Exclude from ads"
+msgstr "広告は除きます。"
+
+msgid "Flux CRM and a Meta ad account with an ads_management key are needed."
+msgstr "Flux CRMと、ads_Managementキーを持つメタ広告アカウントが必要です。"
+
+msgid "Enter a name and pick a group."
+msgstr "名前を入力し、グループを選択します。"
+
+msgid "Pick one of your own audiences as the source."
+msgstr "ソースとしてあなた自身の聴衆の1つを選びます。"
+
+msgid "%1$s · lookalike %2$d%% %3$s"
+msgstr "%1$s ・ %2$d %% %3$s に似ています。"
+
+msgid "Not from ads"
+msgstr "広告ではなく"
+
+msgid "(not set)"
+msgstr "(定員なし)"
+
+msgid "A/B test"
+msgstr "A/Bテスト"
+
+msgid "Holdout (lift)"
+msgstr "持ち上げる(持ち上げる)"
+
+msgid "Choose the test type."
+msgstr "テストタイプを選択してください。"
+
+msgid "The end date is before the start date."
+msgstr "終了日は開始日より前です。"
+
+msgid "Pick a campaign and two different ads in it."
+msgstr "キャンペーンと2つの異なる広告を選択してください。"
+
+msgid "Both ads must be in the chosen campaign."
+msgstr "どちらの広告も、選ばれたキャンペーンに含まれなければならない。"
+
+msgid "Pick an audience that ads are shown to."
+msgstr "広告が表示されるオーディエンスを選択します。"
+
+msgid "The holdout share must be between 5% and 50%."
+msgstr "持ち込み率は5%から50%である必要があります。"
+
+msgid "This audience already has a running holdout test."
+msgstr "この聴衆は、すでにランニングホールドアウトテストを持っています。"
+
+msgid "Test not found."
+msgstr "テストは見つかりません。"
+
+msgid "The audience of this test was deleted."
+msgstr "このテストの観客は削除されました。"
+
+msgid "Not enough data yet: wait until both ads have clicks."
+msgstr "両方の広告がクリックされるまで待つ。"
+
+msgid "payments per click"
+msgstr "クリック単価"
+
+msgid "click rate"
+msgstr "クリック率"
+
+msgid "Too little data yet: each ad needs at least 50 clicks (1,000 impressions while payments are few). Let it run longer."
+msgstr "データ量が少なすぎる: それぞれの広告には少なくとも50クリック(支払いが少ない間に1,000インプレッション)が必要で、より長く走らせよう。"
+
+msgid "No clear winner yet on %1$s (confidence %2$s%%; 95%% is needed). Let it run longer."
+msgstr "まだ明確な勝者はいない %1$s (自信) %2$s%; 95%) を長くして実行しましょう。"
+
+msgid "\"%1$s\" wins on %2$s with %3$s%% confidence. You can pause \"%4$s\"."
+msgstr "\"%1$s「勝ち目は %2$s 一緒に %3$s%信頼して、一時停止することができます。%4$s\"."
+
+msgid "Not enough data yet."
+msgstr "まだ十分なデータはありません。"
+
+msgid "Ads work: people who could see them gave %1$s%% more often. About %2$s extra donors and %3$s extra income came from the ads (confidence %4$s%%)."
+msgstr "広告の仕事: 見ることのできる人は %1$s% が増加します。 %2$s 特別のドナーと %3$s 広告収入(信頼)から余剰収入が生まれます。 %4$s%%)."
+
+msgid "People who did not see the ads gave more often. The ads to this audience are not adding donations; try other text or another audience."
+msgstr "広告を見たことのない人は、もっと頻繁に広告が提供され、このオーディエンスへの広告は寄付を追加していません。"
+
+msgid "The holdout group is still small (%s people; at least 100 are needed). Use a larger audience or share, or wait for it to grow."
+msgstr "ホールドアウトグループは、まだ小さいです(%s 人;少なくとも100人が必要です) より多くの聴衆や共有を使用して、または成長を待ちます。"
+
+msgid "No clear difference yet between people who could see the ads and the holdout (confidence %s%%; 95%% is needed)."
+msgstr "広告を見る人と、その場に居続ける人(自信)との間には、明確な違いはありません。 %s%; 95% が必須です。"
+
+msgid "Last 7 days"
+msgstr "過去 7 日間"
+
+msgid "Last 30 days"
+msgstr "過去 30 日間"
+
+msgid "Last 90 days"
+msgstr "過去90日間"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Paused"
+msgstr "一時停止中"
+
+msgid "Campaign paused"
+msgstr "キャンペーンの一時停止"
+
+msgid "Ad set paused"
+msgstr "セットの一時停止"
+
+msgid "Processing"
+msgstr "処理中"
+
+msgid "Has issues"
+msgstr "問題あり"
+
+msgid "In review"
+msgstr "レビュー中"
+
+msgid "Rejected"
+msgstr "拒否されました"
+
+msgid "Approved"
+msgstr "承認済み"
+
+msgid "Billing needed"
+msgstr "請求が必要"
+
+msgid "Archived"
+msgstr "アーカイブ済み"
+
+msgid "Deleted"
+msgstr "削除されました"
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+msgstr "Meta 広告アカウント ID とマーケティング API キーを Settings  ??  Meta に入力します。"
+
+msgid "Campaign not found."
+msgstr "キャンペーンが見つかりません。"
+
+msgid "Status can only be Active or Paused."
+msgstr "ステータスはアクティブまたは一時停止のみです。"
+
+msgid "Enter a daily budget greater than zero."
+msgstr "日当を0より大きい額で入力します。"
+
+msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr "日当(生涯予算、またはキャンペーン/広告セットに予算が設定されています)は、Meta Ads Managerで変更してください。"
+
+msgid "Pause campaign"
+msgstr "一時停止キャンペーン"
+
+msgid "Lower budget"
+msgstr "予算の削減"
+
+msgid "Raise budget"
+msgstr "予算増"
+
+msgid "Pause weak ad"
+msgstr "広告の一時停止"
+
+msgid "New ad text"
+msgstr "新たな広告テキスト"
+
+msgid "Season coming"
+msgstr "季節が来る"
+
+msgid "Waiting"
+msgstr "待っています"
+
+msgid "Applied"
+msgstr "応用"
+
+msgid "Dismissed"
+msgstr "免責"
+
+msgid "No longer valid"
+msgstr "もはや有効ではない"
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr "%1$s の支払いは、過去 7 日間に行われ、サイト上では行われません (%2$s 以降の審査)。"
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr "広告費の返済は %1$s半分以下 %2$s 目標 日当を下げて %3$s → %4$s (-20%)、より良いキャンペーンにお金を移動します。"
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr "広告費の返済は %1$s 一緒に %2$s 目標よりも 支払いが優先されます %3$s → %4$s (+20%、Metaが学習し続けるほど小さい)。"
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr "クリック率 %1$s7% の広告が他の広告の平均値です。 %2$s%; 費やした %3$s一時停止すると予算がより良い広告に移動する。"
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr "人々はこの広告を見て %s 結果は、通常、4. にドロップ スタジオで新しいテキストの変形を書いて、または、オーディエンスを拡大します。"
+
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] "%1$s は %2$s 日で始まります。"
+
+msgid "Last year it brought %1$s payments and %2$s."
+msgstr "昨年 %1$s 支払いや %2$s."
+
+msgid "This suggestion is already closed."
+msgstr "この提案は既に締め切っています。"
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr "この提案は、Metaでは何も変更されません。"
+
+msgid "Suggestion not found."
+msgstr "提案は見つかりません。"
+
+msgid "Ramadan and Eid"
+msgstr "ラマダンとエイド"
+
+msgid "Qurban (Eid al-Adha)"
+msgstr "クアーバン(アル・アダ)"
+
+msgid "World Forestry Day and Forest Week"
+msgstr "世界の林業の日と森の週間"
+
+msgid "Mother's Day (donate in her name)"
+msgstr "母の日(お名前でご寄付)"
+
+msgid "World Environment Day"
+msgstr "地球環境デー"
+
+msgid "National Tree Planting Day (11 November)"
+msgstr "全国植林デー(11月11日)"
+
+msgid "Teachers' Day (donate in their name)"
+msgstr "教師の日(氏名義で寄贈)"
+
+msgid "Black Friday and Giving Tuesday"
+msgstr "ブラックフライデーと火曜日"
+
+msgid "Year-end giving"
+msgstr "年末の贈答"
+
+msgid "Enter a name and a start date."
+msgstr "名前と開始日を入力してください。"
+
+msgid "Too many dates; delete old ones first."
+msgstr "データが多いです。"
+
+msgid "Date not found."
+msgstr "日付は見つかりません。"
+
+msgid "Campaign for %1$s (%2$s – %3$s)."
+msgstr "%1$s(%2$s-%3$s)のキャンペーン。"
+
+msgid "Last year the same period brought %1$s payments and %2$s."
+msgstr "去年と同じ期間が %1$s 支払いや %2$s."
+
+msgid "Ad channel"
+msgstr "広告チャンネル"
+
+msgid "Campaign"
+msgstr "キャンペーン"
+
+msgid "Ad (utm_content)"
+msgstr "utm_content) の広告です。"
+
+msgid "Source / medium"
+msgstr "資料/媒体"
+
+msgid "Landing page"
+msgstr "ランディングページ"
+
+msgid "First ad touch"
+msgstr "第一の広告"
+
+msgid "Fill in the ID and the key first."
+msgstr "最初にIDとキーを入力してください。"
+
+msgid "Connected to \"%s\". Enter a test event code to see a test event in Events Manager."
+msgstr "%s\"に接続し、Events Manager でテストイベントを確認するためにテストイベントコードを入力します。"
+
+msgid "Test event sent. Check Events Manager › Test events."
+msgstr "テストイベント送信  ??  テストイベントを確認します。"
+
+msgid "Enter the test event code from TikTok Events Manager › Test events, then test again."
+msgstr "TikTokイベントマネージャからテストイベントコードを入力します。"
+
+msgid "Test event sent. Check TikTok Events Manager › Test events."
+msgstr "TikTokイベントマネージャ  ??  テストイベントを確認してください。"
+
+msgid "Google accepted the test event (validation only; nothing was recorded)."
+msgstr "Googleはテストイベントを受け入れた(検証のみ、何も記録されていない)。"
+
+msgid "Enter the ad account ID and a key first."
+msgstr "最初に広告アカウントIDとキーを入力してください。"
+
+msgid "Meta answered too slowly; try again later."
+msgstr "メタはゆっくり答えた。"
+
+msgid "Too many rows; only part of the period was read."
+msgstr "行が多すぎる。期間の一部だけが読み込まれた。"
+
+msgid "Donations / sales (conversions)"
+msgstr "寄付・販売(コンバージョン)"
+
+msgid "Visits to the page"
+msgstr "ページをご覧下さい。"
+
+msgid "Awareness (reach)"
+msgstr "意識(リーチ)"
+
+msgid "Donate now"
+msgstr "今すぐ寄付しよう"
+
+msgid "Learn more"
+msgstr "さらに詳しく"
+
+msgid "Shop now"
+msgstr "今すぐお買い物!"
+
+msgid "Sign up"
+msgstr "サインアップ"
+
+msgid "Draft"
+msgstr "草案"
+
+msgid "In Meta (paused)"
+msgstr "メタ(一時停止)"
+
+msgid "Not sent"
+msgstr "送信されませんでした"
+
+msgid "Give the campaign a name."
+msgstr "キャンペーンに名前を付けます。"
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr "少なくとも1つの広告セットを追加します(広告を見る人)。"
+
+msgid "Add at least one ad with a text and a headline."
+msgstr "テキストと見出しで少なくとも1つの広告を追加します。"
+
+msgid "Draft not found."
+msgstr "ドラフトが見つかりません。"
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr "このドラフトはMetaにすでにある。そこで編集するか、ここで複製する。"
+
+msgid "Too many drafts; delete old ones first."
+msgstr "草案が多すぎる。"
+
+msgid "%s (copy)"
+msgstr "%s(コピー)"
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr "FacebookページID(設定 ?? メタ)"
+
+msgid "This draft is already in Meta."
+msgstr "このドラフトはMetaにすでにある。"
+
+msgid "Missing: %s."
+msgstr "欠落:%s。"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr "Flux AI は準備が整っていない。Flux AI & MCP をインストールし、モデルキーを追加します。"
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr "簡単なブリーフを書きます: キャンペーンが何のためであり、誰に到達する必要がありますか。"
+
+msgid "The AI answer could not be read; try again."
+msgstr "AIの答えは読めません。"
+
+msgid "Ad conversion"
+msgstr "広告の変換"
+
+msgid "Ad source"
+msgstr "広告ソース"
+
+msgid "No payment from this contact came through an ad."
+msgstr "この連絡先からの支払いは広告で行われません。"
+
+msgid "First came through: %s"
+msgstr "初めの通った:%s"
+
+msgid "Ad report"
+msgstr "報告"
+
+msgid "Other campaigns (UTM)"
+msgstr "その他"
+
+msgid "No ad (direct, search, other sites)"
+msgstr "広告(ダイレクト、検索、その他のサイト)なし。"
+
+msgid "Ad conversions report"
+msgstr "広告変換レポート"
+
+msgid "Ad tracking status"
+msgstr "広告追跡状況"
+
+msgid "Similar to: %s"
+msgstr "類似:%s"
+
+msgid "(removed group)"
+msgstr "(グループ)"
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr "一時停止のキャンペーン %1$d 広告セット %2$d 広告はMetaで作成され、キャンペーンで有効になるまで何も表示または使用されません。"
+
+msgid "Now"
+msgstr "今"
+
+msgid "Prepare now"
+msgstr "今すぐ準備します。"
+
+msgid "Later"
+msgstr "後で"
+
+msgid "running"
+msgstr "走る"
+
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] "で %s 日"
+
+msgid "Sales"
+msgstr "販売"
+
+msgid "Leads"
+msgstr "鉛"
+
+msgid "Traffic"
+msgstr "交通"
+
+msgid "Engagement"
+msgstr "エンゲージメント"
+
+msgid "Awareness"
+msgstr "意識"
+
+msgid "App promotion"
+msgstr "アプリプロモーション"
+
+msgid "%s / day"
+msgstr "%s/日"
+
+msgid "%s total"
+msgstr "%s 合計"
+
+msgid "all genders"
+msgstr "男女問わず"
+
+msgid "men"
+msgstr "男性"
+
+msgid "women"
+msgstr "女性"
+
+msgid "%1$d–%2$d, %3$s, %4$s"
+msgstr "%1$d – %2$d , %3$s , %4$s"
+
+msgid "audiences +%1$d / −%2$d"
+msgstr "観客+ %1$d / − %2$d"
+
+msgid "unknown"
+msgstr "不明"
+
+msgid "%s spent"
+msgstr "%s 費やした"
+
+msgid "Panel"
+msgstr "パネル"
+
+msgid "Daily budget %1$s → %2$s"
+msgstr "日当 %1$s → %2$s"
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr "日当設定します。%1$s「こうして %2$s メタ?"
+
+msgid "Apply: %s a day"
+msgstr "適用します。 %s 一日"
+
+msgid "Pause \"%s\" in Meta?"
+msgstr "Metaで\"%s\"を一時停止しますか?"
+
+msgid "Apply: pause"
+msgstr "申請: 一時停止"
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr "キャンペーンは後から判断されます %s 7日で済ませろ"
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr "キャンペーンは、支払い1回あたりの平均コストを7日で2倍にし、判断されます。 %s)."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr "キャンペーンは、7日間の支払い平均コストの2倍を費やした後に判断されます。"
+
+msgid "Spend"
+msgstr "支出する"
+
+msgid "Link clicks"
+msgstr "リンククリック"
+
+msgid "Payments on the site"
+msgstr "サイト上の支払い"
+
+msgid "Payments per click"
+msgstr "クリック単価"
+
+msgid "Cost per payment"
+msgstr "支払い単価"
+
+msgid "People"
+msgstr "人々"
+
+msgid "Gave at least once"
+msgstr "少なくとも一度は"
+
+msgid "Income"
+msgstr "所得"
+
+msgid "Per person"
+msgstr "お一人様あたり"
+
+msgid "Could see ads"
+msgstr "広告が"
+
+msgid "Held out"
+msgstr "持ち帰り"
+
+msgid "Audience \"%1$s\", %2$s%% held out"
+msgstr "%1$s、%2$s%が終了しました。"
+
+msgid "open-ended"
+msgstr "オープンエンド"
+
+msgid "%1$s (%2$s people)"
+msgstr "%1$s (%2$s 人々)"
+
+msgid "There is no winner yet."
+msgstr "勝者はまだいない。"
+
+msgid "Enter an amount greater than zero."
+msgstr "金額を0より多く入力します。"
+
+msgid "Spend not found."
+msgstr "見つからない。"
+
+msgid "Sent"
+msgstr "送信済み"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "visitor did not accept cookies"
+msgstr "訪問者はクッキーを受け入れませんでした"
+
+msgid "already sent from the browser"
+msgstr "ブラウザから送信されています"
+
+msgid "platform turned off"
+msgstr "ホームがオフになった"
+
+msgid "order deleted"
+msgstr "命令削除"
+
+msgid "Row not found."
+msgstr "行は見つかりません。"
+
+msgid "E-mail newsletter"
+msgstr "メールマガジン"
+
+msgid "Paid social"
+msgstr "有料社会"
+
+msgid "Search ad (cpc)"
+msgstr "検索広告(cpc)"
+
+msgid "Video ad"
+msgstr "動画広告"
+
+msgid "Organic post"
+msgstr "有機投稿"
+
+msgid "E-mail"
+msgstr "電子メール"
+
+msgid "Unknown platform."
+msgstr "不明なプラットフォーム。"
+
+msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
+msgstr "有効にしますが、IDが欠落している、または有効ではない。"
+
+msgid "Browser pixel only. Without the server key, bank-transfer donations approved later and visitors with ad blockers are not counted."
+msgstr "ブラウザのピクセルのみ. サーバーキーがない場合は、後から承認された銀行振込寄付や、広告ブロッカーの訪問者はカウントされません。"
+
+msgid "Pixel and server events are set up. Last test passed."
+msgstr "ピクセルとサーバーのイベントが設定され、最後のテストがパスします。"
+
+msgid "Last connection test failed:"
+msgstr "最後の接続テストは失敗しました。"
+
+msgid "Pixel and server events are set up. Run \"Test\" once to check the key."
+msgstr "ピクセルとサーバーのイベントが設定され、一度「テスト」を実行してキーを確認します。"
+
+msgid "Ad platforms"
+msgstr "広告プラットフォーム"
+
+msgid "No ad platform is on. The ad report still works from UTM links and click IDs."
+msgstr "広告プラットフォームは使用していません。広告レポートはUTMリンクから引き続き機能し、IDをクリックします。"
+
+msgid "Server conversions"
+msgstr "サーバーの変換"
+
+msgid "%1$d failed, %2$d waiting. Last retry run: %3$s."
+msgstr "%1$d 失敗し %2$d 待ってください最後の再試行です %3$s."
+
+msgid "never"
+msgstr "決して"
+
+msgid "Meta ad spend"
+msgstr "メタ広告費"
+
+msgid "Last update failed:"
+msgstr "最後のアップデートは失敗しました。"
+
+msgid "Spend read %s."
+msgstr "%s を読んでください。"
+
+msgid "Not read yet; opening the Flux Ads screen starts it."
+msgstr "フラックス広告画面を開くと、すぐに起動します。"
+
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "%d 毎日 観客が更新されます"
+
+msgid "Cookie consent"
+msgstr "料理人の同意"
+
+msgid "The theme cookie banner is off, so ad pixels load without asking. Under KVKK/GDPR marketing cookies need consent: turn the banner on in Appearance › Theme Settings."
+msgstr "広告ピクセルは、KVKK/GDPR のマーケティングクッキーでは、広告ピクセルの読み込みには同意が必要です。"
+
+msgid "Theme Settings"
+msgstr "テーマの設定"

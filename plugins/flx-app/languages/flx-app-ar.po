@@ -1353,3 +1353,105 @@ msgstr "أُزيل رقم الهاتف من حسابك على %s"
 
 msgid "The token does not include the scope this request needs."
 msgstr "الرمز المميز لا يتضمن النطاق الذي يتطلبه هذا الطلب."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript مطلوب لهذه الشاشة."
+
+msgid "Open in app"
+msgstr "مفتوح في التطبيق"
+
+msgid "Open in the FluxWP app"
+msgstr "مفتوح في تطبيق FluxWP"
+
+msgid "Opening the app…"
+msgstr "فتح التطبيق..."
+
+msgid "The app did not open. Install it, then come back and press the button again."
+msgstr "التطبيق لم يُفتح، ثمّ يُركّزُه ثمّ يَعُودُ ويُضغطُ الزرّ ثانيةً."
+
+msgid "Download on the App Store"
+msgstr "تحميل على متجر آب"
+
+msgid "Get it on Google Play"
+msgstr "احصل عليه في لعبة جوجل"
+
+msgid "Download for Mac"
+msgstr "تحميل ماك"
+
+msgid "Open the app"
+msgstr "افتحي التطبيق"
+
+msgid "This push service is not allowed."
+msgstr "هذه الخدمة غير مسموح بها."
+
+msgid "Invalid subscription keys."
+msgstr "مفاتيح اشتراك غير صالحة."
+
+msgid "Browser notifications need a signed-in browser session."
+msgstr "تحتاج إخطارات الحشد إلى جلسة موقّعة في بروزر."
+
+msgid "Notifications are turned off on this site."
+msgstr "تُطفأ الإخطارات في هذا الموقع."
+
+msgid "Notifications on"
+msgstr "الإخطارات المقدمة"
+
+msgid "Notifications blocked"
+msgstr "الإخطارات المجمدة"
+
+msgid "Get notifications in this browser, also when the site is closed."
+msgstr "احصل على إخطارات في هذا المصفح، أيضا عندما يكون الموقع مغلقا."
+
+msgid "Stop notifications in this browser."
+msgstr "توقف عن الإخطارات في هذا المركب."
+
+msgid "Notifications are blocked for this site in the browser settings."
+msgstr "تحجب الإخطارات عن هذا الموقع في مواصفات المروج."
+
+msgid "Notifications could not be turned on"
+msgstr "لم يكن من الممكن تحويل الإخطارات"
+
+msgid "This browser"
+msgstr "هذا المستنقع"
+
+msgid "Notification types"
+msgstr "أنواع الإخطار"
+
+msgid "Applies to all your devices, also the mobile app."
+msgstr "هذا ينطبق على جميع أجهزةك، وكذلك على التطبيق المتنقل."
+
+msgid "No notification types are available yet."
+msgstr "ولم تتوافر بعد أنواع الإخطارات."
+
+msgid "Could not save, try again."
+msgstr "لا يمكن إنقاذ، محاولة مرة أخرى."
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Browser notifications (Web Push)"
+msgstr "إخطارات الحشد (الدفعة الإلكترونية)"
+
+msgid "Browsers allow notifications only on https sites."
+msgstr "ولا يسمح الحشد بالإخطارات إلا في المواقع الشبكية."
+
+msgid "Ready. Users turn them on per browser with Notifications in the admin bar."
+msgstr "مُستعدة، المُستخدمون يُديرونهم على كل مُهرّب مع إشعارات في حانة الإصدار"
+
+msgid "PHP OpenSSL cannot sign P-256 keys here; browsers do not get notifications. Mobile app push still works."
+msgstr "PHP لا يمكن للشركة أن توقع على مفاتيح من طراز P-256 هنا؛ ولا تحصل على إخطارات، ولا تزال دفعة تطبيقات متحركة تعمل."
+
+msgid "Live connection (realtime)"
+msgstr "الاتصال المباشر (الوقت الحقيقي)"
+
+msgid "The realtime service runs but has no public address (FLX_REALTIME_URL); apps poll."
+msgstr "وتدير الخدمة في الوقت الحقيقي ولكن ليس لها عنوان عام (FLX_REALTIME_URL)؛ وتطبق الاقتراع."
+
+msgid "Panel and app get changes at once."
+msgstr "الفريق والتطبيق يحصلان على تغييرات في آن واحد."
+
+msgid "Not checked yet; shown after the next app sign-in."
+msgstr "لم يتم فحصها بعد؛ موضحة بعد دخول التطبيق التالي."
+
+msgid "The realtime service is not answering; apps poll until it is back."
+msgstr "الخدمة في الوقت الحقيقي لا تجيب، بل تتقدم بطلبات الاقتراع حتى يعود."

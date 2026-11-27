@@ -1,0 +1,948 @@
+{
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "ar",
+        "plural-forms": "nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);"
+      },
+      "Settings": [
+        "الإعدادات"
+      ],
+      "Style Library": [
+        "مكتبة نموذجية"
+      ],
+      "None": [
+        "لا شيء"
+      ],
+      "Spacing": [
+        "Spacing"
+      ],
+      "Border Radius": [
+        "نصف القطر الحدودي"
+      ],
+      "Border Width": [
+        "حاصل الحدود"
+      ],
+      "Shadow": [
+        "Shadow"
+      ],
+      "Font Size": [
+        "حجم الخط"
+      ],
+      "Palette": [
+        "Palette"
+      ],
+      "Border": [
+        "الحدود"
+      ],
+      "Button": [
+        "زر"
+      ],
+      "Icon": [
+        "أيقونة"
+      ],
+      "Close": [
+        "إغلاق"
+      ],
+      "Save": [
+        "حفظ"
+      ],
+      "px": [
+        "px"
+      ],
+      "list item separator\u0004, ": [
+        ", "
+      ],
+      "Default": [
+        "الافتراضي"
+      ],
+      "Name": [
+        "الاسم"
+      ],
+      "Custom": [
+        "مخصص"
+      ],
+      "Auto": [
+        "تلقائي"
+      ],
+      "Gradient": [
+        "التدرج"
+      ],
+      "Cancel": [
+        "إلغاء"
+      ],
+      "Individual": [
+        "الأفراد"
+      ],
+      "Linked": [
+        "Linked"
+      ],
+      "Solid": [
+        "صلبة"
+      ],
+      "Dashed": [
+        "سحقًا"
+      ],
+      "Dotted": [
+        "Dotted"
+      ],
+      "Double": [
+        "مزدوجة"
+      ],
+      "Device": [
+        "الجهاز"
+      ],
+      "Color": [
+        "اللون"
+      ],
+      "Left": [
+        "اليسار"
+      ],
+      "Top": [
+        "القمة"
+      ],
+      "Hover": [
+        "Hover"
+      ],
+      "Normal": [
+        "عادي"
+      ],
+      "Active": [
+        "نشط"
+      ],
+      "Add": [
+        "أضف"
+      ],
+      "Delete": [
+        "حذف"
+      ],
+      "Clear": [
+        "مسح"
+      ],
+      "Right": [
+        "صحيح"
+      ],
+      "Bottom": [
+        "الجزء السفلي"
+      ],
+      "Reset": [
+        "إعادة تعيين"
+      ],
+      "auto": [
+        "auto"
+      ],
+      "Background": [
+        "الخلفية"
+      ],
+      "Desktop": [
+        "سطح المكتب"
+      ],
+      "Tablet": [
+        "قرص"
+      ],
+      "Mobile": [
+        "الجوال"
+      ],
+      "div": [
+        "div"
+      ],
+      "Weight": [
+        "الوزن"
+      ],
+      "Size": [
+        "الحجم"
+      ],
+      "-": [
+        "-"
+      ],
+      "Uppercase": [
+        "الحقيبة العليا"
+      ],
+      "Lowercase": [
+        "الحقيبة السفلى"
+      ],
+      "Capitalize": [
+        "الرسملة"
+      ],
+      "Font Family": [
+        "عائلة الخطوط"
+      ],
+      "Padding": [
+        "الحشوة"
+      ],
+      "20%": [
+        "20%"
+      ],
+      "40%": [
+        "40%"
+      ],
+      "50%": [
+        "50%"
+      ],
+      "75%": [
+        "75%"
+      ],
+      "80%": [
+        "80%"
+      ],
+      "100%": [
+        "100%"
+      ],
+      "Create": [
+        "إنشاء"
+      ],
+      "Margin": [
+        "الهامش"
+      ],
+      "label": [
+        "علامة"
+      ],
+      "value": [
+        "القيمة"
+      ],
+      "form": [
+        "الشكل"
+      ],
+      "button": [
+        "الزر"
+      ],
+      "icon": [
+        "أيقونة"
+      ],
+      "image": [
+        "صورة"
+      ],
+      "Border Color": [
+        "لون الحدود"
+      ],
+      "text": [
+        "نص"
+      ],
+      "heading": [
+        "متجهة"
+      ],
+      "Heading": [
+        "العنوان"
+      ],
+      "section": [
+        "الباب"
+      ],
+      "number": [
+        "العدد"
+      ],
+      "Text": [
+        "نص"
+      ],
+      "header": [
+        "الرأس"
+      ],
+      "block title\u0004Icon": [
+        "أيقونة"
+      ],
+      "svg": [
+        "Svg"
+      ],
+      "list": [
+        "القائمة"
+      ],
+      "info": [
+        "المعلومات"
+      ],
+      "1": [
+        "1"
+      ],
+      "hide": [
+        "إخفاء"
+      ],
+      "separator": [
+        "الفصل"
+      ],
+      "Tab": [
+        "علامة التبويب"
+      ],
+      "Saving…": [
+        "جارٍ الحفظ..."
+      ],
+      "Favorite": [
+        "المفضلة"
+      ],
+      "Breakpoint": [
+        "نقطة الانطلاق"
+      ],
+      "Drag to reorder": [
+        "اسحب لإعادة الترتيب"
+      ],
+      "Reset %1$s to %2$s": [
+        "إعادة التوطين %1$s إلى %2$s"
+      ],
+      "From %s": [
+        "من %s"
+      ],
+      "From theme": [
+        "من الموضوع"
+      ],
+      "X": [
+        "X"
+      ],
+      "Y": [
+        "Y"
+      ],
+      "Blur": [
+        "Blur"
+      ],
+      "Spread": [
+        "المنتشرة"
+      ],
+      "Inset": [
+        "Inset"
+      ],
+      "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here.": [
+        "%1$d لون في هذه الشلاء لا يزال يتبع %2$s حتى تصممه في هذه الشلاء، تحريره في %2$s سوف يستكمله هنا أيضا."
+      ],
+      "Learn more": [
+        "تعلم المزيد"
+      ],
+      "Search fonts…": [
+        "باحثات..."
+      ],
+      "No fonts found": [
+        "لا يوجد أي عواطف"
+      ],
+      "Keep typing to narrow the list": [
+        "استمري بالطباعة لتضييق القائمة"
+      ],
+      "Options loaded.": [
+        "خيارات محشوة"
+      ],
+      "Loading options…": [
+        "خيارات تحديد الموقع..."
+      ],
+      "Grid view": [
+        "رؤية غريد"
+      ],
+      "List view": [
+        "القائمة"
+      ],
+      "Set \"%s\" as the active library?": [
+        "\"أعد \"%s\" كمكتبة نشطة؟"
+      ],
+      "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor.": [
+        "موقعك يستعمل حالياً \"%1$s\" وضع \"%2$s\" كتغيير نشط للألوان والطباعة والمباعدة والأسلوبات الأخرى عبر موقعك بالكامل في النهاية الأمامية وفي المحررة"
+      ],
+      "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over.": [
+        "يمكنك التبديل في أي وقت، ولكن أي قيم تقليدية في \"%s\" البقاء في تلك المكتبة..."
+      ],
+      "Set as active": [
+        "تم تعيينه كعامل نشط"
+      ],
+      "Set \"%s\" as the active palette?": [
+        "أضبطوا \"%s\" كـ \"الناشطة\" ؟"
+      ],
+      "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor.": [
+        "موقعك يستعمل حالياً \"%1$s\" وضع \"%2$s\" كتغيير نشط للألوان عبر موقعك بالكامل على الفور"
+      ],
+      "Add Color Group": [
+        "مجموعة كولورز"
+      ],
+      "Group name": [
+        "اسم المجموعة"
+      ],
+      "A color group named \"%s\" already exists.": [
+        "مجموعة لون اسمها \"%s\" موجودة بالفعل."
+      ],
+      "Loading…": [
+        "جارٍ التحميل..."
+      ],
+      "Base Styles": [
+        "الإطارات القاعدية"
+      ],
+      "Create Library": [
+        "مكتبة الإنشاء"
+      ],
+      "Library title": [
+        "عنوان المكتبة"
+      ],
+      "A library named \"%s\" already exists.": [
+        "مكتبة اسمها %s موجودة بالفعل"
+      ],
+      "Creating…": [
+        "جارٍ الإنشاء..."
+      ],
+      "Palette name": [
+        "اسم بليت"
+      ],
+      "A palette named \"%s\" already exists.": [
+        "شاحب اسمه %s موجود بالفعل"
+      ],
+      "Delete Color Group?": [
+        "تحذف مجموعة الكولور؟"
+      ],
+      "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette.": [
+        "تحذف المجموعة \"%1$s\" و لونها %2$d هذا يزيلها من كل شطيرة"
+      ],
+      "Deleting…": [
+        "حذف..."
+      ],
+      "Resetting…": [
+        "....."
+      ],
+      "Reset Library": [
+        "المكتبة المعادة"
+      ],
+      "Delete Library": [
+        "تحذف المكتبة"
+      ],
+      "Reset '%s' to its default values?": [
+        "أعيدوا %s إلى قيمهم الافتراضية؟"
+      ],
+      "Delete '%s'? Its tokens and presets are removed permanently.": [
+        "تحذف \"%s\"؟"
+      ],
+      "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor.": [
+        "هذه أيضاً مكتبتك النشطة، لذا موقعك سيستخدم \"%s\" بدلاً من ذلك، ألوانه، رسم الخرائط، المباعدة، والأساليب الأخرى تذهب مباشرة عبر موقعك على الفور - على الجبهة وفي المحررة."
+      ],
+      "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor.": [
+        "هذه أيضاً مكتبتك النشطة، لذا موقعك يحتاج إلى مكتبة أخرى، المكتبة التي تختارها تحتها ستعيش على الفور، الألوان، الطبوغرافيا، المباعدة، والأساليب الأخرى تتغيّر عبر موقعك في الطرف الأمامي وفي المحرّر."
+      ],
+      "Which library should your site use instead?": [
+        "أي مكتبة يجب أن تستخدمها في موقعك بدلاً من ذلك؟"
+      ],
+      "Select a library…": [
+        "نختار مكتبة..."
+      ],
+      "Delete \"%s\"?": [
+        "هل تريد حذف \"%s\"؟"
+      ],
+      "Reset \"%s\"?": [
+        "إعادة \"%s\" ؟"
+      ],
+      "Its color overrides are removed permanently.": [
+        "تم إزالة التجاوزات لونها بشكل دائم"
+      ],
+      "Its colors return to the shipped baseline. The palette itself stays.": [
+        "لونها يعود إلى خط الأساس المشحنة."
+      ],
+      "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor.": [
+        "هذا أيضاً شطيرتك النشيطة لذا موقعك سيستخدم \"%s\" بدلاً من ذلك، ألوانها تتجه مباشرة إلى موقعك على الفور"
+      ],
+      "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor.": [
+        "هذا أيضاً شطيرتك النشيطة، لذا موقعك يحتاج لواحد آخر، فالألوان التي تختارها تختفي مباشرةً..."
+      ],
+      "Which palette should your site use instead?": [
+        "أيّ شطيرة يجب أن يستخدمها موقعك بدلاً من ذلك؟"
+      ],
+      "Select a palette…": [
+        "...اختاروا شاحبة"
+      ],
+      "Not available in the current theme": [
+        "غير متوافرة في الموضوع الحالي"
+      ],
+      "These presets came from another theme. Your changes to them are kept until that theme is active again.": [
+        "هذه المفترسات جاءت من موضوع آخر تغيراتكم فيها تبقى حتى يصبح هذا الموضوع نشطاً مجدداً"
+      ],
+      "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept.": [
+        "قيم الموضوع الخاصة لهذه المرحلة لا يمكن إنقاذها في مرحلة ما قبلها لذا فقط تغيراتك يمكن الحفاظ عليها"
+      ],
+      "The theme's own values for this preset were not recorded, so only your changes can be kept.": [
+        "قيم الموضوع الخاصة لهذا المسبق لم تُسجّل، لذا فقط تغيراتك يمكن الحفاظ عليها."
+      ],
+      "Keep as custom preset": [
+        "ابقوا كما هو مُسبق"
+      ],
+      "Keep changes as custom preset": [
+        "إبقاء التغييرات كما قبل العادة"
+      ],
+      "Discard changes": [
+        "التغييرات المشطوبة"
+      ],
+      "Active library": [
+        "المكتبة النشيطة"
+      ],
+      "Your site uses this library.": [
+        "موقعك يستخدم هذه المكتبة"
+      ],
+      "Not the active library": [
+        "ليس المكتبة النشطة"
+      ],
+      "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles.": [
+        "وضعه كنشط يجعل هذه المكتبة التي يستخدمها موقعك موقعك يتحول إلى ألوانه و أحجامه و اساليبه"
+      ],
+      "Edit library": [
+        "مكتبة إديت"
+      ],
+      "Library": [
+        "المكتبة"
+      ],
+      "New Library": [
+        "المكتبة الجديدة"
+      ],
+      "Active palette": [
+        "شاحبة نشطة"
+      ],
+      "Your site uses this palette.": [
+        "موقعك يستعمل هذه الشلاء."
+      ],
+      "Not the active palette": [
+        "ليس النخيل النشط"
+      ],
+      "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette.": [
+        "وضعه كنشط يجعل هذا الشلل الذي يستخدمه موقعك"
+      ],
+      "Drag to reorder %s": [
+        "السحب إلى إعادة التشغيل %s"
+      ],
+      "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values.": [
+        "لديك تغيرات غير مدروسة إلى%sأنقذهم، أو تخلّص منهم للعودة إلى القيم المنقذة."
+      ],
+      "You have unsaved changes. Save them, or discard them to go back to the saved values.": [
+        "لديك تغيرات غير مدروسة، أنقذهم، أو تخلّص منهم للعودة إلى القيم المنقذة."
+      ],
+      "Unsaved Changes": [
+        "التغييرات غير المنسَّقة"
+      ],
+      "Discard": [
+        "تجاهل"
+      ],
+      "Add Border Radius": [
+        "راديوس الحدودي"
+      ],
+      "Radius": [
+        "Radius"
+      ],
+      "Add Border Width": [
+        "أضف أرملة حدودية"
+      ],
+      "Loading %s…": [
+        "Loading %s…"
+      ],
+      "%s loaded.": [
+        "%s محمل."
+      ],
+      "Add color": [
+        "اللون"
+      ],
+      "Edit %s": [
+        "Edit %s"
+      ],
+      "Color group": [
+        "مجموعة كولور"
+      ],
+      "This palette could not be loaded.": [
+        "هذا الشلل لا يمكن تحميله."
+      ],
+      "Settings loaded.": [
+        "تم تحميلها."
+      ],
+      "Edit color": [
+        "لون ادي"
+      ],
+      "Add Icon Size": [
+        "مقاس إيكون"
+      ],
+      "This screen is coming soon.": [
+        "هذه الشاشة قادمة قريباً"
+      ],
+      "Adding…": [
+        "أضف..."
+      ],
+      "Preset saved.": [
+        "تم إنقاذها"
+      ],
+      "Preset deleted.": [
+        "تم حذفها"
+      ],
+      "Preset reset.": [
+        "إعادة ضبط."
+      ],
+      "Theme preset": [
+        "المُسبق"
+      ],
+      "Styled by your theme. Flux Block Editor can't read or change these styles.": [
+        "مصممة بموضوعك، محررة \"فلوكس بلوك\" لا تستطيع قراءة أو تغيير هذه الأساليب"
+      ],
+      "Changes saved under another theme still apply to it. Reset removes them.": [
+        "ما زالت التغييرات التي تم ادخارها في إطار موضوع آخر سارية على ذلك."
+      ],
+      "Add Shadow": [
+        "اضف ظل"
+      ],
+      "Add Spacing": [
+        "يضاف Spacing"
+      ],
+      "New Spacing": [
+        "المباعدة الجديدة"
+      ],
+      "Visualize your font": [
+        "تصوري مظهرك"
+      ],
+      "Add Favorite": [
+        "مضافا إليه:"
+      ],
+      "Adding Favorite…": [
+        "أضف النافوري"
+      ],
+      "Remove Favorite": [
+        "إزالة النافوري"
+      ],
+      "Removing Favorite…": [
+        "نزيل النافورة"
+      ],
+      "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site.": [
+        "اربط هذا الخط إلى قمة الملتقطين هنا وفي المحرّر، لا يغير أي نص في موقعك."
+      ],
+      "Unpins this font from the top of your font pickers. Text already using it stays as it is.": [
+        "يُفكّرُ هذا العنبِ مِنْ قمةِ مُخلّفاتِكَ المُصوّرةِ، الرسالة تَستعملُه يَبْقى كما هو."
+      ],
+      "%s removed from favorites.": [
+        "%s أزيلت من المفضّلات."
+      ],
+      "%s added to favorites.": [
+        "%s أضاف إلى المفضّلات."
+      ],
+      "Font": [
+        "الخط"
+      ],
+      "Typography": [
+        "رسم بياني"
+      ],
+      "Add Size": [
+        "يضاف الحجم"
+      ],
+      "Set the colors your site uses. Change a color here and it updates everywhere it's applied.": [
+        "ضع الألوان التي يستخدمها موقعك، غيّر لونك هنا، ويحدث في كل مكان يُطبّق."
+      ],
+      "Set the text sizes your site uses, and pick the fonts you want close to hand.": [
+        "جهزوا المراسلات التي تستخدمها مواقعكم واختاروا اللوحات التي تريدونها"
+      ],
+      "Set the border radius options your site uses, so buttons, images and cards stay consistent.": [
+        "ضعي دائرة الحدود خيارات استخدام موقعك لذا الازرار والصور والبطاقات تبقى متسقة"
+      ],
+      "Set the border thickness options your site uses, so borders match across your blocks.": [
+        "حددي خيارات سميكة الحدود التي يستخدمها موقعك، لذا الحدود تتطابق مع مجمّعاتك."
+      ],
+      "Set the padding and margin steps your site uses, so gaps stay consistent from block to block.": [
+        "ضعوا الرصيف و خطوا الهامش الذي يستخدمه موقعكم لذا تبقى الفجوات متماسكة من كتلة إلى أخرى"
+      ],
+      "Set the sizes your icons can use, so icons stay consistent wherever they appear.": [
+        "ضعوا أحجامكم التي يمكن أن تستخدمها أجهزة الإسطوانات، لذا إبقوا ثابتين أينما ظهروا."
+      ],
+      "Set the shadow styles your site uses, so depth looks consistent across your blocks.": [
+        "ضعي اساليب الظل التي يستخدمها موقعك لذا العمق يبدو متسقاً في جميع أنحاء الحي"
+      ],
+      "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand.": [
+        "احفظي اساليب الزر كبش فداء، لذا يمكنكِ أن تُلقي نظرة كاملة في نقر واحد بدلاً من وضع كل خيار بيد."
+      ],
+      "Save image styles as presets, so rounding, shadows and spacing stay the same across your images.": [
+        "احفظوا اساليب الصور كبائعين لذا اجمعوا الظل و المباعدة"
+      ],
+      "Save row styles as presets, so the sections of a page share the same background and rounding.": [
+        "انقذوا اساليب الصف مثل المفترسات لذا قسم الصفحة يتشاركون نفس الخلفية و التقريب"
+      ],
+      "Save section styles as presets, so the columns inside your rows share the same background and rounding.": [
+        "احفظوا اساليب القسم كبش فعمود الأعمدة داخل صفوفكم تتشارك نفس الخلفية و التقريب"
+      ],
+      "Save icon styles as presets, so icons keep the same size and color wherever you use them.": [
+        "احفظ اساليب ايكون كبش فاسد لذا يحافظ ايقونز على نفس الحجم واللون اينما استخدمتهم"
+      ],
+      "Save text styles as presets, so headings and paragraphs read the same from page to page.": [
+        "وفّر أساليب النص كما هي مفترسة، وبالتالي، فإن العناوين والفقرات تُقرأ من الصفحة إلى الصفحة نفسها."
+      ],
+      "Something went wrong. Please try again.": [
+        "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+      ],
+      "Enter a library title.": [
+        "أدخل عنوان المكتبة"
+      ],
+      "A library with that title already exists.": [
+        "مكتبة بهذا العنوان موجودة بالفعل"
+      ],
+      "Choose which library your site should use instead.": [
+        "اختر أي مكتبة يجب أن يستخدمها موقعك بدلاً من ذلك"
+      ],
+      "Enter a palette name.": [
+        "أدخلي اسماً شاحبا"
+      ],
+      "A palette with that name already exists.": [
+        "شاحبة بهذا الاسم موجودة بالفعل"
+      ],
+      "Choose which palette your site should use instead.": [
+        "اختر أي شاحب يجب أن يستخدمه موقعك بدلاً من ذلك"
+      ],
+      "Enter a color group name.": [
+        "أدخلي اسم مجموعة لون."
+      ],
+      "A color group with that name already exists.": [
+        "مجموعة لون بهذا الاسم موجودة بالفعل"
+      ],
+      "Custom Colors": [
+        "العقيدات العرفية"
+      ],
+      "Saving failed.": [
+        "الإنقاذ فشل"
+      ],
+      "Another change to this library is already in progress.": [
+        "ويجري بالفعل تغيير آخر في هذه المكتبة."
+      ],
+      "Palette activated.": [
+        "تم تنشيط (باليت)"
+      ],
+      "Palette created.": [
+        "لقد خلقت (باليت)"
+      ],
+      "Palette renamed.": [
+        "(باليت) أُعيدت تسميتها."
+      ],
+      "Palette deleted.": [
+        "(باليت) حذفت."
+      ],
+      "Palette reset.": [
+        "إعادة تنصيب (باليت)"
+      ],
+      "Swatch saved.": [
+        "(سواتش) أنقذ."
+      ],
+      "Swatch deleted.": [
+        "مسحة محذوفة."
+      ],
+      "Swatch reset.": [
+        "اعيدوا تشغيل المشاهده"
+      ],
+      "New Color": [
+        "كولور جديد"
+      ],
+      "Color added.": [
+        "أضافت اللون."
+      ],
+      "Color group added.": [
+        "مجموعة الألوان أضافت."
+      ],
+      "Color group renamed.": [
+        "تم إعادة تسمية مجموعة الألوان."
+      ],
+      "Color group deleted.": [
+        "مجموعة الكولور حذفت"
+      ],
+      "Token created.": [
+        "تم خلقه"
+      ],
+      "Token saved.": [
+        "تم إنقاذ (توكين)"
+      ],
+      "Token deleted.": [
+        "تم حذفها"
+      ],
+      "Token reset.": [
+        "إعادة ضبط."
+      ],
+      "Token order saved.": [
+        "تم حفظ النظام."
+      ],
+      "100 Thin": [
+        "100 ثين"
+      ],
+      "200 Extra Light": [
+        "200 جهاز لاسلكية"
+      ],
+      "300 Light": [
+        "300 خفية"
+      ],
+      "400 Regular": [
+        "400 نظامي"
+      ],
+      "500 Medium": [
+        "500"
+      ],
+      "700 Bold": [
+        "700 Bold"
+      ],
+      "800 Extra Bold": [
+        "800 عبادة إضافية"
+      ],
+      "900 Black": [
+        "900 أسود"
+      ],
+      "Transform": [
+        "Transform"
+      ],
+      "Add Text Style": [
+        "يضاف النص:"
+      ],
+      "New Text Style": [
+        "النص الجديد"
+      ],
+      "Border and Shadow": [
+        "الحدود والظل"
+      ],
+      "Add Button": [
+        "(أضف (بوتون"
+      ],
+      "Add Section Style": [
+        "مضافا إليه:"
+      ],
+      "New Section Style": [
+        "قسم جديد"
+      ],
+      "Add Image Style": [
+        "مضافا إليها الشكل"
+      ],
+      "New Image Style": [
+        "طاولات الصور الجديدة"
+      ],
+      "Add Row Style": [
+        "أضف \"رو ستايل\""
+      ],
+      "Add Icon Style": [
+        "أضف من طراز Icon Sty"
+      ],
+      "New Icon Style": [
+        "مسلسل إيكون الجديد"
+      ],
+      "Matches the design system value": [
+        "تطابق قيمة نظام التصميم"
+      ],
+      "Overrides the design system value": [
+        "تجاوز قيمة نظام التصميم"
+      ],
+      "Reset to the design system value": [
+        "إعادة تحديد قيمة نظام التصميم"
+      ],
+      "Reverted to default": [
+        "أُعيدت إلى التقصير"
+      ],
+      "This token was deleted from the Style Library. The default applies until you pick a new value or reset.": [
+        "تم حذف هذا الرمز من مكتبة الصفيحه المغلقه ينطبق حتى تختار قيمة جديدة أو تعيدها"
+      ],
+      "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset.": [
+        "هذا الخيار جاء من موضوع (فلوكس) الذي لم يعد نشطاً، الفشل ينطبق حتى تختار قيمة جديدة أو تستعيدها"
+      ],
+      "Border style": [
+        "أسلوب الحدود"
+      ],
+      "Border style (%s)": [
+        "أسلوب الحدود (%s)"
+      ],
+      "%1$s: %2$s": [
+        "%1$s: %2$s"
+      ],
+      "%s Border Color": [
+        "%s حاجز الحدود"
+      ],
+      "Previous color format": [
+        "الشكل السابق لللون"
+      ],
+      "Next color format": [
+        "الشكل التالي لللون"
+      ],
+      "No favorite fonts yet.": [
+        "لا يوجد أثر مفضّل بعد"
+      ],
+      "Manage favorites in the Style Library": [
+        "المفضّلات في المكتبة"
+      ],
+      "Favorites": [
+        "المفضلة"
+      ],
+      "Inherited": [
+        "Inherited"
+      ],
+      "Custom value": [
+        "القيمة العرفية"
+      ],
+      "Unit": [
+        "وحدة"
+      ],
+      "Theme default": [
+        "التخلف عن التنفيذ"
+      ],
+      "Default (%s)": [
+        "العجز (%s)"
+      ],
+      "Inherited (%s)": [
+        "مدمجة (%s)"
+      ],
+      "block keyword\u0004form": [
+        "الشكل"
+      ],
+      "block keyword\u0004header": [
+        "الرأس"
+      ],
+      "block keyword\u0004img": [
+        "غموض"
+      ],
+      "block keyword\u0004image": [
+        "صورة"
+      ],
+      "block keyword\u0004info": [
+        "المعلومات"
+      ],
+      "block keyword\u0004icon": [
+        "أيقونة"
+      ],
+      "block keyword\u0004menu": [
+        "القائمة"
+      ],
+      "block title\u0004Tab": [
+        "علامة التبويب"
+      ],
+      "Accent": [
+        "إبراز"
+      ],
+      "Main 1": [
+        "أساسي 1"
+      ],
+      "Main 2": [
+        "أساسي 2"
+      ],
+      "Main 3": [
+        "أساسي 3"
+      ],
+      "Button Hover": [
+        "الزر عند التمرير فوقه"
+      ],
+      "Contrast": [
+        "التباين"
+      ],
+      "Strongest": [
+        "الأقوى"
+      ],
+      "Strong": [
+        "قوي"
+      ],
+      "Medium": [
+        "متوسط"
+      ],
+      "Subtle": [
+        "خفيف"
+      ],
+      "Notices and Feedback": [
+        "الإشعارات والملاحظات"
+      ],
+      "Success": [
+        "نجاح"
+      ],
+      "Warning": [
+        "تحذير"
+      ],
+      "Error": [
+        "خطأ"
+      ],
+      "Info": [
+        "معلومات"
+      ],
+      "Extended": [
+        "ألوان إضافية"
+      ],
+      "Complement": [
+        "تكميلي"
+      ],
+      "Alert": [
+        "تنبيه"
+      ],
+      "Rating": [
+        "تقييم"
+      ]
+    }
+  }
+}

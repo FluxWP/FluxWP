@@ -472,7 +472,7 @@ function ThemeSettings() {
             </Field>
             <Field id="flxt-cp" label={t('Cookie policy page')}>
               <select id="flxt-cp" value={draft.cookiePage} onChange={(e) => set('cookiePage', Number(e.currentTarget.value))}>
-                <option value={0}>{t('Automatic (/cerez-politikasi/)')}</option>
+                <option value={0}>{t('Automatic (%s)', '/cerez-politikasi/')}</option>
                 {draft.cookiePage > 0 && !pages.some((p) => p.databaseId === draft.cookiePage) && <option value={draft.cookiePage}>{'#' + draft.cookiePage}</option>}
                 {pages.map((p) => (
                   <option key={p.databaseId} value={p.databaseId}>

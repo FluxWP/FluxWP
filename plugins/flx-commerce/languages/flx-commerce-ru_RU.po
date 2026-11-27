@@ -903,3 +903,321 @@ msgstr "Контакт"
 
 msgid "Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications."
 msgstr "Панель продаж для магазина WooCommerce, клиенты, отчеты о продажах, денежный перевод/электронный перевод с загрузкой квитанций, простая страница оплаты, панель бесплатной доставки, лента товаров Google Merchant и уведомления WhatsApp/электронной почты."
+
+msgid "Sees store reports"
+msgstr "См. отчеты о магазинах"
+
+msgid "Manages the store"
+msgstr "Обслуживание магазина"
+
+msgid "Edits shop orders"
+msgstr "Заказы в магазинах"
+
+msgid "Subscriptions"
+msgstr "Подписки"
+
+msgid "Hidden product"
+msgstr "Холодный продукт"
+
+msgid "Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page."
+msgstr "Не показана в магазине, поиске или карте; клиенты не могут открывать страницу продукта. Продажа осуществляется только с помощью ссылки (например, на страницу ценообразования). Только редакторы видят страницу продукта."
+
+msgid "Hidden product: only editors see this page. Customers buy it through a link."
+msgstr "Спрятанный продукт: только редакторы видят эту страницу."
+
+msgid "Awaiting first payment"
+msgstr "Неуплата первого платежа"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Payment overdue"
+msgstr "Выплаты"
+
+msgid "Ended"
+msgstr "Закончено"
+
+msgid "Renews on %s"
+msgstr "Обновление на %s"
+
+msgid "Was due on %s"
+msgstr "Подлежал представлению %s"
+
+msgid "Valid until %s"
+msgstr "До %s"
+
+msgid "Ended on %s"
+msgstr "Закончен на %s"
+
+msgid "You have no subscriptions yet."
+msgstr "У тебя пока нет подписки."
+
+msgid "Renews automatically from your card %s."
+msgstr "автоматически возвращается из вашей карты %s."
+
+msgid "%1$s will be charged to your card on %2$s."
+msgstr "%1$s будет заряжена ваша карточка на %2$s."
+
+msgid "Renewal order #%1$s is waiting for payment: %2$s"
+msgstr "Ордер на обновление No %1$s ждет платежа: %2$s"
+
+msgid "Bank details and receipt"
+msgstr "Информация о банках и получение"
+
+msgid "Pay now"
+msgstr "Заплати сейчас."
+
+msgid "Last order #%s"
+msgstr "Последний приказ No %s"
+
+msgid "Renew now"
+msgstr "Обновляйся."
+
+msgid "Remove the card? Renewals will then be paid with the payment link we e-mail you."
+msgstr "Возобновление будет затем оплачено с платежной связью, которую мы писали."
+
+msgid "Remove card"
+msgstr "Удаление карточки"
+
+msgid "Turn off renewal? The subscription stays valid until the end of the current period."
+msgstr "Подписания остаются в силе до конца текущего периода."
+
+msgid "Cancel subscription"
+msgstr "Отменительная подписка"
+
+msgid "Turn renewal back on"
+msgstr "Поверните назад."
+
+msgid "Start again"
+msgstr "Начни заново."
+
+msgid "Card stored for automatic subscription renewals: %s."
+msgstr "Карта, хранящаяся для автоматического обновления подписки: %s."
+
+msgid "Subscription renewal charged to the stored card (%1$s), transaction %2$s."
+msgstr "Возобновление подписки на хранение карточки (%1$s), сделка %2$s ."
+
+msgid "Automatic card charge failed after the last attempt: %s. The customer was sent the payment link."
+msgstr "После последней попытки не удалось установить автоматическую карточку: %s."
+
+msgid "Automatic card charge failed: %1$s. Retrying in %2$d day(s)."
+msgstr "Автоматическая карточка не сработала: %1$s . Повторное задание в %2$d дня (дней)."
+
+msgid "Subscription"
+msgstr "Подписка"
+
+msgid "Sold as a monthly or yearly subscription (Flux Commerce). Renewals arrive as orders."
+msgstr "Продано в виде ежемесячной или ежегодной подписки ( &quot; Flux Commerce &quot; ). &quot; Renewals arrive as orders &quot; ( &quot; Flux Commerce &quot; )."
+
+msgid "Monthly price (%s)"
+msgstr "Месячная цена (%s)"
+
+msgid "Empty = no monthly option."
+msgstr "Пустота - не ежемесячно."
+
+msgid "Yearly price (%s)"
+msgstr "Годовая цена (%s)"
+
+msgid "Empty = no yearly option."
+msgstr "Пустота = не существует ежегодного варианта."
+
+msgid "or"
+msgstr "или"
+
+msgid "Subscribe"
+msgstr "Подписаться"
+
+msgid "Billing period"
+msgstr "Период оплаты"
+
+msgid "Save %s%%"
+msgstr "Экономия %s%"
+
+msgid "Renews automatically; we send a reminder before every renewal. You can cancel any time from My account."
+msgstr "Мы отправляем напоминание перед каждым обновлением, а ты можешь отменить любое время с моего счета."
+
+msgid "This product is not a subscription."
+msgstr "Этот продукт не является подпиской."
+
+msgid "The product could not be added to the cart."
+msgstr "Этот продукт не может быть добавлен в карту."
+
+msgid "Subscription #%d created; it starts when the payment arrives."
+msgstr "Подписка No %d создана; она начинается с момента получения платежа."
+
+msgid "Subscription #%1$d started; next renewal %2$s."
+msgstr "Запуск No %1$d; следующее обновление %2$s"
+
+msgid "Subscription #%1$d renewed until %2$s."
+msgstr "Подписка No %1$d продлена до %2$s"
+
+msgid "Subscription ended; the renewal order is no longer needed."
+msgstr "Подписание прекращено; приказ о возобновлении более не требуется."
+
+msgid "Only an active subscription can be renewed."
+msgstr "Только активная подписка может быть продлена."
+
+msgid "A renewal order for this period was already created."
+msgstr "Уже был разработан приказ о продлении на этот период."
+
+msgid "Renewal order for subscription #%1$d (period ends %2$s)."
+msgstr "Обновление приказа о подписке%1$d (периодные конца %2$s)."
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Period end"
+msgstr "Период"
+
+msgid "Payment link"
+msgstr "Ссылка для оплаты"
+
+msgid "Monthly"
+msgstr "Ежемесячно"
+
+msgid "Subscription renewal reminder"
+msgstr "Напоминание о возобновлении подписки"
+
+msgid "Goes to the customer when the renewal order is created and again on the last day if it is unpaid."
+msgstr "Получается с клиентом, когда создается приказ о возобновлении, и вновь в последний день, если он не выплачен."
+
+msgid "Your {urun} subscription renews on {bitis}"
+msgstr "Твоя подписка {urun} продлевается на {bitis}"
+
+msgid "Time to renew, {ad}"
+msgstr "Время обновления, {ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. Amount: {tutar}."
+msgstr "Твой. {urun} подписка (подпись){donem}) Обновление {bitis}. Сумма: {tutar}."
+
+msgid "Subscription renews by card"
+msgstr "Подписка продлевается с помощью карточки"
+
+msgid "Goes to the customer before a renewal that will be charged to the stored card."
+msgstr "Перед тем, как оплатить кредитку, он будет заряжен на складную карту."
+
+msgid "Card"
+msgstr "Карта"
+
+msgid "Renewal coming up, {ad}"
+msgstr "Возобновление наступает, {ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. {tutar} will be charged to your card {kart}; you do not need to do anything."
+msgstr "Ваша подпись {urun} ({donem}) продлевается на {bitis} {tutar} будет заряжена вашей карточкой {kart}; вам не нужно ничего делать."
+
+msgid "To change the card or turn off renewal, go to My account › Subscriptions."
+msgstr "Чтобы изменить карточку или выключить ее, перейти на мой счет &lt; &lt; Подписки."
+
+msgid "My subscriptions"
+msgstr "Мои подписки"
+
+msgid "Subscription card charge failed"
+msgstr "Зарядка подписки не сработала"
+
+msgid "Goes to the customer when the stored card could not be charged after the last attempt."
+msgstr "Получается с клиентом, когда хранившаяся карточка не может быть заряжена после последней попытки."
+
+msgid "We could not renew your {urun} subscription"
+msgstr "Мы не могли продлить ваш {urun} подписку"
+
+msgid "Payment needed, {ad}"
+msgstr "Требуемые платежи {ad}"
+
+msgid "We could not charge {tutar} to your card {kart} for your {urun} subscription. Please pay with the button below so the subscription continues."
+msgstr "Мы не могли зарядить {tutar} вашей карточке {kart} за вашу подписку {urun}, пожалуйста, заплатите с кнопкой ниже, чтобы подписка продолжалась."
+
+msgid "Subscription ended"
+msgstr "Итого, подписка"
+
+msgid "Goes to the customer when a subscription ends."
+msgstr "Когда заканчивается подписка, он ходит к клиенту."
+
+msgid "Your {urun} subscription has ended"
+msgstr "Твоя подписка {urun} закончилась"
+
+msgid "Your subscription has ended"
+msgstr "Ваша подписка закончилась"
+
+msgid "Hello {ad}, your {urun} subscription has ended. You can start it again at any time."
+msgstr "Здравствуй, {ad}, твоя подписка {urun} закончилась, ты можешь начать ее снова в любое время."
+
+msgid "Yearly"
+msgstr "Ежегодно"
+
+msgid "year"
+msgstr "Год"
+
+msgid "month"
+msgstr "Месяц"
+
+msgid "Recipient: %1$s · IBAN: %2$s · Reference: %3$s"
+msgstr "Получатель: %1$s · IBAN: %2$s ∙ Reference: %3$s"
+
+msgid "Your %s subscription has ended"
+msgstr "Твоя подписка %s закончилась"
+
+msgid "Hello %1$s, your %2$s subscription has ended. You can start it again at any time: %3$s"
+msgstr "Здравствуй, %1$s, твоя подписка %2$s закончилась, ты можешь начать ее снова в любое время: %3$s"
+
+msgid "Your %1$s subscription renews on %2$s"
+msgstr "Твоя подписка %1$s продлевается на %2$s"
+
+msgid "Hello %1$s, your %2$s subscription renews on %3$s. %4$s will be charged to your card %5$s; you do not need to do anything. Manage it here: %6$s"
+msgstr "Здравствуйте. %1$sТвой, %2$s Подписные издания %3$s. %4$s будет заряжена ваша карточка %5$s; ты не должен ничего делать. %6$s"
+
+msgid "We could not renew your %s subscription"
+msgstr "Мы не могли продлить ваш %s подписку"
+
+msgid "Hello %1$s, we could not charge %2$s to your card %3$s for your %4$s subscription. Please pay here so it continues: %5$s"
+msgstr "Здравствуйте. %1$sМы не могли зарядить %2$s к твоей карточке. %3$s для тебя. %4$s Пожалуйста, заплатите здесь, чтобы он продолжал: %5$s"
+
+msgid "Hello %1$s, your %2$s subscription (%3$s) renews on %4$s. Amount: %5$s. Pay here: %6$s"
+msgstr "Здравствуйте. %1$sТвой, %2$s подписка (подпись)%3$s) Обновление %4$s. Сумма: %5$s. Заплата здесь: %6$s"
+
+msgid "WooCommerce is required."
+msgstr "WooCommerce требуется."
+
+msgid "The cart is not available."
+msgstr "Машина отсутствует."
+
+msgid "That billing period is not offered."
+msgstr "Этот период выставления счетов не предложен."
+
+msgid "The note could not be saved."
+msgstr "Эту записку нельзя спасти."
+
+msgid "The note is too long."
+msgstr "Записка слишком длинная."
+
+msgid "Subscription not found."
+msgstr "Подписка не найдена."
+
+msgid "This subscription cannot be changed."
+msgstr "Эта подписка не может быть изменена."
+
+msgid "Unknown action."
+msgstr "Неизвестное действие."
+
+msgid "Your subscription has ended."
+msgstr "Ваша подписка закончилась."
+
+msgid "Renewal is off. Your subscription stays valid until %s."
+msgstr "Ренструкция отменяется, ваша подписка остается в силе до %s"
+
+msgid "The customer removed the stored card; this renewal is paid with the payment link."
+msgstr "Покупатель удалил хранящуюся карточку; это обновление оплачивается с помощью платежной связи."
+
+msgid "The card was removed. We will e-mail you a payment link before each renewal."
+msgstr "Карточка была удалена, мы пошлем вам платежную связь перед каждым обновлением."
+
+msgid "Renewal is back on."
+msgstr "Возобновление началось."
+
+msgid "Subscription renewals"
+msgstr "Возобновление подписки"
+
+msgid "The renewal job has not run for more than 6 hours. Check the server cron (wp-cron.php); renewal orders and reminders wait until it runs."
+msgstr "Работа по обновлению не работает более 6 часов, проверяет серверный крон (wp-cron.php); заказы на обновление и напоминания будут ждать, пока он не начнет функционировать."
+
+msgid "%1$s open subscriptions. Last run: %2$s"
+msgstr "%1$s - ...последние: %2$s"

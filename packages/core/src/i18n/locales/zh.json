@@ -40,6 +40,11 @@
     "tryDemo": "尝试演示",
     "footer": "{{name}} · 安全连接,您的密码永远不会存储在应用程序中"
   },
+  "screenLoadError": {
+    "title": "无法加载此页面",
+    "body": "pl如刚刚更新,row或场地ache仍可能持有老的档案, page上load(Ctrl/Cmd + Shift + R);如果 page固不化,则pur出场地ache。",
+    "reload": "重新加载页面"
+  },
   "errors": {
     "invalid_url": "该地址无效。",
     "unreachable": "无法到达该站点。检查地址和您的连接。",

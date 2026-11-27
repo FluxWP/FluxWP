@@ -95,7 +95,7 @@ msgid "Yes"
 msgstr "Evet"
 
 msgid "reCAPTCHA"
-msgstr "reCAPTCHA"
+msgstr "reCAPTCHA kez"
 
 msgid "Save"
 msgstr "Kaydet"
@@ -578,7 +578,7 @@ msgid "Conversation"
 msgstr "Konuşma"
 
 msgid "Cancel"
-msgstr "İptal"
+msgstr "Vazgeç"
 
 msgid "Attach"
 msgstr "Ekle"
@@ -704,7 +704,7 @@ msgid "Site"
 msgstr "Site"
 
 msgid "WordPress"
-msgstr "WordPress"
+msgstr "WordPress kez"
 
 msgid "Reason"
 msgstr "Neden"
@@ -752,7 +752,7 @@ msgid "Secret key"
 msgstr "Gizli anahtar"
 
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr "Pano"
 
 msgid "7 days"
 msgstr "7 gün"
@@ -947,7 +947,7 @@ msgid "Clear log"
 msgstr "Günlüğü temizle"
 
 msgid "Time"
-msgstr "Zaman"
+msgstr "Saat"
 
 msgid "Steps"
 msgstr "Adımlar"
@@ -965,7 +965,7 @@ msgid "Elements"
 msgstr "Elemanlar"
 
 msgid "Test"
-msgstr "Test"
+msgstr "Test et"
 
 msgid "Refresh"
 msgstr "Yenile"
@@ -1610,7 +1610,7 @@ msgid "Flux Forms"
 msgstr "Flux Forms"
 
 msgid "FluxWP form builder"
-msgstr "FluxWP form builder"
+msgstr "FluxWP form oluşturucu"
 
 msgid "Create Forms"
 msgstr "Form Oluştur"
@@ -1901,7 +1901,7 @@ msgid "Start with Free"
 msgstr "Ücretsiz ile başlayın"
 
 msgid "Free Plus"
-msgstr "Free Plus"
+msgstr "Ücretsiz Artı"
 
 msgid "Pro Pending"
 msgstr "Pro Beklemede"
@@ -2630,7 +2630,7 @@ msgid "Payment Form"
 msgstr "Ödeme Formu"
 
 msgid "Stripe"
-msgstr "Stripe"
+msgstr "Şerit"
 
 msgid "Payment Gateway"
 msgstr "Ödeme Geçidi"
@@ -3383,7 +3383,7 @@ msgid "Enable Telegram notifications"
 msgstr "Telegram bildirimlerini etkinleştir"
 
 msgid "Telegram"
-msgstr "Telegram"
+msgstr "Telgraf"
 
 msgid "PayPal Payment Add-on"
 msgstr "PayPal Ödeme Eklentisi"
@@ -3452,7 +3452,7 @@ msgid "720p (HD)"
 msgstr "720p (HD)"
 
 msgid "1080p (Full HD)"
-msgstr "1080p (Full HD)"
+msgstr "1080p (Tam HD)"
 
 msgid "Permission to access your microphone/camera/screen was denied."
 msgstr "Mikrofona/kameraya/ekrana erişim izni reddedildi."
@@ -4430,7 +4430,7 @@ msgid "Custom HTML content"
 msgstr "Özel HTML içeriği"
 
 msgid "John Doe"
-msgstr "John Doe"
+msgstr "Ahmet Yılmaz"
 
 msgid "This is a sample form submission."
 msgstr "Bu bir örnek form gönderimidir."
@@ -5120,7 +5120,7 @@ msgid "To fix this, sign in to your %s, download the Add-ons Handler plugin from
 msgstr "Bunu düzeltmek için %s hesabınızda oturum açın, İndirmeler bölümünden Add-ons Handler eklentisini indirin, ardından kurup etkinleştirin. Sonra ihtiyacınız olan eklentileri Add-ons Handler eklentisinden etkinleştirin."
 
 msgid "WhiteStudio dashboard"
-msgstr "WhiteStudio dashboard"
+msgstr "WhiteStudio gösterge paneli"
 
 msgid "This bundled add-on is missing from the plugin files."
 msgstr "Bu pakete dahil eklenti, eklenti dosyalarında eksik."
@@ -5177,7 +5177,7 @@ msgid "Outgoing requests"
 msgstr "Giden istekler"
 
 msgid "WP-Cron"
-msgstr "WP-Cron"
+msgstr "WP- Cron"
 
 msgid "Attempts made"
 msgstr "Yapılan deneme sayısı"
@@ -5225,7 +5225,7 @@ msgid "Plugin Name"
 msgstr "Eklenti Adı"
 
 msgid "Slug"
-msgstr "Slug"
+msgstr "Kısa ad"
 
 msgid "Please note that these plugins may affect the functionality of Flux Forms."
 msgstr "Bu eklentilerin Flux Forms'un işleyişini etkileyebileceğini unutmayın."
@@ -6128,7 +6128,7 @@ msgid "Enable Telegram Notifications"
 msgstr "Telegram Bildirimlerini Etkinleştir"
 
 msgid "Bot Token"
-msgstr "Bot Token"
+msgstr "Bot anahtarı"
 
 msgid "Enter your bot token"
 msgstr "Bot token'ınızı girin"
@@ -6137,7 +6137,7 @@ msgid "Get your bot token from @BotFather on Telegram"
 msgstr "Bot token'ınızı Telegram'da @BotFather'dan alın"
 
 msgid "Chat ID"
-msgstr "Chat ID"
+msgstr "Sohbet Kimliği"
 
 msgid "Enter chat ID"
 msgstr "Chat ID girin"
@@ -6749,7 +6749,7 @@ msgid "Some required PHP functions are unavailable."
 msgstr "Gerekli bazı PHP işlevleri kullanılamıyor."
 
 msgid "REST API:"
-msgstr "REST API:"
+msgstr "REST API :"
 
 msgid "available"
 msgstr "kullanılabilir"
@@ -7259,7 +7259,7 @@ msgid "PayPal %s"
 msgstr "PayPal %s"
 
 msgid "Stripe %s"
-msgstr "Stripe %s"
+msgstr "Striptiz %s"
 
 msgid "All Statuses"
 msgstr "Tüm Durumlar"
@@ -8282,7 +8282,7 @@ msgid "jQuery is not properly loaded or available. AJAX and interactive form fea
 msgstr "jQuery düzgün yüklenmemiş veya kullanılamıyor. AJAX ve etkileşimli form özellikleri düzgün çalışmayabilir."
 
 msgid "WhiteStudio.team"
-msgstr "WhiteStudio.team"
+msgstr "BeyazStudio.team"
 
 msgid "EFB"
 msgstr "EFB"
@@ -8726,13 +8726,13 @@ msgid "Please select a form from element settings"
 msgstr "Lütfen öğe ayarlarından bir form seçin"
 
 msgid "Form: %s (ID: %s)"
-msgstr "Form: %s (ID: %s)"
+msgstr "Form: %s (ID: %s )"
 
 msgid "📍 Confirmation Code Finder (Tracking)"
 msgstr "📍 Onay Kodu Bulucu (Takip)"
 
 msgid "🎨 Flux Forms"
-msgstr "🎨 Flux Forms"
+msgstr "Flu Flux Formları"
 
 msgid "Add Flux Forms forms to your page"
 msgstr "Flux Forms formlarını sayfanıza ekleyin"
@@ -8912,7 +8912,7 @@ msgid "Your form session has expired. Please reload the page."
 msgstr "Form oturumunuzun süresi doldu. Lütfen sayfayı yenileyin."
 
 msgid "Form ID:"
-msgstr "Form ID:"
+msgstr "Form Kimliği:"
 
 msgid "The form will be displayed on the frontend."
 msgstr "Form ön yüzde görüntülenecektir."
@@ -9136,7 +9136,7 @@ msgstr[0] "Keys are set; %dform uses reCAPTCHA.%dforms use reCAPTCHA."
 msgstr[1] "Keys are set; %dform uses reCAPTCHA.%dforms use reCAPTCHA."
 
 msgid "The currency of this form is not supported."
-msgstr "The currency of this form is not supported."
+msgstr "Bu formun para birimi desteklenmiyor."
 
 msgid "The Stripe secret key is not configured."
 msgstr "The Stripe secret key is not configured."
@@ -9147,748 +9147,14 @@ msgstr "Could not connect to Stripe: %s"
 msgid "Stripe API error (HTTP %d)."
 msgstr "Stripe API error (HTTP %d)."
 
-msgid "Please fill in the required fields."
-msgstr "Lütfen zorunlu alanları doldurun."
-
-msgid "Full name"
-msgstr "Ad soyad"
-
-msgid "Long text"
-msgstr "Uzun metin"
-
-msgid "Dropdown"
-msgstr "Açılır liste"
-
-msgid "Choose one"
-msgstr "Birini seçin"
-
-msgid "Single choice"
-msgstr "Tekli seçim"
-
-msgid "Multiple choice"
-msgstr "Çoklu seçim"
-
-msgid "Choose any"
-msgstr "İstediklerinizi seçin"
-
-msgid "Option"
-msgstr "Seçenek"
-
-msgid "Remove option"
-msgstr "Seçeneği kaldır"
-
-msgid "Add option"
-msgstr "Seçenek ekle"
-
-msgid "Help text"
-msgstr "Yardım metni"
-
-msgid "Shown under the field."
-msgstr "Alanın altında görünür."
-
-msgid "Full"
-msgstr "Tam"
-
-msgid "Half"
-msgstr "Yarım"
-
-msgid "One third"
-msgstr "Üçte bir"
-
-msgid "Add options in the block settings."
-msgstr "Seçenekleri blok ayarlarından ekleyin."
-
-msgid "Flux Forms field"
-msgstr "Flux Forms alanı"
-
-msgid "A field made in the Flux Forms panel. Edit it there; it is kept as it is."
-msgstr "Flux Forms panelinde yapılmış bir alan. Orada düzenlenir, burada olduğu gibi korunur."
-
-msgid "This field type is edited in the Flux Forms panel. It is kept unchanged."
-msgstr "Bu alan türü Flux Forms panelinde düzenlenir. Olduğu gibi korunur."
-
-msgid "Edit in panel"
-msgstr "Panelde düzenle"
-
-msgid "The form could not be loaded."
-msgstr "Form yüklenemedi."
-
-msgid "The form could not be saved."
-msgstr "Form kaydedilemedi."
-
-msgid "Flux Form"
-msgstr "Flux Form"
-
-msgid "Build a new form here, or edit a form made in the Flux Forms panel. Both edit the same form."
-msgstr "Burada yeni bir form kurun ya da Flux Forms panelinde yapılmış bir formu düzenleyin. İkisi de aynı formu düzenler."
-
-msgid "Choose an existing form"
-msgstr "Mevcut formu seç"
-
-msgid "Choose a form"
-msgstr "Form seçin"
-
-msgid "— Select —"
-msgstr "— Seçin —"
-
-msgid "Reload from Flux Forms"
-msgstr "Flux Forms'tan yeniden yükle"
-
-msgid "Shown in the Flux Forms panel."
-msgstr "Flux Forms panelinde görünür."
-
-msgid "Button text"
-msgstr "Düğme metni"
-
-#, php-format
-msgid "Flux Forms form #%d"
-msgstr "Flux Forms formu #%d"
-
-msgid "Open in panel"
-msgstr "Panelde aç"
-
-msgid "The form is created in Flux Forms when you save the page."
-msgstr "Sayfayı kaydettiğinizde form Flux Forms'ta oluşturulur."
-
-msgid "After sending"
-msgstr "Gönderimden sonra"
-
-msgid "Thank-you title"
-msgstr "Teşekkür başlığı"
-
-msgid "Thank-you message"
-msgstr "Teşekkür mesajı"
-
-msgid "Show a confirmation code"
-msgstr "Onay kodu göster"
-
-msgid "Email me new responses"
-msgstr "Yeni yanıtları bana e-postayla gönder"
-
-msgid "Notification address"
-msgstr "Bildirim adresi"
-
-msgid "Empty: the address in Flux Forms settings."
-msgstr "Boşsa Flux Forms ayarlarındaki adres kullanılır."
-
-msgid "Send a copy to the person"
-msgstr "Formu dolduran kişiye kopya gönder"
-
-msgid "Spam protection (captcha)"
-msgstr "Spam koruması (captcha)"
-
-msgid "Colors"
-msgstr "Renkler"
-
-msgid "Field text"
-msgstr "Alan metni"
-
-msgid "Field background"
-msgstr "Alan zemini"
-
-msgid "Field border"
-msgstr "Alan kenarlığı"
-
-msgid "Form background"
-msgstr "Form zemini"
-
-msgid "Corner radius"
-msgstr "Köşe yuvarlaklığı"
-
-msgid "Space between fields"
-msgstr "Alanlar arası boşluk"
-
-msgid "Show form title and steps"
-msgstr "Form başlığını ve adımları göster"
-
-msgid "The title and step bar Flux Forms prints above the fields."
-msgstr "Flux Forms'un alanların üstüne yazdığı başlık ve adım çubuğu."
-
-msgid "Load the panel version"
-msgstr "Paneldeki sürümü yükle"
-
-msgid "Keep mine"
-msgstr "Benimkini koru"
-
-msgid "This form was changed in the Flux Forms panel after you opened it, so your changes were not written to the form. Load the panel version, or keep yours and overwrite it."
-msgstr "Bu form, siz açtıktan sonra Flux Forms panelinde değişti; bu yüzden değişiklikleriniz forma yazılmadı. Paneldeki sürümü yükleyin ya da kendinizinkini koruyup üstüne yazın."
-
-msgid "This is a multi-step form. Steps are edited in the Flux Forms panel for now; the page shows the form as it is."
-msgstr "Bu çok adımlı bir form. Adımlar şimdilik Flux Forms panelinde düzenlenir; sayfa formu olduğu gibi gösterir."
-
-msgid "A Flux Forms form built from blocks. Responses, emails and automations run in Flux Forms."
-msgstr "Bloklarla kurulan bir Flux Forms formu. Yanıtlar, e-postalar ve otomasyonlar Flux Forms'ta çalışır."
-
-msgid "form"
-msgstr "form"
-
-msgid "contact"
-msgstr "iletişim"
-
-msgid "Edit with blocks"
-msgstr "Blokla düzenle"
-
-msgid "The form structure is not valid."
-msgstr "Form yapısı geçerli değil."
-
-msgid "This form type can only be edited in the Flux Forms panel."
-msgstr "Bu form türü yalnız Flux Forms panelinde düzenlenebilir."
-
-msgid "This form was changed in the Flux Forms panel after you opened it."
-msgstr "Bu form, siz açtıktan sonra Flux Forms panelinde değişti."
-
-
-msgid "%d entries in the list."
-msgstr "Listede %d kayıt var."
-
-msgid "A field type the block editor does not know yet. It is kept as it is."
-msgstr "Blok düzenleyicinin henüz tanımadığı bir alan türü. Olduğu gibi korunur."
-
-msgid "Add a Step block to split the form into steps."
-msgstr "Formu adımlara bölmek için Adım bloğu ekleyin."
-
-msgid "Add another field to the form first."
-msgstr "Önce forma başka bir alan ekleyin."
-
-msgid "Add row"
-msgstr "Satır ekle"
-
-msgid "All of them"
-msgstr "Hepsi"
-
-msgid "All supported files"
-msgstr "Desteklenen tüm dosyalar"
-
-msgid "Allowed files"
-msgstr "İzin verilen dosyalar"
-
-msgid "Always"
-msgstr "Her zaman"
-
-msgid "Amount field"
-msgstr "Tutar alanı"
-
-msgid "Any of them"
-msgstr "Herhangi biri"
-
-msgid "Archives (zip, rar)"
-msgstr "Arşivler (zip, rar)"
-
-msgid "Attach a file"
-msgstr "Dosya ekleyin"
-
-msgid "Audio and video"
-msgstr "Ses ve video"
-
-msgid "CSS classes"
-msgstr "CSS sınıfları"
-
-msgid "Camera"
-msgstr "Kamera"
-
-msgid "Card payment (Stripe)"
-msgstr "Kartla ödeme (Stripe)"
-
-msgid "Card payments use the Stripe keys in Flux Forms settings."
-msgstr "Kartla ödeme, Flux Forms ayarlarındaki Stripe anahtarlarını kullanır."
-
-msgid "Change image"
-msgstr "Görseli değiştir"
-
-msgid "Checklist with quantity"
-msgstr "Adetli çoklu seçim"
-
-msgid "Choose a file or drop it here"
-msgstr "Dosya seçin ya da buraya bırakın"
-
-msgid "Choose a product"
-msgstr "Ürün seçin"
-
-msgid "Choose image"
-msgstr "Görsel seç"
-
-msgid "Choose products"
-msgstr "Ürünleri seçin"
-
-msgid "Clear button text"
-msgstr "Temizle düğmesi metni"
-
-msgid "Columns"
-msgstr "Sütun"
-
-msgid "Comma separated, for example: pdf, docx, png"
-msgstr "Virgülle ayırın, örneğin: pdf, docx, png"
-
-msgid "Conditional"
-msgstr "Koşullu"
-
-msgid "Conditional display"
-msgstr "Koşullu gösterim"
-
-msgid "Conditions to meet"
-msgstr "Sağlanacak koşullar"
-
-msgid "Countdown before recording (seconds)"
-msgstr "Kayıttan önce geri sayım (saniye)"
-
-msgid "Country"
-msgstr "Ülke"
-
-msgid "Country code"
-msgstr "Ülke kodu"
-
-msgid "Custom extensions"
-msgstr "Özel uzantılar"
-
-msgid "Custom list"
-msgstr "Özel liste"
-
-msgid "Daily subscription"
-msgstr "Günlük abonelik"
-
-msgid "Do you agree?"
-msgstr "Kabul ediyor musunuz?"
-
-msgid "Drop your files here"
-msgstr "Dosyalarınızı buraya bırakın"
-
-msgid "Earliest date"
-msgstr "En erken tarih"
-
-msgid "File drop zone"
-msgstr "Dosya bırakma alanı"
-
-msgid "Fill the list again"
-msgstr "Listeyi yeniden doldur"
-
-msgid "First button"
-msgstr "Birinci düğme"
-
-msgid "Flux Forms: advanced"
-msgstr "Flux Forms: gelişmiş"
-
-msgid "Flux Forms: choices"
-msgstr "Flux Forms: seçimler"
-
-msgid "Flux Forms: content"
-msgstr "Flux Forms: içerik"
-
-msgid "Flux Forms: payment"
-msgstr "Flux Forms: ödeme"
-
-msgid "Front"
-msgstr "Ön"
-
-msgid "HTML"
-msgstr "HTML"
-
-msgid "HTML code"
-msgstr "HTML kodu"
-
-msgid "Hidden field"
-msgstr "Gizli alan"
-
-msgid "Hide when…"
-msgstr "Şu durumda gizle…"
-
-msgid "How likely are you to recommend us?"
-msgstr "Bizi tavsiye etme olasılığınız nedir?"
-
-msgid "How many points can be marked"
-msgstr "İşaretlenebilecek nokta sayısı"
-
-msgid "How much?"
-msgstr "Ne kadar?"
-
-msgid "Huge"
-msgstr "Çok büyük"
-
-msgid "I accept the terms and conditions."
-msgstr "Şartları ve koşulları kabul ediyorum."
-
-msgid "Image choice"
-msgstr "Görselli seçim"
-
-msgid "Images"
-msgstr "Görseller"
-
-msgid "Larger"
-msgstr "Daha büyük"
-
-msgid "Latest date"
-msgstr "En geç tarih"
-
-msgid "Let the person download the recording"
-msgstr "Kişi kaydı indirebilsin"
-
-msgid "Location picker"
-msgstr "Konum seçici"
-
-msgid "Maximum"
-msgstr "En çok"
-
-msgid "Maximum choices"
-msgstr "En çok seçim"
-
-msgid "Maximum duration (seconds)"
-msgstr "En uzun süre (saniye)"
-
-msgid "Maximum length"
-msgstr "En çok uzunluk"
-
-msgid "Message when left empty"
-msgstr "Boş bırakılınca gösterilecek mesaj"
-
-msgid "Minimum"
-msgstr "En az"
-
-msgid "Minimum choices"
-msgstr "En az seçim"
-
-msgid "Minimum length"
-msgstr "En az uzunluk"
-
-msgid "Mirror the preview"
-msgstr "Önizlemeyi aynala"
-
-msgid "Mobile (with country code)"
-msgstr "Cep telefonu (ülke kodlu)"
-
-msgid "Monthly subscription"
-msgstr "Aylık abonelik"
-
-msgid "Multi-select list"
-msgstr "Çoklu seçim listesi"
-
-msgid "Next button"
-msgstr "İleri düğmesi"
-
-msgid "Noise reduction"
-msgstr "Gürültü azaltma"
-
-msgid "Not shown to the person; its default value is still sent."
-msgstr "Kişiye gösterilmez; varsayılan değeri yine de gönderilir."
-
-msgid "Off text"
-msgstr "Kapalı metni"
-
-msgid "On text"
-msgstr "Açık metni"
-
-msgid "One"
-msgstr "Bir"
-
-msgid "Only when…"
-msgstr "Yalnız şu durumda…"
-
-msgid "Payment type"
-msgstr "Ödeme türü"
-
-msgid "Pick a location"
-msgstr "Konum seçin"
-
-msgid "Previous button"
-msgstr "Geri düğmesi"
-
-msgid "Product (single)"
-msgstr "Ürün (tekli)"
-
-msgid "Product dropdown"
-msgstr "Ürün açılır listesi"
-
-msgid "Product list (multiple)"
-msgstr "Ürün listesi (çoklu)"
-
-msgid "Products (multiple)"
-msgstr "Ürünler (çoklu)"
-
-msgid "Quality"
-msgstr "Kalite"
-
-msgid "Quantity"
-msgstr "Adet"
-
-msgid "Quantity placeholder"
-msgstr "Adet yer tutucusu"
-
-msgid "Rate each item"
-msgstr "Her birini puanlayın"
-
-msgid "Rating table"
-msgstr "Puanlama tablosu"
-
-msgid "Read only"
-msgstr "Salt okunur"
-
-msgid "Record a video"
-msgstr "Video kaydedin"
-
-msgid "Record a voice message"
-msgstr "Sesli mesaj kaydedin"
-
-msgid "Record your screen"
-msgstr "Ekranınızı kaydedin"
-
-msgid "Remove condition"
-msgstr "Koşulu kaldır"
-
-msgid "Row"
-msgstr "Satır"
-
-msgid "Rows"
-msgstr "Satırlar"
-
-msgid "Score 0-10 (NPS)"
-msgstr "0-10 puan (NPS)"
-
-msgid "Score 1-5"
-msgstr "1-5 puan"
-
-msgid "Second button"
-msgstr "İkinci düğme"
-
-msgid "Short description"
-msgstr "Kısa açıklama"
-
-msgid "Show this field"
-msgstr "Bu alanı göster"
-
-msgid "Sign here"
-msgstr "Buraya imzalayın"
-
-msgid "Single choice with quantity"
-msgstr "Adetli tekli seçim"
-
-msgid "Size"
-msgstr "Boyut"
-
-msgid "Slider"
-msgstr "Kaydırıcı"
-
-msgid "Star rating"
-msgstr "Yıldızlı puan"
-
-msgid "Start recording"
-msgstr "Kaydı başlat"
-
-msgid "Starts a new step. Fields below it, up to the next step, are shown together."
-msgstr "Yeni bir adım başlatır. Altındaki alanlar, sonraki adıma kadar birlikte gösterilir."
-
-msgid "State / province"
-msgstr "İl / eyalet"
-
-msgid "State / province code"
-msgstr "İl / eyalet kodu"
-
-msgid "Step title"
-msgstr "Adım başlığı"
-
-msgid "Terms consent"
-msgstr "Şart onayı"
-
-msgid "The list could not be loaded. Check the country and state codes."
-msgstr "Liste yüklenemedi. Ülke ve il kodlarını kontrol edin."
-
-msgid "This field type is not available as a block. It is kept unchanged."
-msgstr "Bu alan türü blok olarak yok. Olduğu gibi korunur."
-
-msgid "Three"
-msgstr "Üç"
-
-msgid "Turn on"
-msgstr "Açın"
-
-msgid "Two"
-msgstr "İki"
-
-msgid "Two letters, for example TR."
-msgstr "İki harf, örneğin TR."
-
-msgid "Voice recording"
-msgstr "Ses kaydı"
-
-msgid "Web address"
-msgstr "Web adresi"
-
-msgid "Weekly subscription"
-msgstr "Haftalık abonelik"
-
-msgid "YYYY-MM-DD, or 1 for today."
-msgstr "YYYY-AA-GG ya da bugün için 1."
-
-msgid "Yearly subscription"
-msgstr "Yıllık abonelik"
-
-msgid "Yes / No"
-msgstr "Evet / Hayır"
-
-msgid "Your rating"
-msgstr "Puanınız"
-
-msgid "Your score"
-msgstr "Puanınız"
-
-msgid "is at least"
-msgstr "en az"
-
-msgid "is at most"
-msgstr "en çok"
-
-msgid "is filled in"
-msgstr "doludur"
-
-msgid "More settings"
-msgstr "Diğer ayarlar"
-
-msgid "Front camera"
-msgstr "Ön kamera"
-
-msgid "Back camera"
-msgstr "Arka kamera"
-
-msgid "Move to Flux Forms"
-msgstr "Flux Forms'a taşı"
-
-msgid "Move"
-msgstr "Taşı"
-
-msgid "The fields of this form become Flux Forms fields. The new form is created in Flux Forms when you save the page; responses, emails and automations then run there."
-msgstr "Bu formun alanları Flux Forms alanlarına dönüşür. Yeni form, sayfayı kaydettiğinizde Flux Forms'ta oluşur; yanıtlar, e-postalar ve otomasyonlar artık orada çalışır."
-
-msgid "This form has no fields to move."
-msgstr "Bu formda taşınacak alan yok."
-
-msgid "The form was moved to Flux Forms. Save the page to create it."
-msgstr "Form Flux Forms'a taşındı. Oluşturmak için sayfayı kaydedin."
-
-msgid "The form could not be moved."
-msgstr "Form taşınamadı."
-
-msgid "Forms are now made with Flux Forms. This form keeps working as it is; move it to manage its responses, emails and automations in Flux Forms."
-msgstr "Formlar artık Flux Forms ile yapılıyor. Bu form olduğu gibi çalışmaya devam eder; yanıtlarını, e-postalarını ve otomasyonlarını Flux Forms'ta yönetmek için taşıyın."
-
-msgid "A login form. Sending it stays on REST."
-msgstr "Giriş formu. Gönderimi REST'te kalır."
-
-msgid "A message form."
-msgstr "Mesaj formu."
-
-msgid "A payment form. Sending it stays on REST."
-msgstr "Ödeme formu. Gönderimi REST'te kalır."
-
-msgid "A registration form. Sending it stays on REST."
-msgstr "Kayıt formu. Gönderimi REST'te kalır."
-
-msgid "A stored submission or reply."
-msgstr "Kaydedilmiş bir gönderim veya yanıt."
-
-msgid "A submission opened with its tracking code."
-msgstr "Takip koduyla açılan bir gönderim."
-
-msgid "A subscribe form."
-msgstr "Abonelik formu."
-
-msgid "A survey."
-msgstr "Anket."
-
-msgid "Adds a reply to a tracked submission."
-msgstr "Takip edilen bir gönderime yanıt ekler."
-
-msgid "Answers."
-msgstr "Yanıtlar."
-
-msgid "Choices. Empty when the field is not a choice."
-msgstr "Seçenekler. Seçim alanı değilse boş."
-
-msgid "Choose one of the listed options."
-msgstr "Listedeki seçeneklerden birini seçin."
-
-msgid "Drawing fields of one form. Notification, webhook and booking data are not included."
-msgstr "Bir formun çizim alanları. Bildirim, webhook ve rezervasyon verisi yoktur."
-
-msgid "Drawing fields of one form. Null when the form is missing or private."
-msgstr "Bir formun çizim alanları. Form yoksa veya gizliyse null."
-
-msgid "Editor field type. The editor type list is open, because add-ons and the form builder add types, so this is a string rather than an enum."
-msgstr "Editör alan türü. Eklentiler ve form oluşturucu tür ekleyebildiği için tür listesi açıktır; bu yüzden değer bir sabit liste değil, metindir."
-
-msgid "Email verification code. Leave empty for a visitor reply."
-msgstr "E-posta doğrulama kodu. Ziyaretçi yanıtı için boş bırakın."
-
-msgid "Field id from flxForm."
-msgstr "flxForm'daki alan kimliği."
-
-msgid "Field id to send back on submit."
-msgstr "Gönderimde geri yollanacak alan kimliği."
-
-msgid "Field label."
-msgstr "Alan etiketi."
-
-msgid "Fields to draw."
-msgstr "Çizilecek alanlar."
-
-msgid "File URLs attached to the reply. Empty when there are none."
-msgstr "Yanıta eklenen dosya adresleri. Yoksa boştur."
-
-msgid "File URLs the upload endpoint reserved for this ticket."
-msgstr "Yükleme ucunun bu bilet için ayırdığı dosya adresleri."
-
-msgid "Filled fields."
-msgstr "Doldurulan alanlar."
-
-msgid "Form id."
-msgstr "Form kimliği."
-
-msgid "Form name stored with the submission."
-msgstr "Gönderimle kaydedilen form adı."
-
-msgid "Form name."
-msgstr "Form adı."
-
 msgid "Form submission"
 msgstr "Form gönderimi"
 
-msgid "How many steps the form has."
-msgstr "Formun adım sayısı."
-
-msgid "Kind of form."
-msgstr "Form türü."
-
-msgid "Label on the form."
-msgstr "Formdaki etiket."
-
-msgid "Label."
-msgstr "Etiket."
-
-msgid "Leave empty. A value rejects the submission."
-msgstr "Boş bırakın. Değer varsa gönderim reddedilir."
-
-msgid "Manages form add-ons"
-msgstr "Form eklentilerini yönetir"
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "GraphQL ile giden herkese açık form, anket ve abonelik gönderimleri."
 
 msgid "Manages forms and responses"
 msgstr "Formları ve yanıtları yönetir"
-
-msgid "Message shown after a successful send."
-msgstr "Başarılı gönderimden sonra görünen mesaj."
-
-msgid "One answer on a tracked submission."
-msgstr "Takip edilen bir gönderimdeki bir yanıt."
-
-msgid "One choice a visitor can pick."
-msgstr "Ziyaretçinin seçebileceği bir seçenek."
-
-msgid "One drawing field. Hidden and read-only fields are left out."
-msgstr "Çizilen bir alan. Gizli ve salt okunur alanlar yoktur."
-
-msgid "One field value."
-msgstr "Bir alan değeri."
-
-msgid "One reply on a tracked submission."
-msgstr "Takip edilen bir gönderimdeki bir yazışma."
-
-msgid "Opens a submission by its tracking code."
-msgstr "Bir gönderimi takip koduyla açar."
 
 msgid "Opens the form builder"
 msgstr "Form oluşturucuyu açar"
@@ -9896,180 +9162,32 @@ msgstr "Form oluşturucuyu açar"
 msgid "Opens the forms panel"
 msgstr "Form panelini açar"
 
-msgid "Placeholder. Empty when the field has none."
-msgstr "Yer tutucu. Yoksa boş."
+msgid "Manages form add-ons"
+msgstr "Form eklentilerini yönetir"
 
-msgid "Public form, survey and subscribe submissions sent through GraphQL."
-msgstr "GraphQL ile giden herkese açık form, anket ve abonelik gönderimleri."
+msgid "WooCommerce"
+msgstr "WooCommerce kez"
 
-msgid "Replies, oldest first."
-msgstr "Yazışmalar, eskiden yeniye."
+msgid "Flux Forms: choices"
+msgstr "Flux Forms: seçimler"
 
-msgid "Reply text."
-msgstr "Yanıt metni."
+msgid "Flux Forms: advanced"
+msgstr "Flux Forms: gelişmiş"
 
-msgid "Row id."
-msgstr "Satır kimliği."
+msgid "Flux Forms: payment"
+msgstr "Flux Forms: ödeme"
 
-msgid "Send button label."
-msgstr "Gönder düğmesinin etiketi."
+msgid "Flux Forms: content"
+msgstr "Flux Forms: içerik"
 
-msgid "Sends a form, survey or subscribe form."
-msgstr "Form, anket veya abonelik formu gönderir."
+msgid "The form structure is not valid."
+msgstr "Form yapısı geçerli değil."
 
-msgid "Stored reply. Null when the input was rejected."
-msgstr "Kaydedilen yanıt. Girdi reddedildiyse null."
+msgid "This form type is not supported."
+msgstr "Bu form türü desteklenmiyor."
 
-msgid "Stored submission. Null when the input was rejected."
-msgstr "Kaydedilen gönderim. Girdi reddedildiyse null."
-
-msgid "Stored value."
-msgstr "Kaydedilen değer."
-
-msgid "The confirmation code is not valid."
-msgstr "Onay kodu geçersiz."
-
-msgid "The form could not be sent."
-msgstr "Form gönderilemedi."
-
-msgid "The form was not found."
-msgstr "Form bulunamadı."
-
-msgid "The tracking code was not found."
-msgstr "Takip kodu bulunamadı."
-
-msgid "The visitor must fill this in."
-msgstr "Ziyaretçi bunu doldurmalı."
-
-msgid "This form cannot be sent here."
-msgstr "Bu form buradan gönderilemez."
-
-msgid "Title shown after a successful send."
-msgstr "Başarılı gönderimden sonra görünen başlık."
-
-msgid "Too many submissions. Wait a moment and try again."
-msgstr "Çok fazla gönderim. Biraz bekleyip yeniden deneyin."
-
-msgid "Tracking code."
-msgstr "Takip kodu."
-
-msgid "Upload the file again."
-msgstr "Dosyayı yeniden yükleyin."
-
-msgid "Value. A file field carries the URL the upload endpoint returned."
-msgstr "Değer. Dosya alanı, yükleme ucunun döndürdüğü adresi taşır."
-
-msgid "What the visitor sent."
-msgstr "Ziyaretçinin gönderdiği."
-
-msgid "When the reply was stored."
-msgstr "Yanıtın kaydedildiği zaman."
-
-msgid "When the submission was stored."
-msgstr "Gönderimin kaydedildiği zaman."
-
-msgid "Write a reply."
-msgstr "Bir yanıt yazın."
-
-msgid "reCAPTCHA token when Flux reCAPTCHA protects form submission."
-msgstr "Flux reCAPTCHA form gönderimini korurken reCAPTCHA belirteci."
-
-msgid "An account is in test mode."
-msgstr "Bir hesap test modunda."
-
-msgid "Card number"
-msgstr "Kart numarası"
-
-msgid "Card payment"
-msgstr "Kartla ödeme"
-
-msgid "Complete the payment in the window that opened. This page continues when it is done."
-msgstr "Ödemeyi açılan pencerede tamamlayın. Bitince bu sayfa devam eder."
-
-msgid "Currencies a POS account takes."
-msgstr "Bir POS hesabının aldığı para birimleri."
-
-msgid "Expiry (MM/YY)"
-msgstr "Son kullanma (AA/YY)"
-
-msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments through Flux POS."
-msgstr "Flux Donate etkin ama ödemeleri devralmadı (flxb_own_payments filtresi kapalı mı?). Flux Forms ödemeyi Flux POS üstünden alır."
-
-msgid "Flux POS"
-msgstr "Flux POS"
-
-msgid "Flux POS has an active account."
-msgstr "Flux POS’ta etkin bir hesap var."
-
-msgid "Flux POS is active."
-msgstr "Flux POS etkin."
-
-msgid "Flux POS is installed (active or not)."
-msgstr "Flux POS kurulu (etkin ya da değil)."
-
-msgid "Flux POS state and the latest payments of the forms."
-msgstr "Flux POS durumu ve formların son ödemeleri."
-
-msgid "Flux POS state."
-msgstr "Flux POS durumu."
-
-msgid "Flux POS, which takes the payments of payment forms."
-msgstr "Ödeme formlarının ödemesini alan Flux POS."
-
-msgid "Name on card"
-msgstr "Kart üzerindeki ad"
-
-msgid "No payment form exists. Flux POS is needed only to take payments."
-msgstr "Ödeme formu yok. Flux POS yalnız ödeme almak için gerekir."
-
-msgid "Payment completed. You can close this window and return to the form."
-msgstr "Ödeme tamamlandı. Bu pencereyi kapatıp forma dönebilirsiniz."
-
-msgid "Payment forms take payments through Flux POS (%s)."
-msgstr "Ödeme formları ödemeyi Flux POS üstünden alır (%s)."
-
-msgid "Security code (CVC)"
-msgstr "Güvenlik kodu (CVC)"
-
-msgid "Test mode: no money is taken."
-msgstr "Test modu: para çekilmez."
-
-msgid "The payment records of the forms are kept here (not by Flux Donate)."
-msgstr "Formların ödeme kayıtları burada tutulur (Flux Donate'te değil)."
-
-msgid "The payment was not completed. Please check your card details and try again."
-msgstr "Ödeme tamamlanmadı. Kart bilgilerinizi kontrol edip yeniden deneyin."
-
-msgid "The payment was not completed. You can close this window and try again on the form."
-msgstr "Ödeme tamamlanmadı. Bu pencereyi kapatıp formda yeniden deneyebilirsiniz."
-
-msgid "The payment window was blocked. Allow pop-ups for this site and try again."
-msgstr "Ödeme penceresi engellendi. Bu site için açılır pencerelere izin verip yeniden deneyin."
-
-msgid "The payment window was closed before the payment was completed."
-msgstr "Ödeme penceresi ödeme tamamlanmadan kapatıldı."
-
-msgid "To take online payments with a payment form, install and activate Flux POS and add a POS account."
-msgstr "Ödeme formuyla online ödeme almak için Flux POS'u kurup etkinleştirin ve bir POS hesabı ekleyin."
-
-msgid "Where to set Flux POS up (its screen, or Plugins when it is not active)."
-msgstr "Flux POS'un kurulacağı yer (kendi ekranı, etkin değilse Eklentiler)."
-
-msgid "You will complete the payment on the secure payment page."
-msgstr "Ödemeyi güvenli ödeme sayfasında tamamlayacaksınız."
-
-msgid "Your card is checked by your bank (3D Secure) and is not stored on this site."
-msgstr "Kartınız bankanızca doğrulanır (3D Secure) ve bu sitede saklanmaz."
-
-msgid "Flux POS has no active account: %d payment form shows \"Online payment is not available\"."
-msgid_plural "Flux POS has no active account: %d payment forms show \"Online payment is not available\"."
-msgstr[0] "Flux POS’ta etkin hesap yok: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
-msgstr[1] "Flux POS’ta etkin hesap yok: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
-
-msgid "Flux POS is not active: %d payment form shows \"Online payment is not available\"."
-msgid_plural "Flux POS is not active: %d payment forms show \"Online payment is not available\"."
-msgstr[0] "Flux POS etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
-msgstr[1] "Flux POS etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
+msgid "This form was changed somewhere else after you opened it."
+msgstr "Bu form siz açtıktan sonra başka bir yerde değiştirilmiştir."
 
 msgid "WooCommerce checkout"
 msgstr "WooCommerce ödeme sayfası"
@@ -10077,59 +9195,35 @@ msgstr "WooCommerce ödeme sayfası"
 msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
 msgstr "Nasıl ödeyeceğinizi (kart, havale…) güvenli ödeme sayfasında seçeceksiniz."
 
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "Ödemeyi açılan pencerede tamamlayın. Bitince bu sayfa devam eder."
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "Ödeme penceresi engellendi. Bu site için açılır pencerelere izin verip yeniden deneyin."
+
 msgid "The payment was not completed. You can try again."
 msgstr "Ödeme tamamlanmadı. Yeniden deneyebilirsiniz."
 
 msgid "The order is received; the payment is confirmed when it arrives."
 msgstr "Sipariş alındı; ödeme ulaşınca onaylanır."
 
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "Ödeme tamamlandı. Bu pencereyi kapatıp forma dönebilirsiniz."
+
 msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
 msgstr "Sipariş alındı; ödeme ulaşınca onaylanır. Bu pencereyi kapatıp forma dönebilirsiniz."
 
-msgid "WooCommerce, where payment forms are paid."
-msgstr "Ödeme formlarının ödendiği WooCommerce."
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "Ödeme tamamlanmadı. Bu pencereyi kapatıp formda yeniden deneyebilirsiniz."
 
-msgid "WooCommerce is active."
-msgstr "WooCommerce etkin."
-
-msgid "WooCommerce is installed (active or not)."
-msgstr "WooCommerce kurulu (etkin ya da değil)."
-
-msgid "WooCommerce has an enabled payment method."
-msgstr "WooCommerce'te açık bir ödeme yöntemi var."
-
-msgid "Store currency; payment forms must use it."
-msgstr "Mağaza para birimi; ödeme formları bunu kullanmalı."
-
-msgid "Enabled payment methods."
-msgstr "Açık ödeme yöntemleri."
-
-msgid "Where to set payments up (WooCommerce › Payments, or Plugins when it is not active)."
-msgstr "Ödemelerin ayarlandığı yer (WooCommerce › Ödemeler, etkin değilse Eklentiler)."
-
-msgid "WooCommerce state."
-msgstr "WooCommerce durumu."
-
-msgid "WooCommerce state and the latest payments of the forms."
-msgstr "WooCommerce durumu ve formların son ödemeleri."
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "Flux Donate etkin ama ödemeleri devralmadı (flxb_own_payments filtresi kapalı mı?). Flux Forms ödemeyi WooCommerce ödeme sayfasında alır."
 
 msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
 msgstr "Ödeme formları WooCommerce ödeme sayfasında ödenir (%1$s; %2$s)."
 
 msgid "No payment form exists. WooCommerce is needed only to take payments."
 msgstr "Ödeme formu yok. WooCommerce yalnız ödeme almak için gerekir."
-
-msgid "Payment methods"
-msgstr "Ödeme yöntemleri"
-
-msgid "WooCommerce"
-msgstr "WooCommerce"
-
-msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
-msgstr "Flux Donate etkin ama ödemeleri devralmadı (flxb_own_payments filtresi kapalı mı?). Flux Forms ödemeyi WooCommerce ödeme sayfasında alır."
-
-msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
-msgstr "Ödeme formuyla online ödeme almak için WooCommerce'i kurup etkinleştirin ve bir ödeme yöntemi açın."
 
 msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
 msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
@@ -10141,5 +9235,68 @@ msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment 
 msgstr[0] "WooCommerce etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
 msgstr[1] "WooCommerce etkin değil: %d ödeme formu \"Online ödeme kullanılamıyor\" gösteriyor."
 
-msgid "This form type is not supported."
-msgstr "Bu form türü desteklenmiyor."
+msgid "Payment methods"
+msgstr "Ödeme yöntemleri"
+
+msgid "Card payment"
+msgstr "Kartla ödeme"
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "Ödeme formuyla online ödeme almak için WooCommerce'i kurup etkinleştirin ve bir ödeme yöntemi açın."
+
+msgid "The form was not found."
+msgstr "Form bulunamadı."
+
+msgid "Write a reply."
+msgstr "Bir yanıt yazın."
+
+msgid "The response was not found."
+msgstr "Cevap bulunamadı."
+
+msgid "The reply could not be saved."
+msgstr "Cevap kurtarılamadı."
+
+msgid "The settings could not be saved."
+msgstr "Ayarlar kaydedilemedi."
+
+msgid "Choose between 1 and 7 days."
+msgstr "1 ile 7 gün arasında seçim yapın."
+
+msgid "Unknown track code style."
+msgstr "Bilinmeyen parça kodu stili."
+
+msgid "Unknown SMS sender."
+msgstr "Bilinmeyen SMS gönderen."
+
+msgid "Enter a colour like #1a2b3c."
+msgstr "#1a2b3c gibi bir renk girin."
+
+msgid "Enter a valid e-mail address."
+msgstr "Geçerli bir e-posta adresi girin."
+
+msgid "Use numbers like +12345678900, separated by commas."
+msgstr "virgüllerle ayrılmış +12345678900 gibi numaraları kullanın."
+
+msgid "The template must contain the shortcode_message shortcode."
+msgstr "Şablon, kısa kod_message kısa kodunu içermelidir."
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "Çok fazla gönderim. Biraz bekleyip yeniden deneyin."
+
+msgid "The form could not be sent."
+msgstr "Form gönderilemedi."
+
+msgid "This form cannot be sent here."
+msgstr "Bu form buradan gönderilemez."
+
+msgid "The tracking code was not found."
+msgstr "Takip kodu bulunamadı."
+
+msgid "Upload the file again."
+msgstr "Dosyayı yeniden yükleyin."
+
+msgid "The confirmation code is not valid."
+msgstr "Onay kodu geçersiz."
+
+msgid "Choose one of the listed options."
+msgstr "Listedeki seçeneklerden birini seçin."

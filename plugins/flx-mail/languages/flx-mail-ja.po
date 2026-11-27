@@ -1196,7 +1196,7 @@ msgid "Certificate emails use the corporate template; WhatsApp/SMS go through th
 msgstr "証明書の電子メールは企業テンプレートを使用します。 WhatsApp/SMS はここで接続を経由します。"
 
 msgid "%1$s: \"%2$s\" → \"%3$s\""
-msgstr "%1$s: \"%2$s\" → \"%3$s\""
+msgstr "%1$s : %2$s → %3$s"
 
 msgid "Enter a valid email address."
 msgstr "有効な電子メール アドレスを入力してください。"
@@ -1409,7 +1409,7 @@ msgid "Certificate no."
 msgstr "証明書番号"
 
 msgid "You can download it as a PDF from the certificate page and share it on WhatsApp and social media."
-msgstr "You can download it as a PDF from the certificate page and share it on WhatsApp and social media."
+msgstr "証明書ページからPDFとしてダウンロードし、共有することができます。 WhatsApp ソーシャルメディアです"
 
 msgid "Flux Mail is active: the email is sent with the branded template and the sender address from Communication › Settings."
 msgstr "Flux Mail がアクティブです。電子メールは、ブランドのテンプレートと送信者アドレスを使用して送信されます (通信 › 設定)。"
@@ -1705,7 +1705,7 @@ msgid "To"
 msgstr "に"
 
 msgid "Cc"
-msgstr "Cc"
+msgstr "CC"
 
 msgid "Layout"
 msgstr "レイアウト"
@@ -2224,7 +2224,7 @@ msgid "This Flux WPAPI version doesn't support changing server settings from Wor
 msgstr "この Flux WPAPI バージョンは、WordPress からのサーバー設定の変更をサポートしていません。ブリッジを更新します。"
 
 msgid "WhatsApp · Flux WPAPI"
-msgstr "WhatsApp · Flux WPAPI"
+msgstr "WhatsApp ・ フラックス WPAPI"
 
 msgid "The Flux WPAPI bridge installed as a Node.js app on Hostinger. The address is e.g. https://wa.example.com; the API key is the bridge panel's general API key; the instance is the name you give this number (created on \"Connect\" if it does not exist)."
 msgstr "Flux WPAPI ブリッジは、Hostinger に Node.js アプリとしてインストールされます。アドレスは例えば https://wa.example.com; API キーはブリッジ パネルの一般 API キーです。インスタンスは、この番号に付けた名前です (存在しない場合は「Connect」で作成されます)。"
@@ -2649,6 +2649,376 @@ msgstr "拒否（アプリ シークレットが未入力）"
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr "受信 Webhook が Meta からのものであることを検証します。入力されるまで受信イベントは拒否されます。"
 
-#: includes/helpers.php
+msgid "Manages communication"
+msgstr "コミュニケーション管理"
+
+msgid "Write the message to see how it will look."
+msgstr "メッセージを書き、どのように表示されるかを確認します。"
+
+msgid "Ayşe Yılmaz"
+msgstr "ジェーン・スミス"
+
+msgid "Variables are shown filled in for %s; the length changes with each name."
+msgstr "変数は %s の値で表され、各名前で長さが変わります。"
+
+msgid "Text message"
+msgstr "テキストメッセージ"
+
+msgid "%1$s / %2$s characters · %3$s SMS"
+msgstr "%1$s / %2$s 文字 ・ %3$s SMS"
+
+msgid "This message is sent and billed as %1$s SMS. Keep it under %2$s characters for a single SMS."
+msgstr "このメッセージは送信され、請求されます。 %1$s SMS下に置いておきなさい %2$s シングルのキャラクター. SMS."
+
+msgid "Longer than 6 SMS: Netgsm rejects messages over its maximum length (code 20). Shorten the text."
+msgstr "最大長(コード20)のメッセージを拒否するNetgsm。"
+
+msgid "%1$s recipients × %2$s SMS = %3$s SMS credits."
+msgstr "%1$s 受信者 × %2$s SMS = %3$s SMS クレジット。"
+
+msgid "Not supported in SMS and may arrive as \"?\" or be dropped: %s"
+msgstr "はサポートしていません。 SMS あるいは、捨てられるかもしれません。 %s"
+
+msgid "Turkish characters are on: one SMS holds 155 characters, longer messages 146 per part. ç ğ ı ş Ğ İ Ş count as two characters."
+msgstr "トルコ文字は、1文字が155文字、1文字が146文字である。"
+
+msgid "Turkish characters are off: ş, ğ, ı, ç, ö, ü are sent as s, g, i, c, o, u. One SMS holds 160 characters, longer messages 153 per part."
+msgstr "トルコ文字はオフです:  ?? ,  ?? , ç, ö, ü は s, g, i, c, o, u として送信されます。"
+
+msgid "Sent as an informational message (no İYS check). For promotional content turn on the İYS filter in the Netgsm connection."
+msgstr "プロモーションコンテンツについては、Netgsm 接続の  ?? YS フィルターをオンにします。"
+
+msgid "Commercial message: Netgsm does not deliver to numbers without İYS consent."
+msgstr "商業メッセージ:Netgsmは、 ?? YSの同意なしに番号に配信しません。"
+
+msgid "%1$s / %2$s characters"
+msgstr "%1$s / %2$s キャラクター"
+
+msgid "WhatsApp accepts at most 4,096 characters in one message. Shorten the text."
+msgstr "WhatsApp は、最大 4,096 文字の 1 つのメッセージを受け入れ、テキストを短くします。"
+
+msgid "WhatsApp Cloud API: free text only reaches people who wrote to you in the last 24 hours. Others need an approved template."
+msgstr "WhatsApp Cloud API : 無料のテキストは、過去24時間以内にあなたに手紙を書いた人のみに届きます。"
+
+msgid "This WhatsApp account is not connected right now. Connect it under Connections before sending."
+msgstr "これは WhatsApp アカウントは接続されていません。"
+
+msgid "Bulk messages to people who have not saved your number can get the number restricted by WhatsApp. Send to people who expect your message and keep a delay between messages."
+msgstr "番号を保存していない人にメッセージが送信され、番号に制限されます。 WhatsAppメッセージが来るまで遅れている人に送信します。"
+
+msgid "*bold*, _italic_, ~strikethrough~ and ```monospace``` are shown formatted. Links become clickable."
+msgstr "*bold*, _italic_, ~strikethrough~ と ```monospace``` の形式が設定されています。"
+
+msgid "Replied \"%s\""
+msgstr "%s と答えた。"
+
+msgid "AI assistant"
+msgstr "AIアシスタント"
+
+msgid "Added by %s"
+msgstr "追加 %s"
+
+msgid "Added by staff"
+msgstr "スタッフ追加"
+
+msgid "People who asked not to be messaged. <strong>Blocked</strong>: nothing is sent on any channel. <strong>No promotions</strong>: they replied STOP, so only promotional messages stop on that channel; information messages and chats they start still go through."
+msgstr "メッセージしないよう頼まれた人々。 <strong>ブロック</strong>: チャンネルに何も送信されません。 <strong>プロモーションなし</strong>:彼らはSTOPと答えたので、プロモーションメッセージだけがそのチャンネル上で停止します。"
+
+msgid "Phone, email or reason"
+msgstr "電話、電子メール、または理由"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "All types"
+msgstr "全種類"
+
+msgid "Blocked"
+msgstr "ブロックされました"
+
+msgid "No promotions"
+msgstr "プロモーションなし"
+
+msgid "%s people"
+msgstr "%s 人"
+
+msgid "Add to the blocklist"
+msgstr "ブロックリストに追加します。"
+
+msgid "No promotions · WhatsApp"
+msgstr "プロモーションなし ・ WhatsApp"
+
+msgid "No promotions · SMS"
+msgstr "プロモーションなし ・SMS"
+
+msgid "Blocked · all channels"
+msgstr "ブロックします。"
+
+msgid "Reason (optional)"
+msgstr "理由(オプション)"
+
+msgid "e.g. Asked on the phone"
+msgstr "電話に尋ねられるなど"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Person"
+msgstr "人"
+
+msgid "When and how"
+msgstr "いつ、どのように"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "No matching entries."
+msgstr "一致するエントリはありません。"
+
+msgid "Nobody is on the blocklist."
+msgstr "誰もブロックリストにいない。"
+
+msgid "Open chat"
+msgstr "オープンチャット"
+
+msgid "Contact card"
+msgstr "連絡先カード"
+
+msgid "Reason"
+msgstr "理由"
+
+msgid "They wrote"
+msgstr "彼らは書いた"
+
+msgid "After"
+msgstr "後"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "Messages will be sent to this person again on all channels. Remove only if they asked for it."
+msgstr "全てのチャンネルで再度この人にメッセージが送信され、リクエストされた場合のみ削除します。"
+
+msgid "Promotional messages will be sent to this person again. Remove only if they asked for it."
+msgstr "プロモーションメッセージが再度この人に送信され、リクエストされた場合のみ削除します。"
+
+msgid "Full blocks are kept by Flux Chat. Install it to block people on all channels from here and from chats."
+msgstr "ブロック全体は Flux Chat が保持し、ここからチャットまで全てのチャンネルの人々をブロックするためにインストールします。"
+
+msgid "STOP keywords and replies"
+msgstr "キーワードと返信を停止します。"
+
+msgid "Enter a valid phone number."
+msgstr "有効な電話番号を入力してください。"
+
+msgid "Blocked. Nothing will be sent to this person on any channel."
+msgstr "ブロックされた。この人には、どのチャンネルにも何も送信されない。"
+
+msgid "Added to the opt-out list."
+msgstr "オプトアウトリストに追加されました。"
+
+msgid "Removed from the blocklist. Messages will be sent to this person again."
+msgstr "ブロックリストから削除すると、メッセージが再度この人に送信されます。"
+
+msgid "Pause"
+msgstr "一時停止"
+
+msgid "Estimated finish:"
+msgstr "見積もり完了:"
+
+msgid "Resume"
+msgstr "再開"
+
+msgid "Site time now:"
+msgstr "サイト時間は、"
+
+msgid "Variation: {Hello|Hi|Good day} picks one at random for each person, so the same text does not go out hundreds of times."
+msgstr "バリエーション: {Hello|Hi|Good day} は、各人に対してランダムに選択するので、同じテキストが何百回も消えることはありません。"
+
+msgid "Image, video or file (optional)"
+msgstr "画像、動画、ファイル(オプション)"
+
+msgid "Choose from media"
+msgstr "メディアから選ぶ"
+
+msgid "An image or video goes with the message as its caption; a PDF goes as a separate file after the message."
+msgstr "画像やビデオは、そのキャプションとしてメッセージに関連し、PDFは、メッセージの後に別のファイルとして行きます。"
+
+msgid "Promotional message (not sent to people who replied STOP; the opt-out line is added at the bottom)"
+msgstr "プロモーションメッセージ(STOPに返信した人には送信されない。"
+
+msgid "Turn off only for information messages people expect, such as event details or a receipt."
+msgstr "イベントの詳細やレシートなど、人々が期待する情報メッセージのみをオフにします。"
+
+msgid "Paused"
+msgstr "一時停止中"
+
+msgid "%1$s · continues at %2$s"
+msgstr "%1$s ・続き %2$s"
+
+msgid "Estimated finish: %1$s (%2$s)"
+msgstr "仕上がり予想:%1$s(%2$s)"
+
+msgid "Sending paused. Press Resume to continue where it stopped."
+msgstr "一時停止し、Resumeを押して停止先を続けます。"
+
+msgid "Sending resumed."
+msgstr "再送。"
+
+msgid "%s reached"
+msgstr "%s 達した"
+
+msgid "%s read"
+msgstr "%s 読んで"
+
+msgid "%s replied"
+msgstr "%s と、"
+
+msgid "%s opted out"
+msgstr "%s オプトアウト"
+
+msgid "All people, who allowed this channel (%s)"
+msgstr "このチャネルを許可したすべての人々(%s)"
+
+msgid "Opted out of promotional messages (replied STOP): not sent"
+msgstr "プロモーションメッセージのオプトアウト(STOP 返信):送信されません。"
+
 msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
 msgstr "WhatsApp Cloud API はグループにメッセージを送信できません。グループメッセージには Evolution API または Flux WPAPI の接続を選択してください。"
+
+msgid "If you don't want messages like this, reply STOP."
+msgstr "こんなメッセージが欲しいのなら、STOPに返信して。"
+
+msgid "Done, you won't get promotional messages from us anymore. You can still write to us any time. To get them again, reply START."
+msgstr "終わったら、もう私たちから宣伝メッセージが届かない。いつでも手紙を書くことができる。また受け取るために、スタートに返事をしなさい。"
+
+msgid "Welcome back, you will get our messages again."
+msgstr "歓迎します、あなたは再び私たちのメッセージを得るでしょう。"
+
+msgid "Removed from the opt-out list. Promotional messages will be sent to this person again."
+msgstr "オプトアウトリストから削除すると、プロモーションメッセージが再度この人に送信されます。"
+
+msgid "Typed list"
+msgstr "型付きリスト"
+
+msgid "%s has no email address"
+msgid_plural "%s have no email address"
+msgstr[0] "%s メールアドレスがないので"
+
+msgid "%s has no valid phone number"
+msgid_plural "%s have no valid phone number"
+msgstr[0] "%s 有効な電話番号はありません。"
+
+msgid "email"
+msgstr "メール"
+
+msgid "%1$s has not given %2$s permission"
+msgid_plural "%1$s have not given %2$s permission"
+msgstr[0] "%1$s 与えてはいません %2$s 許可"
+
+msgid "%s is already on the list"
+msgid_plural "%s are already on the list"
+msgstr[0] "%s リストに載っています"
+
+msgid "this list is empty"
+msgstr "このリストは空です"
+
+msgid "%1$s: %2$s of %3$s added (%4$s)."
+msgstr "%1$s : %2$s %3$s を追加(%4$s)。"
+
+msgid "%s person unsubscribed earlier and was left out."
+msgid_plural "%s people unsubscribed earlier and were left out."
+msgstr[0] "%s 早期に加入を解除し 取り除かれた人々です"
+
+msgid "This password is defined in wp-config.php and cannot be changed here."
+msgstr "このパスワードはwp-config.phpで定義され、ここでは変更できません。"
+
+msgid "File upload is not available."
+msgstr "ファイルのアップロードはできません。"
+
+msgid "Choose an email."
+msgstr "メールを選択してください。"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Ban protection (bulk sends)"
+msgstr "保護(一括送信)禁止"
+
+msgid "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
+msgstr "WhatsApp は、多くの類似のメッセージをすばやく送信する数値を制限します。これらの制限は、キューからの一括送信のみに適用されます。チャットや単一のメッセージの応答は遅れません。"
+
+msgid "Minimum wait between messages (sec)"
+msgstr "メッセージ間の最小待ち(秒)"
+
+msgid "Maximum wait between messages (sec)"
+msgstr "メッセージ間の最大待ち時間(秒)"
+
+msgid "Each wait is a random time between the minimum and the maximum, so the sending does not look like a machine."
+msgstr "それぞれの待ち時間は最小値と最大値の間のランダムな時間であるため、送信は機械のように見えます。"
+
+msgid "Take a break every … messages"
+msgstr "休息して... メッセージ"
+
+msgid "0 = no break."
+msgstr "0 = 休止なし。"
+
+msgid "Break length (min)"
+msgstr "長さ(分)"
+
+msgid "Bulk messages per hour (at most)"
+msgstr "バルクメッセージは1時間あたり(最大で)"
+
+msgid "0 = no limit."
+msgstr "0 = 制限なし。"
+
+msgid "Bulk messages per day (at most)"
+msgstr "バルクメッセージは1日あたりの量です。"
+
+msgid "Counted over the last 24 hours. The rest of the list waits and continues by itself. 0 = no limit."
+msgstr "最後の24時間にわたってカウントされ、残りのリストは待機し、それ自体が続く。"
+
+msgid "Warm up a new number (daily limit starts at 20 and grows by 20 every day)"
+msgstr "新しい数字を暖める(毎日の制限は20から始まり、毎日20に増えます)"
+
+msgid "Quiet hours: from"
+msgstr "静かな時間: から"
+
+msgid "Quiet hours: until"
+msgstr "静かな時間まで"
+
+msgid "Bulk messages are not sent in these hours (site time zone); the queue continues in the morning."
+msgstr "バルクメッセージはこれらの時間(サイトタイムゾーン)では送信されません。"
+
+msgid "Skip numbers that do not have WhatsApp (checked before sending)"
+msgstr "WhatsApp(送信前にチェック)がない場合はスキップ番号です。"
+
+msgid "Pause bulk sending for 30 minutes after … failures in a row"
+msgstr "停止 一括送信 30 分後... 連続で失敗します。"
+
+msgid "Many failures in a row usually mean the number was disconnected or restricted. 0 = never pause."
+msgstr "行の多くの失敗は通常、番号が切断されたか制限されたことを意味します.0 = 一時停止しません。"
+
+msgid "Show \"typing…\" for a time that fits the message length"
+msgstr "メッセージの長さに合う時間に「...」と入力します。"
+
+msgid "Paused after failures in a row"
+msgstr "失敗のあと 一時停止"
+
+msgid "Quiet hours"
+msgstr "静かな時間"
+
+msgid "Waiting between messages"
+msgstr "メッセージ間の待ち"
+
+msgid "Hourly limit reached"
+msgstr "時間制限あり"
+
+msgid "Daily limit reached"
+msgstr "日数制限あり"
+
+msgid "Bulk WhatsApp paused: %s"
+msgstr "巻物 WhatsApp 一時停止 %s"
+
+msgid "Several messages in a row failed, so bulk sending was paused for 30 minutes. Check that the number is connected; the queue continues by itself."
+msgstr "数行のメッセージが失敗したので、一括送信が30分間停止し、番号が接続されていることを確認します。"

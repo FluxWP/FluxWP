@@ -404,7 +404,7 @@ msgid "%s M"
 msgstr "%s M"
 
 msgid "%s K"
-msgstr "%s K"
+msgstr "%s K."
 
 msgid "(unnamed contact)"
 msgstr "(contato sem nome)"
@@ -1165,3 +1165,385 @@ msgstr "Consentimentos"
 
 msgid "People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI."
 msgstr "Pessoas e marketing: doador, cliente, voluntário e candidato em um cartão individual; linha do tempo, tags, permissões KVKK, pontuação RFM e risco de perda, segmentos dinâmicos. Coleta dados de usuários do Flux Donate, Flux Commerce, Flux Chat, Flux Forms e WordPress; envio via Flux Mail, AI Flux AI."
+
+msgid "Sees contacts, segments and the CRM overview"
+msgstr "Veja contatos, segmentos e a visão geral do CRM"
+
+msgid "Edits contacts, segments, journeys and CRM settings"
+msgstr "Edita contatos, segmentos, viagens e configurações de CRM"
+
+msgid "Events"
+msgstr "Eventos"
+
+msgid "Journeys"
+msgstr "Jornadas"
+
+msgid "Delete the selected contacts?"
+msgstr "Excluir os contatos selecionados?"
+
+msgid "Type the contact's name exactly to delete it."
+msgstr "Digite o nome do contato exatamente para excluí-lo."
+
+msgid "Back to %s"
+msgstr "Voltar para %s"
+
+msgid "The send was cancelled."
+msgstr "O envio foi cancelado."
+
+msgid "The send is paused."
+msgstr "O envio está pausado."
+
+msgid "The send continues."
+msgstr "O envio continua."
+
+msgid "%s messages queued in Flux Mail."
+msgstr "%s mensagens em fila no Flux Mail."
+
+msgid "More actions"
+msgstr "Mais ações"
+
+msgid "Delete permanently"
+msgstr "Excluir permanentemente"
+
+msgid "This timeline entry will be deleted."
+msgstr "Esta entrada da linha do tempo será excluída."
+
+msgid "Delete entry"
+msgstr "Excluir entrada"
+
+msgid "allowed"
+msgstr "permitido"
+
+msgid "not allowed"
+msgstr "não permitido"
+
+msgid "List journeys"
+msgstr "Listar viagens"
+
+msgid "Save journey draft"
+msgstr "Salvar o rascunho de viagem"
+
+msgid "Turn journey on or pause it"
+msgstr "Vire a viagem ou pare-a"
+
+msgid "Delete journey"
+msgstr "Excluir viagem"
+
+msgid "This contact still has records in: %s. Merge it into another contact instead of deleting it."
+msgstr "Este contato ainda tem registros em: %s . Mescreva-o em outro contato em vez de excluí-lo."
+
+msgid "CRM event: %1$s (%2$s)"
+msgstr "Evento de CRM: %1$s ( %2$s )"
+
+msgid "Event name"
+msgstr "Nome do evento"
+
+msgid "Event date"
+msgstr "Data do Evento"
+
+msgid "Event time"
+msgstr "Hora do evento"
+
+msgid "Event place"
+msgstr "Lugar de evento"
+
+msgid "Event page"
+msgstr "Página do evento"
+
+msgid "First name"
+msgstr "Primeiro nome"
+
+msgid "Event not found."
+msgstr "Evento não encontrado."
+
+msgid "Flux Mail is not active; messages are sent through it."
+msgstr "Flux Mail não está ativo; as mensagens são enviadas através dele."
+
+msgid "Pick at least one channel."
+msgstr "Escolha pelo menos um canal."
+
+msgid "Write the message."
+msgstr "Escreva a mensagem."
+
+msgid "Personal values (%s) need a newer Flux Mail that keeps a value for each recipient. Update Flux Mail or take them out of the text."
+msgstr "Os valores pessoais ( %s ) precisam de um novo Flux Mail que mantenha um valor para cada destinatário."
+
+msgid "No active connection for this channel in Flux Mail."
+msgstr "Não há conexão ativa para este canal no Flux Mail."
+
+msgid "No one to send to on this channel."
+msgstr "Ninguém para enviar neste canal."
+
+msgid "%1$s · event message (%2$s)"
+msgstr "%1$s · mensagem de evento ( %2$s )"
+
+msgid "Open the file"
+msgstr "Abra o arquivo"
+
+msgid "Journey message"
+msgstr "Mensagem de viagem"
+
+msgid "Journey step skipped"
+msgstr "Passo de viagem pulado"
+
+msgid "Enters a value group (RFM)"
+msgstr "Insira um grupo de valor (RFM)"
+
+msgid "Gets a tag"
+msgstr "Obtém uma etiqueta"
+
+msgid "Gets a role"
+msgstr "Obtém um papel"
+
+msgid "Something happens (timeline event)"
+msgstr "Algo acontece (evento timeline)"
+
+msgid "Is added to the CRM"
+msgstr "É adicionado ao CRM"
+
+msgid "Wait"
+msgstr "Espera."
+
+msgid "Send e-mail"
+msgstr "Enviar e-mail"
+
+msgid "Send WhatsApp"
+msgstr "Enviar por e-mail"
+
+msgid "Send SMS"
+msgstr "Enviar por e-mail"
+
+msgid "Continue only if"
+msgstr "Continuar apenas se"
+
+msgid "Value group is"
+msgstr "Grupo de valor é"
+
+msgid "Has tag"
+msgstr "Tem tag"
+
+msgid "Does not have tag"
+msgstr "Não tem etiqueta"
+
+msgid "Has paid since the journey started"
+msgstr "Pagou desde o início da viagem"
+
+msgid "Has not paid since the journey started"
+msgstr "Não pagou desde o início da viagem"
+
+msgid "Draft"
+msgstr "Rascunho"
+
+msgid "Paused"
+msgstr "Pausado"
+
+msgid "Give the journey a name."
+msgstr "Dê a viagem um nome."
+
+msgid "Pick what starts the journey."
+msgstr "Escolha o que começa a jornada."
+
+msgid "Pick the value group, tag, role or event that starts the journey."
+msgstr "Escolha o grupo de valor, tag, papel ou evento que inicia a jornada."
+
+msgid "Every e-mail step needs a subject and a text."
+msgstr "Cada passo de e-mail precisa de um assunto e um texto."
+
+msgid "Every message step needs a text."
+msgstr "Cada passo de mensagem precisa de um texto."
+
+msgid "Add at least one step that does something (message or tag)."
+msgstr "Adicione pelo menos um passo que faz alguma coisa (mensagem ou tag)."
+
+msgid "Journey not found."
+msgstr "Viagem não encontrada."
+
+msgid "Flux Mail is not active for this channel."
+msgstr "Flux Mail não está ativo para este canal."
+
+msgid "No permission for this channel."
+msgstr "Não há permissão para este canal."
+
+msgid "No e-mail address."
+msgstr "Nenhum endereço de e-mail."
+
+msgid "No phone number."
+msgstr "Não há número de telefone."
+
+msgid "Not sent."
+msgstr "Não foi enviado."
+
+msgid "%1$s · %2$s skipped: %3$s"
+msgstr "%1$s · %2$s saltou: %3$s"
+
+msgid "%d step"
+msgid_plural "%d steps"
+msgstr[0] "%d passo"
+msgstr[1] "%d passos"
+
+msgid "goal: %s"
+msgstr "meta: %s"
+
+msgid "Welcome new donors"
+msgstr "Bem-vindos novos doadores"
+
+msgid "Thank you, {first_name}"
+msgstr "Obrigado, {first_name}"
+
+msgid "Dear {first_name},\n\nThank you for your first donation to {site}. Here is what your support makes possible…"
+msgstr "Caro {first_name} , Obrigado pela sua primeira doação para {site} . Aqui está o que o seu apoio torna possível..."
+
+msgid "Hello {first_name}, a short update from {site} on the work your donation supported. Thank you for being with us."
+msgstr "Olá {first_name} , uma breve atualização de {site} no trabalho que sua doação apoiou. Obrigado por estar conosco."
+
+msgid "Win back donors at risk"
+msgstr "Ganhe doadores de volta em risco"
+
+msgid "We miss you, {first_name}"
+msgstr "Temos saudades tuas, {first_name}"
+
+msgid "Dear {first_name},\n\nIt has been a while. This is what we have been doing at {site} since your last donation…"
+msgstr "Caro {first_name}, já faz algum tempo. É isso que temos feito em {site} desde a sua última doação..."
+
+msgid "Hello {first_name}, our new campaign at {site} has started. Would you like to support it again?"
+msgstr "Olá {first_name} , nossa nova campanha no {site} começou. Você gostaria de apoiá-la novamente?"
+
+msgid "Win-back: no answer"
+msgstr "Win-back: sem resposta"
+
+msgid "The entry could not be saved."
+msgstr "A entrada não poderia ser salva."
+
+msgid "The entry was not found."
+msgstr "A entrada não foi encontrada."
+
+msgid "Only notes, calls and meetings you added can be deleted."
+msgstr "Apenas notas, chamadas e reuniões que você adicionou podem ser excluídas."
+
+msgid "Unknown action."
+msgstr "Ação desconhecida."
+
+msgid "Select at least one contact."
+msgstr "Selecione pelo menos um contato."
+
+msgid "Too many contacts selected."
+msgstr "Muitos contatos selecionados."
+
+msgid "Give a tag name."
+msgstr "Dê um nome de etiqueta."
+
+msgid "Pick a role."
+msgstr "Escolhe um papel."
+
+msgid "Pick the card to keep and at least one other card."
+msgstr "Escolha o cartão para manter e pelo menos um outro cartão."
+
+msgid "e.g. National Forestation Day"
+msgstr "por exemplo, Dia Nacional de Florestação"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Time"
+msgstr "Hora"
+
+msgid "Short description (on the site card and at the top of the page)"
+msgstr "Descrição curta (no cartão do site e no topo da página)"
+
+msgid "Image"
+msgstr "Imagem"
+
+msgid "Place"
+msgstr "Lugar"
+
+msgid "Location announced on"
+msgstr "Localização anunciada"
+
+msgid "Address / directions"
+msgstr "Endereço / direções"
+
+msgid "Map link or coordinates"
+msgstr "Mapa link ou coordenadas"
+
+msgid "Google Maps link or 41.1612, 28.9271"
+msgstr "Google Maps link ou 41.1612, 28.9271"
+
+msgid "Page on the site"
+msgstr "Página no site"
+
+msgid "Internal note (not shown on the site)"
+msgstr "Nota interna (não mostrada no site)"
+
+msgid "Empty: 10 days before the event."
+msgstr "Vazio: 10 dias antes do evento."
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "Location"
+msgstr "Localização"
+
+msgid "Internal note"
+msgstr "Nota interna"
+
+msgid "The event could not be saved."
+msgstr "O evento não poderia ser salvo."
+
+msgid "The event name cannot be empty."
+msgstr "O nome do evento não pode estar vazio."
+
+msgid "The page could not be created: the theme has no event post type."
+msgstr "A página não pode ser criada: o tema não tem nenhum tipo de post de evento."
+
+msgid "Install and turn on Flux Mail to send e-mail, WhatsApp and SMS to the people of this event."
+msgstr "Instale e ligue o Flux Mail para enviar e-mail, WhatsApp e SMS para as pessoas deste evento."
+
+msgid "Sending"
+msgstr "Enviando"
+
+msgid "Planned"
+msgstr "Planejado"
+
+msgid "Waiting for reports"
+msgstr "À espera de relatórios"
+
+msgid "Check"
+msgstr "Verifique"
+
+msgid "Sent"
+msgstr "Enviado"
+
+msgid "not found"
+msgstr "não encontrado"
+
+msgid "No date"
+msgstr "Sem data"
+
+msgid "Today"
+msgstr "Hoje"
+
+msgid "In %s day"
+msgid_plural "In %s days"
+msgstr[0] "Em %s dia"
+msgstr[1] "Em %s dias"
+
+msgid "Over, still open"
+msgstr "Over, ainda aberto"
+
+msgid "Site name"
+msgstr "Nome do site"
+
+msgid "Organisation phone"
+msgstr "Telefone da organização"
+
+msgid "(no name)"
+msgstr "(sem nome)"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "O arquivo carregado não foi encontrado."
+
+msgid "Unknown template."
+msgstr "Modelo desconhecido."
+
+msgid "Unknown source."
+msgstr "Fonte desconhecida."

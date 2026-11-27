@@ -1,0 +1,81 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Serves headless front ends over GraphQL"
+msgstr "ヘッドレスのフロントエンドが使える GraphQL"
+
+msgid "Headless"
+msgstr "ヘッドレス"
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr "画面にはFluxが必要です。 GraphQL (0.4.0以上) インストールまたは更新します。 FluxWP パッケージ画面。"
+
+msgid "This front end does not exist any more."
+msgstr "このフロントエンドはもう存在しません。"
+
+msgid "At most %d front ends can be added."
+msgstr "せいぜい %d フロントエンドを追加できます。"
+
+msgid "Give the front end a name."
+msgstr "フロントエンドに名前を付けます。"
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr "フロントエンドは、このアドレスと同じアドレスを持つことはできません。 WordPress動く WordPress 最初に別のアドレス(例: cms.example.com)に送信します。"
+
+msgid "Another front end already has this address."
+msgstr "別のフロントエンドには、このアドレスがすでにあります。"
+
+msgid "The language \"%s\" is not on this site."
+msgstr "%s\" は、本サイトにはありません。"
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr "プレビューパスは\"/\"で始まります(例: /api/preview)。"
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr "秘密は少なくとも24文字でなければなりません。"
+
+msgid "The secret could not be stored securely on this server."
+msgstr "秘密は、このサーバーに安全に格納できませんでした。"
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr "ウェブフックには秘密が要求され、フロントエンドがコールがこのサイトから来ているかを確認することができます。"
+
+msgid "Choose what WordPress does with its own pages."
+msgstr "WordPress は、独自のページで何をしますか?"
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr "フロントエンドを最初に追加します。 WordPress ページは訪問者と検索エンジンを指しています。"
+
+msgid "Enter the webhook address and the secret first."
+msgstr "ウェブフックアドレスとシークレットを最初に入力します。"
+
+msgid "Sent without waiting for the answer."
+msgstr "答えを待つことなく送信します。"
+
+msgid "The front end accepted the call."
+msgstr "フロントエンドが電話を受け付けた。"
+
+msgid "The front end answered with HTTP %d."
+msgstr "HTTPで答えたフロントエンド %d."
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr "まだフロントエンドが追加されていません。 GraphQL リンク、標準アドレス、ウェブフックには、フロントエンドがありません。"
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr "最後のウェブフック呼び出しは失敗しました:%s . ヘッドレスページで配信ログを開きます。"
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr "再検証されたwebhookは: %s . これらのフロントエンドは、キャッシュが切れたときのみ変更を表示します。"
+
+msgid "%d front end, webhook set."
+msgid_plural "%d front ends, webhooks set."
+msgstr[0] "%d フロントエンド、ウェブフックセット。"
+
+msgid "Headless front ends"
+msgstr "ヘッドレスフロントエンド"

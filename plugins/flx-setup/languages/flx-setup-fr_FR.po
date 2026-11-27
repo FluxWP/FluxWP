@@ -158,7 +158,7 @@ msgid "Preset not found."
 msgstr "Préréglage introuvable."
 
 msgid "Apply"
-msgstr "Postuler"
+msgstr "Appliquer"
 
 msgid "What"
 msgstr "Quoi"
@@ -212,7 +212,7 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Time"
-msgstr "Temps"
+msgstr "Heure"
 
 msgid "Action"
 msgstr "Action"
@@ -1945,44 +1945,260 @@ msgstr "Le serveur de mises à jour a rencontré une erreur temporaire. Réessay
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr "Échec du téléchargement (HTTP %1$d : %2$s). %3$s"
 
-msgid "Install Flux GraphQL"
-msgstr "Installer Flux GraphQL"
+msgid "Select all changes"
+msgstr "Sélectionnez tous les changements"
 
-msgid "Activate Flux GraphQL"
-msgstr "Activer Flux GraphQL"
+msgid "Select all protected values (overwrite)"
+msgstr "Sélectionnez toutes les valeurs protégées (overwrite)"
 
-msgid "Flux GraphQL settings"
-msgstr "Réglages de Flux GraphQL"
+msgid "Select %s"
+msgstr "Sélectionnez %s"
 
-msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
-msgstr "%1$s nécessite PHP %2$s ou plus récent ; ce site utilise PHP %3$s. Augmentez la version de PHP dans le panneau de l’hébergeur."
+msgid "Apply selected changes (%d)"
+msgstr "Appliquer les modifications sélectionnées ( %d )"
 
-msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
-msgstr "%s ne peut pas charger ses données car le serveur Flux GraphQL ne fonctionne pas. Ouvrez les réglages de Flux GraphQL pour corriger cela."
+msgid "The sign-in link expired. Start again with \"Sign in with FluxWP\"."
+msgstr "Le lien d'inscription a expiré. Commencez à nouveau avec \"Inscrivez-vous avec FluxWP\"."
 
-msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
-msgstr "%s a besoin de Flux GraphQL pour charger ses données. Installez-le et activez-le ; cela prend quelques secondes."
+msgid "FluxWP did not return a key. Try again."
+msgstr "FluxWP n'a pas retourné une clé. Essayez de nouveau."
 
-msgid "PHP version"
-msgstr "Version de PHP"
+msgid "FluxWP could not be reached: %s"
+msgstr "FluxWP n'a pas été atteint: %s"
 
-msgid "PHP %s. FluxWP GraphQL packages run on it."
-msgstr "PHP %s. Les paquets GraphQL de FluxWP fonctionnent avec cette version."
+msgid "FluxWP answered with HTTP %d."
+msgstr "FluxWP répondu avec HTTP %d ."
 
-msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
-msgstr "PHP %1$s. Les nouveaux paquets FluxWP (Flux GraphQL et ceux qui l’utilisent) nécessitent PHP %2$s ou plus récent : augmentez-le dans le panneau de l’hébergeur."
+msgid "This site is not connected to a FluxWP account."
+msgstr "Ce site n'est pas connecté à un compte FluxWP."
 
-msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
-msgstr "Flux GraphQL %s est installé et fonctionne ; aucun conflit avec un WPGraphQL séparé."
+msgid "Another request is renewing the session. Try again in a moment."
+msgstr "Une autre demande est de renouveler la session. Essayez de nouveau dans un instant."
 
-msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
-msgstr "Flux GraphQL est actif, mais son serveur GraphQL ne fonctionne pas (souvent à cause d’un WPGraphQL installé séparément et non pris en charge) ; les écrans GraphQL sont désactivés."
+msgid "Connecting failed. Try again."
+msgstr "Reconnecter, essayer encore."
 
-msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
-msgstr "Ces paquets ont besoin de Flux GraphQL, qui n’est pas actif : %s. Leurs écrans ne peuvent pas charger de données."
+msgid "Connected to your FluxWP account. Your plan's packages are on the Packages screen."
+msgstr "Connecté à votre compte FluxWP. Les paquets de votre plan sont sur l'écran Packages."
 
-msgid "Flux GraphQL is installed but not active. No active package needs it."
-msgstr "Flux GraphQL est installé mais pas actif. Aucun paquet actif n’en a besoin."
+msgid "Connecting was cancelled on FluxWP."
+msgstr "Le raccordement a été annulé sur FluxWP ."
 
-msgid "Flux GraphQL"
-msgstr "Flux GraphQL"
+msgid "Disconnected. Installed plugins keep working; updates of paid packages stop."
+msgstr "Déconnecté. Les plugins installés fonctionnent; les mises à jour des paquets payants s'arrêtent."
+
+msgid "Plan information refreshed."
+msgstr "Plan d'information rafraîchie."
+
+msgid "FluxWP %1$s · %2$s"
+msgstr "FluxWP %1$s · %2$s"
+
+msgid "Subscription ended: the Free plan applies, paid updates are paused."
+msgstr "Abonnement terminé : le plan gratuit s'applique, les mises à jour payées sont interrompues."
+
+msgid "Renews or ends on %s"
+msgstr "Renouveler ou se terminer sur %s"
+
+msgid "Sets: %s"
+msgstr "Sets: %s"
+
+msgid "%d sites connected"
+msgstr "%d sites connectés"
+
+msgid "%1$d of %2$d sites"
+msgstr "%1$d de %2$d sites"
+
+msgid "Checked %s"
+msgstr "Vérifié %s"
+
+msgid "Connect your FluxWP account"
+msgstr "Connectez votre compte FluxWP"
+
+msgid "Sign in or sign up on fluxwp.com: this site gets its update key and the packages of your plan automatically. The Free plan needs no card."
+msgstr "Connectez-vous ou inscrivez-vous sur fluxwp.com: ce site obtient sa clé de mise à jour et les paquets de votre plan automatiquement. Le plan gratuit n'a pas besoin de carte."
+
+msgid "Manage account"
+msgstr "Gérer le compte"
+
+msgid "Refresh"
+msgstr "Actualiser"
+
+msgid "Disconnect"
+msgstr "Déconnecter"
+
+msgid "Sign in with FluxWP"
+msgstr "Connectez-vous avec FluxWP"
+
+msgid "Choose one of the listed periods."
+msgstr "Choisissez l'une des périodes énumérées."
+
+msgid "FluxWP account"
+msgstr "FluxWP account"
+
+msgid "Connected, plan %s."
+msgstr "Connecté, plan %s ."
+
+msgid "Not connected. Sign in with FluxWP to get the packages of your plan."
+msgstr "Ne pas être connecté. Connectez-vous avec FluxWP pour obtenir les paquets de votre plan."
+
+msgid "Select at least one change."
+msgstr "Sélectionnez au moins un changement."
+
+msgid "The selected changes are no longer available. Refresh the preview."
+msgstr "Les changements sélectionnés ne sont plus disponibles. Rafraîchissez l'aperçu."
+
+msgid "Also select the required items: %s"
+msgstr "Sélectionnez également les éléments requis: %s"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript est nécessaire pour cet écran."
+
+msgid "Contact"
+msgstr "Contacter"
+
+msgid "The server asked us to slow down, trying again shortly…"
+msgstr "Le serveur nous a demandé de ralentir, en essayant de nouveau bientôt..."
+
+msgid "The update engine is not available: the old Flux Updater plugin is still active. Deactivate it."
+msgstr "Le moteur de mise à jour n'est pas disponible: l'ancien plugin Flux Updater est toujours actif. Désactivez-le."
+
+msgid "All"
+msgstr "Tout"
+
+msgid "FluxWP"
+msgstr "FluxWP"
+
+msgid "Themes"
+msgstr "Thèmes"
+
+msgid "WordPress & translations"
+msgstr "WordPress &amp; traductions"
+
+msgid "Folder"
+msgstr "Dossier"
+
+msgid "Slug"
+msgstr "Limace"
+
+msgid "Category"
+msgstr "Catégorie"
+
+msgid "Released"
+msgstr "Relâché"
+
+msgid "Translation"
+msgstr "Traduction"
+
+msgid "Core"
+msgstr "Socle"
+
+msgid "General"
+msgstr "Général"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Automatic updates are turned off for this site."
+msgstr "Les mises à jour automatiques sont désactivées pour ce site."
+
+msgid "Automatic updates turned on for %d package."
+msgid_plural "Automatic updates turned on for %d packages."
+msgstr[0] "Mises à jour automatiques activées pour le paquet %d."
+msgstr[1] "Mises à jour automatiques activées pour les paquets %d."
+
+msgid "Automatic updates turned off for %d package."
+msgid_plural "Automatic updates turned off for %d packages."
+msgstr[0] "Les mises à jour automatiques ont été désactivées pour le paquet %d."
+msgstr[1] "Les mises à jour automatiques ont été désactivées pour les paquets %d."
+
+msgid "Update backup retention is set on the Flux Backup settings page."
+msgstr "Mettre à jour la rétention de sauvegarde est définie sur la page Paramètres de sauvegarde Flux."
+
+msgid "Enter 1 to 365 days."
+msgstr "Entrez 1 à 365 jours."
+
+msgid "Filter packages"
+msgstr "Forfaits de filtres"
+
+msgid "Updates available"
+msgstr "Mises à jour disponibles"
+
+msgid "Search plugins and themes"
+msgstr "Rechercher des plugins et des thèmes"
+
+msgid "Search plugins and themes…"
+msgstr "Rechercher des plugins et des thèmes..."
+
+msgid "Only updates"
+msgstr "Seulement mises à jour"
+
+msgid "Plugins, themes and updates"
+msgstr "Plugins, thèmes et mises à jour"
+
+msgid "Turn on automatic updates"
+msgstr "Activez les mises à jour automatiques"
+
+msgid "Turn off automatic updates"
+msgstr "Désactiver les mises à jour automatiques"
+
+msgid "Auto-update"
+msgstr "Mise à jour automatique"
+
+msgid "Nothing matches this filter."
+msgstr "Rien ne correspond à ce filtre."
+
+msgid "No updates yet."
+msgstr "Pas encore de mises à jour."
+
+msgid "Updating %s…"
+msgstr "Mise à jour %s ..."
+
+msgid "Retry failed ones"
+msgstr "Les échecs de rentrée"
+
+msgid "Before updating %d packages"
+msgstr "Avant de mettre à jour %d paquets"
+
+msgid "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support."
+msgstr "Cette adresse de paquet FluxWP n'est pas dans le formulaire signé prévu, donc elle n'a pas été installée."
+
+msgid "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute."
+msgstr "La signature du paquet n'a pas pu être téléchargée (%s ). Le paquet n'a pas été installé. Essayez de nouveau dans une minute."
+
+msgid "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support."
+msgstr "%1$s %2$s n'a pas de signature valide FluxWP (HTTP %3$d ), il n'a donc pas été installé. Vérifiez les mises à jour plus tard ou contactez le support FluxWP."
+
+msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
+msgstr "La signature FluxWP de %1$s %2$s ne correspond pas au fichier téléchargé, de sorte qu'il n'a pas été installé. Le paquet peut avoir été modifié sur le chemin ou sur le serveur."
+
+msgid "Translations"
+msgstr "Traductions"
+
+msgid "New translations: %s"
+msgstr "Nouvelles traductions: %s"
+
+msgid "All translations are up to date."
+msgstr "Toutes les traductions sont à jour."
+
+msgid "%d update"
+msgid_plural "%d updates"
+msgstr[0] "%d mise à jour"
+msgstr[1] "%d mises à jour"
+
+msgid "On for all FluxWP packages (FluxWP Panel › Settings)."
+msgstr "Pour tous les paquets FluxWP ( FluxWP Panel › Réglages)."
+
+msgid "No download available"
+msgstr "Pas de téléchargement disponible"
+
+msgid "Not installed: %s"
+msgstr "Non installé: %s"
+
+msgid "WordPress.org still offers a newer translation: %s. The file could not be written or the language folder is read-only."
+msgstr "WordPress .org offre toujours une nouvelle traduction: %s . Le fichier ne peut pas être écrit ou le dossier de langue est lue seulement."
+
+msgid "%s updated."
+msgstr "%s mis à jour."

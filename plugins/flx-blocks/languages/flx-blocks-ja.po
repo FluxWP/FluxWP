@@ -1,0 +1,2637 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript この画面には必須です。"
+
+msgid "Block Editor"
+msgstr "ブロックエディタ"
+
+msgid "Actionable endpoint for api call."
+msgstr "api 呼び出しのアクション可能なエンドポイント。"
+
+msgid "Submission rejected, invalid security token. Reload the page and try again."
+msgstr "送信拒否、無効なセキュリティトークン. ページを再読み込みして再度試してください。"
+
+msgid "Token invalid"
+msgstr "トークン無効"
+
+msgid "CAPTCHA Failed"
+msgstr "キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャプテン・キャ"
+
+msgid "Submission rejected."
+msgstr "応募は拒否。"
+
+msgid "Third Party Failed"
+msgstr "第三者が失敗した"
+
+msgid "Submission failed"
+msgstr "提出が失敗した"
+
+msgid "No Data"
+msgstr "データなし"
+
+msgid "Accept"
+msgstr "受諾"
+
+msgid "Did not accept"
+msgstr "は受け付けなかった。"
+
+msgid "Missing a required field"
+msgstr "必須項目が不足している"
+
+msgid "Trying to include too many files."
+msgstr "ファイルが多すぎる。"
+
+msgid "File too large"
+msgstr "ファイルが大きすぎる"
+
+msgid "File could not be uploaded"
+msgstr "ファイルがアップロードできません。"
+
+msgid "Sorry, you are not allowed to upload this file type."
+msgstr "申し訳ありませんが、このファイルをアップロードすることはできません。"
+
+msgid "Not enough disk quota on this website."
+msgstr "本ウェブサイトのディスククォータが不十分です。"
+
+msgid "Failed to upload file"
+msgstr "アップロードに失敗しました。"
+
+msgid "Submission Failed"
+msgstr "提出失敗"
+
+msgid "Data not found"
+msgstr "データが見つからない"
+
+msgid "Submission Success, Thanks for getting in touch!"
+msgstr "送信成功、お問い合わせありがとうございます!"
+
+msgid "Submission Failed, reCaptcha spam prevention. Please reload your page and try again."
+msgstr "送信が失敗し、スパム防止をreCaptcha.comに再ロードして再度お試しください。"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Entries"
+msgstr "エントリー"
+
+msgid "Entries (Pro Only)"
+msgstr "エントリー(プロのみ)"
+
+msgid "Forms"
+msgstr "フォーム"
+
+msgid "Form"
+msgstr "フォーム"
+
+msgid "Form Archives"
+msgstr "フォームアーカイブ"
+
+msgid "Form Attributes"
+msgstr "フォーム属性"
+
+msgid "Parent Form:"
+msgstr "親のフォーム"
+
+msgid "Add New Form"
+msgstr "新しいフォームを追加します。"
+
+msgid "New Form"
+msgstr "新しいフォーム"
+
+msgid "Edit Form"
+msgstr "編集フォーム"
+
+msgid "Update Form"
+msgstr "更新フォーム"
+
+msgid "View Form"
+msgstr "閲覧フォーム"
+
+msgid "View Forms"
+msgstr "閲覧フォーム"
+
+msgid "Search Forms"
+msgstr "検索フォーム"
+
+msgid "Not found"
+msgstr "見つかりません"
+
+msgid "Not found in Trash"
+msgstr "ゴミ箱にはありません。"
+
+msgid "Filter items list"
+msgstr "フィルター項目リスト"
+
+msgid "Contact forms, subscribe forms and others for your site."
+msgstr "お問い合わせフォーム、フォームの購読、その他のサイト。"
+
+msgid "You do not have permission to view these posts."
+msgstr "これらの投稿を見る許可はありません。"
+
+msgid "Submission"
+msgstr "提出"
+
+msgid "No Response from MailerLite"
+msgstr "MailerLite の応答はありません。"
+
+msgid "MailerLite Misconfiguration"
+msgstr "MailerLite の設定ミス"
+
+msgid "MailerLite Failed"
+msgstr "MailerLite が失敗"
+
+msgid "You do not have permission to access GetResponse API data."
+msgstr "GetResponse API データにアクセスすることはできません。"
+
+msgid "Invalid or disallowed endpoint."
+msgstr "無効または許可されていないエンドポイント。"
+
+msgid "Error fetching data from GetResponse"
+msgstr "GetResponse からのデータのフェッチエラー"
+
+msgid "Empty data from GetResponse"
+msgstr "GetResponse から空のデータ"
+
+msgid "[block rendering halted]"
+msgstr "長徳2年(1771年)"
+
+msgid "Please fix the errors to proceed"
+msgstr "エラーを修正して続行してください。"
+
+msgid "is required"
+msgstr "が必須です"
+
+msgid "does not match"
+msgstr "一致しない"
+
+msgid "is not valid"
+msgstr "有効ではありません"
+
+msgid "requires a unique entry and this value has already been used"
+msgstr "固有のエントリを必要とし、この値は既に使用されています"
+
+msgid "Item"
+msgstr "アイテム"
+
+msgid "Photo Gallery Carousel"
+msgstr "フォトギャラリー・カルーセル"
+
+msgid "Toggle autoplay"
+msgstr "トグルオートプレイ"
+
+msgid "See more"
+msgstr "詳しくは"
+
+msgid "Display lightbox image:"
+msgstr "ライトボックス画像を表示します。"
+
+msgid "Previous slide"
+msgstr "以前のスライド"
+
+msgid "Next slide"
+msgstr "次のスライド"
+
+msgid "Go to first slide"
+msgstr "最初はスライド"
+
+msgid "Go to last slide"
+msgstr "最後のスライドへ。"
+
+msgid "Go to slide %s"
+msgstr "スライド %s に移動します。"
+
+msgid "Go to page %s"
+msgstr "ページへ。 %s"
+
+msgid "Start autoplay"
+msgstr "オートプレイを開始します。"
+
+msgid "Pause autoplay"
+msgstr "一時停止する"
+
+msgid "carousel"
+msgstr "カルーセル"
+
+msgid "slide"
+msgstr "スライド"
+
+msgid "Select a slide to show"
+msgstr "スライドを選択します。"
+
+msgid "%s of %s"
+msgstr "%s です %s"
+
+msgid "Days"
+msgstr "日数"
+
+msgid "Hrs"
+msgstr "氏"
+
+msgid "Mins"
+msgstr "民(みん)"
+
+msgid "Secs"
+msgstr "セクス"
+
+msgid "Please enable JavaScript in your browser to submit the form"
+msgstr "有効にしてください。 JavaScript ブラウザからフォームを送信できます。"
+
+msgid "Google map of %s"
+msgstr "Googleマップです。 %s"
+
+msgid "Child menu"
+msgstr "子メニュー"
+
+msgid "Child menu of"
+msgstr "子供のメニュー"
+
+msgid "Toggle child menu of"
+msgstr "子供のメニューを切り替えます。"
+
+msgid "No posts"
+msgstr "投稿がありません"
+
+msgid "%1$s out of %2$s Stars"
+msgstr "%1$s 外から %2$s 星"
+
+msgid "Progressbar Label"
+msgstr "プログレスバーラベル"
+
+msgid "Play"
+msgstr "遊ぶ"
+
+msgid "Pause"
+msgstr "一時停止"
+
+msgid "Unmute"
+msgstr "雲手"
+
+msgid "Mute"
+msgstr "ミュート"
+
+msgid "Close search"
+msgstr "探索を閉じて"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Content is collapsed."
+msgstr "内容が崩れてしまう。"
+
+msgid "Content continues."
+msgstr "内容は続く。"
+
+msgid "Activate the"
+msgstr "アクティブにします。"
+
+msgid "button to reveal the full content."
+msgstr "ボタンで、内容全体を表示します。"
+
+msgid "Show More"
+msgstr "詳細を見る"
+
+msgid "%1$d out of %2$d stars"
+msgstr "%1$d 外から %2$d 星々"
+
+msgid "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply"
+msgstr "本サイトは保護されています。 reCAPTCHA Googleのプライバシーポリシーおよび利用規約が適用されます。"
+
+msgid "Close Menu"
+msgstr "閉じメニュー"
+
+msgid "Toggle Menu"
+msgstr "トグルメニュー"
+
+msgid "Name Prefix"
+msgstr "名前プレフィックス"
+
+msgid "First Name"
+msgstr "名"
+
+msgid "Last Name"
+msgstr "姓"
+
+msgid "Full Name"
+msgstr "フルネーム"
+
+msgid "Timezone"
+msgstr "タイムゾーン"
+
+msgid "Address Line 1"
+msgstr "アドレス 1"
+
+msgid "Address Line 2"
+msgstr "アドレス 2"
+
+msgid "City"
+msgstr "市"
+
+msgid "State"
+msgstr "状態"
+
+msgid "Postal Code"
+msgstr "郵便番号"
+
+msgid "Country"
+msgstr "国"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Source"
+msgstr "ソース"
+
+msgid "You do not have sufficient permissions to export content."
+msgstr "コンテンツのエクスポート許可が十分ありません。"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "Import completed successfully!"
+msgstr "輸入完了!"
+
+msgid "Export All"
+msgstr "輸出する。"
+
+msgid "Import"
+msgstr "インポート"
+
+msgid "Upload & Import"
+msgstr "アップロードとインポート"
+
+msgid "You do not have sufficient permissions to import content."
+msgstr "コンテンツをインポートする十分な許可がありません。"
+
+msgid "Please upload a file to import."
+msgstr "インポートするファイルをアップロードしてください。"
+
+msgid "File upload failed."
+msgstr "ファイルアップロードが失敗。"
+
+msgid "Invalid file type. Please upload a ZIP file."
+msgstr "無効なファイル種別です。"
+
+msgid "Invalid data in import file."
+msgstr "インポートファイル内の無効なデータ。"
+
+msgid "Invalid import file structure. Missing export.json"
+msgstr "不正なimportファイル構造。"
+
+msgid "Invalid JSON data in import file."
+msgstr "インポートファイル内の無効なJSONデータ。"
+
+msgid "This site does not share its design library."
+msgstr "当サイトではデザインライブラリーは共有しておりません。"
+
+msgid "The library key is missing or wrong."
+msgstr "ライブラリキーが欠落している、または間違っている。"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "My patterns"
+msgstr "私のパターンは"
+
+msgid "Home"
+msgstr "ホーム"
+
+msgid "Unknown action."
+msgstr "未知のアクション。"
+
+msgid "Library not found."
+msgstr "図書館は見つからない。"
+
+msgid "The library could not be reached."
+msgstr "図書館は届かなかった。"
+
+msgid "The library refused access. Check the key, and that sharing is on at the other site."
+msgstr "ライブラリはアクセスを拒否し、鍵を確認し、その共有は、他のサイトにあります。"
+
+msgid "This address is not a Flux design library."
+msgstr "このアドレスは、Fluxデザインライブラリではありません。"
+
+msgid "Make a duplicate from this."
+msgstr "ここから重複して作成します。"
+
+msgid "Duplicate"
+msgstr "重複"
+
+msgid "No post to duplicate has been supplied!"
+msgstr "重複する投稿は提供されていません!"
+
+msgid "Post creation failed, could not find original post: %s"
+msgstr "投稿作成が失敗し、元の投稿が見つからなかった:%s"
+
+msgid "%s (Copy)"
+msgstr "%s(写し)"
+
+msgid "%s and higher"
+msgstr "%s 更に多くは"
+
+msgid "Inherit"
+msgstr "継承"
+
+msgid "Thin 100"
+msgstr "十九 ??"
+
+msgid "Extra-Light 200"
+msgstr "エクストラライト200"
+
+msgid "Light 300"
+msgstr "ライト 300"
+
+msgid "Regular"
+msgstr "例)"
+
+msgid "Medium 500"
+msgstr "中型500"
+
+msgid "Semi-Bold 600"
+msgstr "セミボールド600"
+
+msgid "Bold 700"
+msgstr "700番"
+
+msgid "Extra-Bold 800"
+msgstr "800ボルト"
+
+msgid "Ultra-Bold 900"
+msgstr "超大胆な900"
+
+msgid "Limit results to items of a specific post type."
+msgstr "特定のポストタイプの項目に結果を制限する。"
+
+msgid "Include posts by ID."
+msgstr "IDによる投稿を含む。"
+
+msgid "Number of results to return."
+msgstr "リターンする結果の数。"
+
+msgid "Define Type of Query."
+msgstr "クエリのタイプを定義します。"
+
+msgid "Define Query Order."
+msgstr "クエリーの順序を定義します。"
+
+msgid "Define Query Order By."
+msgstr "クエリーのOrder Byを定義します。"
+
+msgid "Allow Sticky in Query."
+msgstr "クエリにスティッキーを許可します。"
+
+msgid "Exclude Category."
+msgstr "カテゴリーは除く。"
+
+msgid "Number of items to offset in query."
+msgstr "クエリーでオフセットするアイテムの数。"
+
+msgid "The Current Post ID."
+msgstr "現在の投稿ID。"
+
+msgid "Check if using a custom Taxonomy"
+msgstr "カスタム分類法を使用しているか確認します。"
+
+msgid "Include posts category."
+msgstr "投稿カテゴリーを含む。"
+
+msgid "Include posts tags."
+msgstr "投稿タグを含む。"
+
+msgid "Taxonomy Type."
+msgstr "分類学のタイプ。"
+
+msgid "The source of the content."
+msgstr "コンテンツのソース。"
+
+msgid "Page of results to return."
+msgstr "結果のページを返します。"
+
+msgid "Expand Table of Contents"
+msgstr "目次の拡大"
+
+msgid "Collapse Table of Contents"
+msgstr "コンテンツ障害テーブル"
+
+msgid "Table of Contents"
+msgstr "目次"
+
+msgid "Lottie animation not found"
+msgstr "ロティアニメーションが見つかりません。"
+
+msgid "Lottie animation file contains invalid json"
+msgstr "Lottieアニメーションファイルは無効なjsonを含みます。"
+
+msgid "Lottie animation contains invalid JSON"
+msgstr "Lottieアニメーションには不正なJSONが含まれている"
+
+msgid "Please enter an animation title"
+msgstr "アニメーションタイトルを入力してください。"
+
+msgid "The API Key for Mailerlite account."
+msgstr "ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ・ザ API Mailerliteアカウントのキー。"
+
+msgid "Query Args for url."
+msgstr "url のクエリー引数。"
+
+msgid "Vector contains invalid SVG"
+msgstr "ベクトルには無効なSVGが含まれる"
+
+msgid "Please enter a vector title"
+msgstr "ベクタータイトルを入力してください。"
+
+msgid "Flux Block Editor"
+msgstr "Flux Block Editor"
+
+msgid "Google Fonts are served from this site; visitors do not connect to Google."
+msgstr "Google Fontsは本サイトから提供されています。訪問者はGoogleに接続しません。"
+
+msgid "Google Fonts load from fonts.googleapis.com, which shares visitor IP addresses with Google. Turn on \"Load Google Fonts Locally\"."
+msgstr "Google Fontsはfonts.googleapis.comからロードされ、Googleと訪問者のIPアドレスを共有します。"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Form spam protection"
+msgstr "スパム対策"
+
+msgid "Flux reCAPTCHA is active and can protect Flux Block Editor forms."
+msgstr "フラックス reCAPTCHA Flux Block Editor フォームを保護することができます。"
+
+msgid "Flux reCAPTCHA is not active. Forms use the honeypot check only unless a captcha key is set on the form."
+msgstr "reCAPTCHA がアクティブではない場合、フォームにキャプチャーキーが設定されていない限り、ハニーポットチェックを使用します。"
+
+msgid "Blocks"
+msgstr "ブロック"
+
+msgid "%d block is turned off."
+msgid_plural "%d blocks are turned off."
+msgstr[0] "%d ブロックがオフにされた"
+
+msgid "All blocks are on."
+msgstr "すべてのブロックがオンです。"
+
+msgid "Data not Found"
+msgstr "見つからないデータ"
+
+msgid "Submission Rejected"
+msgstr "提出拒否"
+
+msgid "Spam Detected"
+msgstr "スパム検出"
+
+msgid "reCAPTCHA Failed"
+msgstr "reCAPTCHA 失敗"
+
+msgid "Required Field Empty"
+msgstr "必須フィールド空白"
+
+msgid "Flux Header"
+msgstr "Flux Header"
+
+msgid "Add New Flux Header"
+msgstr "フラックスヘッダーを追加します。"
+
+msgid "New Flux Header"
+msgstr "フラックスヘッダー"
+
+msgid "Edit Flux Header"
+msgstr "Flux ヘッダーの編集"
+
+msgid "View Flux Header"
+msgstr "フラックスヘッダーを見る"
+
+msgid "Headers"
+msgstr "ヘッダー"
+
+msgid "Search Flux Headers"
+msgstr "検索フラックスヘッダー"
+
+msgid "Parent Flux Header:"
+msgstr "親のフラックスヘッダー"
+
+msgid "No Flux Header found."
+msgstr "フラックスヘッダーは見つかりません。"
+
+msgid "No Flux Header found in Trash."
+msgstr "ゴミ箱にフラックスヘッダーはありません。"
+
+msgid "Flux Header archives"
+msgstr "Flux Header archives"
+
+msgid "Insert into Flux Header"
+msgstr "フラックスヘッダーへの挿入"
+
+msgid "Uploaded to this Flux Header"
+msgstr "フラックスヘッダーにアップロードします。"
+
+msgid "Filter Flux Header list"
+msgstr "フィルタ フラックス ヘッダー リストします。"
+
+msgid "Flux Headers list navigation"
+msgstr "Flux Headers list navigation"
+
+msgid "Flux Headers list"
+msgstr "Flux Headers list"
+
+msgid "Flux Headers that can be inserted into your site."
+msgstr "サイトに挿入できるフラックスヘッダー。"
+
+msgid "Theme Header"
+msgstr "テーマヘッダー"
+
+msgid "%s (Theme)"
+msgstr "%s(テーマ)"
+
+msgid "Add New"
+msgstr "新規追加"
+
+msgid "Header"
+msgstr "ヘッダー"
+
+msgid "Continue"
+msgstr "続ける"
+
+msgid "Lottie Animations"
+msgstr "ロティアニメーション"
+
+msgid "Lottie Animations imported in Flux"
+msgstr "フラックス輸入のロティアニメーション"
+
+msgid "Vector SVGs"
+msgstr "ベクトルSVG"
+
+msgid "Vector SVGs imported in Flux"
+msgstr "ベクトルSVGsのFluxインポート"
+
+msgid "Flux Navigation"
+msgstr "Flux Navigation"
+
+msgid "Add New Flux Navigation"
+msgstr "新しいフラックスナビゲーションを追加します。"
+
+msgid "New Flux Navigation"
+msgstr "新しいフラックスナビゲーション"
+
+msgid "Edit Flux Navigation"
+msgstr "Flux Navigation の編集"
+
+msgid "View Flux Navigation"
+msgstr "フラックスナビゲーション"
+
+msgid "Navigations"
+msgstr "航海"
+
+msgid "Search Flux Navigations"
+msgstr "探索フラックスナビゲーション"
+
+msgid "Parent Flux Navigation:"
+msgstr "親フラックスナビゲーション"
+
+msgid "No Flux Navigation found."
+msgstr "フラックスナビゲーションは見つかりません。"
+
+msgid "No Flux Navigation found in Trash."
+msgstr "トラッシュではフラックスナビゲーションは見つかりません。"
+
+msgid "Flux Navigation archives"
+msgstr "Flux Navigation archives"
+
+msgid "Insert into Flux Navigation"
+msgstr "フラックスナビゲーションへの挿入"
+
+msgid "Uploaded to this Flux Navigation"
+msgstr "フラックスナビゲーションにアップロードします。"
+
+msgid "Filter Flux Navigation list"
+msgstr "フィルターフラックスナビゲーションリスト"
+
+msgid "Flux Navigation list navigation"
+msgstr "Flux Navigation list navigation"
+
+msgid "Flux Navigation list"
+msgstr "Flux Navigation list"
+
+msgid "Flux Navigations that can be inserted into your site."
+msgstr "サイトに挿入できるフラックスナビゲーション。"
+
+msgid "Style Library"
+msgstr "文庫"
+
+msgid "Global Styles"
+msgstr "グローバルスタイル"
+
+msgid "This site uses the Flux theme in Full Site Editing mode, so site-wide colors are managed in the Site Editor's %s."
+msgstr "本サイトでは、フルサイト編集モードでのフラックステーマを使用しています。 %s."
+
+msgid "Style Library settings keep applying to the blocks that use them."
+msgstr "スタイルライブラリの設定は、それらを使用するブロックに引き続き適用されます。"
+
+msgid "Your Library"
+msgstr "図書館"
+
+msgid "Flux Block Editor design tokens are disabled because these tokens have no baseline entry: %s"
+msgstr "Flux Block Editor デザイントークンは、これらのトークンがベースラインエントリを持たないため、無効化されます。 %s"
+
+msgid "None"
+msgstr "なし"
+
+msgid "2X Small"
+msgstr "小さい2倍"
+
+msgid "Extra Small"
+msgstr "超小型"
+
+msgid "Small"
+msgstr "小"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "Large"
+msgstr "大"
+
+msgid "Extra Large"
+msgstr "特大"
+
+msgid "2X Large"
+msgstr "大きいです。"
+
+msgid "3X Large"
+msgstr "大型3X"
+
+msgid "4X Large"
+msgstr "大型4X"
+
+msgid "5X Large"
+msgstr "5倍大"
+
+msgid "Full"
+msgstr "満席"
+
+msgid "Spacing"
+msgstr "間隔"
+
+msgid "Gap"
+msgstr "ギャップ"
+
+msgid "Border Radius"
+msgstr "境界線の半径"
+
+msgid "Border Width"
+msgstr "国境幅"
+
+msgid "Icon Sizes"
+msgstr "アイコンサイズ"
+
+msgid "Shadow"
+msgstr "影"
+
+msgid "Font Size"
+msgstr "フォント サイズ"
+
+msgid "Brand Primary"
+msgstr "ブランドプライマリ"
+
+msgid "Brand Secondary"
+msgstr "ブランドセカンダリー"
+
+msgid "Neutral 900"
+msgstr "中性体育児 900年"
+
+msgid "Neutral 700"
+msgstr "中性"
+
+msgid "Neutral 600"
+msgstr "中性体600"
+
+msgid "Neutral 500"
+msgstr "中性児"
+
+msgid "Neutral 100"
+msgstr "中性100"
+
+msgid "Neutral 50"
+msgstr "中性体50"
+
+msgid "Neutral 0"
+msgstr "中性0"
+
+msgid "Complement"
+msgstr "補足"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "Alert"
+msgstr "注意点"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Rating"
+msgstr "評価"
+
+msgid "Palette"
+msgstr "パレット"
+
+msgid "Button Background"
+msgstr "ボタンの背景"
+
+msgid "Button Text"
+msgstr "ボタンのテキスト"
+
+msgid "Button Background (Hover)"
+msgstr "ボタンの背景(ホバー)"
+
+msgid "Button Text (Hover)"
+msgstr "ボタンテキスト(ホバー)"
+
+msgid "Button Border"
+msgstr "ボタンの境界線"
+
+msgid "Brand"
+msgstr "ブランド"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Notices"
+msgstr "注意事項"
+
+msgid "Brand Accent"
+msgstr "ブランドアクセント"
+
+msgid "Brand Button"
+msgstr "ブランドボタン"
+
+msgid "Brand Button (Hover)"
+msgstr "ブランドボタン(ホバー)"
+
+msgid "Neutral 300"
+msgstr "中性300"
+
+msgid "Neutral 200"
+msgstr "中部200年"
+
+msgid "Media Radius"
+msgstr "メディアラジオ"
+
+msgid "Control Radius"
+msgstr "制御半径"
+
+msgid "Icon Size"
+msgstr "アイコンサイズ"
+
+msgid "Icon Block Size"
+msgstr "アイコンブロックサイズ"
+
+msgid "Row Layout Radius"
+msgstr "行レイアウト"
+
+msgid "Layout"
+msgstr "レイアウト"
+
+msgid "Column Radius"
+msgstr "円柱半径"
+
+msgid "Column Radius (Hover)"
+msgstr "円柱半径(ホバー)"
+
+msgid "Row Layout Background"
+msgstr "行レイアウトの背景"
+
+msgid "Column Background"
+msgstr "コラムの背景"
+
+msgid "Column Background (Hover)"
+msgstr "コラム背景(ホバー)"
+
+msgid "Border"
+msgstr "境界線"
+
+msgid "Border (Hover)"
+msgstr "国境(ホバー)"
+
+msgid "Image Background"
+msgstr "画像背景"
+
+msgid "Media"
+msgstr "メディア"
+
+msgid "Border Width (Hover)"
+msgstr "境界線幅(ホバー)"
+
+msgid "Media Shadow"
+msgstr "メディアシャドー"
+
+msgid "Media Padding"
+msgstr "メディアパディング"
+
+msgid "Media Border Width"
+msgstr "国境の幅"
+
+msgid "Button Border Width"
+msgstr "ボタンの境界幅"
+
+msgid "Button Shadow"
+msgstr "ボタンシャドウ"
+
+msgid "Button Shadow (Hover)"
+msgstr "ボタンシャドウ(ホバー)"
+
+msgid "Style"
+msgstr "スタイル"
+
+msgid "Button"
+msgstr "ボタン"
+
+msgid "Advanced Image"
+msgstr "先端画像"
+
+msgid "Row Layout"
+msgstr "行レイアウト"
+
+msgid "Section"
+msgstr "セクション"
+
+msgid "Icon"
+msgstr "アイコン"
+
+msgid "Advanced Text"
+msgstr "上級者"
+
+msgid "Sorry, that design token library does not exist."
+msgstr "申し訳ありませんが、そのデザイントークンライブラリは存在しません。"
+
+msgid "The active token library slug, always resolved to an existing library."
+msgstr "アクティブトークンライブラリは、常に既存のライブラリに解決されます。"
+
+msgid "The token library slug to make active."
+msgstr "トークンライブラリはアクティブにするためにスラグします。"
+
+msgid "Sorry, you are not allowed to manage design tokens."
+msgstr "デザイントークンの管理はできません。"
+
+msgid "The requested design token library does not exist."
+msgstr "要求されたデザイントークンライブラリは存在しません。"
+
+msgid "The token library was modified since you last read it. Reload and try again."
+msgstr "トークンライブラリは、最後に読み終えてから変更されました。"
+
+msgid "The user primitive document invariant failed."
+msgstr "ユーザのプリミティブなドキュメント不変量は失敗する。"
+
+msgid "The document contains an unsupported reference to a user primitive."
+msgstr "ドキュメントには、ユーザプリミティブへの未サポートの参照が含まれている。"
+
+msgid "The design token document failed validation."
+msgstr "デザイントークン文書が検証に失敗しました。"
+
+msgid "The design token document could not be encoded."
+msgstr "デザイントークンのドキュメントはエンコードできません。"
+
+msgid "The design token library could not be saved."
+msgstr "デザイントークンライブラリは保存できません。"
+
+msgid "Bulk replace is not allowed while user-created primitives exist. Delete them first or use PATCH."
+msgstr "ユーザが作成したプリミティブが存在する間はバルクの置換は許可されない。"
+
+msgid "A library title cannot be empty."
+msgstr "ライブラリのタイトルは空にはなりません。"
+
+msgid "The library title could not be saved."
+msgstr "ライブラリのタイトルが保存できませんでした。"
+
+msgid "The design token library could not be deleted."
+msgstr "デザイントークンライブラリーは削除できませんでした。"
+
+msgid "A $type is required to create a new token."
+msgstr "新しいトークンを作成するには$typeが必要です。"
+
+msgid "Use the user-primitives endpoint to delete a custom primitive."
+msgstr "カスタムプリミティブを削除するには、user-primitivesエンドポイントを使用します。"
+
+msgid "The token path must begin with a valid layer (%s) and name a token below it, with no empty segments."
+msgstr "トークンパスは、有効なレイヤ(%s)から始まり、その下に空のセグメントを持たないトークンを命名する必要があります。"
+
+msgid "The token library slug."
+msgstr "トークンライブラリがスラグします。"
+
+msgid "The human-readable label for the library, empty when none is stored."
+msgstr "ライブラリの可読ラベル。何も保存されていない場合は空です。"
+
+msgid "The cache-busting version hash for the library, empty when it renders from baseline."
+msgstr "ライブラリのキャッシュバッシングバージョンハッシュは、ベースラインからレンダリングするときに空になります。"
+
+msgid "The raw overrides-only DTCG document, empty when the library renders entirely from baseline."
+msgstr "ライブラリがベースラインから完全にレンダリングされる場合、生のオーバーライドのみのDTCGドキュメントは空です。"
+
+msgid "Resolved CSS values keyed by token dot-path id."
+msgstr "トークンのドットパスIDでキーとなるCSS値を解決します。"
+
+msgid "Resolved CSS values keyed by CSS custom-property name."
+msgstr "CSS カスタムプロパティ名でキーとなる CSS 値を解決します。"
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id; present only for tokens that carry a shape."
+msgstr "トークンのドットパスIDによってキー付けされた、応答性/クランプの形状。"
+
+msgid "Sorry, that token is not registered."
+msgstr "申し訳ありませんが、そのトークンは登録されていません。"
+
+msgid "Sorry, that token group does not exist."
+msgstr "残念ながら、そのトークングループは存在しません。"
+
+msgid "Sorry, that font family is not available on this site."
+msgstr "申し訳ありませんが、そのフォントファミリーは本サイトではご利用いただけません。"
+
+msgid "\"%s\" is a token group, not a single token. Write a token below it instead."
+msgstr "%s\" はトークングループであり、トークンは 1 つではありません。"
+
+msgid "\"%1$s\" is a token, not a group, so \"%2$s\" cannot be written below it."
+msgstr "\"%1$s「トークンであって、グループではない。%2$s「その下には書けない。"
+
+msgid "The human-readable label for the token library."
+msgstr "トークンライブラリの人間が読めるラベル。"
+
+msgid "The token library slug to write. Defaults to the default library."
+msgstr "トークンライブラリは、デフォルトでwrite.Defaultsにスラグします。"
+
+msgid "The overrides-only DTCG document to store."
+msgstr "保存するDTCGドキュメントのみ。"
+
+msgid "Optional human-readable label for the token library."
+msgstr "トークンライブラリのオプションの人間が読めるラベル。"
+
+msgid "The token dot-path, e.g. primitive.color.brand."
+msgstr "token dot-path、例えば primitive.color.brand です。"
+
+msgid "The display-label override. Empty or whitespace-only clears the override, equivalent to DELETE."
+msgstr "表示ラベルのoverride.Empty または Whitespace のみが、DELETE に相当します。"
+
+msgid "The token's canonical dot-path id, e.g. semantic.color.button-bg."
+msgstr "トークンの標準のドットパスID、例えばSemantic.color.button-bg。"
+
+msgid "The version the client last read; empty for a first write. A mismatch is rejected with HTTP 409."
+msgstr "クライアントが最後に読み込んだバージョンは、最初の書き込みで空です。HTTP 409ではミスマッチが拒否されます。"
+
+msgid "The token ids in their new order for this group."
+msgstr "トークンはこのグループの新しい順序でIDを取得します。"
+
+msgid "The UI-schema group name whose token order is being set."
+msgstr "トークンの順序が設定されているUIスキーマのグループ名。"
+
+msgid "The font family name to add as a favorite, e.g. Abril Fatface."
+msgstr "お気に入りとして追加するフォント名、例えば、Abril Fatface。"
+
+msgid "The primitive.*.custom.* namespace is reserved for user-created primitives. Use the user-primitives endpoint."
+msgstr "primitive.*.custom.* ネームスペースは、ユーザー作成プリミティブのために予約されます。"
+
+msgid "Whether the design-token registry is active."
+msgstr "デザイントークンレジストリがアクティブかどうか。"
+
+msgid "Whether the library resolved without a corrupt-store failure."
+msgstr "図書館が破損した店の失敗なしに解決したかどうか。"
+
+msgid "The library's stored label, empty when it has none."
+msgstr "ライブラリのラベルは、何もない場合には空です。"
+
+msgid "The token library slug the feed was assembled for."
+msgstr "トークンライブラリがフィードをスラグして、."
+
+msgid "The token structure, grouped for the UI."
+msgstr "トークン構造、UIのためにグループ化。"
+
+msgid "Per-block preset structure and resolved preview values."
+msgstr "ブロック毎のプリセット構造と、プレビュー値の解決。"
+
+msgid "The nav-ready block-presets section, for labeled/picker-driven preset bindings only."
+msgstr "ラベル付き/ピッカー駆動のプリセットバインディングのみの nav-ready ブロックプリセット セクション。"
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id."
+msgstr "トークンのドットパスIDでキー付けした、レスポンシブ・クランプの形状。"
+
+msgid "The REST descriptor (root, namespace, nonce) the app writes edits to."
+msgstr "REST ディスクリプタ(root、namespace、nonce)は、アプリが編集する。"
+
+msgid "The token library slug to read the feed for."
+msgstr "トークンライブラリは、フィードを読み取るためにスラグします。"
+
+msgid "A swatch value or label is required."
+msgstr "ラベルまたは時計の値が必要です。"
+
+msgid "A swatch value cannot be empty."
+msgstr "swatch の値は空ではありません。"
+
+msgid "A swatch label cannot be empty."
+msgstr "時計ラベルは空白にはなりません。"
+
+msgid "A swatch label is structural and can only be set on the library's default palette."
+msgstr "swatch ラベルは構造的であり、ライブラリのデフォルトパレットにのみ設定できます。"
+
+msgid "The current palette must name a palette the library defines."
+msgstr "現在のパレットは、ライブラリが定義するパレットの名前でなければなりません。"
+
+msgid "The palette id."
+msgstr "パレットはidです。"
+
+msgid "The palette label."
+msgstr "パレットラベル。"
+
+msgid "The ordered color groups, each an ordered list of swatches."
+msgstr "オーダカラーグループ、それぞれオーダリストのスウォッチ。"
+
+msgid "The color palette failed validation."
+msgstr "カラーパレットが検証に失敗しました。"
+
+msgid "The color palette could not be encoded."
+msgstr "カラーパレットはエンコードできませんでした。"
+
+msgid "The color palette could not be saved."
+msgstr "カラーパレットが保存できませんでした。"
+
+msgid "The palette label must be a string."
+msgstr "パレットラベルは文字列でなければなりません。"
+
+msgid "A palette must define at least one color group."
+msgstr "パレットは少なくとも1つの色グループを定義しなければなりません。"
+
+msgid "Each color group must have an id, a label, and a swatches list."
+msgstr "それぞれの色グループは、ID、ラベル、およびスウォッチリストを持っている必要があります。"
+
+msgid "Each swatch must have a token, a label, and a value."
+msgstr "swatch にはトークン、ラベル、値が必要です。"
+
+msgid "Swatch token \"%s\" does not target a color."
+msgstr "スウォッチトークン「%s」は色を対象としません。"
+
+msgid "Token \"%s\" appears more than once in the palette."
+msgstr "パレットに「%s」と複数回表示されます。"
+
+msgid "Swatch value aliases a token that does not exist: \"%s\"."
+msgstr "Swatch の値は、存在しないトークンをエイリアスします。%s\"."
+
+msgid "Swatch \"%s\" is part of the shipped palette and cannot be removed."
+msgstr "スウォッチ「%s」は出荷されたパレットの一部であり、取り外しることができません。"
+
+msgid "Accent"
+msgstr "アクセント"
+
+msgid "Sorry, that palette does not exist."
+msgstr "申し訳ありませんが、そのパレットは存在しません。"
+
+msgid "Optional token library slug to target; defaults to the active library."
+msgstr "オプションのトークンライブラリは、ターゲットにスラグします。"
+
+msgid "The swatch token dot-path."
+msgstr "swatch トークンのドットパス。"
+
+msgid "The swatch value: a literal color or a {dot.path} alias."
+msgstr "swatch の値: リテラルカラーまたは {dot.path} エイリアス。"
+
+msgid "The swatch's structural label. Only valid when {id} is the library's default palette — labels are defined once, not per palette."
+msgstr "swatch の構造ラベル {id} がライブラリのデフォルトパレットである場合にのみ有効です。"
+
+msgid "The palette id to make current."
+msgstr "パレットは電流を流すものです。"
+
+msgid "A preset slug is required."
+msgstr "プリセットスラグが必要です。"
+
+msgid "The preset's human-readable label."
+msgstr "プリセットの文字は、読みやすいラベルです。"
+
+msgid "The preset's property => value map: an alias or literal, a per-corner list, or a responsive envelope."
+msgstr "プリセットのプロパティ => 値マップ: エイリアスまたはリテラル、コーナー1つ1つのリスト、または応答性のエンベロープ。"
+
+msgid "Which properties this preset genuinely stores itself, as property => true. A bound property absent here is only inherited from the baseline's own definition of the same preset slug, and a control shows it as a muted default rather than as bound."
+msgstr "どのプロパティが、このプリセット自体を プロパティ => true として真に保存する。ここで存在しないバインドされたプロパティは、ベースラインの同じプリセットスラグの定義からのみ継承され、コントロールは、バインドされた値ではなく、ミュートされたデフォルトとしてそれを示す。"
+
+msgid "The classes the theme's own stylesheet paints this preset through, for a preset painted by class rather than by variables."
+msgstr "テーマのスタイルシートが、変数ではなくクラスによって描画されるプリセットのために、このプリセットを描画します。"
+
+msgid "The values the theme currently renders for this preset, for display only: a control shows them as muted defaults and a save stores only the values that differ."
+msgstr "現在、テーマがレンダリングする値は、表示のみのプリセットです。コントロールは、デフォルトのミュートとして表示し、保存は、異なる値のみを格納します。"
+
+msgid "Whether the theme's values behind this preset could be read. A preset that is not readable can be previewed and picked but offers nothing to edit."
+msgstr "このプリセットの背後にあるテーマの値を読み取ることができるかどうか. 読み込めないプリセットはプレビューして選択できますが、編集することはありません。"
+
+msgid "The block name the preset collection belongs to."
+msgstr "プリセットされたコレクションのブロック名。"
+
+msgid "The default preset slug."
+msgstr "デフォルトのプリセットスラグ。"
+
+msgid "The preset slugs the library defines beyond the baseline. Deleting one removes it; deleting anything else at most reverts an override."
+msgstr "プリセットはライブラリがベースラインを超えて定義する。削除すると、削除されたものが削除され、オーバーライドが返される。"
+
+msgid "The named presets, keyed by slug."
+msgstr "スラグによってキーされた名前のプリセット。"
+
+msgid "The stored theme presets the active theme does not offer, keyed by slug: not listed, not projected, kept until a theme that offers them is active again."
+msgstr "保存されたテーマは、アクティブテーマが提供しないプリセット、スラッグによってキー:リストされていない、投影されていない、それらを提供するテーマが再びアクティブになるまで保たれます。"
+
+msgid "The label the preset was stored with."
+msgstr "プリセットが格納されたラベル。"
+
+msgid "The overrides the preset keeps."
+msgstr "プリセットが保留するオーバーライド。"
+
+msgid "The theme values the preset had when its overrides were last saved."
+msgstr "オーバーライドが最後に保存されたときにプリセットが持っていたテーマ値。"
+
+msgid "The design token library could not be encoded."
+msgstr "デザイントークンライブラリはエンコードできませんでした。"
+
+msgid "Sorry, that block does not accept presets."
+msgstr "申し訳ありませんが、そのブロックはプリセットを受け付けません。"
+
+msgid "A preset slug cannot be empty."
+msgstr "プリセットされたスラグは空にはなりません。"
+
+msgid "Each preset must be an object with an optional string label and a token map."
+msgstr "プリセットは、オプションの文字列ラベルとトークンマップを持つオブジェクトでなければなりません。"
+
+msgid "A preset cannot set theme-owned keys."
+msgstr "プリセットではテーマ所有キーを設定できません。"
+
+msgid "That preset slug is reserved."
+msgstr "そのプリセットスラグは予約されています。"
+
+msgid "A per-corner value is only valid for a dimension property."
+msgstr "コーナーあたりの値は次元プロパティに対してのみ有効です。"
+
+msgid "A per-corner base value must set every corner; a gap is only valid inside a responsive override."
+msgstr "コーナーごとのベース値は、隅々まで設定しなければならない。"
+
+msgid "A dimension value must not contain a space; compound literals (e.g. calc(), clamp()) are not supported."
+msgstr "次元の値は空間を含んではなりません。(例えば、calc()、clamp()) はサポートされていません。"
+
+msgid "A per-corner responsive override requires a per-corner base value for the same property."
+msgstr "per- corner responsive overrideは、同じプロパティに対して、1 コーナーあたりのベース値を必要とします。"
+
+msgid "A shadow value must be an alias, a literal, or a composite carrying color, offsetX, offsetY, blur and spread."
+msgstr "影の値は、別名、リテラル、または色、オフセットX、オフセットY、ぼかし、スプレッドを運ばなければならない。"
+
+msgid "The default preset must name an existing preset."
+msgstr "デフォルトのプリセットは、既存のプリセットの名前でなければなりません。"
+
+msgid "A theme preset cannot be the default preset."
+msgstr "テーマのプリセットは、デフォルトのプリセットにはなりません。"
+
+msgid "A preset can only set properties the block binds."
+msgstr "プリセットは、ブロックがバインドするプロパティのみを設定できます。"
+
+msgid "A preset alias does not resolve to a token."
+msgstr "プリセットされたエイリアスはトークンに解決しません。"
+
+msgid "The block vendor segment, e.g. flxbk."
+msgstr "ブロックベンダーセグメント、例えばflxbk。"
+
+msgid "The block name segment, e.g. singlebtn."
+msgstr "ブロック名セグメント、例えば、 singlebtn.ss です。"
+
+msgid "The preset slug."
+msgstr "プリセットスラグ。"
+
+msgid "The preset slug to create or merge."
+msgstr "プリセットは、作成またはマージします。"
+
+msgid "Optional human-readable label for the preset."
+msgstr "プリセット用のオプションの人間可読ラベル。"
+
+msgid "The preset's property => alias-or-literal token map."
+msgstr "プリセットのプロパティは、=> alias-or-literal トークンマップです。"
+
+msgid "The presets to store, keyed by slug."
+msgstr "スラグでキーを付ける、保存するプリセット。"
+
+msgid "Optional default preset slug."
+msgstr "オプションのデフォルトのプリセットスラグ。"
+
+msgid "The preset slugs in their new display order."
+msgstr "プリセットは新しいディスプレイ順序にスラグします。"
+
+msgid "The combined design-token editor CSS for every token library."
+msgstr "すべてのトークンライブラリ用のデザイントークンエディタCSSを組み合わせています。"
+
+msgid "The DTCG schema could not be read."
+msgstr "DTCGスキーマは読み込めません。"
+
+msgid "The published DTCG JSON Schema that a valid design token document must satisfy."
+msgstr "有効な設計トークン文書が満たさなければならないDTCG JSONスキーマが公開された。"
+
+msgid "That custom token does not exist."
+msgstr "そのカスタムトークンは存在しません。"
+
+msgid "The id must be a lowercase kebab-case slug with no dots (e.g. my-color)."
+msgstr "id は小文字のkebab-case スラグで、点(例:my-color)はなしである必要があります。"
+
+msgid "The group must be a lowercase kebab-case key."
+msgstr "グループは小文字のkebab-caseキーでなければなりません。"
+
+msgid "That group is not declared for user-created primitives."
+msgstr "このグループは、ユーザが作成したプリミティブに対して宣言されていない。"
+
+msgid "That $type does not support user-created primitives in this version."
+msgstr "type は、このバージョンでは、ユーザー作成プリミティブをサポートしません。"
+
+msgid "That id is used by a system token."
+msgstr "そのidはシステムトークンによって使用されます。"
+
+msgid "A custom token with that id already exists."
+msgstr "カスタムトークンには、そのidがすでに存在します。"
+
+msgid "That id is reserved by the system."
+msgstr "そのIDはシステムによって予約されます。"
+
+msgid "System primitives cannot be deleted."
+msgstr "システムプリミティブは削除できない。"
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before deleting."
+msgstr "このプリミティブには自動的に解決できない参照があり、削除する前に手動で削除します。"
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before renaming."
+msgstr "このプリミティブには自動的に解決できない参照があり、リネームする前に手動で削除します。"
+
+msgid "The stored definition has no $type and cannot be renamed."
+msgstr "ストアド定義には $type がないので、名前を変えることはできません。"
+
+msgid "The new id is already in use."
+msgstr "新しいIDはすでに使用されている。"
+
+msgid "The new id is reserved by the system."
+msgstr "新しいIDは、システムによって予約されます。"
+
+msgid "The canonical dot-path id of the user primitive."
+msgstr "ユーザのプリミティブの標準のdot-path id。"
+
+msgid "The human-readable label stored in the provenance map."
+msgstr "ソースマップに格納されている、可読ラベル。"
+
+msgid "The cache-busting version hash for the token library."
+msgstr "トークンライブラリのキャッシュバスティングバージョンハッシュ。"
+
+msgid "Whether the primitive can be safely deleted (all references are supported)."
+msgstr "プリミティブが安全に削除できるかどうか(すべての参照がサポートされている)。"
+
+msgid "All alias references to this primitive found in the document."
+msgstr "ドキュメントにある、このプリミティブに対するすべての別名参照。"
+
+msgid "The id must be a canonical custom primitive path (primitive.<type>.custom.<slug>)."
+msgstr "id は標準のカスタムのプリミティブパス( primitive.<type> .custom.<slug>)でなければならない。"
+
+msgid "The version token the client last read."
+msgstr "クライアントが最後に読み込んだバージョントークン。"
+
+msgid "The terminal slug for the new primitive (kebab-case, no dots)."
+msgstr "ターミナルは新しいプリミティブ(ケバブケース、ドットなし)のスラグです。"
+
+msgid "The DTCG $type for the new primitive."
+msgstr "新しいプリミティブのDTCG$型。"
+
+msgid "The DTCG $value for the new primitive."
+msgstr "新しいプリミティブのDTCG$値。"
+
+msgid "Optional human-readable label."
+msgstr "オプションの可読ラベル。"
+
+msgid "Optional stable machine key for the UI group this primitive should join."
+msgstr "このプリミティブが参加するUIグループのオプションの安定マシンキー。"
+
+msgid "The canonical dot-path id of the user primitive to delete."
+msgstr "削除するユーザのプリミティブの標準のドットパスID。"
+
+msgid "The canonical dot-path id of the user primitive to rename."
+msgstr "変更するユーザープリミティブの標準のドットパスID。"
+
+msgid "The new terminal slug (kebab-case, no dots)."
+msgstr "新しいターミナルスラグ(ケバブケース、ドットなし)。"
+
+msgid "Optional new human-readable label."
+msgstr "オプションの人間が読めるラベル。"
+
+msgid "Theme Base"
+msgstr "テーマベース"
+
+msgid "Theme %s"
+msgstr "テーマ %s"
+
+msgid "Theme Button"
+msgstr "テーマボタン"
+
+msgid "Theme Secondary"
+msgstr "テーマセカンダリー"
+
+msgid "Unknown block."
+msgstr "不明。"
+
+msgid "Choose Small, Large or Fullwidth."
+msgstr "小さな、大きな、またはフル幅を選択します。"
+
+msgid "Enter a width between 200 and 4000 px."
+msgstr "200から4000 pxの幅を入力します。"
+
+msgid "Pattern not found."
+msgstr "パターンが見つからない。"
+
+msgid "Enter a valid site address."
+msgstr "有効なサイトアドレスを入力します。"
+
+msgid "Pale pink"
+msgstr "ピンク"
+
+msgid "Vivid red"
+msgstr "赤"
+
+msgid "Luminous vivid orange"
+msgstr "鮮やかなオレンジ色。"
+
+msgid "Luminous vivid amber"
+msgstr "鮮やかな ?? が輝く"
+
+msgid "Light green cyan"
+msgstr "薄緑色のシアン"
+
+msgid "Vivid green cyan"
+msgstr "緑 ??"
+
+msgid "Pale cyan blue"
+msgstr "青白 ??"
+
+msgid "Vivid cyan blue"
+msgstr "青 ?? 色"
+
+msgid "Very light gray"
+msgstr "非常に薄い灰色"
+
+msgid "Cyan bluish gray"
+msgstr "シアンブルーグレー"
+
+msgid "Very dark gray"
+msgstr "濃い灰色"
+
+msgid "Config Flux Block Defaults"
+msgstr "Config Flux Block のデフォルト"
+
+msgid "Config Flux Block visibility settings"
+msgstr "Config Flux ブロックの可視性設定"
+
+msgid "Config Flux Block Settings"
+msgstr "Config Flux ブロックの設定"
+
+msgid "Config Flux Block Editor Color Palette"
+msgstr "Config Flux Block Editor カラーパレット"
+
+msgid "Config Flux Block Editor Global Settings"
+msgstr "Config Flux Block Editor のグローバル設定"
+
+msgid "Google reCaptcha Site Key"
+msgstr "Googleがサイトキーを再キャプチャ"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Googleが秘密鍵を再取得"
+
+msgid "Cloudflare Turnstile Site Key"
+msgstr "Cloudflareがサイトキーを回す"
+
+msgid "Cloudflare Turnstile Secret Key"
+msgstr "Cloudflareがシークレットキーをオンに"
+
+msgid "hCaptcha Turnstile Site Key"
+msgstr "hCaptcha のサイトキーの切り替え"
+
+msgid "hCaptcha Secret Key"
+msgstr "hCaptcha シークレットキー"
+
+msgid "MailerLite API Key"
+msgstr "MailerLite API キー。"
+
+msgid "Google Maps API Key"
+msgstr "Google Maps API キー"
+
+msgid "Is Flux header notice dismissed"
+msgstr "フラックスヘッダーの通知は破棄されました。"
+
+msgid "Subscribe to Wireframe library"
+msgstr "Wireframeライブラリの購読"
+
+msgid "ConvertKit API Key"
+msgstr "ConvertKit API キー"
+
+msgid "Mark the Header popover tutorial Complete"
+msgstr "Header ポップオーバーチュートリアルを完了します。"
+
+msgid "Small Template"
+msgstr "小さなテンプレート"
+
+msgid "Large Template"
+msgstr "大きなテンプレート"
+
+msgid "Post default"
+msgstr "ポストデフォルト"
+
+msgid "Page Default"
+msgstr "ページデフォルト"
+
+msgid "Enable Editor Width"
+msgstr "編集幅を有効にします。"
+
+msgid "Load Google Fonts Locally"
+msgstr "Google Fontsをローカルにロードする"
+
+msgid "Show Block Headers in Admin Bar"
+msgstr "ブロックヘッダーを管理者バーに表示します。"
+
+msgid "Allows for changes to the editor width on per page/post basis with preset defaults."
+msgstr "デフォルトでは、ページ/ポストごとにエディタの幅を変更できます。"
+
+msgid "False"
+msgstr "偽物"
+
+msgid "True"
+msgstr "本当です"
+
+msgid "Experimental editor CSS for less excess margins in Gutenberg in an attempt to get a closer WYSIWYG editing experience."
+msgstr "グーテンベルクの過剰なマージンが少なく、WYSIWYG編集体験に近づけるための実験的エディタCSS。"
+
+msgid "px"
+msgstr "px"
+
+msgid "Fullwidth"
+msgstr "幅"
+
+msgid "Create rows with nested blocks either in columns or as a container. Give style to your rows with background, overlay, padding, etc."
+msgstr "行を行の行の行を行の行の行を行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行の行"
+
+msgid "Create a contact form or marketing form and style it within the block editor."
+msgstr "コンタクトフォームまたはマーケティングフォームを作成し、ブロックエディタ内でスタイル化します。"
+
+msgid "Advanced Gallery"
+msgstr "先端ギャラリー"
+
+msgid "Photo galleries, carousels, and sliders! Enable custom links, captions, and more. Plus, you can select image sizes."
+msgstr "フォトギャラリー、カルーセル、スライダー! カスタムリンク、キャプションなどを有効にする。さらに、画像サイズを選択することもできます。"
+
+msgid "Advanced Button"
+msgstr "アドバンストボタン"
+
+msgid "Create an advanced button or a row of buttons. Style each one including hover controls plus you can use an icon and display them side by side"
+msgstr "高度なボタンやボタンの行を作成し、ホバーコントロールを含む各ボタンをスタイルし、アイコンを使用して並べて表示することができます。"
+
+msgid "Add an extra \"wow\" factor to your site with engaging Lottie animations."
+msgstr "Lottieアニメーションをアニメーションでサイトに追加します。"
+
+msgid "Manage Lottie Animations"
+msgstr "ロティアニメーションの管理"
+
+msgid "Vector Graphics"
+msgstr "ベクトルグラフィックス"
+
+msgid "Add custom vector icons and SVGs to enhance your site design."
+msgstr "カスタムベクターアイコンとSVGを追加して、サイトデザインを強化します。"
+
+msgid "Manage Vector Graphics"
+msgstr "ベクトルグラフィックスの管理"
+
+msgid "Advanced Header"
+msgstr "先端ヘッダー"
+
+msgid "Build custom headers in the block editor and full site editing."
+msgstr "ブロックエディタとサイト編集全体においてカスタムヘッダーを構築します。"
+
+msgid "Manage Headers"
+msgstr "ヘッダーの管理"
+
+msgid "Advanced Navigation"
+msgstr "先端ナビゲーション"
+
+msgid "Build custom navigation menus"
+msgstr "カスタムナビゲーションメニューを構築します。"
+
+msgid "Manage Navigation Menus"
+msgstr "ナビゲーションメニューの管理"
+
+msgid "Choose from over 1500+ SVG Icons to add into your page and style the size, colors, background, border, etc."
+msgstr "1500以上のSVGアイコンからページに追加し、サイズ、色、背景、境界線などをスタイル化します。"
+
+msgid "Spacer/Divider"
+msgstr "スペーサー/ディバイダー"
+
+msgid "Easily create a divider and determine the space around it or just create some space in your content."
+msgstr "ディバイダーを簡単に作成し、その周りのスペースを決定したり、コンテンツにスペースを作成したりできます。"
+
+msgid "Create a heading or paragraph and define sizes for desktop, tablet and mobile along with font family, colors, etc."
+msgstr "見出しや段落を作成し、フォントファミリ、色などと一緒にデスクトップ、タブレット、モバイルのサイズを定義します。"
+
+msgid "Tabs"
+msgstr "タブ"
+
+msgid "Create custom vertical or horizontal tabs with advanced styling controls. Each tab content is an empty canvas able to contain any other blocks."
+msgstr "高度なスタイリングコントロールを備えたカスタムの縦または横のタブを作成すると、各タブの内容が空のキャンバスになり、他のブロックも含まれます。"
+
+msgid "Info Box"
+msgstr "情報ボックス"
+
+msgid "Create a box containing an icon or image and, optionally, a title, description, and learn more text. Style static and hover separately."
+msgstr "アイコンまたは画像を含むボックスを作成し、オプションでタイトル、説明を作成し、テキストを学習します。"
+
+msgid "Accordion"
+msgstr "追悼"
+
+msgid "Create beautiful accordions! Each pane can contain any other block, customize title styles, content background, and borders."
+msgstr "美しいアコーディオンを作成する!各ペインには、他のブロックを含めることができ、タイトルスタイル、コンテンツの背景、および境界線をカスタマイズします。"
+
+msgid "Icon List"
+msgstr "アイコン一覧"
+
+msgid "Add beautiful icons to your lists and make them more engaging. Over 1500 icons to choose from and unlimited styles."
+msgstr "美しいアイコンをリストに追加し、より魅力的なものにします。1500以上のアイコンから選択でき、無制限のスタイル。"
+
+msgid "Allow your readers to navigate your content easily with a table of contents block. Includes smooth scroll to anchor."
+msgstr "コンテンツブロックのテーブルで、スムーズなスクロールでコンテンツをナビゲートできます。"
+
+msgid "Posts"
+msgstr "投稿"
+
+msgid "Display a clean grid of posts anywhere on your site, great for your home page where you want to tease your blog."
+msgstr "ブログを気遣うホームページに最適な、サイト上のどこにでも投稿のきれいなグリッドを表示します。"
+
+msgid "Countdown"
+msgstr "カウントダウン"
+
+msgid "Increase your conversions by adding a sense of urgency to your offering. Pro includes evergreen campaigns as well."
+msgstr "コンバージョンを増やすには、緊急性を追加し、Proには常緑キャンペーンも含まれています。"
+
+msgid "Testimonials"
+msgstr "証言"
+
+msgid "Create confidence in your brand or product by showing off beautiful unique testimonials, add as a carousel or a grid."
+msgstr "カルーセルやグリッドとして追加し、美しいユニークな証言を披露することによって、ブランドや製品の信頼を作り出します。"
+
+msgid "Video Popup"
+msgstr "ビデオポップアップ"
+
+msgid "Beautifully display a thumbnail with overlay and hover effect that links to a video popup on click. Works with local or external videos!"
+msgstr "クリックするとビデオポップアップにリンクするオーバーレイとホバー効果のあるサムネイルが美しく表示され、ローカルまたは外部のビデオで動作します!"
+
+msgid "Version"
+msgstr "バージョン"
+
+msgid "Last updated"
+msgstr "最終更新日"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid "Previous version"
+msgstr "旧版"
+
+msgid "Has Pro"
+msgstr "プロ"
+
+msgid "Deactivated Blocks"
+msgstr "ブロックの非アクティブ化"
+
+msgid "Has Block Defaults"
+msgstr "ブロックのデフォルトがある"
+
+msgid "Using Setting Visibility"
+msgstr "設定の可視性の利用"
+
+msgid "Has Custom Colors"
+msgstr "カスタムカラーがあります。"
+
+msgid "Has reCAPTCHA key"
+msgstr "reCAPTCHA キー"
+
+msgid "Has a maps API key"
+msgstr "地図を持っている API キー"
+
+msgid "Has MailerLite key"
+msgstr "MailerLite キーがあります。"
+
+msgid "Has Cloud Library"
+msgstr "クラウドライブラリがある"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "On"
+msgstr "オン"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Read More"
+msgstr "詳しくはこちら。"
+
+msgid "By"
+msgstr "によって"
+
+msgid "Posted on"
+msgstr "投稿あり"
+
+msgid "Updated on"
+msgstr "更新しました。"
+
+msgid "Posted in"
+msgstr "投稿あり"
+
+msgid ", "
+msgstr ", "
+
+msgid "Comment"
+msgstr "コメント"
+
+msgid "Comments"
+msgstr "コメント"
+
+msgid " / "
+msgstr " / "
+
+msgid " - "
+msgstr " - "
+
+msgid " | "
+msgstr " | "
+
+msgid "View File"
+msgstr "ファイルを表示します。"
+
+msgid "Sent from %s"
+msgstr "から送信します。 %s"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Custom"
+msgstr "カスタム"
+
+msgid "Auto"
+msgstr "自動"
+
+msgid "Gradient"
+msgstr "グラデーション"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Individual"
+msgstr "個人"
+
+msgid "Linked"
+msgstr "リンク"
+
+msgid "Solid"
+msgstr "固体"
+
+msgid "Dashed"
+msgstr "追悼"
+
+msgid "Dotted"
+msgstr "点点"
+
+msgid "Double"
+msgstr "ダブル"
+
+msgid "Device"
+msgstr "デバイス"
+
+msgid "Color"
+msgstr "色"
+
+msgid "Left"
+msgstr "左"
+
+msgid "Top"
+msgstr "トップ"
+
+msgid "Hover"
+msgstr "ホバー"
+
+msgid "Normal"
+msgstr "ノーマル"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Bottom"
+msgstr "底部"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "auto"
+msgstr "オート"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Desktop"
+msgstr "デスクトップ"
+
+msgid "Tablet"
+msgstr "タブレット"
+
+msgid "Mobile"
+msgstr "モバイル"
+
+msgid "div"
+msgstr "ディフ"
+
+msgid "Weight"
+msgstr "重量"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "-"
+msgstr "-"
+
+msgid "Uppercase"
+msgstr "大文字"
+
+msgid "Lowercase"
+msgstr "下例"
+
+msgid "Capitalize"
+msgstr "資本化"
+
+msgid "Font Family"
+msgstr "フォント ファミリ"
+
+msgid "Padding"
+msgstr "パディング"
+
+msgid "20%"
+msgstr "20%"
+
+msgid "40%"
+msgstr "40%"
+
+msgid "50%"
+msgstr "50%"
+
+msgid "75%"
+msgstr "75%"
+
+msgid "80%"
+msgstr "80%"
+
+msgid "100%"
+msgstr "100%"
+
+msgid "Create"
+msgstr "作成"
+
+msgid "Margin"
+msgstr "マージン"
+
+msgid "label"
+msgstr "ラベル"
+
+msgid "value"
+msgstr "値"
+
+msgid "form"
+msgstr "形式"
+
+msgid "button"
+msgstr "ボタン"
+
+msgid "icon"
+msgstr "アイコン"
+
+msgid "image"
+msgstr "画像"
+
+msgid "Border Color"
+msgstr "境界線の色"
+
+msgid "text"
+msgstr "テキスト"
+
+msgid "heading"
+msgstr "向かって"
+
+msgid "Heading"
+msgstr "見出し"
+
+msgid "section"
+msgstr "部"
+
+msgid "number"
+msgstr "番号"
+
+msgid "Text"
+msgstr "テキスト"
+
+msgid "header"
+msgstr "ヘッダー"
+
+msgid "svg"
+msgstr "svg"
+
+msgid "list"
+msgstr "一覧"
+
+msgid "info"
+msgstr "インフォメーション"
+
+msgid "1"
+msgstr "1"
+
+msgid "hide"
+msgstr "隠す"
+
+msgid "separator"
+msgstr "セパレータ"
+
+msgid "Tab"
+msgstr "タブ"
+
+msgid "Saving…"
+msgstr "保存中..."
+
+msgid "Favorite"
+msgstr "お気に入り"
+
+msgid "Color Palette"
+msgstr "カラーパレット"
+
+msgid "Breakpoint"
+msgstr "要点"
+
+msgid "Drag to reorder"
+msgstr "ドラッグして並べ替えます"
+
+msgid "Reset %1$s to %2$s"
+msgstr "%1$s を %2$s にリセットします。"
+
+msgid "From %s"
+msgstr "由来 %s"
+
+msgid "From theme"
+msgstr "テーマから"
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+msgid "Blur"
+msgstr "青"
+
+msgid "Spread"
+msgstr "広め"
+
+msgid "Inset"
+msgstr "インセット"
+
+msgid "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here."
+msgstr "%1$d このパレットの色は %2$sパレットにカスタマイズするまで、編集します。 %2$s アップデートもここにあります"
+
+msgid "Learn more"
+msgstr "さらに詳しく"
+
+msgid "Search fonts…"
+msgstr "フォント検索..."
+
+msgid "No fonts found"
+msgstr "フォントなし"
+
+msgid "Keep typing to narrow the list"
+msgstr "入力を続けてリストを絞ります。"
+
+msgid "Options loaded."
+msgstr "オプションがロードされます。"
+
+msgid "Loading options…"
+msgstr "オプションの読み込み..."
+
+msgid "Swatch view"
+msgstr "スウォッチビュー"
+
+msgid "Grid view"
+msgstr "グリッドビュー"
+
+msgid "List view"
+msgstr "一覧"
+
+msgid "Set \"%s\" as the active library?"
+msgstr "%s\" をアクティブライブラリとして設定しますか?"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor."
+msgstr "サイトは現在、\"%1$s\"を使用しています。アクティブに\"%2$s\"を設定すると、サイト全体にわたって色、タイポグラフィ、間隔、その他のスタイルがすぐに変わります。"
+
+msgid "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over."
+msgstr "いつでも切り替えることができますが、\"%s\"のカスタム値はライブラリに保持されます。"
+
+msgid "Setting active…"
+msgstr "アクティブに設定します。"
+
+msgid "Set as active"
+msgstr "アクティブに設定します。"
+
+msgid "Set \"%s\" as the active palette?"
+msgstr "アクティブパレットとして「%s」を設定しますか?"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor."
+msgstr "サイトは現在、使用しています。%1$s「設定」%2$s「アクティブにすると、サイト全体にわたって、フロントエンドとエディタの色が変わります。"
+
+msgid "Add Color Group"
+msgstr "カラーグループを追加します。"
+
+msgid "Group name"
+msgstr "グループ名"
+
+msgid "A color group named \"%s\" already exists."
+msgstr "%s\"という色グループがすでに存在している。"
+
+msgid "Loading…"
+msgstr "読み込み中..."
+
+msgid "Base Styles"
+msgstr "ベーススタイル"
+
+msgid "Block Presets"
+msgstr "ブロックプリセット"
+
+msgid "Create Library"
+msgstr "ライブラリの作成"
+
+msgid "Library title"
+msgstr "図書館の名称"
+
+msgid "A library named \"%s\" already exists."
+msgstr "という図書館が%s「すでにある。"
+
+msgid "Creating…"
+msgstr "作成中..."
+
+msgid "Create Color Palette"
+msgstr "カラーパレットを作成します。"
+
+msgid "Palette name"
+msgstr "パレット名"
+
+msgid "A palette named \"%s\" already exists."
+msgstr "%s\"と名付けられたパレットがすでに存在している。"
+
+msgid "Delete Color Group?"
+msgstr "色グループを削除します。"
+
+msgid "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette."
+msgstr "グループを削除します。%1$s「それで %2$d 色? パレットから取り除きます"
+
+msgid "Deleting…"
+msgstr "削除します。"
+
+msgid "Resetting…"
+msgstr "リセット..."
+
+msgid "Reset Library"
+msgstr "リセットライブラリ"
+
+msgid "Delete Library"
+msgstr "図書館の削除"
+
+msgid "Reset '%s' to its default values?"
+msgstr "%s'をデフォルト値にリセットしますか?"
+
+msgid "Delete '%s'? Its tokens and presets are removed permanently."
+msgstr "%s を削除します。トークンとプリセットは永久に削除されます。"
+
+msgid "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor."
+msgstr "サイトは「%s」を使うので、その色、タイポグラフィ、間隔、その他のスタイルがすぐにサイトに反映されます。"
+
+msgid "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor."
+msgstr "アクティブライブラリーなので、サイトに別のライブラリーが欲しい。下のライブラリーはすぐに使える。カラー、タイポグラフィ、スペースなど、フロントエンドとエディタのサイト全体で変化するスタイルだ。"
+
+msgid "Which library should your site use instead?"
+msgstr "どのライブラリーを使うべきか?"
+
+msgid "Select a library…"
+msgstr "ライブラリーを選択してください。"
+
+msgid "Delete \"%s\"?"
+msgstr "「%s」を削除しますか?"
+
+msgid "Reset \"%s\"?"
+msgstr "%s\" をリセットしますか?"
+
+msgid "Its color overrides are removed permanently."
+msgstr "色オーバーライドは永久に削除されます。"
+
+msgid "Its colors return to the shipped baseline. The palette itself stays."
+msgstr "色は出荷されたベースラインに戻ります パレット自体が残ります"
+
+msgid "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor."
+msgstr "サイトは「%s」の代わりに使用し、その色がフロントエンドとエディタのサイトにすぐに表示されます。"
+
+msgid "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor."
+msgstr "アクティブパレットなので、サイトに別のパレットが欲しい。"
+
+msgid "Which palette should your site use instead?"
+msgstr "代わりにどのパレットを使用する必要がありますか?"
+
+msgid "Select a palette…"
+msgstr "パレットを選択します。"
+
+msgid "Not available in the current theme"
+msgstr "現在のテーマでは利用できません。"
+
+msgid "These presets came from another theme. Your changes to them are kept until that theme is active again."
+msgstr "テーマが変更されるまで、テーマは変更されます。"
+
+msgid "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept."
+msgstr "このプリセットのテーマの値はプリセットに保存できませんので、変更だけを保持することができます。"
+
+msgid "The theme's own values for this preset were not recorded, so only your changes can be kept."
+msgstr "このプリセットのテーマの値を記録していないため、変更だけを保持することができます。"
+
+msgid "Keep as custom preset"
+msgstr "カスタムプリセットとして保てます。"
+
+msgid "Keep changes as custom preset"
+msgstr "カスタムプリセットとして変更を保てます。"
+
+msgid "Discard changes"
+msgstr "廃案"
+
+msgid "Active library"
+msgstr "アクティブライブラリ"
+
+msgid "Your site uses this library."
+msgstr "サイトはこのライブラリーを使用しています。"
+
+msgid "Not the active library"
+msgstr "アクティブなライブラリではない"
+
+msgid "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles."
+msgstr "アクティブに設定すると、このライブラリーがサイトが使用するライブラリーになり、サイトの色、サイズ、スタイルに切り替えます。"
+
+msgid "Edit library"
+msgstr "編集ライブラリ"
+
+msgid "Library"
+msgstr "図書館"
+
+msgid "New Library"
+msgstr "新図書館"
+
+msgid "Active palette"
+msgstr "アクティブパレット"
+
+msgid "Your site uses this palette."
+msgstr "サイトはこのパレットを使用します。"
+
+msgid "Not the active palette"
+msgstr "アクティブパレットではありません。"
+
+msgid "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette."
+msgstr "アクティブに設定すると、このパレットがサイトが使用するパレットになりますが、個々のブロックを別のパレットに切り替えることができます。"
+
+msgid "Edit palette"
+msgstr "パレットの編集"
+
+msgid "Drag to reorder %s"
+msgstr "%s の注文を受け付けます。"
+
+msgid "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values."
+msgstr "%s の保存されていない変更が、保存されている値に戻るために破棄されます。"
+
+msgid "You have unsaved changes. Save them, or discard them to go back to the saved values."
+msgstr "保存されていない変更がある。保存するか、保存された値に戻るために破棄する。"
+
+msgid "Unsaved Changes"
+msgstr "変更なし"
+
+msgid "Discard"
+msgstr "廃棄する"
+
+msgid "Corner Radius"
+msgstr "角 ?? 子"
+
+msgid "Add Border Radius"
+msgstr "ボーダー半径を追加します。"
+
+msgid "New Radius"
+msgstr "新半径"
+
+msgid "Radius"
+msgstr "半径"
+
+msgid "Add Border Width"
+msgstr "国境幅を追加します。"
+
+msgid "New Border Width"
+msgstr "国境の幅"
+
+msgid "Loading %s…"
+msgstr "ロード %s…"
+
+msgid "%s loaded."
+msgstr "%s ロード"
+
+msgid "Add color"
+msgstr "色を追加します。"
+
+msgid "Edit %s"
+msgstr "%s 編集"
+
+msgid "Color group"
+msgstr "色部"
+
+msgid "This palette could not be loaded."
+msgstr "このパレットは、積載できませんでした。"
+
+msgid "Settings loaded."
+msgstr "設定が読み込まれます。"
+
+msgid "Edit color"
+msgstr "編集色"
+
+msgid "Add Icon Size"
+msgstr "アイコンサイズを追加します。"
+
+msgid "New Icon Size"
+msgstr "新しいアイコンサイズ"
+
+msgid "This screen is coming soon."
+msgstr "この画面はもうすぐです。"
+
+msgid "Adding…"
+msgstr "追加します。"
+
+msgid "Preset saved."
+msgstr "プリセット保存。"
+
+msgid "Preset deleted."
+msgstr "プリセット削除。"
+
+msgid "Preset reset."
+msgstr "リセットのプリセット。"
+
+msgid "Theme preset"
+msgstr "テーマプリセット"
+
+msgid "Styled by your theme. Flux Block Editor can't read or change these styles."
+msgstr "テーマによってスタイル化されていますが、これらのスタイルを読み替えたりすることはできません。"
+
+msgid "Changes saved under another theme still apply to it. Reset removes them."
+msgstr "別のテーマの下で保存された変更は、引き続き適用され、リセットが削除します。"
+
+msgid "Edit preset"
+msgstr "編集プリセット"
+
+msgid "Edit token"
+msgstr "トークンの編集"
+
+msgid "Add Shadow"
+msgstr "Shadowの追加"
+
+msgid "New Shadow"
+msgstr "新しい影"
+
+msgid "Add Spacing"
+msgstr "スペースの追加"
+
+msgid "New Spacing"
+msgstr "新しい間隔"
+
+msgid "Visualize your font"
+msgstr "フォントを視覚化します。"
+
+msgid "Add Favorite"
+msgstr "お気に入りを追加します。"
+
+msgid "Adding Favorite…"
+msgstr "お気に入りを追加します。"
+
+msgid "Remove Favorite"
+msgstr "お気に入りを削除します。"
+
+msgid "Removing Favorite…"
+msgstr "お気に入りを削除します。"
+
+msgid "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site."
+msgstr "編集画面のテキストは変更されません。"
+
+msgid "Unpins this font from the top of your font pickers. Text already using it stays as it is."
+msgstr "フォントピッカーの上部からこのフォントをアンピンし、すでに使用しているテキストがそのままです。"
+
+msgid "%s removed from favorites."
+msgstr "%s お気に入りから削除します。"
+
+msgid "%s added to favorites."
+msgstr "%s お気に入りに追加します"
+
+msgid "Font"
+msgstr "フォント"
+
+msgid "Typography"
+msgstr "タイポグラフィ"
+
+msgid "Add Size"
+msgstr "サイズを追加します。"
+
+msgid "New Font Size"
+msgstr "フォントサイズを新しくします。"
+
+msgid "Set the colors your site uses. Change a color here and it updates everywhere it's applied."
+msgstr "サイトが使用する色を設定し、色を変更し、適用されている場所どこでも更新します。"
+
+msgid "Set the text sizes your site uses, and pick the fonts you want close to hand."
+msgstr "サイトが使用するテキストサイズを設定し、手近に望むフォントを選択します。"
+
+msgid "Set the border radius options your site uses, so buttons, images and cards stay consistent."
+msgstr "サイトが使用する境界半径オプションを設定し、ボタン、画像、カードが一貫性を保ちます。"
+
+msgid "Set the border thickness options your site uses, so borders match across your blocks."
+msgstr "サイトが使用する境界線の厚さオプションを設定し、境界線がブロックにマッチします。"
+
+msgid "Set the padding and margin steps your site uses, so gaps stay consistent from block to block."
+msgstr "サイトが使用するパディングおよびマージンのステップを設定し、ブロック間で一貫性を保ちます。"
+
+msgid "Set the sizes your icons can use, so icons stay consistent wherever they appear."
+msgstr "アイコンのサイズを設定し、アイコンが表示されている場所どこでも一貫性を保ちます。"
+
+msgid "Set the shadow styles your site uses, so depth looks consistent across your blocks."
+msgstr "サイトが使用するシャドースタイルを設定すると、ブロック間で深度が一貫性に見えます。"
+
+msgid "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand."
+msgstr "ボタンのスタイルをプリセットとして保存するため、各オプションを手動で設定するのではなく、ワンクリックで全体表示を適用することができます。"
+
+msgid "Save image styles as presets, so rounding, shadows and spacing stay the same across your images."
+msgstr "イメージスタイルをプリセットとして保存するため、丸み、影、間隔が画像全体で同じになります。"
+
+msgid "Save row styles as presets, so the sections of a page share the same background and rounding."
+msgstr "行のスタイルをプリセットとして保存するため、ページのセクションは同じ背景と丸みを共有します。"
+
+msgid "Save section styles as presets, so the columns inside your rows share the same background and rounding."
+msgstr "セクションのスタイルをプリセットとして保存するため、行内の列は同じ背景と丸みを共有します。"
+
+msgid "Save icon styles as presets, so icons keep the same size and color wherever you use them."
+msgstr "アイコンのスタイルをプリセットとして保存するため、アイコンは使用する場所に関係なく同じサイズと色を保ちます。"
+
+msgid "Save text styles as presets, so headings and paragraphs read the same from page to page."
+msgstr "テキストスタイルをプリセットとして保存します。"
+
+msgid "Something went wrong. Please try again."
+msgstr "何か問題が発生しました。もう一度試してください。"
+
+msgid "Enter a library title."
+msgstr "ライブラリのタイトルを入力してください。"
+
+msgid "A library with that title already exists."
+msgstr "既にそのタイトルの図書館が存在している。"
+
+msgid "Choose which library your site should use instead."
+msgstr "代わりに使用するライブラリを選択します。"
+
+msgid "Enter a palette name."
+msgstr "パレット名を入力してください。"
+
+msgid "A palette with that name already exists."
+msgstr "既にその名前のパレットが存在している。"
+
+msgid "Choose which palette your site should use instead."
+msgstr "代わりに使用するパレットを選択します。"
+
+msgid "Enter a color group name."
+msgstr "色グループ名を入力します。"
+
+msgid "A color group with that name already exists."
+msgstr "名前のついたカラーグループがすでに存在します。"
+
+msgid "Custom Colors"
+msgstr "カスタムカラー"
+
+msgid "Saving failed."
+msgstr "貯蓄は失敗した。"
+
+msgid "Another change to this library is already in progress."
+msgstr "このライブラリのもう1つの変更がすでに進行中です。"
+
+msgid "Palette activated."
+msgstr "パレットが作動。"
+
+msgid "Palette created."
+msgstr "パレット作成。"
+
+msgid "Palette renamed."
+msgstr "パレットが改名。"
+
+msgid "Palette deleted."
+msgstr "パレット削除。"
+
+msgid "Palette reset."
+msgstr "パレットリセット。"
+
+msgid "Swatch saved."
+msgstr "スウォッチが保存された。"
+
+msgid "Swatch deleted."
+msgstr "削除します。"
+
+msgid "Swatch reset."
+msgstr "リセットする。"
+
+msgid "New Color"
+msgstr "新色"
+
+msgid "Color added."
+msgstr "色を追加。"
+
+msgid "Color group added."
+msgstr "カラーグループを追加しました。"
+
+msgid "Color group renamed."
+msgstr "カラーグループに改名。"
+
+msgid "Color group deleted."
+msgstr "色グループを削除します。"
+
+msgid "Token created."
+msgstr "トークン作成。"
+
+msgid "Token saved."
+msgstr "トークン保存。"
+
+msgid "Token deleted."
+msgstr "トークンを削除します。"
+
+msgid "Token reset."
+msgstr "トークンリセット。"
+
+msgid "Token order saved."
+msgstr "トークンの注文が保存されます。"
+
+msgid "100 Thin"
+msgstr "薄100個"
+
+msgid "200 Extra Light"
+msgstr "200光余計に"
+
+msgid "300 Light"
+msgstr "300光"
+
+msgid "400 Regular"
+msgstr "400レギュラー"
+
+msgid "500 Medium"
+msgstr "メディア500"
+
+msgid "600 Semi Bold"
+msgstr "600 セミボールド"
+
+msgid "700 Bold"
+msgstr "700大胆系"
+
+msgid "800 Extra Bold"
+msgstr "800 エクストラボールド"
+
+msgid "900 Black"
+msgstr "黒900個"
+
+msgid "Transform"
+msgstr "変換"
+
+msgid "Add Text Style"
+msgstr "テキストスタイルを追加します。"
+
+msgid "New Text Style"
+msgstr "新しいテキストスタイル"
+
+msgid "Border and Shadow"
+msgstr "境界線と影"
+
+msgid "Add Button"
+msgstr "ボタンを追加します。"
+
+msgid "New Button"
+msgstr "新規ボタン"
+
+msgid "Add Section Style"
+msgstr "セクションスタイルを追加します。"
+
+msgid "New Section Style"
+msgstr "新部制"
+
+msgid "Add Image Style"
+msgstr "画像スタイルを追加します。"
+
+msgid "New Image Style"
+msgstr "新しいイメージスタイル"
+
+msgid "Add Row Style"
+msgstr "行スタイルを追加します。"
+
+msgid "New Row Style"
+msgstr "新行スタイル"
+
+msgid "Add Icon Style"
+msgstr "アイコンスタイルを追加します。"
+
+msgid "New Icon Style"
+msgstr "新しいアイコンスタイル"
+
+msgid "Matches the design system value"
+msgstr "デザインシステムの価値にマッチします。"
+
+msgid "Overrides the design system value"
+msgstr "デザインシステムの価値を上書きします。"
+
+msgid "Reset to the design system value"
+msgstr "デザインシステム値にリセットします。"
+
+msgid "Reverted to default"
+msgstr "デフォルトに戻す"
+
+msgid "This token was deleted from the Style Library. The default applies until you pick a new value or reset."
+msgstr "このトークンはスタイルライブラリから削除され、新しい値を選択するかリセットするまで、デフォルトが適用されます。"
+
+msgid "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset."
+msgstr "このオプションは、Flux のテーマから来ており、これはもはやアクティブではありません。"
+
+msgid "Border style"
+msgstr "国境"
+
+msgid "Border style (%s)"
+msgstr "国境(Border)%s)"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s:%2$s"
+
+msgid "%s Border Color"
+msgstr "%s ボーダーカラー。"
+
+msgid "Previous color format"
+msgstr "以前の色形式"
+
+msgid "Next color format"
+msgstr "次のカラーフォーマット"
+
+msgid "No favorite fonts yet."
+msgstr "まだお気に入りのフォントはありません。"
+
+msgid "Manage favorites in the Style Library"
+msgstr "スタイルライブラリでお気に入りを管理する"
+
+msgid "Favorites"
+msgstr "お気に入り"
+
+msgid "Inherited"
+msgstr "継承"
+
+msgid "Custom value"
+msgstr "カスタム値"
+
+msgid "Unit"
+msgstr "単位"
+
+msgid "Theme default"
+msgstr "テーマのデフォルト"
+
+msgid "Default (%s)"
+msgstr "デフォルト(デフォルト)%s)"
+
+msgid "Inherited (%s)"
+msgstr "継承(継承)%s)"
+
+msgid "img"
+msgstr "イン"
+
+msgid "menu"
+msgstr "メニュー"

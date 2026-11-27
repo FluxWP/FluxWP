@@ -114,6 +114,20 @@
     "Name (%s)": "名前 (%s)",
     "Description (%s)": "説明 (%s)",
     "If left empty, the Turkish name and description are shown.": "空のままにすると、トルコ語の名前と説明が表示されます。",
-    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "サイトを多言語にします: /en/ などの言語アドレス、ページごとの翻訳、投稿、プロジェクト、イベント、言語固有のビジュアル、hreflang と正規表現、トルコ国外から来た人向けの英語推奨、言語セレクター。 Flux AI と MCP、および Flux AI ツールの言語サポート。"
+    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "サイトを多言語にします: /en/ などの言語アドレス、ページごとの翻訳、投稿、プロジェクト、イベント、言語固有のビジュアル、hreflang と正規表現、トルコ国外から来た人向けの英語推奨、言語セレクター。 Flux AI と MCP、および Flux AI ツールの言語サポート。",
+    "JavaScript is required for this screen.": "JavaScript この画面には必須です。",
+    "A language code has 2–3 letters and, optionally, a region such as pt-br.": "言語コードは2-3文字を持ち、オプションでpt-brのような領域を持つ。",
+    "A language can be listed only once.": "言語は1回のみリストできます。",
+    "A WordPress locale has letters, digits and an underscore, e.g. en_US.": "WordPress のロケールには、en_US などの文字、桁、アンダースコアがあります。",
+    "This language is not in the catalog.": "この言語はカタログにはありません。",
+    "The default language must be one of the listed languages and cannot be removed.": "デフォルトの言語は、リストされている言語の一つでなければならない。",
+    "Unknown suggestion mode.": "不明な提案モード。",
+    "The suggested language must be one of the listed languages.": "推奨言語は、リストされている言語のいずれかでなければなりません。",
+    "Unknown switcher style.": "未知のスイッチャースタイル。",
+    "Unknown switcher position.": "不明なスイッチャー位置。",
+    "Use two-letter country codes (TR, CY…).": "国番号(TR、CY...)を使います。",
+    "This content type does not exist.": "このコンテンツタイプは存在しません。",
+    "Unknown site text.": "不明なサイトテキスト。",
+    "Site texts belong to a language other than the default one.": "サイトテキストは、デフォルトのテキスト以外の言語に属します。"
   }
 }

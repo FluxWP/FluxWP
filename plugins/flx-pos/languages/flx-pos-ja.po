@@ -1,0 +1,843 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "POS accounts"
+msgstr "決済アカウント"
+
+msgid "Card payments with banks and payment institutions"
+msgstr "銀行や決済機関とのカード決済。"
+
+msgid "Virtual POS"
+msgstr "仮想決済端末"
+
+msgid "POS"
+msgstr "POS"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "The amount must be greater than zero."
+msgstr "金額はゼロより大きくなければなりません。"
+
+msgid "No POS account for this currency."
+msgstr "この通貨のPOSアカウントはありません。"
+
+msgid "This account needs card details."
+msgstr "このアカウントはカードの詳細が必要です。"
+
+msgid "The payment record could not be created."
+msgstr "支払い記録を作成することができませんでした。"
+
+msgid "Transaction not found."
+msgstr "トランザクションは見つかりません。"
+
+msgid "Saved card details are missing."
+msgstr "カードの詳細が失われています。"
+
+msgid "This provider does not support charging a saved card."
+msgstr "保存されたカードの充電はサポートしていません。"
+
+msgid "Choose a provider."
+msgstr "プロバイダーを選択します。"
+
+msgid "test"
+msgstr "テスト"
+
+msgid "POS account not found."
+msgstr "POSアカウントが見つからない。"
+
+msgid "No driver for this provider yet."
+msgstr "このプロバイダーのドライバーはまだありません。"
+
+msgid "The payment link is invalid or has expired."
+msgstr "支払いリンクは無効または有効期限が切れています。"
+
+msgid "Order %s"
+msgstr "命令 %s"
+
+msgid "General"
+msgstr "一般"
+
+msgid "The card details have expired; please try again."
+msgstr "カードの詳細が切れました。もう一度お試しください。"
+
+msgid "Secure payment"
+msgstr "安全な支払い"
+
+msgid "Payment form"
+msgstr "支払いフォーム"
+
+msgid "Cancel and return to checkout"
+msgstr "キャンセルしてチェックアウトに戻ります。"
+
+msgid "Going to the secure payment…"
+msgstr "安全な支払いに行く..."
+
+msgid "Continue"
+msgstr "続ける"
+
+msgid "The amount charged by the bank (%1$s) differs from the expected amount (%2$s); check it."
+msgstr "銀行が請求する金額(%1$s)は、予想額(%2$s)と異なります。"
+
+msgid "Paid by card (%1$s): %2$s, reference %3$s, %4$s."
+msgstr "カードで支払います。%1$s): %2$s参考 %3$s, %4$s."
+
+msgid "%d installments"
+msgstr "%d 分割"
+
+msgid "single payment"
+msgstr "シングルペイメント"
+
+msgid "Card payment needs a check (%1$s): %2$s"
+msgstr "カード決済には、チェックが必要です(%1$s): %2$s"
+
+msgid "Card payment failed (%1$s): %2$s"
+msgstr "カード決済失敗(%1$s) : %2$s"
+
+msgid "Redirecting…"
+msgstr "リダイレクト..."
+
+msgid "The payment could not be completed. Please try again or use another card."
+msgstr "支払いを完了できませんでした。もう一度試すか、別のカードを使用してください。"
+
+msgid "Name on card"
+msgstr "カード名"
+
+msgid "Card number"
+msgstr "カード番号"
+
+msgid "Expiry (MM/YY)"
+msgstr "有効期限 (MM/YY)"
+
+msgid "Security code (CVC)"
+msgstr "セキュリティコード(CVC)"
+
+msgid "Installments"
+msgstr "分割払い"
+
+msgid "Single payment"
+msgstr "一括支払い"
+
+msgid "%1$s installments × %2$s (total %3$s)"
+msgstr "%1$s分割払い ×%2$s(合計%3$s)"
+
+msgid "Your card details are protected by your bank's 3D Secure check and are not stored on this site."
+msgstr "カードの詳細は、銀行の3D Secureチェックによって保護され、本サイトには保存されていません。"
+
+msgid "Check the card number."
+msgstr "カード番号を確認します。"
+
+msgid "Check the expiry date."
+msgstr "有効期限を確認してください。"
+
+msgid "Check the security code."
+msgstr "セキュリティコードを確認します。"
+
+msgid "Enter the name on the card."
+msgstr "カードの名前を入力してください。"
+
+msgid "Test mode: no real money is charged."
+msgstr "テストモード: 実お金は請求されません。"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "The payment will be left unfinished. Close it?"
+msgstr "支払いは未完了のままです。閉じますか?"
+
+msgid "The selected installment is not available for this card."
+msgstr "選択したインストールは、このカードでは使用できません。"
+
+msgid "Installment fee (%d installments)"
+msgstr "分割払い手数料（%d 回払い）"
+
+msgid "No successful card payment found on this order."
+msgstr "この注文で成功したカード支払いはありません。"
+
+msgid "This transaction cannot be refunded."
+msgstr "この取引は返金できません。"
+
+msgid "The refund amount cannot exceed the paid amount."
+msgstr "払い戻し金額は、支払額を超えることはできません。"
+
+msgid "The bank did not approve the refund."
+msgstr "銀行は払い戻しを承認しなかった。"
+
+msgid "The card payment was voided at the bank (%s)."
+msgstr "カードの支払いは銀行で無効にされました(%s)。"
+
+msgid "Refunded to the card: %s."
+msgstr "カードに返金:%s。"
+
+msgid "Block checkout"
+msgstr "チェックアウトをブロック"
+
+msgid "Payment link"
+msgstr "支払いリンク"
+
+msgid "Server check"
+msgstr "サーバーチェック"
+
+msgid "Saved cards"
+msgstr "保存されたカード"
+
+msgid "Refund from site"
+msgstr "サイトからの返金"
+
+msgid "Shown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method."
+msgstr "チェックアウト ブロックで構築されたチェックアウト ページに表示されます。従来のチェックアウト ([woocommerce_checkout]) にはすべてのメソッドが表示されます。"
+
+msgid "Pays an existing order from its payment link without a cart (call center, \"pay again\")."
+msgstr "カート(コールセンター、「再び支払う」)なしで、その支払いリンクから既存の注文を支払う。"
+
+msgid "The payment is confirmed with the provider from the server before the order is marked paid."
+msgstr "注文が支払い済みとしてマークされる前に、サーバーからプロバイダーに支払いが確認されます。"
+
+msgid "The payer can pay in installments."
+msgstr "支払い者は分割払いで支払うことができます。"
+
+msgid "The payer can save the card for the next payment."
+msgstr "支払い者は次の支払いのためにカードを節約できます。"
+
+msgid "The order's Refund button sends the refund to the provider."
+msgstr "注文の払い戻しボタンは、払い戻しをプロバイダーに送信します。"
+
+msgid "Added by Flux POS (the plugin has no block support)."
+msgstr "Flux POS による追加 (プラグインはブロックサポートはありません)。"
+
+msgid "Flux POS adds it once the method is enabled."
+msgstr "メソッドが有効になると、Flux POSが追加します。"
+
+msgid "Turn on \"Show other payment plugins on the checkout block\"."
+msgstr "「チェックアウト ブロックに他の支払いプラグインを表示する」をオンにしてください。"
+
+msgid "The plugin shows its card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support."
+msgstr "プラグインは古典的なチェックアウトページでのみカードフィールドを表示し、またはブロックのサポートをプロバイダーに依頼します。"
+
+msgid "Most plugins work; try a payment link once."
+msgstr "ほとんどのプラグインは動作します。支払いリンクを一度試してください。"
+
+msgid "Depends on the plugin; ask the provider."
+msgstr "プラグインによって異なります。プロバイダに問い合わせてください。"
+
+msgid "On the payment page, if the provider offers it."
+msgstr "支払いページで、プロバイダーがそれを提供する場合。"
+
+msgid "Refund in the provider's panel, then mark the order refunded."
+msgstr "プロバイダーのパネルで返金し、注文に返金済みのマークを付けます。"
+
+msgid "The bank's return is verified by signature or a server query; the amount must match."
+msgstr "銀行のリターンは、署名またはサーバークエリによって検証されます。"
+
+msgid "The account's installment table is empty."
+msgstr "アカウントのインストールテーブルは空です。"
+
+msgid "The provider does not support refunds from the site."
+msgstr "プロバイダーはサイトからの払い戻しをサポートしません。"
+
+msgid "Confirmed by hand after the receipt."
+msgstr "受領後、手作業で確認されました。"
+
+msgid "Payment details"
+msgstr "お支払い詳細"
+
+msgid "No Flux POS transaction on this order."
+msgstr "この注文でFlux POSトランザクションはありません。"
+
+msgid "Card"
+msgstr "カード"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Amount"
+msgstr "金額"
+
+msgid "Bank reference"
+msgstr "銀行の参考文献"
+
+msgid "Authorization code"
+msgstr "認可コード"
+
+msgid "Transaction no"
+msgstr "トランザクション No"
+
+msgid "Mode"
+msgstr "モード"
+
+msgid "Test"
+msgstr "テスト"
+
+msgid "Live"
+msgstr "ライブ"
+
+msgid "All transactions"
+msgstr "すべてのトランザクション"
+
+msgid "3D Pay (check and charge at the bank)"
+msgstr "3Dペイ(銀行でのチェックアウトとチャージ)"
+
+msgid "3D Model (check at the bank, charge from the server)"
+msgstr "3Dモデル(銀行にて、サーバーからチャージ)。"
+
+msgid "Bank's payment page (3D Host)"
+msgstr "銀行の決済ページ(3D Host)"
+
+msgid "Provider's payment page"
+msgstr "プロバイダーの支払いページ"
+
+msgid "Payment form on the page (iFrame)"
+msgstr "ページ(iFrame)の支払いフォームです。"
+
+msgid "Stripe card fields on the checkout page (Payment Element)"
+msgstr "支払い要素のカードのフィールドをストライプします。"
+
+msgid "Pay with wallet"
+msgstr "ウォレットで支払う"
+
+msgid "Without 3D (only on accounts the bank allows)"
+msgstr "3D(アカウントのみ)がない場合、銀行は許可します。"
+
+msgid "Store number (Client ID)"
+msgstr "店舗番号(クライアントID)"
+
+msgid "API user name"
+msgstr "API ユーザー名"
+
+msgid "The user created with the API role in the bank panel. Needed for refunds, voids and queries."
+msgstr "で作成したユーザー。 API 銀行の窓口で 払い戻しや空白、問い合わせが 必要です"
+
+msgid "API user password"
+msgstr "API パスワード"
+
+msgid "3D Store Key"
+msgstr "3Dストアキー"
+
+msgid "Merchant number"
+msgstr "商人番号"
+
+msgid "Terminal number"
+msgstr "ターミナル番号"
+
+msgid "Provision user"
+msgstr "ユーザ提供"
+
+msgid "Provision password"
+msgstr "パスワード"
+
+msgid "3D Secure key"
+msgstr "キーを3Dにします。"
+
+msgid "Refund user (PROVRFN)"
+msgstr "返金ユーザー(PROVRFN)"
+
+msgid "If empty, the provision user is used."
+msgstr "空の場合、プロビジョニング ユーザーを使用します。"
+
+msgid "Refund user password"
+msgstr "ユーザーのパスワードの払い戻し"
+
+msgid "Merchant number (MID)"
+msgstr "商人番号(MID)"
+
+msgid "Terminal number (TID)"
+msgstr "ターミナル番号(TID)"
+
+msgid "Posnet ID"
+msgstr "ポズネットID"
+
+msgid "Encryption key (ENCKEY)"
+msgstr "暗号化キー (ENCKEY)"
+
+msgid "Merchant password"
+msgstr "商品名"
+
+msgid "API user code"
+msgstr "API ユーザコード"
+
+msgid "Shop code (ShopCode)"
+msgstr "ショップコード(ShopCode)"
+
+msgid "Merchant key (MerchantPass)"
+msgstr "マーチャントキー(マーチャントパス)"
+
+msgid "Store number (MerchantId)"
+msgstr "店舗番号(商品番号)"
+
+msgid "Customer number (CustomerId)"
+msgstr "顧客番号(CustomerId)"
+
+msgid "Merchant Safe ID"
+msgstr "マーチャントセーフID"
+
+msgid "Terminal Safe ID"
+msgstr "ターミナルセーフID"
+
+msgid "Secret key"
+msgstr "秘密鍵"
+
+msgid "Merchant code (MERCHANT)"
+msgstr "商品コード(商品コード)"
+
+msgid "API user"
+msgstr "API ユーザ"
+
+msgid "API password"
+msgstr "API パスワード"
+
+msgid "Dealer type (optional)"
+msgstr "ディーラータイプ(オプション)"
+
+msgid "App key (App ID)"
+msgstr "アプリキー(アプリID)"
+
+msgid "App secret (App Secret)"
+msgstr "アプリシークレット(アプリシークレット)"
+
+msgid "Merchant key (Merchant Key)"
+msgstr "商人の鍵(商人の鍵)"
+
+msgid "API key"
+msgstr "APIキー"
+
+msgid "Store number"
+msgstr "店舗番号"
+
+msgid "Store password (Merchant Key)"
+msgstr "パスワード(マーチャントキー)を格納します。"
+
+msgid "Store secret (Merchant Salt)"
+msgstr "店の秘密(商品塩)"
+
+msgid "Terminal number (CLIENT_CODE)"
+msgstr "端末番号(CLIENT_CODE)"
+
+msgid "User name"
+msgstr "ユーザ名"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Key (GUID)"
+msgstr "キー(GUID)"
+
+msgid "Merchant (MERCHANT)"
+msgstr "商人(メルチャント)"
+
+msgid "TEST1234 for testing."
+msgstr "テスト用テスト用。"
+
+msgid "Merchant key (MERCHANT_KEY)"
+msgstr "マーチャントキー (MERCHANT_KEY)"
+
+msgid "Public token (MERCHANT_PUBLIC_TOKEN, for installment rates)"
+msgstr "パブリックトークン (MERCHANT_PUBLIC_TOKEN、インストール率)"
+
+msgid "Dealer code"
+msgstr "ディーラーコード"
+
+msgid "Client ID"
+msgstr "クライアントID"
+
+msgid "Signing key ID (kid)"
+msgstr "キーID(子供)の署名"
+
+msgid "Signing key (k)"
+msgstr "署名キー(k)"
+
+msgid "Payment key (sx)"
+msgstr "支払いキー(sx)"
+
+msgid "Void/refund key (sx)"
+msgstr "返金キー(sx)は不要です。"
+
+msgid "API key (test_… or live_…)"
+msgstr "API キー (test_... または live_...)"
+
+msgid "Publishable key (pk_test_… or pk_live_…)"
+msgstr "公開鍵 (pk_test_... または pr_live_...)"
+
+msgid "Secret key (sk_… or restricted rk_…)"
+msgstr "シークレットキー(sk_...または制限rk_...)"
+
+msgid "Webhook signing secret (whsec_…)"
+msgstr "Webhook 署名シークレット (whsec_...)"
+
+msgid "In the Stripe Dashboard, Developers › Webhooks: add the notification URL and select the payment_intent.succeeded, payment_intent.processing and payment_intent.payment_failed events."
+msgstr "ストライプダッシュボードでは、開発者 ?? Webhooks:通知URLを追加し、payment_intent.succeeded、payment_intent.processing、payment_intent.payment_failedイベントを選択します。"
+
+msgid "Statement descriptor suffix (optional, up to 22 characters)"
+msgstr "ステートメント記述子サフィックス(オプション、最大22文字)"
+
+msgid "Website index"
+msgstr "ウェブサイトのインデックス"
+
+msgid "This bank asks for the card again after the 3D return: the card is kept encrypted, tied to the transaction, for at most 20 minutes and opened once on return."
+msgstr "この銀行は、3Dリターン後にカードを再度要求します。カードは暗号化され、取引に結び付けられ、最大20分間、リターン時に一度開かれます。"
+
+msgid "This bank's return signature does not work as documented; every successful return is checked with the bank."
+msgstr "この銀行のリターンサインは文書化されていない。"
+
+msgid "The \"Provider's payment page\" model is the iyzico checkout form; the \"Pay with iyzico\" wallet is on that page too."
+msgstr "「プロバイダーの支払いページ」モデルは、iyzicoチェックアウトフォームです。「iyzicoで支払い」ウォレットもそのページにあります。"
+
+msgid "Enter this account's notification address as the Notification URL in the PayTR panel (shown on the account screen). Test mode works with the PayTR account's test key."
+msgstr "アカウント画面の「PayTR」画面で、このアカウントの通知アドレスを通知URLとして入力すると、PayTRのアカウントのテストキーでテストモードが動作します。"
+
+msgid "For a test use merchant TEST1234 and the test key from EsnekPOS's developer page."
+msgstr "テストは、テスト用TEST1234とEsnekPOSの開発者ページからテストキーを使用してください。"
+
+msgid "Enter this account's notification address as the callback address in the Shopier panel. Refunds are made in the Shopier panel."
+msgstr "アカウントの通知アドレスをショピアパネルのコールバックアドレスとして入力し、払い戻しはショピアパネルで行われます。"
+
+msgid "Test or live is taken from the key's prefix (test_… / live_…). Turkish lira is not supported."
+msgstr "キーの接頭辞からテストまたはライブ(test_.../live_...)が取得されますが、トルコのliraはサポートされていません。"
+
+msgid "Card fields are Stripe's Payment Element; card details never reach the site. 3D Secure, Apple Pay and Google Pay are handled by Stripe. Test or live is read from the key prefix and must match the account's test switch. \"Test connection\" also registers the domain for Apple Pay."
+msgstr "カードフィールドは、StripeのPayment Elementです。カードの詳細は、サイトに届きません。3D Secure、Apple Pay、Google Payは、Stripeによって処理されます。テストまたはライブは、キープレフィックスから読み込まれ、アカウントのテストスイッチに一致する必要があります。「テスト接続」はまた、Apple Payのドメインを登録します。"
+
+msgid "GiroGate method"
+msgstr "ジロゲート法"
+
+msgid "Banks"
+msgstr "銀行"
+
+msgid "Payment institutions"
+msgstr "支払い機関"
+
+msgid "Wallets"
+msgstr "ウォレット"
+
+msgid "Meal and gift cards"
+msgstr "食事・ギフトカード"
+
+msgid "Refund"
+msgstr "返金"
+
+msgid "Partial refund"
+msgstr "部分払戻し"
+
+msgid "Void"
+msgstr "ボイド"
+
+msgid "Status query"
+msgstr "ステータスクエリ"
+
+msgid "Installments by card"
+msgstr "カードによる設置"
+
+msgid "Server notification"
+msgstr "サーバー通知"
+
+msgid "The result of the previous charge is not in yet."
+msgstr "前の充電の結果はまだありません。"
+
+msgid "No result came back."
+msgstr "結果が戻らなかった。"
+
+msgid "Order #%s"
+msgstr "注文番号%s"
+
+msgid "The card was not charged."
+msgstr "カードに請求されませんでした。"
+
+msgid "Pay"
+msgstr "シェアする"
+
+msgid "Processing…"
+msgstr "処理..."
+
+msgid "The payment form could not be loaded. Refresh the page or choose another method."
+msgstr "支払いフォームが読み込めません。ページを更新したり、別の方法を選択します。"
+
+msgid "Your card details are processed in Stripe's secure fields and are not stored on this site."
+msgstr "カードの詳細は、Stripeの安全なフィールドで処理され、本サイトには保存されません。"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Pending"
+msgstr "保留中"
+
+msgid "Paid"
+msgstr "有料"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Refunded"
+msgstr "返金されました"
+
+msgid "Voided"
+msgstr "免責"
+
+msgid "Needs a check"
+msgstr "チェックが必要です"
+
+msgid "Enabled"
+msgstr "有効"
+
+msgid "Show this payment method"
+msgstr "支払い方法を表示します。"
+
+msgid "Accounts, keys, installments and the display name are managed in the Flux POS panel."
+msgstr "アカウント、キー、インストール、および表示名については、Flux POSパネルで管理されます。"
+
+msgid "Flux POS panel"
+msgstr "Flux POS panel"
+
+msgid "Card payment is not available for this currency."
+msgstr "この通貨ではカード決済はできません。"
+
+msgid "Pay by card (Flux POS)"
+msgstr "カード決済(Flux POS)。"
+
+msgid "3D Secure card payment through a bank or payment institution."
+msgstr "3D銀行や決済機関を通じての安全なカード支払い。"
+
+msgid "Bank / Credit card"
+msgstr "銀行/クレジットカード"
+
+msgid "%s (Flux POS)"
+msgstr "%s (フラックスPOS)"
+
+msgid "Completed on the payment provider's page."
+msgstr "支払いプロバイダーのページで完了します。"
+
+msgid "The merchant details are wrong; check the account settings."
+msgstr "商人の詳細が間違っている。アカウントの設定を確認してください。"
+
+msgid "The bank's return signature did not match."
+msgstr "銀行の返還署名は一致しなかった。"
+
+msgid "The bank's return does not belong to this payment."
+msgstr "銀行のリターンはこの支払いに属しません。"
+
+msgid "No successful sale was found at the bank."
+msgstr "銀行では販売が成功しなかった。"
+
+msgid "The payment is pending at the provider."
+msgstr "支払いはプロバイダーで保留されています。"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "For a payment with several lines, partial refunds are made in the Craftgate panel."
+msgstr "いくつかの行での支払いについては、Craftgateパネルで部分的な払い戻しが行われます。"
+
+msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
+msgstr "カードの所有者のフルネームをカードに書き込んでください(少なくとも6文字)。"
+
+msgid "The payment could not be started. Please try again."
+msgstr "支払いを開始できませんでした。もう一度試してください。"
+
+msgid "Status at the bank: %s"
+msgstr "銀行の状況:%s"
+
+msgid "iyzico put the payment under review."
+msgstr "イジコは支払いを審査中です"
+
+msgid "The %s provision response could not be read; check with the bank."
+msgstr "%s の規定応答は、読み取りが不可能であった。"
+
+msgid "The payment was not completed (%s)."
+msgstr "支払いは完了していない(%s)。"
+
+msgid "The payment method will report the result later."
+msgstr "支払い方法は、後日結果を報告します。"
+
+msgid "The transaction was voided at the bank."
+msgstr "取引は銀行で無効になった。"
+
+msgid "The payment was not completed."
+msgstr "支払いは完了していません。"
+
+msgid "Papara refunds only the full amount."
+msgstr "パパラは全額のみ払い戻します。"
+
+msgid "The card is not eligible for 3D Secure."
+msgstr "カードは3D Secureの対象外です。"
+
+msgid "The payment time ran out; please enter the card details again."
+msgstr "お支払い時間が切れました。カードの詳細を再度入力してください。"
+
+msgid "The result will come with the PayTR notification."
+msgstr "結果はPayTR通知が付属します。"
+
+msgid "%s did not respond."
+msgstr "%s と答えた。"
+
+msgid "The bank did not complete the 3D check."
+msgstr "銀行は3Dチェックを完了しませんでした。"
+
+msgid "The result will come with the Shopier notification."
+msgstr "結果はShopierの通知が来る。"
+
+msgid "Stripe keys are missing: a publishable key and a secret key are required."
+msgstr "公開鍵と秘密鍵が必須です。"
+
+msgid "One Stripe key is test and the other is live. Both must be in the same mode."
+msgstr "片方のStripeキーはテストされ、もう片方はライブです。"
+
+msgid "The account is in test mode but the Stripe keys are live. Enter test keys (sk_test_… / pk_test_…) or turn test mode off."
+msgstr "アカウントはテストモードにありますが、Stripeキーが有効です。"
+
+msgid "The account is live but the Stripe keys are test keys. Enter live keys or turn test mode on."
+msgstr "アカウントは有効ですが、Stripeキーはテストキーです。ライブキーを入力するか、テストモードにします。"
+
+msgid "The card number is not valid."
+msgstr "カード番号は有効ではありません。"
+
+msgid "The card number is incorrect."
+msgstr "カード番号が間違っています。"
+
+msgid "The card number is incomplete."
+msgstr "カード番号は不完全です。"
+
+msgid "The expiry month is invalid."
+msgstr "満月は無効です。"
+
+msgid "The expiry year is invalid."
+msgstr "有効期限は切れません。"
+
+msgid "The expiry year is in the past."
+msgstr "満期は過去である。"
+
+msgid "The expiry date is incomplete."
+msgstr "有効期限は不完全です。"
+
+msgid "The card has expired."
+msgstr "カードが切れた。"
+
+msgid "The security code is invalid."
+msgstr "セキュリティコードは無効です。"
+
+msgid "The security code is incorrect."
+msgstr "セキュリティコードは間違っています。"
+
+msgid "The security code is incomplete."
+msgstr "セキュリティコードは不完全です。"
+
+msgid "The postal code failed validation."
+msgstr "郵便番号は検証に失敗しました。"
+
+msgid "Invalid postal code; please correct it and try again."
+msgstr "無効な郵便番号。修正して再度お試しください。"
+
+msgid "The card was declined."
+msgstr "カードは断られた。"
+
+msgid "The card has insufficient funds or limit."
+msgstr "カードには資金または制限が不十分です。"
+
+msgid "The card issuer did not approve the payment."
+msgstr "カード発行者は支払いを承認しなかった。"
+
+msgid "The card's transaction limit was exceeded."
+msgstr "カードの取引制限を超えました。"
+
+msgid "The bank requires card authentication (3D Secure)."
+msgstr "カード認証(3D Secure)が必要です。"
+
+msgid "3D Secure authentication failed; try again or use another card."
+msgstr "3D セキュア認証が失敗し、再度試すか、別のカードを使用します。"
+
+msgid "An error occurred while processing the card; please try again."
+msgstr "カード処理中にエラーが発生しました。"
+
+msgid "The email address is invalid."
+msgstr "メールアドレスが無効です。"
+
+msgid "The payment could not be processed; try again or use another method."
+msgstr "支払いは処理できませんでした。もう一度試すか、別の方法を使用します。"
+
+msgid "The payment is processing at Stripe."
+msgstr "支払いはStripeで処理されます。"
+
+msgid "Waiting for payment authentication."
+msgstr "支払い認証待ち。"
+
+msgid "The payment was canceled."
+msgstr "支払いはキャンセルされました。"
+
+msgid "This provider sends no notifications."
+msgstr "このプロバイダーは通知を送信しません。"
+
+msgid "This provider has no refunds from the site; make them in the provider's panel."
+msgstr "このプロバイダーはサイトから払い戻しを受けません。"
+
+msgid "This provider has no voids from the site."
+msgstr "このプロバイダーはサイトから空白がありません。"
+
+msgid "This provider has no status query."
+msgstr "このプロバイダーはステータスクエリを持ちません。"
+
+msgid "Error code %s"
+msgstr "エラーコード %s"
+
+msgid "The payment was not approved."
+msgstr "支払いは承認されていませんでした。"
+
+msgid "%1$s did not respond (HTTP %2$d)."
+msgstr "%1$s は、HTTP で応答しません。 %2$d)."
+
+msgid "Redirect: the bank or provider page opens full screen"
+msgstr "リダイレクト: 銀行またはプロバイダーのページが全画面を開きます。"
+
+msgid "Popup: in a frame, without leaving checkout"
+msgstr "ポップアップ: フレーム内で、チェックアウトを離れずに。"
+
+msgid "On site: in a frame, with the site's header and footer"
+msgstr "サイト上:フレーム内、サイトのヘッダーとフッター付き。"
+
+msgid "This provider has no connection test; try a small payment with a test card."
+msgstr "このプロバイダーは接続テストを持っていません。"
+
+msgid "Connection works, the keys were accepted."
+msgstr "接続作業、鍵が受け入れられた。"
+
+msgid "Automatic"
+msgstr "自動"
+
+msgid "Show all"
+msgstr "すべて表示"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce はアクティブではありません。"
+
+msgid "Add a POS account before turning on the Pay by card method."
+msgstr "カード決済の方法を有効にする前に、POSアカウントを追加します。"
+
+msgid "Refund from the panel"
+msgstr "パネルからの払い戻し"
+
+msgid "No active POS account; card payments are not taken."
+msgstr "アクティブなPOSアカウントはありません。カードの支払いは行われません。"
+
+msgid "An account is in test mode, no real money is charged: %s"
+msgstr "アカウントはテストモードであり、実際のお金は請求されません。 %s"
+
+msgid "%d account is active in live mode."
+msgid_plural "%d accounts are active in live mode."
+msgstr[0] "%d アカウントは、ライブモードでアクティブです。"
+
+msgid "%s: no webhook signing secret. The payment return is still read, but if the payer closes the page before returning the order stays pending. Add the notification URL in the Stripe Dashboard and enter the whsec_… secret."
+msgstr "%s : ウェブフックの署名秘密はありません。支払いのリターンがまだ読み込まれていますが、支払い担当者が注文を返す前にページを閉じている場合、保留状態です。"
+
+msgid "The official WooCommerce Stripe plugin is also active. Pick a single card method in Flux POS › Methods so payers do not see two card options."
+msgstr "WooCommerce Stripeの公式プラグインもアクティブです。"
+
+msgid "The site is not on HTTPS; banks do not send the card result to the return address and the card form is not secure."
+msgstr "銀行はカード結果をリターンアドレスに送信せず、カードフォームは安全ではありません。"
+
+msgid "Key encryption"
+msgstr "キーの暗号化"
+
+msgid "PHP sodium or openssl is missing; POS keys cannot be encrypted."
+msgstr "PHP sodium または openssl が欠落しています。POS キーは暗号化できません。"
+
+msgid "Keys are encrypted with the WordPress salts. If the wp-config.php salts change, enter the POS keys again."
+msgstr "キーは暗号化されます。 WordPress salts.wp-config.php の塩が変わったら、POS キーを再度入力します。"
+
+msgid "The check could not run: %s"
+msgstr "チェックは実行できませんでした。 %s"

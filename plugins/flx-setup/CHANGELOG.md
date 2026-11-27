@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.7.2
+- Yönetim ekranları için dil katalogları güncellendi. Toplu işlem araçları dar ekranlara sığar.
+
+
 ## 1.7.1
 - FluxWP hesabına bağlanırken "FluxWP Panel is too old to connect" hatası: REST API'yi gizleyen/kısıtlayan siteler (görünmez siteler, güvenlik eklentileri) sahiplik kanıtı isteğine 404 dönüyordu ve fluxwp.com bunu "eski sürüm" sayıyordu. Kanıt isteği artık diğer eklentilerden önce yanıtlanır.
 

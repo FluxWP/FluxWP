@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.5
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.5.4
 - Ekran başlığı sol menüdeki adı gösterir.
 

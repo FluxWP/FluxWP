@@ -284,6 +284,13 @@ return array(
   'Otomatik' => 'Автоматический',
   'Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur.' => 'Он защищает вход в систему, регистрацию, сброс пароля, комментарии, учетную запись WooCommerce и платежи, форму пожертвования Flux Donate и отправку форм Flux Forms от спама и атак ботов с помощью Google reCAPTCHA (невидимая версия v3 или плитка v2). Какая форма будет поддерживаться, включается и выключается с панели; Flux Speed совместим с пользовательским адресом входа.',
   'It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address.' => 'Он защищает вход в систему, регистрацию, сброс пароля, комментарии, учетную запись WooCommerce и платежи, форму пожертвования Flux Donate и отправку форм Flux Forms от спама и атак ботов с помощью Google reCAPTCHA (невидимая версия v3 или плитка v2). Какая форма будет поддерживаться, включается и выключается с панели; Flux Speed совместим с пользовательским адресом входа.',
-
+  'Choose v2 or v3.' => 'Выбор v2 или v3.',
+  'A key can only contain letters, numbers, "-" and "_".' => 'Ключ может содержать только буквы, номера, "" и "_".',
+  'The bot threshold must be between 0.1 and 0.9.' => 'Пороговый уровень в разогретом состоянии должен составлять от 0,1 до 0,9.',
+  'Choose the Google host.' => 'Выбери хозяйку Гугла.',
+  'Choose the checkbox theme.' => 'Выбери тему для чекового ящика.',
+  'Choose the checkbox size.' => 'Выбери размер чекового ящика.',
+  'Enter an IP address or a range like 198.51.100.0/24.' => 'Введите IP-адрес или диапазон, похожий на 198.51.100,0/24.',
+  'This form is not known.' => 'Эта форма не известна.',
  ),
 );

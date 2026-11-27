@@ -4,12 +4,14 @@ on:
   pull_request:
     paths:
       - 'plugins/flx-graphql/assets/js/responsive.js'
+      - 'packages/modules/src/gettext-plural.ts'
       - 'tools/tests/responsive/**'
       - '.github/workflows/responsive-admin.yml'
   push:
     branches: [main]
     paths:
       - 'plugins/flx-graphql/assets/js/responsive.js'
+      - 'packages/modules/src/gettext-plural.ts'
       - 'tools/tests/responsive/**'
       - '.github/workflows/responsive-admin.yml'
 
@@ -28,3 +30,4 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bunx playwright install --with-deps chromium
       - run: node --test tools/tests/responsive/navigation.test.mjs
+      - run: bun test tools/tests/responsive/unit/gettext-plural.test.ts

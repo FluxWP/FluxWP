@@ -66,25 +66,12 @@ export interface MountOptions {
 /** Queries a screen sends in its first moments count as its first queries. */
 const LEARN_MS = 2500;
 
-const FAIL_TEXT: Record<string, { title: string; body: string; reload: string }> = {
-  tr: {
-    title: 'Bu ekran yüklenemedi',
-    body: 'Eklenti yeni güncellendiyse tarayıcı ya da site önbelleği eski dosyaları tutuyor olabilir. Sayfayı sert yenileyin (Ctrl/Cmd + Shift + R); sürerse site önbelleğini temizleyin.',
-    reload: 'Sayfayı yenile',
-  },
-  en: {
-    title: 'This screen could not be loaded',
-    body: 'If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache.',
-    reload: 'Reload page',
-  },
-};
-
 /**
  * A screen whose code cannot load (stale cached file, failed chunk, runtime error) used to leave a blank page.
  * This shows what happened and the way out instead: reload. There is no classic screen to fall back to.
  * (A bundle that cannot load at all is caught by flx-graphql flx_admin_screen_failsafe() with the same text.)
  */
-class ScreenGuard extends Component<{ lang: string; children: ReactNode }, { failed: boolean }> {
+class ScreenGuard extends Component<{ i18n: ReturnType<typeof createI18n>; children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };
@@ -94,15 +81,15 @@ class ScreenGuard extends Component<{ lang: string; children: ReactNode }, { fai
   }
   render() {
     if (!this.state.failed) return this.props.children;
-    const t = FAIL_TEXT[this.props.lang.slice(0, 2)] ?? FAIL_TEXT.en!;
+    const { t } = this.props.i18n;
     const btn = { padding: '8px 14px', borderRadius: 8, border: '1px solid currentColor', background: 'transparent', color: 'inherit', cursor: 'pointer', font: 'inherit', textDecoration: 'none' } as const;
     return (
       <div role="alert" style={{ maxWidth: 520, margin: '48px auto', padding: 24, textAlign: 'center', color: 'var(--flux-text, inherit)' }}>
-        <h2 style={{ margin: '0 0 8px', font: 'inherit', fontSize: 18, fontWeight: 600 }}>{t.title}</h2>
-        <p style={{ margin: '0 0 16px', opacity: 0.8 }}>{t.body}</p>
+        <h2 style={{ margin: '0 0 8px', font: 'inherit', fontSize: 18, fontWeight: 600 }}>{t('screenLoadError.title')}</h2>
+        <p style={{ margin: '0 0 16px', opacity: 0.8 }}>{t('screenLoadError.body')}</p>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button type="button" style={btn} onClick={() => location.reload()}>
-            {t.reload}
+            {t('screenLoadError.reload')}
           </button>
         </div>
       </div>
@@ -267,7 +254,7 @@ export function createEmbed(screens: ScreenSource): EmbedApi {
           <QueryClientProvider client={qc}>
             <ModuleHostProvider value={host}>
               <Themed el={el} theme={o.theme ?? 'auto'} />
-              <ScreenGuard lang={i18n.language}>
+              <ScreenGuard i18n={i18n}>
                 <Screen />
               </ScreenGuard>
             </ModuleHostProvider>

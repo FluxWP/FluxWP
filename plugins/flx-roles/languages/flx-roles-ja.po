@@ -319,3 +319,21 @@ msgstr "役割"
 
 msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
 msgstr "スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。"
+
+msgid "Unknown role."
+msgstr "不明な役割。"
+
+msgid "Unknown permission: %s."
+msgstr "未知許可:%s。"
+
+msgid "This screen is not available."
+msgstr "この画面はご利用いただけません。"
+
+msgid "Enter 1 to 365 days."
+msgstr "1日から365日。"
+
+msgid "Only roles added from the panel can be deleted."
+msgstr "パネルから追加された役割のみを削除できます。"
+
+msgid "Not found."
+msgstr "見つからない。"

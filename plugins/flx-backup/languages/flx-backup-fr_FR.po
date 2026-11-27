@@ -896,7 +896,7 @@ msgid "Before restore"
 msgstr "Avant la restauration"
 
 msgid "Plugin (API)"
-msgstr "Plugin (API)"
+msgstr "Plugin ( API )"
 
 msgid "Uploaded"
 msgstr "Téléchargé"
@@ -1049,3 +1049,9 @@ msgstr "Progrès"
 
 msgid "Take the first backup with Back up now. Restore is done in the panel."
 msgstr "Effectuez la première sauvegarde avec Sauvegarder maintenant. La restauration se fait dans le panneau."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript est nécessaire pour cet écran."
+
+msgid "%s%%"
+msgstr "%s %%"

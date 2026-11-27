@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.13.1
+- Yönetim ekranları için dil katalogları güncellendi. Arapça raporlarda grafik etiketleri ekran içinde kalır.
+
+
 ## 2.13.0
 - Pano klasik ekranla birebir: aynı KPI kartları, günlük yanıt çizgisi (önceki dönemle), ödeme durumu, forma göre yanıtlar, yanıt saatleri ısı haritası, son yanıtlar ve en çok kullanılan formlar tablosu; 7/30/90 gün ve Özel aralık, CSV dışa aktarma.
 - Otomasyonlar klasik ekranla birebir: akış listesi (anahtar, adım çipleri, simge düğmeler), çalıştırma günlüğü ve dikey akış düzenleyici (tetikleyici, koşullar, adımlar, teşekkür ekranı önizlemesi).

@@ -215,6 +215,11 @@ return array(
   'Roller' => '角色',
   'Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.' => '添加员工、管理员和经理角色(新角色也是从面板添加的);您可以从单个页面打开和关闭角色的任务、证书、捐赠、呼叫中心、工作室和报告访问权限。个人参考链接和用户电话号码(WhatsApp 助手)位于此处。',
   'Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.' => '添加员工、管理员和经理角色(新角色也是从面板添加的);您可以从单个页面打开和关闭角色的任务、证书、捐赠、呼叫中心、工作室和报告访问权限。个人参考链接和用户电话号码(WhatsApp 助手)位于此处。',
-
+  'Unknown role.' => '未知角色。',
+  'Unknown permission: %s.' => '未获知许可:%s。',
+  'This screen is not available.' => '没有这种 screen幕。',
+  'Enter 1 to 365 days.' => '1至365天。',
+  'Only roles added from the panel can be deleted.' => '只有从小组中增加的作用才能删除。',
+  'Not found.' => '未找到。',
  ),
 );

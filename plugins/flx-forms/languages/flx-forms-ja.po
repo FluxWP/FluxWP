@@ -620,7 +620,7 @@ msgid "Properties"
 msgstr "プロパティ"
 
 msgid "Apply"
-msgstr "申し込む"
+msgstr "適用"
 
 msgid "Logo"
 msgstr "ロゴ"
@@ -947,7 +947,7 @@ msgid "Clear log"
 msgstr "ログをクリアする"
 
 msgid "Time"
-msgstr "時間"
+msgstr "時刻"
 
 msgid "Steps"
 msgstr "ステップ"
@@ -1772,7 +1772,7 @@ msgid "XLarge"
 msgstr "特大"
 
 msgid "XXLarge"
-msgstr "XXLarge"
+msgstr "○大。"
 
 msgid "XXXLarge"
 msgstr "XXX大"
@@ -1958,7 +1958,7 @@ msgid "Keep Pro"
 msgstr "KeepPro"
 
 msgid "Keep Free Plus"
-msgstr "Keep Free Plus"
+msgstr "フリープラスをキープします。"
 
 msgid "Switch to Free Plus"
 msgstr "Free Plus に切り替える"
@@ -3434,10 +3434,10 @@ msgid "Max Duration (seconds)"
 msgstr "最大継続時間 (秒)"
 
 msgid "480p"
-msgstr "480p"
+msgstr "文明(日本)11年(480年)"
 
 msgid "720p (HD)"
-msgstr "720p (HD)"
+msgstr "720p(HD)"
 
 msgid "1080p (Full HD)"
 msgstr "1080p (フル HD)"
@@ -4091,7 +4091,7 @@ msgid "The code lookup card"
 msgstr "コード検索カード"
 
 msgid "Reply box and code input"
-msgstr "Reply box and code input"
+msgstr "返信ボックスとコード入力"
 
 msgid "What the user types"
 msgstr "ユーザーが入力した内容"
@@ -4793,7 +4793,7 @@ msgid "Select a Date"
 msgstr "日付を選択してください"
 
 msgid "ex: example@mail.com"
-msgstr "ex: example@mail.com"
+msgstr "例:example@mail.com"
 
 msgid "How can we help you?"
 msgstr "どのようにお手伝いできますか?"
@@ -5522,7 +5522,7 @@ msgid "Thank you for taking part"
 msgstr "ご参加いただきありがとうございます"
 
 msgid "Registration (to the new user)"
-msgstr "Registration (to the new user)"
+msgstr "新規ユーザーへの登録"
 
 msgid "Sent to a visitor who registered with a registration form; contains the confirmation link."
 msgstr "登録フォームに登録した訪問者に送信されます。確認リンクが含まれています。"
@@ -6104,7 +6104,7 @@ msgid "Telegram Integration"
 msgstr "テレグラムの統合"
 
 msgid "Real-time Form Notifications"
-msgstr "Real-time Form Notifications"
+msgstr "リアルタイムフォーム通知"
 
 msgid "Notifications are active"
 msgstr "通知はアクティブです"
@@ -6584,7 +6584,7 @@ msgid "Protects public reply box."
 msgstr "公開返信ボックスを保護します。"
 
 msgid "Replies per tracking code/hour"
-msgstr "Replies per tracking code/hour"
+msgstr "トラッキングコード毎時返信。"
 
 msgid "Caps replies to one tracked conversation (across IPs). 0 disables."
 msgstr "Caps は 1 つの追跡された会話 (IP 間) に返信します。 0 は無効になります。"
@@ -6737,7 +6737,7 @@ msgid "Some required PHP functions are unavailable."
 msgstr "必要な PHP 関数の一部が使用できません。"
 
 msgid "REST API:"
-msgstr "REST API:"
+msgstr "REST API"
 
 msgid "available"
 msgstr "\\利用可能"
@@ -7493,7 +7493,7 @@ msgid "Email cleared. New sheets will stay inside the service account until you 
 msgstr "電子メールが消去されました。新しいシートは、共有するまでサービス アカウント内に残ります。"
 
 msgid "Remove this service account?"
-msgstr "Remove this service account?"
+msgstr "このサービスアカウントを削除しますか?"
 
 msgid "Connect each form to a specific Google Sheet tab"
 msgstr "各フォームを特定の Google スプレッドシート タブに接続します"
@@ -9133,3 +9133,155 @@ msgstr "ストライプに接続できませんでした:%s"
 
 msgid "Stripe API error (HTTP %d)."
 msgstr "ストライプ API エラー (HTTP%d)."
+
+msgid "Form submission"
+msgstr "フォーム送信"
+
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "送信された公開フォーム、調査、サブスクライブ。 GraphQL."
+
+msgid "Manages forms and responses"
+msgstr "フォームとレスポンスを管理します。"
+
+msgid "Opens the form builder"
+msgstr "フォームビルダーを開きます。"
+
+msgid "Opens the forms panel"
+msgstr "フォームパネルを開きます。"
+
+msgid "Manages form add-ons"
+msgstr "アドオン管理"
+
+msgid "WooCommerce"
+msgstr "ウーコマース"
+
+msgid "Flux Forms: choices"
+msgstr "フラックスフォーム: 選択します。"
+
+msgid "Flux Forms: advanced"
+msgstr "フラックスフォーム: 高度な"
+
+msgid "Flux Forms: payment"
+msgstr "フラックスフォーム:支払い。"
+
+msgid "Flux Forms: content"
+msgstr "フラックスフォーム: コンテンツ"
+
+msgid "The form structure is not valid."
+msgstr "フォーム構造は有効ではありません。"
+
+msgid "This form type is not supported."
+msgstr "このフォームタイプはサポートされていません。"
+
+msgid "This form was changed somewhere else after you opened it."
+msgstr "フォームは、開いた後に別の場所に変更されました。"
+
+msgid "WooCommerce checkout"
+msgstr "WooCommerce チェックアウト"
+
+msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
+msgstr "安全なチェックアウトページで支払い方法(カード、銀行振込など)を選択します。"
+
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "開いたウィンドウで支払いを完了し、このページは完了後も続きます。"
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "支払いウィンドウがブロックされました。このサイトのポップアップを許可して、もう一度試してください。"
+
+msgid "The payment was not completed. You can try again."
+msgstr "支払いは完了していません。もう一度試してください。"
+
+msgid "The order is received; the payment is confirmed when it arrives."
+msgstr "注文が受け取られ、支払いが到着したときに確認されます。"
+
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "お支払い完了です。このウィンドウを閉じてフォームに戻すことができます。"
+
+msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
+msgstr "ご注文は、到着時に確認され、このウィンドウを閉じてフォームに戻ることができます。"
+
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "支払いが終わっていないので、このウィンドウを閉じて、フォームでもう一度試してください。"
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "Flux Donateはアクティブですが、支払いを引き継いでいません(フィルターflxb_own_paymentsはオフですか?)。"
+
+msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
+msgstr "お支払いフォームは有料です。 WooCommerce チェックアウト(参照)%1$s; %2$s)."
+
+msgid "No payment form exists. WooCommerce is needed only to take payments."
+msgstr "支払いフォームはありません。 WooCommerce 支払いを受けるだけである必要があります。"
+
+msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
+msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
+msgstr[0] "WooCommerce 支払い方法が有効になっていません。 %d 支払いフォームは支払いを受けられません。"
+
+msgid "WooCommerce is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "WooCommerce 活動していないのです %d 支払いフォームには「オンライン支払いが利用できません」と表示されます。"
+
+msgid "Payment methods"
+msgstr "支払い方法"
+
+msgid "Card payment"
+msgstr "カード支払い"
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "支払いフォームでオンライン支払いを行うには、インストールして有効化します。 WooCommerce 支払い方法を有効にします。"
+
+msgid "The form was not found."
+msgstr "形は見つからなかった。"
+
+msgid "Write a reply."
+msgstr "返事を書いてください。"
+
+msgid "The response was not found."
+msgstr "返答は見つからなかった。"
+
+msgid "The reply could not be saved."
+msgstr "返信が保存できませんでした。"
+
+msgid "The settings could not be saved."
+msgstr "設定が保存できませんでした。"
+
+msgid "Choose between 1 and 7 days."
+msgstr "1日から7日の間で選択します。"
+
+msgid "Unknown track code style."
+msgstr "未知のトラックコードスタイル。"
+
+msgid "Unknown SMS sender."
+msgstr "SMS 送信機。"
+
+msgid "Enter a colour like #1a2b3c."
+msgstr "1a2b3c のように色を入力します。"
+
+msgid "Enter a valid e-mail address."
+msgstr "有効なメールアドレスを入力してください。"
+
+msgid "Use numbers like +12345678900, separated by commas."
+msgstr "カンマで区切られた+12345678900のような番号を使用してください。"
+
+msgid "The template must contain the shortcode_message shortcode."
+msgstr "テンプレートには shortcode_message のショートコードが含まれていなければなりません。"
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "提出が多すぎる。ちょっと待って、もう一度やってみよう。"
+
+msgid "The form could not be sent."
+msgstr "フォームが送信できませんでした。"
+
+msgid "This form cannot be sent here."
+msgstr "このフォームは、ここで送信できません。"
+
+msgid "The tracking code was not found."
+msgstr "追跡コードは見つかりませんでした。"
+
+msgid "Upload the file again."
+msgstr "ファイルを再度アップロードします。"
+
+msgid "The confirmation code is not valid."
+msgstr "確認コードは有効ではありません。"
+
+msgid "Choose one of the listed options."
+msgstr "リストされているオプションの1つを選択します。"

@@ -1,5 +1,9 @@
 # Flux reCAPTCHA
 
+## 0.5.5
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.5.4
 - Ekran klasik sayfayla birebir: özet kartı ve başlık ikonları (kalkan, liste, robot, anahtar, ayar), "Test et ve kaydet" oynat ikonu, Google konsolu bağlantısında dış bağlantı ikonu, bilgi kutusu mavi zeminde.
 

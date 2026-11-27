@@ -473,7 +473,7 @@ msgid "Open task"
 msgstr "タスクを開く"
 
 msgid "You were mentioned in a comment"
-msgstr "You were mentioned in a comment"
+msgstr "コメントで述べました"
 
 msgid "Sent when someone @mentions you in a comment."
 msgstr "誰かがコメントであなたを @メンションしたときに送信されます。"
@@ -533,7 +533,7 @@ msgid "You don't have permission to create folders in this project."
 msgstr "このプロジェクトにフォルダーを作成する権限がありません。"
 
 msgid "You don't have permission to edit this folder."
-msgstr "You don't have permission to edit this folder."
+msgstr "このフォルダを編集する権限はありません。"
 
 msgid "You don't have permission to delete this folder."
 msgstr "このフォルダーを削除する権限がありません。"
@@ -554,7 +554,7 @@ msgid "You must be a list manager to edit fields."
 msgstr "フィールドを編集するには、リスト管理者である必要があります。"
 
 msgid "You must be a list manager to delete fields."
-msgstr "You must be a list manager to delete fields."
+msgstr "フィールドを削除するには、リストマネージャである必要があります。"
 
 msgid "You don't have access."
 msgstr "アクセス権がありません。"
@@ -566,7 +566,7 @@ msgid "You don't have permission to change this view."
 msgstr "このビューを変更する権限がありません。"
 
 msgid "You don't have permission to delete this view."
-msgstr "You don't have permission to delete this view."
+msgstr "このビューを削除する権限はありません。"
 
 msgid "Project managers edit tags."
 msgstr "プロジェクトマネージャーはタグを編集します。"
@@ -785,7 +785,7 @@ msgid "Email draft"
 msgstr "ドラフトをメールで送信"
 
 msgid "AI (Ctrl+J)"
-msgstr "AI (Ctrl+J)"
+msgstr "AI(Ctrl+J)"
 
 msgid "Untitled"
 msgstr "無題"
@@ -1037,7 +1037,7 @@ msgid "Insert row above"
 msgstr "上に行を挿入"
 
 msgid "Add column left"
-msgstr "Add column left"
+msgstr "列を左に追加します。"
 
 msgid "Insert row below"
 msgstr "下に行を挿入"
@@ -1199,7 +1199,7 @@ msgid "Insert at top"
 msgstr "上部に挿入"
 
 msgid "Add as new page"
-msgstr "Add as new page"
+msgstr "新しいページを追加します。"
 
 msgid "Add to page"
 msgstr "ページに追加"
@@ -1223,7 +1223,7 @@ msgid "Add item"
 msgstr "アイテムの追加"
 
 msgid "Add as tasks ({n})"
-msgstr "Add as tasks ({n})"
+msgstr "タスクとして追加します。{n})"
 
 msgid "{n} tasks added to \"{l}\"."
 msgstr "{n}タスクが「{l}」に追加されました。"
@@ -1271,7 +1271,7 @@ msgid "Empty folder"
 msgstr "空のフォルダー"
 
 msgid "You have no visible projects."
-msgstr "You have no visible projects."
+msgstr "目に見えないプロジェクトはありません。"
 
 msgid "Theme"
 msgstr "テーマ"
@@ -1802,7 +1802,7 @@ msgid "First list"
 msgstr "最初のリスト"
 
 msgid "You will be added as a manager."
-msgstr "You will be added as a manager."
+msgstr "マネージャとして追加されます。"
 
 msgid "Project settings"
 msgstr "プロジェクト設定"
@@ -2030,7 +2030,7 @@ msgid "Follow (get notifications)"
 msgstr "フォローする(通知を受け取る)"
 
 msgid "You will get notifications for this task"
-msgstr "You will get notifications for this task"
+msgstr "このタスクの通知が届きます。"
 
 msgid "Notifications for this task are turned off"
 msgstr "このタスクの通知はオフになっています"
@@ -2390,7 +2390,7 @@ msgid "Task name updated."
 msgstr "タスク名が更新されました。"
 
 msgid "Apply"
-msgstr "申し込む"
+msgstr "適用"
 
 msgid "Description updated."
 msgstr "説明が更新されました。"
@@ -2715,3 +2715,258 @@ msgstr "この画面は FluxApp と同じです。クラシック表示はしば
 
 msgid "Could not start a chat."
 msgstr "チャットを開始できませんでした。"
+
+msgid "Select text to comment on, or use a block's menu."
+msgstr "コメントするテキストを選択するか、ブロックのメニューを使ってください。"
+
+msgid "Open comment"
+msgstr "コメントを開く"
+
+msgid "Resolved"
+msgstr "解決済み"
+
+msgid "No resolved comments."
+msgstr "解決済みのコメントはありません。"
+
+msgid "No comments yet."
+msgstr "まだコメントはありません。"
+
+msgid "Select text and press \"Comment\", or add a comment from a block's menu (⋮⋮)."
+msgstr "テキストを選択して「コメント」を押すか、ブロックのメニュー（⋮⋮）からコメントを追加します。"
+
+msgid "Block"
+msgstr "ブロック"
+
+msgid "deleted"
+msgstr "削除済み"
+
+msgid "text changed"
+msgstr "テキストが変更されました"
+
+msgid "Write a comment… (Ctrl+Enter sends)"
+msgstr "コメントを入力…（Ctrl+Enter で送信）"
+
+msgid "Comment"
+msgstr "コメントする"
+
+msgid "This comment was deleted."
+msgstr "このコメントは削除されました。"
+
+msgid "(edited)"
+msgstr "（編集済み）"
+
+msgid "Reopen"
+msgstr "再オープン"
+
+msgid "Mark as resolved"
+msgstr "解決済みにする"
+
+msgid "Resolved by {n}"
+msgstr "{n} が解決"
+
+msgid "{n} more replies"
+msgstr "ほか {n} 件の返信"
+
+msgid "Reply… (Ctrl+Enter sends)"
+msgstr "返信…（Ctrl+Enter で送信）"
+
+msgid "Reply"
+msgstr "返信"
+
+msgid "The comment will be deleted; the replies stay in the thread."
+msgstr "コメントは削除されますが、返信はスレッドに残ります。"
+
+msgid "The comment will be permanently deleted."
+msgstr "コメントは完全に削除されます。"
+
+msgid "Comment resolved"
+msgstr "コメントを解決しました"
+
+msgid "This page is locked."
+msgstr "このページはロックされています。"
+
+msgid "Locked by {n}, {t}."
+msgstr "{n} がロック（{t}）。"
+
+msgid "Unlock it to edit."
+msgstr "編集するにはロックを解除してください。"
+
+msgid "Unlock"
+msgstr "ロック解除"
+
+msgid "You can view and comment on this page."
+msgstr "このページは閲覧とコメントができます。"
+
+msgid "You can only view this page."
+msgstr "このページは閲覧のみ可能です。"
+
+msgid "Page locked"
+msgstr "ページをロックしました"
+
+msgid "The page was locked; your changes are saved once it is unlocked."
+msgstr "ページがロックされました。変更はロック解除後に保存されます。"
+
+msgid "This page is locked. Unlock it to edit."
+msgstr "このページはロックされています。編集するにはロックを解除してください。"
+
+msgid "Page unlocked"
+msgstr "ロックを解除しました"
+
+msgid "{n} locked this page so it is not changed by accident. If you unlock it, everyone who can edit can change it again."
+msgstr "{n} が誤って変更されないようにこのページをロックしました。ロックを解除すると、編集できる全員が再び変更できます。"
+
+msgid "If you unlock it, everyone who can edit can change the page again."
+msgstr "ロックを解除すると、編集できる全員が再びページを変更できます。"
+
+msgid "Lock page"
+msgstr "ページをロック"
+
+msgid "Access…"
+msgstr "アクセス…"
+
+msgid "Restricted access"
+msgstr "アクセス制限あり"
+
+msgid "Locked"
+msgstr "ロック中"
+
+msgid "Page access"
+msgstr "ページのアクセス"
+
+msgid "Access saved"
+msgstr "アクセス設定を保存しました"
+
+msgid "Everyone with access to the document"
+msgstr "ドキュメントにアクセスできる全員"
+
+msgid "Everyone in the project who can see this document also sees this page."
+msgstr "このドキュメントを見られるプロジェクトの全員がこのページも見られます。"
+
+msgid "Only people I choose"
+msgstr "選んだ人のみ"
+
+msgid "The page and its subpages are visible only to the people below and project admins."
+msgstr "ページとサブページは下の人とプロジェクト管理者だけに表示されます。"
+
+msgid "The parent page is restricted too: only people allowed there can open this page."
+msgstr "親ページも制限されています。そこで許可された人だけがこのページを開けます。"
+
+msgid "Can edit (you)"
+msgstr "編集可（あなた）"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "+ Add person"
+msgstr "+ ユーザーを追加"
+
+msgid "People and their roles"
+msgstr "ユーザーと役割"
+
+msgid "Project admins ({n}) always have access."
+msgstr "プロジェクト管理者（{n}）は常にアクセスできます。"
+
+msgid "Add comment"
+msgstr "コメントを追加"
+
+msgid "Add comment (Ctrl+Alt+M)"
+msgstr "コメントを追加（Ctrl+Alt+M）"
+
+msgid "This page is locked. Unlock it to make changes."
+msgstr "このページはロックされています。変更するにはロックを解除してください。"
+
+msgid "Only people who can edit the page can lock or unlock it."
+msgstr "ページを編集できる人だけがロックと解除を行えます。"
+
+msgid "Only people who can edit the page can change who has access."
+msgstr "アクセスを変更できるのはページを編集できる人だけです。"
+
+msgid "You are not allowed to comment on this page."
+msgstr "このページにコメントする権限がありません。"
+
+msgid "Write a comment first."
+msgstr "先にコメントを入力してください。"
+
+msgid "Comment not found."
+msgstr "コメントが見つかりません。"
+
+msgid "Select some text or a block to comment on."
+msgstr "コメントするテキストまたはブロックを選択してください。"
+
+msgid "The comment could not be saved."
+msgstr "コメントを保存できませんでした。"
+
+msgid "Only the author can edit a comment."
+msgstr "コメントを編集できるのは作成者だけです。"
+
+msgid "Only the author or a project admin can delete a comment."
+msgstr "コメントを削除できるのは作成者かプロジェクト管理者だけです。"
+
+msgid "You are not allowed to resolve this comment."
+msgstr "このコメントを解決する権限がありません。"
+
+msgid "Unresolved"
+msgstr "未解決"
+
+msgid "Flux Tasks needs the Flux GraphQL plugin. Install and activate it to open this screen."
+msgstr "Flux Tasks は Flux GraphQL プラグインを必要とし、インストールして有効にします。"
+
+msgid "Nothing to change."
+msgstr "何も変わるものはない。"
+
+msgid "You are not allowed to edit this page."
+msgstr "このページは編集できません。"
+
+msgid "AI is off"
+msgstr "AIはオフです"
+
+msgid "Info and activity"
+msgstr "情報と活動"
+
+msgid "created the page"
+msgstr "ページを作成したのです"
+
+msgid "edited the page"
+msgstr "ページを編集し"
+
+msgid "moved the page"
+msgstr "ページを移動します"
+
+msgid "renamed it from \"{a}\" to \"{b}\""
+msgstr "から改名しました。{a}「」{b}\""
+
+msgid "No activity yet"
+msgstr "まだ活動していない"
+
+msgid "Could not load activity"
+msgstr "アクティビティの読み込みができない"
+
+msgid "Hide pages"
+msgstr "秘ページ"
+
+msgid "Created by"
+msgstr "作成者"
+
+msgid "Cannot be moved into or under a locked page."
+msgstr "ロックされたページ内または下に移動することはできません。"
+
+msgid "Drag to resize"
+msgstr "ドラッグしてサイズ変更します。"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Remove file"
+msgstr "ファイルを削除"
+
+msgid "Preview image for YouTube links"
+msgstr "YouTube リンクのプレビュー画像"
+
+msgid "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+msgstr "テキストの行にYouTubeのリンクが貼られていると、ビデオのサムネイルが付いたカードが現れる。"
+
+msgid "Gantt"
+msgstr "ギャント"
+
+msgid "This dependency would create a loop."
+msgstr "この依存性はループを作成します。"

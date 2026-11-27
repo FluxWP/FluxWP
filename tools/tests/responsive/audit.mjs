@@ -15,6 +15,12 @@ const { values } = parseArgs({
     pages: { type: 'string' },
     tabs: { type: 'boolean', default: false },
     scheme: { type: 'string', default: 'light' },
+    locale: { type: 'string' },
+    'locale-cookie': { type: 'string' },
+    'text-out': { type: 'boolean', default: false },
+    'no-screenshots': { type: 'boolean', default: false },
+    'settle-ms': { type: 'string', default: '500' },
+    'auth-state': { type: 'string' },
   },
 });
 if (!values.url || !values.inventory || !values.out) {
@@ -23,6 +29,8 @@ if (!values.url || !values.inventory || !values.out) {
 const base = new URL(values.url);
 const widths = values.widths.split(',').map(Number);
 if (widths.some((width) => !Number.isInteger(width) || width < 280)) throw new Error('Invalid viewport widths');
+const settle = Number(values['settle-ms']);
+if (!Number.isInteger(settle) || settle < 50) throw new Error('Invalid viewport settling time');
 const out = path.resolve(values.out);
 await mkdir(out, { recursive: true });
 const inventory = JSON.parse(await readFile(values.inventory, 'utf8'));
@@ -35,34 +43,43 @@ const pages = requested ? routes.filter((route) => requested.includes(route)) : 
 const browser = await chromium.launch({
   ...(process.env.PW_CHROMIUM || existsSync('/usr/bin/chromium') ? { executablePath: process.env.PW_CHROMIUM || '/usr/bin/chromium' } : {}),
   args: ['--no-sandbox'],
+  // An unavailable proxy blocks external providers and media without disabling Chromium's asset cache.
+  proxy: { server: 'http://127.0.0.1:9', bypass: base.hostname },
 });
 const results = [];
 let reportWrite = Promise.resolve();
 const hasOverflow = (view) => view.documentWidth > view.width + 2 || view.outside.some((element) => element.right > view.viewport + 2 || element.left < -2);
 try {
-  const auth = await browser.newContext();
-  const login = await auth.newPage();
-  await login.goto(new URL('/wp-login.php', base).href);
-  await login.locator('#user_login').fill(process.env.WP_ADMIN_USER || 'admin');
-  await login.locator('#user_pass').fill(process.env.WP_ADMIN_PASSWORD || 'admin12345');
-  await login.locator('#wp-submit').click();
-  await login.waitForURL('**/wp-admin/**');
-  const storageState = await auth.storageState();
-  await auth.close();
+  let storageState = values['auth-state'];
+  if (!storageState) {
+    const auth = await browser.newContext();
+    const login = await auth.newPage();
+    await login.goto(new URL('/wp-login.php', base).href);
+    await login.locator('#user_login').fill(process.env.WP_ADMIN_USER || 'admin');
+    await login.locator('#user_pass').fill(process.env.WP_ADMIN_PASSWORD || 'admin12345');
+    await login.locator('#wp-submit').click();
+    await login.waitForURL('**/wp-admin/**');
+    storageState = await auth.storageState();
+    await auth.close();
+  }
   let next = 0;
   async function worker() {
     const context = await browser.newContext({ storageState, colorScheme: values.scheme, viewport: { width: 1440, height: 1000 } });
-    // Remote providers and external media are irrelevant to fixture layout checks.
-    await context.route('**/*', (route) => {
-      const requestUrl = new URL(route.request().url());
-      return requestUrl.protocol === 'data:' || requestUrl.origin === base.origin ? route.continue() : route.abort();
-    });
+    if (values.locale && values['locale-cookie']) {
+      await context.addCookies([{ name: values['locale-cookie'], value: values.locale, url: base.href }]);
+    }
     while (next < pages.length) {
       const route = pages[next++];
       const page = await context.newPage();
-      page.setDefaultTimeout(12000);
+      page.setDefaultTimeout(25000);
       const errors = [];
       page.on('pageerror', (error) => errors.push(error.message));
+      page.on('response', (response) => {
+        if (response.status() < 400 || new URL(response.url()).origin !== base.origin) return;
+        if (['script', 'stylesheet'].includes(response.request().resourceType())) {
+          errors.push(`HTTP ${response.status()} ${new URL(response.url()).pathname}`);
+        }
+      });
       const record = { page: route, module: screens.get(route)?.module ?? 'classic', errors: [], views: [] };
       try {
         const menuUrl = inventory.urls?.[route] || screens.get(route)?.url;
@@ -71,6 +88,7 @@ try {
         record.url = target.href;
         const response = await page.goto(target.href, { waitUntil: 'domcontentloaded', timeout: 45000 });
         record.http = response?.status();
+        if (new URL(page.url()).pathname.endsWith('/wp-login.php')) throw new Error('WordPress redirected to sign-in');
         if (record.http >= 400) throw new Error('Admin route returned HTTP ' + record.http);
         await page.locator('.flx-screen:visible,#flxk-ob:visible,#wpbody-content:visible').first().waitFor({ timeout: 20000 });
         await page.waitForTimeout(900);
@@ -85,6 +103,15 @@ try {
             return screen && screen.textContent.trim().length > 40 && !screen.querySelector('.loading');
           }, undefined, { timeout: 10000 }).catch(() => {});
         }
+        const language = await page.locator('html').getAttribute('lang');
+        record.language = language;
+        record.direction = await page.locator('html').evaluate((html) => getComputedStyle(html).direction);
+        if (values.locale) {
+          const expected = values.locale.toLowerCase().replaceAll('_', '-');
+          if (language?.toLowerCase() !== expected || record.direction !== (expected === 'ar' ? 'rtl' : 'ltr')) {
+            throw new Error(`Expected ${values.locale}, received ${language} (${record.direction})`);
+          }
+        }
         async function capture(view) {
           for (const width of widths) {
             await page.evaluate(async () => {
@@ -96,7 +123,7 @@ try {
               ]);
             });
             await page.setViewportSize({ width, height: 1000 });
-            await page.waitForTimeout(500);
+            await page.waitForTimeout(settle);
             const measured = await page.evaluate(() => {
               const root = document.querySelector('#flxk-ob') ?? document.querySelector('.flx-screen') ?? document.querySelector('#wpbody-content > .wrap') ?? document.querySelector('#wpbody-content');
               const bounds = root.getBoundingClientRect();
@@ -111,6 +138,8 @@ try {
               const elements = root.querySelectorAll('*');
               for (const element of elements) {
                 if (['SCRIPT', 'STYLE', 'SVG', 'PATH', 'OPTION'].includes(element.tagName)) continue;
+                const closed = element.closest('details:not([open])');
+                if (closed && closed !== element && !closed.querySelector(':scope > summary')?.contains(element)) continue;
                 const rect = element.getBoundingClientRect();
                 if (!rect.width || !rect.height || rect.right <= bounds.right + 2 && rect.left >= bounds.left - 2) continue;
                 if (getComputedStyle(element).visibility === 'hidden' || rect.right <= 0) continue;
@@ -145,12 +174,21 @@ try {
             });
             const finding = { view, width, ...measured };
             record.views.push(finding);
-            if (width === 390 || hasOverflow(finding)) {
+            if (!values['no-screenshots'] && (width === 390 || hasOverflow(finding))) {
               await page.screenshot({ path: path.join(out, encodeURIComponent(route) + '-' + view + '-' + width + '.png'), fullPage: false, timeout: 12000 });
             }
           }
         }
         await capture(values.scheme);
+        if (values['text-out']) {
+          record.interfaceText = await page.evaluate(() => {
+            const root = document.querySelector('#flxk-ob,.flx-screen') ?? document.querySelector('#wpbody-content');
+            return [...new Set([...root.querySelectorAll('h1,h2,h3,button,label,option,legend,th,[placeholder],[aria-label]')]
+              .filter((element) => element.getClientRects().length || element.tagName === 'OPTION')
+              .flatMap((element) => [element.innerText, element.getAttribute('placeholder'), element.getAttribute('aria-label')])
+              .map((value) => value?.trim().replace(/\s+/g, ' ')).filter(Boolean))];
+          });
+        }
         if (values.tabs) {
           const tabs = page.locator('.flx-page > .flx-tabs > button');
           const count = await tabs.count();
@@ -174,6 +212,8 @@ try {
         }
       } catch (error) {
         record.error = error.message;
+        record.finalUrl = page.url();
+        record.title = await page.title().catch(() => '');
       }
       record.errors = [...new Set(errors)];
       await page.close();

@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.16.1
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 1.16.0
 - SEO ekranı eski klasik ekranla birebir: Genel ve Kurum ve sosyal sekmeleri WordPress ayar tablosu düzeninde (onay kutuları, alan genişlikleri, açıklamalar, "Değişiklikleri kaydet"), başlık altında açıklama satırı.
 - SEO kontrolü: klasik tablo; giriş cümlesinde sayılar kalın, öneri olan içerik sayısı 100 ile sınırlı değil.

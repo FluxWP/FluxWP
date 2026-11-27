@@ -248,7 +248,7 @@ msgid "Flux Commerce"
 msgstr "Flux Commerce"
 
 msgid "WooCommerce"
-msgstr "WooCommerce"
+msgstr "WooCommerce kez"
 
 msgid "Active, version %s"
 msgstr "Etkin, sürüm %s"
@@ -355,7 +355,7 @@ msgid "Customer since %s"
 msgstr "%s tarihinden beri müşteri"
 
 msgid "WhatsApp"
-msgstr "WhatsApp"
+msgstr "WhatsApp kez"
 
 msgid "%s open orders"
 msgstr "%s açık sipariş"
@@ -1294,3 +1294,36 @@ msgstr "Otomatik: %s"
 
 msgid "Monthly and yearly payments. Renewal orders are created before each period ends; a stored card is charged automatically, otherwise the customer pays by bank transfer or through the payment link."
 msgstr "Aylık ve yıllık ödemeler. Her dönem bitmeden yenileme siparişi açılır; kayıtlı kart varsa otomatik çekilir, yoksa müşteri Havale/EFT ile ya da ödeme bağlantısından öder."
+
+msgid "Sees store reports"
+msgstr "Mağaza raporları görür"
+
+msgid "Manages the store"
+msgstr "Mağazayı yönetir"
+
+msgid "Edits shop orders"
+msgstr "Mağaza siparişlerini düzenler"
+
+msgid "WooCommerce is required."
+msgstr "WooCommerce gerekmektedir."
+
+msgid "The cart is not available."
+msgstr "Araba mevcut değil."
+
+msgid "That billing period is not offered."
+msgstr "Bu faturalandırma süresi teklif edilmez."
+
+msgid "The note could not be saved."
+msgstr "Not kurtarılamadı."
+
+msgid "The note is too long."
+msgstr "Not çok uzun."
+
+msgid "Subscription not found."
+msgstr "Abonelik bulunamadı."
+
+msgid "This subscription cannot be changed."
+msgstr "Bu abonelik değiştirilemez."
+
+msgid "Unknown action."
+msgstr "Bilinmeyen işlem."

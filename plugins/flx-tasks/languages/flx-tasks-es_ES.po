@@ -632,10 +632,10 @@ msgid "Choose an image for the cover."
 msgstr "Elige una imagen para la portada."
 
 msgid "Today"
-msgstr "hoy"
+msgstr "Hoy"
 
 msgid "Tomorrow"
-msgstr "mañana"
+msgstr "Mañana"
 
 msgid "Yesterday"
 msgstr "ayer"
@@ -2003,7 +2003,7 @@ msgid "Later"
 msgstr "Más tarde"
 
 msgid "No date"
-msgstr "sin fecha"
+msgstr "Sin fecha"
 
 msgid "No tag"
 msgstr "Sin etiqueta"
@@ -2117,7 +2117,7 @@ msgid "Participants"
 msgstr "Participantes"
 
 msgid "Agenda"
-msgstr "Agenda"
+msgstr "Programa"
 
 msgid "Decisions"
 msgstr "Decisiones"
@@ -2426,7 +2426,7 @@ msgid "Next week"
 msgstr "La próxima semana"
 
 msgid "In 2 weeks"
-msgstr "en 2 semanas"
+msgstr "En 2 semanas"
 
 msgid "Time (optional)"
 msgstr "Hora (opcional)"
@@ -2715,3 +2715,258 @@ msgstr "Esta pantalla es la misma que en FluxApp. La vista clásica seguirá dis
 
 msgid "Could not start a chat."
 msgstr "No se pudo iniciar el chat."
+
+msgid "Select text to comment on, or use a block's menu."
+msgstr "Selecciona texto para comentar o usa el menú de un bloque."
+
+msgid "Open comment"
+msgstr "Abrir comentario"
+
+msgid "Resolved"
+msgstr "Resueltos"
+
+msgid "No resolved comments."
+msgstr "No hay comentarios resueltos."
+
+msgid "No comments yet."
+msgstr "Aún no hay comentarios."
+
+msgid "Select text and press \"Comment\", or add a comment from a block's menu (⋮⋮)."
+msgstr "Selecciona texto y pulsa «Comentar», o añade un comentario desde el menú de un bloque (⋮⋮)."
+
+msgid "Block"
+msgstr "Bloque"
+
+msgid "deleted"
+msgstr "eliminado"
+
+msgid "text changed"
+msgstr "el texto cambió"
+
+msgid "Write a comment… (Ctrl+Enter sends)"
+msgstr "Escribe un comentario… (Ctrl+Intro envía)"
+
+msgid "Comment"
+msgstr "Comentar"
+
+msgid "This comment was deleted."
+msgstr "Este comentario se eliminó."
+
+msgid "(edited)"
+msgstr "(editado)"
+
+msgid "Reopen"
+msgstr "Reabrir"
+
+msgid "Mark as resolved"
+msgstr "Marcar como resuelto"
+
+msgid "Resolved by {n}"
+msgstr "Resuelto por {n}"
+
+msgid "{n} more replies"
+msgstr "{n} respuestas más"
+
+msgid "Reply… (Ctrl+Enter sends)"
+msgstr "Responder… (Ctrl+Intro envía)"
+
+msgid "Reply"
+msgstr "Responder"
+
+msgid "The comment will be deleted; the replies stay in the thread."
+msgstr "Se eliminará el comentario; las respuestas se quedan en la conversación."
+
+msgid "The comment will be permanently deleted."
+msgstr "El comentario se eliminará de forma permanente."
+
+msgid "Comment resolved"
+msgstr "Comentario resuelto"
+
+msgid "This page is locked."
+msgstr "Esta página está bloqueada."
+
+msgid "Locked by {n}, {t}."
+msgstr "Bloqueada por {n}, {t}."
+
+msgid "Unlock it to edit."
+msgstr "Desbloquéala para editar."
+
+msgid "Unlock"
+msgstr "Desbloquear"
+
+msgid "You can view and comment on this page."
+msgstr "Puedes ver y comentar esta página."
+
+msgid "You can only view this page."
+msgstr "Solo puedes ver esta página."
+
+msgid "Page locked"
+msgstr "Página bloqueada"
+
+msgid "The page was locked; your changes are saved once it is unlocked."
+msgstr "La página se bloqueó; tus cambios se guardarán cuando se desbloquee."
+
+msgid "This page is locked. Unlock it to edit."
+msgstr "Esta página está bloqueada. Desbloquéala para editar."
+
+msgid "Page unlocked"
+msgstr "Página desbloqueada"
+
+msgid "{n} locked this page so it is not changed by accident. If you unlock it, everyone who can edit can change it again."
+msgstr "{n} bloqueó esta página para que no se cambie por error. Si la desbloqueas, todos los que pueden editar podrán cambiarla de nuevo."
+
+msgid "If you unlock it, everyone who can edit can change the page again."
+msgstr "Si la desbloqueas, todos los que pueden editar podrán cambiar la página de nuevo."
+
+msgid "Lock page"
+msgstr "Bloquear página"
+
+msgid "Access…"
+msgstr "Acceso…"
+
+msgid "Restricted access"
+msgstr "Acceso restringido"
+
+msgid "Locked"
+msgstr "Bloqueada"
+
+msgid "Page access"
+msgstr "Acceso a la página"
+
+msgid "Access saved"
+msgstr "Acceso guardado"
+
+msgid "Everyone with access to the document"
+msgstr "Todos los que tienen acceso al documento"
+
+msgid "Everyone in the project who can see this document also sees this page."
+msgstr "Todos en el proyecto que ven este documento también ven esta página."
+
+msgid "Only people I choose"
+msgstr "Solo las personas que elija"
+
+msgid "The page and its subpages are visible only to the people below and project admins."
+msgstr "La página y sus subpáginas solo son visibles para las personas de abajo y los administradores del proyecto."
+
+msgid "The parent page is restricted too: only people allowed there can open this page."
+msgstr "La página superior también está restringida: solo quienes tienen permiso allí pueden abrir esta página."
+
+msgid "Can edit (you)"
+msgstr "Puede editar (tú)"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "+ Add person"
+msgstr "+ Añadir persona"
+
+msgid "People and their roles"
+msgstr "Personas y sus roles"
+
+msgid "Project admins ({n}) always have access."
+msgstr "Los administradores del proyecto ({n}) siempre tienen acceso."
+
+msgid "Add comment"
+msgstr "Añadir comentario"
+
+msgid "Add comment (Ctrl+Alt+M)"
+msgstr "Añadir comentario (Ctrl+Alt+M)"
+
+msgid "This page is locked. Unlock it to make changes."
+msgstr "Esta página está bloqueada. Desbloquéala para hacer cambios."
+
+msgid "Only people who can edit the page can lock or unlock it."
+msgstr "Solo quienes pueden editar la página pueden bloquearla o desbloquearla."
+
+msgid "Only people who can edit the page can change who has access."
+msgstr "Solo quienes pueden editar la página pueden cambiar quién tiene acceso."
+
+msgid "You are not allowed to comment on this page."
+msgstr "No tienes permiso para comentar esta página."
+
+msgid "Write a comment first."
+msgstr "Escribe primero un comentario."
+
+msgid "Comment not found."
+msgstr "Comentario no encontrado."
+
+msgid "Select some text or a block to comment on."
+msgstr "Selecciona texto o un bloque para comentar."
+
+msgid "The comment could not be saved."
+msgstr "No se pudo guardar el comentario."
+
+msgid "Only the author can edit a comment."
+msgstr "Solo el autor puede editar un comentario."
+
+msgid "Only the author or a project admin can delete a comment."
+msgstr "Solo el autor o un administrador del proyecto puede eliminar un comentario."
+
+msgid "You are not allowed to resolve this comment."
+msgstr "No tienes permiso para resolver este comentario."
+
+msgid "Unresolved"
+msgstr "Abiertos"
+
+msgid "Flux Tasks needs the Flux GraphQL plugin. Install and activate it to open this screen."
+msgstr "Flux Tasks necesita el plugin Flux GraphQL. Instalar y activarlo para abrir esta pantalla."
+
+msgid "Nothing to change."
+msgstr "Nada que cambiar."
+
+msgid "You are not allowed to edit this page."
+msgstr "No se le permite editar esta página."
+
+msgid "AI is off"
+msgstr "AI está apagado."
+
+msgid "Info and activity"
+msgstr "Información y actividad"
+
+msgid "created the page"
+msgstr "creado la página"
+
+msgid "edited the page"
+msgstr "editado la página"
+
+msgid "moved the page"
+msgstr "movió la página"
+
+msgid "renamed it from \"{a}\" to \"{b}\""
+msgstr "renombrado de \"{a}\" a \" {b} \""
+
+msgid "No activity yet"
+msgstr "Todavía no hay actividad"
+
+msgid "Could not load activity"
+msgstr "No se puede cargar actividad"
+
+msgid "Hide pages"
+msgstr "Ocultar páginas"
+
+msgid "Created by"
+msgstr "Creado por"
+
+msgid "Cannot be moved into or under a locked page."
+msgstr "No se puede mover dentro o debajo de una página bloqueada."
+
+msgid "Drag to resize"
+msgstr "Arrastre para redimensionar"
+
+msgid "Preview"
+msgstr "Vista previa"
+
+msgid "Remove file"
+msgstr "Quitar archivo"
+
+msgid "Preview image for YouTube links"
+msgstr "Imagen de vista previa en enlaces de YouTube"
+
+msgid "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+msgstr "Un enlace de YouTube en su propia línea en un documento muestra como una tarjeta con la miniatura de vídeo. La miniatura está cargada de YouTube; cuando se apaga, el enlace permanece texto plano."
+
+msgid "Gantt"
+msgstr "Gantt"
+
+msgid "This dependency would create a loop."
+msgstr "Esta dependencia crearía un bucle."

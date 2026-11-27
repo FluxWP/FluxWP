@@ -901,3 +901,321 @@ msgstr "お問い合わせ"
 
 msgid "Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications."
 msgstr "WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。"
+
+msgid "Sees store reports"
+msgstr "店舗レポートを見る"
+
+msgid "Manages the store"
+msgstr "店を管理します。"
+
+msgid "Edits shop orders"
+msgstr "ショップオーダーの編集"
+
+msgid "Subscriptions"
+msgstr "定期購入"
+
+msgid "Hidden product"
+msgstr "隠れた製品"
+
+msgid "Not shown in the shop, search or sitemap; customers cannot open the product page. Sold only through a link (e.g. a pricing page). Only editors see the product page."
+msgstr "商品ページは、商品ページから、商品ページへは、商品ページへ、商品ページへ、商品ページへ、商品ページへ、または、商品ページへ、リンクから、販売されます。"
+
+msgid "Hidden product: only editors see this page. Customers buy it through a link."
+msgstr "隠れた製品: 編集者だけがこのページを見る。"
+
+msgid "Awaiting first payment"
+msgstr "初回払い待ち"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Payment overdue"
+msgstr "支払期限切れ"
+
+msgid "Ended"
+msgstr "終了しました"
+
+msgid "Renews on %s"
+msgstr "更新 %s"
+
+msgid "Was due on %s"
+msgstr "予定されていた %s"
+
+msgid "Valid until %s"
+msgstr "有効期限 %s"
+
+msgid "Ended on %s"
+msgstr "終わった %s"
+
+msgid "You have no subscriptions yet."
+msgstr "まだ購読はありません。"
+
+msgid "Renews automatically from your card %s."
+msgstr "カードから自動更新します。 %s."
+
+msgid "%1$s will be charged to your card on %2$s."
+msgstr "%1$s カードにチャージされます。 %2$s."
+
+msgid "Renewal order #%1$s is waiting for payment: %2$s"
+msgstr "更新注文 #%1$s 支払いを待っているのです %2$s"
+
+msgid "Bank details and receipt"
+msgstr "銀行の詳細と領収書"
+
+msgid "Pay now"
+msgstr "今すぐ払って"
+
+msgid "Last order #%s"
+msgstr "ラストオーダー #%s"
+
+msgid "Renew now"
+msgstr "リニューアルしました。"
+
+msgid "Remove the card? Renewals will then be paid with the payment link we e-mail you."
+msgstr "カードを取り外します? 更新は、電子メールでお支払いリンクでお支払いいただきます。"
+
+msgid "Remove card"
+msgstr "カードの取り外し"
+
+msgid "Turn off renewal? The subscription stays valid until the end of the current period."
+msgstr "サブスクリプションは現在の期間の終わりまで有効です。"
+
+msgid "Cancel subscription"
+msgstr "サブスクリプションのキャンセル"
+
+msgid "Turn renewal back on"
+msgstr "更新を再開します。"
+
+msgid "Start again"
+msgstr "もう一度始めよう"
+
+msgid "Card stored for automatic subscription renewals: %s."
+msgstr "自動購読の更新のために保存されたカード:%s 。"
+
+msgid "Subscription renewal charged to the stored card (%1$s), transaction %2$s."
+msgstr "カードの登録料(登録料)がかかります。%1$s)、トランザクション %2$s."
+
+msgid "Automatic card charge failed after the last attempt: %s. The customer was sent the payment link."
+msgstr "自動カード料金は、最後の試みの後、失敗した:%s . 顧客は支払いリンクを送信しました。"
+
+msgid "Automatic card charge failed: %1$s. Retrying in %2$d day(s)."
+msgstr "自動カードチャージが失敗:%1$s . %2$d 日で再試行。"
+
+msgid "Subscription"
+msgstr "サブスクリプション"
+
+msgid "Sold as a monthly or yearly subscription (Flux Commerce). Renewals arrive as orders."
+msgstr "毎月または年間購読(Flux Commerce)として販売され、更新は注文として到着します。"
+
+msgid "Monthly price (%s)"
+msgstr "月額(%s)"
+
+msgid "Empty = no monthly option."
+msgstr "空=月額オプションはありません。"
+
+msgid "Yearly price (%s)"
+msgstr "年間価格(%s)"
+
+msgid "Empty = no yearly option."
+msgstr "空=年間オプションはありません。"
+
+msgid "or"
+msgstr "または"
+
+msgid "Subscribe"
+msgstr "購読する"
+
+msgid "Billing period"
+msgstr "請求期間"
+
+msgid "Save %s%%"
+msgstr "%s % を節約します。"
+
+msgid "Renews automatically; we send a reminder before every renewal. You can cancel any time from My account."
+msgstr "更新は自動的に行われます。更新前にリマインダーを送信します。"
+
+msgid "This product is not a subscription."
+msgstr "この商品は購読ではありません。"
+
+msgid "The product could not be added to the cart."
+msgstr "カートに商品を追加できませんでした。"
+
+msgid "Subscription #%d created; it starts when the payment arrives."
+msgstr "サブスクリプション #%d が作成されました。"
+
+msgid "Subscription #%1$d started; next renewal %2$s."
+msgstr "サブスクリプション #%1$d が始まり、次の更新 %2$s が始まります。"
+
+msgid "Subscription #%1$d renewed until %2$s."
+msgstr "%1$d %2$s まで更新されました。"
+
+msgid "Subscription ended; the renewal order is no longer needed."
+msgstr "登録が終了しました。更新注文は不要になりました。"
+
+msgid "Only an active subscription can be renewed."
+msgstr "アクティブなサブスクリプションのみを更新できます。"
+
+msgid "A renewal order for this period was already created."
+msgstr "この期間の更新注文がすでに作成されています。"
+
+msgid "Renewal order for subscription #%1$d (period ends %2$s)."
+msgstr "サブスクリプションの更新注文 #%1$d 期間終了 %2$s)."
+
+msgid "First name"
+msgstr "名"
+
+msgid "Period end"
+msgstr "期間終了"
+
+msgid "Payment link"
+msgstr "支払いリンク"
+
+msgid "Monthly"
+msgstr "毎月"
+
+msgid "Subscription renewal reminder"
+msgstr "定期購読の更新通知"
+
+msgid "Goes to the customer when the renewal order is created and again on the last day if it is unpaid."
+msgstr "更新注文が作成され、未払いの場合は最終日に再度顧客に行きます。"
+
+msgid "Your {urun} subscription renews on {bitis}"
+msgstr "貴女 {urun} 購読更新 {bitis}"
+
+msgid "Time to renew, {ad}"
+msgstr "リニューアルする時が来ました。 {ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. Amount: {tutar}."
+msgstr "{urun} サブスクリプション ({donem}) は、{bitis} . . 金額: {tutar} . . . . に更新します。"
+
+msgid "Subscription renews by card"
+msgstr "カードによる定期購読の更新"
+
+msgid "Goes to the customer before a renewal that will be charged to the stored card."
+msgstr "登録されたカードに課金される更新の前に顧客に向かいます。"
+
+msgid "Card"
+msgstr "カード"
+
+msgid "Renewal coming up, {ad}"
+msgstr "リニューアルが始まります {ad}"
+
+msgid "Your {urun} subscription ({donem}) renews on {bitis}. {tutar} will be charged to your card {kart}; you do not need to do anything."
+msgstr "{urun} サブスクリプション ({donem}) {bitis} の更新 {tutar} は、カード {kart} に課金されます。"
+
+msgid "To change the card or turn off renewal, go to My account › Subscriptions."
+msgstr "カードの変更や更新のオフにするには、マイアカウント ?? サブスクリプションに移動します。"
+
+msgid "My subscriptions"
+msgstr "購読者"
+
+msgid "Subscription card charge failed"
+msgstr "会員カードの課金が失敗しました。"
+
+msgid "Goes to the customer when the stored card could not be charged after the last attempt."
+msgstr "最後の試み後に、カードがチャージできない場合は、顧客に転送します。"
+
+msgid "We could not renew your {urun} subscription"
+msgstr "{urun} の購読を更新できません。"
+
+msgid "Payment needed, {ad}"
+msgstr "支払いが必要です {ad}"
+
+msgid "We could not charge {tutar} to your card {kart} for your {urun} subscription. Please pay with the button below so the subscription continues."
+msgstr "充電できません {tutar} カードに {kart} 貴方にとって {urun} 購読を継続するために、下記のボタンでお支払いください。"
+
+msgid "Subscription ended"
+msgstr "サブスクリプション終了"
+
+msgid "Goes to the customer when a subscription ends."
+msgstr "サブスクリプションが終了すると、顧客に転送されます。"
+
+msgid "Your {urun} subscription has ended"
+msgstr "{urun} の購読が終了しました。"
+
+msgid "Your subscription has ended"
+msgstr "購読が終了しました。"
+
+msgid "Hello {ad}, your {urun} subscription has ended. You can start it again at any time."
+msgstr "こんにちは {ad}貴方は {urun} 購読が終了しました。いつでも再開できます。"
+
+msgid "Yearly"
+msgstr "毎年"
+
+msgid "year"
+msgstr "う~ん"
+
+msgid "month"
+msgstr "月"
+
+msgid "Recipient: %1$s · IBAN: %2$s · Reference: %3$s"
+msgstr "受信者:%1$s・IBAN:%2$s・参照:%3$s"
+
+msgid "Your %s subscription has ended"
+msgstr "%s の購読が終了しました。"
+
+msgid "Hello %1$s, your %2$s subscription has ended. You can start it again at any time: %3$s"
+msgstr "こんにちは %1$s貴方 %2$s 購読が終了しました。いつでも再開できます。 %3$s"
+
+msgid "Your %1$s subscription renews on %2$s"
+msgstr "貴方は %1$s 定期購読の更新 %2$s"
+
+msgid "Hello %1$s, your %2$s subscription renews on %3$s. %4$s will be charged to your card %5$s; you do not need to do anything. Manage it here: %6$s"
+msgstr "こんにちは %1$s貴方は %2$s 定期購読の更新 %3$s. %4$s カードにチャージされます。 %5$s何もする必要はありません。ここで管理します。 %6$s"
+
+msgid "We could not renew your %s subscription"
+msgstr "%s の購読を更新できません。"
+
+msgid "Hello %1$s, we could not charge %2$s to your card %3$s for your %4$s subscription. Please pay here so it continues: %5$s"
+msgstr "こんにちは %1$s充電できませんでした %2$s カードに %3$s 貴方にとって %4$s 購読者です。ここで支払います。 %5$s"
+
+msgid "Hello %1$s, your %2$s subscription (%3$s) renews on %4$s. Amount: %5$s. Pay here: %6$s"
+msgstr "こんにちは %1$s 、%2$s サブスクリプション (%3$s) %4$s の更新 金額: %5$s . 支払い: %6$s"
+
+msgid "WooCommerce is required."
+msgstr "WooCommerce が必須です。"
+
+msgid "The cart is not available."
+msgstr "カートはご利用いただけません。"
+
+msgid "That billing period is not offered."
+msgstr "その請求期間は提供されていません。"
+
+msgid "The note could not be saved."
+msgstr "ノートは保存できませんでした。"
+
+msgid "The note is too long."
+msgstr "ノートが長すぎる。"
+
+msgid "Subscription not found."
+msgstr "購読は見つかりません。"
+
+msgid "This subscription cannot be changed."
+msgstr "このサブスクリプションは変更できません。"
+
+msgid "Unknown action."
+msgstr "未知のアクション。"
+
+msgid "Your subscription has ended."
+msgstr "購読が終了しました。"
+
+msgid "Renewal is off. Your subscription stays valid until %s."
+msgstr "更新はオフです。サブスクリプションは有効です。 %s."
+
+msgid "The customer removed the stored card; this renewal is paid with the payment link."
+msgstr "顧客は、ストアドカードを削除しました。この更新は、支払いリンクで支払われます。"
+
+msgid "The card was removed. We will e-mail you a payment link before each renewal."
+msgstr "カードが削除されました。更新前に支払いリンクをメールで送信します。"
+
+msgid "Renewal is back on."
+msgstr "リニューアルが復活しました。"
+
+msgid "Subscription renewals"
+msgstr "定期購読の更新"
+
+msgid "The renewal job has not run for more than 6 hours. Check the server cron (wp-cron.php); renewal orders and reminders wait until it runs."
+msgstr "更新ジョブは 6 時間以上実行されていません。サーバの cron (wp-cron.php) を確認します。"
+
+msgid "%1$s open subscriptions. Last run: %2$s"
+msgstr "%1$s オープンサブスクリプションです %2$s"

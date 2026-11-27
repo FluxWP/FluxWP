@@ -62,7 +62,7 @@
 .flxy-filters__end{margin-left:auto}
 .flxy-filters button:disabled{opacity:.5;cursor:default}
 .flxy-bulk{display:flex;gap:8px;align-items:center;margin:0 0 10px}
-.flxy-tablewrap{overflow:auto;padding:0}
+.flxy-tablewrap{position:relative;overflow:auto;padding:0}
 .flxy-table{width:100%;border-collapse:collapse}
 .flxy-table th,.flxy-table td{padding:10px 12px;border-bottom:1px solid var(--flxy-bd);text-align:left;vertical-align:middle}
 .flxy-table thead th{font-weight:600;background:color-mix(in srgb,var(--flux-text) 3%,transparent);font-size:13px}

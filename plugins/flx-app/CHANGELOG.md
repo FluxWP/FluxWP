@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.10.6
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.10.5
 - Uygulama ayarlarında etiket ve alanlar telefonda tek sütuna geçer; sonradan eklenen masaüstü sütun kuralının mobil düzeni ezmesi giderildi.
 

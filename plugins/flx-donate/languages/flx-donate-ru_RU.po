@@ -1349,7 +1349,7 @@ msgid "This link is not valid. Please contact us to cancel your recurring donati
 msgstr "Эта ссылка недействительна. Пожалуйста, свяжитесь с нами, чтобы отменить регулярное пожертвование."
 
 msgid "%1$s · %2$s"
-msgstr "%1$s · %2$s"
+msgstr "%1$s %2$s"
 
 msgid "Recurring donation canceled"
 msgstr "Регулярное пожертвование отменено"
@@ -1871,10 +1871,10 @@ msgid "Active recurring donations"
 msgstr "Активные регулярные пожертвования"
 
 msgid "gifts"
-msgstr "gifts"
+msgstr "Подарки"
 
 msgid "gift"
-msgstr "gift"
+msgstr "Подарок"
 
 msgid "vs previous period"
 msgstr "по сравнению с предыдущим периодом"
@@ -2324,7 +2324,7 @@ msgid "Skipped: %s"
 msgstr "Пропущено: %s"
 
 msgid "due"
-msgstr "due"
+msgstr "Подлежит"
 
 msgid "late"
 msgstr "поздно"
@@ -2519,7 +2519,7 @@ msgid "Cancel payment"
 msgstr "Отменить платеж"
 
 msgid "order #%s"
-msgstr "order #%s"
+msgstr "приказ No %s"
 
 msgid "Payment awaiting approval"
 msgstr "Платеж ожидает подтверждения"
@@ -3275,7 +3275,7 @@ msgid "Attempt %1$s of %2$s failed: %3$s"
 msgstr "Попытка %1$s из %2$s не удалась: %3$s"
 
 msgid "canceled %s"
-msgstr "canceled %s"
+msgstr "отменено %s"
 
 msgid "Cancel this recurring donation at the payment provider? No further charges will be made."
 msgstr "Отменить это регулярное пожертвование у поставщика платежных услуг? Никаких дополнительных платежей взиматься не будет."
@@ -5607,7 +5607,7 @@ msgid "E-mail address"
 msgstr "Адрес электронной почты"
 
 msgid "name@example.com"
-msgstr "name@example.com"
+msgstr "имя@ample.com"
 
 msgid "Phone number"
 msgstr "Номер телефона"
@@ -5704,3 +5704,393 @@ msgid_plural "%s more"
 msgstr[0] "ещё %s"
 msgstr[1] "ещё %s"
 msgstr[2] "ещё %s"
+
+msgid "Payment forms are paid on the WooCommerce checkout, which is not available: activate WooCommerce and turn on \"Flux Forms payment forms continue on the WooCommerce checkout\". Visitors see \"Online payment is not available at the moment.\""
+msgstr "Платежные бланки выдаются на чеках WooCommerce, которые отсутствуют: активировать WooCommerce и подать заявку на \"Флюксные формы оплаты продолжаются на WooCommerce чека\"."
+
+msgid "The recurring donation was canceled. No further charges will be made."
+msgstr "Периодическое пожертвование было отменено, никаких дополнительных сборов не будет."
+
+msgid "This box could not be shown."
+msgstr "Эту коробку нельзя показывать."
+
+msgid "Box: %s"
+msgstr "Вставка: %s"
+
+msgid "Drag to move"
+msgstr "Перетащите, чтобы переместить"
+
+msgid "Fold or unfold"
+msgstr "Продукт или развязка"
+
+msgid "Website checkout"
+msgstr "Проверка веб-сайта"
+
+msgid "Cancel this recurring donation? No further charges will be made."
+msgstr "Отмените пожертвование?"
+
+msgid "Donation amount of the person"
+msgstr "Долевая сумма данного лица"
+
+msgid "Donation quantity of the person"
+msgstr "Количество лиц, переданных в дар"
+
+msgid "Donation date"
+msgstr "Дата предоставления"
+
+msgid "%s: quantity"
+msgstr "%s: количество"
+
+msgid "%s: amount"
+msgstr "%s: сумма"
+
+msgid "%1$s names for %2$s units: the extra names go on the first certificate"
+msgstr "%1$s Фамилии %2$s: дополнительные названия включены в первый сертификат"
+
+msgid "%s recurring donation could not be charged after all attempts and is now past due. The donor was e-mailed."
+msgid_plural "%s recurring donations could not be charged after all attempts and are now past due. The donors were e-mailed."
+msgstr[0] "%s повторный пожертвование не может быть предъявлено после всех попыток, и в настоящее время он находится в стадии рассмотрения."
+msgstr[1] "%s пожертвования не могут взиматься после всех попыток, и в настоящее время они должны быть получены."
+msgstr[2] "%s пожертвования не могут взиматься после всех попыток, и в настоящее время они должны быть получены."
+
+msgid "Last run: %s. Recurring card charges are checked every hour."
+msgstr "Последняя проверка: %s. Периодические платежи по карточке проверяются каждый час."
+
+msgid "%d recurring donation stopped after its card was declined on every attempt."
+msgid_plural "%d recurring donations stopped after their cards were declined on every attempt."
+msgstr[0] "%d повторное пожертвование прекратилось после того, как его карточка была снижена по каждой попытке."
+msgstr[1] "%d пожертвования прекратились после того, как их карточки были снижены по каждой попытке."
+msgstr[2] "%d пожертвования прекратились после того, как их карточки были снижены по каждой попытке."
+
+msgid "Missing or weak in wp-config.php: %s. The donors' cancel links of recurring donations are signed with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or links already sent stop working."
+msgstr "Пропавшие или слабые в связях между запястьями и фp: %s доноры отменяют связи повторных пожертвований с этими ключами; устанавливают уникальные ценности один раз (https://api.wordpress.org/secret-key/1.1/salt/) и не меняют их после этого или уже отправляют остановку."
+
+msgid "Set in wp-config.php. The donors' cancel links of recurring donations are signed with them: do not change them, or links already sent stop working."
+msgstr "Установить верф-конфиг.Фп. доноры отменяют связи с пожертвованиями, подписываются с ними: не менять их, или уже отправляемые ссылки прекращают работу."
+
+msgid "Message sent to owner"
+msgstr "Сообщение направлено владельцу"
+
+msgid "The message is empty."
+msgstr "Сообщение пустое."
+
+msgid "One basket: every item in it is paid and changes together."
+msgstr "Одна корзина: каждый товар в ней оплачивается и меняется вместе."
+
+msgid "Items subtotal"
+msgstr "Пункты повестки дня"
+
+msgid "via %1$s · %2$s"
+msgstr "с помощью %1$s %2$s"
+
+msgid "Net"
+msgstr "Чистая"
+
+msgid "%1$d. %2$s"
+msgstr "%1$d %2$s"
+
+msgid "Card"
+msgstr "Карта"
+
+msgid "Card holder"
+msgstr "Держатель карточки"
+
+msgid "Amount charged"
+msgstr "Сумма, взимаемая по ставке"
+
+msgid "Bank reference"
+msgstr "Банковская справка"
+
+msgid "Authorization code"
+msgstr "Код выдачи разрешений"
+
+msgid "Transaction ID"
+msgstr "Идентификатор транзакции"
+
+msgid "Mode"
+msgstr "Режим"
+
+msgid "Test"
+msgstr "Тест"
+
+msgid "Extra details"
+msgstr "Более подробная информация"
+
+msgid "Write the note first."
+msgstr "Сначала напиши записку."
+
+msgid "Note added."
+msgstr "Примечание."
+
+msgid "The note was not found."
+msgstr "Записка не была найдена."
+
+msgid "Note deleted."
+msgstr "Примечание исключено."
+
+msgid "(none)"
+msgstr "(none)"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "%1$s records (%2$s units) will be written. Paid: %3$s, waiting for payment: %4$s. Nothing is sent to anyone."
+msgstr "%1$s документация (%2$s единицы) будет писаться. %3$s - в ожидании платежа: %4$s - ничто не отправляется никому."
+
+msgid "The action could not be completed."
+msgstr "Не удалось завершить действие."
+
+msgid "This recurring donation cannot be canceled here."
+msgstr "Этот повторный пожертвования не может быть отменен."
+
+msgid "The shop is not available on this site."
+msgstr "На этом объекте магазина нет."
+
+msgid "Donation lookup is not available."
+msgstr "Доношенный осмотр отсутствует."
+
+msgid "Monthly donations are paid by card; the card is stored by the payment provider and charged once a month."
+msgstr "Ежемесячные пожертвования выплачиваются по карточке; карточка хранится поставщиком платежа и взимается один раз в месяц."
+
+msgid "Close without saving"
+msgstr "Близко, без спасения."
+
+msgid "Monthly donations: Flux POS stores the card."
+msgstr "Ежемесячные пожертвования: &quot; Flux POS &quot; хранит карточку."
+
+msgid "Monthly donations are off: they need a Flux POS card account that can store cards (Stripe today)."
+msgstr "Ежемесячные пожертвования: им нужен счет карточки Flux POS, который может хранить карты (Stripe today)."
+
+msgid "Enter an amount between 0 and the amount left."
+msgstr "Взять сумму от 0 до оставленной суммы."
+
+msgid "Saves the fields of every order box on this page."
+msgstr "Спасает поля каждой коробки заказов на этой странице."
+
+msgid "The order boxes could not be saved."
+msgstr "Коробки заказов не могут быть спасены."
+
+msgid "No notes yet."
+msgstr "Пока никаких заметок."
+
+msgid "to the donor"
+msgstr "донора"
+
+msgid "Delete this note?"
+msgstr "Опустить эту записку?"
+
+msgid "Add a note…"
+msgstr "Добавить примечание..."
+
+msgid "Note type"
+msgstr "Тип примечания"
+
+msgid "Private note"
+msgstr "Частная нота"
+
+msgid "Note to the donor (sent by e-mail)"
+msgstr "Примечание для донора (отправлено по электронной почте)"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Please write a name for every person."
+msgstr "Пожалуйста, напиши имя каждому."
+
+msgid "Other people"
+msgstr "Другие люди"
+
+msgid "Create my %s account with the details I entered"
+msgstr "Создайте мой счёт %s с подробными данными, которые я записал."
+
+msgid "Pay %s"
+msgstr "Pay %s"
+
+msgid "Pay"
+msgstr "Поделиться"
+
+msgid "Please accept the terms to continue."
+msgstr "Пожалуйста, примите условия для продолжения."
+
+msgid "Secure, encrypted payment. Card details are not stored on this site."
+msgstr "На этом объекте не хранятся данные о картах."
+
+msgid "No card method is enabled; donations can only be paid by bank transfer. Add a POS account in Flux POS."
+msgstr "Метод карточки не может быть использован; пожертвования могут выплачиваться только за счет банковских переводов, а также за счет POS в Flux POS."
+
+msgid "Flux POS stores the card at the first payment; a renewal order is opened and charged every month."
+msgstr "Flux POS хранит карточку при первом платеже; ежемесячно вводится и взимается заказ на продление."
+
+msgid "Monthly donations are off: they need Flux POS with a card account that can store cards (Stripe today) and its \"Pay by card\" method enabled."
+msgstr "Ежемесячные пожертвования: они нуждаются в Flux POS с карточным счетом, который может хранить карты (Stripe) сегодня, и его метод \"Pay by card\" позволяет."
+
+msgid "Please write your phone number."
+msgstr "Пожалуйста, напиши номер телефона."
+
+msgid "Please write your e-mail address."
+msgstr "Пожалуйста, напиши свой адрес."
+
+msgid "We e-mail you a link to set your password. Your donations and certificates are then under My account."
+msgstr "Мы писали вам связь, чтобы поставить пароль, а ваши пожертвования и сертификаты - под моим счетом."
+
+msgid "Signed in as %s."
+msgstr "Подписан как %s."
+
+msgid "Change in My account"
+msgstr "Изменение моего счета"
+
+msgid "Not you? Log out"
+msgstr "Не ты?"
+
+msgid "Person %s"
+msgstr "Person %s"
+
+msgid "e.g. Ayşe Yılmaz"
+msgstr "e.g. Ayşe Yılmaz"
+
+msgid "The same amount is taken from your card every month. You can stop it any time from your account."
+msgstr "Та же сумма отбирается из твоей карты каждый месяц, и ты можешь остановить ее в любое время со своего счета."
+
+msgid "For someone else"
+msgstr "Для кого-то другого"
+
+msgid "Add another person with their own certificate"
+msgstr "Добавить другое лицо с собственным сертификатом"
+
+msgid "Every person gets their own certificate. The remaining saplings go on the first certificate."
+msgstr "Каждый получает свое собственное свидетельство."
+
+msgid "How often"
+msgstr "Как часто"
+
+msgid "One-time donation"
+msgstr "Одноразовые пожертвования"
+
+msgid "Monthly donation"
+msgstr "Ежемесячное безвозмездное предоставление"
+
+msgid "Payments are taken securely by %s."
+msgstr "Выплаты принимаются безопасно %s."
+
+msgid "Quick choice"
+msgstr "Быстрое решение"
+
+msgid "Other amount"
+msgstr "Прочая сумма"
+
+msgid "Choose the donation amount"
+msgstr "Выбор суммы пожертвований"
+
+msgid "Most chosen"
+msgstr "Большинство из них"
+
+msgid "Heading over the amount"
+msgstr "Заголовок над суммой"
+
+msgid "\"Other amount\" button"
+msgstr "Кнопка \"другая сумма\""
+
+msgid "Amount buttons"
+msgstr "Кнопки калибра"
+
+msgid "Quantity options as large amount buttons (1, 3, 5, 10 …) with the currency menu beside the heading and an \"Other amount\" field under them."
+msgstr "Варианты количественной оценки как большие кнопки (1, 3, 5, 10 ...) с валютным меню, расположенным под заголовком, и поля &quot; прочие суммы &quot; под ними."
+
+msgid "Two columns"
+msgstr "Две колонки"
+
+msgid "Contact and payment as cards on the left; the summary, the terms box and the pay button on the right. On phones one column with a pay bar at the bottom."
+msgstr "Свяжитесь с левыми карточками и платите за них; резюме, кнопка с терминами и кнопка справа."
+
+msgid "Quick quantities"
+msgstr "Быстрое количество"
+
+msgid "Buttons of an option with a quantity, comma separated. Empty = the built-in list."
+msgstr "Кнопки опциона с количеством, отделенная кома."
+
+msgid "\"Most chosen\" badge on"
+msgstr "\"Бывший выбор\" значка"
+
+msgid "The quantity that is highlighted in the amount buttons view. Empty = none."
+msgstr "Количество, которое выявляется в виде кнопки. &quot; Пустота &quot; = нет."
+
+msgid "Donors can also write their own amount (\"Other amount\") for the types on the form"
+msgstr "Доноры могут также написать свою собственную сумму ( &quot; Прочая сумма &quot; ) для тех типов формы"
+
+msgid "Lowest own amount (%s)"
+msgstr "Самая низкая сумма (%s)"
+
+msgid "Used when the donation type sets no minimum. It is not shown up front: a warning appears under the field when a lower amount is sent."
+msgstr "Используется в тех случаях, когда тип пожертвования не устанавливает минимальных значений, но не показан передней стороной: в случае направления меньшего количества на место появляется предупреждение."
+
+msgid "Lowest own amount in the other currencies"
+msgstr "Самая низкая сумма в других валютах"
+
+msgid "Quick amounts"
+msgstr "Быстрые суммы"
+
+msgid "Amount buttons of types that take an amount written by the donor, with an \"Other amount\" button beside them. Comma separated; empty = no buttons in that currency. Amounts set on a donation type win."
+msgstr "Кнопки типов, которые начисляются донором, с кнопкой \"другой\" рядом с ними. &quot; Кома разделенная &quot; ; пустые = нет кнопок в этой валюте. &quot; Суммы &quot; установлены на выигрыше пожертвований."
+
+msgid "\"One-time donation / Monthly donation\" tabs over the form (shown when a payment method can take monthly payments)"
+msgstr "\"Однажды пожертвования/месячные пожертвования\" в форме (в тех случаях, когда метод платежа может производить ежемесячные платежи)"
+
+msgid "Texts per language"
+msgstr "Тексты на языке"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Empty = the built-in text in the visitor's language. A preset can fill these."
+msgstr "Пустота - построенный текст на языке посетителя."
+
+msgid "A · Steps: photo band with the page title over the form (the type picture)"
+msgstr "Шаги: фото-группа с названием страницы на бланке (типовая фотография)"
+
+msgid "Checkout page layout"
+msgstr "Схема страниц"
+
+msgid "Show \"Add a note to your order\" at the checkout"
+msgstr "Покажите \"Дополните записку к вашему приказу\" на чеку."
+
+msgid "Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)"
+msgstr "Гости могут создавать счет на чеку с информацией, которую они вводят (пароль им направляется по электронной почте)."
+
+msgid "On phones keep the total and the button fixed at the bottom (form and checkout)"
+msgstr "На телефонах хранится общая кнопка, установленная на дне (форма и выверка)"
+
+msgid "Card payment comes first, before bank transfer"
+msgstr "Выплата за карту начинается сначала до банковского перевода"
+
+msgid "Short checkout: phone and e-mail both asked at the top, fewer notes under the card form"
+msgstr "Краткая проверка: телефон и электронная почта оба запрошены сверху, меньше записок в карточке"
+
+msgid "Show the coupon box when the cart holds only donations"
+msgstr "Покажите коробку купонов, когда карта удерживает только пожертвования"
+
+msgid "Address book: donors keep addresses under My Account and pick them at the checkout (turn off when you post nothing)"
+msgstr "Адресная книга: доноры фиксируют адреса на моем счете и выбирают их на выставке (отступаете, когда вы ничего не делаете)"
+
+msgid "single payment"
+msgstr "Единые выплаты"
+
+msgid "%d installments"
+msgstr "%d инстанция"
+
+msgid "No payment has been taken for this order yet."
+msgstr "Никаких выплат по этому приказу пока не произведено."
+
+msgid "\"%1$s\" repeats monthly (recurring donation #%2$d); the card is stored at the payment provider."
+msgstr "\" %1$s месячная повторная повторная повторная пожертвование No %2$d; карточка хранится у поставщика платежа."
+
+msgid "Card, monthly"
+msgstr "Месячные автомобили"
+
+msgid "Card payments are processed with 3D Secure by a licensed bank or payment institution. Card details are not stored on this site. For bank transfers, the donation is confirmed when the money reaches the association account."
+msgstr "В случае банковских переводов пожертвования подтверждаются, когда деньги поступают на счет ассоциации, в отношении кредитных платежей обрабатываются с помощью системы &lt; &lt; 3D Secure &gt; &gt; банком или платежным учреждением."
+
+msgid "Hello"
+msgstr "Здравствуйте."
+
+msgid "Any trouble? Write to us on WhatsApp"
+msgstr "Напиши нам WhatsApp"

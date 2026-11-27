@@ -1350,3 +1350,105 @@ msgstr "Номер телефона удалён из вашей учётной 
 
 msgid "The token does not include the scope this request needs."
 msgstr "Токен не включает область доступа, которую требует этот запрос."
+
+msgid "JavaScript is required for this screen."
+msgstr "Для этого экрана требуется JavaScript."
+
+msgid "Open in app"
+msgstr "Открыто в приложении"
+
+msgid "Open in the FluxWP app"
+msgstr "Открыто в приложении FluxWP"
+
+msgid "Opening the app…"
+msgstr "Открываю приложение..."
+
+msgid "The app did not open. Install it, then come back and press the button again."
+msgstr "Приложение не открылось, потом возвращайся и нажми на кнопку."
+
+msgid "Download on the App Store"
+msgstr "Загрузка на станцию &lt; &lt; App &gt; &gt;"
+
+msgid "Get it on Google Play"
+msgstr "Поиграем в \"Гугл\"."
+
+msgid "Download for Mac"
+msgstr "Загрузка для Мака"
+
+msgid "Open the app"
+msgstr "Откройте приложение."
+
+msgid "This push service is not allowed."
+msgstr "Эта служба толкания не допускается."
+
+msgid "Invalid subscription keys."
+msgstr "Ключи для недействительной подписки."
+
+msgid "Browser notifications need a signed-in browser session."
+msgstr "Уведомления о броузере должны быть подписаны в браузере."
+
+msgid "Notifications are turned off on this site."
+msgstr "Уведомления выключаются на этом объекте."
+
+msgid "Notifications on"
+msgstr "Уведомления"
+
+msgid "Notifications blocked"
+msgstr "Заблокированные уведомления"
+
+msgid "Get notifications in this browser, also when the site is closed."
+msgstr "Уведомление в этом броузере, также когда сайт закрыт."
+
+msgid "Stop notifications in this browser."
+msgstr "Хватит уведомлений в этом броузере."
+
+msgid "Notifications are blocked for this site in the browser settings."
+msgstr "Уведомления по этому месту заблокированы в условиях броузера."
+
+msgid "Notifications could not be turned on"
+msgstr "Уведомления не могут быть представлены"
+
+msgid "This browser"
+msgstr "Этот бродяга."
+
+msgid "Notification types"
+msgstr "Виды уведомлений"
+
+msgid "Applies to all your devices, also the mobile app."
+msgstr "Применяется ко всем твоим устройствам, также к мобильному приложению."
+
+msgid "No notification types are available yet."
+msgstr "До сих пор не имеется типов уведомлений."
+
+msgid "Could not save, try again."
+msgstr "Не смог спастись, попытайся снова."
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Browser notifications (Web Push)"
+msgstr "Уведомления о броузере (Web Push)"
+
+msgid "Browsers allow notifications only on https sites."
+msgstr "Броузеры допускают уведомления только на сайте."
+
+msgid "Ready. Users turn them on per browser with Notifications in the admin bar."
+msgstr "Пользователи поворачивают их на каждого броузера с уведомлениями в рекламном баре."
+
+msgid "PHP OpenSSL cannot sign P-256 keys here; browsers do not get notifications. Mobile app push still works."
+msgstr "PHP OpenSSL не может подписать здесь ключи С-256; браузеры не получают уведомлений."
+
+msgid "Live connection (realtime)"
+msgstr "Связь с живыми (реальное время)"
+
+msgid "The realtime service runs but has no public address (FLX_REALTIME_URL); apps poll."
+msgstr "В режиме реального времени служба работает, но не имеет публичного адреса (FLX_REALTIME_URL); опрос приложений."
+
+msgid "Panel and app get changes at once."
+msgstr "Группа и приложение сразу же меняются."
+
+msgid "Not checked yet; shown after the next app sign-in."
+msgstr "Еще не проверено; показано после следующей записи приложения."
+
+msgid "The realtime service is not answering; apps poll until it is back."
+msgstr "Служба в режиме реального времени не отвечает на вопросы; опрос антенсов до тех пор, пока он не вернется."

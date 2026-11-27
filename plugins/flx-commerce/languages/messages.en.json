@@ -433,6 +433,17 @@
     "Automatic card renewal:": "Automatic card renewal:",
     "no card provider yet (Flux Donate iyzico adds one).": "no card provider yet (Flux Donate iyzico adds one).",
     "Auto: %s": "Auto: %s",
-    "Monthly and yearly payments. Renewal orders are created before each period ends; a stored card is charged automatically, otherwise the customer pays by bank transfer or through the payment link.": "Monthly and yearly payments. Renewal orders are created before each period ends; a stored card is charged automatically, otherwise the customer pays by bank transfer or through the payment link."
+    "Monthly and yearly payments. Renewal orders are created before each period ends; a stored card is charged automatically, otherwise the customer pays by bank transfer or through the payment link.": "Monthly and yearly payments. Renewal orders are created before each period ends; a stored card is charged automatically, otherwise the customer pays by bank transfer or through the payment link.",
+    "Sees store reports": "Sees store reports",
+    "Manages the store": "Manages the store",
+    "Edits shop orders": "Edits shop orders",
+    "WooCommerce is required.": "WooCommerce is required.",
+    "The cart is not available.": "The cart is not available.",
+    "That billing period is not offered.": "That billing period is not offered.",
+    "The note could not be saved.": "The note could not be saved.",
+    "The note is too long.": "The note is too long.",
+    "Subscription not found.": "Subscription not found.",
+    "This subscription cannot be changed.": "This subscription cannot be changed.",
+    "Unknown action.": "Unknown action."
   }
 }

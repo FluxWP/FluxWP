@@ -1056,7 +1056,7 @@ msgid "Per page"
 msgstr "ページごと"
 
 msgid "Apply"
-msgstr "申し込む"
+msgstr "適用"
 
 msgid "Default: the theme's primary colour (Appearance › Editor › Styles). If you pick the theme's colour, this follows the theme when it changes."
 msgstr "デフォルト: テーマの主色 (外観 › エディター › スタイル)。テーマの色を選択すると、変更されたテーマに従います。"
@@ -1191,3 +1191,54 @@ msgstr "前の月"
 
 msgid "Next month"
 msgstr "次の月"
+
+msgid "Learn more"
+msgstr "さらに詳しく"
+
+msgid "Dismiss"
+msgstr "解雇する"
+
+msgid "or"
+msgstr "または"
+
+msgid "This role does not exist."
+msgstr "この役割は存在しません。"
+
+msgid "This permission is not in the table."
+msgstr "この許可はテーブルにはありません。"
+
+msgid "There is no backup to restore."
+msgstr "復元するバックアップはありません。"
+
+msgid "A layout needs at least one menu item."
+msgstr "レイアウトには、少なくとも1つのメニュー項目が必要です。"
+
+msgid "Choose a menu item."
+msgstr "メニュー項目を選択します。"
+
+msgid "Unknown menu action."
+msgstr "不明なメニューアクション。"
+
+msgid "Unread WhatsApp"
+msgstr "未読 WhatsApp"
+
+msgid "The logo must be an image from the media library."
+msgstr "ロゴは、メディアライブラリからの画像でなければなりません。"
+
+msgid "Choose 30, 60 or 120 seconds."
+msgstr "30秒、60秒、120秒から選べます。"
+
+msgid "Enter a color like #1F2937."
+msgstr "1F2937 のような色を入力します。"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "アップロードしたファイルが見つからなかったので、再度アップロードします。"
+
+msgid "The file could not be saved on the server."
+msgstr "ファイルがサーバーに保存できませんでした。"
+
+msgid "Choose auto, light or dark."
+msgstr "オート、ライト、ダークを選択します。"
+
+msgid "You do not have permission to do this."
+msgstr "これを行う権限がありません。"

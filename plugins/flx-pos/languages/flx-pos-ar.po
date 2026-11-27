@@ -1,0 +1,830 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "POS accounts"
+msgstr "حسابات نقاط البيع"
+
+msgid "Card payments with banks and payment institutions"
+msgstr "مدفوعات البطاقات مع المصارف ومؤسسات الدفع"
+
+msgid "Virtual POS"
+msgstr "نقطة بيع افتراضية"
+
+msgid "POS"
+msgstr "POS"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "The amount must be greater than zero."
+msgstr "يجب أن يكون المبلغ أكبر من الصفر."
+
+msgid "No POS account for this currency."
+msgstr "لا يوجد حساب لهذا العملة"
+
+msgid "This account needs card details."
+msgstr "هذا الحساب يحتاج إلى تفاصيل البطاقات"
+
+msgid "The payment record could not be created."
+msgstr "ولم يكن من الممكن إعداد سجل المدفوعات."
+
+msgid "Transaction not found."
+msgstr "المعاملات لم يتم العثور عليها"
+
+msgid "Saved card details are missing."
+msgstr "تفاصيل البطاقات المحتفظ بها مفقودة"
+
+msgid "This provider does not support charging a saved card."
+msgstr "هذا المزود لا يدعم شحن بطاقة منقذة"
+
+msgid "Choose a provider."
+msgstr "اختر مزوداً"
+
+msgid "test"
+msgstr "اختبار"
+
+msgid "POS account not found."
+msgstr "لم يعثر على حساب \"بي أو إس\""
+
+msgid "No driver for this provider yet."
+msgstr "لا يوجد سائق لهذا المزود حتى الآن"
+
+msgid "The payment link is invalid or has expired."
+msgstr "وربطة الدفع باطلة أو انتهت صلاحيتها."
+
+msgid "Order %s"
+msgstr "الأمر %s"
+
+msgid "General"
+msgstr "عام"
+
+msgid "The card details have expired; please try again."
+msgstr "إنتهت تفاصيل البطاقة، حاول مرة أخرى."
+
+msgid "Secure payment"
+msgstr "الدفع الآمن"
+
+msgid "Payment form"
+msgstr "استمارة الدفع"
+
+msgid "Cancel and return to checkout"
+msgstr "إلغاء وعودوا إلى المغادرة"
+
+msgid "Going to the secure payment…"
+msgstr "الذهاب إلى دفعة آمنة..."
+
+msgid "Continue"
+msgstr "متابعة"
+
+msgid "The amount charged by the bank (%1$s) differs from the expected amount (%2$s); check it."
+msgstr "ويختلف المبلغ الذي يحمّله المصرف (%1$s) عن المبلغ المتوقع (%2$s)؛ ويتحقق منه."
+
+msgid "Paid by card (%1$s): %2$s, reference %3$s, %4$s."
+msgstr "مدفوعة بالبطاقة )بدولارات الولايات المتحدة(%1$s): %2$sمرجع %3$s, %4$s."
+
+msgid "%d installments"
+msgstr "%d"
+
+msgid "single payment"
+msgstr "دفعة واحدة"
+
+msgid "Card payment needs a check (%1$s): %2$s"
+msgstr "دفع البطاقات يحتاج إلى شيك (%1$s): %2$s"
+
+msgid "Card payment failed (%1$s): %2$s"
+msgstr "سداد البطاقات (%1$s): %2$s"
+
+msgid "Redirecting…"
+msgstr "إعادة توجيه..."
+
+msgid "The payment could not be completed. Please try again or use another card."
+msgstr "تعذر إكمال الدفع. الرجاء المحاولة مرة أخرى أو استخدام بطاقة أخرى."
+
+msgid "Name on card"
+msgstr "الاسم على البطاقة"
+
+msgid "Card number"
+msgstr "رقم البطاقة"
+
+msgid "Expiry (MM/YY)"
+msgstr "انتهاء الصلاحية (شهر/سنة)"
+
+msgid "Security code (CVC)"
+msgstr "الرمز الأمني (CVC)"
+
+msgid "Installments"
+msgstr "الأقساط"
+
+msgid "Single payment"
+msgstr "دفعة واحدة"
+
+msgid "%1$s installments × %2$s (total %3$s)"
+msgstr " أقساط %1$s × %2$s(إجمالي %3$s)"
+
+msgid "Your card details are protected by your bank's 3D Secure check and are not stored on this site."
+msgstr "تفاصيل بطاقتك محمية من قبل حساب تأمين البنك 3D وليس مخزنة في هذا الموقع"
+
+msgid "Check the card number."
+msgstr "تحقق من رقم البطاقة"
+
+msgid "Check the expiry date."
+msgstr "تحقق من تاريخ الإنهاء"
+
+msgid "Check the security code."
+msgstr "تحقق من قانون الأمن"
+
+msgid "Enter the name on the card."
+msgstr "أدخلي الاسم على البطاقة"
+
+msgid "Test mode: no real money is charged."
+msgstr "طريقة الاختبار: لا يوجد مال حقيقي"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "The payment will be left unfinished. Close it?"
+msgstr "الدفع سيترك غير مكتمل أغلقه؟"
+
+msgid "The selected installment is not available for this card."
+msgstr "التركيب المختار غير متاح لهذه البطاقة"
+
+msgid "Installment fee (%d installments)"
+msgstr "رسوم التركيب (%d دفعة)"
+
+msgid "No successful card payment found on this order."
+msgstr "لم يتم العثور على بطاقة ناجحة على هذا الأمر."
+
+msgid "This transaction cannot be refunded."
+msgstr "ولا يمكن إعادة تمويل هذه الصفقة."
+
+msgid "The refund amount cannot exceed the paid amount."
+msgstr "ولا يمكن أن يتجاوز المبلغ المسترد المبلغ المدفوع."
+
+msgid "The bank did not approve the refund."
+msgstr "لم يوافق البنك على رد الأموال."
+
+msgid "The card payment was voided at the bank (%s)."
+msgstr "وألغيت مدفوعات البطاقة في المصرف (%s)."
+
+msgid "Refunded to the card: %s."
+msgstr "أعيد تمويلها إلى البطاقة: %s."
+
+msgid "Block checkout"
+msgstr "حظر الخروج"
+
+msgid "Payment link"
+msgstr "رابط الدفع"
+
+msgid "Server check"
+msgstr "فحص الخادم"
+
+msgid "Saved cards"
+msgstr "البطاقات المحفوظة"
+
+msgid "Refund from site"
+msgstr "استرداد المبلغ من الموقع"
+
+msgid "Shown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method."
+msgstr "يتم عرضه على صفحة الدفع التي تم إنشاؤها باستخدام كتلة الدفع. يُظهر الدفع الكلاسيكي ([woocommerce_checkout]) كل الطرق."
+
+msgid "Pays an existing order from its payment link without a cart (call center, \"pay again\")."
+msgstr "يُدفعُ a طلب قائم مِنْ رابطِ مدفوعاتِه بدون a عربة (مركزِ بيعِ، \"دفع ثانيةً.\""
+
+msgid "The payment is confirmed with the provider from the server before the order is marked paid."
+msgstr "تم تأكيد الدفع مع الموفر من الخادم قبل أن يتم وضع علامة على الطلب بأنه مدفوع."
+
+msgid "The payer can pay in installments."
+msgstr "يمكن للمدفع أن يدفع في التركات"
+
+msgid "The payer can save the card for the next payment."
+msgstr "يمكن للمدفع أن يحفظ البطاقة من أجل الدفع التالي"
+
+msgid "The order's Refund button sends the refund to the provider."
+msgstr "الزر المُعاد للأمر يُرسل الأموال إلى المُقدّم."
+
+msgid "Added by Flux POS (the plugin has no block support)."
+msgstr "مضاف من قبل Flux POS (البلوجين ليس لديه أي دعم من المباني)."
+
+msgid "Flux POS adds it once the method is enabled."
+msgstr "ويضيفه نظام مراقبة الأداء بمجرد أن يتم التمكين من هذا الأسلوب."
+
+msgid "Turn on \"Show other payment plugins on the checkout block\"."
+msgstr "قم بتشغيل \"إظهار ملحقات الدفع الأخرى في كتلة الدفع\"."
+
+msgid "The plugin shows its card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support."
+msgstr "المزمار يظهر حقول البطاقة فقط على كلاسيكي إستخدم الصفحة الكلاسيكية للمغادرة أو أطلب من المزود أن يقدم الدعم"
+
+msgid "Most plugins work; try a payment link once."
+msgstr "معظم المكونات الإضافية تعمل؛ حاول استخدام رابط الدفع مرة واحدة."
+
+msgid "Depends on the plugin; ask the provider."
+msgstr "يعتمد على البرنامج المساعد؛ اسأل الموفر."
+
+msgid "On the payment page, if the provider offers it."
+msgstr "على صفحة الدفع، إذا عرضها مقدم الطلب."
+
+msgid "Refund in the provider's panel, then mark the order refunded."
+msgstr "قم باسترداد الأموال في لوحة الموفر، ثم ضع علامة على الطلب الذي تم استرداده."
+
+msgid "The bank's return is verified by signature or a server query; the amount must match."
+msgstr "تم التحقق من عودة المصرف بالتوقيع أو استفسار الخادم يجب أن يتطابق المبلغ"
+
+msgid "The account's installment table is empty."
+msgstr "طاولة تركيب الحساب فارغة"
+
+msgid "The provider does not support refunds from the site."
+msgstr "ولا يؤيد مقدم الطلب المبالغ المستردة من الموقع."
+
+msgid "Confirmed by hand after the receipt."
+msgstr "تم التأكيد باليد بعد الاستلام."
+
+msgid "Payment details"
+msgstr "تفاصيل الدفع"
+
+msgid "No Flux POS transaction on this order."
+msgstr "لا صفقة من طراز Flux POS على هذا الأمر."
+
+msgid "Card"
+msgstr "بطاقة"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Amount"
+msgstr "المبلغ"
+
+msgid "Bank reference"
+msgstr "المراجع المصرفية"
+
+msgid "Authorization code"
+msgstr "رمز الترخيص"
+
+msgid "Transaction no"
+msgstr "لا"
+
+msgid "Mode"
+msgstr "الوضع"
+
+msgid "Test"
+msgstr "اختبار"
+
+msgid "Live"
+msgstr "مباشر"
+
+msgid "All transactions"
+msgstr "جميع المعاملات"
+
+msgid "3D Pay (check and charge at the bank)"
+msgstr "3D Pay (التحقق والخصم لدى البنك)"
+
+msgid "Bank's payment page (3D Host)"
+msgstr "صفحة دفع البنك (3D Host)"
+
+msgid "Provider's payment page"
+msgstr "صفحه الدفع للمورد"
+
+msgid "Payment form on the page (iFrame)"
+msgstr "استمارة الدفع في الصفحة (iFrame)"
+
+msgid "Stripe card fields on the checkout page (Payment Element)"
+msgstr "حقول البطاقات المزرية في صفحة المغادرة (عنصر المكافآت)"
+
+msgid "Pay with wallet"
+msgstr "ادفع مع المحفظة"
+
+msgid "Without 3D (only on accounts the bank allows)"
+msgstr "بدون 3D (فقط في الحسابات يسمح البنك)"
+
+msgid "Store number (Client ID)"
+msgstr "عدد المخزن (الهوية الوحيدة)"
+
+msgid "API user name"
+msgstr "API اسم المستخدم"
+
+msgid "The user created with the API role in the bank panel. Needed for refunds, voids and queries."
+msgstr "وقد أنشئ المستعمل الذي كان له دور في الفريق المصرفي الذي يبلغ 917101، وهو بحاجة إلى استرداد الأموال والفراغات والاستفسارات."
+
+msgid "API user password"
+msgstr "API كلمة سر المستخدم"
+
+msgid "3D Store Key"
+msgstr "مفتاح المتجر لـ 3D Secure"
+
+msgid "Merchant number"
+msgstr "ميرشانت رقم"
+
+msgid "Terminal number"
+msgstr "رقم المصطلحات"
+
+msgid "Provision user"
+msgstr "مستعمل"
+
+msgid "Provision password"
+msgstr "كلمة السر"
+
+msgid "3D Secure key"
+msgstr "مفتاح 3D Secure"
+
+msgid "Refund user (PROVRFN)"
+msgstr "مستعمل رد الأموال (PROVRFN)"
+
+msgid "If empty, the provision user is used."
+msgstr "وإذا كانت فارغة، يُستخدم مستعملة الضم."
+
+msgid "Refund user password"
+msgstr "كلمة السر الخاصة بالمستعملين"
+
+msgid "Merchant number (MID)"
+msgstr "رقم ميرشانت"
+
+msgid "Terminal number (TID)"
+msgstr "الرقم النهائي (TID)"
+
+msgid "Posnet ID"
+msgstr "معرّف Posnet"
+
+msgid "Encryption key (ENCKEY)"
+msgstr "مفتاح التشفير"
+
+msgid "Merchant password"
+msgstr "كلمة مرور ميرشان"
+
+msgid "API user code"
+msgstr "رمز المستخدم API"
+
+msgid "Shop code (ShopCode)"
+msgstr "شفرة الأساقفة (ShopCode)"
+
+msgid "Merchant key (MerchantPass)"
+msgstr "مفتاح ميرشانت (MerchantPass)"
+
+msgid "Store number (MerchantId)"
+msgstr "رقم المخزن (MerchantId)"
+
+msgid "Customer number (CustomerId)"
+msgstr "عدد العملاء (المركز الدولي للزبائن)"
+
+msgid "Merchant Safe ID"
+msgstr "بطاقة هوية آمنة"
+
+msgid "Terminal Safe ID"
+msgstr "التعريف الآمن النهائي"
+
+msgid "Secret key"
+msgstr "المفتاح السري"
+
+msgid "Merchant code (MERCHANT)"
+msgstr "رمز ميرشانت (ميرشانت)"
+
+msgid "API user"
+msgstr "API مستخدم"
+
+msgid "API password"
+msgstr "API كلمة سر"
+
+msgid "Dealer type (optional)"
+msgstr "نوع الشفاء (اختياري)"
+
+msgid "App key (App ID)"
+msgstr "مفتاح التطبيق (بطاقة هوية)"
+
+msgid "App secret (App Secret)"
+msgstr "سرّي (أب سرّ)"
+
+msgid "Merchant key (Merchant Key)"
+msgstr "مفتاح ميرشانت (مفتاح ميرشانت)"
+
+msgid "API key"
+msgstr "مفتاح واجهة برمجة التطبيقات"
+
+msgid "Store number"
+msgstr "عدد المخزن"
+
+msgid "Store password (Merchant Key)"
+msgstr "كلمة السر المسروقة (مفتاح الميكانيكية)"
+
+msgid "Store secret (Merchant Salt)"
+msgstr "السر المسروق (الملح الميكانيكي)"
+
+msgid "Terminal number (CLIENT_CODE)"
+msgstr "الرقم النهائي (CLIENT_CODE)"
+
+msgid "User name"
+msgstr "اسم المستخدم"
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Key (GUID)"
+msgstr "المفتاح (GID)"
+
+msgid "Merchant (MERCHANT)"
+msgstr "ميرشانت (ميرشانت)"
+
+msgid "TEST1234 for testing."
+msgstr "TEST1234 للاختبار."
+
+msgid "Merchant key (MERCHANT_KEY)"
+msgstr "مفتاح ميرشانت (ميرشانت كي)"
+
+msgid "Public token (MERCHANT_PUBLIC_TOKEN, for installment rates)"
+msgstr "مركب عام (ميرشانت - بومليك - توكين، لمعدلات التركيب)"
+
+msgid "Dealer code"
+msgstr "رمز الشفاء"
+
+msgid "Client ID"
+msgstr "هوية العميل"
+
+msgid "Signing key ID (kid)"
+msgstr "التوقيع على الهوية الرئيسية (الأولاد)"
+
+msgid "Signing key (k)"
+msgstr "مفتاح التوقيع (ك)"
+
+msgid "Payment key (sx)"
+msgstr "مفتاح الدفع (س س)"
+
+msgid "Void/refund key (sx)"
+msgstr "مفتاح الفويد/الاسترداد (x)"
+
+msgid "API key (test_… or live_…)"
+msgstr "917101 مفتاح (اختبار... أو حي... )"
+
+msgid "Publishable key (pk_test_… or pk_live_…)"
+msgstr "مفتاح قابل للنشر (الاختبار) أو (البقعة)"
+
+msgid "Secret key (sk_… or restricted rk_…)"
+msgstr "مفتاح سري (سك--) أو مقصورة على rk--"
+
+msgid "Webhook signing secret (whsec_…)"
+msgstr "(ويهوك) يوقع سرّاً (ويسك)"
+
+msgid "Statement descriptor suffix (optional, up to 22 characters)"
+msgstr "بيان المجند المختص (اختياري، يصل إلى 22 شخصية)"
+
+msgid "Website index"
+msgstr "مؤشر الموقع الشبكي"
+
+msgid "This bank asks for the card again after the 3D return: the card is kept encrypted, tied to the transaction, for at most 20 minutes and opened once on return."
+msgstr "ويطالب هذا المصرف بالبطاقة مرة أخرى بعد عودة الـ 3D: ويحتفظ بالبطاقة مشفرة، مرتبطة بالمعاملة، لأكثر من 20 دقيقة، ويفتح مرة واحدة عند العودة."
+
+msgid "This bank's return signature does not work as documented; every successful return is checked with the bank."
+msgstr "توقيع رد هذا المصرف لا يعمل كما هو موثق، كل عودة ناجحة يتم التحقق منها مع البنك."
+
+msgid "The \"Provider's payment page\" model is the iyzico checkout form; the \"Pay with iyzico\" wallet is on that page too."
+msgstr "نموذج \"صفحة الدفع للمشتري\" هو استمارة \"أيزيكو\" لفحص المحفظة، \"باي مع أيزيكو\" على تلك الصفحة أيضاً"
+
+msgid "Enter this account's notification address as the Notification URL in the PayTR panel (shown on the account screen). Test mode works with the PayTR account's test key."
+msgstr "أدخل عنوان هذا الحساب كالإخطار في لوحة سجل المعاملات الدولي (يظهر على شاشات الحسابات)"
+
+msgid "For a test use merchant TEST1234 and the test key from EsnekPOS's developer page."
+msgstr "لاختبار يستخدم التاجر TEST1234 ومفتاح الاختبار من صفحة مطورة اسنيكبو"
+
+msgid "Enter this account's notification address as the callback address in the Shopier panel. Refunds are made in the Shopier panel."
+msgstr "أدخل عنوان هذا الحساب كعنوان إستدعاء في لوحة (سوهويير)"
+
+msgid "Test or live is taken from the key's prefix (test_… / live_…). Turkish lira is not supported."
+msgstr "الإختبار أو الحيّة يتمّ أخذها من مفترق المفاتيح (آخر..."
+
+msgid "Card fields are Stripe's Payment Element; card details never reach the site. 3D Secure, Apple Pay and Google Pay are handled by Stripe. Test or live is read from the key prefix and must match the account's test switch. \"Test connection\" also registers the domain for Apple Pay."
+msgstr "حقول البطاقة هي عنصر الدفع لـ (ري) وتفاصيل البطاقات لا تصل للموقع أبداً"
+
+msgid "GiroGate method"
+msgstr "طريقة استخدام الطاقة الكهربائية"
+
+msgid "Banks"
+msgstr "المصارف"
+
+msgid "Payment institutions"
+msgstr "مؤسسات الدفع"
+
+msgid "Wallets"
+msgstr "الجدار"
+
+msgid "Meal and gift cards"
+msgstr "وجبة وبطاقات هدايا"
+
+msgid "Refund"
+msgstr "استرداد"
+
+msgid "Partial refund"
+msgstr "المبالغ المستردة جزئيا"
+
+msgid "Void"
+msgstr "Void"
+
+msgid "Status query"
+msgstr "الاستفسار عن الوضع"
+
+msgid "Installments by card"
+msgstr "التركيب حسب البطاقات"
+
+msgid "Server notification"
+msgstr "إخطار من شركة سيرفر"
+
+msgid "The result of the previous charge is not in yet."
+msgstr "ولم تصل نتيجة التهمة السابقة بعد."
+
+msgid "No result came back."
+msgstr "لم تعد أي نتيجة"
+
+msgid "Order #%s"
+msgstr "الطلب #%s"
+
+msgid "The card was not charged."
+msgstr "لم يتم شحن البطاقة."
+
+msgid "Pay"
+msgstr "شارك"
+
+msgid "Processing…"
+msgstr "تجهيز..."
+
+msgid "The payment form could not be loaded. Refresh the page or choose another method."
+msgstr "ولا يمكن تحميل استمارة الدفع، أو إعادة فتح الصفحة أو اختيار طريقة أخرى."
+
+msgid "Your card details are processed in Stripe's secure fields and are not stored on this site."
+msgstr "تفاصيل بطاقتك مجهزة في حقول (ري) الآمنة ولا تخزن في هذا الموقع"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Pending"
+msgstr "في انتظار"
+
+msgid "Paid"
+msgstr "مدفوعة"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "Refunded"
+msgstr "ردها"
+
+msgid "Voided"
+msgstr "مصوتة"
+
+msgid "Needs a check"
+msgstr "تحتاج إلى شيك"
+
+msgid "Enabled"
+msgstr "ممكّن"
+
+msgid "Show this payment method"
+msgstr "تبين طريقة الدفع هذه"
+
+msgid "Accounts, keys, installments and the display name are managed in the Flux POS panel."
+msgstr "وتدار الحسابات، والمفاتيح، والتركيبات، واسم العرض في لوحة Flux POS."
+
+msgid "Flux POS panel"
+msgstr "Flux POS panel"
+
+msgid "Card payment is not available for this currency."
+msgstr "ولا تتاح مدفوعات البطاقات لهذه العملة."
+
+msgid "Pay by card (Flux POS)"
+msgstr "الأجر بالبطاقة (Flux POS)"
+
+msgid "Bank / Credit card"
+msgstr "المصرف/بطاقة الائتمان"
+
+msgid "Completed on the payment provider's page."
+msgstr "تم إنجازه على صفحة مقدم الدفع"
+
+msgid "The merchant details are wrong; check the account settings."
+msgstr "تفاصيل التجار خاطئة، تحقق من الحسابات"
+
+msgid "The bank's return signature did not match."
+msgstr "توقيع البنك على رده لم يتطابق"
+
+msgid "The bank's return does not belong to this payment."
+msgstr "عودة البنك لا تنتمي إلى هذا الدفع"
+
+msgid "No successful sale was found at the bank."
+msgstr "لم يعثر على أي بيع ناجح في البنك"
+
+msgid "The payment is pending at the provider."
+msgstr "ولا يزال الدفع معلقاً في مقدِّم الخدمات."
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "For a payment with several lines, partial refunds are made in the Craftgate panel."
+msgstr "وتُسدد مبالغ جزئية في فريق كرافتغي، مقابل دفعة مع عدة خطوط."
+
+msgid "Please write the card holder's full name as it is on the card (at least 6 letters)."
+msgstr "من فضلك اكتب اسم حامل البطاقة كما هو على البطاقة (على الأقل 6 رسائل)"
+
+msgid "The payment could not be started. Please try again."
+msgstr "تعذر بدء الدفع. الرجاء المحاولة مرة أخرى."
+
+msgid "Status at the bank: %s"
+msgstr "الحالة في المصرف: %s"
+
+msgid "iyzico put the payment under review."
+msgstr "ووضعت إيزيكو المبلغ قيد الاستعراض."
+
+msgid "The %s provision response could not be read; check with the bank."
+msgstr "ولم يكن بالإمكان قراءة رد الاعتماد البالغ %s؛ والتحقق من المصرف."
+
+msgid "The payment was not completed (%s)."
+msgstr "ولم تكتمل عملية الدفع (%s)."
+
+msgid "The payment method will report the result later."
+msgstr "وستبلغ طريقة الدفع النتيجة في وقت لاحق."
+
+msgid "The transaction was voided at the bank."
+msgstr "الصفقة فُرغت في المصرف."
+
+msgid "The payment was not completed."
+msgstr "ولم تكتمل المدفوعات."
+
+msgid "Papara refunds only the full amount."
+msgstr "(بارا) تسترد المبلغ الكامل فقط"
+
+msgid "The card is not eligible for 3D Secure."
+msgstr "البطاقة غير مؤهلة لـ 3D تأمين."
+
+msgid "The payment time ran out; please enter the card details again."
+msgstr "لقد انقضت فترة الدفع، يرجى إدخال تفاصيل البطاقة مرة أخرى."
+
+msgid "The result will come with the PayTR notification."
+msgstr "وستأتي النتيجة مع إخطار سجل المعاملات الدولي."
+
+msgid "%s did not respond."
+msgstr "%s لم يرد."
+
+msgid "The bank did not complete the 3D check."
+msgstr "البنك لم يكمل الشيك 3D"
+
+msgid "The result will come with the Shopier notification."
+msgstr "النتيجة ستتأتى مع إخطار (شوبير)"
+
+msgid "Stripe keys are missing: a publishable key and a secret key are required."
+msgstr "مفاتيح التعري مفقودة: مفتاح قابل للنشر ومفتاح سري مطلوب."
+
+msgid "One Stripe key is test and the other is live. Both must be in the same mode."
+msgstr "مفتاح وحيد هو اختبار والآخر على الهواء يجب أن يكون كلاهما بنفس الطريقة"
+
+msgid "The account is in test mode but the Stripe keys are live. Enter test keys (sk_test_… / pk_test_…) or turn test mode off."
+msgstr "الحساب في حالة الإختبار لكن مفاتيح (تري) على الهواء، مفاتيح اختبار الدخول (إختبار)"
+
+msgid "The account is live but the Stripe keys are test keys. Enter live keys or turn test mode on."
+msgstr "الحساب على الهواء لكن مفاتيح (روي) هي مفاتيح الاختبار أدخل المفاتيح الحية أو طريقة الاختبار"
+
+msgid "The card number is not valid."
+msgstr "رقم البطاقة غير صحيح"
+
+msgid "The card number is incorrect."
+msgstr "رقم البطاقة غير صحيح"
+
+msgid "The card number is incomplete."
+msgstr "رقم البطاقة غير مكتمل"
+
+msgid "The expiry month is invalid."
+msgstr "شهر الإنهاء غير صحيح"
+
+msgid "The expiry year is invalid."
+msgstr "سنة الإنهاء باطلة"
+
+msgid "The expiry year is in the past."
+msgstr "سنة الإنهاء في الماضي"
+
+msgid "The expiry date is incomplete."
+msgstr "تاريخ الإنهاء غير مكتمل"
+
+msgid "The card has expired."
+msgstr "البطاقة انتهت"
+
+msgid "The security code is invalid."
+msgstr "قانون الأمن غير صحيح"
+
+msgid "The security code is incorrect."
+msgstr "الرمز الأمني غير صحيح"
+
+msgid "The security code is incomplete."
+msgstr "الرمز الأمني غير مكتمل"
+
+msgid "The postal code failed validation."
+msgstr "تعذّر التحقق من الرمز البريدي."
+
+msgid "Invalid postal code; please correct it and try again."
+msgstr "رمز بريدي غير قابل للانفصال؛ يرجى تصحيحه ومحاولة مرة أخرى."
+
+msgid "The card was declined."
+msgstr "لقد تم رفض البطاقة"
+
+msgid "The card has insufficient funds or limit."
+msgstr "البطاقة ليس لديها أموال أو حدود كافية."
+
+msgid "The card issuer did not approve the payment."
+msgstr "لم يوافق مُصدر البطاقات على الدفع."
+
+msgid "The card's transaction limit was exceeded."
+msgstr "لقد تم تجاوز الحد الأقصى لصفقات البطاقة"
+
+msgid "An error occurred while processing the card; please try again."
+msgstr "وقع خطأ أثناء تجهيز البطاقة، حاول مرة أخرى."
+
+msgid "The email address is invalid."
+msgstr "العنوان البريدي غير صحيح"
+
+msgid "The payment could not be processed; try again or use another method."
+msgstr "ولا يمكن تجهيز المبلغ؛ أو محاولة استخدام طريقة أخرى."
+
+msgid "The payment is processing at Stripe."
+msgstr "الدفع هو تجهيز في (روي)."
+
+msgid "Waiting for payment authentication."
+msgstr "في انتظار التوثيق بالدفع"
+
+msgid "The payment was canceled."
+msgstr "تم إلغاء الدفع"
+
+msgid "This provider sends no notifications."
+msgstr "ولا يرسل هذا المزود أي إخطارات."
+
+msgid "This provider has no refunds from the site; make them in the provider's panel."
+msgstr "هذا المزود ليس لديه اي رد من الموقع اجعلهم في لوحة المزود"
+
+msgid "This provider has no voids from the site."
+msgstr "هذا المزود ليس لديه فراغات من الموقع"
+
+msgid "This provider has no status query."
+msgstr "هذا المزود ليس لديه أي استفسار عن الوضع"
+
+msgid "Error code %s"
+msgstr "الرمز %s"
+
+msgid "The payment was not approved."
+msgstr "ولم تتم الموافقة على الدفع."
+
+msgid "%1$s did not respond (HTTP %2$d)."
+msgstr "%1$s لم يرد (HTTP %2$d)."
+
+msgid "Redirect: the bank or provider page opens full screen"
+msgstr "إعادة التوجيه: يفتح المصرف أو صفحة مقدمي الخدمات شاشات كاملة"
+
+msgid "Popup: in a frame, without leaving checkout"
+msgstr "في إطار، بدون مغادرة"
+
+msgid "On site: in a frame, with the site's header and footer"
+msgstr "على الموقع: في إطار، مع رأس الموقع وقدمه"
+
+msgid "This provider has no connection test; try a small payment with a test card."
+msgstr "هذا المزود ليس لديه اختبار اتصال؛ جرب دفعة صغيرة ببطاقة اختبار."
+
+msgid "Connection works, the keys were accepted."
+msgstr "أعمال الإتصال، تم قبول المفاتيح."
+
+msgid "Automatic"
+msgstr "تلقائي"
+
+msgid "Show all"
+msgstr "إظهار الكل"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce غير نشط."
+
+msgid "Add a POS account before turning on the Pay by card method."
+msgstr "أضف حساباً من نوع POS قبل تحويل الأجر عن طريق البطاقة."
+
+msgid "Refund from the panel"
+msgstr "المبالغ المردودة من الفريق"
+
+msgid "No active POS account; card payments are not taken."
+msgstr "لا يوجد حساب تشغيلي للبرمجيات الحرة والمفتوحة المصدر؛ ولا تؤخذ مدفوعات البطاقات."
+
+msgid "An account is in test mode, no real money is charged: %s"
+msgstr "الحساب في حالة الإختبار، لا يوجد مال حقيقي محمل: %s"
+
+msgid "%d account is active in live mode."
+msgid_plural "%d accounts are active in live mode."
+msgstr[0] "%d حسابات نشطة في حالة حية."
+msgstr[1] "%d الحساب نشط في حالة الحياة."
+msgstr[2] "%d حسابات نشطة في حالة حية."
+msgstr[3] "%d حسابات نشطة في حالة حية."
+msgstr[4] "%d حسابات نشطة في حالة حية."
+msgstr[5] "%d حسابات نشطة في حالة حية."
+
+msgid "%s: no webhook signing secret. The payment return is still read, but if the payer closes the page before returning the order stays pending. Add the notification URL in the Stripe Dashboard and enter the whsec_… secret."
+msgstr "%s: لا يوجد سر للتوقيع على موقع الويب، ولا تزال عملية إعادة الدفع تُقرأ، ولكن إذا كان المدفع يغلق الصفحة قبل إعادة الأمر يبقى معلقاً."
+
+msgid "The official WooCommerce Stripe plugin is also active. Pick a single card method in Flux POS › Methods so payers do not see two card options."
+msgstr "المسؤول WooCommerce وثبات البلوجين المتعري نشط أيضاً، واختيار طريقة واحدة للبطاقة في أساليب الـ (فلوكس بي أو) حتى لا يرى المدفوعون خيارين للبطاقات."
+
+msgid "The site is not on HTTPS; banks do not send the card result to the return address and the card form is not secure."
+msgstr "والموقع ليس على موقع شركة HTTPS؛ ولا ترسل المصارف نتيجة البطاقة إلى عنوان العودة، ولا تكون استمارة البطاقة آمنة."
+
+msgid "Key encryption"
+msgstr "تشفير المفاتيح"
+
+msgid "PHP sodium or openssl is missing; POS keys cannot be encrypted."
+msgstr "PHP صوديوم أو فتحات مفقودة؛ ولا يمكن تشفير مفاتيح POS."
+
+msgid "Keys are encrypted with the WordPress salts. If the wp-config.php salts change, enter the POS keys again."
+msgstr "المفاتيح مشفرة بملح WordPress، إذا تغيرت أملاح الـ \"ديب سيكغ\"."
+
+msgid "The check could not run: %s"
+msgstr "لم يكن الشيك قادراً على الركض: %s"

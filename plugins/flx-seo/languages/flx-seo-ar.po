@@ -1212,3 +1212,141 @@ msgstr "عنوان/وصف تعريفي، أساسي، رسم بياني مفتو
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "انتهت مهلة PageSpeed؛ تم تخطي هذه الخطوة."
+
+msgid "Searches this website and returns matching pages and posts with their title and address."
+msgstr "يفتش هذا الموقع ويعيد الصفحات والمراكز المطابقة مع عنوانها وعنوانها."
+
+msgid "How many results to return (1-20)"
+msgstr "عدد النتائج التي ستعود (1-20)"
+
+msgid "Reads a page of this website as Markdown (title, description and main content). Without an address, reads the current page."
+msgstr "ويقرأ صفحة من هذا الموقع على العنوان والوصف والمحتوى الرئيسي، ويقرأ الصفحة الحالية دون عنوان."
+
+msgid "Page address on this website; empty for the current page"
+msgstr "عنوان الصفحة على هذا الموقع؛ فارغ للصفحة الحالية"
+
+msgid "Returns a short overview of this website (llms.txt): what it is about and its main pages."
+msgstr "ويعيد لمحة عامة موجزة عن هذا الموقع الشبكي (الملحوظة: ما هو عليه وما هو عليه من صفحات رئيسية."
+
+msgid "Turn on Content-Signal in robots.txt"
+msgstr "اقلبوا على \"كونت سيجل\" في الروبوتات"
+
+msgid "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings."
+msgstr "يضيف خطاً من طراز &quot; كونت سيغل &quot; (البحث، أي إنبست، إي-ترين) إلى الروبوتات."
+
+msgid "Serve Markdown to agents"
+msgstr "خدموا العملاء"
+
+msgid "WebMCP tools are registered"
+msgstr "تم تسجيل أدوات برنامج المقارنات الإلكترونية"
+
+msgid "Markdown is served to agents"
+msgstr "تم وضع علامات على العملاء"
+
+msgid "Content signals are declared"
+msgstr "تُعلن إشارات المحتوى"
+
+msgid "Organization and contact pages are complete"
+msgstr "اكتمال صفحات التنظيم والاتصال"
+
+msgid "MCP Server Card is published"
+msgstr "MCP سيرفر كارد ينشر"
+
+msgid "Flux AI & MCP"
+msgstr "Flux AI & MCP"
+
+msgid "No Content-Signal in robots.txt"
+msgstr "لا يوجد مشهد في الروبوتات"
+
+msgid "A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under \"User-agent: *\" yourself."
+msgstr "\"خطٌّ مُختلفٌ في الكونيّة\" \"مثلاً، البحث\" \"نعم، المُدخل\" \"نعم\""
+
+msgid "Sitemap has no lastmod dates"
+msgstr "(سبيندب) ليس لديه مواعيد أخيرة"
+
+msgid "Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there."
+msgstr "يجب أن يحمل كل مدخل موقعي <lastmod> حتى يعرف محركات البحث و الوكلاء ما الذي تغير، ويضيفه إلى خريطة الموقع رقم WordPress ورقمه القياسي، وإذا كان هناك بلوجين آخر يبني خريطة الموقع، يتحول إلى آخر لحظة هناك."
+
+msgid "Organization schema is missing contact details"
+msgstr "\"الكيماويات المنظمة مفقودة\" \"تفاصيل الاتصال\""
+
+msgid "Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty)."
+msgstr "ملء الهاتف والعنوان بحيث يمكن لوكيل أن يجيب على الأسئلة المتعلقة بالمنظمة دون التخمين: المنظمة، أو صورة المنظمة في مؤسسة فلكس (Flux SEO) (Flux SEO reads it when its own fields are empty)."
+
+msgid "About, contact or legal page is not linked from the home page"
+msgstr "لا ترتبط صفحة الاستقبال أو الاتصال أو الصفحة القانونية"
+
+msgid "Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read."
+msgstr ":: ربط الصفحات المتعلقة بالخصوصية/الخصوصية من صفحة الاستقبال (عادة ما يكون مقدما) - لا يحسب البريد: الوصلة كصفحة اتصال؛ ويبحث العملاء عن صفحة يمكنهم قراءتها."
+
+msgid "Markdown is not served when an agent asks for it"
+msgstr "لم يتم التلاعب بها عندما يطلبها عميل"
+
+msgid "For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when \"Serve Markdown\" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the \"Flux SEO Markdown\" block is at the top of .htaccess."
+msgstr "(للقبول: يجب أن تجيب الصفحة بنسخة (ماركداون إنها تُكلّف عملاء أقل بكثير من (HTML. Flux SEO) يفعل ذلك عندما يكون \"Serve Markdown\" على، وإذا ما عاد (HTML) فإن مخبأ الصفحات يجيب أولاً: تطهير المخبأ (LiteSpeed: Purge All) وتحقق من أن \"Flux SEO Markdownh\" في أعلى مدخل."
+
+msgid "No WebMCP tools are registered on page load"
+msgstr "لا توجد أدوات للبرمجيات الإلكترونية في شكل صفحات"
+
+msgid "Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on."
+msgstr "ويبحث وكلاء الحشد عن أدوات مسجلة لدى الملاحين."
+
+msgid "No MCP Server Card"
+msgstr "لا MCP سيرفر كارد"
+
+msgid "Agents discover the site's MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this."
+msgstr "يكتشف العملاء خادم الموقع رقم MCP من /.معروف/مكبر/بطاقة حاسبة (اسم، نسخة، نقطة النهاية، قدرات)"
+
+msgid "Hidden from search engines (noindex)."
+msgstr "مخبأ من محركات البحث (لا مؤشر)."
+
+msgid "Title is long (%d characters); Google cuts after about 60."
+msgstr "العنوان طويل (%d شخص)؛ قطع غوغل بعد حوالي 60"
+
+msgid "Title is very short; write a title that describes the topic."
+msgstr "العنوان قصير جداً؛ أكتب عنواناً يصف الموضوع."
+
+msgid "No meta description; it is built from the content automatically."
+msgstr "ولا يوجد وصف دقيق؛ وهو مبني من المحتوى آليا."
+
+msgid "Meta description is long (%d characters)."
+msgstr "الوصف الدقيق طويل (%d شخص)."
+
+msgid "Meta description is short (%d characters)."
+msgstr "الوصف الدقيق قصير (%d شخص)."
+
+msgid "%d images have no alt text (filled in automatically from the image name; write a meaningful alt text)."
+msgstr "%d لا يوجد أي نص (يتم ملؤه تلقائياً باسم الصورة؛ ويكتب نصاً ذا معنى)."
+
+msgid "%d images have no alt text."
+msgstr "%d صورة ليس لها نص"
+
+msgid "The page has %d H1 headings; there must be only one."
+msgstr "الصفحة %d H1 العناوين؛ يجب أن يكون هناك واحد فقط."
+
+msgid "The page has no main heading (H1)."
+msgstr "ليس للصفحة عنوان رئيسي (H1)."
+
+msgid "The content has an H1; the page title is already the H1. Make sub-headings H2."
+msgstr "يحتوي المحتوى على H1؛ عنوان الصفحة هو بالفعل H1. جعل الرؤوس الفرعية H2."
+
+msgid "The content is short (%d words). 300+ words are recommended."
+msgstr "والمحتوى قصير (%d كلمة)."
+
+msgid "Long content has no sub-heading (H2)."
+msgstr "لا يوجد في المحتوى الطويل أي رأس فرعي (H2)."
+
+msgid "The focus keyword is not in the title."
+msgstr "كلمة التركيز ليست في العنوان."
+
+msgid "The focus keyword is not in the description."
+msgstr "إن كلمة التركيز ليست في الوصف."
+
+msgid "No internal links (link to related pages)."
+msgstr "لا توجد روابط داخلية (وصلة بالصفحات ذات الصلة)."
+
+msgid "Content not found."
+msgstr "لم يعثر على المضمون."
+
+msgid "You are not allowed to edit this content."
+msgstr "لا يسمح لك بتحرير هذا المحتوى"

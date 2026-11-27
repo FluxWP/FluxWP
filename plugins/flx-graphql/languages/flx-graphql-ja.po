@@ -1,0 +1,945 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Flux GraphQL"
+msgstr "Flux GraphQL"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "You do not have permission to do this."
+msgstr "これを行う権限がありません。"
+
+msgid "One GraphQL API for the FluxWP plugins. Screens in wp-admin, the FluxWP desktop and mobile apps and a headless front end all read the same typed schema."
+msgstr "一つ GraphQL API です FluxWP plugins.wp-admin の画面 FluxWP デスクトップとモバイルアプリとヘッドレスフロントエンドはすべて、同じタイプスキーマを読みます。"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "The separate WPGraphQL plugin was deactivated; the built-in copy is in use."
+msgstr "別のWPGraphQLプラグインが無効になっており、組み込みコピーが使用されている。"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Endpoint"
+msgstr "エンドポイント"
+
+msgid "WPGraphQL"
+msgstr "WP GraphQL"
+
+msgid "%s (built in)"
+msgstr "%s (内蔵)"
+
+msgid "%s (separate plugin)"
+msgstr "%s(別プラグイン)"
+
+msgid "not loaded"
+msgstr "ロードされない"
+
+msgid "working"
+msgstr "働いている"
+
+msgid "off"
+msgstr "オフ"
+
+msgid "Known queries"
+msgstr "既知のクエリ"
+
+msgid "%1$d from %2$d packages"
+msgstr "%1$d %2$d パッケージから"
+
+msgid "Upload endpoint"
+msgstr "エンドポイントのアップロード"
+
+msgid "Use the Flux GraphQL version"
+msgstr "フラックスを使用する GraphQL バージョン"
+
+msgid "Open GraphiQL IDE"
+msgstr "GraphiQL IDE を開く"
+
+msgid "Access"
+msgstr "アクセス"
+
+msgid "Only queries shipped with FluxWP packages (recommended)"
+msgstr "は、お問い合わせのみ。 FluxWP パッケージ(推奨)"
+
+msgid "Administrators may also send any query"
+msgstr "管理者は任意のクエリーを送信することもできます。"
+
+msgid "Anyone may send any query (public headless API)"
+msgstr "誰でもクエリー(パブリック ヘッドレス)を送信できます。 API)"
+
+msgid "Which queries run"
+msgstr "どのクエリを実行するか"
+
+msgid "Persisted queries keep the API small and let LiteSpeed cache public reads."
+msgstr "永続化クエリは、保たれる API LiteSpeed が公開読み込みをキャッシュします。"
+
+msgid "Front-end origins"
+msgstr "フロントエンドの起源"
+
+msgid "Sites allowed to call /graphql from the browser, one per line. This site is always allowed."
+msgstr "ブラウザから/graphqlを呼び出すことができるサイト、1行につき1つ。"
+
+msgid "GraphiQL IDE for administrators"
+msgstr "管理者向けのGraphiQL IDE"
+
+msgid "Also lets administrators run any query while it is on."
+msgstr "また、管理者が実行中に任意のクエリを実行できます。"
+
+msgid "Public schema introspection"
+msgstr "公開スキーマのイントロスペクション"
+
+msgid "Administrators can always read the schema."
+msgstr "管理者はスキーマを常に読み取ることができます。"
+
+msgid "Debug messages for administrators"
+msgstr "管理者向けデバッグメッセージ"
+
+msgid "Limits"
+msgstr "限界"
+
+msgid "Deepest nesting"
+msgstr "奥深い巣"
+
+msgid "Highest complexity"
+msgstr "複雑性が最も高い"
+
+msgid "Records per page"
+msgstr "ページごとのレコード"
+
+msgid "Queries per batch"
+msgstr "バッチあたりのクエリ"
+
+msgid "Public cache"
+msgstr "キャッシュ"
+
+msgid "sec"
+msgstr "秒"
+
+msgid "Largest upload"
+msgstr "最大アップロード"
+
+msgid "The FluxWP form fields could not load. Reinstall Flux GraphQL."
+msgstr "FluxWP フォームフィールドは、Flux GraphQL を再インストールできませんでした。"
+
+msgid "Shared hosting: keep the limits low. A query that goes over them is refused before it runs."
+msgstr "共有ホスティング: 制限を低く保ち、実行前にそれらの上を行くクエリは拒否されます。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "GraphQL server"
+msgstr "GraphQL サーバー"
+
+msgid "Flux GraphQL settings"
+msgstr "Flux GraphQL settings"
+
+msgid "Built-in WPGraphQL %s is running."
+msgstr "WPGraphQL 内蔵 %s 走っているのです"
+
+msgid "A separately installed WPGraphQL %1$s is running instead of the built-in %2$s. It works, but its updates are not tested with FluxWP. Use the built-in copy unless another plugin needs the separate one."
+msgstr "別設のWPGraphQL %1$s 内蔵ではなく %2$s機能しますが、更新はテストされていません FluxWP別のプラグインが別のプラグインを必要とする場合を除き、組み込みのコピーを使用してください。"
+
+msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP screens cannot open. Deactivate it to use the built-in copy."
+msgstr "別設WPGraphQL %1$s 活発です FluxWP 必要 %2$s あるいは新人以下 %3$sということで FluxWP 画面が開くことができません。"
+
+msgid "The built-in WPGraphQL files are missing. Reinstall Flux GraphQL from FluxWP Panel › Packages."
+msgstr "FluxWP Panel  ??  Packagesから Flux GraphQL を再インストールします。"
+
+msgid "GraphQL queries"
+msgstr "GraphQL クエリ"
+
+msgid "Anyone may send any GraphQL query. Keep this only for a public headless front end; depth and complexity limits still apply."
+msgstr "誰でも送信できます。 GraphQL クエリこれは、パブリックヘッドレスフロントエンドでのみ維持する。"
+
+msgid "Only queries shipped with FluxWP packages run (%d known)."
+msgid_plural "Only queries shipped with FluxWP packages run (%d known)."
+msgstr[0] "は、お問い合わせのみ。 FluxWP packages は、%d 知られている)。"
+
+msgid "GraphQL types"
+msgstr "GraphQL タイプ"
+
+msgid "Some GraphQL fields were refused because they break the FluxWP rules: %s. Update the package that adds them."
+msgstr "一部 GraphQL フィールドは破壊されたので FluxWP ルール: %s追加するパッケージを更新します。"
+
+msgid "Flux GraphQL: the separately installed WPGraphQL %s is not supported, so FluxWP GraphQL screens are off."
+msgstr "GraphQL : 別々にインストールされた WPGraphQL %s はサポートされていないため、FluxWP GraphQL 画面はオフになっています。"
+
+msgid "The user making the request and what they may do."
+msgstr "リクエストと、それが行う可能性のあるものを作成するユーザー。"
+
+msgid "Whether the request is signed in."
+msgstr "リクエストがサインインされているかどうか。"
+
+msgid "User ID; empty for a visitor."
+msgstr "ユーザ ID; 訪問者に対して空白。"
+
+msgid "Display name; empty for a visitor."
+msgstr "訪問者の空白名を表示します。"
+
+msgid "Whether the user manages the site (manage_options)."
+msgstr "ユーザーがサイトを管理しているかどうか(manage_options)。"
+
+msgid "Capabilities from the FluxWP catalog that the user has."
+msgstr "から能力 FluxWP ユーザーが所有するカタログ。"
+
+msgid "Whether the user has this capability."
+msgstr "ユーザーがこの機能を持っているかどうか。"
+
+msgid "Capability name, e.g. flxg_use."
+msgstr "キャパシティ名、例えばflxg_use。"
+
+msgid "A capability a FluxWP package checks."
+msgstr "能力a FluxWP パッケージチェック"
+
+msgid "What the capability allows, in the user's language."
+msgstr "ユーザの言語で、その能力が何を可能にしますか。"
+
+msgid "Group label (usually the package); empty when not given."
+msgstr "グループラベル(通常パッケージ)。"
+
+msgid "Package slug that declares it; empty when not given."
+msgstr "パッケージは、それを宣言します。"
+
+msgid "Whether the current user has it."
+msgstr "現在のユーザーがそれを持っているかどうか。"
+
+msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
+msgstr "要求を行うユーザ 訪問者は、falseIn を取得して、機能しません。"
+
+msgid "The FluxWP capability catalog, with what the current user has."
+msgstr "です。 FluxWP 機能カタログ、現在のユーザーがあるもの。"
+
+msgid "Where a page sits in a list."
+msgstr "リストにページが載っている場所。"
+
+msgid "More records follow this page."
+msgstr "以上の記録は、このページに従ってください。"
+
+msgid "Records come before this page."
+msgstr "レコードはこのページの前に来ます。"
+
+msgid "Cursor of the first record on this page."
+msgstr "このページの最初のレコードのカーソル。"
+
+msgid "Cursor of the last record on this page; pass it as \"after\" for the next page."
+msgstr "このページの最後のレコードのカーソル。次のページの「後」として渡します。"
+
+msgid "One %s in a list, with its cursor."
+msgstr "一つ %s リストのカーソルが"
+
+msgid "Opaque cursor of this record."
+msgstr "このレコードの不透明なカーソル。"
+
+msgid "The record."
+msgstr "レコード。"
+
+msgid "A page of %s records."
+msgstr "のページです。 %s 記録だ"
+
+msgid "Records with their cursors."
+msgstr "カーソル付きのレコード。"
+
+msgid "Records of this page."
+msgstr "記録はこのページです。"
+
+msgid "Paging information."
+msgstr "ページング情報。"
+
+msgid "All matching records (null when counting would be slow)."
+msgstr "すべての一致するレコード(カウントが遅い場合はnull)。"
+
+msgid "Records per page (at most %d)."
+msgstr "ページごとのレコード(せいぜい) %d)."
+
+msgid "Cursor to continue after (pageInfo.endCursor)."
+msgstr "後続のカーソル(pageInfo.endCursor)。"
+
+msgid "The page cursor is not valid."
+msgstr "ページカーソルは有効ではありません。"
+
+msgid "Please sign in again."
+msgstr "再度サインインしてください。"
+
+msgid "The record was not found."
+msgstr "記録は見つからなかった。"
+
+msgid "Some fields are not valid."
+msgstr "いくつかのフィールドは有効ではありません。"
+
+msgid "The record was changed by someone else. Reload and try again."
+msgstr "レコードは誰かによって変更された。"
+
+msgid "Too many requests. Wait a moment and try again."
+msgstr "あまりにも多くの要求。少し待って、もう一度試してみてください。"
+
+msgid "Something went wrong. Please try again."
+msgstr "何か問題が発生しました。もう一度試してください。"
+
+msgid "This query is not known to the site. Update the app or the FluxWP packages."
+msgstr "サイトにこのクエリが記載されていない。 FluxWP パッケージだ"
+
+msgid "Only queries shipped with FluxWP packages may run on this site."
+msgstr "のみの問い合わせです。 FluxWP 本サイトではパッケージが動作する場合があります。"
+
+msgid "The ID is not valid."
+msgstr "IDは有効ではありません。"
+
+msgid "Global ID."
+msgstr "グローバルID。"
+
+msgid "Database ID."
+msgstr "データベースID。"
+
+msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
+msgstr "フォームフィールドの隣に表示する入力の問題. 変異が成功したとき空。"
+
+msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
+msgstr "インストールされたパネルの設定。 FluxWP パッケージ(flx_settings_schemaから)。"
+
+msgid "Panel settings of the installed FluxWP packages."
+msgstr "インストールされたパネルの設定。 FluxWP パッケージだ"
+
+msgid "Changes panel settings. Only the groups and fields you send are written."
+msgstr "パネルの設定を変更し、送信するグループとフィールドのみが書き込まれます。"
+
+msgid "Settings after the change."
+msgstr "変更後の設定。"
+
+msgid "This setting cannot be changed here."
+msgstr "この設定は、ここでは変更できません。"
+
+msgid "Changes to %s. Only the fields you send are changed."
+msgstr "変更 %s送信するフィールドのみが変更されます。"
+
+msgid "A list or object is expected."
+msgstr "リストまたはオブジェクトが期待されます。"
+
+msgid "This choice is not available."
+msgstr "この選択はできません。"
+
+msgid "Enter a colour like #1F6FEB."
+msgstr "1F6FEB のように色を入力します。"
+
+msgid "Free-form JSON value (object, list, string, number or boolean)."
+msgstr "JSON のフリーフォームの値(オブジェクト、リスト、文字列、数値、またはブール値)。"
+
+msgid "A problem with the input of a mutation, shown next to the form field."
+msgstr "フォームフィールドの横に表示されている、変異の入力の問題。"
+
+msgid "Stable code: INVALID_INPUT, CONFLICT, …"
+msgstr "安定コード: INVALID_INPUT、COFLICT、..."
+
+msgid "Message in the user's language."
+msgstr "ユーザの言語でメッセージ。"
+
+msgid "Input field (dotted path) the problem belongs to."
+msgstr "入力フィールド(ドットパス)の問題に属します。"
+
+msgid "A point in time with labels in the user's language."
+msgstr "ユーザの言語におけるラベルのタイミング。"
+
+msgid "Unix timestamp."
+msgstr "Unix タイムスタンプ。"
+
+msgid "Date and time for display, in the site time zone and the user's language."
+msgstr "サイトタイムゾーンとユーザの言語で、表示の日時。"
+
+msgid "Relative time for display (\"5 minutes ago\")."
+msgstr "表示のための相対的な時間(「5分前」)。"
+
+msgid "Date only, in the site time zone and the user's language."
+msgstr "日付は、サイトタイムゾーンとユーザーの言語のみです。"
+
+msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
+msgstr "テーブルのコンパクト日時(16.10.2026 14:24)。"
+
+msgid "An amount of money."
+msgstr "金額。"
+
+msgid "Amount in the currency unit (150.5)."
+msgstr "通貨単位(150.5)の金額。"
+
+msgid "ISO 4217 code (TRY, USD)."
+msgstr "ISO 4217 コード(TRY、USD)。"
+
+msgid "Amount with the currency sign for display."
+msgstr "表示用の通貨記号付き金額。"
+
+msgid "A phone number."
+msgstr "電話番号です"
+
+msgid "E.164 form (+905301234567); empty when the number is not valid."
+msgstr "E.164 形式 (+905301234567) 数値が有効でない場合には空です。"
+
+msgid "Digits only (905301234567)."
+msgstr "数字のみ(905301234567)。"
+
+msgid "Number as entered, for display."
+msgstr "表示のため、入力した番号。"
+
+msgid "A stored file."
+msgstr "保存されたファイル。"
+
+msgid "File ID (upload ID or the package's own ID)."
+msgstr "ファイルID(アップロードIDまたはパッケージの自己ID)。"
+
+msgid "File name."
+msgstr "ファイル名。"
+
+msgid "MIME type."
+msgstr "MIMEタイプ。"
+
+msgid "Size in bytes."
+msgstr "サイズはバイト単位。"
+
+msgid "Download address (may need the same sign-in)."
+msgstr "ダウンロードアドレス(同じサインインが必要な場合あり)。"
+
+msgid "The file is an image."
+msgstr "ファイルはイメージです。"
+
+msgid "Thumbnail address for images."
+msgstr "画像用のサムネイルアドレス。"
+
+msgid "A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
+msgstr "個人(ドナー、顧客、連絡先)、Flux CRM がレコードを所有し、他のパッケージがそれを返します。"
+
+msgid "Person ID in the shared people table."
+msgstr "共有人テーブルの個人ID。"
+
+msgid "Full name."
+msgstr "フルネーム。"
+
+msgid "E-mail address."
+msgstr "メールアドレス。"
+
+msgid "Phone number."
+msgstr "電話番号。"
+
+msgid "Picture address."
+msgstr "住所。"
+
+msgid "You are not allowed to manage plugins."
+msgstr "プラグインの管理はできません。"
+
+msgid "This screen needs JavaScript."
+msgstr "この画面は JavaScript."
+
+msgid "Loading the screen…"
+msgstr "画面をロードします。"
+
+msgid "A separately installed WPGraphQL plugin is active and FluxWP cannot use it. Deactivate it under Plugins; FluxWP has its own copy."
+msgstr "別々にインストールされたWPGraphQLプラグインがアクティブで、 FluxWP 使用できません プラグインで無効にします FluxWP コピーがあるのです"
+
+msgid "Flux GraphQL is not ready on this site. Check Flux GraphQL under Plugins."
+msgstr "プラグインで Flux GraphQL を確認してください。"
+
+msgid "The screen files of this plugin are missing. Update or reinstall the plugin."
+msgstr "プラグインの画面ファイルが失われ、プラグインの更新または再インストールが行えません。"
+
+msgid "If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache."
+msgstr "プラグインが更新されたばかりの場合、ブラウザキャッシュまたはサイトキャッシュが古いファイルを保持する可能性があります。"
+
+msgid "This screen could not be loaded"
+msgstr "この画面を読み込めませんでした"
+
+msgid "Reload page"
+msgstr "ページをリロードする"
+
+msgid "Uploads are not accepted for this screen."
+msgstr "この画面はアップロードが受け付けられません。"
+
+msgid "You do not have permission to upload files here."
+msgstr "ファイルをここにアップロードする許可はありません。"
+
+msgid "Too many uploads. Wait a few minutes and try again."
+msgstr "アップロードが多すぎる。数分待って、もう一度試してみよう。"
+
+msgid "The file did not arrive. Try again."
+msgstr "ファイルが届かなかった。もう一度やってみて。"
+
+msgid "The file is larger than %s."
+msgstr "ファイルは、より大きいです。 %s."
+
+msgid "This file type is not allowed."
+msgstr "このファイルの種類は許可されていません。"
+
+msgid "The file could not be saved on the server."
+msgstr "ファイルがサーバーに保存できませんでした。"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "アップロードしたファイルが見つからなかったので、再度アップロードします。"
+
+msgid "A name and value shown under a cart line (variation attribute or line detail)."
+msgstr "カート行(変分属性または行の詳細)の下に表示される名前と値。"
+
+msgid "Label."
+msgstr "ラベル。"
+
+msgid "Value as plain text."
+msgstr "テキストとしての価値。"
+
+msgid "Quantities a cart line accepts."
+msgstr "カートラインが受け入れる数量。"
+
+msgid "Lowest quantity."
+msgstr "最低数量。"
+
+msgid "Highest quantity."
+msgstr "最高量。"
+
+msgid "The quantity is a multiple of this."
+msgstr "数量はこれの倍数です。"
+
+msgid "Whether the shopper may change the quantity (false for fixed lines such as a donation)."
+msgstr "買い物客が数量を変更できるかどうか(寄付などの固定行の場合)。"
+
+msgid "A line in the cart."
+msgstr "カートのライン。"
+
+msgid "Cart item key; flxCartItemUpdate and flxCartItemRemove take it."
+msgstr "カートアイテムキー;flxCartItemUpdateとflxCartItemRemoveがそれを取る。"
+
+msgid "What the line is: \"product\", or a name a package gives its own lines (Flux Donate: \"donation\"). Filter flx_gql_cart_item_kind."
+msgstr "行の内容: \"product\" またはパッケージの名前が独自の行(FluxDonate: \"donation\")を渡す。"
+
+msgid "WooCommerce product (or variation) database ID."
+msgstr "WooCommerce 製品(またはバリエーション)のデータベースID。"
+
+msgid "WooCommerce product type (simple, variation …)."
+msgstr "WooCommerce 製品タイプ(シンプル、バリエーション...)。"
+
+msgid "Product name."
+msgstr "製品名。"
+
+msgid "SKU; empty when the product has none."
+msgstr "製品が存在しないときは空です。"
+
+msgid "Product page; null for products without a page."
+msgstr "製品ページ; ページのない製品のnull。"
+
+msgid "First product image; null without an image."
+msgstr "画像なしのnull。"
+
+msgid "Alternative text of the image."
+msgstr "画像の代替テキスト。"
+
+msgid "Quantity."
+msgstr "量。"
+
+msgid "Quantities this line accepts."
+msgstr "この行の数量は受け付けます。"
+
+msgid "Only one of this product per order."
+msgstr "注文ごとにこの製品の1つのみ。"
+
+msgid "Price of one unit."
+msgstr "単価1円。"
+
+msgid "Regular price of one unit (before a sale)."
+msgstr "販売前の1ユニットの定価。"
+
+msgid "Line total before coupons."
+msgstr "クーポンの前にライン合計。"
+
+msgid "Line total after coupons, without tax."
+msgstr "クーポン後、税抜きのライン合計。"
+
+msgid "Tax of the line."
+msgstr "線の税。"
+
+msgid "Chosen variation attributes."
+msgstr "バリエーション属性を選択します。"
+
+msgid "Line details other plugins add (e.g. a donation's names and certificate)."
+msgstr "他のプラグインが追加する行の詳細(寄付の名前や証明書など)。"
+
+msgid "A coupon applied to the cart."
+msgstr "カートに適用されるクーポン。"
+
+msgid "Coupon code."
+msgstr "クーポンコード。"
+
+msgid "WooCommerce discount type (percent, fixed_cart …)."
+msgstr "WooCommerce 割引タイプ(パーセント、固定カート...)。"
+
+msgid "Discount without tax."
+msgstr "税抜き割引。"
+
+msgid "Tax part of the discount."
+msgstr "割引の税金部分。"
+
+msgid "A fee added to the cart (e.g. a payment fee)."
+msgstr "カートに追加される手数料(支払い手数料など)。"
+
+msgid "Fee key."
+msgstr "キーは無料。"
+
+msgid "Fee name."
+msgstr "名前の由来。"
+
+msgid "Fee without tax."
+msgstr "税金なしの料金。"
+
+msgid "Tax of the fee."
+msgstr "税金の支払い。"
+
+msgid "One tax rate in the cart totals."
+msgstr "カートの合計税率が1つ。"
+
+msgid "Tax name."
+msgstr "税名。"
+
+msgid "Rate as WooCommerce shows it."
+msgstr "WooCommerce と同じレートです。"
+
+msgid "Amount."
+msgstr "山。"
+
+msgid "Cart totals, as WooCommerce calculated them."
+msgstr "カートの合計は WooCommerce 計算しました"
+
+msgid "ISO 4217 currency of the cart."
+msgstr "カートのISO 4217通貨。"
+
+msgid "Lines before coupons, without tax."
+msgstr "クーポンの前に、税抜きの行。"
+
+msgid "Tax of the lines."
+msgstr "線の税金。"
+
+msgid "Fees without tax."
+msgstr "税抜きの料金。"
+
+msgid "Coupon discounts without tax."
+msgstr "割引は税抜きです。"
+
+msgid "Shipping without tax; null until shipping is calculated."
+msgstr "送料は税抜きで、配送が計算されるまでヌル。"
+
+msgid "All taxes."
+msgstr "全ての税金。"
+
+msgid "Amount to pay."
+msgstr "払う金額。"
+
+msgid "Taxes by rate."
+msgstr "税率別。"
+
+msgid "A shipping option."
+msgstr "配送オプション。"
+
+msgid "Rate ID for flxCartShippingRateSelect."
+msgstr "flxCartShippingRateSelectのレートID。"
+
+msgid "Shipping method (flat_rate, free_shipping …)."
+msgstr "配送方法(flat_rate、free_shipping...)。"
+
+msgid "Name."
+msgstr "名前。"
+
+msgid "Description; may be empty."
+msgstr "説明; 空であるかもしれません。"
+
+msgid "Delivery time; may be empty."
+msgstr "納期; 空である可能性があります。"
+
+msgid "Price without tax."
+msgstr "税金なしの価格。"
+
+msgid "Whether this option is chosen."
+msgstr "このオプションが選択されているかどうか。"
+
+msgid "A group of lines shipped together and its shipping options."
+msgstr "一緒に出荷されたラインのグループとその配送オプション。"
+
+msgid "Package ID."
+msgstr "パッケージID。"
+
+msgid "Package name."
+msgstr "パッケージ名。"
+
+msgid "Shipping options."
+msgstr "配送オプション。"
+
+msgid "E-mail; null on the shipping address."
+msgstr "メール; 配送先住所にヌル。"
+
+msgid "A billing or shipping address of the cart."
+msgstr "カートの請求先または配送先住所。"
+
+msgid "A problem with the cart the shopper has to fix before paying (e.g. a product went out of stock)."
+msgstr "買い物客が支払う前に修正しなければならないカートの問題(例えば、商品が在庫切れになった)。"
+
+msgid "WooCommerce error code."
+msgstr "WooCommerce エラーコードだ"
+
+msgid "Message in the shopper's language."
+msgstr "買い物客の言葉でメッセージします。"
+
+msgid "Where the payment step continues. Payment stays on the WooCommerce Store API checkout; card data never goes through GraphQL."
+msgstr "支払いは支払いのステップが続く場所にあります。 WooCommerce 店舗 API カードデータは決して通らない GraphQL."
+
+msgid "Store API checkout URL (POST with the same Cart-Token, billing address and payment method)."
+msgstr "API チェックアウト URL(同じカートトークン、請求先アドレス、支払い方法のPOST)を保管します。"
+
+msgid "The site's checkout page; null when WooCommerce is not loaded."
+msgstr "サイトのチェックアウトページ。 WooCommerce ロードされません。"
+
+msgid "The site's cart page; null when WooCommerce is not loaded."
+msgstr "WooCommerce が読み込まれていない場合は、null です。"
+
+msgid "The shopper's WooCommerce cart (Store API)."
+msgstr "買い物客 WooCommerce カート(店) API)."
+
+msgid "Cart token. Send it back as the Cart-Token header (headless front end, mobile); it is also in the Cart-Token response header. Null when WooCommerce gave none."
+msgstr "カートトークン カートトークンヘッダー(ヘッドレスフロントエンド、モバイル)として返送します。"
+
+msgid "Store API nonce for the same-site cookie session (Nonce header). Null when WooCommerce gave none."
+msgstr "店舗 API クッキーのセッション(Nonce header)のnonce。 WooCommerce 何も与えなかった"
+
+msgid "Number of units in the cart (quantities added up)."
+msgstr "カート内のユニット数(数量が加算されます)。"
+
+msgid "Lines."
+msgstr "行。"
+
+msgid "Applied coupons."
+msgstr "クーポン適用。"
+
+msgid "Fees."
+msgstr "手数料。"
+
+msgid "Totals."
+msgstr "合計。"
+
+msgid "Whether the order needs a payment (false for a free cart)."
+msgstr "注文が支払いを必要とするかどうか(無料カートの場合は偽)。"
+
+msgid "Whether the order is shipped (false for donations and virtual products)."
+msgstr "ご注文が発送されるかどうか(寄付や仮想製品の場合は偽物)。"
+
+msgid "Whether shipping was calculated for the current address."
+msgstr "配送は現在のアドレスのために計算されました。"
+
+msgid "Shipping packages and their options."
+msgstr "配送パッケージとそのオプション。"
+
+msgid "IDs of the payment gateways available for this cart (payment_method of the checkout)."
+msgstr "このカートで利用可能な支払いゲートウェイの ID (チェックアウトのpayment_method)。"
+
+msgid "Features a gateway must support for this cart (e.g. products, subscriptions)."
+msgstr "ゲートウェイはこのカート(製品、サブスクリプションなど)をサポートする必要があります。"
+
+msgid "Problems to fix before paying."
+msgstr "支払い前に修正する問題。"
+
+msgid "Billing address."
+msgstr "請求先住所。"
+
+msgid "Shipping address."
+msgstr "配送先住所。"
+
+msgid "Where the payment step continues."
+msgstr "支払い手順が続く場所。"
+
+msgid "A variation attribute."
+msgstr "variation 属性。"
+
+msgid "Attribute name or taxonomy (e.g. pa_color)."
+msgstr "属性名または分類(例:pa_color)。"
+
+msgid "Chosen value."
+msgstr "価値を選ぶ。"
+
+msgid "Address fields to change; fields left out keep their value."
+msgstr "変更するフィールドを指定する。"
+
+msgid "The shopper's cart (Cart-Token session or the WooCommerce session cookie). Never cached."
+msgstr "買い物客カート(カート-トークンセッションまたはカート) WooCommerce セッションクッキー) キャッシュされません。"
+
+msgid "The cart after the change; null when the change failed."
+msgstr "変更後のカート。変更が失敗した場合はnull。"
+
+msgid "Adds a product to the cart (Store API cart/add-item)."
+msgstr "カート(ストア)に商品を追加します。 API cart/add-item) です。"
+
+msgid "Product or variation database ID."
+msgstr "製品またはバリエーションデータベースID。"
+
+msgid "Quantity; default 1."
+msgstr "数量; デフォルト 1.0"
+
+msgid "Variation attributes for a variable product."
+msgstr "変数製品の変分属性。"
+
+msgid "Key of the line that was added or increased; null when the change failed."
+msgstr "変更が失敗した場合、追加または増加した行のキー。"
+
+msgid "Changes the quantity of a cart line; 0 removes it."
+msgstr "カート行の数量を変更します。0 はそれを削除します。"
+
+msgid "Cart item key."
+msgstr "カートアイテムキー。"
+
+msgid "New quantity."
+msgstr "新しい量。"
+
+msgid "Removes a cart line."
+msgstr "カートラインを削除します。"
+
+msgid "Empties the cart."
+msgstr "カートを空にします。"
+
+msgid "Applies a coupon."
+msgstr "クーポンを適用します。"
+
+msgid "Removes a coupon."
+msgstr "クーポンを削除します。"
+
+msgid "Chooses a shipping option."
+msgstr "配送オプションを選択します。"
+
+msgid "Rate ID (FlxCartShippingRate.rateId)."
+msgstr "料金ID(FlxCartShippingRate.rateId)。"
+
+msgid "Shipping package; left out = every package."
+msgstr "パッケージを出荷します。"
+
+msgid "Changes the billing and/or shipping address; totals, taxes and shipping options follow."
+msgstr "請求先住所および/または配送先住所を変更します。"
+
+msgid "Billing address fields to change."
+msgstr "請求先アドレスフィールドを変更します。"
+
+msgid "Shipping address fields to change."
+msgstr "変更する住所フィールドを発送します。"
+
+msgid "First name."
+msgstr "ファーストネーム。"
+
+msgid "Last name."
+msgstr "姓。"
+
+msgid "Company."
+msgstr "会社。"
+
+msgid "Address line 1."
+msgstr "住所 行1。"
+
+msgid "Address line 2."
+msgstr "住所 2 行目。"
+
+msgid "City."
+msgstr "市。"
+
+msgid "State or province code."
+msgstr "州または州のコード。"
+
+msgid "Postcode."
+msgstr "郵便番号。"
+
+msgid "ISO 3166-1 alpha-2 country code."
+msgstr "ISO 3166-1 アルファ2 国コード。"
+
+msgid "E-mail."
+msgstr "メール。"
+
+msgid "Phone."
+msgstr "電話。"
+
+msgid "Choose a product."
+msgstr "製品を選択してください。"
+
+msgid "The quantity must be at least 1."
+msgstr "数量は少なくとも1でなければなりません。"
+
+msgid "The quantity cannot be negative."
+msgstr "量がマイナスになることはできません。"
+
+msgid "Enter a coupon code."
+msgstr "クーポンコードを入力してください。"
+
+msgid "The shop is not available on this site."
+msgstr "当サイトでは店舗がご利用いただけません。"
+
+msgid "Your cart has expired. Please reload the page."
+msgstr "カードが切れましたので、ページをリロードしてください。"
+
+msgid "The cart could not be changed. Please reload the page."
+msgstr "カートは変更できません。ページをリロードしてください。"
+
+msgid "Select date"
+msgstr "日付を選択"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "Tomorrow"
+msgstr "明日"
+
+msgid "Next week"
+msgstr "来週"
+
+msgid "In 2 weeks"
+msgstr "2週間後"
+
+msgid "This Friday"
+msgstr "今週の金曜日"
+
+msgid "No date"
+msgstr "日付なし"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Apply"
+msgstr "適用"
+
+msgid "Month"
+msgstr "月"
+
+msgid "Time"
+msgstr "時刻"
+
+msgid "Previous month"
+msgstr "前の月"
+
+msgid "Next month"
+msgstr "次の月"
+
+msgid "Previous year"
+msgstr "前年"
+
+msgid "Next year"
+msgstr "翌年"
+
+msgid "Choose month"
+msgstr "月を選択"
+
+msgid "Choose year"
+msgstr "年を選択"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Are you sure?"
+msgstr "よろしいですか？"
+
+msgid "Notice"
+msgstr "お知らせ"
+
+msgid "This cannot be undone."
+msgstr "この操作は取り消せません。"
+
+msgid "To confirm, type %s"
+msgstr "確認するには %s と入力してください"

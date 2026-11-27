@@ -1,0 +1,2647 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript est nécessaire pour cet écran."
+
+msgid "Block Editor"
+msgstr "Éditeur de blocs"
+
+msgid "Actionable endpoint for api call."
+msgstr "Point de fin d'intervention pour l'appel api."
+
+msgid "Submission rejected, invalid security token. Reload the page and try again."
+msgstr "Soumission rejetée, jeton de sécurité invalide. Rechargez la page et essayez à nouveau."
+
+msgid "Token invalid"
+msgstr "Jeton invalide"
+
+msgid "CAPTCHA Failed"
+msgstr "CAPTCHA a échoué"
+
+msgid "Submission rejected."
+msgstr "La présentation a été rejetée."
+
+msgid "Third Party Failed"
+msgstr "Échec de tiers"
+
+msgid "Submission failed"
+msgstr "La soumission a échoué"
+
+msgid "No Data"
+msgstr "Aucune donnée"
+
+msgid "Accept"
+msgstr "Accepte"
+
+msgid "Did not accept"
+msgstr "N &apos; acceptant pas"
+
+msgid "Missing a required field"
+msgstr "Manque un champ requis"
+
+msgid "Trying to include too many files."
+msgstr "Essayer d'inclure trop de fichiers."
+
+msgid "File too large"
+msgstr "Fichier trop grand"
+
+msgid "File could not be uploaded"
+msgstr "Le fichier ne peut pas être téléchargé"
+
+msgid "Sorry, you are not allowed to upload this file type."
+msgstr "Désolé, vous n'êtes pas autorisé à télécharger ce type de fichier."
+
+msgid "Not enough disk quota on this website."
+msgstr "Pas assez de quota de disque sur ce site."
+
+msgid "Failed to upload file"
+msgstr "Impossible de télécharger le fichier"
+
+msgid "Submission Failed"
+msgstr "La soumission a échoué"
+
+msgid "Data not found"
+msgstr "Données non trouvées"
+
+msgid "Submission Success, Thanks for getting in touch!"
+msgstr "Soumission de succès, Merci d'être en contact!"
+
+msgid "Submission Failed, reCaptcha spam prevention. Please reload your page and try again."
+msgstr "Soumission Failed, reCaptcha prévention de spam. Veuillez recharger votre page et essayez à nouveau."
+
+msgid "Description"
+msgstr "Descriptif"
+
+msgid "Entries"
+msgstr "Entrées"
+
+msgid "Entries (Pro Only)"
+msgstr "Entrées (Pro Seulement)"
+
+msgid "Forms"
+msgstr "Formulaires"
+
+msgid "Form"
+msgstr "Formulaire"
+
+msgid "Form Archives"
+msgstr "Archives des formulaires"
+
+msgid "Form Attributes"
+msgstr "Form Attributs"
+
+msgid "Parent Form:"
+msgstr "Formulaire parental:"
+
+msgid "Add New Form"
+msgstr "Ajouter un nouveau formulaire"
+
+msgid "New Form"
+msgstr "Nouveau formulaire"
+
+msgid "Edit Form"
+msgstr "Modifier le formulaire"
+
+msgid "Update Form"
+msgstr "Formulaire de mise à jour"
+
+msgid "View Form"
+msgstr "Voir le formulaire"
+
+msgid "View Forms"
+msgstr "Afficher les formulaires"
+
+msgid "Search Forms"
+msgstr "Formulaires de recherche"
+
+msgid "Not found"
+msgstr "Pas trouvé"
+
+msgid "Not found in Trash"
+msgstr "Pas trouvé dans une poubelle"
+
+msgid "Filter items list"
+msgstr "Liste des produits filtrants"
+
+msgid "Contact forms, subscribe forms and others for your site."
+msgstr "Formulaires de contact, formulaires d'abonnement et autres pour votre site."
+
+msgid "You do not have permission to view these posts."
+msgstr "Vous n'avez pas la permission de voir ces messages."
+
+msgid "Submission"
+msgstr "Submission"
+
+msgid "No Response from MailerLite"
+msgstr "Pas de réponse de MailerLite"
+
+msgid "MailerLite Misconfiguration"
+msgstr "Erreur de configuration de MailerLite"
+
+msgid "MailerLite Failed"
+msgstr "MailerLite a échoué"
+
+msgid "You do not have permission to access GetResponse API data."
+msgstr "Vous n'avez pas la permission d'accéder aux données GetResponse API."
+
+msgid "Invalid or disallowed endpoint."
+msgstr "Point final invalide ou non autorisé."
+
+msgid "Error fetching data from GetResponse"
+msgstr "Erreur obtenant des données de GetResponse"
+
+msgid "Empty data from GetResponse"
+msgstr "Données vides de GetResponse"
+
+msgid "[block rendering halted]"
+msgstr "[block rendering halted]"
+
+msgid "Please fix the errors to proceed"
+msgstr "Veuillez corriger les erreurs pour procéder"
+
+msgid "is required"
+msgstr "est nécessaire"
+
+msgid "does not match"
+msgstr "ne correspond pas"
+
+msgid "is not valid"
+msgstr "n &apos; est pas valide"
+
+msgid "requires a unique entry and this value has already been used"
+msgstr "exige une entrée unique et cette valeur a déjà été utilisée"
+
+msgid "Item"
+msgstr "Article"
+
+msgid "Photo Gallery Carousel"
+msgstr "Galerie de photos Carousel"
+
+msgid "Toggle autoplay"
+msgstr "Basculer le jeu automatique"
+
+msgid "See more"
+msgstr "Voir plus"
+
+msgid "Display lightbox image:"
+msgstr "Afficher l'image de la boîte à lumière:"
+
+msgid "Previous slide"
+msgstr "Diapositive précédente"
+
+msgid "Next slide"
+msgstr "Diapositive suivante"
+
+msgid "Go to first slide"
+msgstr "Allez à la première diapositive"
+
+msgid "Go to last slide"
+msgstr "Allez à la dernière diapositive"
+
+msgid "Go to slide %s"
+msgstr "Aller à la diapositive %s"
+
+msgid "Go to page %s"
+msgstr "Aller à la page %s"
+
+msgid "Start autoplay"
+msgstr "Commencez à jouer"
+
+msgid "Pause autoplay"
+msgstr "Pas de jeu automatique"
+
+msgid "carousel"
+msgstr "carousel"
+
+msgid "slide"
+msgstr "Diapositive"
+
+msgid "Select a slide to show"
+msgstr "Sélectionnez une diapositive pour montrer"
+
+msgid "%s of %s"
+msgstr "%s de %s"
+
+msgid "Days"
+msgstr "Jours"
+
+msgid "Hrs"
+msgstr "Hrs"
+
+msgid "Mins"
+msgstr "Mins"
+
+msgid "Secs"
+msgstr "Secs"
+
+msgid "Please enable JavaScript in your browser to submit the form"
+msgstr "Veuillez activer JavaScript dans votre navigateur pour soumettre le formulaire"
+
+msgid "Google map of %s"
+msgstr "Google carte de %s"
+
+msgid "Child menu"
+msgstr "Menu enfant"
+
+msgid "Child menu of"
+msgstr "Menu d'enfant"
+
+msgid "Toggle child menu of"
+msgstr "Menu enfant Toggle"
+
+msgid "No posts"
+msgstr "Aucun message"
+
+msgid "%1$s out of %2$s Stars"
+msgstr "%1$s sur %2$s Étoiles"
+
+msgid "Progressbar Label"
+msgstr "Étiquette de la barre de progression"
+
+msgid "Play"
+msgstr "Jouer"
+
+msgid "Pause"
+msgstr "Mettre en pause"
+
+msgid "Unmute"
+msgstr "Unmute"
+
+msgid "Mute"
+msgstr "Muet"
+
+msgid "Close search"
+msgstr "Fermer la recherche"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "Content is collapsed."
+msgstr "Le contenu est effondré."
+
+msgid "Content continues."
+msgstr "Le contenu continue."
+
+msgid "Activate the"
+msgstr "Activer"
+
+msgid "button to reveal the full content."
+msgstr "bouton pour révéler le contenu complet."
+
+msgid "Show More"
+msgstr "Voir plus"
+
+msgid "%1$d out of %2$d stars"
+msgstr "%1$d sur %2$d étoiles"
+
+msgid "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply"
+msgstr "Ce site est protégé par reCAPTCHA et la Politique de confidentialité et les Conditions d'utilisation de Google s'appliquent"
+
+msgid "Close Menu"
+msgstr "Fermer le menu"
+
+msgid "Toggle Menu"
+msgstr "Activer le menu"
+
+msgid "Name Prefix"
+msgstr "Nom Préfixe"
+
+msgid "First Name"
+msgstr "Prénom"
+
+msgid "Last Name"
+msgstr "Nom"
+
+msgid "Full Name"
+msgstr "Nom complet"
+
+msgid "Timezone"
+msgstr "Fuseau horaire"
+
+msgid "Address Line 1"
+msgstr "Ligne d &apos; adresse 1"
+
+msgid "Address Line 2"
+msgstr "Ligne d &apos; adresse 2"
+
+msgid "City"
+msgstr "Ville"
+
+msgid "State"
+msgstr "État"
+
+msgid "Postal Code"
+msgstr "Code postal"
+
+msgid "Country"
+msgstr "Pays"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "Source"
+msgstr "Source"
+
+msgid "You do not have sufficient permissions to export content."
+msgstr "Vous n'avez pas les autorisations suffisantes pour exporter du contenu."
+
+msgid "Export"
+msgstr "Exporter"
+
+msgid "Import completed successfully!"
+msgstr "Import terminé avec succès!"
+
+msgid "Export All"
+msgstr "Exporter tous"
+
+msgid "Import"
+msgstr "Importer"
+
+msgid "Upload & Import"
+msgstr "Chargement &amp; Import"
+
+msgid "You do not have sufficient permissions to import content."
+msgstr "Vous n'avez pas les autorisations suffisantes pour importer du contenu."
+
+msgid "Please upload a file to import."
+msgstr "Veuillez télécharger un fichier pour importer."
+
+msgid "File upload failed."
+msgstr "Le téléchargement des fichiers a échoué."
+
+msgid "Invalid file type. Please upload a ZIP file."
+msgstr "Type de fichier invalide. Veuillez télécharger un fichier ZIP."
+
+msgid "Invalid data in import file."
+msgstr "Données non valides dans le fichier d'importation."
+
+msgid "Invalid import file structure. Missing export.json"
+msgstr "Structure du fichier d'importation incorrecte. Manque export.json"
+
+msgid "Invalid JSON data in import file."
+msgstr "Données invalides JSON dans le fichier d'importation."
+
+msgid "This site does not share its design library."
+msgstr "Ce site ne partage pas sa bibliothèque de design."
+
+msgid "The library key is missing or wrong."
+msgstr "La clé de la bibliothèque est manquante ou incorrecte."
+
+msgid "Other"
+msgstr "Autre"
+
+msgid "My patterns"
+msgstr "Mes habitudes."
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "Unknown action."
+msgstr "Action inconnue."
+
+msgid "Library not found."
+msgstr "Bibliothèque non trouvée."
+
+msgid "The library could not be reached."
+msgstr "La bibliothèque n'a pas pu être atteinte."
+
+msgid "The library refused access. Check the key, and that sharing is on at the other site."
+msgstr "La bibliothèque a refusé l'accès. Vérifiez la clé, et ce partage est sur l'autre site."
+
+msgid "This address is not a Flux design library."
+msgstr "Cette adresse n'est pas une bibliothèque de design Flux."
+
+msgid "Make a duplicate from this."
+msgstr "Faites un duplicata de cela."
+
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+msgid "No post to duplicate has been supplied!"
+msgstr "Aucun post pour doubler n'a été fourni!"
+
+msgid "Post creation failed, could not find original post: %s"
+msgstr "La création de poste a échoué, n'a pas pu trouver le poste original: %s"
+
+msgid "%s (Copy)"
+msgstr "%s (Copy)"
+
+msgid "%s and higher"
+msgstr "%s et plus"
+
+msgid "Inherit"
+msgstr "Inherit"
+
+msgid "Thin 100"
+msgstr "Thin 100"
+
+msgid "Light 300"
+msgstr "Lumière 300"
+
+msgid "Regular"
+msgstr "ordinaire"
+
+msgid "Medium 500"
+msgstr "Moyenne 500"
+
+msgid "Semi-Bold 600"
+msgstr "Semi-bold 600"
+
+msgid "Bold 700"
+msgstr "Bold 700"
+
+msgid "Extra-Bold 800"
+msgstr "Extra-solide 800"
+
+msgid "Ultra-Bold 900"
+msgstr "Ultra-froid 900"
+
+msgid "Limit results to items of a specific post type."
+msgstr "Limiter les résultats aux éléments d'un type de poste spécifique."
+
+msgid "Include posts by ID."
+msgstr "Inclure des postes par ID."
+
+msgid "Number of results to return."
+msgstr "Nombre de résultats à retourner."
+
+msgid "Define Type of Query."
+msgstr "Définir le type de requête."
+
+msgid "Define Query Order."
+msgstr "Définir l'ordre de requête."
+
+msgid "Define Query Order By."
+msgstr "Définir l'ordre de requête par."
+
+msgid "Allow Sticky in Query."
+msgstr "Laissez Sticky en Query."
+
+msgid "Exclude Category."
+msgstr "Exclure la catégorie."
+
+msgid "Number of items to offset in query."
+msgstr "Nombre d'articles à compenser dans la requête."
+
+msgid "The Current Post ID."
+msgstr "L'identifiant du poste actuel."
+
+msgid "Check if using a custom Taxonomy"
+msgstr "Vérifiez si vous utilisez une Taxonomie personnalisée"
+
+msgid "Include posts category."
+msgstr "Y compris la catégorie des postes."
+
+msgid "Include posts tags."
+msgstr "Inclure les étiquettes de messages."
+
+msgid "Taxonomy Type."
+msgstr "Type de taxonomie."
+
+msgid "The source of the content."
+msgstr "La source du contenu."
+
+msgid "Page of results to return."
+msgstr "Page des résultats à retourner."
+
+msgid "Expand Table of Contents"
+msgstr "Table des matières"
+
+msgid "Collapse Table of Contents"
+msgstr "Table des matières"
+
+msgid "Table of Contents"
+msgstr "Table des matières"
+
+msgid "Lottie animation not found"
+msgstr "Animation Lottie non trouvée"
+
+msgid "Lottie animation file contains invalid json"
+msgstr "Lottie fichier d'animation contient invalide json"
+
+msgid "Lottie animation contains invalid JSON"
+msgstr "L'animation de Lottie contient JSON invalide"
+
+msgid "Please enter an animation title"
+msgstr "Veuillez entrer un titre d'animation"
+
+msgid "The API Key for Mailerlite account."
+msgstr "La clé API pour le compte Mailerlite."
+
+msgid "Query Args for url."
+msgstr "- Des cris pour l'url."
+
+msgid "Vector contains invalid SVG"
+msgstr "Vector contient invalide SVG"
+
+msgid "Please enter a vector title"
+msgstr "Veuillez entrer un titre vectoriel"
+
+msgid "Flux Block Editor"
+msgstr "Flux Block Editor"
+
+msgid "Google Fonts"
+msgstr "Polices Google"
+
+msgid "Google Fonts are served from this site; visitors do not connect to Google."
+msgstr "Google Fonts sont servis à partir de ce site; les visiteurs ne se connectent pas à Google."
+
+msgid "Google Fonts load from fonts.googleapis.com, which shares visitor IP addresses with Google. Turn on \"Load Google Fonts Locally\"."
+msgstr "Google Fonts charger à partir de fonts.googleapis.com, qui partage les adresses IP de visiteur avec Google. Allumez \"Load Google Fonts Locally\"."
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Form spam protection"
+msgstr "Protection contre les spams"
+
+msgid "Flux reCAPTCHA is active and can protect Flux Block Editor forms."
+msgstr "Flux reCAPTCHA est actif et peut protéger les formulaires d'éditeur de bloc Flux."
+
+msgid "Flux reCAPTCHA is not active. Forms use the honeypot check only unless a captcha key is set on the form."
+msgstr "Le Flux reCAPTCHA n'est pas actif. Les formulaires utilisent le contrôle de la tache de miel seulement à moins qu'une touche captcha ne soit définie sur le formulaire."
+
+msgid "Blocks"
+msgstr "Blocs"
+
+msgid "%d block is turned off."
+msgid_plural "%d blocks are turned off."
+msgstr[0] "Le bloc %d est éteint."
+msgstr[1] "%d blocs sont éteints."
+
+msgid "All blocks are on."
+msgstr "Tous les blocs sont allumés."
+
+msgid "Data not Found"
+msgstr "Données non trouvées"
+
+msgid "Submission Rejected"
+msgstr "Présentation rejetée"
+
+msgid "Spam Detected"
+msgstr "Spam détecté"
+
+msgid "reCAPTCHA Failed"
+msgstr "reCAPTCHA Failed"
+
+msgid "Required Field Empty"
+msgstr "Champ obligatoire"
+
+msgid "Flux Header"
+msgstr "Flux Header"
+
+msgid "Add New Flux Header"
+msgstr "Ajouter New Flux Header"
+
+msgid "New Flux Header"
+msgstr "Nouvelle en-tête Flux"
+
+msgid "Edit Flux Header"
+msgstr "Modifier l'en-tête Flux"
+
+msgid "View Flux Header"
+msgstr "Afficher l'en-tête Flux"
+
+msgid "Headers"
+msgstr "Headers"
+
+msgid "Search Flux Headers"
+msgstr "Rechercher des Headers Flux"
+
+msgid "Parent Flux Header:"
+msgstr "En-tête de flux parent:"
+
+msgid "No Flux Header found."
+msgstr "Pas de Flux Header trouvé."
+
+msgid "No Flux Header found in Trash."
+msgstr "Pas d'en-tête Flux trouvé dans la poubelle."
+
+msgid "Flux Header archives"
+msgstr "Flux Header archives"
+
+msgid "Insert into Flux Header"
+msgstr "Insérer dans Flux Header"
+
+msgid "Uploaded to this Flux Header"
+msgstr "Téléchargé vers ce Header Flux"
+
+msgid "Filter Flux Header list"
+msgstr "Filtre Flux Header list"
+
+msgid "Flux Headers list navigation"
+msgstr "Flux Headers list navigation"
+
+msgid "Flux Headers list"
+msgstr "Flux Headers list"
+
+msgid "Flux Headers that can be inserted into your site."
+msgstr "Flux Headers qui peut être inséré dans votre site."
+
+msgid "Theme Header"
+msgstr "En-tête du thème"
+
+msgid "%s (Theme)"
+msgstr "%s (Thème)"
+
+msgid "Add New"
+msgstr "Ajouter Nouveau"
+
+msgid "Header"
+msgstr "En-tête"
+
+msgid "Continue"
+msgstr "Continuer"
+
+msgid "Lottie Animations"
+msgstr "Animations de Lottie"
+
+msgid "Lottie Animations imported in Flux"
+msgstr "Animations Lottie importées en Flux"
+
+msgid "Vector SVGs"
+msgstr "Vector SVG"
+
+msgid "Vector SVGs imported in Flux"
+msgstr "Vector SVGs importé en Flux"
+
+msgid "Flux Navigation"
+msgstr "Flux Navigation"
+
+msgid "Add New Flux Navigation"
+msgstr "Ajouter la navigation de nouveaux Flux"
+
+msgid "New Flux Navigation"
+msgstr "Nouvelle navigation Flux"
+
+msgid "Edit Flux Navigation"
+msgstr "Modifier la navigation Flux"
+
+msgid "View Flux Navigation"
+msgstr "Voir la navigation Flux"
+
+msgid "Navigations"
+msgstr "Navigations"
+
+msgid "Search Flux Navigations"
+msgstr "Recherche Navigations Flux"
+
+msgid "Parent Flux Navigation:"
+msgstr "Navigation de Flux Parent:"
+
+msgid "No Flux Navigation found."
+msgstr "Pas de navigation Flux trouvée."
+
+msgid "No Flux Navigation found in Trash."
+msgstr "Pas de navigation Flux trouvée dans la poubelle."
+
+msgid "Flux Navigation archives"
+msgstr "Flux Navigation archives"
+
+msgid "Insert into Flux Navigation"
+msgstr "Insérer dans la navigation Flux"
+
+msgid "Uploaded to this Flux Navigation"
+msgstr "Téléchargé vers cette navigation Flux"
+
+msgid "Filter Flux Navigation list"
+msgstr "Liste de navigation Filtre Flux"
+
+msgid "Flux Navigation list navigation"
+msgstr "Flux Navigation list navigation"
+
+msgid "Flux Navigation list"
+msgstr "Flux Navigation list"
+
+msgid "Flux Navigations that can be inserted into your site."
+msgstr "Navigations Flux qui peuvent être insérées dans votre site."
+
+msgid "Style Library"
+msgstr "Bibliothèque de style"
+
+msgid "Global Styles"
+msgstr "Styles mondiaux"
+
+msgid "This site uses the Flux theme in Full Site Editing mode, so site-wide colors are managed in the Site Editor's %s."
+msgstr "Ce site utilise le thème Flux en mode d'édition de site complet, de sorte que les couleurs à l'échelle du site sont gérées dans le %s de l'éditeur de site."
+
+msgid "Style Library settings keep applying to the blocks that use them."
+msgstr "Les paramètres de la bibliothèque de style continuent de s'appliquer aux blocs qui les utilisent."
+
+msgid "Your Library"
+msgstr "Votre bibliothèque"
+
+msgid "Flux Block Editor design tokens are disabled because these tokens have no baseline entry: %s"
+msgstr "Les jetons de conception Flux Block Editor sont désactivés parce que ces jetons n'ont aucune entrée de référence: %s"
+
+msgid "None"
+msgstr "Aucun"
+
+msgid "2X Small"
+msgstr "2X Small"
+
+msgid "Extra Small"
+msgstr "Extra-petit"
+
+msgid "Small"
+msgstr "Petit"
+
+msgid "Medium"
+msgstr "Moyen"
+
+msgid "Large"
+msgstr "Grand"
+
+msgid "Extra Large"
+msgstr "Extra-grand"
+
+msgid "2X Large"
+msgstr "2X Large"
+
+msgid "3X Large"
+msgstr "3X Large"
+
+msgid "4X Large"
+msgstr "4X Large"
+
+msgid "5X Large"
+msgstr "5X Large"
+
+msgid "Full"
+msgstr "Complète"
+
+msgid "Spacing"
+msgstr "Spacing"
+
+msgid "Gap"
+msgstr "Gap"
+
+msgid "Border Radius"
+msgstr "Rayon de la bordure"
+
+msgid "Border Width"
+msgstr "Largeur de la frontière"
+
+msgid "Icon Sizes"
+msgstr "Icon Tailles"
+
+msgid "Shadow"
+msgstr "Shadow"
+
+msgid "Font Size"
+msgstr "Taille de police"
+
+msgid "Brand Primary"
+msgstr "Marque Primaire"
+
+msgid "Brand Secondary"
+msgstr "Secondaire de la marque"
+
+msgid "Neutral 900"
+msgstr "Neutre 900"
+
+msgid "Neutral 700"
+msgstr "Neutre 700"
+
+msgid "Neutral 600"
+msgstr "Neutre 600"
+
+msgid "Neutral 500"
+msgstr "Neutre 500"
+
+msgid "Neutral 100"
+msgstr "Neutre 100"
+
+msgid "Neutral 50"
+msgstr "Neutre 50"
+
+msgid "Neutral 0"
+msgstr "Neutre 0"
+
+msgid "Complement"
+msgstr "Complément"
+
+msgid "Success"
+msgstr "Succès"
+
+msgid "Info"
+msgstr "Informations"
+
+msgid "Alert"
+msgstr "Alerte"
+
+msgid "Warning"
+msgstr "Avertissement"
+
+msgid "Rating"
+msgstr "Note"
+
+msgid "Palette"
+msgstr "Palette"
+
+msgid "Button Background"
+msgstr "Arrière-plan du bouton"
+
+msgid "Button Text"
+msgstr "Texte du bouton"
+
+msgid "Button Background (Hover)"
+msgstr "Bouton arrière-plan (Hover)"
+
+msgid "Button Text (Hover)"
+msgstr "Texte de bouton (Hover)"
+
+msgid "Button Border"
+msgstr "Frontière du bouton"
+
+msgid "Brand"
+msgstr "Marque"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Notices"
+msgstr "Avis"
+
+msgid "Brand Accent"
+msgstr "Marque Accent"
+
+msgid "Brand Button"
+msgstr "Marque Bouton"
+
+msgid "Brand Button (Hover)"
+msgstr "Bouton de marque (Hover)"
+
+msgid "Neutral 300"
+msgstr "Neutre 300"
+
+msgid "Neutral 200"
+msgstr "Neutre 200"
+
+msgid "Media Radius"
+msgstr "Médias Radius"
+
+msgid "Control Radius"
+msgstr "Régulateur Radius"
+
+msgid "Icon Size"
+msgstr "Icon Taille"
+
+msgid "Icon Block Size"
+msgstr "Icon Block Taille"
+
+msgid "Row Layout Radius"
+msgstr "Rayon de disposition des lignes"
+
+msgid "Layout"
+msgstr "Disposition"
+
+msgid "Column Radius"
+msgstr "Colonne Radius"
+
+msgid "Column Radius (Hover)"
+msgstr "Colonne Rayon (Hover)"
+
+msgid "Row Layout Background"
+msgstr "Row Layout Contexte"
+
+msgid "Column Background"
+msgstr "Rappel de la colonne"
+
+msgid "Column Background (Hover)"
+msgstr "Contexte de la colonne (Hover)"
+
+msgid "Border"
+msgstr "Frontière"
+
+msgid "Border (Hover)"
+msgstr "Frontière (Hover)"
+
+msgid "Image Background"
+msgstr "Historique"
+
+msgid "Media"
+msgstr "Médias"
+
+msgid "Border Width (Hover)"
+msgstr "Largeur de la frontière (Hover)"
+
+msgid "Media Shadow"
+msgstr "Ombre médiatique"
+
+msgid "Media Padding"
+msgstr "Padding aux médias"
+
+msgid "Media Border Width"
+msgstr "Médias Border Width"
+
+msgid "Button Border Width"
+msgstr "Largeur de la bordure du bouton"
+
+msgid "Button Shadow"
+msgstr "Ombre de bouton"
+
+msgid "Button Shadow (Hover)"
+msgstr "Bouton Ombre (Hover)"
+
+msgid "Style"
+msgstr "Style"
+
+msgid "Button"
+msgstr "Bouton"
+
+msgid "Advanced Image"
+msgstr "Image avancée"
+
+msgid "Row Layout"
+msgstr "Mise en page de la ligne"
+
+msgid "Section"
+msgstr "Section"
+
+msgid "Icon"
+msgstr "Icône"
+
+msgid "Advanced Text"
+msgstr "Texte avancé"
+
+msgid "Sorry, that design token library does not exist."
+msgstr "Désolé, cette bibliothèque de jetons n'existe pas."
+
+msgid "The active token library slug, always resolved to an existing library."
+msgstr "La limace active de la bibliothèque de jetons, toujours résolue à une bibliothèque existante."
+
+msgid "The token library slug to make active."
+msgstr "La bibliothèque de jeton slug pour faire actif."
+
+msgid "Sorry, you are not allowed to manage design tokens."
+msgstr "Désolé, vous n'êtes pas autorisé à gérer les jetons de design."
+
+msgid "The requested design token library does not exist."
+msgstr "La bibliothèque de jetons de conception demandée n'existe pas."
+
+msgid "The token library was modified since you last read it. Reload and try again."
+msgstr "La bibliothèque de jetons a été modifiée depuis la dernière lecture. Rechargez et essayez à nouveau."
+
+msgid "The user primitive document invariant failed."
+msgstr "L'invariant du document primitif de l'utilisateur a échoué."
+
+msgid "The document contains an unsupported reference to a user primitive."
+msgstr "Le document contient une référence non soutenue à un utilisateur primitif."
+
+msgid "The design token document failed validation."
+msgstr "Le document de jeton de conception a échoué à la validation."
+
+msgid "The design token document could not be encoded."
+msgstr "Le document de jeton de conception ne pouvait pas être encodé."
+
+msgid "The design token library could not be saved."
+msgstr "La bibliothèque de jetons de conception ne pouvait pas être sauvegardée."
+
+msgid "Bulk replace is not allowed while user-created primitives exist. Delete them first or use PATCH."
+msgstr "Le remplacement de la couche n'est pas autorisé alors que les primitifs créés par l'utilisateur existent. Supprimer ou utiliser PATCH."
+
+msgid "A library title cannot be empty."
+msgstr "Un titre de bibliothèque ne peut pas être vide."
+
+msgid "The library title could not be saved."
+msgstr "Le titre de la bibliothèque n'a pas pu être sauvegardé."
+
+msgid "The design token library could not be deleted."
+msgstr "La bibliothèque de jetons de conception ne peut pas être supprimée."
+
+msgid "A $type is required to create a new token."
+msgstr "Un type $ est nécessaire pour créer un nouveau jeton."
+
+msgid "Use the user-primitives endpoint to delete a custom primitive."
+msgstr "Utilisez le paramètre utilisateur-primitives pour supprimer un primitif personnalisé."
+
+msgid "The token path must begin with a valid layer (%s) and name a token below it, with no empty segments."
+msgstr "Le chemin de jeton doit commencer par une couche valide ( %s ) et nommer un jeton en dessous, sans segments vides."
+
+msgid "The token library slug."
+msgstr "La bibliothèque de jeton slug."
+
+msgid "The human-readable label for the library, empty when none is stored."
+msgstr "L'étiquette humaine lisible pour la bibliothèque, vide quand aucun n'est stocké."
+
+msgid "The cache-busting version hash for the library, empty when it renders from baseline."
+msgstr "La version de cache-busting pour la bibliothèque, vide quand elle rend de base."
+
+msgid "The raw overrides-only DTCG document, empty when the library renders entirely from baseline."
+msgstr "Le document DTCG surcharge brute seulement, vide lorsque la bibliothèque est entièrement de base."
+
+msgid "Resolved CSS values keyed by token dot-path id."
+msgstr "Valeurs CSS résolues clémente par token dot-path id."
+
+msgid "Resolved CSS values keyed by CSS custom-property name."
+msgstr "Valeurs CSS résolues clémentes par le nom de propriété personnalisée CSS."
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id; present only for tokens that carry a shape."
+msgstr "Forme réactive / serrage autorisé clémente par token dot-path id; présent seulement pour les jetons qui portent une forme."
+
+msgid "Sorry, that token is not registered."
+msgstr "Désolé, ce jeton n'est pas enregistré."
+
+msgid "Sorry, that token group does not exist."
+msgstr "Désolé, ce groupe de jetons n'existe pas."
+
+msgid "Sorry, that font family is not available on this site."
+msgstr "Désolé, cette famille de police n'est pas disponible sur ce site."
+
+msgid "\"%s\" is a token group, not a single token. Write a token below it instead."
+msgstr "\" %s \" est un groupe de jetons, pas un seul jeton. Ecrivez un jeton en dessous de celui-ci."
+
+msgid "\"%1$s\" is a token, not a group, so \"%2$s\" cannot be written below it."
+msgstr "\" %1$s \" est un jeton, pas un groupe, donc \" %2$s \" ne peut pas être écrit en dessous."
+
+msgid "The human-readable label for the token library."
+msgstr "L'étiquette lisible pour la bibliothèque de jetons."
+
+msgid "The token library slug to write. Defaults to the default library."
+msgstr "La bibliothèque de jeton slug à écrire. Par défaut à la bibliothèque par défaut."
+
+msgid "The overrides-only DTCG document to store."
+msgstr "Le seul document DTCG à stocker."
+
+msgid "Optional human-readable label for the token library."
+msgstr "Étiquette disponible pour la bibliothèque de jetons."
+
+msgid "The token dot-path, e.g. primitive.color.brand."
+msgstr "Le chemin de jeton, par exemple primitif.color.brand."
+
+msgid "The display-label override. Empty or whitespace-only clears the override, equivalent to DELETE."
+msgstr "La surcharge de la ceinture d'affichage. Empty ou espace blanc ne nettoie que la surcharge, équivalente à DELETE."
+
+msgid "The token's canonical dot-path id, e.g. semantic.color.button-bg."
+msgstr "L'id canonique du jeton, p.ex. sémantique.color.button-bg."
+
+msgid "The version the client last read; empty for a first write. A mismatch is rejected with HTTP 409."
+msgstr "La version que le client a lue dernière; vide pour une première écriture. Une erreur est rejetée avec HTTP 409."
+
+msgid "The token ids in their new order for this group."
+msgstr "Les jetons sont dans leur nouvel ordre pour ce groupe."
+
+msgid "The UI-schema group name whose token order is being set."
+msgstr "Le nom de groupe UI-schema dont l'ordre de jeton est défini."
+
+msgid "The font family name to add as a favorite, e.g. Abril Fatface."
+msgstr "Le nom de la famille de police à ajouter comme un favori, p.ex. Abril Fatface."
+
+msgid "The primitive.*.custom.* namespace is reserved for user-created primitives. Use the user-primitives endpoint."
+msgstr "L'espace de nom primitif.*.custom.* est réservé aux primitifs créés par l'utilisateur. Utilisez le paramètre d'extrémité utilisateur-primitives."
+
+msgid "Whether the design-token registry is active."
+msgstr "Que le registre des objets de conception soit actif."
+
+msgid "Whether the library resolved without a corrupt-store failure."
+msgstr "Que la bibliothèque soit résolue sans un échec de magasin corrompu."
+
+msgid "The library's stored label, empty when it has none."
+msgstr "L'étiquette stockée de la bibliothèque est vide quand elle n'en a pas."
+
+msgid "The token library slug the feed was assembled for."
+msgstr "La bibliothèque de jetons a creusé le flux a été assemblé pour."
+
+msgid "The token structure, grouped for the UI."
+msgstr "La structure de jeton, regroupée pour l'interface utilisateur."
+
+msgid "Per-block preset structure and resolved preview values."
+msgstr "Per-block structure prédéfinie et les valeurs de prévisualisation résolues."
+
+msgid "The nav-ready block-presets section, for labeled/picker-driven preset bindings only."
+msgstr "La section des préréglages de blocs lisibles, pour les reliures préréglées et préréglées uniquement."
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id."
+msgstr "Forme réactive / clamp autorisé clé par token dot-path id."
+
+msgid "The REST descriptor (root, namespace, nonce) the app writes edits to."
+msgstr "Le descripteur REST (root, namespace, nonce) l'application écrit des modifications à."
+
+msgid "The token library slug to read the feed for."
+msgstr "La bibliothèque de jeton slug pour lire le flux pour."
+
+msgid "A swatch value or label is required."
+msgstr "Une valeur ou une étiquette de swatch est requise."
+
+msgid "A swatch value cannot be empty."
+msgstr "Une valeur swatch ne peut pas être vide."
+
+msgid "A swatch label cannot be empty."
+msgstr "Une étiquette swatch ne peut pas être vide."
+
+msgid "A swatch label is structural and can only be set on the library's default palette."
+msgstr "Une étiquette swatch est structurelle et ne peut être définie que sur la palette par défaut de la bibliothèque."
+
+msgid "The current palette must name a palette the library defines."
+msgstr "La palette actuelle doit nommer une palette définie par la bibliothèque."
+
+msgid "The palette id."
+msgstr "La palette."
+
+msgid "The palette label."
+msgstr "Le label palette."
+
+msgid "The ordered color groups, each an ordered list of swatches."
+msgstr "Les groupes de couleurs commandés, chacun une liste ordonnée de swatches."
+
+msgid "The color palette failed validation."
+msgstr "La palette de couleurs a échoué la validation."
+
+msgid "The color palette could not be encoded."
+msgstr "La palette de couleurs ne pouvait pas être encodé."
+
+msgid "The color palette could not be saved."
+msgstr "La palette de couleurs ne pouvait pas être sauvegardée."
+
+msgid "The palette label must be a string."
+msgstr "L'étiquette de palette doit être une chaîne."
+
+msgid "A palette must define at least one color group."
+msgstr "Une palette doit définir au moins un groupe de couleurs."
+
+msgid "Each color group must have an id, a label, and a swatches list."
+msgstr "Chaque groupe de couleurs doit avoir un id, une étiquette et une liste de swatches."
+
+msgid "Each swatch must have a token, a label, and a value."
+msgstr "Chaque montre doit avoir un jeton, une étiquette et une valeur."
+
+msgid "Swatch token \"%s\" does not target a color."
+msgstr "Jeton Swatch \" %s \" ne cible pas une couleur."
+
+msgid "Token \"%s\" appears more than once in the palette."
+msgstr "Token \" %s \" apparaît plus d'une fois dans la palette."
+
+msgid "Swatch value aliases a token that does not exist: \"%s\"."
+msgstr "Swatch valeur aliase un jeton qui n'existe pas: \" %s \"."
+
+msgid "Swatch \"%s\" is part of the shipped palette and cannot be removed."
+msgstr "Swatch \" %s \" fait partie de la palette expédiée et ne peut pas être enlevé."
+
+msgid "Accent"
+msgstr "Accent"
+
+msgid "Sorry, that palette does not exist."
+msgstr "Désolé, cette palette n'existe pas."
+
+msgid "Optional token library slug to target; defaults to the active library."
+msgstr "La bibliothèque de jetons optionnelle slug to target; defaults to the active library."
+
+msgid "The swatch token dot-path."
+msgstr "Le chemin de jeton swatch."
+
+msgid "The swatch value: a literal color or a {dot.path} alias."
+msgstr "La valeur de la montre: une couleur littérale ou un alias {dot.path}."
+
+msgid "The swatch's structural label. Only valid when {id} is the library's default palette — labels are defined once, not per palette."
+msgstr "L'étiquette structurelle de la swatch. Seulement valable lorsque {id} est la palette par défaut de la bibliothèque — les étiquettes sont définies une fois, pas par palette."
+
+msgid "The palette id to make current."
+msgstr "La palette id pour rendre le courant."
+
+msgid "A preset slug is required."
+msgstr "Une limace prédéfinie est requise."
+
+msgid "The preset's human-readable label."
+msgstr "L'étiquette du préréglage humain."
+
+msgid "The preset's property => value map: an alias or literal, a per-corner list, or a responsive envelope."
+msgstr "La carte de la valeur prédéfinie => : un alias ou un littéral, une liste par-corner, ou une enveloppe réactive."
+
+msgid "Which properties this preset genuinely stores itself, as property => true. A bound property absent here is only inherited from the baseline's own definition of the same preset slug, and a control shows it as a muted default rather than as bound."
+msgstr "Les propriétés de ce préréglage s'enregistrent véritablement, comme la propriété = Véritable. Une propriété liée absente ici n'est héritée que de la définition de la même limace préréglée, et un contrôle le montre comme un défaut muté plutôt que comme lié."
+
+msgid "The classes the theme's own stylesheet paints this preset through, for a preset painted by class rather than by variables."
+msgstr "Les classes de la feuille de style du thème peint ce préréglage à travers, pour un préréglé peint par classe plutôt que par des variables."
+
+msgid "The values the theme currently renders for this preset, for display only: a control shows them as muted defaults and a save stores only the values that differ."
+msgstr "Les valeurs que le thème rend actuellement pour ce préréglage, pour l'affichage seulement: un contrôle les montre comme des défauts mutés et un sauvegarde ne stocke que les valeurs qui diffèrent."
+
+msgid "Whether the theme's values behind this preset could be read. A preset that is not readable can be previewed and picked but offers nothing to edit."
+msgstr "Que les valeurs du thème derrière ce préréglage puissent être lues. Un préréglage qui n'est pas lisible peut être prévisualisé et sélectionné mais n'offre rien à éditer."
+
+msgid "The block name the preset collection belongs to."
+msgstr "Le nom du bloc auquel appartient la collection préréglée."
+
+msgid "The default preset slug."
+msgstr "Le préréglage par défaut slug."
+
+msgid "The preset slugs the library defines beyond the baseline. Deleting one removes it; deleting anything else at most reverts an override."
+msgstr "Le préréglage slude la bibliothèque définit au-delà de la base de référence. La suppression de l'une l'enlève; la suppression de tout autre chose au plus revertit une override."
+
+msgid "The named presets, keyed by slug."
+msgstr "Les presets nommés, marqués par la limace."
+
+msgid "The stored theme presets the active theme does not offer, keyed by slug: not listed, not projected, kept until a theme that offers them is active again."
+msgstr "Le thème stocké présets le thème actif ne propose pas, keyed by slug: not listed, not projected, kept until a theme that offers them is active again."
+
+msgid "The label the preset was stored with."
+msgstr "L'étiquette avec laquelle le préréglage a été stocké."
+
+msgid "The overrides the preset keeps."
+msgstr "Le préréglage garde."
+
+msgid "The theme values the preset had when its overrides were last saved."
+msgstr "Le thème valeurs que le préréglage avait quand ses surcharges ont été sauvées dernièrement."
+
+msgid "The design token library could not be encoded."
+msgstr "La bibliothèque de jetons de conception ne pouvait pas être encodé."
+
+msgid "Sorry, that block does not accept presets."
+msgstr "Désolé, ce bloc n'accepte pas les presets."
+
+msgid "A preset slug cannot be empty."
+msgstr "Une limace prédéfinie ne peut pas être vide."
+
+msgid "Each preset must be an object with an optional string label and a token map."
+msgstr "Chaque préréglage doit être un objet avec une étiquette à chaîne facultative et une carte à jeton."
+
+msgid "A preset cannot set theme-owned keys."
+msgstr "Un préréglage ne peut pas définir des clés à thème."
+
+msgid "That preset slug is reserved."
+msgstr "Cette limace prédéfinie est réservée."
+
+msgid "A per-corner value is only valid for a dimension property."
+msgstr "Une valeur per-corner n'est valable que pour une propriété dimensionnelle."
+
+msgid "A per-corner base value must set every corner; a gap is only valid inside a responsive override."
+msgstr "Une valeur de base per-corner doit définir chaque coin; un écart n'est valable qu'à l'intérieur d'une surcharge réceptive."
+
+msgid "A dimension value must not contain a space; compound literals (e.g. calc(), clamp()) are not supported."
+msgstr "Une valeur de dimension ne doit pas contenir un espace; les litraux composés (par exemple calc(), clamp()) ne sont pas pris en charge."
+
+msgid "A per-corner responsive override requires a per-corner base value for the same property."
+msgstr "Une surcharge réceptive par-corner nécessite une valeur de base par-corner pour la même propriété."
+
+msgid "A shadow value must be an alias, a literal, or a composite carrying color, offsetX, offsetY, blur and spread."
+msgstr "Une valeur d'ombre doit être un alias, un littéral, ou une couleur de transport composite, offsetX, offsetY, flou et propagé."
+
+msgid "The default preset must name an existing preset."
+msgstr "Le préréglage par défaut doit nommer un préréglage existant."
+
+msgid "A theme preset cannot be the default preset."
+msgstr "Un préréglage de thème ne peut pas être le préréglage par défaut."
+
+msgid "A preset can only set properties the block binds."
+msgstr "Un préréglage ne peut que définir les propriétés des blocs."
+
+msgid "A preset alias does not resolve to a token."
+msgstr "Un alias prédéfini ne se résout pas à un jeton."
+
+msgid "The block vendor segment, e.g. flxbk."
+msgstr "Le segment des vendeurs de blocs, p.ex. flxbk."
+
+msgid "The block name segment, e.g. singlebtn."
+msgstr "Le segment des noms de bloc, p.ex. singlebtn."
+
+msgid "The preset slug."
+msgstr "La limace prédéfinie."
+
+msgid "The preset slug to create or merge."
+msgstr "La limace prédéfinie pour créer ou fusionner."
+
+msgid "Optional human-readable label for the preset."
+msgstr "Étiquette accessible à l'homme pour le préréglage."
+
+msgid "The preset's property => alias-or-literal token map."
+msgstr "La propriété du préréglage = Carte de jeton pseudo-alphale."
+
+msgid "The presets to store, keyed by slug."
+msgstr "Les presets à stocker, keyed by slug."
+
+msgid "Optional default preset slug."
+msgstr "Facultatif par défaut preset slug."
+
+msgid "The preset slugs in their new display order."
+msgstr "Les limaces prédéfinies dans leur nouvelle commande d'affichage."
+
+msgid "The combined design-token editor CSS for every token library."
+msgstr "L'éditeur de design CSS combiné pour chaque bibliothèque de jetons."
+
+msgid "The DTCG schema could not be read."
+msgstr "Le schéma DTCG n'a pas pu être lu."
+
+msgid "The published DTCG JSON Schema that a valid design token document must satisfy."
+msgstr "Le schéma JSON DTCG publié qu'un document de jeton de conception valide doit satisfaire."
+
+msgid "That custom token does not exist."
+msgstr "Ce jeton personnalisé n'existe pas."
+
+msgid "The id must be a lowercase kebab-case slug with no dots (e.g. my-color)."
+msgstr "L'id doit être une limace de kebab à minuscules sans points (par exemple ma couleur)."
+
+msgid "The group must be a lowercase kebab-case key."
+msgstr "Le groupe doit être une clé de kebab minuscule."
+
+msgid "That group is not declared for user-created primitives."
+msgstr "Ce groupe n'est pas déclaré pour les primitifs créés par l'utilisateur."
+
+msgid "That $type does not support user-created primitives in this version."
+msgstr "Ce type $ ne supporte pas les primitifs créés par l'utilisateur dans cette version."
+
+msgid "That id is used by a system token."
+msgstr "Ce id est utilisé par un jeton système."
+
+msgid "A custom token with that id already exists."
+msgstr "Un jeton personnalisé avec cet id existe déjà."
+
+msgid "That id is reserved by the system."
+msgstr "Cet id est réservé par le système."
+
+msgid "System primitives cannot be deleted."
+msgstr "Les primitifs du système ne peuvent pas être supprimés."
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before deleting."
+msgstr "Ce primitif a des références qui ne peuvent pas être automatiquement résolues. Retirez-les manuellement avant de supprimer."
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before renaming."
+msgstr "Ce primitif a des références qui ne peuvent pas être automatiquement résolues. Retirez-les manuellement avant de renommer."
+
+msgid "The stored definition has no $type and cannot be renamed."
+msgstr "La définition stockée n'a pas de type $ et ne peut pas être renommée."
+
+msgid "The new id is already in use."
+msgstr "Le nouveau id est déjà en service."
+
+msgid "The new id is reserved by the system."
+msgstr "Le nouveau id est réservé par le système."
+
+msgid "The canonical dot-path id of the user primitive."
+msgstr "Le dot-chemin canonique de l'utilisateur primitif."
+
+msgid "The human-readable label stored in the provenance map."
+msgstr "L'étiquette lisible à l'homme stockée dans la carte de provenance."
+
+msgid "The cache-busting version hash for the token library."
+msgstr "La version cache-busting hash pour la bibliothèque de jetons."
+
+msgid "Whether the primitive can be safely deleted (all references are supported)."
+msgstr "Que le primitif puisse être supprimé en toute sécurité (toutes les références sont supportées)."
+
+msgid "All alias references to this primitive found in the document."
+msgstr "Toutes les références à ce primitif trouvées dans le document."
+
+msgid "The id must be a canonical custom primitive path (primitive.<type>.custom.<slug>)."
+msgstr "L'id doit être un chemin primitif sur mesure canonique (primitif. <type> .custom. <slug> )."
+
+msgid "The version token the client last read."
+msgstr "La version jeton le client a lu la dernière lecture."
+
+msgid "The terminal slug for the new primitive (kebab-case, no dots)."
+msgstr "La limace terminale pour le nouveau primitif (cas de kébab, pas de points)."
+
+msgid "The DTCG $type for the new primitive."
+msgstr "Le DTCG $type pour la nouvelle primitive."
+
+msgid "The DTCG $value for the new primitive."
+msgstr "La valeur de $ pour le nouveau primitif."
+
+msgid "Optional human-readable label."
+msgstr "Une étiquette disponible pour l'homme."
+
+msgid "Optional stable machine key for the UI group this primitive should join."
+msgstr "La clé de machine stable optionnelle pour le groupe de l'UI, ce primitif devrait rejoindre."
+
+msgid "The canonical dot-path id of the user primitive to delete."
+msgstr "Le dot-chemin canonique de l'utilisateur primitif à supprimer."
+
+msgid "The canonical dot-path id of the user primitive to rename."
+msgstr "Le dot-chemin canonique de l'utilisateur primitif pour renommer."
+
+msgid "The new terminal slug (kebab-case, no dots)."
+msgstr "La nouvelle limace terminale (cas de kebab, pas de points)."
+
+msgid "Optional new human-readable label."
+msgstr "Nouveau label accessible à l'homme."
+
+msgid "Theme Base"
+msgstr "Base thématique"
+
+msgid "Theme %s"
+msgstr "Thème %s"
+
+msgid "Theme Button"
+msgstr "Le moi Button"
+
+msgid "Theme Secondary"
+msgstr "Thème secondaire"
+
+msgid "Unknown block."
+msgstr "Un bloc inconnu."
+
+msgid "Choose Small, Large or Fullwidth."
+msgstr "Choisissez Petite, Grande ou Largeur."
+
+msgid "Enter a width between 200 and 4000 px."
+msgstr "Entrez une largeur entre 200 et 4000 px."
+
+msgid "Pattern not found."
+msgstr "Pattern non trouvée."
+
+msgid "Enter a valid site address."
+msgstr "Entrez une adresse de site valide."
+
+msgid "Pale pink"
+msgstr "Rose pâle"
+
+msgid "Vivid red"
+msgstr "Rouge vif"
+
+msgid "Luminous vivid orange"
+msgstr "Luminouse orange vif"
+
+msgid "Luminous vivid amber"
+msgstr "Ambre vive et lumineuse"
+
+msgid "Light green cyan"
+msgstr "Cyan vert clair"
+
+msgid "Vivid green cyan"
+msgstr "Cyan vert vif"
+
+msgid "Pale cyan blue"
+msgstr "Pale cyan bleu"
+
+msgid "Vivid cyan blue"
+msgstr "Vivid cyan bleu"
+
+msgid "Very light gray"
+msgstr "Très léger gris"
+
+msgid "Cyan bluish gray"
+msgstr "Cyan bluish gris"
+
+msgid "Very dark gray"
+msgstr "Très gris foncé"
+
+msgid "Config Flux Block Defaults"
+msgstr "Défauts de bloc Config Flux"
+
+msgid "Config Flux Block visibility settings"
+msgstr "Configuration des paramètres de visibilité du bloc Flux"
+
+msgid "Config Flux Block Settings"
+msgstr "Configuration de bloc Flux"
+
+msgid "Config Flux Block Prophecy AI"
+msgstr "Config Flux Block Prophétie AI"
+
+msgid "Config Flux Block Editor Color Palette"
+msgstr "Config Flux Block Editor Palette de couleur"
+
+msgid "Config Flux Block Editor Global Settings"
+msgstr "Config Flux Block Editor Paramètres mondiaux"
+
+msgid "Google reCaptcha Site Key"
+msgstr "Google reCaptcha Site clé"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google reCaptcha clé secrète"
+
+msgid "Google reCaptcha Language"
+msgstr "Google reCaptcha Langue"
+
+msgid "Cloudflare Turnstile Site Key"
+msgstr "Clé du site de Turnstile Cloudflare"
+
+msgid "Cloudflare Turnstile Secret Key"
+msgstr "Clé secrète de Cloudflare Turnstile"
+
+msgid "hCaptcha Turnstile Site Key"
+msgstr "hCaptcha Clé du site tourniquet"
+
+msgid "hCaptcha Secret Key"
+msgstr "hCaptcha Clé secrète"
+
+msgid "MailerLite API Key"
+msgstr "MailerLite API Clé"
+
+msgid "Google Maps API Key"
+msgstr "Google Maps API Clé"
+
+msgid "Config Flux Block Editor Cloud"
+msgstr "Configer Flux Block Editor Cloud"
+
+msgid "Is Flux header notice dismissed"
+msgstr "L'avis d'en-tête de Flux est rejeté"
+
+msgid "Subscribe to Wireframe library"
+msgstr "Abonnez-vous à la bibliothèque Wireframe"
+
+msgid "ConvertKit API Key"
+msgstr "ConvertirKit API Clé"
+
+msgid "Mark the Header popover tutorial Complete"
+msgstr "Marquer le tutoriel de popover Header Complet"
+
+msgid "Small Template"
+msgstr "Petit modèle"
+
+msgid "Large Template"
+msgstr "Grand modèle"
+
+msgid "Post default"
+msgstr "Défaut de poste"
+
+msgid "Page Default"
+msgstr "Page Par défaut"
+
+msgid "Enable Editor Width"
+msgstr "Activer la fonction d'éditeur"
+
+msgid "Load Google Fonts Locally"
+msgstr "Charger les polices de Google localement"
+
+msgid "Show Block Headers in Admin Bar"
+msgstr "Afficher les têtes de bloc dans le Barreau Admin"
+
+msgid "Allows for changes to the editor width on per page/post basis with preset defaults."
+msgstr "Permet de modifier la largeur de l'éditeur sur la base page/post avec des défauts prédéfinis."
+
+msgid "False"
+msgstr "False"
+
+msgid "True"
+msgstr "Vrai"
+
+msgid "Experimental editor CSS for less excess margins in Gutenberg in an attempt to get a closer WYSIWYG editing experience."
+msgstr "Rédacteur expérimental CSS pour moins de marges excédentaires à Gutenberg dans une tentative d'obtenir une expérience d'édition WYSIWYG plus proche."
+
+msgid "px"
+msgstr "px"
+
+msgid "Fullwidth"
+msgstr "Fullwidth"
+
+msgid "Create rows with nested blocks either in columns or as a container. Give style to your rows with background, overlay, padding, etc."
+msgstr "Créez des rangées avec des blocs nichés soit dans des colonnes ou comme un conteneur. Donnez style à vos rangs avec fond, overlay, padding, etc."
+
+msgid "Create a contact form or marketing form and style it within the block editor."
+msgstr "Créer un formulaire de contact ou un formulaire de marketing et le style dans l'éditeur de blocs."
+
+msgid "Advanced Gallery"
+msgstr "Galerie avancée"
+
+msgid "Photo galleries, carousels, and sliders! Enable custom links, captions, and more. Plus, you can select image sizes."
+msgstr "Galeries photos, carrousels et curseurs! Activez les liens personnalisés, les légendes et plus encore."
+
+msgid "Advanced Button"
+msgstr "Bouton avancé"
+
+msgid "Create an advanced button or a row of buttons. Style each one including hover controls plus you can use an icon and display them side by side"
+msgstr "Créez un bouton avancé ou une rangée de boutons. Style chacun comprenant les commandes hover plus vous pouvez utiliser une icône et les afficher côte à côte"
+
+msgid "Add an extra \"wow\" factor to your site with engaging Lottie animations."
+msgstr "Ajoutez un facteur supplémentaire \"wow\" à votre site avec des animations Lottie."
+
+msgid "Manage Lottie Animations"
+msgstr "Gérer les animations de Lottie"
+
+msgid "Vector Graphics"
+msgstr "Graphiques vectoriaux"
+
+msgid "Add custom vector icons and SVGs to enhance your site design."
+msgstr "Ajoutez des icônes vectorielles personnalisées et des SVG pour améliorer votre conception de site."
+
+msgid "Manage Vector Graphics"
+msgstr "Gérer les graphiques Vector"
+
+msgid "Advanced Header"
+msgstr "En-tête avancé"
+
+msgid "Build custom headers in the block editor and full site editing."
+msgstr "Construisez des en-têtes personnalisés dans l'éditeur de bloc et l'édition complète du site."
+
+msgid "Manage Headers"
+msgstr "Gérer les responsables"
+
+msgid "Advanced Navigation"
+msgstr "Navigation avancée"
+
+msgid "Build custom navigation menus"
+msgstr "Créez des menus de navigation personnalisés"
+
+msgid "Manage Navigation Menus"
+msgstr "Gérer les menus de navigation"
+
+msgid "Choose from over 1500+ SVG Icons to add into your page and style the size, colors, background, border, etc."
+msgstr "Choisissez parmi plus de 1500+ Icônes SVG pour ajouter dans votre page et style la taille, les couleurs, le fond, la frontière, etc."
+
+msgid "Spacer/Divider"
+msgstr "Espaceur/Divider"
+
+msgid "Easily create a divider and determine the space around it or just create some space in your content."
+msgstr "Créez facilement un diviseur et déterminez l'espace autour de lui ou créez simplement un espace dans votre contenu."
+
+msgid "Create a heading or paragraph and define sizes for desktop, tablet and mobile along with font family, colors, etc."
+msgstr "Créer un titre ou un paragraphe et définir les tailles pour le bureau, tablette et mobile avec la famille de police, les couleurs, etc."
+
+msgid "Tabs"
+msgstr "Tabs"
+
+msgid "Create custom vertical or horizontal tabs with advanced styling controls. Each tab content is an empty canvas able to contain any other blocks."
+msgstr "Créez des onglets verticaux ou horizontaux personnalisés avec des commandes de style avancées. Chaque onglet contient une toile vide capable de contenir d'autres blocs."
+
+msgid "Info Box"
+msgstr "Boîte d'information"
+
+msgid "Create a box containing an icon or image and, optionally, a title, description, and learn more text. Style static and hover separately."
+msgstr "Créez une boîte contenant une icône ou une image et, en option, un titre, une description et en apprendre plus de texte. Style statique et hover séparément."
+
+msgid "Accordion"
+msgstr "Accordion"
+
+msgid "Create beautiful accordions! Each pane can contain any other block, customize title styles, content background, and borders."
+msgstr "Créez de beaux accordéons! Chaque pane peut contenir tout autre bloc, personnaliser les styles de titres, le fond de contenu et les frontières."
+
+msgid "Icon List"
+msgstr "Liste des icônes"
+
+msgid "Add beautiful icons to your lists and make them more engaging. Over 1500 icons to choose from and unlimited styles."
+msgstr "Ajoutez de magnifiques icônes à vos listes et faites-les plus attrayantes. Plus de 1500 icônes à choisir et des styles illimités."
+
+msgid "Allow your readers to navigate your content easily with a table of contents block. Includes smooth scroll to anchor."
+msgstr "Permet à vos lecteurs de naviguer facilement dans votre contenu avec une table de contenu bloc. Comprend un défilement lisse à l'ancre."
+
+msgid "Posts"
+msgstr "Messages"
+
+msgid "Display a clean grid of posts anywhere on your site, great for your home page where you want to tease your blog."
+msgstr "Affichez une grille de messages propre n'importe où sur votre site, idéal pour votre page d'accueil où vous voulez taquiner votre blog."
+
+msgid "Countdown"
+msgstr "Décompte"
+
+msgid "Increase your conversions by adding a sense of urgency to your offering. Pro includes evergreen campaigns as well."
+msgstr "Augmentez vos conversions en ajoutant un sentiment d'urgence à votre offre. Pro inclut également des campagnes à feuilles persistantes."
+
+msgid "Testimonials"
+msgstr "Témoignages"
+
+msgid "Create confidence in your brand or product by showing off beautiful unique testimonials, add as a carousel or a grid."
+msgstr "Créez confiance dans votre marque ou produit en démontrant de beaux témoignages uniques, ajoutez en carrousel ou en grille."
+
+msgid "Video Popup"
+msgstr "Popup vidéo"
+
+msgid "Beautifully display a thumbnail with overlay and hover effect that links to a video popup on click. Works with local or external videos!"
+msgstr "Joliment afficher un aperçu avec l'effet overlay et hover qui relie à un popup vidéo sur clic. Fonctionne avec des vidéos locales ou externes!"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Last updated"
+msgstr "Dernière mise à jour"
+
+msgid "Unknown"
+msgstr "Inconnu"
+
+msgid "Previous version"
+msgstr "Version précédente"
+
+msgid "Has Pro"
+msgstr "A Pro"
+
+msgid "Deactivated Blocks"
+msgstr "Blocs désactivés"
+
+msgid "Has Block Defaults"
+msgstr "A des défauts de bloc"
+
+msgid "Using Setting Visibility"
+msgstr "Utilisation de la Visibilité"
+
+msgid "Has Custom Colors"
+msgstr "A des couleurs personnalisées"
+
+msgid "Has reCAPTCHA key"
+msgstr "A reCAPTCHA clé"
+
+msgid "Has a maps API key"
+msgstr "A une carte API clé"
+
+msgid "Has MailerLite key"
+msgstr "A la clé MailerLite"
+
+msgid "Has Cloud Library"
+msgstr "A bibliothèque de nuage"
+
+msgid "No"
+msgstr "Non"
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid "On"
+msgstr "Sur"
+
+msgid "Off"
+msgstr "Désactivé"
+
+msgid "Read More"
+msgstr "En savoir plus"
+
+msgid "By"
+msgstr "Par"
+
+msgid "Posted on"
+msgstr "Posté sur"
+
+msgid "Updated on"
+msgstr "Mis à jour"
+
+msgid "Posted in"
+msgstr "Posté dans"
+
+msgid ", "
+msgstr ", "
+
+msgid "Comment"
+msgstr "Commentaire"
+
+msgid "Comments"
+msgstr "Commentaires"
+
+msgid " / "
+msgstr " / "
+
+msgid " - "
+msgstr " - "
+
+msgid " | "
+msgstr " | "
+
+msgid "View File"
+msgstr "Voir le fichier"
+
+msgid "Sent from %s"
+msgstr "Envoyé à partir de %s"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Default"
+msgstr "Par défaut"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Custom"
+msgstr "Personnalisé"
+
+msgid "Auto"
+msgstr "Automatique"
+
+msgid "Gradient"
+msgstr "Dégradé"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Individual"
+msgstr "Individu"
+
+msgid "Linked"
+msgstr "Linked"
+
+msgid "Solid"
+msgstr "Solide"
+
+msgid "Dashed"
+msgstr "Dashed"
+
+msgid "Dotted"
+msgstr "Dotted"
+
+msgid "Double"
+msgstr "Double"
+
+msgid "Device"
+msgstr "Appareil"
+
+msgid "Color"
+msgstr "Couleur"
+
+msgid "Left"
+msgstr "Gauche"
+
+msgid "Top"
+msgstr "Top"
+
+msgid "Hover"
+msgstr "Hover"
+
+msgid "Normal"
+msgstr "Normale"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Clear"
+msgstr "Effacer"
+
+msgid "Right"
+msgstr "À droite"
+
+msgid "Bottom"
+msgstr "Bottom"
+
+msgid "Reset"
+msgstr "Réinitialiser"
+
+msgid "auto"
+msgstr "auto"
+
+msgid "Background"
+msgstr "Contexte"
+
+msgid "Desktop"
+msgstr "Bureau"
+
+msgid "Tablet"
+msgstr "Tablette"
+
+msgid "Mobile"
+msgstr "Mobile"
+
+msgid "div"
+msgstr "div"
+
+msgid "Weight"
+msgstr "Poids"
+
+msgid "Size"
+msgstr "Taille"
+
+msgid "-"
+msgstr "-"
+
+msgid "Uppercase"
+msgstr "Enveloppe supérieure"
+
+msgid "Lowercase"
+msgstr "Lowercase"
+
+msgid "Capitalize"
+msgstr "Capitalisation"
+
+msgid "Font Family"
+msgstr "Famille de polices"
+
+msgid "Padding"
+msgstr "Remplissage"
+
+msgid "20%"
+msgstr "20%"
+
+msgid "40%"
+msgstr "40%"
+
+msgid "50%"
+msgstr "50%"
+
+msgid "75%"
+msgstr "75%"
+
+msgid "80%"
+msgstr "80%"
+
+msgid "100%"
+msgstr "100%"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Margin"
+msgstr "Marge"
+
+msgid "label"
+msgstr "label"
+
+msgid "value"
+msgstr "valeur"
+
+msgid "form"
+msgstr "form formulaire"
+
+msgid "button"
+msgstr "bouton"
+
+msgid "icon"
+msgstr "icône"
+
+msgid "image"
+msgstr "photo"
+
+msgid "Border Color"
+msgstr "Couleur de la bordure"
+
+msgid "text"
+msgstr "texte"
+
+msgid "heading"
+msgstr "titre"
+
+msgid "Heading"
+msgstr "Rubrique"
+
+msgid "section"
+msgstr "Section"
+
+msgid "number"
+msgstr "numéro"
+
+msgid "Text"
+msgstr "Texte"
+
+msgid "header"
+msgstr "header"
+
+msgid "svg"
+msgstr "svg"
+
+msgid "list"
+msgstr "liste"
+
+msgid "info"
+msgstr "info"
+
+msgid "1"
+msgstr "1"
+
+msgid "hide"
+msgstr "cacher"
+
+msgid "separator"
+msgstr "separator"
+
+msgid "Tab"
+msgstr "tab"
+
+msgid "Saving…"
+msgstr "Sauvegarde..."
+
+msgid "Favorite"
+msgstr "Favoris"
+
+msgid "Color Palette"
+msgstr "Palette couleur"
+
+msgid "Breakpoint"
+msgstr "Breakpoint"
+
+msgid "Drag to reorder"
+msgstr "Faites glisser pour réorganiser"
+
+msgid "Reset %1$s to %2$s"
+msgstr "Réinitialiser %1$s à %2$s"
+
+msgid "From %s"
+msgstr "À partir de %s"
+
+msgid "From theme"
+msgstr "Du thème"
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+msgid "Blur"
+msgstr "Blur"
+
+msgid "Spread"
+msgstr "Spread"
+
+msgid "Inset"
+msgstr "Inset"
+
+msgid "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here."
+msgstr "%1$d couleur dans cette palette suit toujours %2$s . Jusqu'à ce que vous la personnalisez dans cette palette, l'éditer dans %2$s va également la mettre à jour ici."
+
+msgid "Learn more"
+msgstr "En savoir plus"
+
+msgid "Search fonts…"
+msgstr "Polices de recherche..."
+
+msgid "No fonts found"
+msgstr "Aucune police trouvée"
+
+msgid "Keep typing to narrow the list"
+msgstr "Continuez à taper pour rétrécir la liste"
+
+msgid "Options loaded."
+msgstr "Options chargées."
+
+msgid "Loading options…"
+msgstr "Options de chargement..."
+
+msgid "Swatch view"
+msgstr "Vue Swatch"
+
+msgid "Grid view"
+msgstr "Vue sur le réseau"
+
+msgid "List view"
+msgstr "Vue de la liste"
+
+msgid "Set \"%s\" as the active library?"
+msgstr "Définir \" %s\" comme bibliothèque active?"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor."
+msgstr "Votre site utilise actuellement \" %1$s \". Paramétrer \" %2$s \" comme active modifie les couleurs, la typographie, l'espacement et d'autres styles sur tout votre site tout de suite - sur l'avant et dans l'éditeur."
+
+msgid "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over."
+msgstr "Vous pouvez revenir à tout moment, mais toutes les valeurs personnalisées dans \" %s \" restent dans cette bibliothèque - ils ne sont pas copiés."
+
+msgid "Setting active…"
+msgstr "Setting active..."
+
+msgid "Set as active"
+msgstr "Réglé comme actif"
+
+msgid "Set \"%s\" as the active palette?"
+msgstr "Définir \" %s \" comme palette active ?"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor."
+msgstr "Votre site utilise actuellement \" %1$s \". Paramétrer \" %2$s \" comme active change les couleurs sur tout votre site tout de suite - sur l'avant et dans l'éditeur."
+
+msgid "Add Color Group"
+msgstr "Ajouter Color Group"
+
+msgid "Group name"
+msgstr "Nom du groupe"
+
+msgid "A color group named \"%s\" already exists."
+msgstr "Un groupe de couleurs nommé \" %s \" existe déjà."
+
+msgid "Loading…"
+msgstr "Chargement…"
+
+msgid "Base Styles"
+msgstr "Styles de base"
+
+msgid "Block Presets"
+msgstr "Bloc Presets"
+
+msgid "Create Library"
+msgstr "Créer une bibliothèque"
+
+msgid "Library title"
+msgstr "Titre de la bibliothèque"
+
+msgid "A library named \"%s\" already exists."
+msgstr "Une bibliothèque nommée \" %s \" existe déjà."
+
+msgid "Creating…"
+msgstr "Création..."
+
+msgid "Create Color Palette"
+msgstr "Créer Palette couleur"
+
+msgid "Palette name"
+msgstr "Nom de la Palette"
+
+msgid "A palette named \"%s\" already exists."
+msgstr "Une palette nommée \" %s \" existe déjà."
+
+msgid "Delete Color Group?"
+msgstr "Supprimer Groupe Couleur ?"
+
+msgid "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette."
+msgstr "Supprimer le groupe \" %1$s \" et sa couleur %2$d? Cela le retire de toutes les palettes."
+
+msgid "Deleting…"
+msgstr "Deleting..."
+
+msgid "Resetting…"
+msgstr "Réparer..."
+
+msgid "Reset Library"
+msgstr "Réinitialiser la bibliothèque"
+
+msgid "Delete Library"
+msgstr "Supprimer la bibliothèque"
+
+msgid "Reset '%s' to its default values?"
+msgstr "Réinitialiser ' %s ' à ses valeurs par défaut?"
+
+msgid "Delete '%s'? Its tokens and presets are removed permanently."
+msgstr "Supprimer ' %s '? Ses jetons et ses présets sont enlevés de façon permanente."
+
+msgid "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor."
+msgstr "C'est aussi votre bibliothèque active, donc votre site utilisera \" %s \". Ses couleurs, sa typographie, l'espacement et d'autres styles vont vivre sur votre site immédiatement - à l'avant et dans l'éditeur."
+
+msgid "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor."
+msgstr "C'est aussi votre bibliothèque active, donc votre site en a besoin. La bibliothèque que vous choisissez ci-dessous va en direct — couleurs, typographie, espacement, et d'autres styles changent à travers votre site sur l'avant et dans l'éditeur."
+
+msgid "Which library should your site use instead?"
+msgstr "Quelle bibliothèque devrait utiliser votre site à la place?"
+
+msgid "Select a library…"
+msgstr "Sélectionnez une bibliothèque..."
+
+msgid "Delete \"%s\"?"
+msgstr "Supprimer «%s» ?"
+
+msgid "Reset \"%s\"?"
+msgstr "Réinitialiser \" %s\" ?"
+
+msgid "Its color overrides are removed permanently."
+msgstr "Ses overrides de couleur sont enlevés de façon permanente."
+
+msgid "Its colors return to the shipped baseline. The palette itself stays."
+msgstr "Ses couleurs retournent à la base expédiée. La palette elle-même reste."
+
+msgid "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor."
+msgstr "C'est aussi votre palette active, donc votre site utilisera \" %s \". Ses couleurs vont directement à travers votre site, à l'avant et dans l'éditeur."
+
+msgid "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor."
+msgstr "C'est aussi votre palette active, donc votre site en a besoin d'un autre. La palette que vous choisissez ci-dessous va en direct — ses couleurs changent à travers votre site sur l'avant et dans l'éditeur."
+
+msgid "Which palette should your site use instead?"
+msgstr "Quelle palette devrait utiliser votre site à la place?"
+
+msgid "Select a palette…"
+msgstr "Sélectionnez une palette..."
+
+msgid "Not available in the current theme"
+msgstr "Non disponible dans le thème actuel"
+
+msgid "These presets came from another theme. Your changes to them are kept until that theme is active again."
+msgstr "Ces présets sont venus d'un autre thème. Vos changements à eux sont conservés jusqu'à ce que ce thème soit encore actif."
+
+msgid "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept."
+msgstr "Les valeurs propres à ce thème ne peuvent pas être sauvegardées dans un préréglage, de sorte que seuls vos changements peuvent être conservés."
+
+msgid "The theme's own values for this preset were not recorded, so only your changes can be kept."
+msgstr "Les valeurs propres à ce thème n'ont pas été enregistrées, de sorte que seuls vos changements peuvent être conservés."
+
+msgid "Keep as custom preset"
+msgstr "Garder comme préréglage personnalisé"
+
+msgid "Keep changes as custom preset"
+msgstr "Garder les changements comme préréglage personnalisé"
+
+msgid "Discard changes"
+msgstr "Changements de carte"
+
+msgid "Active library"
+msgstr "Bibliothèque active"
+
+msgid "Your site uses this library."
+msgstr "Votre site utilise cette bibliothèque."
+
+msgid "Not the active library"
+msgstr "Pas la bibliothèque active"
+
+msgid "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles."
+msgstr "Setting it as active makes this library the one your site uses. Your site switches to its colour, sizes and styles."
+
+msgid "Edit library"
+msgstr "Éditer la bibliothèque"
+
+msgid "Library"
+msgstr "Bibliothèque"
+
+msgid "New Library"
+msgstr "Nouvelle bibliothèque"
+
+msgid "Active palette"
+msgstr "Palettes actives"
+
+msgid "Your site uses this palette."
+msgstr "Votre site utilise cette palette."
+
+msgid "Not the active palette"
+msgstr "Pas la palette active"
+
+msgid "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette."
+msgstr "Le paramétrer comme actif rend cette palette celle que votre site utilise. Les blocs individuels peuvent toujours être commutés vers une autre palette."
+
+msgid "Edit palette"
+msgstr "Modifier la palette"
+
+msgid "Drag to reorder %s"
+msgstr "Faites glisser pour réorganiser %s"
+
+msgid "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values."
+msgstr "Vous avez des modifications non sauvegardées à ' %s '. Sauvez-les, ou jetez-les pour retourner aux valeurs sauvegardées."
+
+msgid "You have unsaved changes. Save them, or discard them to go back to the saved values."
+msgstr "Vous avez des changements non sauvegardés. Sauvez-les, ou jetez-les pour retourner aux valeurs sauvegardées."
+
+msgid "Unsaved Changes"
+msgstr "Changements non enregistrés"
+
+msgid "Discard"
+msgstr "Jeter"
+
+msgid "Corner Radius"
+msgstr "Rayon d'angle"
+
+msgid "Add Border Radius"
+msgstr "Ajouter Border Radius"
+
+msgid "New Radius"
+msgstr "Nouveau Radius"
+
+msgid "Radius"
+msgstr "Radius"
+
+msgid "Add Border Width"
+msgstr "Ajouter une largeur de bordure"
+
+msgid "New Border Width"
+msgstr "Nouvelle frontière"
+
+msgid "Loading %s…"
+msgstr "Chargement %s ..."
+
+msgid "%s loaded."
+msgstr "%s chargé."
+
+msgid "Add color"
+msgstr "Ajouter la couleur"
+
+msgid "Edit %s"
+msgstr "Modifier %s"
+
+msgid "Color group"
+msgstr "Groupe de couleur"
+
+msgid "This palette could not be loaded."
+msgstr "Cette palette n'a pas pu être chargée."
+
+msgid "Settings loaded."
+msgstr "Réglages chargés."
+
+msgid "Edit color"
+msgstr "Modifier la couleur"
+
+msgid "Add Icon Size"
+msgstr "Ajouter Icon Taille"
+
+msgid "New Icon Size"
+msgstr "Nouveau Icon Taille"
+
+msgid "This screen is coming soon."
+msgstr "Cet écran arrive bientôt."
+
+msgid "Adding…"
+msgstr "J'ajoute..."
+
+msgid "Preset saved."
+msgstr "Prérégné."
+
+msgid "Preset deleted."
+msgstr "Prédéfini supprimé."
+
+msgid "Preset reset."
+msgstr "Réinitialisation prédéfinie."
+
+msgid "Theme preset"
+msgstr "Préparer le thème"
+
+msgid "Styled by your theme. Flux Block Editor can't read or change these styles."
+msgstr "Styled by your theme. Flux Block Editor ne peut pas lire ou changer ces styles."
+
+msgid "Changes saved under another theme still apply to it. Reset removes them."
+msgstr "Les changements enregistrés sous un autre thème s'appliquent encore à lui. Réinitialiser les supprime."
+
+msgid "Edit preset"
+msgstr "Modifier le preset"
+
+msgid "Edit token"
+msgstr "Modifier le jeton"
+
+msgid "Add Shadow"
+msgstr "Ajouter Shadow"
+
+msgid "New Shadow"
+msgstr "Nouvelle ombre"
+
+msgid "Add Spacing"
+msgstr "Ajouter espacement"
+
+msgid "New Spacing"
+msgstr "Nouveau espacement"
+
+msgid "Visualize your font"
+msgstr "Visualisez votre police"
+
+msgid "Add Favorite"
+msgstr "Ajouter Favoris"
+
+msgid "Adding Favorite…"
+msgstr "Ajouter le favori..."
+
+msgid "Remove Favorite"
+msgstr "Retirer les favoris"
+
+msgid "Removing Favorite…"
+msgstr "Enlever le favori..."
+
+msgid "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site."
+msgstr "Pince cette police au sommet de vos sélections de police, ici et dans l'éditeur. Il ne change aucun texte sur votre site."
+
+msgid "Unpins this font from the top of your font pickers. Text already using it stays as it is."
+msgstr "Découpe cette police depuis le haut de vos sélectionneurs de polices. Le texte déjà utilisé reste tel qu'il est."
+
+msgid "%s removed from favorites."
+msgstr "%s retiré des favoris."
+
+msgid "%s added to favorites."
+msgstr "%s ajouté aux favoris."
+
+msgid "Font"
+msgstr "Police"
+
+msgid "Typography"
+msgstr "Typographie"
+
+msgid "Add Size"
+msgstr "Ajouter la taille"
+
+msgid "New Font Size"
+msgstr "New Font Taille"
+
+msgid "Set the colors your site uses. Change a color here and it updates everywhere it's applied."
+msgstr "Définir les couleurs que votre site utilise. Changez une couleur ici et il met à jour partout où il est appliqué."
+
+msgid "Set the text sizes your site uses, and pick the fonts you want close to hand."
+msgstr "Réglez les tailles de texte que votre site utilise, et choisissez les polices que vous voulez proches de la main."
+
+msgid "Set the border radius options your site uses, so buttons, images and cards stay consistent."
+msgstr "Réglez les options de rayon de la frontière que votre site utilise, donc les boutons, les images et les cartes restent cohérents."
+
+msgid "Set the border thickness options your site uses, so borders match across your blocks."
+msgstr "Réglez les options d'épaisseur de la frontière que votre site utilise, donc les frontières correspondent à travers vos blocs."
+
+msgid "Set the padding and margin steps your site uses, so gaps stay consistent from block to block."
+msgstr "Réglez les étapes de rembourrage et de marge que votre site utilise, donc les écarts restent cohérents de bloc à bloc."
+
+msgid "Set the sizes your icons can use, so icons stay consistent wherever they appear."
+msgstr "Définir les tailles que vos icônes peuvent utiliser, donc les icônes restent cohérentes partout où elles apparaissent."
+
+msgid "Set the shadow styles your site uses, so depth looks consistent across your blocks."
+msgstr "Réglez les styles d'ombres que votre site utilise, donc la profondeur semble cohérente à travers vos blocs."
+
+msgid "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand."
+msgstr "Enregistrer les styles de boutons comme presets, de sorte que vous pouvez appliquer un look entier en un clic au lieu de définir chaque option à la main."
+
+msgid "Save image styles as presets, so rounding, shadows and spacing stay the same across your images."
+msgstr "Sauvez des styles d'images comme des presets, si arrondis, ombres et espacement restez les mêmes sur vos images."
+
+msgid "Save row styles as presets, so the sections of a page share the same background and rounding."
+msgstr "Sauvez les styles de rang comme présets, de sorte que les sections d'une page partagent le même fond et arrondissement."
+
+msgid "Save section styles as presets, so the columns inside your rows share the same background and rounding."
+msgstr "Enregistrer les styles de section comme présets, de sorte que les colonnes à l'intérieur de vos rangs partagent le même fond et arrondi."
+
+msgid "Save icon styles as presets, so icons keep the same size and color wherever you use them."
+msgstr "Enregistrer des styles d'icônes comme des presets, donc les icônes gardent la même taille et couleur où vous les utilisez."
+
+msgid "Save text styles as presets, so headings and paragraphs read the same from page to page."
+msgstr "Enregistrer les styles de texte comme presets, ainsi les rubriques et les paragraphes lisent la même de page à la page."
+
+msgid "Something went wrong. Please try again."
+msgstr "Quelque chose s'est mal passé. Veuillez réessayer."
+
+msgid "Enter a library title."
+msgstr "Entrez un titre de bibliothèque."
+
+msgid "A library with that title already exists."
+msgstr "Une bibliothèque avec ce titre existe déjà."
+
+msgid "Choose which library your site should use instead."
+msgstr "Choisissez la bibliothèque que votre site devrait utiliser à la place."
+
+msgid "Enter a palette name."
+msgstr "Entrez un nom de palette."
+
+msgid "A palette with that name already exists."
+msgstr "Une palette avec ce nom existe déjà."
+
+msgid "Choose which palette your site should use instead."
+msgstr "Choisissez la palette que votre site devrait utiliser à la place."
+
+msgid "Enter a color group name."
+msgstr "Entrez un nom de groupe de couleur."
+
+msgid "A color group with that name already exists."
+msgstr "Un groupe de couleurs avec ce nom existe déjà."
+
+msgid "Custom Colors"
+msgstr "Couleurs personnalisées"
+
+msgid "Saving failed."
+msgstr "L'épargne a échoué."
+
+msgid "Another change to this library is already in progress."
+msgstr "Un autre changement à cette bibliothèque est déjà en cours."
+
+msgid "Palette activated."
+msgstr "Palette activée."
+
+msgid "Palette created."
+msgstr "Palette créée."
+
+msgid "Palette renamed."
+msgstr "Palette renommée."
+
+msgid "Palette deleted."
+msgstr "Palette supprimée."
+
+msgid "Palette reset."
+msgstr "Palette réinitialisée."
+
+msgid "Swatch saved."
+msgstr "Swatch s'est sauvé."
+
+msgid "Swatch deleted."
+msgstr "Swatch supprimé."
+
+msgid "Swatch reset."
+msgstr "Réinitialisation de Swatch."
+
+msgid "New Color"
+msgstr "Nouvelle couleur"
+
+msgid "Color added."
+msgstr "Couleur ajoutée."
+
+msgid "Color group added."
+msgstr "Un groupe de couleurs a été ajouté."
+
+msgid "Color group renamed."
+msgstr "Groupe de couleurs renommé."
+
+msgid "Color group deleted."
+msgstr "Groupe de couleur supprimé."
+
+msgid "Token created."
+msgstr "Token créé."
+
+msgid "Token saved."
+msgstr "Token sauvé."
+
+msgid "Token deleted."
+msgstr "Jeton supprimé."
+
+msgid "Token reset."
+msgstr "Réinitialisation du jeton."
+
+msgid "Token order saved."
+msgstr "L'ordre de jeton est sauvé."
+
+msgid "100 Thin"
+msgstr "100 Thin"
+
+msgid "200 Extra Light"
+msgstr "200 lumières supplémentaires"
+
+msgid "300 Light"
+msgstr "300 Lumière"
+
+msgid "400 Regular"
+msgstr "400 Régulier"
+
+msgid "500 Medium"
+msgstr "500 moyen"
+
+msgid "600 Semi Bold"
+msgstr "600 semi-brûlés"
+
+msgid "700 Bold"
+msgstr "700 Bold"
+
+msgid "800 Extra Bold"
+msgstr "800 bol supplémentaire"
+
+msgid "900 Black"
+msgstr "900 Noir"
+
+msgid "Transform"
+msgstr "Transformation"
+
+msgid "Add Text Style"
+msgstr "Ajouter Style de texte"
+
+msgid "New Text Style"
+msgstr "Nouveau style de texte"
+
+msgid "Border and Shadow"
+msgstr "Frontière et ombre"
+
+msgid "Add Button"
+msgstr "Ajouter Button"
+
+msgid "New Button"
+msgstr "Nouveau bouton"
+
+msgid "Add Section Style"
+msgstr "Ajouter style de section"
+
+msgid "New Section Style"
+msgstr "Nouveau style de section"
+
+msgid "Add Image Style"
+msgstr "Ajouter le style d'image"
+
+msgid "New Image Style"
+msgstr "Nouveau style d'image"
+
+msgid "Add Row Style"
+msgstr "Ajouter Style Row"
+
+msgid "New Row Style"
+msgstr "Nouveau style Row"
+
+msgid "Add Icon Style"
+msgstr "Ajouter Icon Style"
+
+msgid "New Icon Style"
+msgstr "Nouveau style Icon"
+
+msgid "Matches the design system value"
+msgstr "correspond à la valeur du système de conception"
+
+msgid "Overrides the design system value"
+msgstr "Renvoie la valeur du système de conception"
+
+msgid "Reset to the design system value"
+msgstr "Réinitialiser la valeur du système de conception"
+
+msgid "Reverted to default"
+msgstr "Reversé par défaut"
+
+msgid "This token was deleted from the Style Library. The default applies until you pick a new value or reset."
+msgstr "Ce jeton a été supprimé de la bibliothèque Style. Le défaut s'applique jusqu'à ce que vous choisissiez une nouvelle valeur ou réinitialiser."
+
+msgid "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset."
+msgstr "Cette option vient du thème Flux, qui n'est plus active. La valeur par défaut s'applique jusqu'à ce que vous choisissiez une nouvelle valeur ou réinitialiser."
+
+msgid "Border style"
+msgstr "Style frontalier"
+
+msgid "Border style (%s)"
+msgstr "Style frontalier ( %s )"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s : %2$s"
+
+msgid "%s Border Color"
+msgstr "%s Couleur des frontières"
+
+msgid "Previous color format"
+msgstr "Format de couleur précédent"
+
+msgid "Next color format"
+msgstr "Format de couleur suivant"
+
+msgid "No favorite fonts yet."
+msgstr "Pas encore de police préférée."
+
+msgid "Manage favorites in the Style Library"
+msgstr "Gérer les favoris dans la bibliothèque Style"
+
+msgid "Favorites"
+msgstr "Favoris"
+
+msgid "Inherited"
+msgstr "Héritée"
+
+msgid "Custom value"
+msgstr "Valeur personnalisée"
+
+msgid "Unit"
+msgstr "Unité"
+
+msgid "Theme default"
+msgstr "Par défaut de thème"
+
+msgid "Default (%s)"
+msgstr "Par défaut ( %s )"
+
+msgid "Inherited (%s)"
+msgstr "Inhérité ( %s )"
+
+msgid "img"
+msgstr "img"
+
+msgid "menu"
+msgstr "menu"

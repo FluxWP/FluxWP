@@ -40,6 +40,11 @@
     "tryDemo": "Demo ile dene",
     "footer": "{{name}} · güvenli bağlantı, şifreniz uygulamada saklanmaz"
   },
+  "screenLoadError": {
+    "title": "Bu ekran yüklenemedi",
+    "body": "Eklenti yeni güncellendiyse tarayıcı ya da site önbelleği eski dosyaları tutuyor olabilir. Sayfayı sert yenileyin (Ctrl/Cmd + Shift + R); sürerse site önbelleğini temizleyin.",
+    "reload": "Sayfayı yenile"
+  },
   "errors": {
     "invalid_url": "Adres geçerli değil.",
     "unreachable": "Siteye ulaşılamadı. Adresi ve internet bağlantınızı kontrol edin.",

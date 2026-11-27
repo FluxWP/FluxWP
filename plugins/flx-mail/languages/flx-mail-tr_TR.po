@@ -59,7 +59,7 @@ msgid "Recipients"
 msgstr "Alıcılar"
 
 msgid "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67"
-msgstr "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67"
+msgstr "ayse@ornek.com Mehmet Demir <mehmet@ornek.com> Zeynep Kaya, 0532 123 45 67"
 
 msgid "One person per line: email, phone, or \"Full Name <email>\" / \"Full Name, email, phone\"."
 msgstr "Her satıra bir kişi: e-posta, telefon veya \"Tam Ad <email> \" / \"Tam Ad, e-posta, telefon\"."
@@ -743,7 +743,7 @@ msgid "Rows related to email, WhatsApp and SMS. Checks for all plugins are on th
 msgstr "E-posta, WhatsApp ve SMS ile ilgili satırlar. Tüm eklentilerin kontrolleri Görünüm › Sistem Kontrolü ekranında."
 
 msgid "WhatsApp · Evolution API"
-msgstr "WhatsApp · Evolution API"
+msgstr "WhatsApp  Evolution Evrim API"
 
 msgid "The Evolution API on your own server. The address is e.g. https://wa.yourdomain.com; instance is the connection name in the Evolution panel; API key is the global AUTHENTICATION_API_KEY or the instance token."
 msgstr "Kendi sunucunuzdaki Evolution API'si. Adres örn.   https://wa.yourdomain.com;  örneği, Gelişim panelindeki bağlantı adıdır; API anahtarı global AUTHENTICATION_API_KEY veya örnek belirtecidir."
@@ -752,7 +752,7 @@ msgid "API address"
 msgstr "API adresi"
 
 msgid "API key (apikey)"
-msgstr "API key (apikey)"
+msgstr "API anahtar (apikey)"
 
 msgid "Instance name"
 msgstr "Instance adı"
@@ -788,7 +788,7 @@ msgid "Test message · %s 🌱"
 msgstr "Test mesajı · %s 🌱"
 
 msgid "SMS · Netgsm"
-msgstr "SMS · Netgsm"
+msgstr "SMS  Net Netgsm"
 
 msgid "Netgsm REST v2. The username is usually the subscriber number starting with 850/312…. The message header must be approved in the Netgsm panel."
 msgstr "Netgsm REST v2. Kullanıcı adı genelde 850/312… ile başlayan abone numarasıdır. Mesaj başlığı Netgsm panelinde onaylı olmalı."
@@ -857,7 +857,7 @@ msgid "Unknown error"
 msgstr "Tanımsız hata"
 
 msgid "Test SMS · %s"
-msgstr "Test SMS · %s"
+msgstr "Test SMS’i · %s"
 
 msgid "Balance query failed:"
 msgstr "Bakiye sorgusu başarısız:"
@@ -1424,10 +1424,10 @@ msgid "Also send the PDF as a document"
 msgstr "PDF'i ayrıca belge olarak gönder"
 
 msgid "WhatsApp · Flux Mail"
-msgstr "WhatsApp · Flux Mail"
+msgstr "WhatsApp  Flu Flux Mail"
 
 msgid "SMS · Flux Mail"
-msgstr "SMS · Flux Mail"
+msgstr "SMS  Flu Flux Mail"
 
 msgid "Connection settings (Evolution / Netgsm) are kept in Communication › Connections; here you only choose which one to use."
 msgstr "Bağlantı ayarları (Evolution / Netgsm) İletişim › Bağlantılar'da tutulur; burada yalnız hangisinin kullanılacağı seçilir."
@@ -2226,7 +2226,7 @@ msgid "This Flux WPAPI version doesn't support changing server settings from Wor
 msgstr "Bu Flux WPAPI sürümü sunucu ayarlarını WordPress'ten değiştirmeyi desteklemiyor. Köprüyü güncelleyin."
 
 msgid "WhatsApp · Flux WPAPI"
-msgstr "WhatsApp · Flux WPAPI"
+msgstr "WhatsApp  Flu Flux WPAPI"
 
 msgid "The Flux WPAPI bridge installed as a Node.js app on Hostinger. The address is e.g. https://wa.example.com; the API key is the bridge panel's general API key; the instance is the name you give this number (created on \"Connect\" if it does not exist)."
 msgstr "Flux WPAPI köprüsü Hostinger'da Node.js uygulaması olarak kuruldu. Adres örn.   https://wa.example.com;  API anahtarı köprü panelinin genel API anahtarıdır; örnek, bu numarayı verdiğiniz addır (eğer mevcut değilse \"Bağlan\" üzerinde oluşturulur)."
@@ -2310,13 +2310,13 @@ msgid "No templates. Add them in WhatsApp Manager › Message templates."
 msgstr "Şablon yok. WhatsApp Manager › Mesaj şablonları'ndan ekleyin."
 
 msgid "WhatsApp · Cloud API (Meta)"
-msgstr "WhatsApp · Cloud API (Meta)"
+msgstr "WhatsApp  Cloud Bulut API (Meta)"
 
 msgid "Meta's official WhatsApp Cloud API; no extra server. From Meta Business › WhatsApp Manager copy the Phone Number ID and WhatsApp Business account (WABA) ID, and from Business settings › System users copy a permanent access token. After saving, paste the webhook URL from \"Setup\" into the Meta app."
 msgstr "Meta'nın resmi WhatsApp Cloud API'si; ek sunucu gerekmez. Meta Business › WhatsApp Manager'dan Phone Number ID ve WhatsApp Business hesap (WABA) ID'yi, Business ayarları › Sistem kullanıcıları'ndan kalıcı erişim anahtarını alın. Kaydettikten sonra \"Kurulum\"daki webhook adresini Meta uygulamasına yapıştırın."
 
 msgid "Phone Number ID"
-msgstr "Phone Number ID"
+msgstr "Telefon Numarası Kimliği"
 
 msgid "WhatsApp Business account ID (WABA)"
 msgstr "WhatsApp Business hesap ID (WABA)"
@@ -2490,7 +2490,7 @@ msgid "From or subject"
 msgstr "Kimden ya da konu"
 
 msgid "WhatsApp"
-msgstr "WhatsApp"
+msgstr "WhatsApp kez"
 
 msgid "The reply cannot be empty."
 msgstr "Yanıt boş olamaz."
@@ -2746,7 +2746,7 @@ msgid "Bulk messages to people who have not saved your number can get the number
 msgstr "Numaranızı kaydetmemiş kişilere toplu mesaj, WhatsApp'ın numarayı kısıtlamasına yol açabilir. Mesajınızı bekleyen kişilere gönderin ve mesajlar arasında bekleme bırakın."
 
 msgid "*bold*, _italic_, ~strikethrough~ and ```monospace``` are shown formatted. Links become clickable."
-msgstr "*kalın*, _italik_, ~üstü çizili~ ve ```eş aralıklı``` biçimli görünür. Bağlantılar tıklanabilir olur."
+msgstr "*bold*, _italic_, strstrikethrough formatted ve ```monospace``` formatlı olarak gösterilir. Bağlantılar tıklanabilir hale gelir."
 
 msgid "PNG or JPG (email clients do not display SVG). Default: the site's own logo (organisation profile, Flux SEO or the theme's Site Logo). Without a logo the site name is written."
 msgstr "PNG ya da JPG (e-posta programları SVG göstermez). Varsayılan: sitenin kendi logosu (kurum profili, Flux SEO ya da temanın Site Logosu). Logo yoksa site adı yazılır."
@@ -2754,216 +2754,20 @@ msgstr "PNG ya da JPG (e-posta programları SVG göstermez). Varsayılan: siteni
 msgid "Shown in dark mode (Apple Mail, iOS). Default: the light logo from the organisation profile; without one the normal logo stays."
 msgstr "Koyu modda gösterilir (Apple Mail, iOS). Varsayılan: kurum profilindeki açık renk logo; yoksa normal logo kalır."
 
-#: includes/helpers.php
-msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
-msgstr "WhatsApp Cloud API gruplara mesaj gönderemez. Grup mesajları için Evolution API ya da Flux WPAPI bağlantısı seçin."
-
-msgid "%1$s · continues at %2$s"
-msgstr "%1$s · %2$s'de devam eder"
-
-msgid "0 = no break."
-msgstr "0 = mola yok."
-
-msgid "0 = no limit."
-msgstr "0 = sınır yok."
-
-msgid "A line at the bottom of promotional WhatsApp and SMS messages tells people how to stop them. When someone replies with only the opt-out word, promotional messages are no longer sent to them on that channel. Information messages (event details, receipts, certificates) and replies to their own messages still go out. If they reply with the start word, they get promotional messages again."
-msgstr "Tanıtım amaçlı WhatsApp ve SMS mesajlarının altına, bu mesajları nasıl durduracaklarını söyleyen bir satır eklenir. Kişi yalnızca çıkış kelimesini yazarsa o kanaldan artık tanıtım mesajı gitmez. Bilgilendirme mesajları (etkinlik bilgisi, makbuz, sertifika) ve kişinin kendi yazdığı mesaja verilen cevaplar gitmeye devam eder. Başlama kelimesini yazarsa tanıtım mesajları yeniden gelir."
-
-msgid "Add"
-msgstr "Ekle"
-
-msgid "Add a phone by hand"
-msgstr "Elle telefon ekle"
-
-msgid "Add the opt-out line to promotional SMS (costs extra characters; Netgsm İYS rules apply separately)"
-msgstr "Tanıtım SMS'lerine çıkış satırını ekle (ek karakter harcar; Netgsm İYS kuralları ayrıca geçerli)"
-
-msgid "Add the opt-out line to promotional WhatsApp messages"
-msgstr "Tanıtım WhatsApp mesajlarına çıkış satırını ekle"
-
-msgid "Added by staff"
-msgstr "Personel ekledi"
-
-msgid "Added to the opt-out list."
-msgstr "IPTAL listesine eklendi."
-
-msgid "An image or video goes with the message as its caption; a PDF goes as a separate file after the message."
-msgstr "Resim ya da videoda mesaj altyazı olarak gider; PDF mesajdan sonra ayrı dosya olarak gider."
-
-msgid "Ban protection (bulk sends)"
-msgstr "Ban koruması (toplu gönderim)"
-
-msgid "Break length (min)"
-msgstr "Mola süresi (dk)"
-
-msgid "Bulk WhatsApp paused: %s"
-msgstr "Toplu WhatsApp durdu: %s"
-
-msgid "Bulk messages are not sent in these hours (site time zone); the queue continues in the morning."
-msgstr "Bu saatlerde toplu mesaj gitmez (site saat dilimi); kuyruk sabah kaldığı yerden devam eder."
-
-msgid "Bulk messages per day (at most)"
-msgstr "Günde en çok toplu mesaj"
-
-msgid "Bulk messages per hour (at most)"
-msgstr "Saatte en çok toplu mesaj"
-
-msgid "Choose from media"
-msgstr "Ortam kütüphanesinden seç"
-
-msgid "Counted over the last 24 hours. The rest of the list waits and continues by itself. 0 = no limit."
-msgstr "Son 24 saat sayılır. Listenin kalanı bekler ve kendiliğinden devam eder. 0 = sınır yok."
-
-msgid "Daily limit reached"
-msgstr "Günlük sınıra ulaşıldı"
-
-msgid "Default: %s"
-msgstr "Varsayılan: %s"
-
-msgid "Done, you won't get promotional messages from us anymore. You can still write to us any time. To get them again, reply START."
-msgstr "Tamam, artık size tanıtım mesajı göndermeyeceğiz. Bize istediğiniz zaman yazabilirsiniz. Yeniden almak için BAŞLA yazın."
-
-msgid "Each wait is a random time between the minimum and the maximum, so the sending does not look like a machine."
-msgstr "Her bekleme en az ile en çok arasında rastgele seçilir; gönderim makine gibi görünmez."
-
-msgid "Enter a valid phone number."
-msgstr "Geçerli bir telefon numarası girin."
-
-msgid "Hourly limit reached"
-msgstr "Saatlik sınıra ulaşıldı"
-
-msgid "How"
-msgstr "Nasıl"
-
-msgid "If you don't want messages like this, reply STOP."
-msgstr "Bu tarz mesajlar istemiyorsanız IPTAL yazın."
-
-msgid "Image, video or file (optional)"
-msgstr "Resim, video ya da dosya (isteğe bağlı)"
-
-msgid "Leave empty to use the default in the site language."
-msgstr "Boş bırakırsanız site dilindeki varsayılan metin kullanılır."
-
-msgid "Many failures in a row usually mean the number was disconnected or restricted. 0 = never pause."
-msgstr "Art arda çok hata genelde numaranın koptuğunu ya da kısıtlandığını gösterir. 0 = hiç durdurma."
-
-msgid "Maximum wait between messages (sec)"
-msgstr "Mesajlar arası en çok bekleme (sn)"
-
-msgid "Minimum wait between messages (sec)"
-msgstr "Mesajlar arası en az bekleme (sn)"
-
-msgid "Nobody has opted out yet."
-msgstr "Henüz IPTAL yazan yok."
-
-msgid "Off"
-msgstr "Kapalı"
-
-msgid "Opt-out (STOP)"
-msgstr "IPTAL (tanıtımdan çıkış)"
-
-msgid "Opt-out line"
-msgstr "Çıkış satırı"
-
-msgid "Opt-out words (comma separated)"
-msgstr "Çıkış kelimeleri (virgülle)"
-
-msgid "Opted out of promotional messages (replied STOP): not sent"
-msgstr "Tanıtım mesajlarından çıktı (IPTAL yazdı): gönderilmedi"
-
-msgid "Opted out: %1$s on WhatsApp, %2$s on SMS"
-msgstr "IPTAL yazan: WhatsApp'ta %1$s, SMS'te %2$s"
-
-msgid "Opted-out people"
-msgstr "IPTAL yazanlar"
-
-msgid "Pause bulk sending for 30 minutes after … failures in a row"
-msgstr "Art arda … hatada toplu gönderimi 30 dk durdur"
-
-msgid "Paused after failures in a row"
-msgstr "Art arda hatalardan sonra durdu"
-
-msgid "Promotional message (not sent to people who replied STOP; the opt-out line is added at the bottom)"
-msgstr "Tanıtım mesajı (IPTAL yazanlara gitmez; altına çıkış satırı eklenir)"
-
-msgid "Promotional messages will be sent to this person again. Remove only if they asked for it."
-msgstr "Bu kişiye yeniden tanıtım mesajı gidecek. Yalnızca kendisi isterse kaldırın."
-
-msgid "Quiet hours"
-msgstr "Sessiz saatler"
-
-msgid "Quiet hours: from"
-msgstr "Sessiz saatler: başlangıç"
-
-msgid "Quiet hours: until"
-msgstr "Sessiz saatler: bitiş"
-
-msgid "Remove"
-msgstr "Kaldır"
-
-msgid "Removed from the opt-out list. Promotional messages will be sent to this person again."
-msgstr "IPTAL listesinden çıkarıldı. Bu kişiye yeniden tanıtım mesajı gidecek."
+msgid "Manages communication"
+msgstr "İletişimi yönetir"
 
 msgid "Replied \"%s\""
 msgstr "\"%s\" yazdı"
-
-msgid "Reply after opting out"
-msgstr "IPTAL sonrası cevap"
-
-msgid "Reply after starting again"
-msgstr "BAŞLA sonrası cevap"
-
-msgid "See the list"
-msgstr "Listeyi gör"
-
-msgid "Sent once on WhatsApp. Leave empty for the default; type - to send nothing."
-msgstr "WhatsApp'tan bir kez gider. Boş bırakırsanız varsayılan metin; hiç göndermemek için - yazın."
-
-msgid "Several messages in a row failed, so bulk sending was paused for 30 minutes. Check that the number is connected; the queue continues by itself."
-msgstr "Art arda birkaç mesaj gitmediği için toplu gönderim 30 dakika durduruldu. Numaranın bağlı olduğunu kontrol edin; kuyruk kendiliğinden devam eder."
-
-msgid "Show \"typing…\" for a time that fits the message length"
-msgstr "\"Yazıyor…\" süresi mesaj uzunluğuna göre olsun"
-
-msgid "Skip numbers that do not have WhatsApp (checked before sending)"
-msgstr "WhatsApp'ı olmayan numaraları atla (göndermeden önce kontrol edilir)"
-
-msgid "Start words (comma separated)"
-msgstr "Başlama kelimeleri (virgülle)"
-
-msgid "Take a break every … messages"
-msgstr "Her … mesajda bir mola ver"
-
-msgid "The whole message must be the word; \"I want to cancel my donation\" is not counted. Default: %s"
-msgstr "Mesajın tamamı bu kelime olmalı; \"bağışımı iptal etmek istiyorum\" sayılmaz. Varsayılan: %s"
-
-msgid "Turn off only for information messages people expect, such as event details or a receipt."
-msgstr "Yalnızca kişinin beklediği bilgilendirme mesajlarında kapatın (etkinlik bilgisi, makbuz gibi)."
-
-msgid "Use opt-out"
-msgstr "IPTAL kullan"
-
-msgid "Variation: {Hello|Hi|Good day} picks one at random for each person, so the same text does not go out hundreds of times."
-msgstr "Çeşitleme: {Merhaba|Selam|İyi günler} her kişiye rastgele birini yazar; aynı metin yüzlerce kez gitmez."
-
-msgid "Waiting between messages"
-msgstr "Mesajlar arası bekleme"
-
-msgid "Warm up a new number (daily limit starts at 20 and grows by 20 every day)"
-msgstr "Yeni numarayı ısıt (günlük sınır 20'den başlar, her gün 20 artar)"
-
-msgid "Welcome back, you will get our messages again."
-msgstr "Tekrar hoş geldiniz, mesajlarımız yeniden gelecek."
-
-msgid "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
-msgstr "WhatsApp kısa sürede çok sayıda benzer mesaj gönderen numaraları kısıtlar. Bu sınırlar yalnız kuyruktaki toplu gönderimlere uygulanır; sohbetteki cevaplar ve tekil mesajlar beklemez."
 
 msgid "AI assistant"
 msgstr "AI asistan"
 
 msgid "Added by %s"
 msgstr "%s ekledi"
+
+msgid "Added by staff"
+msgstr "Personel ekledi"
 
 msgid "People who asked not to be messaged. <strong>Blocked</strong>: nothing is sent on any channel. <strong>No promotions</strong>: they replied STOP, so only promotional messages stop on that channel; information messages and chats they start still go through."
 msgstr "Mesaj almak istemeyen kişiler. <strong>Engelli</strong>: hiçbir kanaldan mesaj gitmez. <strong>Tanıtım yok</strong>: IPTAL yazdı, o kanaldan yalnız tanıtım mesajı gitmez; bilgilendirme ve kendi başlattığı sohbet sürer."
@@ -3004,6 +2808,9 @@ msgstr "Neden (isteğe bağlı)"
 msgid "e.g. Asked on the phone"
 msgstr "ör. Telefonda istedi"
 
+msgid "Add"
+msgstr "Ekle"
+
 msgid "Person"
 msgstr "Kişi"
 
@@ -3034,8 +2841,14 @@ msgstr "Yazdığı"
 msgid "After"
 msgstr "Şu mesajdan sonra"
 
+msgid "Remove"
+msgstr "Kaldır"
+
 msgid "Messages will be sent to this person again on all channels. Remove only if they asked for it."
 msgstr "Bu kişiye tüm kanallardan yeniden mesaj gidecek. Yalnız kendisi isterse çıkarın."
+
+msgid "Promotional messages will be sent to this person again. Remove only if they asked for it."
+msgstr "Bu kişiye yeniden tanıtım mesajı gidecek. Yalnızca kendisi isterse kaldırın."
 
 msgid "Full blocks are kept by Flux Chat. Install it to block people on all channels from here and from chats."
 msgstr "Tam engel listesi Flux Chat'te tutulur. Buradan ve sohbetlerden tüm kanallarda engellemek için Flux Chat'i kurun."
@@ -3043,23 +2856,50 @@ msgstr "Tam engel listesi Flux Chat'te tutulur. Buradan ve sohbetlerden tüm kan
 msgid "STOP keywords and replies"
 msgstr "IPTAL kelimeleri ve cevapları"
 
+msgid "Enter a valid phone number."
+msgstr "Geçerli bir telefon numarası girin."
+
 msgid "Blocked. Nothing will be sent to this person on any channel."
 msgstr "Engellendi. Bu kişiye hiçbir kanaldan mesaj gitmeyecek."
+
+msgid "Added to the opt-out list."
+msgstr "IPTAL listesine eklendi."
 
 msgid "Removed from the blocklist. Messages will be sent to this person again."
 msgstr "Kara listeden çıkarıldı. Bu kişiye yeniden mesaj gidecek."
 
-msgid "See the list on the Blocklist page"
-msgstr "Listeyi Kara liste sayfasında gör"
+msgid "Pause"
+msgstr "Duraklat"
+
+msgid "Estimated finish:"
+msgstr "Tahmini bitiş:"
+
+msgid "Resume"
+msgstr "Devam et"
+
+msgid "Variation: {Hello|Hi|Good day} picks one at random for each person, so the same text does not go out hundreds of times."
+msgstr "Çeşitleme: {Merhaba|Selam|İyi günler} her kişiye rastgele birini yazar; aynı metin yüzlerce kez gitmez."
+
+msgid "Image, video or file (optional)"
+msgstr "Resim, video ya da dosya (isteğe bağlı)"
+
+msgid "Choose from media"
+msgstr "Ortam kütüphanesinden seç"
+
+msgid "An image or video goes with the message as its caption; a PDF goes as a separate file after the message."
+msgstr "Resim ya da videoda mesaj altyazı olarak gider; PDF mesajdan sonra ayrı dosya olarak gider."
+
+msgid "Promotional message (not sent to people who replied STOP; the opt-out line is added at the bottom)"
+msgstr "Tanıtım mesajı (IPTAL yazanlara gitmez; altına çıkış satırı eklenir)"
+
+msgid "Turn off only for information messages people expect, such as event details or a receipt."
+msgstr "Yalnızca kişinin beklediği bilgilendirme mesajlarında kapatın (etkinlik bilgisi, makbuz gibi)."
 
 msgid "Paused"
 msgstr "Duraklatıldı"
 
-msgid "Pause"
-msgstr "Duraklat"
-
-msgid "Resume"
-msgstr "Devam et"
+msgid "%1$s · continues at %2$s"
+msgstr "%1$s · %2$s'de devam eder"
 
 msgid "Estimated finish: %1$s (%2$s)"
 msgstr "Tahmini bitiş: %1$s (%2$s)"
@@ -3069,9 +2909,6 @@ msgstr "Gönderim duraklatıldı. Kaldığı yerden sürdürmek için Devam et'e
 
 msgid "Sending resumed."
 msgstr "Gönderim sürüyor."
-
-msgid "Estimated finish:"
-msgstr "Tahmini bitiş:"
 
 msgid "%s reached"
 msgstr "%s ulaştı"
@@ -3084,3 +2921,117 @@ msgstr "%s cevap verdi"
 
 msgid "%s opted out"
 msgstr "%s IPTAL"
+
+msgid "All people, who allowed this channel (%s)"
+msgstr "Tüm kişiler, bu kanala izin verenler (%s)"
+
+msgid "Opted out of promotional messages (replied STOP): not sent"
+msgstr "Tanıtım mesajlarından çıktı (IPTAL yazdı): gönderilmedi"
+
+msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
+msgstr "WhatsApp Cloud API gruplara mesaj gönderemez. Grup mesajları için Evolution API ya da Flux WPAPI bağlantısı seçin."
+
+msgid "If you don't want messages like this, reply STOP."
+msgstr "Bu tarz mesajlar istemiyorsanız IPTAL yazın."
+
+msgid "Done, you won't get promotional messages from us anymore. You can still write to us any time. To get them again, reply START."
+msgstr "Tamam, artık size tanıtım mesajı göndermeyeceğiz. Bize istediğiniz zaman yazabilirsiniz. Yeniden almak için BAŞLA yazın."
+
+msgid "Welcome back, you will get our messages again."
+msgstr "Tekrar hoş geldiniz, mesajlarımız yeniden gelecek."
+
+msgid "Removed from the opt-out list. Promotional messages will be sent to this person again."
+msgstr "IPTAL listesinden çıkarıldı. Bu kişiye yeniden tanıtım mesajı gidecek."
+
+msgid "This password is defined in wp-config.php and cannot be changed here."
+msgstr "Bu parola wp-config.php içinde tanımlı; buradan değiştirilemez."
+
+msgid "File upload is not available."
+msgstr "Dosya yükleme kullanılamıyor."
+
+msgid "Choose an email."
+msgstr "Bir e-posta seçin."
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "Ban protection (bulk sends)"
+msgstr "Ban koruması (toplu gönderim)"
+
+msgid "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
+msgstr "WhatsApp kısa sürede çok sayıda benzer mesaj gönderen numaraları kısıtlar. Bu sınırlar yalnız kuyruktaki toplu gönderimlere uygulanır; sohbetteki cevaplar ve tekil mesajlar beklemez."
+
+msgid "Minimum wait between messages (sec)"
+msgstr "Mesajlar arası en az bekleme (sn)"
+
+msgid "Maximum wait between messages (sec)"
+msgstr "Mesajlar arası en çok bekleme (sn)"
+
+msgid "Each wait is a random time between the minimum and the maximum, so the sending does not look like a machine."
+msgstr "Her bekleme en az ile en çok arasında rastgele seçilir; gönderim makine gibi görünmez."
+
+msgid "Take a break every … messages"
+msgstr "Her … mesajda bir mola ver"
+
+msgid "0 = no break."
+msgstr "0 = mola yok."
+
+msgid "Break length (min)"
+msgstr "Mola süresi (dk)"
+
+msgid "Bulk messages per hour (at most)"
+msgstr "Saatte en çok toplu mesaj"
+
+msgid "0 = no limit."
+msgstr "0 = sınır yok."
+
+msgid "Bulk messages per day (at most)"
+msgstr "Günde en çok toplu mesaj"
+
+msgid "Counted over the last 24 hours. The rest of the list waits and continues by itself. 0 = no limit."
+msgstr "Son 24 saat sayılır. Listenin kalanı bekler ve kendiliğinden devam eder. 0 = sınır yok."
+
+msgid "Warm up a new number (daily limit starts at 20 and grows by 20 every day)"
+msgstr "Yeni numarayı ısıt (günlük sınır 20'den başlar, her gün 20 artar)"
+
+msgid "Quiet hours: from"
+msgstr "Sessiz saatler: başlangıç"
+
+msgid "Quiet hours: until"
+msgstr "Sessiz saatler: bitiş"
+
+msgid "Bulk messages are not sent in these hours (site time zone); the queue continues in the morning."
+msgstr "Bu saatlerde toplu mesaj gitmez (site saat dilimi); kuyruk sabah kaldığı yerden devam eder."
+
+msgid "Skip numbers that do not have WhatsApp (checked before sending)"
+msgstr "WhatsApp'ı olmayan numaraları atla (göndermeden önce kontrol edilir)"
+
+msgid "Pause bulk sending for 30 minutes after … failures in a row"
+msgstr "Art arda … hatada toplu gönderimi 30 dk durdur"
+
+msgid "Many failures in a row usually mean the number was disconnected or restricted. 0 = never pause."
+msgstr "Art arda çok hata genelde numaranın koptuğunu ya da kısıtlandığını gösterir. 0 = hiç durdurma."
+
+msgid "Show \"typing…\" for a time that fits the message length"
+msgstr "\"Yazıyor…\" süresi mesaj uzunluğuna göre olsun"
+
+msgid "Paused after failures in a row"
+msgstr "Art arda hatalardan sonra durdu"
+
+msgid "Quiet hours"
+msgstr "Sessiz saatler"
+
+msgid "Waiting between messages"
+msgstr "Mesajlar arası bekleme"
+
+msgid "Hourly limit reached"
+msgstr "Saatlik sınıra ulaşıldı"
+
+msgid "Daily limit reached"
+msgstr "Günlük sınıra ulaşıldı"
+
+msgid "Bulk WhatsApp paused: %s"
+msgstr "Toplu WhatsApp durdu: %s"
+
+msgid "Several messages in a row failed, so bulk sending was paused for 30 minutes. Check that the number is connected; the queue continues by itself."
+msgstr "Art arda birkaç mesaj gitmediği için toplu gönderim 30 dakika durduruldu. Numaranın bağlı olduğunu kontrol edin; kuyruk kendiliğinden devam eder."
