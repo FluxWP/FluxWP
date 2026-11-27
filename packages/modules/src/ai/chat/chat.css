@@ -145,7 +145,9 @@ button.flxai-model:hover{color:var(--flux-text)}.flxai-k.is-warn{color:var(--flu
 .flxai-mlist{max-height:50vh;overflow:auto;display:flex;flex-direction:column;gap:2px}
 .flxai-mrow{display:flex;flex-direction:column;align-items:flex-start;border:0;background:none;color:inherit;font:inherit;text-align:left;padding:7px 10px;border-radius:8px;cursor:pointer}
 .flxai-mrow:hover{background:color-mix(in srgb,var(--flux-text) 7%,transparent)}.flxai-mrow.is-cur{background:color-mix(in srgb,var(--ac) 14%,transparent)}
-.flxai-mrow small{color:var(--mut)}.flxai-msec{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);padding:8px 10px 2px}
+.flxai-mrow small{color:var(--mut)}
+.flxai-mrow.is-locked{opacity:.5;cursor:not-allowed}.flxai-mrow.is-locked:hover{background:none}
+.flxai-pro{display:inline-block;margin-left:6px;padding:0 6px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.03em;line-height:17px;vertical-align:1px;background:color-mix(in srgb,var(--ac) 16%,transparent);color:var(--ac)}.flxai-msec{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);padding:8px 10px 2px}
 
 /* Workspace panel */
 .flxai-chatpage.has-ws{grid-template-columns:minmax(0,1fr) 400px}

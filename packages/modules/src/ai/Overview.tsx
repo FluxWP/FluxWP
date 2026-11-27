@@ -27,7 +27,7 @@ export function Overview() {
   const tt = rep.totals;
   const totMs = Math.max(1, tt.modelMs + tt.toolMs);
   const days1 = rep.daily;
-  const noKey = !d.flxAiSecrets.some((s) => s.configured);
+  const noKey = !d.flxAiSettingsOptions.providersReady && !d.flxAiSecrets.some((s) => s.configured);
   const settingsUrl = (host.adminUrl ?? '') + 'admin.php?page=flx-ai-settings';
   return (
     <>

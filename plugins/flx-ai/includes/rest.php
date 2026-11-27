@@ -316,7 +316,22 @@ function flxai_rest_models( WP_REST_Request $req ) {
 	foreach ( flxai_providers_ready() as $id => $label ) {
 		$prov[] = array( 'id' => $id, 'label' => $label );
 	}
-	return array( 'models' => $m, 'providers' => $prov );
+	// Models the Flux Cloud plan does not include: marked and listed after the open ones.
+	$open = array();
+	$shut = array();
+	foreach ( $m as $row ) {
+		if ( is_array( $row ) && isset( $row['id'] ) && flxai_cloud_model_locked( (string) $row['id'] ) ) {
+			$row['locked'] = true;
+			$shut[]        = $row;
+		} else {
+			$open[] = $row;
+		}
+	}
+	return array(
+		'models'      => array_merge( $open, $shut ),
+		'providers'   => $prov,
+		'upgrade_url' => $shut ? (string) ( flxai_cloud_status()['buy_url'] ?? '' ) : '',
+	);
 }
 
 function flxai_rest_test( WP_REST_Request $req ) {

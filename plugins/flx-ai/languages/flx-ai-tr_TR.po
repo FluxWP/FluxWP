@@ -4065,3 +4065,9 @@ msgstr "Flux AI'daki Anthropic anahtarı çalışıyor."
 
 msgid "No Anthropic key in Flux AI settings."
 msgstr "Flux AI ayarlarında Anthropic anahtarı yok."
+
+msgid "Pro"
+msgstr "Pro"
+
+msgid "Your Flux Cloud plan does not include this model. Upgrade the plan or enter your own key."
+msgstr "Flux Cloud planınız bu modeli içermiyor. Planı yükseltin ya da kendi anahtarınızı girin."

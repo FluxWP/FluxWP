@@ -38,9 +38,9 @@ export function ModelPicker({ api, current, defaultLabel, onPick, onClose }: { a
     const h = norm(`${m.id} ${m.name} ${m.family}`);
     const hc = h.replace(/\s+/g, '');
     return words.every((w) => h.includes(w) || hc.includes(w));
-  });
+  }).sort((a, b) => Number(!!a.locked) - Number(!!b.locked));
   const byId = new Map((models ?? []).map((m) => [m.id, m]));
-  const recent = readRecent().map((id) => byId.get(id)).filter((m): m is ModelInfo => !!m);
+  const recent = readRecent().map((id) => byId.get(id)).filter((m): m is ModelInfo => !!m && !m.locked);
   const pick = (id: string) => {
     if (id) {
       try {
@@ -52,8 +52,18 @@ export function ModelPicker({ api, current, defaultLabel, onPick, onClose }: { a
     onPick(id);
   };
   const row = (m: ModelInfo) => (
-    <button key={m.id} type="button" className={'flxai-mrow' + (m.id === current ? ' is-cur' : '')} onClick={() => pick(m.id)}>
-      <b>{m.name}</b>
+    <button
+      key={m.id}
+      type="button"
+      className={'flxai-mrow' + (m.id === current ? ' is-cur' : '') + (m.locked ? ' is-locked' : '')}
+      disabled={m.locked && m.id !== current}
+      title={m.locked ? t('Your Flux Cloud plan does not include this model. Upgrade the plan or enter your own key.') : undefined}
+      onClick={() => pick(m.id)}
+    >
+      <b>
+        {m.name}
+        {m.locked && <span className="flxai-pro">{t('Pro')}</span>}
+      </b>
       <small>{[m.id, fmtCtx(m.ctx), `$${Number(m.in).toFixed(2)} / $${Number(m.out).toFixed(2)}`].filter(Boolean).join(' · ')}</small>
     </button>
   );

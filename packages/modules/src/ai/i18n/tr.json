@@ -676,5 +676,9 @@
  "The default model runs on your own key now.": "Varsayılan model şu an kendi anahtarınızla çalışıyor.",
  "When this site has no key of its own (recommended)": "Sitenin kendi anahtarı yoksa (önerilen)",
  "Always, even when a key is entered": "Her zaman, anahtar girilse de",
- "Never, only my own keys": "Hiçbir zaman, yalnız kendi anahtarlarım"
+ "Never, only my own keys": "Hiçbir zaman, yalnız kendi anahtarlarım",
+ "Pro": "Pro",
+ "Your Flux Cloud plan does not include this model. Upgrade the plan or enter your own key.": "Flux Cloud planınız bu modeli içermiyor. Planı yükseltin ya da kendi anahtarınızı girin.",
+ "Recently used": "Son kullanılanlar",
+ "All models": "Tüm modeller"
 }
