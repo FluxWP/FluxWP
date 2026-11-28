@@ -96,6 +96,19 @@ function flxc_notify_is_echo( $wa_id, $body ) {
 	return false;
 }
 
+/** 1.55.4: Evolution ayrıntısız "[object Object]" dönerse okunur bir sebep yazar. */
+function flxc_notify_error( array $r ) {
+	$e = (string) ( $r['error'] ?? '' );
+	if ( '' === $e ) {
+		return 'HTTP ' . (int) ( $r['code'] ?? 0 );
+	}
+	if ( false !== strpos( $e, '[object Object]' ) ) {
+		/* translators: %d: HTTP status */
+		return sprintf( __( 'WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group.', 'flx-chat' ), (int) ( $r['code'] ?? 0 ) );
+	}
+	return $e;
+}
+
 function flxc_notify_handoff( $chat, $reason ) {
 	$nums  = array_diff( flxc_notify_numbers(), array( (string) $chat['phone'] ) );
 	$group = function_exists( 'flxc_mirror_group' ) && flxc_setting( 'notify_to_group' ) ? flxc_mirror_group() : '';
@@ -116,20 +129,27 @@ function flxc_notify_handoff( $chat, $reason ) {
 	if ( '' !== $group ) {
 		// Ekip grubu seçiliyse bildirim oraya gider, numaralar etiketlenir.
 		$r = flxc_mirror_send_mentions( $chat['conn'], $text, array_values( $nums ) );
-		if ( empty( $r['ok'] ) ) {
-			/* translators: %s: error */
-			flxc_system_message( $chat, sprintf( __( 'Could not send the notification to the team group: %s', 'flx-chat' ), '' !== (string) $r['error'] ? $r['error'] : 'HTTP ' . $r['code'] ) );
-		} else {
-			flxc_system_message( $chat, __( 'Handoff notification sent to the team group.', 'flx-chat' ) );
+		if ( empty( $r['ok'] ) && $nums ) {
+			// 1.55.4: Evolution grupta etiketli mesajı ara sıra 400 "[object Object]" ile reddediyor; etiketsiz bir kez daha dene.
+			$r = flxc_mirror_send_mentions( $chat['conn'], $text, array() );
 		}
-		return;
+		if ( ! empty( $r['ok'] ) ) {
+			flxc_system_message( $chat, __( 'Handoff notification sent to the team group.', 'flx-chat' ) );
+			return;
+		}
+		/* translators: %s: error */
+		flxc_system_message( $chat, sprintf( __( 'Could not send the notification to the team group: %s', 'flx-chat' ), flxc_notify_error( $r ) ) );
+		if ( ! $nums ) {
+			return;
+		}
+		// Grup olmadıysa numaralara tek tek gönder.
 	}
 	foreach ( $nums as $n ) {
 		flxc_notify_remember( '', $text );
 		// Site sohbeti gibi sanal kanallarda bildirim ilk WhatsApp hattından gider.
 		$r = flxc_evo_send_text( flxc_is_virtual_conn( $chat['conn'] ) ? flxc_mirror_conn( '' ) : $chat['conn'], $n, $text, null, false );
 		if ( empty( $r['ok'] ) ) {
-			$bad[] = '+' . $n . ' (' . ( '' !== (string) $r['error'] ? $r['error'] : 'HTTP ' . $r['code'] ) . ')';
+			$bad[] = '+' . $n . ' (' . flxc_notify_error( $r ) . ')';
 			continue;
 		}
 		flxc_notify_remember( (string) ( $r['json']['key']['id'] ?? '' ), $text );

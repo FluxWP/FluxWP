@@ -3275,5 +3275,6 @@ return array(
   'The time limit for editing has passed (WhatsApp allows 15 minutes).' => 'وقد انقضى أجل التحرير (WhatsApp يسمح بـ 15 دقيقة).',
   'The message can\'t be empty.' => 'الرسالة لا يمكن أن تكون فارغة.',
   'WhatsApp did not edit the message.' => 'WhatsApp لم يحرر الرسالة.',
+  'WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group.' => 'رفض واتساب الرسالة دون تفاصيل (HTTP %d). تحقق من أن الرقم المتصل لا يزال في المجموعة.',
  ),
 );

@@ -3275,5 +3275,6 @@ return array(
   'The time limit for editing has passed (WhatsApp allows 15 minutes).' => '编辑的时限已经过(第12条)WhatsApp 允许15分钟。',
   'The message can\'t be empty.' => '信息是空洞的。',
   'WhatsApp did not edit the message.' => 'WhatsApp 没有编辑这一信息。',
+  'WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group.' => 'WhatsApp 拒绝了该消息且未提供详情 (HTTP %d)。请检查已连接的号码是否仍在群组中。',
  ),
 );
