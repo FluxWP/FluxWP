@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.7.3
+- "Sign in with FluxWP" ile bağlanırken fluxwp.com onay sayfası artık sitenin dilinde açılır (bağlantıya `lang` eklenir; yoksa fluxwp.com tarayıcı diline bakar).
+
 ## 1.7.2
 - Yönetim ekranları için dil katalogları güncellendi. Toplu işlem araçları dar ekranlara sığar.
 

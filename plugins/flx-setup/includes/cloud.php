@@ -189,6 +189,7 @@ final class FLXK_Cloud {
 			'challenge' => $chal,
 			'wp'        => get_bloginfo( 'version' ),
 			'v'         => FLXK_VERSION,
+			'lang'      => determine_locale(), // The fluxwp.com consent page opens in the site's language.
 		);
 		wp_redirect( add_query_arg( array_map( 'rawurlencode', $args ), self::url() . '/' ) ); // phpcs:ignore WordPress.Security.SafeRedirect -- Account server.
 		exit;
