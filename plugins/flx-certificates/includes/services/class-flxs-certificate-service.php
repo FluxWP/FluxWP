@@ -506,10 +506,11 @@ final class FLXS_Certificate_Service {
 	/**
 	 * Queues the certificate to its holder. The certificate must be visible.
 	 *
-	 * @param string[] $channels Channels.
+	 * @param string[]           $channels  Channels.
+	 * @param array<string,int>  $providers Connection per channel; a missing channel uses its default.
 	 * @return array{results:list<array{channel:string,ok:bool,message:string}>}|WP_Error
 	 */
-	public static function send( int $id, array $channels ) {
+	public static function send( int $id, array $channels, array $providers = array(), string $source = 'manual' ) {
 		$cert = self::visible( $id );
 		if ( is_wp_error( $cert ) ) {
 			return $cert;
@@ -526,7 +527,7 @@ final class FLXS_Certificate_Service {
 		if ( ! $channels ) {
 			return FLXS_Records::error( 'flxs_channel', __( 'Choose a channel.', 'flx-certificates' ), 'INVALID_INPUT', 'channels' );
 		}
-		$res = flxs_send_certificate( $cert, $channels, array(), 'manual' );
+		$res = flxs_send_certificate( $cert, $channels, array_intersect_key( $providers, array_flip( $channels ) ), 'create' === $source ? 'create' : 'manual' );
 		flxs_kick_queue();
 		$out = array();
 		foreach ( $res as $ch => $v ) {
@@ -682,12 +683,12 @@ final class FLXS_Certificate_Service {
 		}
 		$users = array();
 		foreach ( flxs_users_with_cap() as $u ) {
-			if ( ! $u instanceof WP_User ) {
-				continue;
+			if ( ! is_object( $u ) || ! isset( $u->ID ) ) {
+				continue; // get_users() with 'fields' gives plain objects.
 			}
 			$users[] = array(
 				'id'    => FLXS_Val::int( $u->ID ),
-				'name'  => FLXS_Val::str( $u->display_name ),
+				'name'  => FLXS_Val::str( $u->display_name ?? '' ),
 				'count' => FLXS_Val::int( $refn[ FLXS_Val::int( $u->ID ) ] ?? 0 ),
 			);
 		}

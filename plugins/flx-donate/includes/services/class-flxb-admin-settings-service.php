@@ -77,11 +77,7 @@ final class FLXB_Admin_Settings_Service {
 		self::$islands = array();
 		$tab           = self::current_tab();
 		ob_start();
-		if ( 'general' === $tab ) {
-			if ( class_exists( 'FLXB_System_Checks' ) && FLXB_System_Checks::external() ) {
-				FLXB_System_Checks::iyzico_box();
-			}
-		} elseif ( 'system' === $tab && class_exists( 'FLXB_System_Checks' ) ) {
+		if ( 'system' === $tab && class_exists( 'FLXB_System_Checks' ) ) {
 			FLXB_System_Checks::render_tab();
 		} elseif ( ! in_array( $tab, self::OWN, true ) ) {
 			do_action( 'flxb_settings_tab_' . $tab );
@@ -109,7 +105,7 @@ final class FLXB_Admin_Settings_Service {
 	/** Is the open settings tab one that PHP prints (the classic styles are needed for it)? */
 	public static function island_tab(): bool {
 		$tab = self::current_tab();
-		return ! in_array( $tab, self::OWN, true ) || ( 'general' === $tab && class_exists( 'FLXB_System_Checks' ) && FLXB_System_Checks::external() );
+		return ! in_array( $tab, self::OWN, true );
 	}
 
 	/** @return array<string,mixed> */

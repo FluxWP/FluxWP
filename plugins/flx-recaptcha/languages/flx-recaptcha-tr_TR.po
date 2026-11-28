@@ -8,7 +8,7 @@ msgid "Protects forms against spam and bot attacks"
 msgstr "Formları spam ve bot saldırılarına karşı korur"
 
 msgid "reCAPTCHA"
-msgstr "reCAPTCHA"
+msgstr "reCAPTCHA kez"
 
 msgid "Forms are not protected yet. Enter your Google reCAPTCHA keys and test them."
 msgstr "Formlar henüz korunmuyor. Google reCAPTCHA anahtarlarını girip test edin."

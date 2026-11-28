@@ -1,9 +1,7 @@
 {
   "_meta": {
     "format": "fluxwp-package-translations/v1",
-    "language": "de",
-    "locale": "de_DE",
-    "status": "machine-translated"
+    "locale": "de_DE"
   },
   "messages": {
     "Roles and access": "Rollen und Zugriff",
@@ -111,6 +109,12 @@
     "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen.": "Einige aktivierte Berechtigungen werden noch nicht erzwungen; Warten auf Updates von: %s. Bis dahin können diese Personen den entsprechenden Bildschirm nicht sehen.",
     "All enabled permissions are enforced.": "Alle aktivierten Berechtigungen werden erzwungen.",
     "Roles": "Rollen",
-    "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.": "Fügt die Rollen „Mitarbeiter“, „Administrator“ und „Manager“ hinzu (neue Rolle wird auch über das Bedienfeld hinzugefügt); Sie können den Aufgaben-, Zertifikats-, Spenden-, Callcenter-, Studio- und Berichtszugriff für Rollen auf einer einzigen Seite aktivieren und deaktivieren. Persönlicher Referenzlink und Benutzertelefonnummer (für WhatsApp-Assistent) finden Sie hier."
+    "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.": "Fügt die Rollen „Mitarbeiter“, „Administrator“ und „Manager“ hinzu (neue Rolle wird auch über das Bedienfeld hinzugefügt); Sie können den Aufgaben-, Zertifikats-, Spenden-, Callcenter-, Studio- und Berichtszugriff für Rollen auf einer einzigen Seite aktivieren und deaktivieren. Persönlicher Referenzlink und Benutzertelefonnummer (für WhatsApp-Assistent) finden Sie hier.",
+    "Unknown role.": "Unbekannte Rolle.",
+    "Unknown permission: %s.": "Unbekannte Erlaubnis: %s .",
+    "This screen is not available.": "Dieser Bildschirm ist nicht verfügbar.",
+    "Enter 1 to 365 days.": "Geben Sie 1 bis 365 Tage ein.",
+    "Only roles added from the panel can be deleted.": "Nur Rollen, die vom Panel hinzugefügt werden, können gelöscht werden.",
+    "Not found.": "Nicht gefunden."
   }
 }

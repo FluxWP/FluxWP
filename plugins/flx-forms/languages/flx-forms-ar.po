@@ -347,7 +347,7 @@ msgid "Red"
 msgstr "أحمر"
 
 msgid "Clear"
-msgstr "واضح"
+msgstr "مسح"
 
 msgid "Search"
 msgstr "بحث"
@@ -752,7 +752,7 @@ msgid "Secret key"
 msgstr "المفتاح السري"
 
 msgid "Dashboard"
-msgstr "لوحة القيادة"
+msgstr "لوحة التحكم"
 
 msgid "7 days"
 msgstr "7 أيام"
@@ -1910,7 +1910,7 @@ msgid "Longitude"
 msgstr "خط الطول"
 
 msgid "e.g."
-msgstr "e.g."
+msgstr "على سبيل المثال"
 
 msgid "(Avoid adding JavaScript or jQuery codes to HTML for security reasons.)"
 msgstr "(تجنب إضافة أكواد JavaScript أو jQuery إلى HTML لأسباب أمنية.)"
@@ -2612,7 +2612,7 @@ msgid "Email Template"
 msgstr "قالب البريد الإلكتروني"
 
 msgid "reset"
-msgstr "reset"
+msgstr "إعادة التوطين"
 
 msgid "Not Found"
 msgstr "لم يتم العثور"
@@ -3494,7 +3494,7 @@ msgid "Max Duration (seconds)"
 msgstr "المدة القصوى (بالثواني)"
 
 msgid "480p"
-msgstr "480p"
+msgstr "480(ب)"
 
 msgid "720p (HD)"
 msgstr "720p (عالية الدقة)"
@@ -8330,7 +8330,7 @@ msgid "jQuery is not properly loaded or available. AJAX and interactive form fea
 msgstr "jلم يتم تحميل الاستعلام أو توفره بشكل صحيح. قد لا تعمل ميزات AJAX والنماذج التفاعلية بشكل صحيح."
 
 msgid "WhiteStudio.team"
-msgstr "WhiteStudio.team"
+msgstr "وايت ستوديو"
 
 msgid "EFB"
 msgstr "EFB"
@@ -8552,7 +8552,7 @@ msgid "WordPress poll plugin"
 msgstr "المكوّن الإضافي لاستطلاع الرأي في WordPress"
 
 msgid "payment form plugin"
-msgstr "payment form plugin"
+msgstr "استمارة الدفع"
 
 msgid "WordPress payment forms"
 msgstr "نماذج الدفع في WordPress"
@@ -8975,7 +8975,7 @@ msgid "Flux Forms couldn't locate the form settings. Please check your settings 
 msgstr "تعذر على Flux Forms تحديد إعدادات النموذج. الرجاء التحقق من إعداداتك أو الاتصال بالدعم للحصول على المساعدة."
 
 msgid "Y/m/d \\a\\t g:ia"
-msgstr "Y/m/d \\a\\t g:ia"
+msgstr "Y/m/da/t g:ia"
 
 msgid "Too many attempts. Please wait a few minutes and try again."
 msgstr "محاولات كثيرة جدًا. الرجاء الانتظار بضع دقائق ثم حاول مرة أخرى."
@@ -9198,3 +9198,153 @@ msgstr "تعذر الاتصال بـ Stripe: %s"
 
 msgid "Stripe API error (HTTP %d)."
 msgstr "خطأ في Stripe API (HTTP %d)."
+
+msgid "Form submission"
+msgstr "إرسال النموذج"
+
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "النموذج العام، المسح، والاشتراكات المرسلة عبر GraphQL."
+
+msgid "Manages forms and responses"
+msgstr "أشكال الإدارة والردود"
+
+msgid "Opens the form builder"
+msgstr "يَفْتحُ مبنيَ الشكلَ"
+
+msgid "Opens the forms panel"
+msgstr "يفتح فريق الاستمارات"
+
+msgid "Manages form add-ons"
+msgstr "شكل الإضافة"
+
+msgid "WooCommerce"
+msgstr "ووكومرس"
+
+msgid "The form structure is not valid."
+msgstr "هيكل الشكل غير صحيح."
+
+msgid "This form type is not supported."
+msgstr "هذا النوع من النماذج غير مدعم."
+
+msgid "This form was changed somewhere else after you opened it."
+msgstr "هذا الشكل تغير في مكان آخر بعد أن فتحته"
+
+msgid "WooCommerce checkout"
+msgstr "الخروج من WooCommerce"
+
+msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
+msgstr "سوف تختار كيف تدفع (السجلات، التحويل المصرفي) على الصفحة آمنة."
+
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "أكملي الدفع في النافذة التي فتحت، هذه الصفحة تستمر عندما يتم"
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "نافذة الدفع مُغلقة، اسمحوا لـ (بوب) أن يُحضر هذا الموقع ويحاول ثانيةً"
+
+msgid "The payment was not completed. You can try again."
+msgstr "لم يتم إتمام عملية الدفع. يمكنك المحاولة مرة أخرى."
+
+msgid "The order is received; the payment is confirmed when it arrives."
+msgstr "ويتلقى هذا الأمر؛ ويتأكد الدفع عند وصوله."
+
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "تمّ الدفع، يمكنك إغلاق هذه النافذة والعودة إلى النموذج"
+
+msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
+msgstr "تم استلام الطلب، تم تأكيد الدفع عندما يصل، يمكنك إغلاق هذه النافذة والعودة إلى الشكل."
+
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "لم تكتمل الدفعات يمكنك إغلاق هذه النافذة و المحاولة مرة أخرى على الشكل"
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "(فلوكس دوناتي) نشطة، ولكن لم تستلم المدفوعات (المصفوفة (المصفوفة) متوقفة عن الدفع)."
+
+msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
+msgstr "وتُدفع استمارات الدفع على نظام الفرز رقم WooCommerce (%1$s؛ %2$s)."
+
+msgid "No payment form exists. WooCommerce is needed only to take payments."
+msgstr "ولا توجد استمارة للدفع."
+
+msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
+msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
+msgstr[0] "WooCommerce لم يكن لديها أي طريقة مُمكّنة للدفع: لا يمكن أن تُدفع استمارات الدفع رقم %d."
+msgstr[1] "WooCommerce لم يكن لها أي طريقة مُمكّنة للدفع: لا يمكن لنموذج الدفع %d أن يأخذ مدفوعات."
+msgstr[2] "WooCommerce لم يكن لديها أي طريقة مُمكّنة للدفع: لا يمكن أن تُدفع استمارات الدفع رقم %d."
+msgstr[3] "WooCommerce لم يكن لديها أي طريقة مُمكّنة للدفع: لا يمكن أن تُدفع استمارات الدفع رقم %d."
+msgstr[4] "WooCommerce لم يكن لديها أي طريقة مُمكّنة للدفع: لا يمكن أن تُدفع استمارات الدفع رقم %d."
+msgstr[5] "WooCommerce لم يكن لديها أي طريقة مُمكّنة للدفع: لا يمكن أن تُدفع استمارات الدفع رقم %d."
+
+msgid "WooCommerce is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "WooCommerce ليس نشطاً: استمارات الدفع %d تبين أن الدفع غير متاح"
+msgstr[1] "WooCommerce ليس نشطاً: %d استمارة الدفع تبين أن الدفع غير متاح."
+msgstr[2] "WooCommerce ليس نشطاً: استمارات الدفع %d تبين أن الدفع غير متاح"
+msgstr[3] "WooCommerce ليس نشطاً: استمارات الدفع %d تبين أن الدفع غير متاح"
+msgstr[4] "WooCommerce ليس نشطاً: استمارات الدفع %d تبين أن الدفع غير متاح"
+msgstr[5] "WooCommerce ليس نشطاً: استمارات الدفع %d تبين أن الدفع غير متاح"
+
+msgid "Payment methods"
+msgstr "طرق الدفع"
+
+msgid "Card payment"
+msgstr "الدفع بالبطاقة"
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "(ب) أن تسدد على الإنترنت مدفوعات مع استمارة دفع، وأن تُركّز وتُنشّط WooCommerce، وأن تُمكّن من اتباع طريقة للدفع."
+
+msgid "The form was not found."
+msgstr "لم يتم العثور على النموذج"
+
+msgid "Write a reply."
+msgstr "اكتبي رد"
+
+msgid "The response was not found."
+msgstr "ولم يعثر على الرد."
+
+msgid "The reply could not be saved."
+msgstr "ولم يكن من الممكن إنقاذ الرد."
+
+msgid "The settings could not be saved."
+msgstr "لا يمكن إنقاذ الأماكن."
+
+msgid "Choose between 1 and 7 days."
+msgstr "اختر ما بين يوم و 7 أيام"
+
+msgid "Unknown track code style."
+msgstr "أسلوب الشفرة غير معروف"
+
+msgid "Unknown SMS sender."
+msgstr "مرسل غير معروف"
+
+msgid "Enter a colour like #1a2b3c."
+msgstr "أدخل لون مثل #1a2b3c."
+
+msgid "Enter a valid e-mail address."
+msgstr "أدخل عنوان بريد إلكتروني صالح"
+
+msgid "Use numbers like +12345678900, separated by commas."
+msgstr "استخدموا أرقاماً مثل +12345678900، مُنفصلة عن طريق البريد."
+
+msgid "The template must contain the shortcode_message shortcode."
+msgstr "يجب أن يحتوي النموذج على الرمز المختصر"
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "الكثير من العروض انتظر لحظة وحاول مرة أخرى"
+
+msgid "The form could not be sent."
+msgstr "لا يمكن إرسال الاستمارة"
+
+msgid "This form cannot be sent here."
+msgstr "هذا الشكل لا يمكن إرساله هنا"
+
+msgid "The tracking code was not found."
+msgstr "لم يتم العثور على رمز التتبع"
+
+msgid "Upload the file again."
+msgstr "ارفعي الملف مرة أخرى"
+
+msgid "The confirmation code is not valid."
+msgstr "رمز التأكيد غير صحيح."
+
+msgid "Choose one of the listed options."
+msgstr "اختر أحد الخيارات المدرجة."

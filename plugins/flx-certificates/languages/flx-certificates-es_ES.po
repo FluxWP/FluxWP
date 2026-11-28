@@ -74,7 +74,7 @@ msgid "If a certificate is registered with these details, its link will be sent 
 msgstr "Si se registra un certificado con estos datos, se le enviará su enlace en unos minutos."
 
 msgid "OK"
-msgstr "OK"
+msgstr "Aceptar"
 
 msgid "Warning"
 msgstr "Advertencia"
@@ -704,7 +704,7 @@ msgid "Goal: %s saplings"
 msgstr "Objetivo: %s retoños"
 
 msgid "%s%%"
-msgstr "%s%%"
+msgstr "%s %%"
 
 msgid "Completed event"
 msgstr "Evento completado"
@@ -830,7 +830,7 @@ msgid "Queued to send"
 msgstr "En cola para enviar"
 
 msgid "Send queue"
-msgstr "Enviar cola"
+msgstr "Cola de envío"
 
 msgid "Sends appear here."
 msgstr "Los envíos aparecen aquí."
@@ -993,3 +993,702 @@ msgstr "Aún no hay mapa: el enlace abre la página del evento hasta que se intr
 
 msgid "Person not found."
 msgstr "Persona no encontrada."
+
+msgid "Creates and sees certificates"
+msgstr "Crea y ve certificados"
+
+msgid "Manages certificates"
+msgstr "Gestiona certificados"
+
+msgid "Sends certificates in bulk"
+msgstr "Envia certificados a granel"
+
+msgid "Sees the certificate dashboard"
+msgstr "Ve el panel de certificados"
+
+msgid "Sees only certificates they created or referred"
+msgstr "Solo ve los certificados que crearon o refirieron"
+
+msgid "All Certificates"
+msgstr "Todos los certificados"
+
+msgid "Dashboard"
+msgstr "Panel de control"
+
+msgid "Bulk send"
+msgstr "Envío masivo"
+
+msgid "Providers"
+msgstr "Proveedores"
+
+msgid "Logs"
+msgstr "Registros"
+
+msgid "Certificate settings"
+msgstr "Ajustes de certificados"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "certificates"
+msgstr "certificados"
+
+msgid "Only certificates that you created."
+msgstr "Sólo certificados que creaste."
+
+msgid "Sapling donations, certificates and deliveries."
+msgstr "Sapling donaciones, certificados y entregas."
+
+msgid "Loading…"
+msgstr "Cargando…"
+
+msgid "%1$s: %2$s saplings, %3$s certificates"
+msgstr "%1$s : %2$s saplings, %3$s certificados"
+
+msgid "%2$s saplings during %1$s"
+msgstr "%2$s bisagras durante %1$s"
+
+msgid "%s failed"
+msgstr "%s falló"
+
+msgid "%s first-time recipients"
+msgstr "%s receptores por primera vez"
+
+msgid "%s sent"
+msgstr "%s enviado"
+
+msgid "%s waiting"
+msgstr "%s esperando"
+
+msgid "30 days"
+msgstr "30 dias"
+
+msgid "7 days"
+msgstr "7 dias"
+
+msgid "90 days"
+msgstr "90 dias"
+
+msgid "All"
+msgstr "Todos"
+
+msgid "All staff"
+msgstr "Todo el personal"
+
+msgid "Archive"
+msgstr "Archivo"
+
+msgid "Average saplings"
+msgstr "Promedios de amontonamientos"
+
+msgid "Avg."
+msgstr "Avg."
+
+msgid "Busiest day"
+msgstr "Día más ocupado"
+
+msgid "Busiest month"
+msgstr "Mes más ocupado"
+
+msgid "Channel and status"
+msgstr "Canal y estado"
+
+msgid "Chart"
+msgstr "Gráfico"
+
+msgid "Compared with the previous %s days"
+msgstr "Comparado con los anteriores %s días"
+
+msgid "Could not load data:"
+msgstr "No podía cargar datos:"
+
+msgid "Cumulative"
+msgstr "Acumulado"
+
+msgid "Daily certificates"
+msgstr "Certificados diarios"
+
+msgid "Daily saplings"
+msgstr "Agitaciones diarias"
+
+msgid "Daily saplings chart"
+msgstr "Carta de amontonamientos diarios"
+
+msgid "Day"
+msgstr "dia"
+
+msgid "Days of the week"
+msgstr "Días de la semana"
+
+msgid "Delivery"
+msgstr "Entrega"
+
+msgid "End date"
+msgstr "Fecha de finalización"
+
+msgid "Excluding %s revoked"
+msgstr "Exclusión %s revocada"
+
+msgid "Month"
+msgstr "Mes"
+
+msgid "Monthly certificates"
+msgstr "Certificados mensuales"
+
+msgid "Monthly saplings"
+msgstr "Botines mensuales"
+
+msgid "No certificates in this period."
+msgstr "No hay certificados en este período."
+
+msgid "No data."
+msgstr "Sin datos."
+
+msgid "No deliveries in this period."
+msgstr "No hay entregas en este período."
+
+msgid "No new people"
+msgstr "No hay gente nueva"
+
+msgid "No people registered in this period."
+msgstr "No hay personas registradas en este período."
+
+msgid "Per certificate"
+msgstr "Certificado"
+
+msgid "Referring staff"
+msgstr "Personal de referencia"
+
+msgid "Same as the previous period"
+msgstr "Igual que el período anterior"
+
+msgid "Sapling goal"
+msgstr "Objetivo de simplificación"
+
+msgid "Saplings by day of the week"
+msgstr "Amplificaciones por día de la semana"
+
+msgid "Saplings collected"
+msgstr "Plantones recogidos"
+
+msgid "Saplings gifted to date"
+msgstr "Plantones regalados hasta hoy"
+
+msgid "Saplings · certificates"
+msgstr "Saplings · certificados"
+
+msgid "Start date"
+msgstr "Fecha de inicio"
+
+msgid "Table"
+msgstr "mesa"
+
+msgid "This month"
+msgstr "este mes"
+
+msgid "This year"
+msgstr "este año"
+
+msgid "Today"
+msgstr "Hoy"
+
+msgid "Total"
+msgstr "totales"
+
+msgid "Top 10"
+msgstr "Top 10"
+
+msgid "Top sapling donors"
+msgstr "Principales donantes de plantones"
+
+msgid "Total saplings"
+msgstr "Total de plantones"
+
+msgid "Waiting"
+msgstr "esperando"
+
+msgid "Without a referrer"
+msgstr "Sin referente"
+
+msgid "Without an event"
+msgstr "Sin evento"
+
+msgid "new"
+msgstr "nuevo"
+
+msgid "Sapling target (optional)"
+msgstr "Objetivo de simplificación (opcional)"
+
+msgid "Extra saplings (donations without a certificate)"
+msgstr "Botines extra (donaciones sin certificado)"
+
+msgid "Saplings of the person"
+msgstr "Plantones de la persona"
+
+msgid "Certificates of the person"
+msgstr "Certificados de la persona"
+
+msgid "Certificate number"
+msgstr "Número de certificado"
+
+msgid "saplings"
+msgstr "arbolitos"
+
+msgid "+%s extra"
+msgstr "+ %s extra"
+
+msgid "target %s"
+msgstr "objetivo %s"
+
+msgid "Certificate dashboard"
+msgstr "Panel de certificados"
+
+msgid "Add the certificates without an event (%s) to this event"
+msgstr "Añada los certificados sin evento ( %s ) a este evento"
+
+msgid "The event name cannot be empty."
+msgstr "El nombre del evento no puede estar vacío."
+
+msgid "The person could not be saved."
+msgstr "La persona no pudo salvarse."
+
+msgid "The certificate could not be saved."
+msgstr "El certificado no se puede guardar."
+
+msgid "Certificate not found."
+msgstr "Certificado no encontrado."
+
+msgid "You cannot edit this certificate."
+msgstr "No puede editar este certificado."
+
+msgid "That event is closed. Choose an open event."
+msgstr "El evento está cerrado. Elija un evento abierto."
+
+msgid "Only a manager can backdate a certificate."
+msgstr "Sólo un gerente puede respaldar un certificado."
+
+msgid "That issue date is not valid."
+msgstr "Esa fecha de emisión no es válida."
+
+msgid "Only a manager can delete a certificate."
+msgstr "Sólo un gerente puede eliminar un certificado."
+
+msgid "That channel is not valid."
+msgstr "Ese canal no es válido."
+
+msgid "That action is not valid."
+msgstr "Esa acción no es válida."
+
+msgid "A revoked certificate cannot be sent."
+msgstr "No se puede enviar un certificado revocado."
+
+msgid "Choose a channel."
+msgstr "Elige un canal."
+
+msgid "File upload is not available."
+msgstr "La carga de archivos no está disponible."
+
+msgid "No file was uploaded."
+msgstr "No se subió ningún archivo."
+
+msgid "That phone number belongs to someone else."
+msgstr "Ese número de teléfono pertenece a otra persona."
+
+msgid "That e-mail belongs to someone else."
+msgstr "Ese e-mail pertenece a otra persona."
+
+msgid "That phone number is not valid."
+msgstr "Ese número de teléfono no es válido."
+
+msgid "Only a manager can delete a person."
+msgstr "Sólo un gerente puede eliminar a una persona."
+
+msgid "That e-mail address is not valid."
+msgstr "Esa dirección de correo electrónico no es válida."
+
+msgid "The full name is required."
+msgstr "Se requiere el nombre completo."
+
+msgid "This person has certificates. Delete the certificates first."
+msgstr "Esta persona tiene certificados. Suprimir los certificados primero."
+
+msgid "That event is closed or does not exist. A closed event cannot take certificates."
+msgstr "Ese evento está cerrado o no existe. Un evento cerrado no puede tomar certificados."
+
+msgid "That is not a valid PDF."
+msgstr "Eso no es un PDF válido."
+
+msgid "That is not a valid image (JPEG expected)."
+msgstr "Esa no es una imagen válida (se espera JPEG)."
+
+msgid "The file is too large."
+msgstr "El archivo es demasiado grande."
+
+msgid "The file could not be written. Check the uploads folder permissions."
+msgstr "El archivo no puede ser escrito. Compruebe los permisos de carpeta de cargas."
+
+msgid "The person has no e-mail address."
+msgstr "La persona no tiene dirección de correo electrónico."
+
+msgid "The person has no phone number."
+msgstr "La persona no tiene número de teléfono."
+
+msgid "Enter an e-mail address."
+msgstr "Introduzca una dirección de correo electrónico."
+
+msgid "Enter a phone number."
+msgstr "Introduzca un número de teléfono."
+
+msgid "Enter a valid phone number or e-mail address."
+msgstr "Introduzca un número de teléfono válido o dirección de correo electrónico."
+
+msgid "The message could not be sent."
+msgstr "No se pudo enviar el mensaje."
+
+msgid "The message text is empty."
+msgstr "El mensaje está vacío."
+
+msgid "The message could not be queued."
+msgstr "El mensaje no puede ser apagado."
+
+msgid "There is no active connection for %s. Set one up in Flux Mail."
+msgstr "No hay conexión activa para %s . Establecer uno en el correo Flux."
+
+msgid "%s: the date format is not valid."
+msgstr "%s : el formato de fecha no es válido."
+
+msgid "%s is required."
+msgstr "Se requiere %s."
+
+msgid "That phone number belongs to another person (#%d) and was not added."
+msgstr "Ese número de teléfono pertenece a otra persona (# %d ) y no se agregó."
+
+msgid "That e-mail belongs to another person (#%d) and was not added."
+msgstr "Ese e-mail pertenece a otra persona (# %d ) y no fue añadido."
+
+msgid "l, F j, Y"
+msgstr "I, F j, Y"
+
+msgid "F j"
+msgstr "Fj"
+
+msgid "F j, Y"
+msgstr "F j, Y"
+
+msgid "General"
+msgstr "generales"
+
+msgid "Staff can only see the certificates they create"
+msgstr "El personal sólo puede ver los certificados que crean"
+
+msgid "Additional fonts"
+msgstr "Fuentes adicionales"
+
+msgid "Choose a font file (TTF/OTF)"
+msgstr "Elija un archivo de fuente (TTF/OTF)"
+
+msgid "Keep logs (days, 0 = indefinitely)"
+msgstr "Mantener registros (días, 0 = indefinidamente)"
+
+msgid "Image (JPG/PNG)"
+msgstr "Imagen (JPG/PNG)"
+
+msgid "All actions"
+msgstr "Todas las acciones"
+
+msgid "Issuing organization (on the certificate page and LinkedIn)"
+msgstr "Organización de expedición (en la página de certificados y LinkedIn)"
+
+msgid "Save settings"
+msgstr "Guardar configuración"
+
+msgid "Action"
+msgstr "acción"
+
+msgid "Staff permissions"
+msgstr "Autorizaciones del personal"
+
+msgid "Height (pt)"
+msgstr "Altura (pt)"
+
+msgid "PDF (recommended)"
+msgstr "PDF (recomendado)"
+
+msgid "Link address"
+msgstr "Dirección del enlace"
+
+msgid "No records."
+msgstr "Sin registros."
+
+msgid "Font name"
+msgstr "Nombre de la fuente"
+
+msgid "With sample data"
+msgstr "Con datos de muestra"
+
+msgid "Provider"
+msgstr "Proveedor"
+
+msgid "User"
+msgstr "Usuario"
+
+msgid "Time"
+msgstr "Hora"
+
+msgid "Certificate Staff"
+msgstr "Personal de certificados"
+
+msgid "Custom"
+msgstr "Personalizado"
+
+msgid "How?"
+msgstr "¿Cómo?"
+
+msgid "Certificate number format"
+msgstr "Formato de número de certificado"
+
+msgid "Hide certificate pages from search engines (noindex, recommended for personal data)"
+msgstr "Ocultar las páginas de certificados de los motores de búsqueda (noindex, recomendado para datos personales)"
+
+msgid "Maximum retry attempts"
+msgstr "Máximas tentativas de reingreso"
+
+msgid "Send certificate links to their holders"
+msgstr "Enviar enlaces de certificado a sus titulares"
+
+msgid "Recipient, number, text…"
+msgstr "Recipiente, número, texto..."
+
+msgid "Provider response"
+msgstr "Respuesta del proveedor"
+
+msgid "All users"
+msgstr "Todos los usuarios"
+
+msgid "Enabled"
+msgstr "Habilitado"
+
+msgid "All deliveries for this certificate"
+msgstr "Todas las entregas para este certificado"
+
+msgid "WhatsApp (*bold*, _italic_)"
+msgstr "WhatsApp (*bold*, _italic_)"
+
+msgid "Title (og:title)"
+msgstr "Título (og:title)"
+
+msgid "Description"
+msgstr "Descripción"
+
+msgid "Message registered people"
+msgstr "Mensaje de personas registradas"
+
+msgid "Certificate title (on the page and in messages as {sertifika})"
+msgstr "Título de certificado (en la página y en los mensajes como {sertifika} )"
+
+msgid "All channels"
+msgstr "Todos los canales"
+
+msgid "Link sharing preview"
+msgstr "Enlace compartido vista previa"
+
+msgid "Sender"
+msgstr "Remitente"
+
+msgid "Default messages"
+msgstr "Mensajes predeterminados"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "All registered people"
+msgstr "Todas las personas registradas"
+
+msgid "Recipient"
+msgstr "Destinatario"
+
+msgid "“Find my certificate” page"
+msgstr "\"Encontrar mi certificado\" página"
+
+msgid "Data"
+msgstr "Datos"
+
+msgid "Delete all certificate data when uninstalling the plugin"
+msgstr "Eliminar todos los datos de certificado al desinstalar el plugin"
+
+msgid "Preview"
+msgstr "Vista previa"
+
+msgid "Date format"
+msgstr "Formato de fecha"
+
+msgid "Allow staff to send in bulk"
+msgstr "Permitir al personal enviar a granel"
+
+msgid "Email subject"
+msgstr "Asunto del correo electrónico"
+
+msgid "Import template"
+msgstr "Plantilla de importación"
+
+msgid "No messages."
+msgstr "No hay mensajes."
+
+msgid "Maximum messages per run"
+msgstr "Mensajes máximos por carrera"
+
+msgid "Template name (shown in the dashboard)"
+msgstr "Nombre de la plantilla (muestra en el tablero)"
+
+msgid "Solid color"
+msgstr "color sólido"
+
+msgid "Width (pt)"
+msgstr "Ancho (pt)"
+
+msgid "Email body"
+msgstr "Cuerpo del correo electrónico"
+
+msgid "Process now"
+msgstr "Procesar ahora"
+
+msgid "Choose or upload a file"
+msgstr "Elija o cargue un archivo"
+
+msgid "To a list of numbers or email addresses"
+msgstr "A una lista de números o direcciones de correo electrónico"
+
+msgid "remove"
+msgstr "Retirar"
+
+msgid "Code length"
+msgstr "Longitud del código"
+
+msgid "You do not have permission to send messages in bulk."
+msgstr "No tienes permiso para enviar mensajes a granel."
+
+msgid "Send certificate links or a custom message to multiple recipients. Preview the message before adding it to the send queue."
+msgstr "Enviar enlaces de certificados o un mensaje personalizado a varios destinatarios. Previsualizar el mensaje antes de añadirlo a la cola de envío."
+
+msgid "Recipients"
+msgstr "Destinatarios"
+
+msgid "Template (all valid certificates issued with this template)"
+msgstr "Plantilla (todos los certificados válidos emitidos con esta plantilla)"
+
+msgid "To send only specific certificates, select them in the certificate list and choose a send action."
+msgstr "Para enviar sólo certificados específicos, seleccione en la lista de certificados y seleccione una acción de envío."
+
+msgid "Holders of the “%s” certificate"
+msgstr "Titulares del certificado “ %s ”"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Leave this blank to use the default certificate message from the template or settings."
+msgstr "Deje este espacio en blanco para utilizar el mensaje de certificado predeterminado de la plantilla o configuración."
+
+msgid "Subject"
+msgstr "Asunto"
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Plugin activated"
+msgstr "Plugin activado"
+
+msgid "Certificate created"
+msgstr "Certificado creado"
+
+msgid "Certificate updated"
+msgstr "Certificado actualizado"
+
+msgid "Event saved"
+msgstr "Evento salvado"
+
+msgid "Event closed (archived)"
+msgstr "Evento cerrado (archivado)"
+
+msgid "Event reopened"
+msgstr "Reapertura del evento"
+
+msgid "Event deleted"
+msgstr "Evento eliminado"
+
+msgid "Certificate revoked"
+msgstr "Certificado revocado"
+
+msgid "Certificate restored"
+msgstr "Certificado restaurado"
+
+msgid "Certificate deleted"
+msgstr "Certificado borrado"
+
+msgid "Certificates exported to Excel"
+msgstr "Certificados exportados a Excel"
+
+msgid "Files generated on the server"
+msgstr "Archivos generados en el servidor"
+
+msgid "Server file generation failed"
+msgstr "Generación de archivos del servidor falló"
+
+msgid "Person added"
+msgstr "Persona añadido"
+
+msgid "Person updated"
+msgstr "Persona actualizada"
+
+msgid "Person deleted"
+msgstr "Persona eliminada"
+
+msgid "Template saved"
+msgstr "Plantilla guardada"
+
+msgid "Template deleted"
+msgstr "Plantilla eliminada"
+
+msgid "Provider saved"
+msgstr "Proveedor salvado"
+
+msgid "Provider deleted"
+msgstr "Proveedor eliminado"
+
+msgid "Provider test"
+msgstr "Prueba de proveedor"
+
+msgid "Settings saved"
+msgstr "Configuración guardada"
+
+msgid "Message queued"
+msgstr "Mensaje apagado"
+
+msgid "Message sent"
+msgstr "Mensaje enviado"
+
+msgid "Message failed"
+msgstr "El mensaje falló"
+
+msgid "Message scheduled for retry"
+msgstr "Mensaje programado para la reingreso"
+
+msgid "Message cancelled"
+msgstr "Mensaje cancelado"
+
+msgid "Bulk send started"
+msgstr "Envío masivo iniciado"
+
+msgid "Number added to contacts"
+msgstr "Número añadido a los contactos"
+
+msgid "Number removed from contacts"
+msgstr "Número eliminado de los contactos"
+
+msgid "View certificate"
+msgstr "Ver certificado"
+
+msgid "View in queue"
+msgstr "Vista en cola"
+
+msgid "You do not have permission to download logs."
+msgstr "Usted no tiene permiso para descargar los registros."

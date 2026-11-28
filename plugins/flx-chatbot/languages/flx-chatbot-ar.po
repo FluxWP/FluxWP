@@ -1203,3 +1203,12 @@ msgstr "نافذة دردشة مدعومة بالذكاء الاصطناعي إ�
 
 msgid "Still answering. Please wait a moment."
 msgstr "ما زال يجيب. من فضلك انتظر لحظة."
+
+msgid "Answers site chats"
+msgstr "يجيب على الدردشة الموقعية"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript مطلوب لهذه الشاشة."
+
+msgid "Chat on WhatsApp"
+msgstr "تـحـدث WhatsApp"

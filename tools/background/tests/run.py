@@ -67,7 +67,7 @@ def check(ok, message):
 
 def fast_wake():
     if not args.worker_script.is_file():
-        raise RuntimeError('docker/scripts/worker.sh not found; pass --worker-script to verify fast wake')
+        raise RuntimeError('worker.sh not found (default: docker/scripts/worker.sh); pass --worker-script path to FluxWP/docker-wordpress scripts/worker.sh to verify fast wake')
     excluded = run('wake-prepare')['excluded']
     name = 'fluxwp-bg-wake-qa-' + uuid.uuid4().hex[:8]
     with tempfile.TemporaryDirectory(prefix='flx-wake-qa-', dir=worker_env['WPENV']) as directory:

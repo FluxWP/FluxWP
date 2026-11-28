@@ -416,5 +416,6 @@
  "Show now": "Şimdi göster",
  "If hidden, show again": "Gizlenirse yeniden göster",
  "Hide": "Gizle",
- "The action could not be completed: %s": "İşlem tamamlanamadı: %s"
+ "The action could not be completed: %s": "İşlem tamamlanamadı: %s",
+ "Setup wizard, presets and FluxWP package updates": "Kurulum sihirbazı, ön ayarlar ve FluxWP paket güncellemeleri"
 }

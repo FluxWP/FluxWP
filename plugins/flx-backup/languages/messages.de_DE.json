@@ -7,8 +7,8 @@
   },
   "messages": {
     "Backups": "Backups",
-    "Backups › Dashboard": "Backups › Dashboard",
-    "Dashboard": "Armaturenbrett",
+    "Backups › Dashboard": "Sicherungen › Übersicht",
+    "Dashboard": "Übersicht",
     "Backups › Settings": "Backups › Einstellungen",
     "Settings": "Einstellungen",
     "Permanently delete this backup?": "Dieses Backup endgültig löschen?",
@@ -111,7 +111,7 @@
     "No backups.": "Keine Backups.",
     "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer.": "Sicherungen werden in %s gespeichert. Hostinger nimmt diesen Ordner nicht in seine eigenen Backups auf: Laden Sie wichtige Backups auf Ihren Computer herunter.",
     "Database": "Datenbank",
-    "Plugin": "Plugin",
+    "Plugin": "Plugins",
     "Theme": "Thema",
     "WordPress core": "WordPress-Kern",
     "Select": "Auswählen",
@@ -289,7 +289,7 @@
     "Restoring database: %s": "Datenbank wird wiederhergestellt: %s",
     "Preparing files…": "Dateien werden vorbereitet...",
     "Restoring files: %1$s / %2$s": "Dateien wiederherstellen: %1$s/%2$s",
-    "%s s": "%s s",
+    "%s s": "%s",
     "%1$s min %2$s s": "%1$s min %2$s s",
     "%1$s h %2$s min": "%1$s h %2$s min",
     "Cancelled.": "Abgesagt.",
@@ -304,7 +304,7 @@
     "Update": "Aktualisieren",
     "WP-CLI": "WP-CLI",
     "Before restore": "Vor der Wiederherstellung",
-    "Plugin (API)": "Plugin (API)",
+    "Plugin (API)": "Plugin ( API )",
     "Uploaded": "Hochgeladen",
     "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings.": "Die geschätzte Sicherungsgröße (%1$s) ist größer als das Kontingent (%2$s). Erhöhen Sie das Kontingent in den Einstellungen.",
     "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota.": "Nicht genügend Kontingent: Das neue Backup hat etwa %1$s, verbrauchtes %2$s und Kontingent %3$s. Die verbleibenden Backups sind gesperrt; Einige davon entsperren oder löschen oder das Kontingent erhöhen.",
@@ -349,6 +349,8 @@
     "No backups": "Keine Backups",
     "Back up": "Sichern",
     "Progress": "Fortschritt",
-    "Take the first backup with Back up now. Restore is done in the panel.": "Erstellen Sie das erste Backup mit „Jetzt sichern“. Die Wiederherstellung erfolgt im Panel."
+    "Take the first backup with Back up now. Restore is done in the panel.": "Erstellen Sie das erste Backup mit „Jetzt sichern“. Die Wiederherstellung erfolgt im Panel.",
+    "JavaScript is required for this screen.": "Für diesen Bildschirm ist JavaScript erforderlich.",
+    "%s%%": "%s % %"
   }
 }

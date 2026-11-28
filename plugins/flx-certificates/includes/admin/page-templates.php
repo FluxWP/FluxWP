@@ -92,7 +92,7 @@ function flxs_page_templates() {
 		$counts[ $r['template_id'] ] = (int) $r['n'];
 	}
 	flxs_admin_header(
-		'Şablonlar',
+		__( 'Templates', 'flx-certificates' ),
 		array( array( 'label' => '+ Yeni şablon', 'url' => admin_url( 'admin.php?page=flxs-sablonlar&new=1' ), 'class' => 'button-primary' ) ),
 		'Her şablon bir arka plan (PDF ya da görsel) ve üzerine yazılan alanlardan oluşur. Canva vb. ile hazırladığınız PDF\'i yükleyip isim, tarih gibi alanları sürükleyerek yerleştirin.'
 	);
@@ -119,8 +119,8 @@ function flxs_page_templates() {
 	<form method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxs-card flxs-import">
 		<?php wp_nonce_field( 'flxs_tpl_import' ); ?>
 		<input type="hidden" name="action" value="flxs_tpl_import">
-		<strong>Şablon içe aktar</strong> <span class="flxs-muted">(başka bir sitedeki "Dışa aktar" dosyası, arka planıyla birlikte)</span>
-		<input type="file" name="file" accept=".json,application/json"> <button class="button">İçe aktar</button>
+		<strong><?php esc_html_e( 'Import template', 'flx-certificates' ); ?></strong> <span class="flxs-muted">(başka bir sitedeki "Dışa aktar" dosyası, arka planıyla birlikte)</span>
+		<input type="file" name="file" accept=".json,application/json"> <button class="button"><?php esc_html_e( 'Import', 'flx-certificates' ); ?></button>
 	</form>
 	<?php
 	flxs_admin_footer();
@@ -168,28 +168,28 @@ function flxs_page_template_editor( $id ) {
 	<div class="flxs-te" id="flxs-te">
 		<div class="flxs-te__side">
 			<section class="flxs-card">
-				<label class="flxs-field"><span>Şablon adı (panelde görünür)</span><input type="text" id="te-name"></label>
-				<label class="flxs-field"><span>Sertifika başlığı (sayfada, mesajlarda {sertifika})</span><input type="text" id="te-title"></label>
+				<label class="flxs-field"><span><?php esc_html_e( 'Template name (shown in the dashboard)', 'flx-certificates' ); ?></span><input type="text" id="te-name"></label>
+				<label class="flxs-field"><span><?php esc_html_e( 'Certificate title (on the page and in messages as {sertifika})', 'flx-certificates' ); ?></span><input type="text" id="te-title"></label>
 				<div class="flxs-grid">
-					<label class="flxs-field"><span>Durum</span><select id="te-status"><option value="active">Aktif</option><option value="inactive">Pasif</option></select></label>
-					<label class="flxs-field"><span>Tarih biçimi</span><select id="te-datefmt"><option value="d.m.Y">09.10.2026</option><option value="j F Y">9 Ekim 2026</option><option value="d/m/Y">09/10/2026</option><option value="F Y">Ekim 2026</option></select></label>
+					<label class="flxs-field"><span><?php esc_html_e( 'Status', 'flx-certificates' ); ?></span><select id="te-status"><option value="active">Aktif</option><option value="inactive">Pasif</option></select></label>
+					<label class="flxs-field"><span><?php esc_html_e( 'Date format', 'flx-certificates' ); ?></span><select id="te-datefmt"><option value="d.m.Y">09.10.2026</option><option value="j F Y">9 Ekim 2026</option><option value="d/m/Y">09/10/2026</option><option value="F Y">Ekim 2026</option></select></label>
 				</div>
 			</section>
 
 			<section class="flxs-card">
 				<h2 class="flxs-card__title">Arka plan</h2>
 				<div class="flxs-grid">
-					<label class="flxs-field"><span>Tür</span><select id="te-bgtype"><option value="pdf">PDF (önerilen)</option><option value="image">Görsel (JPG/PNG)</option><option value="none">Düz renk</option></select></label>
+					<label class="flxs-field"><span><?php esc_html_e( 'Type', 'flx-certificates' ); ?></span><select id="te-bgtype"><option value="pdf"><?php esc_html_e( 'PDF (recommended)', 'flx-certificates' ); ?></option><option value="image"><?php esc_html_e( 'Image (JPG/PNG)', 'flx-certificates' ); ?></option><option value="none"><?php esc_html_e( 'Solid color', 'flx-certificates' ); ?></option></select></label>
 					<label class="flxs-field" id="te-color-wrap"><span>Renk</span><input type="color" id="te-bgcolor"></label>
 				</div>
 				<div class="flxs-bgfile" id="te-bgfile">
 					<span id="te-bgname" class="flxs-muted"></span>
-					<button type="button" class="button" id="te-bgpick">Dosya seç / yükle</button>
+					<button type="button" class="button" id="te-bgpick"><?php esc_html_e( 'Choose or upload a file', 'flx-certificates' ); ?></button>
 				</div>
 				<div class="flxs-grid" id="te-size">
-					<label class="flxs-field"><span>Sayfa boyutu</span><select id="te-preset"><option value="">Özel</option><option value="841.89x595.28">A4 yatay</option><option value="595.28x841.89">A4 dikey</option><option value="1060.5x1500">Canva dikey (1060×1500)</option><option value="1500x1060.5">Canva yatay</option></select></label>
-					<label class="flxs-field"><span>Genişlik (pt)</span><input type="number" step="0.01" id="te-w"></label>
-					<label class="flxs-field"><span>Yükseklik (pt)</span><input type="number" step="0.01" id="te-h"></label>
+					<label class="flxs-field"><span>Sayfa boyutu</span><select id="te-preset"><option value=""><?php esc_html_e( 'Custom', 'flx-certificates' ); ?></option><option value="841.89x595.28">A4 yatay</option><option value="595.28x841.89">A4 dikey</option><option value="1060.5x1500">Canva dikey (1060×1500)</option><option value="1500x1060.5">Canva yatay</option></select></label>
+					<label class="flxs-field"><span><?php esc_html_e( 'Width (pt)', 'flx-certificates' ); ?></span><input type="number" step="0.01" id="te-w"></label>
+					<label class="flxs-field"><span><?php esc_html_e( 'Height (pt)', 'flx-certificates' ); ?></span><input type="number" step="0.01" id="te-h"></label>
 				</div>
 				<p class="description">PDF/görsel seçince boyut otomatik alınır. Canva'dan "PDF Baskı" olarak indirip değişecek yazıları (isim vb.) silerek yükleyin.</p>
 			</section>
@@ -214,9 +214,9 @@ function flxs_page_template_editor( $id ) {
 			</section>
 
 			<section class="flxs-card">
-				<h2 class="flxs-card__title">Paylaşım önizlemesi (link)</h2>
-				<label class="flxs-field"><span>Başlık (og:title)</span><input type="text" id="te-ogt"></label>
-				<label class="flxs-field"><span>Açıklama</span><input type="text" id="te-ogd"></label>
+				<h2 class="flxs-card__title"><?php esc_html_e( 'Link sharing preview', 'flx-certificates' ); ?></h2>
+				<label class="flxs-field"><span><?php esc_html_e( 'Title (og:title)', 'flx-certificates' ); ?></span><input type="text" id="te-ogt"></label>
+				<label class="flxs-field"><span><?php esc_html_e( 'Description', 'flx-certificates' ); ?></span><input type="text" id="te-ogd"></label>
 				<p class="description">WhatsApp/Telegram/Facebook'ta link paylaşılınca bu başlık ve sertifikanın görseli çıkar. Yer tutucular: {ad_soyad} {ad} {sertifika} {tarih} {site} ve alan anahtarları.</p>
 			</section>
 
@@ -224,7 +224,7 @@ function flxs_page_template_editor( $id ) {
 				<h2 class="flxs-card__title">Bu şablona özel mesajlar <small>boşsa Ayarlar'daki varsayılan</small></h2>
 				<label class="flxs-field"><span>SMS</span><textarea id="te-msg-sms" rows="3"></textarea></label>
 				<label class="flxs-field"><span>WhatsApp</span><textarea id="te-msg-whatsapp" rows="4"></textarea></label>
-				<label class="flxs-field"><span>E-posta konusu</span><input type="text" id="te-msg-email_subject"></label>
+				<label class="flxs-field"><span><?php esc_html_e( 'Email subject', 'flx-certificates' ); ?></span><input type="text" id="te-msg-email_subject"></label>
 				<label class="flxs-field"><span>E-posta metni ({buton} = sertifika butonu)</span><textarea id="te-msg-email_body" rows="5"></textarea></label>
 			</section>
 		</div>
@@ -232,7 +232,7 @@ function flxs_page_template_editor( $id ) {
 		<div class="flxs-te__main">
 			<div class="flxs-te__bar">
 				<span class="flxs-muted">Alanları sürükleyin, sağ kenardan genişliği ayarlayın. Ok tuşlarıyla 1pt (Shift ile 10pt) kaydırın.</span>
-				<label class="flxs-te__sample"><input type="checkbox" id="te-sample" checked> Örnek verilerle</label>
+				<label class="flxs-te__sample"><input type="checkbox" id="te-sample" checked> <?php esc_html_e( 'With sample data', 'flx-certificates' ); ?></label>
 				<button type="button" class="button button-primary" id="te-save">Kaydet</button>
 			</div>
 			<div class="flxs-te__stage" id="te-stage">

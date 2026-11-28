@@ -1,5 +1,24 @@
 # Değişiklikler
 
+## 2.48.1
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
+## 2.48.0
+- **Flux Donate artık kart almaz; ödeme yalnız WooCommerce'in ödeme yöntemleriyle (kart için Flux POS).** Donate'in kendi ödeme sistemi kaldırıldı: iyzico ödeme yöntemi ve kart alanları, EsnekPOS adaptörü ve sayfadaki kart formu, ödeme yöntemleri yetenek tablosu ve tek kart kuralı ("Kart ödeme yöntemi", "Kart ödeme ekranı", "En çok taksit", "Diğer ödeme eklentilerini blokta göster" ayarları), iyzico bildirim adresi, Flux Commerce aboneliği için iyzico kart sağlayıcısı, Flux Forms ödeme katmanındaki Stripe / iyzico / test sağlayıcıları ve Bağışlar › Ödemeler sayfası. Tek kart kuralı, blokta gösterim ve ödeme logoları Flux POS'ta.
+- **Aylık bağış Flux POS'un kayıtlı kartıyla.** Aylık satırı olan siparişte ödeme sayfasında yalnız Flux POS "Kart ile öde" çıkar ve Flux POS kartı ödeme kuruluşunda saklar (şimdilik Stripe hesabı). Her ay saatlik görev (`flxb_renewals`) yenileme siparişini açar ve kartı Flux POS ile çeker; Flux POS siparişi öder, bağış kaydı siparişten yazılır. Çekilemezse 1 ve 3 gün sonra yeniden denenir, sonra "ödemesi gecikti" olur ve bağışçıya e-posta gider. Cevabı gelmeyen çekim tekrarlanmaz. Kart saklayan Flux POS hesabı yoksa aylık seçeneği kapalıdır.
+- Bağışçının iptal bağlantısı `flxb/v1/recurring/cancel`; Düzenli bağışlar ve CRM kartındaki "İptal" düğmesi ödeme kuruluşuna gitmeden tekrarı durdurur ve saklanan kart kimliklerini siler. Kancalar: `flxb_renewal_retry_delays`, `flxb_renewal_donor_emails`, `flxb_renewal_paid`, `flxb_renewal_failed`, `flxb_subscription_canceled`.
+- Ödeme sayfasındaki "Ödemeler … ile güvenle alınır" satırı sağlayıcı adını `flx_secure_badge_provider` filtresinden alır (Flux POS doldurur). Bağış koşulları metni POS adını sabit yazmaz.
+- Sistem kontrolü: iyzico anahtar ve bağlantı testi kalktı; kart ve aylık bağış satırları Flux POS'a bakar.
+- Kurulumda veri taşınmaz (temiz kurulum).
+
+## 2.47.1
+- Bağış ekle, Bağış türü düzenle ve Ortak düzenle ekranlarında geri düğmesi başlıktaki modül simgesinin yerine geçer; içerikteki "‹ Bağışlar" bağlantısı kalktı.
+
+## 2.47.0
+- **Sade ödeme sayfası (Görünüm › "Sade ödeme").** Ad, telefon ve e-posta en üstte tek kartta; telefon ve e-posta ikisi de zorunlu, bu yüzden kart formu telefonu altta bir daha sormaz. Kart formunun altında yalnız 3D Secure satırı kalır: taksit bekleme notu (taksit varsa kutu görünür), "şifreli gönderilir" satırları ve "Kart ödemesi için telefon gerekir" notu ile "Güvenli ödeme" rozetindeki sağlayıcı adı kalktı. Kapalıyken (varsayılan) hiçbir şey değişmez.
+- Kupon kutusu ve adres defteri zaten Görünüm'de ayrı anahtarlar; bu sürümle sade ödeme bunlarla birlikte kullanılır.
+
 ## 2.46.0
 - Bağışlar, Bağışçılar, Düzenli bağışlar ve Takip listeleri klasik ekranla aynı: ortak filtre çubuğu (filtre değişince hemen uygulanır, kalanlar "Filtreler" altında), sayfa numaraları ve "Sayfa başı" seçimi (varsayılan 20).
 - Tablolarda tarih yine 24.11.2026 23:52 biçiminde; Bağışçılar'da son bağış yalnız tarih.

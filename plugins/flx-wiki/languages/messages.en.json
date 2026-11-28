@@ -178,6 +178,17 @@
     "select": "select",
     "open": "open",
     "close": "close",
-    "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.": "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
+    "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.": "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.",
+    "JavaScript is required for this screen.": "JavaScript is required for this screen.",
+    "You cannot edit this page.": "You cannot edit this page.",
+    "The parent page was not found.": "The parent page was not found.",
+    "A page cannot be placed under itself.": "A page cannot be placed under itself.",
+    "This status is not available.": "This status is not available.",
+    "You cannot delete this page.": "You cannot delete this page.",
+    "The page could not be deleted.": "The page could not be deleted.",
+    "You cannot manage sections.": "You cannot manage sections.",
+    "A section name is required.": "A section name is required.",
+    "Section not found.": "Section not found.",
+    "The section could not be deleted.": "The section could not be deleted."
   }
 }

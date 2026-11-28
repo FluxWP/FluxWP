@@ -1,0 +1,1039 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Manages the site files (Flux Files)"
+msgstr "处理现场档案(Flux Files)"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Browse, edit and share the site files"
+msgstr "浏览、编辑和共享网站文件"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Flux Files needs JavaScript."
+msgstr "所需文件 JavaScript."
+
+msgid "Something went wrong. Try again."
+msgstr "T又是错误的。"
+
+msgid "Location"
+msgstr "地点"
+
+msgid "Site root"
+msgstr "站点根根"
+
+msgid "Browser"
+msgstr "浏览器"
+
+msgid "Editor"
+msgstr "编辑器"
+
+msgid "Upload"
+msgstr "上传"
+
+msgid "New"
+msgstr "新"
+
+msgid "More"
+msgstr "更多"
+
+msgid "Read-only: file changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "可悲的是,该网站(DISALLOW_FILE_MODS)的卷宗变更是残疾的。"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Forward"
+msgstr "前进"
+
+msgid "Folder"
+msgstr "文件夹"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Search in this folder…"
+msgstr "在此文件夹中搜索..."
+
+msgid "Also search inside text and code files"
+msgstr "也在文档和文档内进行搜查"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "List or grid"
+msgstr "列表或网格"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "Drop files or folders to upload"
+msgstr "丢弃要上传的文件或文件夹"
+
+msgid "Show or hide files"
+msgstr "显示或隐藏文件"
+
+msgid "Choose a file on the left to edit it."
+msgstr "选择左边的文件编辑它 。"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Trash"
+msgstr "垃圾"
+
+msgid "Activity"
+msgstr "活动"
+
+msgid "Results for \"%s\""
+msgstr "成果%s\""
+
+msgid "Name · A to Z"
+msgstr "姓名 A至Z"
+
+msgid "Name · Z to A"
+msgstr "Z至A"
+
+msgid "Modified · newest"
+msgstr "更新"
+
+msgid "Modified · oldest"
+msgstr "年龄"
+
+msgid "Size · largest"
+msgstr "规模最大"
+
+msgid "Size · smallest"
+msgstr "规模最小"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "No results"
+msgstr "没有结果"
+
+msgid "This folder is empty"
+msgstr "这支fold是空y"
+
+msgid "Drag files here or use Upload."
+msgstr "在此拖放文件或使用上传 。"
+
+msgid "%s items"
+msgstr "%s项目"
+
+msgid "1 item"
+msgstr "1项"
+
+msgid "Actions"
+msgstr "行动"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Modified"
+msgstr "修改"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "Permissions"
+msgstr "权限"
+
+msgid "Original location"
+msgstr "原地点"
+
+msgid "Deleted"
+msgstr "已删除"
+
+msgid "Showing the first results only. Search in a smaller folder for more."
+msgstr "只展示第一个结果,更少地寻找。"
+
+msgid "Protected: cannot be moved, renamed or deleted"
+msgstr "受保护:不得移转、改称或删除"
+
+msgid "Contains secrets: never shared with AI"
+msgstr "秘密:从未与大赦国际分享"
+
+msgid "WordPress core file"
+msgstr "WordPress 核心卷宗"
+
+msgid "%s selected"
+msgstr "已选择%s"
+
+msgid "%s on clipboard"
+msgstr "%s 贴在剪贴板上的"
+
+msgid "Storage"
+msgstr "存储"
+
+msgid "measuring…"
+msgstr "衡量."
+
+msgid "%s used"
+msgstr "%s 旧"
+
+msgid "Hosting account: %1$s files, measured %2$s"
+msgstr "托管账户: %1$s 量测的文档 %2$s"
+
+msgid "Cut"
+msgstr "Cut"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Paste"
+msgstr "Paste"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Download as ZIP"
+msgstr "下载为 ZIP"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Clear selection"
+msgstr "清除选择"
+
+msgid "Upload files"
+msgstr "上载文件"
+
+msgid "Upload folder"
+msgstr "上载重机"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "New file"
+msgstr "新卷宗"
+
+msgid "New folder"
+msgstr "新建文件夹"
+
+msgid "Folder info"
+msgstr "文件夹信息"
+
+msgid "File info"
+msgstr "文件信息"
+
+msgid "Copy path"
+msgstr "复印路"
+
+msgid "Path from the site root"
+msgstr "从现场 the生"
+
+msgid "Full server path"
+msgstr "全套服务器"
+
+msgid "Web address (URL)"
+msgstr "网址(URL)"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "Archive…"
+msgstr "Archive.."
+
+msgid "The ZIP file is created in this folder."
+msgstr "在此文件夹中创建 ZIP 文件 。"
+
+msgid "Extract"
+msgstr "Extract"
+
+msgid "Duplicate"
+msgstr "重复"
+
+msgid "Copy or move"
+msgstr "复制或移动"
+
+msgid "Move to…"
+msgstr "Move to.."
+
+msgid "Copy to…"
+msgstr "Copy to.."
+
+msgid "Show in folder"
+msgstr "在文件夹中显示"
+
+msgid "Permissions…"
+msgstr "Permissions."
+
+msgid "Share on site"
+msgstr "现场共享"
+
+msgid "Stop sharing"
+msgstr "停止分享"
+
+msgid "Version history"
+msgstr "历史"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "%s items cut. Open a folder and paste."
+msgstr "%s 切割、开.和 past。"
+
+msgid "Cut. Open a folder and paste."
+msgstr "剪切。 打开文件夹和粘贴 。"
+
+msgid "%s items copied. Open a folder and paste."
+msgstr "%s 打印,打开fold和 past。"
+
+msgid "Copied. Open a folder and paste."
+msgstr "收到 打开文件夹和粘贴"
+
+msgid "Move \"%s\" to the trash?"
+msgstr "将 \" %s \" 移到垃圾桶?"
+
+msgid "Move %s items to the trash?"
+msgstr "将 %s 项移入垃圾桶吗 ?"
+
+msgid "You can restore it from the trash."
+msgstr "你可以从灾难中恢复。"
+
+msgid "%s items moved to the trash."
+msgstr "%s 物品移至灾难。"
+
+msgid "Some items could not be processed"
+msgstr "有些物品无法处理"
+
+msgid "Already exists"
+msgstr "存在"
+
+msgid "%s items already exist in the target folder. Replace them? The replaced files go to the trash."
+msgstr "%s 现已有目标文件,替换这些物品? 替换的文档到陷.。"
+
+msgid "Overwrite"
+msgstr "Overwrite"
+
+msgid "Skip"
+msgstr "跳过"
+
+msgid "Skipped"
+msgstr "跳过"
+
+msgid "%s items moved."
+msgstr "%s 项目移转。"
+
+msgid "%s items copied."
+msgstr "%s 复制的项目。"
+
+msgid "Folder name"
+msgstr "文件夹名称"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Created."
+msgstr "Created."
+
+msgid "Working…"
+msgstr "工作..."
+
+msgid "Archive created."
+msgstr "创建归档 。"
+
+msgid "\"%s\" will be extracted into a new folder next to it."
+msgstr "\"%sextract 将 extract带入新fold。"
+
+msgid "Extracted %s files."
+msgstr "Extracted %s 文档。"
+
+msgid "Shared on the site"
+msgstr "在现场共享"
+
+msgid "Visitors can browse and download this folder where you add the shortcode below (copied). Add it to any page or post."
+msgstr "访客可以row览并下载这条fold,如果你在下面(复印)添加短co,就会把它添加到任何页面或员额上。"
+
+msgid "No longer shared."
+msgstr "不再共享。"
+
+msgid "Calculate"
+msgstr "计算"
+
+msgid "Calculating…"
+msgstr "正在计算..."
+
+msgid "%s files"
+msgstr "%s 文档"
+
+msgid "1 file"
+msgstr "1份档案"
+
+msgid "partial"
+msgstr "部分的"
+
+msgid "Not writable"
+msgstr "不可推测"
+
+msgid "Notes"
+msgstr "注释"
+
+msgid "Image"
+msgstr "图片"
+
+msgid "Video"
+msgstr "视频"
+
+msgid "Audio"
+msgstr "音频"
+
+msgid "PDF document"
+msgstr "PDF 文件"
+
+msgid "Archive"
+msgstr "存档"
+
+msgid "Code"
+msgstr "代码"
+
+msgid "Document"
+msgstr "文件"
+
+msgid "Text"
+msgstr "文字"
+
+msgid "Font"
+msgstr "字体"
+
+msgid "File"
+msgstr "文件"
+
+msgid "Owner"
+msgstr "业主"
+
+msgid "Group"
+msgstr "集团"
+
+msgid "Everyone"
+msgstr "大家"
+
+msgid "Read"
+msgstr "阅读"
+
+msgid "Write"
+msgstr "写"
+
+msgid "Execute"
+msgstr "Execute"
+
+msgid "Write access for everyone is not allowed."
+msgstr "不允许人人都有自由参加。"
+
+msgid "Numeric value"
+msgstr "数值"
+
+msgid "Usual values: 644 for files, 755 for folders."
+msgstr "通常值: 文件为644, 文件夹为755。"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Saved."
+msgstr "已保存。"
+
+msgid "Choose this folder"
+msgstr "选择此文件夹"
+
+msgid "Loading…"
+msgstr "加载中..."
+
+msgid "No subfolders"
+msgstr "无子文件夹"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "Next"
+msgstr "下一步"
+
+msgid "Each save keeps the previous content. The last %s versions of a file are kept."
+msgstr "每种储蓄都保留以前的内容。 %s 文档保存。"
+
+msgid "No earlier versions yet."
+msgstr "以前没有版本。"
+
+msgid "Difference from the current file"
+msgstr "现有档案的差异"
+
+msgid "Restore this version"
+msgstr "恢复此版本"
+
+msgid "The file goes back to this version. The current content is kept as a new version."
+msgstr "卷宗可追溯到这一版本,目前的内容作为新的版本。"
+
+msgid "Restored."
+msgstr "Restored."
+
+msgid "Panel"
+msgstr "面板"
+
+msgid "AI chat"
+msgstr "AI 聊天"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Site"
+msgstr "网站"
+
+msgid "%s unchanged lines"
+msgstr "%s 不变"
+
+msgid "No changes."
+msgstr "没有变化。"
+
+msgid "Uploading %1$s / %2$s"
+msgstr "上载 %1$s / %2$s"
+
+msgid "%s files uploaded"
+msgstr "%s 上载文件"
+
+msgid "1 file uploaded"
+msgstr "1份文件上载"
+
+msgid "Upload failed"
+msgstr "装卸"
+
+msgid "\"%s\" already exists. Replace it? The old file is kept as a version."
+msgstr "\" %s . 已存在,替换旧档案,作为版本。"
+
+msgid "Items are deleted for good after %s days."
+msgstr "项目在很好之后删除 %s 天数。"
+
+msgid "Items stay until you empty the trash."
+msgstr "这些项目一直到你empt掉了这一悲剧为止。"
+
+msgid "Empty trash"
+msgstr "空垃圾垃圾桶"
+
+msgid "The trash is empty"
+msgstr "tr是空ash"
+
+msgid "Kept until %s"
+msgstr "一直持续到 %s"
+
+msgid "Restore"
+msgstr "恢复"
+
+msgid "Delete permanently"
+msgstr "永久删除"
+
+msgid "This cannot be undone."
+msgstr "这不能是站不住脚的。"
+
+msgid "Everything in the trash will be deleted permanently. This cannot be undone."
+msgstr "这场灾难中的每一件事都将永久地删除,这不可能是站不住脚的。"
+
+msgid "Restored to %s"
+msgstr "恢复原状 %s"
+
+msgid "%s items deleted."
+msgstr "%s 删除。"
+
+msgid "All"
+msgstr "全部"
+
+msgid "No activity yet"
+msgstr "尚未活动"
+
+msgid "Load more"
+msgstr "加载更多"
+
+msgid "%s events"
+msgstr "%s 活动"
+
+msgid "1 event"
+msgstr "1次活动"
+
+msgid "Created"
+msgstr "已创建"
+
+msgid "Edited"
+msgstr "Edited"
+
+msgid "Renamed"
+msgstr "改名"
+
+msgid "Moved"
+msgstr "Moved"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Moved to trash"
+msgstr "已移至垃圾箱"
+
+msgid "Restored"
+msgstr "已恢复"
+
+msgid "Deleted permanently"
+msgstr "永久删除"
+
+msgid "Permissions changed"
+msgstr "改变了排放"
+
+msgid "Archived"
+msgstr "已存档"
+
+msgid "Extracted"
+msgstr "Extracted"
+
+msgid "Uploaded"
+msgstr "已上传"
+
+msgid "Version restored"
+msgstr "恢复"
+
+msgid "Settings changed"
+msgstr "设置已更改"
+
+msgid "Shared on site"
+msgstr "现场共享"
+
+msgid "Sharing stopped"
+msgstr "已停止共享共享"
+
+msgid "View"
+msgstr "查看"
+
+msgid "Show hidden files"
+msgstr "显示隐藏文件"
+
+msgid "Files starting with a dot, such as .htaccess."
+msgstr "文件以点开始, 例如. hit access 。"
+
+msgid "Safety"
+msgstr "安全"
+
+msgid "Keep trash for (days)"
+msgstr "(天数)"
+
+msgid "0 keeps items until you empty the trash."
+msgstr "0. 保留项目直到你empt掉了这场灾难。"
+
+msgid "Versions per file"
+msgstr "每卷"
+
+msgid "Disk quota (GB)"
+msgstr "磁盘配额(GB)"
+
+msgid "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only."
+msgstr "100. 整个托管账户的使用量是衡量的。 0 仅显示使用量。"
+
+msgid "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."
+msgstr "以前的物料保存在每种储蓄(最多为3个甲基溴)上,0次转折。"
+
+msgid "AI and MCP"
+msgstr "人工智能和MCP"
+
+msgid "Flux AI chat can list, read and search files, and asks you before every change. wp-config.php, .env and key files are never shared."
+msgstr "通气 AI 聊天可以列出、阅读和搜索文件, 并在每次更改之前询问您 。 wp- config.php, .env 和 关键文件从不共享 。"
+
+msgid "External MCP clients may change files"
+msgstr "外部 MCP 客户可更改档案"
+
+msgid "Off: Claude, ChatGPT and other MCP clients can only read. On: they can write, move and delete (to the trash)."
+msgstr "Off: Claude, ChatGPT and other MCP 客户只能阅读:可以写、移动和删除(到灾难)。"
+
+msgid "AI may write code files"
+msgstr "大赦国际可撰写代码档案"
+
+msgid "Lets AI change .php, .js, .css, .html, .htaccess and similar files. WordPress core and protected files stay off-limits."
+msgstr "Lets AI change .php, .js, .css, .html, .htaccess and similar files. WordPress 核心和受保护的档案不受限制。"
+
+msgid "This lets AI change more of the site. Every change is still logged in Activity and earlier versions are kept. Continue?"
+msgstr "这使大赦国际更能改变网站,每一变化仍在活动记录之中,而且以前的版本都保留下来?"
+
+msgid "Shared folders"
+msgstr "共享fold器"
+
+msgid "Folders in uploads that visitors can browse with the [flx_files] shortcode. Right-click a folder › Share on site."
+msgstr "Folders in uploads that visitors can browse with the [flx_files] 短co. 右翼fold在现场的fold旋fold。"
+
+msgid "No shared folders."
+msgstr "没有共享文件夹 。"
+
+msgid "Show in browser"
+msgstr "在浏览器中显示"
+
+msgid "\"%s\" has unsaved changes. Close it anyway?"
+msgstr "\"%schanges 有无动于衷的改变?"
+
+msgid "Unsaved changes"
+msgstr "未保存的更改"
+
+msgid "Close without saving"
+msgstr "关闭,没有储蓄"
+
+msgid "Find"
+msgstr "Find"
+
+msgid "Copy content"
+msgstr "副本内容"
+
+msgid "Explain with AI"
+msgstr "与AI 解释"
+
+msgid "Explain the selection with AI"
+msgstr "与AI 解释选择"
+
+msgid "Edit with AI"
+msgstr "用人工智能编辑"
+
+msgid "Line %1$s, column %2$s"
+msgstr "直线 %1$s,栏 %2$s"
+
+msgid "%s lines"
+msgstr "%s 线"
+
+msgid "Unsaved"
+msgstr "Unsaved"
+
+msgid "Saved"
+msgstr "已保存"
+
+msgid "This file holds passwords or keys. It is never sent to AI; be careful when sharing it."
+msgstr "这一卷宗有密码或 key,从未送交大赦国际;在共享时应谨慎。"
+
+msgid "WordPress core file: changes are lost when WordPress updates."
+msgstr "WordPress 核心卷宗: WordPress 更新。"
+
+msgid "The server does not allow writing this file; it is opened read-only."
+msgstr "服务器不允许撰写这一档案;它只读了。"
+
+msgid "This is a WordPress core file. A mistake can break the site and the change is lost on the next WordPress update. Save anyway? The previous content is kept as a version."
+msgstr "这是 WordPress 核心卷宗:错可以打破网站,而下个路段的变更则损失 WordPress 最新情况? 以前的内容作为版本保留。"
+
+msgid "This file controls the site configuration. A mistake can take the site down. Save anyway? The previous content is kept as a version."
+msgstr "这一档案对现场的配置进行控制,可以将场地倒下,但不得有任何进展,而以前的内容则保留为一个版本。"
+
+msgid "Replace with"
+msgstr "改为:"
+
+msgid "Replace"
+msgstr "更换"
+
+msgid "Replace all"
+msgstr "替换所有"
+
+msgid "%s replaced."
+msgstr "%s 替换。"
+
+msgid "AI is working…"
+msgstr "大赦国际正在工作。"
+
+msgid "What should change?"
+msgstr "什么变化?"
+
+msgid "e.g. Add a comment above each function / Fix the syntax error on line 12"
+msgstr "e.g. 在每项职能上增加评论意见/在第12项中添加银河错误"
+
+msgid "AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save."
+msgstr "大赦国际建议改变并表明差异,在你适用时和新闻节之前,任何东西都不会节省。"
+
+msgid "Suggest a change"
+msgstr "建议作出变动"
+
+msgid "Apply in editor"
+msgstr "应用到编辑器"
+
+msgid "Up one level"
+msgstr "最高一级"
+
+msgid "Applied in the editor. Review it and press Save."
+msgstr "应用到编辑器中。 请阅读并按 保存 键 。"
+
+msgid "Explain file"
+msgstr "解释文件"
+
+msgid "Edit file with AI"
+msgstr "以 AI 编辑文件"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and choose a model."
+msgstr "Flux AI没有准备就绪,Install Flux AI &apos; MCP and choose a model."
+
+msgid "This file may contain passwords or keys, so it is never sent to AI."
+msgstr "该卷宗可能载有密码或 key,因此从未送交大赦国际。"
+
+msgid "The file is too large for AI (limit %s). Select a smaller file."
+msgstr "The file is too large for AI (limit) %s选择一个较小的档案。"
+
+msgid "Write what to change."
+msgstr "撰写什么来改变。"
+
+msgid "AI did not return a change."
+msgstr "大赦国际没有回去改变。"
+
+msgid "This path points outside the site folder."
+msgstr "这一路径在现场外线。"
+
+msgid "File or folder not found."
+msgstr "没有发现ile或fold。"
+
+msgid "Invalid path."
+msgstr "无效路径。"
+
+msgid "Invalid name."
+msgstr "无效的名称 。"
+
+msgid "The parent folder does not exist."
+msgstr "父母fold不复存在。"
+
+msgid "This is not a folder."
+msgstr "这不是一块fold。"
+
+msgid "The folder could not be read (permissions)."
+msgstr "无法读取文件夹( 允许) 。"
+
+msgid "This is not a file."
+msgstr "这不是一个档案。"
+
+msgid "The file could not be read (permissions)."
+msgstr "文件无法读取( 许可) 。"
+
+msgid "The file is larger than %s and cannot be opened in the editor. Download it instead."
+msgstr "卷宗多于 %s 不能在编辑中打开,而是在edi内装上。"
+
+msgid "This is a binary file and cannot be opened in the editor."
+msgstr "这是一份双质档案,不能在编辑中打开。"
+
+msgid "File changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "在这个地点(DISALLOW_FILE_MODS)上,残疾的改变。"
+
+msgid "This folder is managed by Flux Files."
+msgstr "这一fold由Flux电影公司管理。"
+
+msgid "Editing code files is disabled on this site (DISALLOW_FILE_EDIT)."
+msgstr "电子编码文件在这一地点是残疾的(DISALLOW_FILE_EDIT)。"
+
+msgid "AI cannot change protected or WordPress core files."
+msgstr "大赦国际不能改变受保护或 WordPress 核心档案。"
+
+msgid "AI is not allowed to write code files. Enable it in Flux Files › Settings."
+msgstr "大赦国际不得撰写密码文件,可查阅Flux Files  Set Settings。"
+
+msgid "A folder with this name already exists."
+msgstr "已经有一张手印。"
+
+msgid "A file with this name already exists."
+msgstr "已经有一份载有这一名字的档案。"
+
+msgid "The file changed on the server since you opened it. Reload it or save a copy."
+msgstr "卷宗自打开以来就在服务器上作了改动,重新装载或节省了副本。"
+
+msgid "The file is not writable (permissions)."
+msgstr "文件不可写( 许可) 。"
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "卷宗无法写成文(授权或磁盘空间)。"
+
+msgid "A file or folder with this name already exists."
+msgstr "已经有一张带有这一名字的档案或fold。"
+
+msgid "The folder could not be created (permissions)."
+msgstr "无法建立fold(排放)。"
+
+msgid "This file or folder is protected and cannot be moved, renamed or deleted."
+msgstr "这份档案或fold件受到保护,不能移转、改称或删除。"
+
+msgid "A folder cannot be moved into itself."
+msgstr "fold本身无法移动。"
+
+msgid "Could not move (permissions)."
+msgstr "无法移动(授权)。"
+
+msgid "AI cannot read or copy protected files."
+msgstr "大赦国际不能阅读或复制受保护的档案。"
+
+msgid "A folder cannot be copied into itself."
+msgstr "fold本身不能 co。"
+
+msgid "The folder has more than %s files; copy it with SSH or a backup tool."
+msgstr "The folder has than %s 文档;用SSH或备份工具复制。"
+
+msgid "Could not copy (permissions or disk space)."
+msgstr "不得复制(许可或磁盘空间)。"
+
+msgid "AI can only delete folders with fewer than 2,000 files."
+msgstr "大赦国际只能删除文件页数少于2 000份。"
+
+msgid "Could not move to the trash (permissions)."
+msgstr "不能迁到陷).(排放)。"
+
+msgid "Permissions can only be changed from the Flux Files screen."
+msgstr "权限只能从 Flux 文件屏幕上更改 。"
+
+msgid "Enter permissions as three digits, e.g. 644 or 755."
+msgstr "获得3位数的许可,例如644或755位。"
+
+msgid "World-writable permissions (e.g. 777) are not allowed."
+msgstr "不允许世界允许(如777)。"
+
+msgid "Permissions could not be changed."
+msgstr "不能改变许可。"
+
+msgid "Type at least 2 characters."
+msgstr "至少2类。"
+
+msgid "The PHP zip extension is not available on this server."
+msgstr "The PHP 该服务器上无法提供zi旋转。"
+
+msgid "Nothing selected."
+msgstr "没有选择。"
+
+msgid "The archive could not be created."
+msgstr "无法建立档案。"
+
+msgid "Too many files for one archive."
+msgstr "太多文件要归档 。"
+
+msgid "This archive could not be opened."
+msgstr "这一档案无法打开。"
+
+msgid "Too many files in this archive."
+msgstr "此归档中的文件太多 。"
+
+msgid "The archive contains unsafe paths and was not extracted."
+msgstr "档案含有不安全路径,没有提取。"
+
+msgid "Not enough disk space to extract this archive."
+msgstr "没有足够的余地来提取这一档案。"
+
+msgid "This folder is not shared. Open Flux Files, right-click the folder and choose \"Share on site\"."
+msgstr "露天.的电影、右fold脚fold和选址ShaShare不共享。"
+
+msgid "Search files…"
+msgstr "搜索文件..."
+
+msgid "Search files"
+msgstr "档案档案"
+
+msgid "%1$d result for \"%2$s\""
+msgid_plural "%1$d results for \"%2$s\""
+msgstr[0] "%1$d for的结果%2$s\""
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "No files found."
+msgstr "未找到文件 。"
+
+msgid "This folder is empty."
+msgstr "这fold是空的。"
+
+msgid "List files"
+msgstr "文档"
+
+msgid "Read file"
+msgstr "已读文件"
+
+msgid "File activity"
+msgstr "流动活动"
+
+msgid "Files in trash"
+msgstr "垃圾垃圾桶中的文件"
+
+msgid "Write file"
+msgstr "书状"
+
+msgid "Edit file (find and replace)"
+msgstr "编辑文件( 查找和替换)"
+
+msgid "Create folder"
+msgstr "创建文件夹"
+
+msgid "Move or rename"
+msgstr "移动或重命名"
+
+msgid "Delete (to trash)"
+msgstr "删除(待发)"
+
+msgid "Restore from trash"
+msgstr "从回收废件回收"
+
+msgid "Unknown action."
+msgstr "未知的行动。"
+
+msgid "The upload failed. The file may be larger than the server allows."
+msgstr "上载量没有完成,档案可能大于服务器允许的。"
+
+msgid "The upload failed. Try again."
+msgstr "上传失败。 再试一次 。"
+
+msgid "Not enough disk space."
+msgstr "空间不够。"
+
+msgid "The upload was interrupted. Try again."
+msgstr "上载量被打断,再次被打断。"
+
+msgid "Only folders inside the uploads folder can be shared on the site."
+msgstr "上载重机内只有fold器可在现场共享。"
+
+msgid "Version not found."
+msgstr "未找到版本。"
+
+msgid "This item is no longer in the trash."
+msgstr "这一项目已不再处于困境。"
+
+msgid "Could not restore (permissions)."
+msgstr "不能恢复(授权)。"
+
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d项目"
+
+msgid "Trash and versions folder"
+msgstr "垃圾文件夹和版本文件夹"
+
+msgid "Deleted files and earlier versions are kept in a private folder closed to the web."
+msgstr "删除的文档和以前的版本均以私人文件封面保留在网上。"
+
+msgid "The private folder under wp-content cannot be written. Deleting and versioning will fail; check the wp-content permissions."
+msgstr "电cont的私人fold不能打印,电.和打印将不会打开;检查电cont的许可。"
+
+msgid "ZIP support"
+msgstr "支持ZIP"
+
+msgid "Folders can be downloaded as ZIP, archived and extracted."
+msgstr "文件夹可以以 ZIP 格式下载、存档和提取。"
+
+msgid "The PHP zip extension is missing; ZIP download, archive and extract are off. Enable \"zip\" in the hosting PHP extensions."
+msgstr "The PHP 零散未加推广;ZIP下载、存档和摘录均被切除,可容纳 hostingzip\" PHP 延长。"
+
+msgid "File changes"
+msgstr "流利变化"
+
+msgid "DISALLOW_FILE_MODS is on: Flux Files is read-only."
+msgstr "数字文件已打开 。"
+
+msgid "Only administrators can use Flux Files. wp-config.php, .htaccess and WordPress core folders are protected from deletion."
+msgstr "只有行政人员可以使用Flux Files. wp-config.php, .htaccess and WordPress core folders are protected from deletion."
+
+msgid "DISALLOW_FILE_EDIT is on: code files (.php, .htaccess …) cannot be edited or uploaded."
+msgstr "代码文件 (.php,.htaccess...) 无法编辑或上传 。"
+
+msgid "AI and MCP file access"
+msgstr "AI and MCP 文档查阅"
+
+msgid "External MCP clients can change and delete files. Turn this off when you no longer need it."
+msgstr "外部 MCP 客户可以改变和删除档案,在你不再需要时,可以这样做。"
+
+msgid "AI chat asks before every change; external MCP clients can only read. Secret files are never shared."
+msgstr "AI chat asks before every change; external MCP 客户只能阅读,秘密档案从未共享。"
+
+msgid "Trash cleanup"
+msgstr "清理"
+
+msgid "The trash was last cleaned %s. It is also cleaned when an administrator opens Flux Files."
+msgstr "The trash was last cleaned %s行政人员开立了Flux电影时,也进行了清洗。"

@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.13.2
+- Yönetim ekranları için dil katalogları güncellendi. Etkinlik menüsü sağdan sola panel düzenine uyum sağlar.
+
+
+## 0.13.1
+- Alt ve düzenleme ekranlarında (Segmenti düzenle, Yolculuğu düzenle, Etkinliği düzenle, Yeni kişi vb.) geri düğmesi içerikte ayrı durmak yerine başlıktaki modül simgesinin yerine geçer.
+
 ## 0.13.0
 - Kişiler, etkinlikler ve diğer CRM ekranları klasik ekranların düzeniyle birebir aynı: ortak filtre çubuğu, sayfa numaraları ve "Sayfa başı" seçimi.
 

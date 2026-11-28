@@ -76,6 +76,9 @@ msgstr "JSファイルを縮小する"
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr "テーマとプラグインのスクリプトでは、ソースよりも新しい場合は .min 兄弟が使用されます。それ以外の場合は、コメントとインデントのないコピーが生成されます (改行は維持されます)。独自の場所を基準にしてチャンクをロードするバンドルと、翻訳付きのスクリプトはそのまま残されます。"
 
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "jQuery は常にブロックしたままになります (ページ上の古いインライン スクリプトが jQuery を直接呼び出す可能性があります)。 WordPress 自体は、その後にインライン スクリプトがあるスクリプト、またはブロック スクリプトが依存するスクリプトの遅延を削除します。"
+
 msgid "Defer head scripts"
 msgstr "ヘッドスクリプトを延期する"
 
@@ -272,7 +275,7 @@ msgid "\"Profile page\" opens the URL as a visitor (bypassing cache) and records
 msgstr "「プロフィールページ」は、訪問者として URL を開き (キャッシュをバイパスし)、それを詳細に記録します。"
 
 msgid "Time"
-msgstr "時間"
+msgstr "時刻"
 
 msgid "URL"
 msgstr "URL"
@@ -1500,3 +1503,138 @@ msgstr "旗"
 
 msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
 msgstr "サイトのパフォーマンスを 1 か所で: リクエストごとのクエリ、PHP エラー、外部 HTTP リクエスト (開発者パネル)、遅い/エラーのあるリクエスト ログ、サーバー (CPU、RAM、ディスク、OPcache)、データベース、自動ロード、cron、およびシステム チェック。 AI は、Flux AI および MCP / Flux AI ツールを使用してそれらをすべて読み取ります。"
+
+msgid "View Flux Speed"
+msgstr "視界磁速"
+
+msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
+msgstr "LiteSpeed Cache オブジェクトキャッシュと SQLite Object Cache の2つのオブジェクトキャッシュが同時にオンになっている。"
+
+msgid "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite is not used. Switch to SQLite below to fix it."
+msgstr "SQLite Object Cacheはアクティブだが、object-cache.phpは別のプラグインに属している。"
+
+msgid "SQLite Object Cache is active but object-cache.php is missing, so nothing is cached. Use \"Repair\" to recreate it."
+msgstr "SQLite Object Cacheはアクティブですが、 object-cache.phpが欠けているため、何もキャッシュされません。"
+
+msgid "LiteSpeed Cache object cache is on but object-cache.php belongs to another plugin. Turn one of them off."
+msgstr "LiteSpeed Cache オブジェクトキャッシュは、 object-cache.php が別のプラグインに属しています。"
+
+msgid "LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache."
+msgstr "LiteSpeed Cache オブジェクトキャッシュは Redis に設定されていますが、サーバーは Redis PHP 拡張子を持っていません。"
+
+msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
+msgstr "LiteSpeed Cache オブジェクトキャッシュは Memcached に設定されているが、Memcached PHP 拡張が存在しない。"
+
+msgid "Redis is set up for this site but object-cache.php is missing, so nothing is cached. Repair turns Redis Object Cache back on."
+msgstr "Redis は、このサイトの設定ですが、 object-cache.php が存在しないため、キャッシュされません。 Redis Object キャッシュのバックアップ。"
+
+msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
+msgstr "object-cache.php SQLite Object Cacheは、プラグインがアクティブではないが、wp-contentにまだある。"
+
+msgid "Another page cache plugin (%s) is installed next to LiteSpeed Cache (advanced-cache.php). Two page caches serve stale pages; keep only LiteSpeed Cache."
+msgstr "別のページキャッシュプラグイン(%s)がLiteSpeed Cache(Advanced-cache.php)の隣にインストールされ、2つのページキャッシュが古いページを提供する。"
+
+msgid "You are not allowed to install plugins."
+msgstr "プラグインのインストールはできません。"
+
+msgid "Plugin installs are disabled on this site (DISALLOW_FILE_MODS). Install it from your hosting panel."
+msgstr "プラグインのインストールは、サイト上で無効化されています(DISALLOW_FILE_MODS)。"
+
+msgid "The plugin could not be written to disk (file permissions or FTP credentials). Install it from Plugins › Add New."
+msgstr "プラグインは、ディスク(ファイルアクセス許可またはFTP認証情報)に書き込めません. プラグインからインストール  ?? 新規追加。"
+
+msgid "You are not allowed to activate plugins."
+msgstr "プラグインのアクティベーションはできません。"
+
+msgid "The plugin is not installed."
+msgstr "プラグインはインストールされていません。"
+
+msgid "LiteSpeed Cache is not active."
+msgstr "LiteSpeedキャッシュはアクティブではありません。"
+
+msgid "The PHP sqlite3 extension is missing. Enable it in your hosting PHP settings first."
+msgstr "PHP sqlite3 拡張が欠落しており、最初に PHP 設定をホストします。"
+
+msgid "object-cache.php belongs to another plugin (%s). Turn that plugin's object cache off first."
+msgstr "object-cache.php は別のプラグイン(%s)に属します。"
+
+msgid "SQLite Object Cache is active but it did not write object-cache.php (wp-content may not be writable). Open Settings › Object Cache to finish."
+msgstr "SQLite Object Cacheはアクティブですが、 object-cache.php を書かなかった(wp-contentは書けません)。"
+
+msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcached in hPanel first, then try again."
+msgstr "Hostinger が Memcached を有効にすると、最初に Memcached が hPanel に含まれ、次に再度試します。"
+
+msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
+msgstr "設定は保存されましたが、LiteSpeed Cacheは object-cache.php をまだ書いていません。"
+
+msgid "Redis Object Cache is active but object-cache.php could not be written (wp-content may not be writable). Open Settings › Redis and press Enable."
+msgstr "Redis Object Cacheはアクティブですが、object-cache.phpは記述できません(wp-contentは書き込めません)。"
+
+msgid "The test request returned HTTP %d."
+msgstr "テストリクエストはHTTPを返す %d."
+
+msgid "Cache conflict"
+msgstr "キャッシュの競合"
+
+msgid "Persistent object cache is on (%s)."
+msgstr "永続オブジェクトキャッシュがオンになっている(%s)。"
+
+msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
+msgstr "永続化オブジェクトキャッシュなし: リクエスト毎に、データベースからオプションとクエリが再度読み込まれる。"
+
+msgid "Page cache"
+msgstr "ページキャッシュ"
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
+msgstr "サーバーは LiteSpeed ですが、 LiteSpeed Cache ページキャッシュがオフになっています。"
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache plugin is not active, so pages are not cached."
+msgstr "サーバーは LiteSpeed ですが、LiteSpeed Cache プラグインがアクティブではないため、ページはキャッシュされません。"
+
+msgid "Cache status"
+msgstr "キャッシュの状態"
+
+msgid "Unknown operation."
+msgstr "不明な操作。"
+
+msgid "Plugin installed and activated."
+msgstr "プラグインのインストールと有効化。"
+
+msgid "Plugin activated."
+msgstr "プラグインが作動します。"
+
+msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
+msgstr "オブジェクトキャッシュが利用可能に SQLite Object Cache. 以下のテストを実行すると確認できます。"
+
+msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
+msgstr "オブジェクトキャッシュがLiteSpeed Cacheとなり、以下のテストを実行して確認します。"
+
+msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
+msgstr "LiteSpeed Cacheが有効になり、このページがロードされたらオブジェクトキャッシュの設定が終了します。"
+
+msgid "Object cache turned off."
+msgstr "オブジェクトキャッシュがオフになりました。"
+
+msgid "Object cache repaired."
+msgstr "オブジェクトキャッシュを修復します。"
+
+msgid "Page cache turned on and purged."
+msgstr "ページキャッシュがオンになり、パージされます。"
+
+msgid "Page cache turned off and purged."
+msgstr "ページキャッシュがオフになり、パージされた。"
+
+msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
+msgstr "すべてのキャッシュがクリアされました(LiteSpeedページ、CSS/JS、オブジェクトキャッシュ)。"
+
+msgid "Object cache emptied."
+msgstr "オブジェクトキャッシュが空になります。"
+
+msgid "Communication"
+msgstr "コミュニケーション"
+
+msgid "Integrations"
+msgstr "インテグレーション"
+
+msgid "AI"
+msgstr "AI"

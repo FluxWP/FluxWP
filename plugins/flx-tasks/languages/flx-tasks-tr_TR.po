@@ -413,7 +413,7 @@ msgid "Overdue"
 msgstr "Gecikmiş"
 
 msgid "[%1$s] %2$s"
-msgstr "[%1$s] %2$s"
+msgstr "[ %1$s] %2$s"
 
 msgid "You can turn off email notifications under Flux Tasks › Profile."
 msgstr "E-posta bildirimlerini Flux Tasks › Profil bölümünden kapatabilirsiniz."
@@ -2003,7 +2003,7 @@ msgid "Later"
 msgstr "Daha sonra"
 
 msgid "No date"
-msgstr "Tarihsiz"
+msgstr "Tarih yok"
 
 msgid "No tag"
 msgstr "Etiketsiz"
@@ -2689,18 +2689,6 @@ msgstr "Flux Tasks araçları Flux AI & MCP gerektirir."
 msgid "MCP"
 msgstr "MCP"
 
-msgid "Open full screen"
-msgstr "Tam ekranda aç"
-
-msgid "New chat"
-msgstr "Yeni sohbet"
-
-msgid "Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say \"create tasks from this\"."
-msgstr "Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyip \"buradan görevleri çıkar\" da diyebilirsiniz."
-
-msgid "Could not start a chat."
-msgstr "Sohbet başlatılamadı."
-
 msgid "Interface"
 msgstr "Arayüz"
 
@@ -2716,11 +2704,269 @@ msgstr "Klasik görünüm"
 msgid "This screen is the same as FluxApp. The classic view stays available for a while."
 msgstr "Bu ekran FluxApp ile aynıdır. Klasik görünüm bir süre daha kullanılabilir."
 
+msgid "This page is locked. Unlock it to make changes."
+msgstr "Bu sayfa kilitli. Değişiklik yapmak için kilidi açın."
+
+msgid "Only people who can edit the page can lock or unlock it."
+msgstr "Sayfayı yalnız düzenleyebilen kişiler kilitleyip açabilir."
+
+msgid "Only people who can edit the page can change who has access."
+msgstr "Erişimi yalnız sayfayı düzenleyebilen kişiler değiştirebilir."
+
+msgid "You are not allowed to comment on this page."
+msgstr "Bu sayfaya yorum yapma yetkiniz yok."
+
+msgid "Write a comment first."
+msgstr "Önce bir yorum yazın."
+
+msgid "Comment not found."
+msgstr "Yorum bulunamadı."
+
+msgid "Select some text or a block to comment on."
+msgstr "Yorum için metin ya da blok seçin."
+
+msgid "The comment could not be saved."
+msgstr "Yorum kaydedilemedi."
+
+msgid "Only the author can edit a comment."
+msgstr "Yorumu yalnız yazan düzenleyebilir."
+
+msgid "Only the author or a project admin can delete a comment."
+msgstr "Yorumu yalnız yazan ya da proje yöneticisi silebilir."
+
+msgid "You are not allowed to resolve this comment."
+msgstr "Bu yorumu çözme yetkiniz yok."
+
+msgid "Select text to comment on, or use a block's menu."
+msgstr "Yorum için metin seçin ya da bir bloğun menüsünü kullanın."
+
+msgid "Open comment"
+msgstr "Yorumu aç"
+
+msgid "Resolved"
+msgstr "Çözülen"
+
+msgid "No resolved comments."
+msgstr "Çözülen yorum yok."
+
+msgid "No comments yet."
+msgstr "Henüz yorum yok."
+
+msgid "Select text and press \"Comment\", or add a comment from a block's menu (⋮⋮)."
+msgstr "Metin seçip \"Yorum yap\" düğmesine basın ya da bir bloğun menüsünden (⋮⋮) yorum ekleyin."
+
+msgid "Block"
+msgstr "Blok"
+
+msgid "deleted"
+msgstr "silindi"
+
+msgid "text changed"
+msgstr "metin değişti"
+
+msgid "Write a comment… (Ctrl+Enter sends)"
+msgstr "Yorum yazın… (Ctrl+Enter gönderir)"
+
+msgid "Comment"
+msgstr "Yorum yap"
+
+msgid "This comment was deleted."
+msgstr "Bu yorum silindi."
+
+msgid "(edited)"
+msgstr "(düzenlendi)"
+
+msgid "Reopen"
+msgstr "Yeniden aç"
+
+msgid "Mark as resolved"
+msgstr "Çözüldü olarak işaretle"
+
+msgid "Resolved by {n}"
+msgstr "{n} çözdü"
+
+msgid "{n} more replies"
+msgstr "{n} yanıt daha"
+
+msgid "Reply… (Ctrl+Enter sends)"
+msgstr "Yanıtla… (Ctrl+Enter gönderir)"
+
+msgid "Reply"
+msgstr "Yanıtla"
+
+msgid "The comment will be deleted; the replies stay in the thread."
+msgstr "Yorum silinecek; yanıtlar konuşmada kalır."
+
+msgid "The comment will be permanently deleted."
+msgstr "Yorum kalıcı olarak silinecek."
+
+msgid "Comment resolved"
+msgstr "Yorum çözüldü"
+
+msgid "This page is locked."
+msgstr "Bu sayfa kilitli."
+
+msgid "Locked by {n}, {t}."
+msgstr "{n} kilitledi, {t}."
+
+msgid "Unlock it to edit."
+msgstr "Düzenlemek için kilidi açın."
+
+msgid "Unlock"
+msgstr "Kilidi aç"
+
+msgid "You can view and comment on this page."
+msgstr "Bu sayfayı görüntüleyip yorum yapabilirsiniz."
+
+msgid "You can only view this page."
+msgstr "Bu sayfayı yalnız görüntüleyebilirsiniz."
+
+msgid "Page locked"
+msgstr "Sayfa kilitlendi"
+
+msgid "The page was locked; your changes are saved once it is unlocked."
+msgstr "Sayfa kilitlendi; değişiklikleriniz kilit açılınca kaydedilir."
+
+msgid "This page is locked. Unlock it to edit."
+msgstr "Bu sayfa kilitli. Düzenlemek için kilidi açın."
+
+msgid "Page unlocked"
+msgstr "Kilit açıldı"
+
+msgid "{n} locked this page so it is not changed by accident. If you unlock it, everyone who can edit can change it again."
+msgstr "{n} bu sayfayı yanlışlıkla değiştirilmesin diye kilitledi. Kilidi açarsanız düzenleyebilen herkes yeniden değiştirebilir."
+
+msgid "If you unlock it, everyone who can edit can change the page again."
+msgstr "Kilidi açarsanız düzenleyebilen herkes sayfayı yeniden değiştirebilir."
+
+msgid "Lock page"
+msgstr "Sayfayı kilitle"
+
+msgid "Access…"
+msgstr "Erişim…"
+
+msgid "Restricted access"
+msgstr "Erişim kısıtlı"
+
+msgid "Locked"
+msgstr "Kilitli"
+
+msgid "Page access"
+msgstr "Sayfa erişimi"
+
+msgid "Access saved"
+msgstr "Erişim kaydedildi"
+
+msgid "Everyone with access to the document"
+msgstr "Dokümana erişen herkes"
+
+msgid "Everyone in the project who can see this document also sees this page."
+msgstr "Projede bu dokümanı görebilen herkes bu sayfayı da görür."
+
+msgid "Only people I choose"
+msgstr "Yalnız seçtiğim kişiler"
+
+msgid "The page and its subpages are visible only to the people below and project admins."
+msgstr "Sayfa ve alt sayfaları yalnız aşağıdaki kişilere ve proje yöneticilerine görünür."
+
+msgid "The parent page is restricted too: only people allowed there can open this page."
+msgstr "Üst sayfa da kısıtlı: bu sayfaya yalnız orada izni olanlar erişebilir."
+
+msgid "Can edit (you)"
+msgstr "Düzenler (siz)"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "+ Add person"
+msgstr "+ Kişi ekle"
+
+msgid "People and their roles"
+msgstr "Kişiler ve rolleri"
+
+msgid "Project admins ({n}) always have access."
+msgstr "Proje yöneticileri ({n}) her zaman erişir."
+
+msgid "Add comment"
+msgstr "Yorum ekle"
+
+msgid "Add comment (Ctrl+Alt+M)"
+msgstr "Yorum ekle (Ctrl+Alt+M)"
+
+msgid "Unresolved"
+msgstr "Çözülmemiş"
+
 msgid "Gantt"
 msgstr "Gantt"
 
 msgid "This dependency would create a loop."
 msgstr "Bu bağımlılık döngü oluşturur."
 
-msgid "Kilitli bir sayfanın içine ya da altına taşınamaz."
+msgid "Flux Tasks needs the Flux GraphQL plugin. Install and activate it to open this screen."
+msgstr "Flux Tasks'ın Flux GraphQL eklentisine ihtiyacı var. Bu ekranı açmak için yükleyin ve etkinleştirin."
+
+msgid "Nothing to change."
+msgstr "Değişecek bir şey yok."
+
+msgid "You are not allowed to edit this page."
+msgstr "Bu sayfayı düzenlemenize izin verilmez."
+
+msgid "AI is off"
+msgstr "AI çıktı"
+
+msgid "Info and activity"
+msgstr "Bilgi ve etkinlik"
+
+msgid "created the page"
+msgstr "Sayfayı oluştur"
+
+msgid "edited the page"
+msgstr "Sayfayı düzenle"
+
+msgid "moved the page"
+msgstr "sayfayı taşıdı"
+
+msgid "renamed it from \"{a}\" to \"{b}\""
+msgstr "\"{a}\" den \"{b}\" olarak yeniden adlandırıldı."
+
+msgid "No activity yet"
+msgstr "Henüz etkinlik yok"
+
+msgid "Could not load activity"
+msgstr "Etkinlik yüklenemedi"
+
+msgid "Hide pages"
+msgstr "Sayfaları gizle"
+
+msgid "Created by"
+msgstr "Oluşturan"
+
+msgid "Cannot be moved into or under a locked page."
 msgstr "Kilitli bir sayfanın içine ya da altına taşınamaz."
+
+msgid "Drag to resize"
+msgstr "Yeniden boyutlandırmak için sürükleyin"
+
+msgid "Open full screen"
+msgstr "Tam ekranda aç"
+
+msgid "New chat"
+msgstr "Yeni sohbet"
+
+msgid "Hi! What should we do with your tasks? You can also attach meeting notes or a PDF and say \"create tasks from this\"."
+msgstr "Merhaba! Görevlerle ilgili ne yapalım? Toplantı notu ya da PDF ekleyip \"buradan görevleri çıkar\" da diyebilirsiniz."
+
+msgid "Preview"
+msgstr "Önizle"
+
+msgid "Remove file"
+msgstr "Dosyayı kaldır"
+
+msgid "Preview image for YouTube links"
+msgstr "YouTube bağlantıları için görüntü önizlemesi"
+
+msgid "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+msgstr "Bir belgedeki kendi satırındaki bir YouTube bağlantısı, video küçük resmi olan bir kart olarak gösterir. Küçük resim YouTube'dan yüklenir; kapalı olduğunda, bağlantı düz metin kalır."
+
+msgid "Could not start a chat."
+msgstr "Sohbet başlatılamadı."

@@ -1,5 +1,6 @@
 // Calendar: month grid and an agenda list. Drag a scheduled post to another day to move it; click a day to add a post.
 import { useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
 import { FlxSocialPostUpdate, FlxSocialPosts } from '@fluxwp/graphql/operations';
 import { Loading } from '@fluxwp/ui';
@@ -19,6 +20,7 @@ export function CalendarPage() {
   const [view, setView] = useState<'month' | 'list'>('month');
   const [drag, setDrag] = useState<string | null>(null);
   const [over, setOver] = useState<number | null>(null);
+  const [account, setAccount] = useState('');
 
   // First cell of the grid: the week start on or before the 1st of the month (local days, stored as UTC midnight).
   const grid = useMemo(() => {
@@ -33,7 +35,7 @@ export function CalendarPage() {
 
   const from = grid.start - tz;
   const to = grid.start + grid.total * DAY - tz - 1;
-  const list = useFlxQuery(FlxSocialPosts, { first: 200, from, to, ascending: true }, { placeholderData: (p) => p });
+  const list = useFlxQuery(FlxSocialPosts, { first: 200, from, to, ascending: true, accountId: account ? Number(account) : undefined }, { placeholderData: (p) => p });
   const move = useFlxMutation(FlxSocialPostUpdate);
 
   const byDay = useMemo(() => {
@@ -49,11 +51,12 @@ export function CalendarPage() {
 
   const todayKey = Math.floor((Math.floor(Date.now() / 1000) + tz) / DAY) * DAY;
   const monthLabel = new Intl.DateTimeFormat(s.locale, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(grid.first * 1000));
-  const dayName = (i: number) => new Intl.DateTimeFormat(s.locale, { weekday: 'short', timeZone: 'UTC' }).format(new Date((Date.UTC(2024, 0, 7 + ((cfg.weekStart + i) % 7))) ));
-  const step = (d: number) => setCur((c) => {
-    const n = new Date(Date.UTC(c.y, c.m + d, 1));
-    return { y: n.getUTCFullYear(), m: n.getUTCMonth() };
-  });
+  const dayName = (i: number) => new Intl.DateTimeFormat(s.locale, { weekday: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(2024, 0, 7 + ((cfg.weekStart + i) % 7))));
+  const step = (d: number) =>
+    setCur((c) => {
+      const n = new Date(Date.UTC(c.y, c.m + d, 1));
+      return { y: n.getUTCFullYear(), m: n.getUTCMonth() };
+    });
 
   const dropOn = (dayKey: number) => {
     const p = (list.data?.flxSocialPosts.nodes ?? []).find((x) => x.id === drag);
@@ -93,28 +96,42 @@ export function CalendarPage() {
 
   return (
     <div className="flxsm-cal">
+      {s.topSlot &&
+        createPortal(
+          <div className="flxsm-seg is-small" role="group">
+            <button type="button" className={view === 'month' ? 'is-on' : ''} onClick={() => setView('month')}>
+              {t('Month')}
+            </button>
+            <button type="button" className={view === 'list' ? 'is-on' : ''} onClick={() => setView('list')}>
+              {t('List')}
+            </button>
+          </div>,
+          s.topSlot,
+        )}
       <div className="flxsm-cal-bar">
-        <button type="button" className="flxsm-btn" aria-label={t('Previous month')} onClick={() => step(-1)}>
+        <button type="button" className="flxsm-iconbtn" aria-label={t('Previous month')} onClick={() => step(-1)}>
           ‹
         </button>
         <strong className="flxsm-cal-title">{monthLabel}</strong>
-        <button type="button" className="flxsm-btn" aria-label={t('Next month')} onClick={() => step(1)}>
+        <button type="button" className="flxsm-iconbtn" aria-label={t('Next month')} onClick={() => step(1)}>
           ›
         </button>
         <button type="button" className="flxsm-btn" onClick={() => setCur({ y: nowLocal.getUTCFullYear(), m: nowLocal.getUTCMonth() })}>
           {t('Today')}
         </button>
         <span className="flxsm-grow" />
-        <div className="flxsm-seg" role="group">
-          <button type="button" className={view === 'month' ? 'is-on' : ''} onClick={() => setView('month')}>
-            {t('Month')}
-          </button>
-          <button type="button" className={view === 'list' ? 'is-on' : ''} onClick={() => setView('list')}>
-            {t('List')}
-          </button>
-        </div>
+        <select className="flxsm-sel" value={account} aria-label={t('Account')} onChange={(e) => setAccount(e.target.value)}>
+          <option value="">{t('All accounts')}</option>
+          {s.accounts.map((a) => (
+            <option key={a.id} value={a.databaseId}>
+              {(s.net(a.provider)?.label ?? a.provider) + ' › ' + a.name}
+            </option>
+          ))}
+        </select>
+        <span className="flxsm-muted flxsm-small" title={t('Times are shown in the site time zone ({tz}).', { tz: cfg.timezone })}>
+          {t('Time zone: {tz}', { tz: cfg.timezone })}
+        </span>
       </div>
-      <p className="flxsm-muted flxsm-tznote">{t('Times are shown in the site time zone ({tz}).', { tz: cfg.timezone })}</p>
       {list.isLoading ? (
         <Loading />
       ) : list.isError ? (
@@ -134,7 +151,7 @@ export function CalendarPage() {
               <div
                 key={d}
                 role="gridcell"
-                className={'flxsm-day' + (inMonth ? '' : ' is-out') + (d === todayKey ? ' is-today' : '') + (over === d ? ' is-over' : '')}
+                className={'flxsm-day' + (inMonth ? '' : ' is-out') + (d < todayKey ? ' is-past' : '') + (d === todayKey ? ' is-today' : '') + (over === d ? ' is-over' : '')}
                 onDragOver={(e) => {
                   if (drag) {
                     e.preventDefault();

@@ -1,11 +1,12 @@
 // FluxWP Panel › Settings: connection to the update server, automatic updates, post-update check,
 // usage data consent and the other update sources. Same screen in wp-admin and the FluxWP app.
-import { useEffect, useState, type FormEvent } from 'react';
+import { useEffect, useState } from 'react';
 import { useFlxMutation, useFlxQuery } from '@fluxwp/graphql/react';
-import { FlxSetupCheck, FlxSetupCloudCard, FlxSetupSettingsSave, FlxSetupSettingsScreen, FlxSetupSourceAdd, FlxSetupSourceChange, FlxSetupTelemetrySave } from '@fluxwp/graphql/operations';
+import { FlxSetupCheck, FlxSetupCloudCard, FlxSetupSettingsScreen, FlxSetupSourceAdd, FlxSetupSourceChange, FlxSetupTelemetrySave } from '@fluxwp/graphql/operations';
 import type { FlxSetupSettingsScreenQuery } from '@fluxwp/graphql/types';
 import { Loading, Modal, Screen } from '@fluxwp/ui';
 import { errorText, NoticeBar, SetupProvider, useSetup, type Notice } from './shared';
+import { ConnectionForm } from './ConnectionForm';
 import { useHost } from '../host';
 
 type Data = FlxSetupSettingsScreenQuery;
@@ -24,28 +25,13 @@ function Settings() {
   const { t, tn, refresh, scope } = useSetup();
   const q = useFlxQuery(FlxSetupSettingsScreen, {});
   const [notice, setNotice] = useState<Notice | null>(null);
-  const [form, setForm] = useState({ server: '', key: '', clearKey: false, auto: false, health: false, usage: false });
   const [add, setAdd] = useState({ url: '', name: '', key: '' });
   const [confirm, setConfirm] = useState<Source | null>(null);
   const s = q.data?.flxSetupSettings;
 
-  useEffect(() => {
-    if (s) setForm({ server: s.server, key: '', clearKey: false, auto: s.auto, health: s.health, usage: s.usage });
-  }, [s]);
-
   const fail = (e: unknown) => setNotice({ kind: 'error', text: errorText(e, t('The action could not be completed.')) });
   const reload = () => void refresh();
 
-  const save = useFlxMutation(FlxSetupSettingsSave, {
-    onSuccess: (r) => {
-      const p = r.flxSetupSettingsSave;
-      if (!p) return fail(null);
-      if (p.errors.length) return setNotice({ kind: 'error', text: p.errors.map((e) => e.message).join(' ') });
-      setNotice({ kind: 'success', text: t('Settings saved and updates checked.') });
-      reload();
-    },
-    onError: fail,
-  });
   const addSource = useFlxMutation(FlxSetupSourceAdd, {
     onSuccess: (r) => {
       const p = r.flxSetupSourceAdd;
@@ -83,18 +69,6 @@ function Settings() {
     );
   }
   const { flxSetupConnection: c, flxSetupSources: sources } = q.data;
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    save.mutate({
-      input: {
-        ...(s.serverFromConfig ? {} : { server: form.server }),
-        ...(s.keyFromConfig ? {} : { key: form.key, clearKey: form.clearKey }),
-        auto: form.auto,
-        health: form.health,
-        ...(s.usageAvailable ? { usage: form.usage } : {}),
-      },
-    });
-  };
   void scope;
 
   return (
@@ -118,105 +92,14 @@ function Settings() {
 
       <CloudCard cloud={q.data.flxSetupCloud} t={t} onNotice={setNotice} />
 
-      <h2>{t('Connection')}</h2>
-      <form className="flxk-card flxk-form" onSubmit={submit}>
-        <div className="flxk-field">
-          <label htmlFor="flxk-server">{t('Server URL')}</label>
-          <div>
-            {s.serverFromConfig ? (
-              <>
-                <code>{s.effectiveServer}</code>
-                <p className="flxk-desc">{t('Set by the FLX_UPDATE_SERVER constant in wp-config.php.')}</p>
-              </>
-            ) : (
-              <>
-                <input id="flxk-server" type="url" value={form.server} placeholder={s.defaultServer} onChange={(e) => setForm({ ...form, server: e.target.value })} />
-                <p className="flxk-desc">{t('Leave empty to use the default server. https only.')}</p>
-              </>
-            )}
-          </div>
-        </div>
-        <div className="flxk-field">
-          <label htmlFor="flxk-key">{t('Site key')}</label>
-          <div>
-            {s.keyFromConfig ? (
-              <>
-                <code>••••••••</code>
-                <p className="flxk-desc">{t('Set by the FLX_UPDATE_KEY constant in wp-config.php.')}</p>
-              </>
-            ) : (
-              <>
-                <input
-                  id="flxk-key"
-                  type="password"
-                  autoComplete="off"
-                  value={form.key}
-                  placeholder={s.hasKey ? t('Saved (type a new key to change it)') : 'flxu_…'}
-                  onChange={(e) => setForm({ ...form, key: e.target.value })}
-                />
-                {s.hasKey && (
-                  <label className="flxk-check-label">
-                    <input type="checkbox" checked={form.clearKey} onChange={(e) => setForm({ ...form, clearKey: e.target.checked })} /> {t('Remove key')}
-                  </label>
-                )}
-                <p className="flxk-desc">{t('Optional. Public packages need no key; for private packages, get one from the update server panel (/admin) with "Add site". Give each site its own key.')}</p>
-              </>
-            )}
-          </div>
-        </div>
-        <div className="flxk-field">
-          <span className="flxk-label">{t('Post-update check')}</span>
-          <div>
-            <label className="flxk-check-label">
-              <input type="checkbox" checked={form.health} onChange={(e) => setForm({ ...form, health: e.target.checked })} /> {t('Check that the site still loads after updating; roll the package back if it fails')}
-            </label>
-            <p className="flxk-desc">{t('Only HTTP 500 (critical error) triggers a rollback; network or firewall errors do not.')}</p>
-          </div>
-        </div>
-        <div className="flxk-field">
-          <span className="flxk-label">{t('Automatic updates')}</span>
-          <div>
-            <label className="flxk-check-label">
-              <input type="checkbox" checked={form.auto} onChange={(e) => setForm({ ...form, auto: e.target.checked })} /> {t('Install new versions of FluxWP packages automatically')}
-            </label>
-            <p className="flxk-desc">{t('When this is off, WordPress\'s per-plugin "Enable auto-updates" setting applies.')}</p>
-          </div>
-        </div>
-        {s.usageAvailable && (
-          <div className="flxk-field">
-            <span className="flxk-label">{t('Usage data')}</span>
-            <div>
-              <label className="flxk-check-label">
-                <input type="checkbox" checked={form.usage} onChange={(e) => setForm({ ...form, usage: e.target.checked })} /> {t('Help us improve FluxWP (send usage data)')}
-              </label>
-              <p className="flxk-desc">
-                {t('Update checks always send the site address; the server also looks up the country from the IP and does not store the IP (mandatory record). When on, update checks also send the WordPress and PHP version, time zone and language, and FluxWP plugin versions and errors are sent anonymously. When off, only what updates need is sent and updates work the same. You can withdraw consent here at any time.')}
-              </p>
-              <p className="flxk-desc">
-                <a href={s.legal.kvkk} target="_blank" rel="noopener noreferrer">
-                  {t('KVKK Privacy Notice')}
-                </a>{' '}
-                ·{' '}
-                <a href={s.legal.privacy} target="_blank" rel="noopener noreferrer">
-                  {t('Privacy Policy')}
-                </a>{' '}
-                ·{' '}
-                <a href={s.legal.terms} target="_blank" rel="noopener noreferrer">
-                  {t('Terms of Use')}
-                </a>
-              </p>
-            </div>
-          </div>
-        )}
-        <div>
-          <button type="submit" className="flxk-btn is-primary" disabled={save.isPending}>
-            {t('Save and check')}
-          </button>
-        </div>
-      </form>
+      <ConnectionForm s={s} onNotice={setNotice} />
 
       <h2 id="flxu-sources">{t('Other sources')}</h2>
-      <p className="flxk-desc">{t('Packages are collected from these sources as well as the main server. If a package is in more than one source, it updates from the source it was installed from; if it is not installed, the source higher in the list wins.')}</p>
+      <p className="flxk-desc">
+        {t(
+          'Packages are collected from these sources as well as the main server. If a package is in more than one source, it updates from the source it was installed from; if it is not installed, the source higher in the list wins.',
+        )}
+      </p>
       <div className="flxk-card flxk-table-wrap">
         <table className="flxk-table">
           <thead>
@@ -393,9 +276,7 @@ function CloudCard({ cloud: c, t, onNotice }: { cloud: Data['flxSetupCloud']; t:
   if (c.hidden && !flash) {
     return (
       <div className="flxk-cloud-hidden">
-        <span className="flxk-muted">
-          {c.hideDays === 0 ? t('The FluxWP account card is hidden.') : t('The FluxWP account card is hidden for %d days after you close it.', c.hideDays)}
-        </span>
+        <span className="flxk-muted">{c.hideDays === 0 ? t('The FluxWP account card is hidden.') : t('The FluxWP account card is hidden for %d days after you close it.', c.hideDays)}</span>
         <button type="button" className="flxk-linkbtn" disabled={card.isPending} onClick={() => card.mutate({ input: { hide: false } })}>
           {t('Show now')}
         </button>
@@ -404,7 +285,11 @@ function CloudCard({ cloud: c, t, onNotice }: { cloud: Data['flxSetupCloud']; t:
   }
   return (
     <>
-      {flash && <div className={'flxk-notice is-' + flash[0]} role={flash[0] === 'error' ? 'alert' : 'status'}><span>{flash[1]}</span></div>}
+      {flash && (
+        <div className={'flxk-notice is-' + flash[0]} role={flash[0] === 'error' ? 'alert' : 'status'}>
+          <span>{flash[1]}</span>
+        </div>
+      )}
       <div className={'flxk-cloud' + (c.connected ? ' is-connected' : ' is-dismissible')}>
         <span className="flxk-cloud__logo" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -488,7 +373,9 @@ function TelemetryCard({ telemetry: m, t, onNotice }: { telemetry: Data['flxSetu
           <span className={'flxk-badge' + (m.enabled ? ' is-ok' : '')}>{m.enabled ? t('On') : t('Off')}</span> {m.status}
         </p>
         <p className="flxk-desc">
-          {t('Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent.')}
+          {t(
+            'Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent.',
+          )}
         </p>
         <form
           className="flxk-form"

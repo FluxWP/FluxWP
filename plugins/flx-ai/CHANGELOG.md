@@ -1,5 +1,41 @@
 # Flux AI — Değişiklikler
 
+## 0.37.4
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
+## 0.37.3
+- Flux Cloud: Claude anahtarıyla giden araçlı isteklerde "tools.0.function.parameters.properties: Input should be a valid dictionary" hatası giderildi. Aktarım, parametresiz araçların boş `properties` (ve iç içe şema) alanlarını JSON nesnesi olarak gönderir.
+- Model seçici (sohbet paneli ve Flux AI sohbet ekranı): site Flux Cloud kredisiyle çalışıyorsa ve plan yalnız temel modelleri içeriyorsa, plana dahil olmayan modeller gri, "Pro" rozetli, seçilemez ve listenin sonunda; açık modeller üstte. `/models` yanıtında `locked` ve `upgrade_url`.
+- Genel bakış: Flux Cloud kredisi kullanılırken "Henüz API anahtarı girilmedi" uyarısı çıkmaz.
+
+## 0.37.2
+- Aktarım (relay) Anthropic anahtarını da kullanır: Flux AI › Ayarlar'da Claude (Anthropic) anahtarı varsa Claude modelleri ona, diğer modeller OpenRouter anahtarına gider; yalnız Anthropic anahtarı varsa her istek Claude modeliyle gider (Claude olmayan model Flux AI varsayılan Claude modeline ya da `claude-haiku-4.5`'e döner). Maliyet Anthropic fiyat tablosundan hesaplanır.
+- `flx_ai_relay()` `$opts['provider']`: `auto` (varsayılan), `openrouter` ya da `anthropic`; seçilen sağlayıcının anahtarı yoksa açık hata. `flx_ai_relay_info()` yeni alanlar: `providers` (sağlayıcı → anahtar sonu), `keys` (görünen metin). Anahtar denetimi iki anahtarı da sınar.
+
+## 0.37.1
+- Beceri kartları 320 piksel telefonlarda kullanılabilir genişliğe sığar.
+
+## 0.37.0
+- Aktarım (relay) API'si: aynı sitedeki başka eklenti (fluxwp.com'da Flux Cloud'un AI kredisi proxy'si) OpenRouter biçimli isteği Flux AI üzerinden, Flux AI › Ayarlar'daki OpenRouter anahtarıyla gönderir; anahtar başka eklentide tutulmaz. `flx_ai_relay_info()`, `flx_ai_relay( $body, $opts )` (akış dahil), `flx_ai_relay_key_check()`. Yalnız sitenin kendi anahtarı kullanılır, Flux Cloud kredisine dönmez.
+
+## 0.36.0
+- Flux Cloud AI kredisi: site bir FluxWP hesabına bağlıysa (Flux Setup › FluxWP hesabı) AI anahtar girmeden hesabın aylık AI kredisiyle çalışır (Flux Cloud 0.3.0+). İstek OpenRouter biçiminde hesabın Flux Cloud proxy'sine sitenin Flux Cloud token'ıyla gider; akış (streaming) ve araç çağrıları aynen çalışır. Kendi anahtarı olan site eskisi gibi kendi anahtarını kullanır (mevcuta ek).
+- Ayarlar › "Flux Cloud AI kredisi" kartı: bu ay kullanılan / aylık / kalan kredi, bu sitenin kullanımı, yenilenme tarihi, "Kredi al ya da planı değiştir" bağlantısı, plan yalnız temel modelliyse uyarı. Seçim (`cloud_ai`): kendi anahtarı yoksa (varsayılan), her zaman, hiçbir zaman.
+- Claude modelleri Flux Cloud üzerinden OpenRouter kimliğiyle gider (`claude:claude-haiku-4-5` → `anthropic/claude-haiku-4.5`, filtre `flxai_cloud_model_id`). Model seçilmemişse Flux Cloud'un önerdiği model kullanılır.
+- Kredi bitince, plan modeli içermiyorsa ya da dakikalık sınır aşılınca Flux Cloud'un açık mesajı olduğu gibi gösterilir. Kayıtlarda sağlayıcı `cloud`.
+- GraphQL: `FlxAiSettings.cloudAi`, `FlxAiSettingsOptions.cloud` (`FlxAiCloud`).
+
+## 0.35.2
+- OpenRouter'ın "Provider returned error" hatası sebebine çevrilir: hata gövdesindeki sağlayıcı adı ve ham metinden hız sınırı (429), kota dolması ve geçici kesinti (5xx) ayrıştırılır ("Google AI Studio hız sınırına ulaşıldı: aynı anda çok fazla istek var. Bir dakika sonra tekrar deneyin."). Özgün metin hata verisinde `orig` olarak kalır.
+
+## 0.35.1
+- Tüm ekranlar eski klasik görünümle birebir: sayfa açıklaması başlığın altında, tablo başlıkları büyük harf, KPI etiketleri büyük harf, açık gri segment düğmeler.
+- Bağlı sistemler: Açık kutusu, eklenti kodu, Durum, Hata sütunu ve Kayıtlar · AI ayarları · Ayarları bağlantıları geri geldi (AI ayarları bağlantısı artık doğru sayfaya gider).
+- Araçlar: Kaynak kodu, Tür etiketi, Yetki ve Ort. süre sütunları; açıklama iki satır.
+- Genel bakış: harcama sınırları en üstte, boş grafiklerde "Bu aralıkta veri yok."; Günlük token yığılmış çubuk.
+- MCP anahtar formu, Skill'ler ızgarası, Ayarlar alanları, Sohbet geçmişi (varsayılan Tümü) ve Türkçe metinler klasik ekrandaki gibi.
+
 ## 0.35.0
 - Flux SEO'nun yeni `flxseo_insert_image` aracı sonucu da önizleme/düzenleme bağlantısı taşır.
 - **Sesten metne:** sohbetteki mikrofon düğmesi artık sesi kaydedip sitede yazıya çevirir (OpenAI, Gemini ya da OpenRouter anahtarı varsa; `POST flx-ai/v1/transcribe`). Tarayıcının kendi konuşma tanıması olmayan ortamlarda (WebView, Tauri, Firefox) da çalışır; anahtar yoksa eski tarayıcı yöntemi kalır. Hem klasik sohbet (ajan görev penceresi dahil) hem React sohbet ekranı.

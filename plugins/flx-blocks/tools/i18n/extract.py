@@ -31,5 +31,11 @@ for f in sorted(glob.glob(os.path.join(ROOT,'src','blocks','**','block.json'),re
     for v in d.get('variations',[]):
         add('block variation title',v.get('title','')); add('block variation description',v.get('description',''))
         for k in v.get('keywords',[]): add('block variation keyword',k)
+with open(os.path.join(ROOT, 'includes/resources/Design_Tokens/Registry/Baseline/baseline.json'), encoding='utf-8') as f:
+    palettes = json.load(f)['$extensions']['com.flxbk.designTokens']['colorPalettes']
+    for group in palettes[palettes['$default']]['groups']:
+        add('', group['label'])
+        for swatch in group['swatches']:
+            add('', swatch['label'])
 json.dump(items,open(os.path.join(HERE,'strings.json'),'w'),ensure_ascii=False,indent=0)
 print(len(items))

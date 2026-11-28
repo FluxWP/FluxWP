@@ -25,6 +25,7 @@ final class FLXPOS_Providers {
 			'3d_host' => __( 'Bankanın ödeme sayfası (3D Host)', 'flx-pos' ),
 			'hosted'  => __( 'Kuruluşun ödeme sayfası', 'flx-pos' ),
 			'iframe'  => __( 'Sayfa içinde ödeme formu (iFrame)', 'flx-pos' ),
+			'elements' => __( 'Ödeme sayfasında Stripe kart alanları (Payment Element)', 'flx-pos' ),
 			'wallet'  => __( 'Cüzdan ile öde', 'flx-pos' ),
 			'regular' => __( '3D\'siz (yalnız bankanın izin verdiği hesaplarda)', 'flx-pos' ),
 		);
@@ -157,6 +158,12 @@ final class FLXPOS_Providers {
 			),
 			'mollie'     => array(
 				'api_key' => self::f( __( 'API anahtarı (test_… ya da live_…)', 'flx-pos' ), true ),
+			),
+			'stripe'     => array(
+				'publishable_key' => self::f( __( 'Yayımlanabilir anahtar (pk_test_… ya da pk_live_…)', 'flx-pos' ) ),
+				'secret_key'      => self::f( __( 'Gizli anahtar (sk_… ya da kısıtlı rk_…)', 'flx-pos' ), true ),
+				'webhook_secret'  => self::f( __( 'Webhook imza anahtarı (whsec_…)', 'flx-pos' ), true, __( 'Stripe panelinde Geliştiriciler › Webhook: bildirim adresini ekleyin, payment_intent.succeeded, payment_intent.processing ve payment_intent.payment_failed olaylarını seçin.', 'flx-pos' ) ),
+				'descriptor'      => self::f( __( 'Ekstre eki (isteğe bağlı, en çok 22 karakter)', 'flx-pos' ) ),
 			),
 			'papara'     => array(
 				'api_key' => self::f( __( 'API anahtarı', 'flx-pos' ), true ),
@@ -614,6 +621,24 @@ final class FLXPOS_Providers {
 				),
 				'notes'      => __( 'Test ya da canlı, anahtarın önekinden anlaşılır (test_… / live_…). Türk lirası desteklenmez.', 'flx-pos' ),
 			),
+			array(
+				'id'         => 'stripe',
+				'name'       => 'Stripe',
+				'group'      => 'psp',
+				'driver'     => 'stripe',
+				'modes'      => array( 'elements' ),
+				'caps'       => self::caps( array( 'refund', 'partial', 'status', 'notify' ) ),
+				'currencies' => array( 'USD', 'EUR', 'GBP', 'TRY', 'CHF', 'CAD', 'AUD', 'NZD', 'SEK', 'NOK', 'DKK', 'PLN', 'CZK', 'HUF', 'RON', 'BGN', 'JPY', 'AED', 'SAR', 'QAR', 'KWD', 'BHD', 'OMR', 'JOD', 'SGD', 'HKD', 'MYR', 'IDR', 'INR', 'ZAR', 'MXN', 'BRL', 'EGP', 'MAD', 'PKR', 'BDT', 'GEL', 'AZN', 'KZT', 'UAH' ),
+				'endpoints'  => array(
+					'live' => array( 'api' => 'https://api.stripe.com' ),
+				),
+				'notes'      => __( 'Kart alanları Stripe\'ın Payment Element\'idir; kart bilgisi siteye gelmez. 3D Secure, Apple Pay ve Google Pay Stripe\'ta. Test ya da canlı, anahtarın önekinden anlaşılır ve hesabın test anahtarıyla aynı olmalı. "Bağlantıyı test et" alan adını Apple Pay için de kaydeder.', 'flx-pos' ),
+				'test_cards' => array(
+					array( '4242424242424242', '12', '2034', '123', '' ),
+					array( '4000002760003184', '12', '2034', '123', '' ),
+					array( '4000000000000002', '12', '2034', '123', '' ),
+				),
+			),
 			/* ---- Cüzdanlar ---- */
 			array(
 				'id'         => 'papara',
@@ -676,7 +701,7 @@ final class FLXPOS_Providers {
 
 	/** Bir sağlayıcının ön yüzde kartı sitede alıp almadığı (seçili modele göre). */
 	public static function needs_card( array $p, $mode ) {
-		return ! in_array( $mode, array( '3d_host', 'hosted', 'iframe', 'wallet' ), true ) && 'giro' !== ( $p['opts']['kind'] ?? '' );
+		return ! in_array( $mode, array( '3d_host', 'hosted', 'iframe', 'wallet', 'elements' ), true ) && 'giro' !== ( $p['opts']['kind'] ?? '' );
 	}
 
 	public static function group_labels() {

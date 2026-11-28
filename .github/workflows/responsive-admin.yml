@@ -1,0 +1,33 @@
+name: Admin responsive navigation
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/flx-graphql/assets/js/responsive.js'
+      - 'packages/modules/src/gettext-plural.ts'
+      - 'tools/tests/responsive/**'
+      - '.github/workflows/responsive-admin.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/flx-graphql/assets/js/responsive.js'
+      - 'packages/modules/src/gettext-plural.ts'
+      - 'tools/tests/responsive/**'
+      - '.github/workflows/responsive-admin.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  tabs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with: { bun-version: 1.4.4 }
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium
+      - run: node --test tools/tests/responsive/navigation.test.mjs
+      - run: bun test tools/tests/responsive/unit/gettext-plural.test.ts

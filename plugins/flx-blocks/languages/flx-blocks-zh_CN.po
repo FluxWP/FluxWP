@@ -1,0 +1,2649 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript 此 screen幕需要。"
+
+msgid "Block Editor"
+msgstr "块块编辑器"
+
+msgid "Actionable endpoint for api call."
+msgstr "可采取行动的呼吁终点。"
+
+msgid "Submission rejected, invalid security token. Reload the page and try again."
+msgstr "呈文被拒绝,安全不健全,重载页面并再次尝试。"
+
+msgid "Token invalid"
+msgstr "致残者"
+
+msgid "CAPTCHA Failed"
+msgstr "CAPTCHA 失败"
+
+msgid "Submission rejected."
+msgstr "来文被驳回。"
+
+msgid "Third Party Failed"
+msgstr "第三党"
+
+msgid "Submission failed"
+msgstr "提交提交失败"
+
+msgid "No Data"
+msgstr "无数据"
+
+msgid "Accept"
+msgstr "接受"
+
+msgid "Did not accept"
+msgstr "不接受"
+
+msgid "Missing a required field"
+msgstr "缺少一个所需场地"
+
+msgid "Trying to include too many files."
+msgstr "试图包含太多的文件 。"
+
+msgid "File too large"
+msgstr "文件太大文件"
+
+msgid "File could not be uploaded"
+msgstr "易装卸"
+
+msgid "Sorry, you are not allowed to upload this file type."
+msgstr "索里,不允许你上传这一卷宗。"
+
+msgid "Not enough disk quota on this website."
+msgstr "该网站的定额不足。"
+
+msgid "Failed to upload file"
+msgstr "上传文件失败"
+
+msgid "Submission Failed"
+msgstr "提交提交文件失败"
+
+msgid "Data not found"
+msgstr "未找到数据"
+
+msgid "Submission Success, Thanks for getting in touch!"
+msgstr "提交成功,谢谢你的 联系!"
+
+msgid "Submission Failed, reCaptcha spam prevention. Please reload your page and try again."
+msgstr "请重新装载你的页面并再次尝试。"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Entries"
+msgstr "参赛作品"
+
+msgid "Entries (Pro Only)"
+msgstr "条目( 仅Pro)"
+
+msgid "Forms"
+msgstr "表格"
+
+msgid "Form"
+msgstr "形式"
+
+msgid "Form Archives"
+msgstr "档案"
+
+msgid "Form Attributes"
+msgstr "表格"
+
+msgid "Parent Form:"
+msgstr "家长形式:"
+
+msgid "Add New Form"
+msgstr "新表格"
+
+msgid "New Form"
+msgstr "新表格"
+
+msgid "Edit Form"
+msgstr "编辑表格"
+
+msgid "Update Form"
+msgstr "更新表格"
+
+msgid "View Form"
+msgstr "查看窗体"
+
+msgid "View Forms"
+msgstr "视图表表表窗窗窗窗窗窗窗窗窗窗窗窗窗窗窗窗窗表"
+
+msgid "Search Forms"
+msgstr "搜索表格"
+
+msgid "Not found"
+msgstr "未找到"
+
+msgid "Not found in Trash"
+msgstr "未在Trash发现"
+
+msgid "Filter items list"
+msgstr "电影项目清单"
+
+msgid "Contact forms, subscribe forms and others for your site."
+msgstr "联系表、订购表格和网站的其他文件。"
+
+msgid "You do not have permission to view these posts."
+msgstr "你没有机会查看这些员额。"
+
+msgid "Submission"
+msgstr "Submission"
+
+msgid "No Response from MailerLite"
+msgstr "MaillerLite没有回应"
+
+msgid "MailerLite Misconfiguration"
+msgstr "马伊勒拉特"
+
+msgid "MailerLite Failed"
+msgstr "邮件列列列列日日志失败"
+
+msgid "You do not have permission to access GetResponse API data."
+msgstr "You do not have permission to access GetResponse API 数据。"
+
+msgid "Invalid or disallowed endpoint."
+msgstr "无效或无故终点。"
+
+msgid "Error fetching data from GetResponse"
+msgstr "GetResponse的rr旋引 f数据"
+
+msgid "Empty data from GetResponse"
+msgstr "GetResponse的效法数据"
+
+msgid "[block rendering halted]"
+msgstr "[block rendering halted]"
+
+msgid "Please fix the errors to proceed"
+msgstr "请确定差错,以继续处理"
+
+msgid "is required"
+msgstr "需要"
+
+msgid "does not match"
+msgstr "不匹配"
+
+msgid "is not valid"
+msgstr "无效"
+
+msgid "requires a unique entry and this value has already been used"
+msgstr "需要一个独特的条目,这种价值已经得到使用"
+
+msgid "Item"
+msgstr "项目"
+
+msgid "Photo Gallery Carousel"
+msgstr "摄影画廊木轮"
+
+msgid "Toggle autoplay"
+msgstr "切换自动玩"
+
+msgid "See more"
+msgstr "更多"
+
+msgid "Display lightbox image:"
+msgstr "显示光箱图像 :"
+
+msgid "Previous slide"
+msgstr "前li"
+
+msgid "Next slide"
+msgstr "下滑坡"
+
+msgid "Go to first slide"
+msgstr "跳转到第一张幻灯片"
+
+msgid "Go to last slide"
+msgstr "跳转到上一张幻灯片"
+
+msgid "Go to slide %s"
+msgstr "跳转到幻灯片 %s"
+
+msgid "Go to page %s"
+msgstr "转到页面 %s"
+
+msgid "Start autoplay"
+msgstr "开始自动播放"
+
+msgid "Pause autoplay"
+msgstr "暂停自动播放"
+
+msgid "carousel"
+msgstr "carousel"
+
+msgid "slide"
+msgstr "slide"
+
+msgid "Select a slide to show"
+msgstr "选择li灯片以显示"
+
+msgid "%s of %s"
+msgstr "%s of %s"
+
+msgid "Days"
+msgstr "天数"
+
+msgid "Hrs"
+msgstr "Hrs"
+
+msgid "Mins"
+msgstr "Mins"
+
+msgid "Secs"
+msgstr "Secs"
+
+msgid "Please enable JavaScript in your browser to submit the form"
+msgstr "请允许 JavaScript in your browser to submit the form"
+
+msgid "Google map of %s"
+msgstr "谷歌地图 %s"
+
+msgid "Child menu"
+msgstr "儿童菜单"
+
+msgid "Child menu of"
+msgstr "儿童菜单"
+
+msgid "Toggle child menu of"
+msgstr "gg童菜单"
+
+msgid "No posts"
+msgstr "没有帖子"
+
+msgid "%1$s out of %2$s Stars"
+msgstr "%1$s 超 出 %2$s 星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星星"
+
+msgid "Progressbar Label"
+msgstr "进步栏标签"
+
+msgid "Play"
+msgstr "玩"
+
+msgid "Pause"
+msgstr "暂停"
+
+msgid "Unmute"
+msgstr "Unmute"
+
+msgid "Mute"
+msgstr "静音"
+
+msgid "Close search"
+msgstr "近距离搜查"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Content is collapsed."
+msgstr "内容崩溃 。"
+
+msgid "Content continues."
+msgstr "持续不断。"
+
+msgid "Activate the"
+msgstr "启动"
+
+msgid "button to reveal the full content."
+msgstr "但有义务披露全部内容。"
+
+msgid "Show More"
+msgstr "显示更多"
+
+msgid "%1$d out of %2$d stars"
+msgstr "%1$d 超 出 %2$d 恒星星"
+
+msgid "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply"
+msgstr "该场址受到保护 reCAPTCHA and the Google Privacy Policy and Terms of Service apply"
+
+msgid "Close Menu"
+msgstr "关闭菜单"
+
+msgid "Toggle Menu"
+msgstr "切换菜单"
+
+msgid "Name Prefix"
+msgstr "名称 前缀"
+
+msgid "First Name"
+msgstr "姓名"
+
+msgid "Last Name"
+msgstr "姓 名"
+
+msgid "Full Name"
+msgstr "全名"
+
+msgid "Timezone"
+msgstr "时区"
+
+msgid "Address Line 1"
+msgstr "第1行"
+
+msgid "Address Line 2"
+msgstr "第2行"
+
+msgid "City"
+msgstr "城市"
+
+msgid "State"
+msgstr "国家"
+
+msgid "Postal Code"
+msgstr "邮政编码"
+
+msgid "Country"
+msgstr "国家"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Source"
+msgstr "来源"
+
+msgid "You do not have sufficient permissions to export content."
+msgstr "您没有足够的权限导出内容 。"
+
+msgid "Export"
+msgstr "导出"
+
+msgid "Import completed successfully!"
+msgstr "导入成功完成 !"
+
+msgid "Export All"
+msgstr "全部出口"
+
+msgid "Import"
+msgstr "进口"
+
+msgid "Upload & Import"
+msgstr "上传和导入"
+
+msgid "You do not have sufficient permissions to import content."
+msgstr "你没有足够的进口许可。"
+
+msgid "Please upload a file to import."
+msgstr "请上传一卷宗供进口。"
+
+msgid "File upload failed."
+msgstr "文件上传失败 。"
+
+msgid "Invalid file type. Please upload a ZIP file."
+msgstr "Invalid file type. 请上传ZIP的档案。"
+
+msgid "Invalid data in import file."
+msgstr "进口档案中的无效数据。"
+
+msgid "Invalid import file structure. Missing export.json"
+msgstr "无效的导入文件结构。 丢失导出. json"
+
+msgid "Invalid JSON data in import file."
+msgstr "导入文件中的无效 JSON 数据 。"
+
+msgid "This site does not share its design library."
+msgstr "该网站不共享设计图书馆。"
+
+msgid "The library key is missing or wrong."
+msgstr "图书馆的 key是缺失或错失的。"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "My patterns"
+msgstr "我的规律"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "Unknown action."
+msgstr "未知的行动。"
+
+msgid "Library not found."
+msgstr "图书馆不详。"
+
+msgid "The library could not be reached."
+msgstr "图书馆无法进入。"
+
+msgid "The library refused access. Check the key, and that sharing is on at the other site."
+msgstr "图书馆拒绝进入,检查 key,并在其他地点分享。"
+
+msgid "This address is not a Flux design library."
+msgstr "地址不是Flux设计图书馆。"
+
+msgid "Make a duplicate from this."
+msgstr "由此产生重复。"
+
+msgid "Duplicate"
+msgstr "重复"
+
+msgid "No post to duplicate has been supplied!"
+msgstr "没有提供重复的员额!"
+
+msgid "Post creation failed, could not find original post: %s"
+msgstr "员额的设立没有成功,不能找到原来的员额:%s"
+
+msgid "%s (Copy)"
+msgstr "%s(间))"
+
+msgid "%s and higher"
+msgstr "%s 及以上"
+
+msgid "Inherit"
+msgstr "Inherit"
+
+msgid "Thin 100"
+msgstr "Thin"
+
+msgid "Extra-Light 200"
+msgstr "超光200"
+
+msgid "Light 300"
+msgstr "轻型300"
+
+msgid "Regular"
+msgstr "经常"
+
+msgid "Medium 500"
+msgstr "中500"
+
+msgid "Semi-Bold 600"
+msgstr "半百慕大"
+
+msgid "Bold 700"
+msgstr "Bold 700"
+
+msgid "Extra-Bold 800"
+msgstr "外格800"
+
+msgid "Ultra-Bold 900"
+msgstr "超大号900"
+
+msgid "Limit results to items of a specific post type."
+msgstr "限制对特定职位类型的项目的结果。"
+
+msgid "Include posts by ID."
+msgstr "包括身份证员额。"
+
+msgid "Number of results to return."
+msgstr "返回结果的数量。"
+
+msgid "Define Type of Query."
+msgstr "定义查询类型 。"
+
+msgid "Define Query Order."
+msgstr "定义查询顺序 。"
+
+msgid "Define Query Order By."
+msgstr "定义查询顺序 。"
+
+msgid "Allow Sticky in Query."
+msgstr "允许在查询中粘贴 。"
+
+msgid "Exclude Category."
+msgstr "不包括类别。"
+
+msgid "Number of items to offset in query."
+msgstr "查询中要抵消的项目数 。"
+
+msgid "The Current Post ID."
+msgstr "现任邮局身份证"
+
+msgid "Check if using a custom Taxonomy"
+msgstr "使用定制分类法的检查"
+
+msgid "Include posts category."
+msgstr "包括员额类别。"
+
+msgid "Include posts tags."
+msgstr "包括员额标记。"
+
+msgid "Taxonomy Type."
+msgstr "分类类型。"
+
+msgid "The source of the content."
+msgstr "内容来源。"
+
+msgid "Page of results to return."
+msgstr "结果的页数。"
+
+msgid "Expand Table of Contents"
+msgstr "扩大目录"
+
+msgid "Collapse Table of Contents"
+msgstr "内容表"
+
+msgid "Table of Contents"
+msgstr "目 录"
+
+msgid "Lottie animation not found"
+msgstr "未找到 Lottie 动画"
+
+msgid "Lottie animation file contains invalid json"
+msgstr "Lottie 动画文件包含无效的json"
+
+msgid "Lottie animation contains invalid JSON"
+msgstr "Lottie 动画包含无效 JSON 的无效 JSON"
+
+msgid "Please enter an animation title"
+msgstr "请写信给你。"
+
+msgid "The API Key for Mailerlite account."
+msgstr "API 邮件号账户的密钥。"
+
+msgid "Query Args for url."
+msgstr "url 查询参数 。"
+
+msgid "Vector contains invalid SVG"
+msgstr "矢量含有无效的 SVG"
+
+msgid "Please enter a vector title"
+msgstr "请登载病媒头衔"
+
+msgid "Flux Block Editor"
+msgstr "Flux Block Editor"
+
+msgid "Google Fonts"
+msgstr "谷s"
+
+msgid "Google Fonts are served from this site; visitors do not connect to Google."
+msgstr "Google Fonts从该网站服务;访问者与Google没有连接。"
+
+msgid "Google Fonts load from fonts.googleapis.com, which shares visitor IP addresses with Google. Turn on \"Load Google Fonts Locally\"."
+msgstr "com与Google分享访问者IP地址, 并使用“load Google Fonts Lality”。"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Form spam protection"
+msgstr "生育保护"
+
+msgid "Flux reCAPTCHA is active and can protect Flux Block Editor forms."
+msgstr "Flux reCAPTCHA 是积极的,可以保护 &quot; Flux Block &quot; 编辑形式。"
+
+msgid "Flux reCAPTCHA is not active. Forms use the honeypot check only unless a captcha key is set on the form."
+msgstr "Flux reCAPTCHA 表格只使用ho检查,除非cap上有 key。"
+
+msgid "Blocks"
+msgstr "块"
+
+msgid "%d block is turned off."
+msgid_plural "%d blocks are turned off."
+msgstr[0] "%d block块被切断。"
+
+msgid "All blocks are on."
+msgstr "所有街区都开着"
+
+msgid "Data not Found"
+msgstr "数据不健全"
+
+msgid "Submission Rejected"
+msgstr "驳回"
+
+msgid "Spam Detected"
+msgstr "检测到垃圾垃圾邮件"
+
+msgid "reCAPTCHA Failed"
+msgstr "reCAPTCHA Failed"
+
+msgid "Required Field Empty"
+msgstr "所需外勤"
+
+msgid "Flux Header"
+msgstr "Flux Header"
+
+msgid "Add New Flux Header"
+msgstr "加新的Flux Header"
+
+msgid "New Flux Header"
+msgstr "新蓝 Head头"
+
+msgid "Edit Flux Header"
+msgstr "编辑 Explus 头编辑"
+
+msgid "View Flux Header"
+msgstr "查看 Flus 头"
+
+msgid "Headers"
+msgstr "Headers"
+
+msgid "Search Flux Headers"
+msgstr "搜索流量信头"
+
+msgid "Parent Flux Header:"
+msgstr "家长俱乐部负责人:"
+
+msgid "No Flux Header found."
+msgstr "没有发现任何超载信头 。"
+
+msgid "No Flux Header found in Trash."
+msgstr "在垃圾桶里找不到任何通气信头。"
+
+msgid "Flux Header archives"
+msgstr "Flux Header archives"
+
+msgid "Insert into Flux Header"
+msgstr "插入到 通量头"
+
+msgid "Uploaded to this Flux Header"
+msgstr "上传到此通量信头"
+
+msgid "Filter Flux Header list"
+msgstr "Head胶头名单"
+
+msgid "Flux Headers list navigation"
+msgstr "Flux Headers list navigation"
+
+msgid "Flux Headers list"
+msgstr "Flux Headers list"
+
+msgid "Flux Headers that can be inserted into your site."
+msgstr "可插入你网站的蓝 Head头。"
+
+msgid "Theme Header"
+msgstr "主题标题"
+
+msgid "%s (Theme)"
+msgstr "%s(主题)"
+
+msgid "Add New"
+msgstr "新加"
+
+msgid "Header"
+msgstr "标头"
+
+msgid "Continue"
+msgstr "继续"
+
+msgid "Lottie Animations"
+msgstr "洛蒂动画"
+
+msgid "Lottie Animations imported in Flux"
+msgstr "进口的豪华进口的彩票动画"
+
+msgid "Vector SVGs"
+msgstr "矢量 SVGs"
+
+msgid "Vector SVGs imported in Flux"
+msgstr "以通量进口方式进口的矢量 SVGs"
+
+msgid "Flux Navigation"
+msgstr "Flux Navigation"
+
+msgid "Add New Flux Navigation"
+msgstr "加新lu轮导航"
+
+msgid "New Flux Navigation"
+msgstr "新lu导航"
+
+msgid "Edit Flux Navigation"
+msgstr "编辑版流流导航"
+
+msgid "View Flux Navigation"
+msgstr "查看 流量导航"
+
+msgid "Navigations"
+msgstr "导航"
+
+msgid "Search Flux Navigations"
+msgstr "Search Flux导航"
+
+msgid "Parent Flux Navigation:"
+msgstr "母体流量导航 :"
+
+msgid "No Flux Navigation found."
+msgstr "未找到通航导航 。"
+
+msgid "No Flux Navigation found in Trash."
+msgstr "在垃圾堆中没有发现任何通航导航 。"
+
+msgid "Flux Navigation archives"
+msgstr "Flux Navigation archives"
+
+msgid "Insert into Flux Navigation"
+msgstr "插入到 Flus 导航"
+
+msgid "Uploaded to this Flux Navigation"
+msgstr "上载到这一轮船"
+
+msgid "Filter Flux Navigation list"
+msgstr "Flux导航清单"
+
+msgid "Flux Navigation list navigation"
+msgstr "Flux Navigation list navigation"
+
+msgid "Flux Navigation list"
+msgstr "Flux Navigation list"
+
+msgid "Flux Navigations that can be inserted into your site."
+msgstr "可插入贵国场址的浮游导航。"
+
+msgid "Style Library"
+msgstr "样式库"
+
+msgid "Global Styles"
+msgstr "全球轮胎"
+
+msgid "This site uses the Flux theme in Full Site Editing mode, so site-wide colors are managed in the Site Editor's %s."
+msgstr "该网站采用全天候方式的 &quot; Flux主题 &quot; ,因此,全地 co由现场编辑管理 %s."
+
+msgid "Style Library settings keep applying to the blocks that use them."
+msgstr "图书馆的空间不断适用于使用这些设施的各个区块。"
+
+msgid "Your Library"
+msgstr "您的图书馆图书馆"
+
+msgid "Flux Block Editor design tokens are disabled because these tokens have no baseline entry: %s"
+msgstr "Flux 区块编辑器设计符号已被禁用, 因为这些符号没有基准条目 : %s"
+
+msgid "None"
+msgstr "无"
+
+msgid "2X Small"
+msgstr "2X 小型"
+
+msgid "Extra Small"
+msgstr "特别特别"
+
+msgid "Small"
+msgstr "小号"
+
+msgid "Medium"
+msgstr "中等"
+
+msgid "Large"
+msgstr "大号"
+
+msgid "Extra Large"
+msgstr "额外大"
+
+msgid "2X Large"
+msgstr "2X 大"
+
+msgid "3X Large"
+msgstr "3X 大"
+
+msgid "4X Large"
+msgstr "4X 大"
+
+msgid "5X Large"
+msgstr "5X 大"
+
+msgid "Full"
+msgstr "充分"
+
+msgid "Spacing"
+msgstr "发言"
+
+msgid "Gap"
+msgstr "Gap"
+
+msgid "Border Radius"
+msgstr "边界半径"
+
+msgid "Border Width"
+msgstr "边边宽度"
+
+msgid "Icon Sizes"
+msgstr "图标大小"
+
+msgid "Shadow"
+msgstr "Shadow"
+
+msgid "Font Size"
+msgstr "字体大小"
+
+msgid "Brand Primary"
+msgstr "小学"
+
+msgid "Brand Secondary"
+msgstr "品牌中等教育"
+
+msgid "Neutral 900"
+msgstr "Neutral 900"
+
+msgid "Neutral 700"
+msgstr "Neutral 700"
+
+msgid "Neutral 600"
+msgstr "Neutral 600"
+
+msgid "Neutral 500"
+msgstr "Neutral 500"
+
+msgid "Neutral 100"
+msgstr "Neutral 100"
+
+msgid "Neutral 50"
+msgstr "Neutral 50"
+
+msgid "Neutral 0"
+msgstr "Neutral 0"
+
+msgid "Complement"
+msgstr "补充"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "Alert"
+msgstr "Alert"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Rating"
+msgstr "评级"
+
+msgid "Palette"
+msgstr "Palette"
+
+msgid "Button Background"
+msgstr "按钮背景"
+
+msgid "Button Text"
+msgstr "按钮文本"
+
+msgid "Button Background (Hover)"
+msgstr "按钮背景(  Hover)"
+
+msgid "Button Text (Hover)"
+msgstr "按钮文字( 隐藏)"
+
+msgid "Button Border"
+msgstr "按钮边界"
+
+msgid "Brand"
+msgstr "品牌"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Notices"
+msgstr "Notices"
+
+msgid "Brand Accent"
+msgstr "品牌 Acent"
+
+msgid "Brand Button"
+msgstr "Brand 按键"
+
+msgid "Brand Button (Hover)"
+msgstr "Brand button(  Hover) 按钮( 挂)"
+
+msgid "Neutral 300"
+msgstr "Neutral 300"
+
+msgid "Neutral 200"
+msgstr "Neutral 200"
+
+msgid "Media Radius"
+msgstr "媒体半径"
+
+msgid "Control Radius"
+msgstr "控制半径"
+
+msgid "Icon Size"
+msgstr "图标大小"
+
+msgid "Icon Block Size"
+msgstr "图标块大小"
+
+msgid "Row Layout Radius"
+msgstr "行布局半径"
+
+msgid "Layout"
+msgstr "布局"
+
+msgid "Column Radius"
+msgstr "列半径"
+
+msgid "Column Radius (Hover)"
+msgstr "列半径 (Hover)"
+
+msgid "Row Layout Background"
+msgstr "行布局背景"
+
+msgid "Column Background"
+msgstr "哥伦背景"
+
+msgid "Column Background (Hover)"
+msgstr "Col色背景(以上)"
+
+msgid "Border"
+msgstr "边框"
+
+msgid "Border (Hover)"
+msgstr "边界(南))"
+
+msgid "Image Background"
+msgstr "背景"
+
+msgid "Media"
+msgstr "媒体"
+
+msgid "Border Width (Hover)"
+msgstr "边界宽度( 长) (Hover)"
+
+msgid "Media Shadow"
+msgstr "媒体阴影"
+
+msgid "Media Padding"
+msgstr "媒体遮蔽"
+
+msgid "Media Border Width"
+msgstr "媒体边境边界"
+
+msgid "Button Border Width"
+msgstr "布顿边境"
+
+msgid "Button Shadow"
+msgstr "按钮阴影"
+
+msgid "Button Shadow (Hover)"
+msgstr "按钮阴影( 挂)"
+
+msgid "Style"
+msgstr "风格"
+
+msgid "Button"
+msgstr "按钮"
+
+msgid "Advanced Image"
+msgstr "高级图像"
+
+msgid "Row Layout"
+msgstr "行布局"
+
+msgid "Section"
+msgstr "部分"
+
+msgid "Icon"
+msgstr "图标"
+
+msgid "Advanced Text"
+msgstr "高级案文"
+
+msgid "Sorry, that design token library does not exist."
+msgstr "有时,设计图象的图书馆并不存在。"
+
+msgid "The active token library slug, always resolved to an existing library."
+msgstr "活跃的象征性图书馆lu,始终决心建立一个现有的图书馆。"
+
+msgid "The token library slug to make active."
+msgstr "激活的象征性库弹片 。"
+
+msgid "Sorry, you are not allowed to manage design tokens."
+msgstr "遗憾的是,不允许你管理设计象征。"
+
+msgid "The requested design token library does not exist."
+msgstr "所要求的设计图象图书馆并不存在。"
+
+msgid "The token library was modified since you last read it. Reload and try again."
+msgstr "自你最后读到该文以来,该文 library图书馆已经改装,重新装载和试用。"
+
+msgid "The user primitive document invariant failed."
+msgstr "用户原始文件没有成功。"
+
+msgid "The document contains an unsupported reference to a user primitive."
+msgstr "该文件载有对用户定价的未经证实的提及。"
+
+msgid "The design token document failed validation."
+msgstr "设计代号文档验证失败 。"
+
+msgid "The design token document could not be encoded."
+msgstr "无法编码设计代号文档 。"
+
+msgid "The design token library could not be saved."
+msgstr "无法保存设计代币库 。"
+
+msgid "Bulk replace is not allowed while user-created primitives exist. Delete them first or use PATCH."
+msgstr "在存在用户创作的原始财产时,不允许更换ul色,首先删除或使用PATCH。"
+
+msgid "A library title cannot be empty."
+msgstr "图书馆的标题是空的。"
+
+msgid "The library title could not be saved."
+msgstr "图书馆的标题无法保留。"
+
+msgid "The design token library could not be deleted."
+msgstr "无法删除设计代币库 。"
+
+msgid "A $type is required to create a new token."
+msgstr "需要一种美元来创造一种新的象征。"
+
+msgid "Use the user-primitives endpoint to delete a custom primitive."
+msgstr "使用用户价格终点来删除习俗定价。"
+
+msgid "The token path must begin with a valid layer (%s) and name a token below it, with no empty segments."
+msgstr "象征性道路必须从有效层面开始(有效层面)%s)和名字在下面,没有空段。"
+
+msgid "The token library slug."
+msgstr "象征性的书房的鼻涕虫"
+
+msgid "The human-readable label for the library, empty when none is stored."
+msgstr "图书馆的人类可读标签, 不存在时空的 。"
+
+msgid "The cache-busting version hash for the library, empty when it renders from baseline."
+msgstr "图书馆藏匿藏匿处,从基线中 render空。"
+
+msgid "The raw overrides-only DTCG document, empty when the library renders entirely from baseline."
+msgstr "仅凭DTCG的ride彩文件,在图书馆完全脱离基线时就空了。"
+
+msgid "Resolved CSS values keyed by token dot-path id."
+msgstr "解析 CSS 值, 以符号点路径代号为键入 。"
+
+msgid "Resolved CSS values keyed by CSS custom-property name."
+msgstr "解析 CSS 值, 以 CSS 自定义财产名称为键。"
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id; present only for tokens that carry a shape."
+msgstr "作者反应/ 夹, 由符号点路径代号键制, 仅显示带有形状的符号 。"
+
+msgid "Sorry, that token is not registered."
+msgstr "抱歉, 此符未注册 。"
+
+msgid "Sorry, that token group does not exist."
+msgstr "遗憾的是,这个象征性的团体并不存在。"
+
+msgid "Sorry, that font family is not available on this site."
+msgstr "or,该家庭在这一地点无法得到。"
+
+msgid "\"%s\" is a token group, not a single token. Write a token below it instead."
+msgstr "\" %s rit是一个象征性的团体,不是单一的象征,而是在下面写明。"
+
+msgid "\"%1$s\" is a token, not a group, so \"%2$s\" cannot be written below it."
+msgstr "\" %1$s  group是象征性的,不是团体,因此,%2$s \"不能在下面写成。"
+
+msgid "The human-readable label for the token library."
+msgstr "象征图书馆的人类可读标签。"
+
+msgid "The token library slug to write. Defaults to the default library."
+msgstr "要写入的库符号弹珠。 默认为默认库。"
+
+msgid "The overrides-only DTCG document to store."
+msgstr "要存储的仅覆盖的 DTCG 文档 。"
+
+msgid "Optional human-readable label for the token library."
+msgstr "打印图书馆的专用可读贴标签。"
+
+msgid "The token dot-path, e.g. primitive.color.brand."
+msgstr "象征性的点路径,例如原始的,颜色,品牌。"
+
+msgid "The display-label override. Empty or whitespace-only clears the override, equivalent to DELETE."
+msgstr "展品压高ride,mp或白色高速,只扫清了相当于ELETE的高ride。"
+
+msgid "The token's canonical dot-path id, e.g. semantic.color.button-bg."
+msgstr "符号是卡门式点路径id, 例如语义、 颜色、 按钮和 bg 。"
+
+msgid "The version the client last read; empty for a first write. A mismatch is rejected with HTTP 409."
+msgstr "客户最后阅读的版本;一封信的空洞;不匹配的版本被HTTP 409否决。"
+
+msgid "The token ids in their new order for this group."
+msgstr "给这个组组新顺序中的象征性 ID 。"
+
+msgid "The UI-schema group name whose token order is being set."
+msgstr "UI-schema集团名字正在确定其象征性命令。"
+
+msgid "The font family name to add as a favorite, e.g. Abril Fatface."
+msgstr "添加为最喜爱的字体姓氏, 如 Abril Fatface 。"
+
+msgid "The primitive.*.custom.* namespace is reserved for user-created primitives. Use the user-primitives endpoint."
+msgstr "* 名字空间保留给用户的原始设备,使用用户的定点。"
+
+msgid "Whether the design-token registry is active."
+msgstr "设计图形登记处是否活跃。"
+
+msgid "Whether the library resolved without a corrupt-store failure."
+msgstr "图书馆是否在没有腐败失灵的情况下得到解决。"
+
+msgid "The library's stored label, empty when it has none."
+msgstr "图书馆的标签是储存的,没有时是空的。"
+
+msgid "The token library slug the feed was assembled for."
+msgstr "库传奇的球棒 摄像头组装。"
+
+msgid "The token structure, grouped for the UI."
+msgstr "符号结构, 分组用于 UI 。"
+
+msgid "Per-block preset structure and resolved preview values."
+msgstr "永久的预先设定结构以及解决的预估价值。"
+
+msgid "The nav-ready block-presets section, for labeled/picker-driven preset bindings only."
+msgstr "仅对标签/拾取者驱动的预设绑定设定的顶部预设区块,可使用备加备置的顶部预设区块。"
+
+msgid "Authored responsive / clamp shape keyed by token dot-path id."
+msgstr "作者按点路径代号键键的响应/ 夹形状 。"
+
+msgid "The REST descriptor (root, namespace, nonce) the app writes edits to."
+msgstr "The REST 附件人(旋转、姓名、未收)"
+
+msgid "The token library slug to read the feed for."
+msgstr "要读取种子的象征性库弹片 。"
+
+msgid "A swatch value or label is required."
+msgstr "需要有atch形价值或标签。"
+
+msgid "A swatch value cannot be empty."
+msgstr "atch合价值是空的。"
+
+msgid "A swatch label cannot be empty."
+msgstr "atch形标签是空的。"
+
+msgid "A swatch label is structural and can only be set on the library's default palette."
+msgstr "Swatch 标签是结构性的, 只能设置在图书馆默认调色板上 。"
+
+msgid "The current palette must name a palette the library defines."
+msgstr "目前的书状必须标明图书馆所定义的书状。"
+
+msgid "The palette id."
+msgstr "调色板识别码"
+
+msgid "The palette label."
+msgstr "调色板标签"
+
+msgid "The ordered color groups, each an ordered list of swatches."
+msgstr "订购的颜色组,每个组都有一份 手表的顺序列表。"
+
+msgid "The color palette failed validation."
+msgstr "色调验证失败 。"
+
+msgid "The color palette could not be encoded."
+msgstr "调色板无法编码 。"
+
+msgid "The color palette could not be saved."
+msgstr "co的 save形无法幸免。"
+
+msgid "The palette label must be a string."
+msgstr "调色板标签必须是字符串 。"
+
+msgid "A palette must define at least one color group."
+msgstr "调色板必须定义至少一个颜色组 。"
+
+msgid "Each color group must have an id, a label, and a swatches list."
+msgstr "每个 co类组必须有一张id子、一张标签和一份wa片清单。"
+
+msgid "Each swatch must have a token, a label, and a value."
+msgstr "每一批w必须有象征、标签和价值。"
+
+msgid "Swatch token \"%s\" does not target a color."
+msgstr "Swatch token \" %s .不以 co为对象。"
+
+msgid "Token \"%s\" appears more than once in the palette."
+msgstr "Token \"%spal pal 在pal盘上出现过一次以上。"
+
+msgid "Swatch value aliases a token that does not exist: \"%s\"."
+msgstr "Swatch 值是不存在的代名符: \" %s \" 。"
+
+msgid "Swatch \"%s\" is part of the shipped palette and cannot be removed."
+msgstr "Swatch \" %s atch是装运的货ette的一部分,不能清除。"
+
+msgid "Accent"
+msgstr "口音"
+
+msgid "Sorry, that palette does not exist."
+msgstr "遗憾的是,不存在这种束.。"
+
+msgid "Optional token library slug to target; defaults to the active library."
+msgstr "选择象征性的图书馆lu,以目标为对象;不向活跃的图书馆fa。"
+
+msgid "The swatch token dot-path."
+msgstr "观光标牌点路"
+
+msgid "The swatch value: a literal color or a {dot.path} alias."
+msgstr "atch值:文学 co或文学 co {dot.path} alias."
+
+msgid "The swatch's structural label. Only valid when {id} is the library's default palette — labels are defined once, not per palette."
+msgstr "The swatchatchs structural label. only valid when {id} 是图书馆的预订货盘 -- -- 标签一度确定,而不是每pal。"
+
+msgid "The palette id to make current."
+msgstr "调色板 ID 来让时装更新 。"
+
+msgid "A preset slug is required."
+msgstr "需要先发制lu。"
+
+msgid "The preset's human-readable label."
+msgstr "预设的人类可读标签"
+
+msgid "The preset's property => value map: an alias or literal, a per-corner list, or a responsive envelope."
+msgstr "预设属性  ??  值映射: 化名或字面、 角值列表或响应信封 。"
+
+msgid "Which properties this preset genuinely stores itself, as property => true. A bound property absent here is only inherited from the baseline's own definition of the same preset slug, and a control shows it as a muted default rather than as bound."
+msgstr "财产本身就属于哪种财产,而财产则为 &quot; 真实 &quot; ,这里没有的受约束财产只能从基线 definition本身对同一先发lu的定义中继承,而控制则显示它是一种被动的违约行为,而不是受约束。"
+
+msgid "The classes the theme's own stylesheet paints this preset through, for a preset painted by class rather than by variables."
+msgstr "主题 &quot; 自己的风格表 &quot; 的类别通过按类别而不是变量分类的预发量绘画来描绘了这一预兆。"
+
+msgid "The values the theme currently renders for this preset, for display only: a control shows them as muted defaults and a save stores only the values that differ."
+msgstr "主题目前为这一预创作的价值观仅显示:一种控制显示它们是被动的缺省,一种储蓄的商店仅具有不同的价值。"
+
+msgid "Whether the theme's values behind this preset could be read. A preset that is not readable can be previewed and picked but offers nothing to edit."
+msgstr "是否能够阅读这一预先设定的价值观,可以对一个不能读到的预先设定加以审查和取用,但不会引出任何东西。"
+
+msgid "The block name the preset collection belongs to."
+msgstr "预设收藏属于的块名 。"
+
+msgid "The default preset slug."
+msgstr "默认预设的弹簧 。"
+
+msgid "The preset slugs the library defines beyond the baseline. Deleting one removes it; deleting anything else at most reverts an override."
+msgstr "前set的 s曲了图书馆的基线,删除了它;删除了其他东西,但大部分又恢复了ride。"
+
+msgid "The named presets, keyed by slug."
+msgstr "名字的预设, 由子弹键。"
+
+msgid "The stored theme presets the active theme does not offer, keyed by slug: not listed, not projected, kept until a theme that offers them is active again."
+msgstr "储存的主题预先设定了现成主题,并以lu标为主:未列出、未预测,一直保留在主题提出主题之前。"
+
+msgid "The label the preset was stored with."
+msgstr "预设的标签被存储在标签上 。"
+
+msgid "The overrides the preset keeps."
+msgstr "先驱的ride。"
+
+msgid "The theme values the preset had when its overrides were last saved."
+msgstr "主题的价值在于其ride彩最终得以拯救。"
+
+msgid "The design token library could not be encoded."
+msgstr "无法编码设计代号库 。"
+
+msgid "Sorry, that block does not accept presets."
+msgstr "令人怀疑的是,这块地不接受先.。"
+
+msgid "A preset slug cannot be empty."
+msgstr "先发制的lu不可能是空的。"
+
+msgid "Each preset must be an object with an optional string label and a token map."
+msgstr "每一起先发制人必须是带有选择性str贴标签和象征性地图的物体。"
+
+msgid "A preset cannot set theme-owned keys."
+msgstr "预先设定不能确定主题拥有的 key。"
+
+msgid "That preset slug is reserved."
+msgstr "这种先发制.是保留下来的。"
+
+msgid "A per-corner value is only valid for a dimension property."
+msgstr "每角价值仅适用于一个层面的财产。"
+
+msgid "A per-corner base value must set every corner; a gap is only valid inside a responsive override."
+msgstr "每角基地价值必须设定每个角落;差距只有在反应迅速的高ride内才有效。"
+
+msgid "A dimension value must not contain a space; compound literals (e.g. calc(), clamp()) are not supported."
+msgstr "含量值不得包含空间;复合文学(如校准、cl)不得到支持。"
+
+msgid "A per-corner responsive override requires a per-corner base value for the same property."
+msgstr "每一角落需要对同一财产的每一角落基值。"
+
+msgid "A shadow value must be an alias, a literal, or a composite carrying color, offsetX, offsetY, blur and spread."
+msgstr "影子价值必须是别的、文学的或装有 co、抵消X、抵消、 b和扩散的复合 carrying。"
+
+msgid "The default preset must name an existing preset."
+msgstr "违约前设定必须指明现有的预设。"
+
+msgid "A theme preset cannot be the default preset."
+msgstr "预先设定的主题是违约前。"
+
+msgid "A preset can only set properties the block binds."
+msgstr "先发制人只能将财产确定为 block子。"
+
+msgid "A preset alias does not resolve to a token."
+msgstr "先知的别人并不决心ken觉。"
+
+msgid "The block vendor segment, e.g. flxbk."
+msgstr "block块供应商部分,例如 fl。"
+
+msgid "The block name segment, e.g. singlebtn."
+msgstr "block体名称部分,例如单一t。"
+
+msgid "The preset slug."
+msgstr "预设的子弹"
+
+msgid "The preset slug to create or merge."
+msgstr "要创建或合并的预设弹片 。"
+
+msgid "Optional human-readable label for the preset."
+msgstr "预先设定的人类可读的任择标签。"
+
+msgid "The preset's property => alias-or-literal token map."
+msgstr "预设的属性 化名或立体符号地图"
+
+msgid "The presets to store, keyed by slug."
+msgstr "储存的前线, s着 key。"
+
+msgid "Optional default preset slug."
+msgstr "可选的默认预设弹簧 。"
+
+msgid "The preset slugs in their new display order."
+msgstr "新的显示顺序中的预设的子弹"
+
+msgid "The combined design-token editor CSS for every token library."
+msgstr "每张象征性图书馆的中央支助系统综合设计编辑。"
+
+msgid "The DTCG schema could not be read."
+msgstr "DTCG schema无法阅读。"
+
+msgid "The published DTCG JSON Schema that a valid design token document must satisfy."
+msgstr "一份有效的设计标志文件必须满足的DTCG JSON Schema出版物。"
+
+msgid "That custom token does not exist."
+msgstr "这种习惯并不存在。"
+
+msgid "The id must be a lowercase kebab-case slug with no dots (e.g. my-color)."
+msgstr "id 必须是无点(例如我的颜色)的小写 kebab-case shystem (kebab-case system) 。"
+
+msgid "The group must be a lowercase kebab-case key."
+msgstr "该组必须是小写 kebab-case 键。"
+
+msgid "That group is not declared for user-created primitives."
+msgstr "该组不被宣布为用户创作的原始财产。"
+
+msgid "That $type does not support user-created primitives in this version."
+msgstr "此类美元不支持用户创造的价格。"
+
+msgid "That id is used by a system token."
+msgstr "这一缺陷被系统象征使用。"
+
+msgid "A custom token with that id already exists."
+msgstr "已经存在一种习惯。"
+
+msgid "That id is reserved by the system."
+msgstr "该系统保留了这一字样。"
+
+msgid "System primitives cannot be deleted."
+msgstr "系统价格不能删除。"
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before deleting."
+msgstr "这一原始资料是无法自动解决的,在删除之前便以人工方式予以删除。"
+
+msgid "This primitive has references that cannot be automatically resolved. Remove them manually before renaming."
+msgstr "这一原始资料是无法自动解决的,在改名之前,以人工方式予以删除。"
+
+msgid "The stored definition has no $type and cannot be renamed."
+msgstr "储存的定义没有价值,不能重新命名。"
+
+msgid "The new id is already in use."
+msgstr "新 已经使用。"
+
+msgid "The new id is reserved by the system."
+msgstr "该系统保留了新的字幕。"
+
+msgid "The canonical dot-path id of the user primitive."
+msgstr "用户原始的卡尼科圆点路径 id。"
+
+msgid "The human-readable label stored in the provenance map."
+msgstr "人类可读标签 存储在出处地图。"
+
+msgid "The cache-busting version hash for the token library."
+msgstr "用于代币库的缓存破碎版本版本 hash 。"
+
+msgid "Whether the primitive can be safely deleted (all references are supported)."
+msgstr "是否能够安全地删除原始内容(所有参考资料都得到支持)。"
+
+msgid "All alias references to this primitive found in the document."
+msgstr "文档中所有引用原始原始文字的别名 。"
+
+msgid "The id must be a canonical custom primitive path (primitive.<type>.custom.<slug>)."
+msgstr "The id must be a canonical custom primitive path (primitive.<type>. 海关<slug>)."
+
+msgid "The version token the client last read."
+msgstr "该版本将客户最后读为客户。"
+
+msgid "The terminal slug for the new primitive (kebab-case, no dots)."
+msgstr "新原始的末端子弹( kebab-case, no dots) 。"
+
+msgid "The DTCG $type for the new primitive."
+msgstr "新的原始人的DTCG $类型。"
+
+msgid "The DTCG $value for the new primitive."
+msgstr "新的原始人DTCG价值"
+
+msgid "Optional human-readable label."
+msgstr "人类可读的任择标签。"
+
+msgid "Optional stable machine key for the UI group this primitive should join."
+msgstr "乌伊特集团的专用稳定机器应该加入。"
+
+msgid "The canonical dot-path id of the user primitive to delete."
+msgstr "用户原始删除的卡纳尼科点路径代号 。"
+
+msgid "The canonical dot-path id of the user primitive to rename."
+msgstr "用户原始的卡纳尼特点路径 ID 来重命名 。"
+
+msgid "The new terminal slug (kebab-case, no dots)."
+msgstr "新的终点lu(ke巴case,无 do)。"
+
+msgid "Optional new human-readable label."
+msgstr "选择性新的可读性标签。"
+
+msgid "Theme Base"
+msgstr "主题基地"
+
+msgid "Theme %s"
+msgstr "主题 %s"
+
+msgid "Theme Button"
+msgstr "主题按钮"
+
+msgid "Theme Secondary"
+msgstr "中等阶段主题"
+
+msgid "Unknown block."
+msgstr "未知块 。"
+
+msgid "Choose Small, Large or Fullwidth."
+msgstr "选择小、大或全宽。"
+
+msgid "Enter a width between 200 and 4000 px."
+msgstr "输入宽度在200到4000 px之间。"
+
+msgid "Pattern not found."
+msgstr "未找到模式 。"
+
+msgid "Enter a valid site address."
+msgstr "进入一个有效的场地地址。"
+
+msgid "Pale pink"
+msgstr "粉粉粉粉粉粉粉"
+
+msgid "Vivid red"
+msgstr "红色的活红色"
+
+msgid "Luminous vivid orange"
+msgstr "viv胎"
+
+msgid "Luminous vivid amber"
+msgstr "光辉的生动的黄"
+
+msgid "Light green cyan"
+msgstr "绿色光yan"
+
+msgid "Vivid green cyan"
+msgstr "生绿青青青"
+
+msgid "Pale cyan blue"
+msgstr "青青蓝蓝色"
+
+msgid "Vivid cyan blue"
+msgstr "紫青蓝色"
+
+msgid "Very light gray"
+msgstr "甚微光ray"
+
+msgid "Cyan bluish gray"
+msgstr "青蓝色灰色"
+
+msgid "Very dark gray"
+msgstr "非常暗灰色"
+
+msgid "Config Flux Block Defaults"
+msgstr "配置通量块默认"
+
+msgid "Config Flux Block visibility settings"
+msgstr "配置的 通量块群块可见性设置"
+
+msgid "Config Flux Block Settings"
+msgstr "配置的通量块设置"
+
+msgid "Config Flux Block Prophecy AI"
+msgstr "预言 AI"
+
+msgid "Config Flux Block Editor Color Palette"
+msgstr "色彩调色器编辑器"
+
+msgid "Config Flux Block Editor Global Settings"
+msgstr "配置配置通量块编辑器全局编辑器设置"
+
+msgid "Google reCaptcha Site Key"
+msgstr "Google re Capttcha 站点密钥"
+
+msgid "Google reCaptcha Secret Key"
+msgstr "Google reCapttcha 秘密密钥"
+
+msgid "Google reCaptcha Language"
+msgstr "Google re Capttcha语言"
+
+msgid "Cloudflare Turnstile Site Key"
+msgstr "lou石"
+
+msgid "Cloudflare Turnstile Secret Key"
+msgstr "云花 转角密密钥"
+
+msgid "hCaptcha Turnstile Site Key"
+msgstr "hCaptcha 转式站点密钥"
+
+msgid "hCaptcha Secret Key"
+msgstr "hCaptcha 密钥"
+
+msgid "MailerLite API Key"
+msgstr "MailerLite API 关键"
+
+msgid "Google Maps API Key"
+msgstr "Google Maps API 关键"
+
+msgid "Config Flux Block Editor Cloud"
+msgstr "配置的 通量块编辑器云"
+
+msgid "Is Flux header notice dismissed"
+msgstr "是否驳回通量头通知"
+
+msgid "Subscribe to Wireframe library"
+msgstr "威里弗图书馆名录"
+
+msgid "ConvertKit API Key"
+msgstr "ConvertKit API 关键"
+
+msgid "Mark the Header popover tutorial Complete"
+msgstr "标记信头流行信头教义补全"
+
+msgid "Small Template"
+msgstr "小模板"
+
+msgid "Large Template"
+msgstr "大模板模板"
+
+msgid "Post default"
+msgstr "违约后"
+
+msgid "Page Default"
+msgstr "缺省"
+
+msgid "Enable Editor Width"
+msgstr "启用编辑器宽度"
+
+msgid "Load Google Fonts Locally"
+msgstr "本地本地装入 Google 字体"
+
+msgid "Show Block Headers in Admin Bar"
+msgstr "管理栏中显示块头栏"
+
+msgid "Allows for changes to the editor width on per page/post basis with preset defaults."
+msgstr "允许更改每个页面/ 后栏基数的编辑器宽度, 并预设默认值 。"
+
+msgid "False"
+msgstr "False"
+
+msgid "True"
+msgstr "True"
+
+msgid "Experimental editor CSS for less excess margins in Gutenberg in an attempt to get a closer WYSIWYG editing experience."
+msgstr "实验编辑CSS在古腾堡的超额利润较少,"
+
+msgid "px"
+msgstr "px"
+
+msgid "Fullwidth"
+msgstr "Fullwidth"
+
+msgid "Create rows with nested blocks either in columns or as a container. Give style to your rows with background, overlay, padding, etc."
+msgstr "在列栏或集装箱内设立有nes子的row子;在有背景、超时、ad等的情况下,用nes式的row子。"
+
+msgid "Create a contact form or marketing form and style it within the block editor."
+msgstr "在区块编辑器中创建联系人表格或营销表格并风格化。"
+
+msgid "Advanced Gallery"
+msgstr "高级广场"
+
+msgid "Photo galleries, carousels, and sliders! Enable custom links, captions, and more. Plus, you can select image sizes."
+msgstr "光eries、木ous和滑ders! 可使用的习惯连接、封套和更多的。"
+
+msgid "Advanced Button"
+msgstr "高级布顿"
+
+msgid "Create an advanced button or a row of buttons. Style each one including hover controls plus you can use an icon and display them side by side"
+msgstr "创建一个先进的 but子或一个 but子,每个ty子,包括over管控制,加上你可以使用一颗 i,并用一面显示它们。"
+
+msgid "Add an extra \"wow\" factor to your site with engaging Lottie animations."
+msgstr "在你的网址上加上一个 factorwowow的附加因素,让Lottie的im想参与进来。"
+
+msgid "Manage Lottie Animations"
+msgstr "管理 Lottie 动画"
+
+msgid "Vector Graphics"
+msgstr "矢量图形"
+
+msgid "Add custom vector icons and SVGs to enhance your site design."
+msgstr "增加习惯病媒icons和SVGs,以加强你的场地设计。"
+
+msgid "Manage Vector Graphics"
+msgstr "管理矢量图形"
+
+msgid "Advanced Header"
+msgstr "高级主管"
+
+msgid "Build custom headers in the block editor and full site editing."
+msgstr "在区编辑和全部编辑中培养定制导师。"
+
+msgid "Manage Headers"
+msgstr "管理信头"
+
+msgid "Advanced Navigation"
+msgstr "高级导航"
+
+msgid "Build custom navigation menus"
+msgstr "构建自定义导航菜单"
+
+msgid "Manage Navigation Menus"
+msgstr "管理导航菜单"
+
+msgid "Choose from over 1500+ SVG Icons to add into your page and style the size, colors, background, border, etc."
+msgstr "从1500+SVG Icons中选择在你的页面上加上尺寸、 co、背景、边界等。"
+
+msgid "Spacer/Divider"
+msgstr "空间/火力"
+
+msgid "Easily create a divider and determine the space around it or just create some space in your content."
+msgstr "简单地造成分裂,确定其周围的空间,或只是在你的内容中创造一些空间。"
+
+msgid "Create a heading or paragraph and define sizes for desktop, tablet and mobile along with font family, colors, etc."
+msgstr "创建标题或段落,并定义桌面、平板和移动的大小,以及字体、颜色等。"
+
+msgid "Tabs"
+msgstr "Tabs"
+
+msgid "Create custom vertical or horizontal tabs with advanced styling controls. Each tab content is an empty canvas able to contain any other blocks."
+msgstr "创建有先进ty绑控制的定制 vertical直或横向列表,每个列表内容都是能够包含任何其他 block块的空 can。"
+
+msgid "Info Box"
+msgstr "信息框"
+
+msgid "Create a box containing an icon or image and, optionally, a title, description, and learn more text. Style static and hover separately."
+msgstr "创建一个包含图标或图像的框, 并可以选择一个标题、 描述和学习更多的文字。 样式静态和单独悬停 。"
+
+msgid "Accordion"
+msgstr "同意"
+
+msgid "Create beautiful accordions! Each pane can contain any other block, customize title styles, content background, and borders."
+msgstr "创造美丽的宽慰! 每一 p可包含任何其他 block块,定制所有权方式、内容背景和边界。"
+
+msgid "Icon List"
+msgstr "图标列表"
+
+msgid "Add beautiful icons to your lists and make them more engaging. Over 1500 icons to choose from and unlimited styles."
+msgstr "在你的名单中加上美丽的意向,使之更加参与,超过1500个意向是从无限的风格中选择。"
+
+msgid "Allow your readers to navigate your content easily with a table of contents block. Includes smooth scroll to anchor."
+msgstr "允许读者轻易地用内容表 na你的内容,包括平稳的结.。"
+
+msgid "Posts"
+msgstr "帖子"
+
+msgid "Display a clean grid of posts anywhere on your site, great for your home page where you want to tease your blog."
+msgstr "在你的网址上任何地方都设置一个干净的员额网,对你的主页来说,你想在那个网页上打断你的博客。"
+
+msgid "Countdown"
+msgstr "Countdown"
+
+msgid "Increase your conversions by adding a sense of urgency to your offering. Pro includes evergreen campaigns as well."
+msgstr "增加你的转化,给你的提供增添一种紧迫感,也包括了前所未有的运动。"
+
+msgid "Testimonials"
+msgstr "证词"
+
+msgid "Create confidence in your brand or product by showing off beautiful unique testimonials, add as a carousel or a grid."
+msgstr "通过展示出美丽独特的检验标准,作为卡ous或电网,建立对贵品牌或产品的信心。"
+
+msgid "Video Popup"
+msgstr "录像片"
+
+msgid "Beautifully display a thumbnail with overlay and hover effect that links to a video popup on click. Works with local or external videos!"
+msgstr "随意展示出一个厚na,在cl上与一只录像带相连,与当地或外部视频相连!"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Last updated"
+msgstr "最后更新"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "Previous version"
+msgstr "以前版本"
+
+msgid "Has Pro"
+msgstr "曾经"
+
+msgid "Deactivated Blocks"
+msgstr "已拆卸的块块"
+
+msgid "Has Block Defaults"
+msgstr "含有块默认"
+
+msgid "Using Setting Visibility"
+msgstr "利用设定的可视性"
+
+msgid "Has Custom Colors"
+msgstr "客户"
+
+msgid "Has reCAPTCHA key"
+msgstr "Has reCAPTCHA 关键"
+
+msgid "Has a maps API key"
+msgstr "地图 API 关键"
+
+msgid "Has MailerLite key"
+msgstr "有邮件列线索密钥"
+
+msgid "Has Cloud Library"
+msgstr "拥有云库图书馆"
+
+msgid "No"
+msgstr "否"
+
+msgid "Yes"
+msgstr "是的"
+
+msgid "On"
+msgstr "开"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Read More"
+msgstr "更多信息"
+
+msgid "By"
+msgstr "由"
+
+msgid "Posted on"
+msgstr "员额"
+
+msgid "Updated on"
+msgstr "最新情况"
+
+msgid "Posted in"
+msgstr "员额"
+
+msgid ", "
+msgstr ", "
+
+msgid "Comment"
+msgstr "评论"
+
+msgid "Comments"
+msgstr "评论"
+
+msgid " / "
+msgstr " / "
+
+msgid " - "
+msgstr " - "
+
+msgid " | "
+msgstr " | "
+
+msgid "View File"
+msgstr "查看文件"
+
+msgid "Sent from %s"
+msgstr "发自 %s"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Custom"
+msgstr "自定义"
+
+msgid "Auto"
+msgstr "汽车"
+
+msgid "Gradient"
+msgstr "渐变"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Individual"
+msgstr "个人"
+
+msgid "Linked"
+msgstr "Linked"
+
+msgid "Solid"
+msgstr "Solid"
+
+msgid "Dashed"
+msgstr "Dashed"
+
+msgid "Dotted"
+msgstr "Dotted"
+
+msgid "Double"
+msgstr "双人"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "Color"
+msgstr "颜色"
+
+msgid "Left"
+msgstr "左"
+
+msgid "Top"
+msgstr "Top"
+
+msgid "Hover"
+msgstr "Hover"
+
+msgid "Normal"
+msgstr "正常"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Bottom"
+msgstr "Bottom"
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "auto"
+msgstr "汽车"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Desktop"
+msgstr "桌面"
+
+msgid "Tablet"
+msgstr "平板电脑"
+
+msgid "Mobile"
+msgstr "手机"
+
+msgid "div"
+msgstr "div"
+
+msgid "Weight"
+msgstr "重量"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "-"
+msgstr "-"
+
+msgid "Uppercase"
+msgstr "Uppercase"
+
+msgid "Lowercase"
+msgstr "Lowercase"
+
+msgid "Capitalize"
+msgstr "资本化"
+
+msgid "Font Family"
+msgstr "字体系列"
+
+msgid "Padding"
+msgstr "填充"
+
+msgid "20%"
+msgstr "20%"
+
+msgid "40%"
+msgstr "40%"
+
+msgid "50%"
+msgstr "50%"
+
+msgid "75%"
+msgstr "75%"
+
+msgid "80%"
+msgstr "80%"
+
+msgid "100%"
+msgstr "100%"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Margin"
+msgstr "边距"
+
+msgid "label"
+msgstr "标签"
+
+msgid "value"
+msgstr "值"
+
+msgid "form"
+msgstr "表格"
+
+msgid "button"
+msgstr "button"
+
+msgid "icon"
+msgstr "图标"
+
+msgid "image"
+msgstr "图像"
+
+msgid "Border Color"
+msgstr "边框颜色"
+
+msgid "text"
+msgstr "文字"
+
+msgid "heading"
+msgstr "标题"
+
+msgid "Heading"
+msgstr "标题"
+
+msgid "section"
+msgstr "款次"
+
+msgid "number"
+msgstr "数目"
+
+msgid "Text"
+msgstr "文字"
+
+msgid "header"
+msgstr "header"
+
+msgid "svg"
+msgstr "svg"
+
+msgid "list"
+msgstr "清单"
+
+msgid "info"
+msgstr "info"
+
+msgid "1"
+msgstr "1"
+
+msgid "hide"
+msgstr "隐藏"
+
+msgid "separator"
+msgstr "分离器"
+
+msgid "Tab"
+msgstr "制表符"
+
+msgid "Saving…"
+msgstr "正在保存..."
+
+msgid "Favorite"
+msgstr "最爱"
+
+msgid "Color Palette"
+msgstr "色调调调色调"
+
+msgid "Breakpoint"
+msgstr "空缺"
+
+msgid "Drag to reorder"
+msgstr "拖动以重新排序"
+
+msgid "Reset %1$s to %2$s"
+msgstr "资产 %1$s to %2$s"
+
+msgid "From %s"
+msgstr "调自 %s"
+
+msgid "From theme"
+msgstr "从主题"
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+msgid "Blur"
+msgstr "Blur"
+
+msgid "Spread"
+msgstr "面包"
+
+msgid "Inset"
+msgstr "Inset"
+
+msgid "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here."
+msgstr "%1$d 本pal的 co部仍然如下: %2$s直到你将它定制在这条pal上,才将其编辑成。 %2$s 还将更新本报告。"
+
+msgid "Learn more"
+msgstr "了解更多"
+
+msgid "Search fonts…"
+msgstr "搜索字体..."
+
+msgid "No fonts found"
+msgstr "未找到字体"
+
+msgid "Keep typing to narrow the list"
+msgstr "不断打字,以缩小清单"
+
+msgid "Options loaded."
+msgstr "已装入选项 。"
+
+msgid "Loading options…"
+msgstr "正在装入选项..."
+
+msgid "Swatch view"
+msgstr "Sw观察视图"
+
+msgid "Grid view"
+msgstr "网格视图视图"
+
+msgid "List view"
+msgstr "列表视图"
+
+msgid "Set \"%s\" as the active library?"
+msgstr "Set  Set%sactive 作为活跃的图书馆?"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor."
+msgstr "Your site currently uses \"%1$sSet. Setting  Set%2$sco 在整个地点,在前端和编辑上, co作为对手、类型、间隔和其他风格的正面改变。"
+
+msgid "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over."
+msgstr "You can switch back at any time, but any custom values in \"%sstay 留在该图书馆 -- -- 他们没有被复制。"
+
+msgid "Setting active…"
+msgstr "正在设定活动..."
+
+msgid "Set as active"
+msgstr "设为活动"
+
+msgid "Set \"%s\" as the active palette?"
+msgstr "Set  Set%sactive  active 是活的pal?"
+
+msgid "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor."
+msgstr "Your site currently uses \"%1$sSet. Setting  Set%2$sco 在整个地点的 co曲在前端和编辑上的积极改变。"
+
+msgid "Add Color Group"
+msgstr "添加颜色组"
+
+msgid "Group name"
+msgstr "团体名称"
+
+msgid "A color group named \"%s\" already exists."
+msgstr "名叫\"%s co的 co子集团已经存在。"
+
+msgid "Loading…"
+msgstr "加载中..."
+
+msgid "Base Styles"
+msgstr "基地轮胎"
+
+msgid "Block Presets"
+msgstr "块预设"
+
+msgid "Create Library"
+msgstr "创建图书馆"
+
+msgid "Library title"
+msgstr "图书馆标题"
+
+msgid "A library named \"%s\" already exists."
+msgstr "已经有一个名为 &quot; %s &quot; 的图书馆。"
+
+msgid "Creating…"
+msgstr "正在创建..."
+
+msgid "Create Color Palette"
+msgstr "创建调色板"
+
+msgid "Palette name"
+msgstr "调调调器名称"
+
+msgid "A palette named \"%s\" already exists."
+msgstr "已经有一张名为 &quot; %s\" &quot; 的邮袋。"
+
+msgid "Delete Color Group?"
+msgstr "删除 &quot; 科罗尔集团 &quot; ?"
+
+msgid "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette."
+msgstr "删除 &quot; 小组 &quot; 。%1$sand and its %2$d color? This removes it from every palette."
+
+msgid "Deleting…"
+msgstr "删除."
+
+msgid "Resetting…"
+msgstr "Resetting."
+
+msgid "Reset Library"
+msgstr "资产图书馆"
+
+msgid "Delete Library"
+msgstr "删除图书馆"
+
+msgid "Reset '%s' to its default values?"
+msgstr "将“ %s” 重置为默认值?"
+
+msgid "Delete '%s'? Its tokens and presets are removed permanently."
+msgstr "删除%sIts  Its  Its  Its  Its  Its  Its  Its  Its  Its  Its ken"
+
+msgid "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor."
+msgstr "这也是你的积极图书馆,因此你的网站将使用\"%sedi 相反,其 co、类型、间隔和其他风格立即在你的现场 -- -- 前端和编辑中 -- -- 生活。"
+
+msgid "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor."
+msgstr "你们选择的图书馆在前端和编辑的整个网址上立即启用,即 co、打字、停顿和其他风格。"
+
+msgid "Which library should your site use instead?"
+msgstr "哪种图书馆应当使用?"
+
+msgid "Select a library…"
+msgstr "选择图书馆。"
+
+msgid "Delete \"%s\"?"
+msgstr "删除“%s”?"
+
+msgid "Reset \"%s\"?"
+msgstr "Reset \" %s ??"
+
+msgid "Its color overrides are removed permanently."
+msgstr "永久地清除了 co。"
+
+msgid "Its colors return to the shipped baseline. The palette itself stays."
+msgstr "其 co回到了装运的基线,pal盘本身就停留了。"
+
+msgid "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor."
+msgstr "这也是你的积极pal,因此你的网站将使用\"%s\",其 co子立即穿过你的现场,在前端和编辑中。"
+
+msgid "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor."
+msgstr "这也是你的积极pal,所以你的网址需要另一个pal,下面所选择的pal子立即 live住,其 co子在前端和编辑的整个你的网址上发生了变化。"
+
+msgid "Which palette should your site use instead?"
+msgstr "你的网址是否应该使用?"
+
+msgid "Select a palette…"
+msgstr "选择一个pal。"
+
+msgid "Not available in the current theme"
+msgstr "本主题未提供"
+
+msgid "These presets came from another theme. Your changes to them are kept until that theme is active again."
+msgstr "这些先.来自另一个主题,在主题再次活跃之前,你对这些主题的改动得以保持。"
+
+msgid "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept."
+msgstr "主题本身的价值观不可能在预设时得到拯救,因此只能保持你们的变化。"
+
+msgid "The theme's own values for this preset were not recorded, so only your changes can be kept."
+msgstr "没有记录这个主题本身的价值,因此只能保持你们的变化。"
+
+msgid "Keep as custom preset"
+msgstr "保持自定义预设"
+
+msgid "Keep changes as custom preset"
+msgstr "把改变作为习惯前期"
+
+msgid "Discard changes"
+msgstr "弃权变动"
+
+msgid "Active library"
+msgstr "积极图书馆"
+
+msgid "Your site uses this library."
+msgstr "您的网站使用此图书馆 。"
+
+msgid "Not the active library"
+msgstr "不活动库"
+
+msgid "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles."
+msgstr "你的网站将图书馆建成,使之成为你的网站,将其转用到其 co、大小和风格上。"
+
+msgid "Edit library"
+msgstr "电子图书馆"
+
+msgid "Library"
+msgstr "图书馆"
+
+msgid "New Library"
+msgstr "新图书馆"
+
+msgid "Active palette"
+msgstr "活性pal"
+
+msgid "Your site uses this palette."
+msgstr "您的网站使用这个调色板 。"
+
+msgid "Not the active palette"
+msgstr "非活动调色盘"
+
+msgid "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette."
+msgstr "把它当作一种积极的动力,把它放在你的场地的用途上,个别区块仍可改成另一块pal。"
+
+msgid "Edit palette"
+msgstr "编辑调色盘"
+
+msgid "Drag to reorder %s"
+msgstr "拖曳以重新排序 %s"
+
+msgid "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values."
+msgstr "您对 '%s' 进行了未保存的更改。 保存它们, 或者丢弃它们, 以便返回到保存的值 。"
+
+msgid "You have unsaved changes. Save them, or discard them to go back to the saved values."
+msgstr "你们没有变化,没有改变,或抛弃了这些变化,以恢复所节省的价值观。"
+
+msgid "Unsaved Changes"
+msgstr "未解决的变动"
+
+msgid "Discard"
+msgstr "丢弃"
+
+msgid "Corner Radius"
+msgstr "角角半径"
+
+msgid "Add Border Radius"
+msgstr "添加边框半径"
+
+msgid "New Radius"
+msgstr "新半径"
+
+msgid "Radius"
+msgstr "Radius"
+
+msgid "Add Border Width"
+msgstr "添加边框宽度"
+
+msgid "New Border Width"
+msgstr "新边界线"
+
+msgid "Loading %s…"
+msgstr "Loading %s ..."
+
+msgid "%s loaded."
+msgstr "%s loaded."
+
+msgid "Add color"
+msgstr "加 co"
+
+msgid "Edit %s"
+msgstr "Edit %s"
+
+msgid "Color group"
+msgstr "颜色组"
+
+msgid "This palette could not be loaded."
+msgstr "这条pal盘不能装上。"
+
+msgid "Settings loaded."
+msgstr "设置已装入 。"
+
+msgid "Edit color"
+msgstr "编辑颜色颜色"
+
+msgid "Add Icon Size"
+msgstr "增 计"
+
+msgid "New Icon Size"
+msgstr "新图标大小"
+
+msgid "This screen is coming soon."
+msgstr "这个 screen幕即将来临。"
+
+msgid "Adding…"
+msgstr "Adding.."
+
+msgid "Preset saved."
+msgstr "预设保存 。"
+
+msgid "Preset deleted."
+msgstr "删除了原子。"
+
+msgid "Preset reset."
+msgstr "预设重置 。"
+
+msgid "Theme preset"
+msgstr "主题预设主题"
+
+msgid "Styled by your theme. Flux Block Editor can't read or change these styles."
+msgstr "以你的主题为标题,Flux Block编辑可阅读或改变这些风格。"
+
+msgid "Changes saved under another theme still apply to it. Reset removes them."
+msgstr "在另一个主题下节省下来的变革仍然适用于它,并予以撤销。"
+
+msgid "Edit preset"
+msgstr "编辑预设"
+
+msgid "Edit token"
+msgstr "编辑符号"
+
+msgid "Add Shadow"
+msgstr "添加阴影"
+
+msgid "New Shadow"
+msgstr "新 Sha"
+
+msgid "Add Spacing"
+msgstr "添加间距"
+
+msgid "New Spacing"
+msgstr "新的发言"
+
+msgid "Visualize your font"
+msgstr "视像化您的字体"
+
+msgid "Add Favorite"
+msgstr "添加最喜爱"
+
+msgid "Adding Favorite…"
+msgstr "增加基础.."
+
+msgid "Remove Favorite"
+msgstr "左叶"
+
+msgid "Removing Favorite…"
+msgstr "删除最喜欢的..."
+
+msgid "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site."
+msgstr "把这条引信写到你的火警顶部,在这里和在编辑中,不改变你的网址。"
+
+msgid "Unpins this font from the top of your font pickers. Text already using it stays as it is."
+msgstr "这条引信是你的引信的顶部,已经使用该字的文本保持不变。"
+
+msgid "%s removed from favorites."
+msgstr "%s 脱离野.。"
+
+msgid "%s added to favorites."
+msgstr "%s 添加到野.。"
+
+msgid "Font"
+msgstr "字体"
+
+msgid "Typography"
+msgstr "地图"
+
+msgid "Add Size"
+msgstr "规模"
+
+msgid "New Font Size"
+msgstr "新字体大小"
+
+msgid "Set the colors your site uses. Change a color here and it updates everywhere it's applied."
+msgstr "设置网站使用的颜色。 在此更改颜色, 并随时更新应用中的内容 。"
+
+msgid "Set the text sizes your site uses, and pick the fonts you want close to hand."
+msgstr "设置网站使用的文本大小, 并选择您想要的手边字体 。"
+
+msgid "Set the border radius options your site uses, so buttons, images and cards stay consistent."
+msgstr "设置您网站使用的边框半径选项, 按钮、 图像和卡片保持一致 。"
+
+msgid "Set the border thickness options your site uses, so borders match across your blocks."
+msgstr "设置您网站使用的边框厚度选项, 从而在您的区块之间匹配 。"
+
+msgid "Set the padding and margin steps your site uses, so gaps stay consistent from block to block."
+msgstr "确定你的场地用途的ad接和 margin值,因此,这些差距从 block体到 block体不一。"
+
+msgid "Set the sizes your icons can use, so icons stay consistent wherever they appear."
+msgstr "设定图标可以使用的大小, 图标在出现时保持一致 。"
+
+msgid "Set the shadow styles your site uses, so depth looks consistent across your blocks."
+msgstr "设置网站使用的阴影样式, 深度在您的街区之间看起来一致 。"
+
+msgid "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand."
+msgstr "短.式的风格为先.,因此,你可以用一块cl子进行全盘检查,而不是用手头确定每一种选择。"
+
+msgid "Save image styles as presets, so rounding, shadows and spacing stay the same across your images."
+msgstr "假像是先.、 round、阴影和pa等,在你们的图像中保持着同样的形象。"
+
+msgid "Save row styles as presets, so the sections of a page share the same background and rounding."
+msgstr "假行式的风格为先行,因此页面各节具有同样的背景和四舍五入。"
+
+msgid "Save section styles as presets, so the columns inside your rows share the same background and rounding."
+msgstr "假节式的原型,因此,在你的行内各栏的背景和四舍五入。"
+
+msgid "Save icon styles as presets, so icons keep the same size and color wherever you use them."
+msgstr "假象是先.,因此,无论你使用哪种方式, i灯都保持同样的大小和 co。"
+
+msgid "Save text styles as presets, so headings and paragraphs read the same from page to page."
+msgstr "短文的原型,如标题和段落,从页到页面均有相同。"
+
+msgid "Something went wrong. Please try again."
+msgstr "出了点问题。请再试一次。"
+
+msgid "Enter a library title."
+msgstr "输入图书馆标题。"
+
+msgid "A library with that title already exists."
+msgstr "图书馆已经有该名称。"
+
+msgid "Choose which library your site should use instead."
+msgstr "选择用哪种方式来保存你的网址。"
+
+msgid "Enter a palette name."
+msgstr "输入调色板名称 。"
+
+msgid "A palette with that name already exists."
+msgstr "已经有一张标语。"
+
+msgid "Choose which palette your site should use instead."
+msgstr "选择用什么pal住你的网址。"
+
+msgid "Enter a color group name."
+msgstr "输入颜色组名称。"
+
+msgid "A color group with that name already exists."
+msgstr "有一个名 co集团已经存在。"
+
+msgid "Custom Colors"
+msgstr "客户"
+
+msgid "Saving failed."
+msgstr "保存失败 。"
+
+msgid "Another change to this library is already in progress."
+msgstr "对该图书馆的另一项改革已在进行中。"
+
+msgid "Palette activated."
+msgstr "调色板激活"
+
+msgid "Palette created."
+msgstr "制作调色板"
+
+msgid "Palette renamed."
+msgstr "调色板改名"
+
+msgid "Palette deleted."
+msgstr "调色板删除 。"
+
+msgid "Palette reset."
+msgstr "调色板重置"
+
+msgid "Swatch saved."
+msgstr "斯怀特被救出来了"
+
+msgid "Swatch deleted."
+msgstr "Swatch被删除。"
+
+msgid "Swatch reset."
+msgstr "斯望重置 斯望重置 斯望重置 Swatch reset."
+
+msgid "New Color"
+msgstr "新颜色"
+
+msgid "Color added."
+msgstr "加颜色 。"
+
+msgid "Color group added."
+msgstr "添加颜色组 。"
+
+msgid "Color group renamed."
+msgstr "颜色组重新命名 。"
+
+msgid "Color group deleted."
+msgstr "删除颜色组 。"
+
+msgid "Token created."
+msgstr "代金创造的"
+
+msgid "Token saved."
+msgstr "代金被救"
+
+msgid "Token deleted."
+msgstr "调子删除 。"
+
+msgid "Token reset."
+msgstr "调子重置"
+
+msgid "Token order saved."
+msgstr "代金顺序保存。"
+
+msgid "100 Thin"
+msgstr "100 Thin"
+
+msgid "200 Extra Light"
+msgstr "200部外光灯"
+
+msgid "300 Light"
+msgstr "300轻型"
+
+msgid "400 Regular"
+msgstr "400次"
+
+msgid "500 Medium"
+msgstr "500中"
+
+msgid "600 Semi Bold"
+msgstr "600 半粗"
+
+msgid "700 Bold"
+msgstr "700 Bold"
+
+msgid "800 Extra Bold"
+msgstr "800 额外粗体"
+
+msgid "900 Black"
+msgstr "900 黑人"
+
+msgid "Transform"
+msgstr "Transform"
+
+msgid "Add Text Style"
+msgstr "添加文本样式"
+
+msgid "New Text Style"
+msgstr "新案文"
+
+msgid "Border and Shadow"
+msgstr "边界和阴影"
+
+msgid "Add Button"
+msgstr "添加按钮"
+
+msgid "New Button"
+msgstr "纽扣纽扣"
+
+msgid "Add Section Style"
+msgstr "添加Style"
+
+msgid "New Section Style"
+msgstr "新科"
+
+msgid "Add Image Style"
+msgstr "添加"
+
+msgid "New Image Style"
+msgstr "新图像系统"
+
+msgid "Add Row Style"
+msgstr "加ow"
+
+msgid "New Row Style"
+msgstr "新ow"
+
+msgid "Add Icon Style"
+msgstr "添加图标样式"
+
+msgid "New Icon Style"
+msgstr "新图标样式"
+
+msgid "Matches the design system value"
+msgstr "设计系统价值汇总表"
+
+msgid "Overrides the design system value"
+msgstr "超过设计系统价值"
+
+msgid "Reset to the design system value"
+msgstr "重新确定设计系统价值"
+
+msgid "Reverted to default"
+msgstr "返回到默认"
+
+msgid "This token was deleted from the Style Library. The default applies until you pick a new value or reset."
+msgstr "这件事被从Style图书馆删除,在你拿到新的价值或再生之前,这项缺省适用。"
+
+msgid "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset."
+msgstr "这一选择来自 &quot; 蓝. &quot; 主题,该主题已不再活跃,在你获得新的价值或重新设定之前,该缺省适用。"
+
+msgid "Border style"
+msgstr "边境风格"
+
+msgid "Border style (%s)"
+msgstr "边境风格(%s)"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s:%2$s"
+
+msgid "%s Border Color"
+msgstr "%s 边境颜色"
+
+msgid "Previous color format"
+msgstr "以前的正统格式"
+
+msgid "Next color format"
+msgstr "下个 co色格式"
+
+msgid "No favorite fonts yet."
+msgstr "还没有最喜欢的字体 。"
+
+msgid "Manage favorites in the Style Library"
+msgstr "管理样式库中最喜爱的样式库"
+
+msgid "Favorites"
+msgstr "收藏夹"
+
+msgid "Inherited"
+msgstr "继承"
+
+msgid "Custom value"
+msgstr "客户价值"
+
+msgid "Unit"
+msgstr "单位"
+
+msgid "Theme default"
+msgstr "主题默认默认"
+
+msgid "Default (%s)"
+msgstr "Default (%s )"
+
+msgid "Inherited (%s)"
+msgstr "继承(%s )"
+
+msgid "img"
+msgstr "img"
+
+msgid "menu"
+msgstr "menu"

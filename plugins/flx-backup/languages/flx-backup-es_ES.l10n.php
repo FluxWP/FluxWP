@@ -332,7 +332,7 @@ return array(
   '%1$s old backup deleted for the quota: %2$s' . chr(0) . '%1$s old backups deleted for the quota: %2$s' => '%1$s copia de seguridad antigua eliminada para la cuota: %2$s' . chr(0) . '%1$s copias de seguridad antiguas eliminadas para la cuota: %2$s',
   '%s backup past its retention period was deleted.' . chr(0) . '%s backups past their retention period were deleted.' => 'Se eliminó la copia de seguridad %s después de su período de retención.' . chr(0) . 'Se eliminaron las copias de seguridad %s que superaron su período de retención.',
   'Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting.' => 'Realiza una copia de seguridad automática antes de cada actualización de complemento/tema, copias de seguridad completas programadas, gestión de cuotas y retención, un panel de almacenamiento con gráficos y restauración selectiva. Compatible con hosting compartido de Hostinger.',
-  'context_fd86717aca41%s%%' => '%s%%',
+  'context_fd86717aca41%s%%' => '%s %%',
   'The archive file is deleted too.' => 'El archivo comprimido también se elimina.',
   'Status' => 'Estado',
   'Restore is only available in the panel.' => 'La restauración solo está disponible en el panel.',
@@ -693,6 +693,6 @@ return array(
   'İlerleme' => 'Progreso',
   'Şimdi yedekle' => 'Haz una copia de seguridad ahora',
   'Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır.' => 'Realice la primera copia de seguridad con Copia de seguridad ahora. La restauración se realiza en el panel.',
-
+  'JavaScript is required for this screen.' => 'JavaScript es necesario para esta pantalla.',
  ),
 );

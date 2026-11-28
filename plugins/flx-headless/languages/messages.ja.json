@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "format": "fluxwp-package-translations/v1",
+    "locale": "ja"
+  },
+  "messages": {
+    "Settings": "設定",
+    "Serves headless front ends over GraphQL": "ヘッドレスのフロントエンドが使える GraphQL",
+    "Headless": "ヘッドレス",
+    "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen.": "画面にはFluxが必要です。 GraphQL (0.4.0以上) インストールまたは更新します。 FluxWP パッケージ画面。",
+    "This front end does not exist any more.": "このフロントエンドはもう存在しません。",
+    "At most %d front ends can be added.": "せいぜい %d フロントエンドを追加できます。",
+    "Give the front end a name.": "フロントエンドに名前を付けます。",
+    "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first.": "フロントエンドは、このアドレスと同じアドレスを持つことはできません。 WordPress動く WordPress 最初に別のアドレス(例: cms.example.com)に送信します。",
+    "Another front end already has this address.": "別のフロントエンドには、このアドレスがすでにあります。",
+    "The language \"%s\" is not on this site.": "%s\" は、本サイトにはありません。",
+    "The preview path starts with \"/\" (e.g. /api/preview).": "プレビューパスは\"/\"で始まります(例: /api/preview)。",
+    "The secret must be at least 24 characters. Use the Generate button.": "秘密は少なくとも24文字でなければなりません。",
+    "The secret could not be stored securely on this server.": "秘密は、このサーバーに安全に格納できませんでした。",
+    "A webhook needs a secret so the front end can check that the call comes from this site.": "ウェブフックには秘密が要求され、フロントエンドがコールがこのサイトから来ているかを確認することができます。",
+    "Choose what WordPress does with its own pages.": "WordPress は、独自のページで何をしますか?",
+    "Add a front end first; WordPress pages point visitors and search engines to it.": "フロントエンドを最初に追加します。 WordPress ページは訪問者と検索エンジンを指しています。",
+    "Enter the webhook address and the secret first.": "ウェブフックアドレスとシークレットを最初に入力します。",
+    "Sent without waiting for the answer.": "答えを待つことなく送信します。",
+    "The front end accepted the call.": "フロントエンドが電話を受け付けた。",
+    "The front end answered with HTTP %d.": "HTTPで答えたフロントエンド %d.",
+    "Home": "ホーム",
+    "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at.": "まだフロントエンドが追加されていません。 GraphQL リンク、標準アドレス、ウェブフックには、フロントエンドがありません。",
+    "The last webhook call failed for: %s. Open the delivery log on the Headless page.": "最後のウェブフック呼び出しは失敗しました:%s . ヘッドレスページで配信ログを開きます。",
+    "No revalidate webhook for: %s. These front ends show changes only when their cache runs out.": "再検証されたwebhookは: %s . これらのフロントエンドは、キャッシュが切れたときのみ変更を表示します。",
+    "%d front end, webhook set.\u0000%d front ends, webhooks set.": "%d フロントエンド、ウェブフックセット。",
+    "Headless front ends": "ヘッドレスフロントエンド"
+  }
+}

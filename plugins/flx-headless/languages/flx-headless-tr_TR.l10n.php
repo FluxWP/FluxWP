@@ -5,7 +5,7 @@ return array(
  'messages' => array(
   'Settings' => 'Ayarlar',
   'Serves headless front ends over GraphQL' => 'Headless ön yüzlere GraphQL ile içerik sunar',
-  'Headless' => 'Headless',
+  'Headless' => 'Başsız',
   'This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen.' => 'Bu ekran Flux GraphQL (0.4.0 ya da üstü) ister. FluxWP Paketler ekranından kurun ya da güncelleyin.',
   '%d front end, webhook set.' . chr(0) . '%d front ends, webhooks set.' => '%d ön yüz, webhook tanımlı.' . chr(0) . '%d ön yüz, webhook\'lar tanımlı.',
   'No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at.' => 'Henüz ön yüz eklenmedi; GraphQL çalışır ama bağlantılar, canonical adresler ve webhook bir ön yüze yönlenemez.',

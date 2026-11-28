@@ -7,7 +7,7 @@ import type { FlxAiApprovalQueueFieldsFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { Loading } from '@fluxwp/ui';
 import { useHost } from '../host';
-import { Card, NoticeBar, Pill, errText, useAi, type Notice } from './common';
+import { Card, NoticeBar, Pill, errText, useAi, type Notice, Lead } from './common';
 
 type Item = FlxAiApprovalQueueFieldsFragment['items'][number];
 
@@ -55,7 +55,7 @@ export function Approvals() {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
-      <p className="flxai-lead">{t('Actions the assistant prepared in your chats and scheduled tasks. Nothing changes on the site until you approve. You can edit the input before approving.')}</p>
+      <Lead text={t('Actions the assistant prepared in your chats and scheduled tasks. Nothing changes on the site until you approve. You can edit the input before approving.')} />
       {changes.map((c) => (
         <Card key={'pr' + c.id}>
           <header className="flxai-appr-head">

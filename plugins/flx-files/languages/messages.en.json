@@ -587,6 +587,8 @@
     "What should change.": "What should change.",
     "The complete updated file. Empty when the AI proposed no change.": "The complete updated file. Empty when the AI proposed no change.",
     "A short sentence about the change (or why there is none).": "A short sentence about the change (or why there is none).",
-    "Only folders inside the uploads folder can be shared on the site.": "Only folders inside the uploads folder can be shared on the site."
+    "Only folders inside the uploads folder can be shared on the site.": "Only folders inside the uploads folder can be shared on the site.",
+    "%1$d result for \"%2$s\"\u0000%1$d results for \"%2$s\"": "%1$d result for \"%2$s\"\u0000%1$d results for \"%2$s\"",
+    "%d item\u0000%d items": "%d item\u0000%d items"
   }
 }

@@ -42,6 +42,17 @@
 
 	function check() {
 		var e = ui.email.i.value.trim(), p = ui.phone.i.value.trim(), msg = '';
+		if (C.both) {
+			/* 2.47.0 (short checkout): both are required. */
+			if (!p) { msg = C.needPhone; } else if (!phoneOk(p)) { msg = C.badPhone; }
+			else if (!e) { msg = C.needEmail; } else if (!reEmail.test(e)) { msg = C.badEmail; }
+			ui.err.textContent = msg; ui.err.hidden = !msg;
+			ui.box.classList.toggle('has-error', !!msg);
+			var bp = msg === C.needPhone || msg === C.badPhone, be = msg === C.needEmail || msg === C.badEmail;
+			ui.email.w.classList.toggle('is-error', be); ui.phone.w.classList.toggle('is-error', bp);
+			ui.email.i.setAttribute('aria-invalid', be ? 'true' : 'false'); ui.phone.i.setAttribute('aria-invalid', bp ? 'true' : 'false');
+			return !msg;
+		}
 		if (!e && !p) { msg = C.need; }
 		else if (e && !reEmail.test(e)) { msg = C.badEmail; }
 		else if (p && !phoneOk(p)) { msg = C.badPhone; }
@@ -65,7 +76,7 @@
 		var box = document.createElement('div'); box.className = 'flxb-ct';
 		var email = field('flxb-ct-email', 'email', C.email, isPh(b.email) ? '' : (b.email || emailInput.value), { autocomplete: 'email', inputmode: 'email' });
 		var phone = field('flxb-ct-phone', 'tel', C.phone, b.phone || '', { autocomplete: 'tel', inputmode: 'tel', placeholder: C.phoneHolder });
-		var help = document.createElement('p'); help.className = 'flxb-ct__help'; help.textContent = C.help;
+		var help = document.createElement('p'); help.className = 'flxb-ct__help'; help.textContent = C.help; help.hidden = !!C.both;
 		var err = document.createElement('p'); err.className = 'flxb-ct__err flx-fld__msg'; err.setAttribute('role', 'alert'); err.hidden = true;
 		var row = document.createElement('div'); row.className = 'flxb-ct__row';
 		row.appendChild(phone.w); row.appendChild(email.w);
@@ -128,7 +139,7 @@
 		var btn = ev.target.closest && ev.target.closest('.wc-block-components-checkout-place-order-button');
 		if (!btn || !ui) { return; }
 		push();
-		if (!check()) { ev.preventDefault(); ev.stopImmediatePropagation(); ui.box.scrollIntoView({ block: 'center', behavior: 'smooth' }); (ui.email.i.value ? ui.phone.i : ui.email.i).focus(); }
+		if (!check()) { ev.preventDefault(); ev.stopImmediatePropagation(); ui.box.scrollIntoView({ block: 'center', behavior: 'smooth' }); (C.both ? (ui.phone.i.value ? ui.email.i : ui.phone.i) : (ui.email.i.value ? ui.phone.i : ui.email.i)).focus(); }
 	}, true);
 
 	/* Support line (WhatsApp) above the place order bar. */

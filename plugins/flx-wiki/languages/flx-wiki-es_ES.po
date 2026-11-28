@@ -531,3 +531,36 @@ msgstr "cerrar"
 
 msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
 msgstr "Wiki para desarrolladores en el sitio en /wiki: páginas Markdown, secciones, árbol de páginas y tabla de contenido, búsqueda instantánea detallada, resultados compatibles con SEO. Compatible con LLM: cada página se abre y se copia como .md, /wiki/llms.txt y llms-full.txt, abierta en ChatGPT/Claude. \"Pregunte al Wiki\" y herramientas MCP (buscar, leer, enumerar, escribir) con Flux AI. Viene con guías para escribir complementos y temas, y crear complementos basados ​​en IA."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript es necesario para esta pantalla."
+
+msgid "You cannot edit this page."
+msgstr "No puede editar esta página."
+
+msgid "The parent page was not found."
+msgstr "No se encontró la página principal."
+
+msgid "A page cannot be placed under itself."
+msgstr "Una página no puede ser colocada bajo sí misma."
+
+msgid "This status is not available."
+msgstr "Este estado no está disponible."
+
+msgid "You cannot delete this page."
+msgstr "No puede borrar esta página."
+
+msgid "The page could not be deleted."
+msgstr "La página no se puede eliminar."
+
+msgid "You cannot manage sections."
+msgstr "No puedes manejar secciones."
+
+msgid "A section name is required."
+msgstr "Se requiere un nombre de sección."
+
+msgid "Section not found."
+msgstr "La sección no se encuentra."
+
+msgid "The section could not be deleted."
+msgstr "La sección no se puede eliminar."

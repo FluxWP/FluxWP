@@ -360,7 +360,7 @@ return array(
   'Sunday' => '日曜日',
   'Connecting you to an agent…' => 'エージェントにおつなぎします...',
   '%s joined the chat' => '%sさんがチャットに参加しました',
-  'You ended the chat.' => 'You ended the chat.',
+  'You ended the chat.' => 'あなたはその話を終えた。',
   'The chat has ended.' => 'チャットは終了しました。',
   'The visitor ended the site chat.' => '訪問者はサイトのチャットを終了しました。',
   'Site chat #%d' => 'サイトチャット #%d',
@@ -376,7 +376,7 @@ return array(
   'Too many requests. Please wait a moment.' => 'リクエストが多すぎます。しばらくお待ちください。',
   'Chat is closed right now.' => '現在チャットは閉じられています。',
   'The message is empty.' => 'メッセージは空です。',
-  'You\'re typing too fast. Wait a moment and try again.' => 'You\'re typing too fast. Wait a moment and try again.',
+  'You\'re typing too fast. Wait a moment and try again.' => 'タイプし過ぎですよ。ちょっと待って、もう一度やってみてください。',
   'Too many new chats were started. Please try again later.' => '開始された新しいチャットが多すぎます。後でもう一度試してください。',
   'Could not start the chat.' => 'チャットを開始できませんでした。',
   'I can\'t answer right now. Please write again in a moment or reach us through our contact details.' => '今は答えることができません。しばらくしてから再度ご連絡いただくか、当社の連絡先詳細を通じてご連絡ください。',
@@ -797,6 +797,8 @@ return array(
   'Siteye yapay zekâ destekli sohbet penceresi: Flux AI ile sitenizin içeriğinden ve ürünlerinden 7/24 cevap, potansiyel müşteri toplama, WooCommerce bilgisi, tek tıkla canlı temsilciye devir (Flux Chat gelen kutusu ya da eklentinin kendi gelen kutusu), dosya paylaşımı, okundu bilgisi, sohbet sonu puanlama ve mesai dışında mesaj bırakma. Renk, konum, avatar, metinler ve görünürlük panelden özelleştirilir.' => '人工知能がサポートするサイトへのチャット ウィンドウ: Flux AI を使用すると、サイトのコンテンツや製品、潜在顧客のコレクション、WooCommerce 情報からの 24 時間年中無休の応答、ライブ担当者 (Flux Chat 受信箱またはプラグイン独自の受信箱) へのワンクリック転送、ファイル共有、開封確認、チャット終了スコアリング、時間外メッセージの残すことができます。色、位置、アバター、テキスト、可視性はパネルからカスタマイズされます。',
   'Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site\'s content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin\'s own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.' => '人工知能がサポートするサイトへのチャット ウィンドウ: Flux AI を使用すると、サイトのコンテンツや製品、潜在顧客のコレクション、WooCommerce 情報からの 24 時間年中無休の応答、ライブ担当者 (Flux Chat 受信箱またはプラグイン独自の受信箱) へのワンクリック転送、ファイル共有、開封確認、チャット終了スコアリング、時間外メッセージの残すことができます。色、位置、アバター、テキスト、可視性はパネルからカスタマイズされます。',
   'Still answering. Please wait a moment.' => 'まだ回答しています。しばらくお待ちください。',
-
+  'Answers site chats' => '答え サイトのチャット',
+  'JavaScript is required for this screen.' => 'JavaScript この画面には必須です。',
+  'Chat on WhatsApp' => 'WhatsApp でチャットします。',
  ),
 );

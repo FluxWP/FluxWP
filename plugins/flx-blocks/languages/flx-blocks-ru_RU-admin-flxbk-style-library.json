@@ -1,0 +1,1002 @@
+{
+  "domain": "messages",
+  "locale_data": {
+    "messages": {
+      "": {
+        "domain": "messages",
+        "lang": "ru_RU",
+        "plural-forms": "nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);"
+      },
+      "Settings": [
+        "Настройки"
+      ],
+      "Style Library": [
+        "Библиотека &lt; &lt; Стиль &gt; &gt;"
+      ],
+      "None": [
+        "Нет"
+      ],
+      "Spacing": [
+        "Покрытие"
+      ],
+      "Border Radius": [
+        "Радиус границы"
+      ],
+      "Border Width": [
+        "Граница"
+      ],
+      "Icon Sizes": [
+        "Размеры значков"
+      ],
+      "Shadow": [
+        "Shadow"
+      ],
+      "Font Size": [
+        "Размер шрифта"
+      ],
+      "Palette": [
+        "Palette"
+      ],
+      "Border": [
+        "Граница"
+      ],
+      "Button": [
+        "Кнопка"
+      ],
+      "Icon": [
+        "Значок"
+      ],
+      "Close": [
+        "Закрыть"
+      ],
+      "Save": [
+        "Сохранить"
+      ],
+      "px": [
+        "px"
+      ],
+      "list item separator\u0004, ": [
+        ", "
+      ],
+      "Default": [
+        "По умолчанию"
+      ],
+      "Name": [
+        "Имя"
+      ],
+      "Custom": [
+        "Пользовательский"
+      ],
+      "Auto": [
+        "Авто"
+      ],
+      "Gradient": [
+        "Градиент"
+      ],
+      "Cancel": [
+        "Отмена"
+      ],
+      "Individual": [
+        "Отдел"
+      ],
+      "Linked": [
+        "Увязка"
+      ],
+      "Solid": [
+        "Solid"
+      ],
+      "Dashed": [
+        "Dashed"
+      ],
+      "Dotted": [
+        "Dotted"
+      ],
+      "Double": [
+        "Двойная"
+      ],
+      "Device": [
+        "Устройство"
+      ],
+      "Color": [
+        "Цвет"
+      ],
+      "Left": [
+        "Левый"
+      ],
+      "Top": [
+        "Top"
+      ],
+      "Hover": [
+        "Hover"
+      ],
+      "Normal": [
+        "Нормальный"
+      ],
+      "Active": [
+        "Активный"
+      ],
+      "Add": [
+        "Добавить"
+      ],
+      "Delete": [
+        "Удалить"
+      ],
+      "Clear": [
+        "Очистить"
+      ],
+      "Right": [
+        "Правильно"
+      ],
+      "Bottom": [
+        "Bottom"
+      ],
+      "Reset": [
+        "Сброс"
+      ],
+      "auto": [
+        "Автомобиль"
+      ],
+      "Background": [
+        "Фон"
+      ],
+      "Desktop": [
+        "Рабочий стол"
+      ],
+      "Tablet": [
+        "Таблетка"
+      ],
+      "Mobile": [
+        "мобильный"
+      ],
+      "div": [
+        "div"
+      ],
+      "Weight": [
+        "Вес"
+      ],
+      "Size": [
+        "Размер"
+      ],
+      "-": [
+        "-"
+      ],
+      "Uppercase": [
+        "Вертолет"
+      ],
+      "Lowercase": [
+        "Нижняя часть"
+      ],
+      "Capitalize": [
+        "Капитализация"
+      ],
+      "Font Family": [
+        "Семейство шрифтов"
+      ],
+      "Padding": [
+        "Отступы"
+      ],
+      "20%": [
+        "20%"
+      ],
+      "40%": [
+        "40%"
+      ],
+      "50%": [
+        "50%"
+      ],
+      "75%": [
+        "75%"
+      ],
+      "80%": [
+        "80%"
+      ],
+      "100%": [
+        "100%"
+      ],
+      "Create": [
+        "Создать"
+      ],
+      "Margin": [
+        "Маржа"
+      ],
+      "label": [
+        "Знак опасности"
+      ],
+      "value": [
+        "значение"
+      ],
+      "form": [
+        "форма"
+      ],
+      "button": [
+        "кнопка"
+      ],
+      "icon": [
+        "значок"
+      ],
+      "image": [
+        "изображение"
+      ],
+      "Border Color": [
+        "Цвет границы"
+      ],
+      "text": [
+        "текст"
+      ],
+      "heading": [
+        "в направлении"
+      ],
+      "Heading": [
+        "Заголовок"
+      ],
+      "section": [
+        "Раздел"
+      ],
+      "number": [
+        "Номер"
+      ],
+      "Text": [
+        "Текст"
+      ],
+      "header": [
+        "Голова"
+      ],
+      "block title\u0004Icon": [
+        "Значок"
+      ],
+      "svg": [
+        "svg"
+      ],
+      "list": [
+        "Список"
+      ],
+      "info": [
+        "info"
+      ],
+      "1": [
+        "1"
+      ],
+      "hide": [
+        "скрыть"
+      ],
+      "separator": [
+        "separator"
+      ],
+      "Tab": [
+        "tab"
+      ],
+      "Saving…": [
+        "Сохранение..."
+      ],
+      "Favorite": [
+        "Любимый"
+      ],
+      "Color Palette": [
+        "Цвет"
+      ],
+      "Breakpoint": [
+        "Разрыв"
+      ],
+      "Drag to reorder": [
+        "Перетащите, чтобы изменить порядок"
+      ],
+      "Reset %1$s to %2$s": [
+        "Перенос %1$s - %2$s"
+      ],
+      "From %s": [
+        "Из %s"
+      ],
+      "From theme": [
+        "Из темы"
+      ],
+      "X": [
+        "X"
+      ],
+      "Y": [
+        "Y"
+      ],
+      "Blur": [
+        "Blur"
+      ],
+      "Spread": [
+        "Пространство"
+      ],
+      "Inset": [
+        "Inset"
+      ],
+      "%1$d color in this palette still follows %2$s. Until you customize it in this palette, editing it in %2$s will also update it here.": [
+        "Цвет %1$d в этой палете все еще стоит %2$s, пока вы не прибавите его в этой палетте, редактируя его в %2$s, он тоже будет обновляться здесь."
+      ],
+      "Learn more": [
+        "Узнать больше"
+      ],
+      "Search fonts…": [
+        "Обычные шрифты..."
+      ],
+      "No fonts found": [
+        "Никаких шрифтов найдено не было"
+      ],
+      "Keep typing to narrow the list": [
+        "Продолжайте печатать, чтобы сузить список."
+      ],
+      "Options loaded.": [
+        "Варианты загружены."
+      ],
+      "Loading options…": [
+        "Варианты погрузки..."
+      ],
+      "Swatch view": [
+        "Вид движения"
+      ],
+      "Grid view": [
+        "Гримальный вид"
+      ],
+      "List view": [
+        "Мнение о перечне"
+      ],
+      "Set \"%s\" as the active library?": [
+        "\" %s\" как активная библиотека?"
+      ],
+      "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors, typography, spacing, and other styles across your whole site right away — on the front end and in the editor.": [
+        "В вашем сайте в настоящее время используется \" %1$s\" и устанавливается %2$s как активный вид меняет цветы, типографию, интервалы и другие стихи на всей вашей сайте прямо сейчас, на переднем конце и в редакторе."
+      ],
+      "You can switch back at any time, but any custom values in \"%s\" stay in that library — they are not copied over.": [
+        "Ты можешь переключаться в любое время, но любые традиционные значения в \" %s\" остаются в библиотеке - они не копируются."
+      ],
+      "Setting active…": [
+        "Устраиваясь активным..."
+      ],
+      "Set as active": [
+        "Установлено как активное"
+      ],
+      "Set \"%s\" as the active palette?": [
+        "Назначить \" %s\" активным Палеттой?"
+      ],
+      "Your site currently uses \"%1$s\". Setting \"%2$s\" as active changes the colors across your whole site right away — on the front end and in the editor.": [
+        "В вашем сайте в настоящее время используется \" %1$s\", а именно %2$s в качестве активных изменений в цветах по всему сайту, прямо на переднем конце и в редакторе."
+      ],
+      "Add Color Group": [
+        "Добавить группу цветов"
+      ],
+      "Group name": [
+        "Название группы"
+      ],
+      "A color group named \"%s\" already exists.": [
+        "Цветовая группа по имени %s уже существует."
+      ],
+      "Loading…": [
+        "Загрузка..."
+      ],
+      "Base Styles": [
+        "Базовые штаммы"
+      ],
+      "Block Presets": [
+        "Блокировка пресетов"
+      ],
+      "Create Library": [
+        "Библиотека Create"
+      ],
+      "Library title": [
+        "Название библиотеки"
+      ],
+      "A library named \"%s\" already exists.": [
+        "Библиотека по имени %s уже существует."
+      ],
+      "Creating…": [
+        "Создание..."
+      ],
+      "Create Color Palette": [
+        "Создать цветную палетку"
+      ],
+      "Palette name": [
+        "Имя и фамилия палетки"
+      ],
+      "A palette named \"%s\" already exists.": [
+        "Палета по имени %s уже существует."
+      ],
+      "Delete Color Group?": [
+        "Удалить Колор Групп?"
+      ],
+      "Delete the group \"%1$s\" and its %2$d color? This removes it from every palette.": [
+        "Опустить группу \"%1$s\" и ее цвет %2$d?"
+      ],
+      "Deleting…": [
+        "Отключить..."
+      ],
+      "Resetting…": [
+        "Чувствую себя..."
+      ],
+      "Reset Library": [
+        "Библиотека перезагрузки"
+      ],
+      "Delete Library": [
+        "Исключить Библию"
+      ],
+      "Reset '%s' to its default values?": [
+        "Переместить %s на свои неисполненные значения?"
+      ],
+      "Delete '%s'? Its tokens and presets are removed permanently.": [
+        "Удалить %s?"
+      ],
+      "This is also your active library, so your site will use \"%s\" instead. Its colors, typography, spacing, and other styles go live across your site immediately — on the front end and in the editor.": [
+        "Это также ваша активная библиотека, так что ваш сайт будет использовать \"%s\", вместо этого его цветы, типография, интервалы и другие стихи будут прямо на вашем сайте, на переднем конце и в редакторе."
+      ],
+      "This is also your active library, so your site needs another one. The library you choose below goes live immediately — colors, typography, spacing, and other styles change across your site on the front end and in the editor.": [
+        "Это также ваша активная библиотека, так что ваш сайт нуждается в еще одной библиотеке, которую вы вы выбираете, сразу же живет - цветы, типография, чередование и другие стихи меняются на вашем сайте на переднем конце и в редакторе."
+      ],
+      "Which library should your site use instead?": [
+        "Какая библиотека должна использовать вместо этого ваш сайт?"
+      ],
+      "Select a library…": [
+        "Выбери библиотеку..."
+      ],
+      "Delete \"%s\"?": [
+        "Удалить «%s»?"
+      ],
+      "Reset \"%s\"?": [
+        "Перезагрузка %s?"
+      ],
+      "Its color overrides are removed permanently.": [
+        "Его цветные засушливые отрубы постоянно удаляются."
+      ],
+      "Its colors return to the shipped baseline. The palette itself stays.": [
+        "Цветы возвращаются в отгруженные исходные условия."
+      ],
+      "This is also your active palette, so your site will use \"%s\" instead. Its colors go live across your site immediately — on the front end and in the editor.": [
+        "Это также ваша активная палета, так что ваш сайт будет использовать \"%s\", а цветы будут прямо напротив вашего сайта, на переднем конце и в редакторе."
+      ],
+      "This is also your active palette, so your site needs another one. The palette you choose below goes live immediately — its colors change across your site on the front end and in the editor.": [
+        "Это также твоя активная палетка, так что ваш сайт нуждается в другой."
+      ],
+      "Which palette should your site use instead?": [
+        "А какая бледная палетта должна использовать вместо этого твой сайт?"
+      ],
+      "Select a palette…": [
+        "Выбери палету..."
+      ],
+      "Not available in the current theme": [
+        "Не имеется в наличии в рамках нынешней темы"
+      ],
+      "These presets came from another theme. Your changes to them are kept until that theme is active again.": [
+        "Эти предсказания были сделаны по другой теме, ваши изменения в них сохранились до тех пор, пока эта тема не будет активна."
+      ],
+      "The theme's own values for this preset cannot be saved in a preset, so only your changes can be kept.": [
+        "Значения этой темы не могут быть сохранены в заранеем порядке, так что можно сохранить только ваши изменения."
+      ],
+      "The theme's own values for this preset were not recorded, so only your changes can be kept.": [
+        "Значения этой темы не были записаны, так что можно сохранить только ваши изменения."
+      ],
+      "Keep as custom preset": [
+        "Сохраняйте, как обычно."
+      ],
+      "Keep changes as custom preset": [
+        "Сохраняйте изменения в зависимости от конкретного вида"
+      ],
+      "Discard changes": [
+        "Изменения в деградациях"
+      ],
+      "Active library": [
+        "Активная библиотека"
+      ],
+      "Your site uses this library.": [
+        "Ваш сайт использует эту библиотеку."
+      ],
+      "Not the active library": [
+        "Не в активной библиотеке."
+      ],
+      "Setting it as active makes this library the one your site uses. Your site switches to its colors, sizes and styles.": [
+        "Устанавливая его как активный, это делает библиотеку той, которую использует ваш сайт, переключается на его цветы, размеры и стиль."
+      ],
+      "Edit library": [
+        "Редактировать библиотеку"
+      ],
+      "Library": [
+        "Библиотека"
+      ],
+      "New Library": [
+        "Новая библиотека"
+      ],
+      "Active palette": [
+        "Активная палетка"
+      ],
+      "Your site uses this palette.": [
+        "Ваш сайт использует эту палету."
+      ],
+      "Not the active palette": [
+        "А не активная палетка."
+      ],
+      "Setting it as active makes this palette the one your site uses. Individual blocks can still be switched to another palette.": [
+        "Устанавливая его так, как он активен, делает эту палету той, которую использует ваш сайт, и отдельные блоки все еще могут быть переключены на другой палет."
+      ],
+      "Edit palette": [
+        "Правка палитры"
+      ],
+      "Drag to reorder %s": [
+        "Дрейг в реанимацию %s"
+      ],
+      "You have unsaved changes to '%s'. Save them, or discard them to go back to the saved values.": [
+        "У вас есть непростые изменения в %s 'Спасите их, или отбросите их, чтобы вернуться к сбереженным ценностям."
+      ],
+      "You have unsaved changes. Save them, or discard them to go back to the saved values.": [
+        "У тебя есть неспровоцированные перемены, спасите их, или отбросите их, чтобы вернуться к сбереженным ценностям."
+      ],
+      "Unsaved Changes": [
+        "Несохраненные изменения"
+      ],
+      "Discard": [
+        "Отбросить"
+      ],
+      "Corner Radius": [
+        "Угол Радиуса"
+      ],
+      "Add Border Radius": [
+        "Добавить пограничный радий"
+      ],
+      "New Radius": [
+        "Новый радий"
+      ],
+      "Radius": [
+        "Radius"
+      ],
+      "Add Border Width": [
+        "Добавить пограничный круг"
+      ],
+      "New Border Width": [
+        "Новая граница"
+      ],
+      "Loading %s…": [
+        "Погрузка %s ..."
+      ],
+      "%s loaded.": [
+        "%s загружен."
+      ],
+      "Add color": [
+        "Добавить цвет."
+      ],
+      "Edit %s": [
+        "Edit %s"
+      ],
+      "Color group": [
+        "Колоричная группа"
+      ],
+      "This palette could not be loaded.": [
+        "Эту палету нельзя загрузить."
+      ],
+      "Settings loaded.": [
+        "Заряжены."
+      ],
+      "Edit color": [
+        "Красный цвет"
+      ],
+      "Add Icon Size": [
+        "Добавить Icon"
+      ],
+      "New Icon Size": [
+        "Новый размер икон"
+      ],
+      "This screen is coming soon.": [
+        "Этот экран скоро приедет."
+      ],
+      "Adding…": [
+        "Добавить..."
+      ],
+      "Preset saved.": [
+        "Пресет спасён."
+      ],
+      "Preset deleted.": [
+        "Презат исключен."
+      ],
+      "Preset reset.": [
+        "Перезагрузка."
+      ],
+      "Theme preset": [
+        "Предназначение."
+      ],
+      "Styled by your theme. Flux Block Editor can't read or change these styles.": [
+        "Редактор \"Флюкс Блок\" не может читать или изменять эти стиля."
+      ],
+      "Changes saved under another theme still apply to it. Reset removes them.": [
+        "К ней все еще применяются изменения, которые были сэкономлены в рамках другой темы."
+      ],
+      "Edit preset": [
+        "Редактировать предварительный ввод"
+      ],
+      "Edit token": [
+        "Изменить символ"
+      ],
+      "Add Shadow": [
+        "Добавить Тени."
+      ],
+      "New Shadow": [
+        "Новая тень"
+      ],
+      "Add Spacing": [
+        "Добавить"
+      ],
+      "New Spacing": [
+        "Новый Спацификатор"
+      ],
+      "Visualize your font": [
+        "Визуализировать свой шрифт"
+      ],
+      "Add Favorite": [
+        "Добавить любимый"
+      ],
+      "Adding Favorite…": [
+        "Добавить Фаворита..."
+      ],
+      "Remove Favorite": [
+        "Удаление пещеры"
+      ],
+      "Removing Favorite…": [
+        "Убрать Фаворит..."
+      ],
+      "Pins this font to the top of your font pickers, here and in the editor. It does not change any text on your site.": [
+        "Напишите этот шрифт на вершину ваших каталогов, здесь и в редакторе, он не меняет ни одного текста на вашем сайте."
+      ],
+      "Unpins this font from the top of your font pickers. Text already using it stays as it is.": [
+        "Снимает этот шрифт с верхней части твоих кирпичей, а текст уже использует его, остается таким же, как он есть."
+      ],
+      "%s removed from favorites.": [
+        "%s удален от любимых."
+      ],
+      "%s added to favorites.": [
+        "%s добавлен к любимым."
+      ],
+      "Font": [
+        "Шрифт"
+      ],
+      "Typography": [
+        "Typography"
+      ],
+      "Add Size": [
+        "Добавить калибр"
+      ],
+      "New Font Size": [
+        "Новый фонт-сам"
+      ],
+      "Set the colors your site uses. Change a color here and it updates everywhere it's applied.": [
+        "Поставь цветы на вашем месте, измените цвет здесь, и он обновляет везде, где он применяется."
+      ],
+      "Set the text sizes your site uses, and pick the fonts you want close to hand.": [
+        "Сложите количество текстов, которые использует ваш сайт, и выберите шрифты, которые вы хотите сблизиться с руками."
+      ],
+      "Set the border radius options your site uses, so buttons, images and cards stay consistent.": [
+        "Установите пограничный радиус, чтобы ваш сайт использовался, так что кнопки, изображения и карточки остаются последовательными."
+      ],
+      "Set the border thickness options your site uses, so borders match across your blocks.": [
+        "Установите варианты пограничной толщины, которые использует ваш сайт, так что границы совпадают с вашими кварталами."
+      ],
+      "Set the padding and margin steps your site uses, so gaps stay consistent from block to block.": [
+        "Установите ступеньки и маржиу, которые вы используете, так что пробелы остаются последовательными от квартала до квартала."
+      ],
+      "Set the sizes your icons can use, so icons stay consistent wherever they appear.": [
+        "Определить размеры, которые могут использовать твои иконы, так что иконы должны быть последовательными везде, где они появляются."
+      ],
+      "Set the shadow styles your site uses, so depth looks consistent across your blocks.": [
+        "Установить теневые стильы на вашем объекте, так что глубина логически совпадает с вашими кварталами."
+      ],
+      "Save button styles as presets, so you can apply a whole look in one click instead of setting each option by hand.": [
+        "Спасите кнопки в качестве предсказателей, чтобы вы могли применить весь взгляд на один клик вместо того, чтобы подставить каждый вариант."
+      ],
+      "Save image styles as presets, so rounding, shadows and spacing stay the same across your images.": [
+        "Спасать образы, как предки, так что округляться, тенни и закачиваться, держаться одинаково по своим изображениям."
+      ],
+      "Save row styles as presets, so the sections of a page share the same background and rounding.": [
+        "Сохранение стилей строк в качестве предисловий, поэтому разделы страницы имеют одинаковый фон и округление."
+      ],
+      "Save section styles as presets, so the columns inside your rows share the same background and rounding.": [
+        "Спасите сеансы как предки, так что колонки в ваших рядах совпадают с тем же фоном и округлением."
+      ],
+      "Save icon styles as presets, so icons keep the same size and color wherever you use them.": [
+        "Спасите иконовые стильы, как предки, так что иконы сохраняют одинаковый размер и цвет, где бы вы их не использовали."
+      ],
+      "Save text styles as presets, so headings and paragraphs read the same from page to page.": [
+        "Спасать текстообразные стиля в качестве предисловий, поэтому заголовки и пункты читают то же самое с страницы на страницу."
+      ],
+      "Something went wrong. Please try again.": [
+        "Что-то пошло не так. Пожалуйста, попробуйте еще раз."
+      ],
+      "Enter a library title.": [
+        "Входите в библиотечный титул."
+      ],
+      "A library with that title already exists.": [
+        "Библиотека с этим названием уже существует."
+      ],
+      "Choose which library your site should use instead.": [
+        "Выбери какую библиотеку, которую нужно использовать вместо этого."
+      ],
+      "Enter a palette name.": [
+        "Назови имя Палетт."
+      ],
+      "A palette with that name already exists.": [
+        "Палета с этим именем уже существует."
+      ],
+      "Choose which palette your site should use instead.": [
+        "Выбирайте, какую палетту нужно использовать вместо этого."
+      ],
+      "Enter a color group name.": [
+        "Назови цветное название."
+      ],
+      "A color group with that name already exists.": [
+        "Цветовая группа с этим именем уже существует."
+      ],
+      "Custom Colors": [
+        "Обычные цветы"
+      ],
+      "Saving failed.": [
+        "Спасение провалилось."
+      ],
+      "Another change to this library is already in progress.": [
+        "Еще одно изменение в этой библиотеке уже происходит."
+      ],
+      "Palette activated.": [
+        "Палетта активирована."
+      ],
+      "Palette created.": [
+        "Палетта создала."
+      ],
+      "Palette renamed.": [
+        "Палетта переименована."
+      ],
+      "Palette deleted.": [
+        "Палетта опущена."
+      ],
+      "Palette reset.": [
+        "Палетт перезагрузилась."
+      ],
+      "Swatch saved.": [
+        "Смена спасена."
+      ],
+      "Swatch deleted.": [
+        "Переключатель удален."
+      ],
+      "Swatch reset.": [
+        "Перезагрузка."
+      ],
+      "New Color": [
+        "Новый цвет"
+      ],
+      "Color added.": [
+        "Цвет добавлен."
+      ],
+      "Color group added.": [
+        "Группа цветов добавила."
+      ],
+      "Color group renamed.": [
+        "Колорская группа переименована."
+      ],
+      "Color group deleted.": [
+        "Колоричная группа исключена."
+      ],
+      "Token created.": [
+        "Токен создан."
+      ],
+      "Token saved.": [
+        "Токен спасся."
+      ],
+      "Token deleted.": [
+        "Токен удален."
+      ],
+      "Token reset.": [
+        "Токен перезагрузка."
+      ],
+      "Token order saved.": [
+        "Токен спас приказ."
+      ],
+      "100 Thin": [
+        "100 Thin"
+      ],
+      "200 Extra Light": [
+        "200 Дополнительный свет"
+      ],
+      "300 Light": [
+        "300 Свет"
+      ],
+      "400 Regular": [
+        "400"
+      ],
+      "500 Medium": [
+        "500 Средний"
+      ],
+      "600 Semi Bold": [
+        "600 Полузолотые"
+      ],
+      "700 Bold": [
+        "700 Болт"
+      ],
+      "800 Extra Bold": [
+        "800 Экстральд"
+      ],
+      "900 Black": [
+        "900"
+      ],
+      "Transform": [
+        "Трансформация"
+      ],
+      "Add Text Style": [
+        "Добавить текст Стиля"
+      ],
+      "New Text Style": [
+        "Новый текст"
+      ],
+      "Border and Shadow": [
+        "Граница и тень"
+      ],
+      "Add Button": [
+        "Добавить кнопку."
+      ],
+      "New Button": [
+        "Новый кнопка"
+      ],
+      "Add Section Style": [
+        "Добавить раздел &lt; &lt; Стиль &gt; &gt;"
+      ],
+      "New Section Style": [
+        "Новая секция"
+      ],
+      "Add Image Style": [
+        "Добавить имейдж Стиль"
+      ],
+      "New Image Style": [
+        "Новый стиль изображения"
+      ],
+      "Add Row Style": [
+        "Добавить Рау Стайл"
+      ],
+      "New Row Style": [
+        "Новый строй"
+      ],
+      "Add Icon Style": [
+        "Добавить Икон Стиль"
+      ],
+      "New Icon Style": [
+        "Новый стиль Икона"
+      ],
+      "Matches the design system value": [
+        "Схема проектной системы"
+      ],
+      "Overrides the design system value": [
+        "Превышение значения проектной системы"
+      ],
+      "Reset to the design system value": [
+        "Перенос в расчетную величину проектной системы"
+      ],
+      "Reverted to default": [
+        "Перезагрузить в по умолчанию"
+      ],
+      "This token was deleted from the Style Library. The default applies until you pick a new value or reset.": [
+        "Этот символ был исключен из библиотеки Style."
+      ],
+      "This option came from the Flux theme, which is no longer active. The default applies until you pick a new value or reset.": [
+        "Этот вариант был сделан из темы Flux, которая более не активна, и он применяется до тех пор, пока не выберешь новую ценность или перезагрузку."
+      ],
+      "Border style": [
+        "Пограничный стиль"
+      ],
+      "Border style (%s)": [
+        "Пограничный стиль (%s)"
+      ],
+      "%1$s: %2$s": [
+        "%1$s: %2$s"
+      ],
+      "%s Border Color": [
+        "%s Пограничный цвет"
+      ],
+      "Previous color format": [
+        "Предыдущий цветной формат"
+      ],
+      "Next color format": [
+        "Следующий цветок"
+      ],
+      "No favorite fonts yet.": [
+        "Пока никаких любимых шрифтов."
+      ],
+      "Manage favorites in the Style Library": [
+        "В библиотеке Стилла фавориты"
+      ],
+      "Favorites": [
+        "Избранное"
+      ],
+      "Inherited": [
+        "Ненадеженные"
+      ],
+      "Custom value": [
+        "Обычная стоимость"
+      ],
+      "Unit": [
+        "Единица"
+      ],
+      "Theme default": [
+        "По умолчанию темы"
+      ],
+      "Default (%s)": [
+        "Дефолт (%s)"
+      ],
+      "Inherited (%s)": [
+        "Недоедание (%s)"
+      ],
+      "block keyword\u0004form": [
+        "форма"
+      ],
+      "block keyword\u0004header": [
+        "Голова"
+      ],
+      "block keyword\u0004img": [
+        "img"
+      ],
+      "block keyword\u0004image": [
+        "изображение"
+      ],
+      "block keyword\u0004info": [
+        "info"
+      ],
+      "block keyword\u0004icon": [
+        "значок"
+      ],
+      "block keyword\u0004menu": [
+        "menu"
+      ],
+      "block title\u0004Tab": [
+        "tab"
+      ],
+      "Accent": [
+        "Акцент"
+      ],
+      "Main 1": [
+        "Основной 1"
+      ],
+      "Main 2": [
+        "Основной 2"
+      ],
+      "Main 3": [
+        "Основной 3"
+      ],
+      "Button Hover": [
+        "Кнопка при наведении"
+      ],
+      "Contrast": [
+        "Контраст"
+      ],
+      "Strongest": [
+        "Максимальный"
+      ],
+      "Strong": [
+        "Сильный"
+      ],
+      "Medium": [
+        "Средний"
+      ],
+      "Subtle": [
+        "Мягкий"
+      ],
+      "Notices and Feedback": [
+        "Уведомления и обратная связь"
+      ],
+      "Success": [
+        "Успех"
+      ],
+      "Warning": [
+        "Предупреждение"
+      ],
+      "Error": [
+        "Ошибка"
+      ],
+      "Info": [
+        "Информация"
+      ],
+      "Extended": [
+        "Дополнительные цвета"
+      ],
+      "Complement": [
+        "Дополняющий"
+      ],
+      "Alert": [
+        "Оповещение"
+      ],
+      "Rating": [
+        "Оценка"
+      ]
+    }
+  }
+}

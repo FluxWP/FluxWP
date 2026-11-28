@@ -212,7 +212,7 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Time"
-msgstr "Zaman"
+msgstr "Saat"
 
 msgid "Action"
 msgstr "İşlem"
@@ -1530,7 +1530,7 @@ msgid "Key saved"
 msgstr "Anahtar kayıtlı"
 
 msgid "GitHub (public)"
-msgstr "GitHub (public)"
+msgstr "GitHub (halka açık)"
 
 msgid "Move up"
 msgstr "Yukarı"
@@ -1701,7 +1701,7 @@ msgid "Will also be installed / activated:"
 msgstr "Birlikte kurulacak / etkinleştirilecek:"
 
 msgid "wordpress.org"
-msgstr "wordpress.org"
+msgstr "WordPress.org"
 
 msgid "Remove"
 msgstr "Çıkar"
@@ -3352,6 +3352,10 @@ msgstr[1] "%d paket kaldırıldı."
 msgid "Communication"
 msgstr "İletişim"
 
+msgctxt "context_ac58193b5653"
+msgid "Contact"
+msgstr "İletişim"
+
 msgid "%dthere is an update"
 msgid_plural "%dthere is an update"
 msgstr[0] "%d güncelleme var"
@@ -3478,6 +3482,27 @@ msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\
 msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
 msgstr[0] "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgstr[1] "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+
+msgid "\\n%dgüncelleme var\\x00%dgüncelleme var\\n"
+msgstr "%d güncelleme var\u0000%d güncelleme var"
+
+msgid "\\n%dpaket etkinleştirildi.\\x00%dpaket etkinleştirildi.\\n"
+msgstr "%d paket etkinleştirildi.\u0000%d paket etkinleştirildi."
+
+msgid "\\n%dpaket devre dışı bırakıldı.\\x00%dpaket devre dışı bırakıldı.\\n"
+msgstr "%d paket devre dışı bırakıldı.\u0000%d paket devre dışı bırakıldı."
+
+msgid "\\n%dpaket kaldırıldı.\\x00%dpaket kaldırıldı.\\n"
+msgstr "%d paket kaldırıldı.\u0000%d paket kaldırıldı."
+
+msgid "\\n%dyedek silindi.\\x00%dyedek silindi.\\n"
+msgstr "%d yedek silindi.\u0000%d yedek silindi."
+
+msgid "\\n%dgün\\x00%dgün\\n"
+msgstr "%d gün\u0000%d gün"
+
+msgid "\\n%skayıt\\x00%skayıt\\n"
+msgstr "%s kayıt\u0000%s kayıt"
 
 msgid "\\n%dgüncelleme var\\x00%dgüncelleme var\\n"
 msgid_plural "\\n%dgüncelleme var\\x00%dgüncelleme var\\n"
@@ -4024,6 +4049,9 @@ msgstr "Kontrol ediliyor…"
 msgid "Sunucuya bağlanılamadı."
 msgstr "Sunucuya bağlanılamadı."
 
+msgid "%d güncelleme var"
+msgstr "%d güncelleme var\u0000%d güncelleme var"
+
 msgid "Hepsi güncel ✓"
 msgstr "Hepsi güncel ✓"
 
@@ -4300,11 +4328,20 @@ msgstr "Site kontrolü yapılamadı (bağlantı kurulamadı)."
 msgid "Site kontrolü HTTP %d döndü; hata sayılmadı."
 msgstr "Site kontrolü HTTP %d döndü; hata sayılmadı."
 
+msgid "%d yedek silindi."
+msgstr "%d yedek silindi.\u0000%d yedek silindi."
+
 msgid "Saklama süresi kaydedildi; mevcut güncelleme yedeklerine de uygulandı."
 msgstr "Saklama süresi kaydedildi; mevcut güncelleme yedeklerine de uygulandı."
 
+msgid "Süresi dolan %d yedek silindi."
+msgstr "Süresi dolan %d yedek silindi.\u0000Süresi dolan %d yedek silindi."
+
 msgid "Güncelleme yedekleri"
 msgstr "Güncelleme yedekleri"
+
+msgid "%d gün"
+msgstr "%d gün\u0000%d gün"
 
 msgid "sonra otomatik silinir."
 msgstr "sonra otomatik silinir."
@@ -4314,6 +4351,9 @@ msgstr "Flux Backup ayarları"
 
 msgid "Güncelleme yedeklerinin saklama süresi %s sayfasından değiştirilir (Flux Backup 1.2.0 ile buradan da değiştirilebilir)."
 msgstr "Güncelleme yedeklerinin saklama süresi %s sayfasından değiştirilir (Flux Backup 1.2.0 ile buradan da değiştirilebilir)."
+
+msgid "Şu an %1$d güncelleme yedeği, %2$s."
+msgstr "Şu an %1$d güncelleme yedeği, %2$s.\u0000Şu an %1$d güncelleme yedeği, %2$s."
 
 msgid "Kilitli olmayan tüm güncelleme yedekleri silinsin mi? Bu geri alınamaz."
 msgstr "Kilitli olmayan tüm güncelleme yedekleri silinsin mi? Bu geri alınamaz."
@@ -4344,6 +4384,9 @@ msgstr "Seçilen güncelleme yedekleri silinsin mi? Bu geri alınamaz."
 
 msgid "Seçili yedekleri sil"
 msgstr "Seçili yedekleri sil"
+
+msgid "%s kayıt"
+msgstr "%s kayıt\u0000%s kayıt"
 
 msgid "İlk sayfa"
 msgstr "İlk sayfa"
@@ -4549,6 +4592,9 @@ msgstr "Bu kaynak silinsin mi? Ondan kurulan paketler sitede kalır, yalnız gü
 msgid "Kapalı"
 msgstr "Kapalı"
 
+msgid "Bağlı · %d paket"
+msgstr "Bağlı · %d paket\u0000Bağlı · %d paket"
+
 msgid "Diğer kaynaklar"
 msgstr "Diğer kaynaklar"
 
@@ -4674,6 +4720,15 @@ msgstr "Kaldır"
 
 msgid "Devre dışı"
 msgstr "Devre dışı"
+
+msgid "%d paket etkinleştirildi."
+msgstr "%d paket etkinleştirildi.\u0000%d paket etkinleştirildi."
+
+msgid "%d paket devre dışı bırakıldı."
+msgstr "%d paket devre dışı bırakıldı.\u0000%d paket devre dışı bırakıldı."
+
+msgid "%d paket kaldırıldı."
+msgstr "%d paket kaldırıldı.\u0000%d paket kaldırıldı."
 
 msgid "Atlananlar (zaten bu durumda, etkin tema ya da FluxWP Panel): %s."
 msgstr "Atlananlar (zaten bu durumda, etkin tema ya da FluxWP Panel): %s."
@@ -5131,6 +5186,10 @@ msgstr "Doğa; dernek ve vakıflar için."
 msgid "Önce adınız ve logonuz, sonra ön ayar, renk ve sayfalar. Sağdaki önizleme hemen değişir."
 msgstr "Önce adınız ve logonuz, sonra ön ayar, renk ve sayfalar. Sağdaki önizleme hemen değişir."
 
+msgctxt "page title"
+msgid "İletişim"
+msgstr "İletişim"
+
 msgid "%1$s ve %2$s'nı kabul ediyorum; %3$s'ni okudum."
 msgstr "%1$s ve %2$s'nı kabul ediyorum; %3$s'ni okudum."
 
@@ -5324,6 +5383,27 @@ msgstr[1] "%s kayıtları"
 
 msgid "FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır."
 msgstr "FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır."
+
+msgid "%dgüncelleme var\\x00%dgüncelleme var"
+msgstr "%d güncelleme var\u0000%d güncelleme var"
+
+msgid "%dpaket etkinleştirildi.\\x00%dpaket etkinleştirildi."
+msgstr "%d paket etkinleştirildi.\u0000%d paket etkinleştirildi."
+
+msgid "%dpaket devre dışı bırakıldı.\\x00%dpaket devre dışı bırakıldı."
+msgstr "%d paket devre dışı bırakıldı.\u0000%d paket devre dışı bırakıldı."
+
+msgid "%dpaket kaldırıldı.\\x00%dpaket kaldırıldı."
+msgstr "%d paket kaldırıldı.\u0000%d paket kaldırıldı."
+
+msgid "%dyedek silindi.\\x00%dyedek silindi."
+msgstr "%d yedek silindi.\u0000%d yedek silindi."
+
+msgid "%dgün\\x00%dgün"
+msgstr "%d gün\u0000%d gün"
+
+msgid "%skayıt\\x00%skayıt"
+msgstr "%s kayıt\u0000%s kayıt"
 
 msgid "%dgüncelleme var\\x00%dgüncelleme var"
 msgid_plural "%dgüncelleme var\\x00%dgüncelleme var"

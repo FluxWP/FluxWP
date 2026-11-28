@@ -1,0 +1,949 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Flux GraphQL"
+msgstr "Flux GraphQL"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "You do not have permission to do this."
+msgstr "Vous n'êtes pas autorisé à faire cela."
+
+msgid "One GraphQL API for the FluxWP plugins. Screens in wp-admin, the FluxWP desktop and mobile apps and a headless front end all read the same typed schema."
+msgstr "Un GraphQL API pour les plugins FluxWP. Les écrans en wp-admin, les applications FluxWP de bureau et de mobile et une extrémité avant sans tête ont tous lu le même schéma type."
+
+msgid "Settings saved."
+msgstr "Paramètres enregistrés."
+
+msgid "The separate WPGraphQL plugin was deactivated; the built-in copy is in use."
+msgstr "Le plugin WPGraphQL séparé a été désactivé; la copie intégrée est en usage."
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Endpoint"
+msgstr "Point de terminaison"
+
+msgid "WPGraphQL"
+msgstr "WPGraphQL"
+
+msgid "%s (built in)"
+msgstr "%s (construit en)"
+
+msgid "%s (separate plugin)"
+msgstr "%s ( plugin séparé)"
+
+msgid "not loaded"
+msgstr "non chargé"
+
+msgid "working"
+msgstr "travailler"
+
+msgid "off"
+msgstr "éteint"
+
+msgid "Known queries"
+msgstr "Demandes connues"
+
+msgid "%1$d from %2$d packages"
+msgstr "%1$d à partir de %2$d paquets"
+
+msgid "Upload endpoint"
+msgstr "Charger le point d &apos; extrémité"
+
+msgid "Use the Flux GraphQL version"
+msgstr "Utilisez la version Flux GraphQL"
+
+msgid "Open GraphiQL IDE"
+msgstr "Ouvrir l'IDE GraphiQL"
+
+msgid "Access"
+msgstr "Accès"
+
+msgid "Only queries shipped with FluxWP packages (recommended)"
+msgstr "Seulement les requêtes expédiées avec FluxWP paquets (recommandé)"
+
+msgid "Administrators may also send any query"
+msgstr "Les administrateurs peuvent également envoyer toute question"
+
+msgid "Anyone may send any query (public headless API)"
+msgstr "Toute personne peut envoyer une requête (public headless API )"
+
+msgid "Which queries run"
+msgstr "Quelles requêtes courent"
+
+msgid "Persisted queries keep the API small and let LiteSpeed cache public reads."
+msgstr "Les requêtes persistées gardent le API petit et laissent le public de cache LiteSpeed lires."
+
+msgid "Front-end origins"
+msgstr "Origines avant fin"
+
+msgid "Sites allowed to call /graphql from the browser, one per line. This site is always allowed."
+msgstr "Sites autorisés à appeler /graphql depuis le navigateur, un par ligne. Ce site est toujours autorisé."
+
+msgid "GraphiQL IDE for administrators"
+msgstr "IDE GraphiQL pour les administrateurs"
+
+msgid "Also lets administrators run any query while it is on."
+msgstr "Permet également aux administrateurs d'exécuter n'importe quelle requête pendant qu'elle est sur."
+
+msgid "Public schema introspection"
+msgstr "Introspection du schéma public"
+
+msgid "Administrators can always read the schema."
+msgstr "Les administrateurs peuvent toujours lire le schéma."
+
+msgid "Debug messages for administrators"
+msgstr "Débug messages pour les administrateurs"
+
+msgid "Limits"
+msgstr "Limites"
+
+msgid "Deepest nesting"
+msgstr "Nidification la plus profonde"
+
+msgid "Highest complexity"
+msgstr "La complexité la plus élevée"
+
+msgid "Records per page"
+msgstr "Documents par page"
+
+msgid "Queries per batch"
+msgstr "Demandes par lot"
+
+msgid "Public cache"
+msgstr "cache publique"
+
+msgid "sec"
+msgstr "sec"
+
+msgid "Largest upload"
+msgstr "Plus grand téléchargement"
+
+msgid "The FluxWP form fields could not load. Reinstall Flux GraphQL."
+msgstr "Les champs de formulaire FluxWP ne pouvaient pas charger. Réinstaller Flux GraphQL ."
+
+msgid "Shared hosting: keep the limits low. A query that goes over them is refused before it runs."
+msgstr "Hébergement partagé: garder les limites basses. Une requête qui va sur eux est refusée avant qu'elle ne tourne."
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "GraphQL server"
+msgstr "GraphQL serveur"
+
+msgid "Flux GraphQL settings"
+msgstr "Flux GraphQL settings"
+
+msgid "Built-in WPGraphQL %s is running."
+msgstr "Le WPGraphQL %s est intégré."
+
+msgid "A separately installed WPGraphQL %1$s is running instead of the built-in %2$s. It works, but its updates are not tested with FluxWP. Use the built-in copy unless another plugin needs the separate one."
+msgstr "Un WPGraphQL %1$s installé séparément fonctionne au lieu de l'entier %2$s . Il fonctionne, mais ses mises à jour ne sont pas testées avec FluxWP . Utilisez la copie intégrée à moins qu'un autre plugin n'ait besoin de la séparément."
+
+msgid "A separately installed WPGraphQL %1$s is active. FluxWP needs %2$s or newer and below %3$s, so FluxWP screens cannot open. Deactivate it to use the built-in copy."
+msgstr "Un WPGraphQL %1$s installé séparément est actif. FluxWP a besoin de %2$s ou plus récent et en dessous de %3$s , donc FluxWP écrans ne peuvent pas s'ouvrir. Désactivez-le pour utiliser la copie intégrée."
+
+msgid "The built-in WPGraphQL files are missing. Reinstall Flux GraphQL from FluxWP Panel › Packages."
+msgstr "Les fichiers WPGraphQL intégrés sont manquants. Réinstaller Flux GraphQL à partir de FluxWP Panel › Packages."
+
+msgid "GraphQL queries"
+msgstr "GraphQL requêtes"
+
+msgid "Anyone may send any GraphQL query. Keep this only for a public headless front end; depth and complexity limits still apply."
+msgstr "N'importe qui peut envoyer une requête GraphQL. Gardez ceci seulement pour un front public sans tête; les limites de profondeur et de complexité s'appliquent encore."
+
+msgid "Only queries shipped with FluxWP packages run (%d known)."
+msgid_plural "Only queries shipped with FluxWP packages run (%d known)."
+msgstr[0] "Seules les requêtes expédiées avec FluxWP paquets fonctionnent ( %d connu)."
+msgstr[1] "Seules les requêtes expédiées avec FluxWP paquets fonctionnent ( %d connu)."
+
+msgid "GraphQL types"
+msgstr "GraphQL types"
+
+msgid "Some GraphQL fields were refused because they break the FluxWP rules: %s. Update the package that adds them."
+msgstr "Quelques GraphQL champs ont été refusés parce qu'ils cassent les règles FluxWP: %s . Mettre à jour le paquet qui les ajoute."
+
+msgid "Flux GraphQL: the separately installed WPGraphQL %s is not supported, so FluxWP GraphQL screens are off."
+msgstr "Flux GraphQL : le WPGraphQL %s installé séparément n'est pas pris en charge, donc FluxWP GraphQL écrans sont éteints."
+
+msgid "The user making the request and what they may do."
+msgstr "L'utilisateur qui fait la demande et ce qu'ils peuvent faire."
+
+msgid "Whether the request is signed in."
+msgstr "Que la demande soit signée."
+
+msgid "User ID; empty for a visitor."
+msgstr "ID utilisateur; vide pour un visiteur."
+
+msgid "Display name; empty for a visitor."
+msgstr "Nom d'affichage; vide pour un visiteur."
+
+msgid "Whether the user manages the site (manage_options)."
+msgstr "Que l'utilisateur gère le site (manage_options)."
+
+msgid "Capabilities from the FluxWP catalog that the user has."
+msgstr "Capabilités du catalogue FluxWP que l'utilisateur a."
+
+msgid "Whether the user has this capability."
+msgstr "Que l'utilisateur ait cette capacité."
+
+msgid "Capability name, e.g. flxg_use."
+msgstr "Nom de capacité, p.ex. flxg_use."
+
+msgid "A capability a FluxWP package checks."
+msgstr "Une capacité de contrôle de paquet FluxWP."
+
+msgid "What the capability allows, in the user's language."
+msgstr "Ce que la capacité permet, dans la langue de l'utilisateur."
+
+msgid "Group label (usually the package); empty when not given."
+msgstr "Étiquette de groupe (généralement le paquet); vide lorsqu'il n'est pas donné."
+
+msgid "Package slug that declares it; empty when not given."
+msgstr "Paquet de limace qui le déclare; vide lorsqu'il n'est pas donné."
+
+msgid "Whether the current user has it."
+msgstr "Que l'utilisateur actuel l'ait."
+
+msgid "The user making the request. A visitor gets loggedIn false and no capabilities."
+msgstr "L'utilisateur qui fait la demande. Un visiteur obtient enregistréIn false et aucune capacité."
+
+msgid "The FluxWP capability catalog, with what the current user has."
+msgstr "Le catalogue de capacités FluxWP, avec ce que l'utilisateur actuel a."
+
+msgid "Where a page sits in a list."
+msgstr "Où une page se trouve dans une liste."
+
+msgid "More records follow this page."
+msgstr "Plus d'enregistrements suivent cette page."
+
+msgid "Records come before this page."
+msgstr "Les dossiers sont présentés avant cette page."
+
+msgid "Cursor of the first record on this page."
+msgstr "Curseur du premier disque sur cette page."
+
+msgid "Cursor of the last record on this page; pass it as \"after\" for the next page."
+msgstr "Curseur du dernier disque sur cette page ; passez-le comme \"après\" pour la page suivante."
+
+msgid "One %s in a list, with its cursor."
+msgstr "Un %s dans une liste, avec son curseur."
+
+msgid "Opaque cursor of this record."
+msgstr "Le curseur de l'opaque de ce disque."
+
+msgid "The record."
+msgstr "Le dossier."
+
+msgid "A page of %s records."
+msgstr "Une page de %s enregistrements."
+
+msgid "Records with their cursors."
+msgstr "Enregistre avec leurs curseurs."
+
+msgid "Records of this page."
+msgstr "Enregistrements de cette page."
+
+msgid "Paging information."
+msgstr "Des informations sur les messages."
+
+msgid "All matching records (null when counting would be slow)."
+msgstr "Tous les enregistrements correspondants (null quand le comptage serait lent)."
+
+msgid "Records per page (at most %d)."
+msgstr "Documents par page (au plus %d )."
+
+msgid "Cursor to continue after (pageInfo.endCursor)."
+msgstr "Curseur à poursuivre après (pageInfo.endCursor)."
+
+msgid "The page cursor is not valid."
+msgstr "Le curseur de page n'est pas valide."
+
+msgid "Please sign in again."
+msgstr "S'il vous plaît, connectez-vous encore."
+
+msgid "The record was not found."
+msgstr "Le dossier n'a pas été trouvé."
+
+msgid "Some fields are not valid."
+msgstr "Certains champs ne sont pas valides."
+
+msgid "The record was changed by someone else. Reload and try again."
+msgstr "Le disque a été changé par quelqu'un d'autre. Rechargez et essayez à nouveau."
+
+msgid "Too many requests. Wait a moment and try again."
+msgstr "Trop de demandes, attendez un moment et essayez encore."
+
+msgid "Something went wrong. Please try again."
+msgstr "Quelque chose s'est mal passé. Veuillez réessayer."
+
+msgid "This query is not known to the site. Update the app or the FluxWP packages."
+msgstr "Cette requête n'est pas connue du site. Mettre à jour l'application ou les paquets FluxWP."
+
+msgid "Only queries shipped with FluxWP packages may run on this site."
+msgstr "Seules les requêtes expédiées avec des colis FluxWP peuvent être effectuées sur ce site."
+
+msgid "The ID is not valid."
+msgstr "L'ID n'est pas valide."
+
+msgid "Global ID."
+msgstr "Numéro d'identification mondial."
+
+msgid "Database ID."
+msgstr "Base de données ID."
+
+msgid "Input problems to show next to the form fields. Empty when the mutation succeeded."
+msgstr "Problèmes d'entrée pour montrer à côté des champs de formulaire. Empty lorsque la mutation réussit."
+
+msgid "Panel settings of the installed FluxWP packages (from flx_settings_schema)."
+msgstr "Paramètres du panneau des paquets FluxWP installés (à partir de flx_settings_schema)."
+
+msgid "Panel settings of the installed FluxWP packages."
+msgstr "Paramètres de panneau des paquets FluxWP installés."
+
+msgid "Changes panel settings. Only the groups and fields you send are written."
+msgstr "Changements de paramètres de panneau. Seuls les groupes et les champs que vous envoyez sont écrits."
+
+msgid "Settings after the change."
+msgstr "Réglages après le changement."
+
+msgid "This setting cannot be changed here."
+msgstr "Ce réglage ne peut pas être changé ici."
+
+msgid "Changes to %s. Only the fields you send are changed."
+msgstr "Changements à %s . Seuls les champs que vous envoyez sont changés."
+
+msgid "A list or object is expected."
+msgstr "Une liste ou un objet est attendu."
+
+msgid "This choice is not available."
+msgstr "Ce choix n'est pas disponible."
+
+msgid "Enter a colour like #1F6FEB."
+msgstr "Entrez une couleur comme #1F6FEB."
+
+msgid "Free-form JSON value (object, list, string, number or boolean)."
+msgstr "Valeur JSON de forme libre (objet, liste, chaîne, nombre ou boolean)."
+
+msgid "A problem with the input of a mutation, shown next to the form field."
+msgstr "Un problème avec l'entrée d'une mutation, montrée à côté du champ de formulaire."
+
+msgid "Stable code: INVALID_INPUT, CONFLICT, …"
+msgstr "Code stable: INVALID_INPUT, CONFLICT, ..."
+
+msgid "Message in the user's language."
+msgstr "Message dans la langue de l'utilisateur."
+
+msgid "Input field (dotted path) the problem belongs to."
+msgstr "Champ d'entrée (chemin pointé) le problème appartient."
+
+msgid "A point in time with labels in the user's language."
+msgstr "Un point dans le temps avec des étiquettes dans la langue de l'utilisateur."
+
+msgid "ISO 8601 in UTC (2026-11-15T14:59:00Z)."
+msgstr "ISO 8601 en UTC (2026-11-15T14:59:00Z)."
+
+msgid "Unix timestamp."
+msgstr "Un timestamp."
+
+msgid "Date and time for display, in the site time zone and the user's language."
+msgstr "Date et heure pour l'affichage, dans la zone temporelle du site et la langue de l'utilisateur."
+
+msgid "Relative time for display (\"5 minutes ago\")."
+msgstr "Temps relatif pour l'affichage (\"Il y a 5 minutes\")."
+
+msgid "Date only, in the site time zone and the user's language."
+msgstr "Date seulement, dans la zone temporelle du site et la langue de l'utilisateur."
+
+msgid "Compact date and time for tables (16.10.2026 14:24 in Turkish)."
+msgstr "Date et heure compactes pour les tables (16.10.2026 14:24 en turc)."
+
+msgid "An amount of money."
+msgstr "Un montant d'argent."
+
+msgid "Amount in the currency unit (150.5)."
+msgstr "Montant dans l &apos; unité monétaire (150.5)."
+
+msgid "ISO 4217 code (TRY, USD)."
+msgstr "Code ISO 4217 (TRY, USD)."
+
+msgid "Amount with the currency sign for display."
+msgstr "Montant avec le signe de devise pour l'affichage."
+
+msgid "A phone number."
+msgstr "Un numéro de téléphone."
+
+msgid "E.164 form (+905301234567); empty when the number is not valid."
+msgstr "E.164 form (+905301234567); vide lorsque le nombre n'est pas valide."
+
+msgid "Digits only (905301234567)."
+msgstr "Numéristes seulement (905301234567)."
+
+msgid "Number as entered, for display."
+msgstr "Numéro entré, pour l'affichage."
+
+msgid "A stored file."
+msgstr "Un fichier stocké."
+
+msgid "File ID (upload ID or the package's own ID)."
+msgstr "ID de fichier (ID de chargement ou d'ID du paquet)."
+
+msgid "File name."
+msgstr "Nom du fichier."
+
+msgid "MIME type."
+msgstr "Type MIME."
+
+msgid "Size in bytes."
+msgstr "Taille en octets."
+
+msgid "Download address (may need the same sign-in)."
+msgstr "Télécharger l'adresse (peut-être besoin du même panneau)."
+
+msgid "The file is an image."
+msgstr "Le fichier est une image."
+
+msgid "Thumbnail address for images."
+msgstr "Adresse Thumbnail pour images."
+
+msgid "A person (donor, customer, contact). Flux CRM owns the record; other packages return it."
+msgstr "Une personne (donateur, client, contact). Flux CRM possède le disque; d'autres paquets le rapportent."
+
+msgid "Person ID in the shared people table."
+msgstr "Identifiant personnel dans la table des personnes partagées."
+
+msgid "Full name."
+msgstr "Nom complet."
+
+msgid "E-mail address."
+msgstr "Adresse électronique."
+
+msgid "Phone number."
+msgstr "Téléphone."
+
+msgid "Picture address."
+msgstr "Adresse photo."
+
+msgid "You are not allowed to manage plugins."
+msgstr "Vous n'êtes pas autorisé à gérer les plugins."
+
+msgid "This screen needs JavaScript."
+msgstr "Cet écran a besoin de JavaScript ."
+
+msgid "Loading the screen…"
+msgstr "Chargement de l'écran..."
+
+msgid "A separately installed WPGraphQL plugin is active and FluxWP cannot use it. Deactivate it under Plugins; FluxWP has its own copy."
+msgstr "Un plugin WPGraphQL installé séparément est actif et FluxWP ne peut pas l'utiliser. Désactivez-le sous Plugins; FluxWP a sa propre copie."
+
+msgid "Flux GraphQL is not ready on this site. Check Flux GraphQL under Plugins."
+msgstr "Flux GraphQL n'est pas prêt sur ce site. Vérifiez Flux GraphQL sous Plugins."
+
+msgid "The screen files of this plugin are missing. Update or reinstall the plugin."
+msgstr "Les fichiers d'écran de ce plugin sont manquants. Mettre à jour ou réinstaller le plugin."
+
+msgid "If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache."
+msgstr "Si le plugin vient d'être mis à jour, le navigateur ou le cache du site peut toujours contenir de vieux fichiers. Recharger la page (Ctrl/Cmd + Shift + R); si elle persiste, purger le cache du site."
+
+msgid "This screen could not be loaded"
+msgstr "Cet écran n’a pas pu être chargé"
+
+msgid "Reload page"
+msgstr "Recharger la page"
+
+msgid "Uploads are not accepted for this screen."
+msgstr "Les téléchargements ne sont pas acceptés pour cet écran."
+
+msgid "You do not have permission to upload files here."
+msgstr "Vous n'avez pas la permission de télécharger des fichiers ici."
+
+msgid "Too many uploads. Wait a few minutes and try again."
+msgstr "Trop de téléchargements. Attendez quelques minutes et essayez à nouveau."
+
+msgid "The file did not arrive. Try again."
+msgstr "Le dossier n'est pas arrivé."
+
+msgid "The file is larger than %s."
+msgstr "Le fichier est supérieur à %s ."
+
+msgid "This file type is not allowed."
+msgstr "Ce type de fichier n'est pas autorisé."
+
+msgid "The file could not be saved on the server."
+msgstr "Le fichier ne peut pas être sauvegardé sur le serveur."
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "Le fichier téléchargé n'a pas été trouvé. Téléchargez-le à nouveau."
+
+msgid "A name and value shown under a cart line (variation attribute or line detail)."
+msgstr "Un nom et une valeur indiqués sous une ligne de panier (attribut de variation ou détail de ligne)."
+
+msgid "Label."
+msgstr "Étiquette."
+
+msgid "Value as plain text."
+msgstr "Valeur en texte clair."
+
+msgid "Quantities a cart line accepts."
+msgstr "Quantités qu'une ligne de chariot accepte."
+
+msgid "Lowest quantity."
+msgstr "La plus faible quantité."
+
+msgid "Highest quantity."
+msgstr "La plus haute quantité."
+
+msgid "The quantity is a multiple of this."
+msgstr "La quantité en est une multiple."
+
+msgid "Whether the shopper may change the quantity (false for fixed lines such as a donation)."
+msgstr "Que la trémie change la quantité (false pour les lignes fixes comme un don)."
+
+msgid "A line in the cart."
+msgstr "Une ligne dans le chariot."
+
+msgid "Cart item key; flxCartItemUpdate and flxCartItemRemove take it."
+msgstr "Cart élément clé; flxCartItemUpdate and flxCartItemRetirez-le."
+
+msgid "What the line is: \"product\", or a name a package gives its own lines (Flux Donate: \"donation\"). Filter flx_gql_cart_item_kind."
+msgstr "Ce que la ligne est: \"produit\", ou un nom un paquet donne ses propres lignes (Flux Donate: \"donation\"). Filtre flx_gql_cart_item_kind."
+
+msgid "WooCommerce product (or variation) database ID."
+msgstr "Référence de base de données sur les produits WooCommerce (ou variation)."
+
+msgid "WooCommerce product type (simple, variation …)."
+msgstr "WooCommerce type de produit (simple, variation ...)."
+
+msgid "Product name."
+msgstr "Nom du produit."
+
+msgid "SKU; empty when the product has none."
+msgstr "UGS; vide lorsque le produit n'a aucun produit."
+
+msgid "Product page; null for products without a page."
+msgstr "Page de produit; null pour les produits sans page."
+
+msgid "First product image; null without an image."
+msgstr "Première image de produit; null sans image."
+
+msgid "Alternative text of the image."
+msgstr "Texte alternatif de l'image."
+
+msgid "Quantity."
+msgstr "Quantité."
+
+msgid "Quantities this line accepts."
+msgstr "Quantités acceptées par cette ligne."
+
+msgid "Only one of this product per order."
+msgstr "Un seul de ces produits par commande."
+
+msgid "Price of one unit."
+msgstr "Prix d'une unité."
+
+msgid "Regular price of one unit (before a sale)."
+msgstr "Prix régulier d'une unité (avant une vente)."
+
+msgid "Line total before coupons."
+msgstr "Ligne totale avant coupons."
+
+msgid "Line total after coupons, without tax."
+msgstr "Ligne totale après coupons, sans taxe."
+
+msgid "Tax of the line."
+msgstr "Taxe de la ligne."
+
+msgid "Chosen variation attributes."
+msgstr "Choix des attributs de variation."
+
+msgid "Line details other plugins add (e.g. a donation's names and certificate)."
+msgstr "D'autres plugins ajoutent (par exemple, les noms et le certificat d'un don)."
+
+msgid "A coupon applied to the cart."
+msgstr "Un coupon appliqué au chariot."
+
+msgid "Coupon code."
+msgstr "Code de coupon."
+
+msgid "WooCommerce discount type (percent, fixed_cart …)."
+msgstr "WooCommerce type de réduction (pourcentage, fixe_cart ...)."
+
+msgid "Discount without tax."
+msgstr "Rabais sans taxe."
+
+msgid "Tax part of the discount."
+msgstr "Partie fiscale de la remise."
+
+msgid "A fee added to the cart (e.g. a payment fee)."
+msgstr "Un frais ajouté au panier (p. ex. un paiement)."
+
+msgid "Fee key."
+msgstr "Clé de frais."
+
+msgid "Fee name."
+msgstr "Nom de la victime."
+
+msgid "Fee without tax."
+msgstr "Honoraires sans taxes."
+
+msgid "Tax of the fee."
+msgstr "Taxe de la taxe."
+
+msgid "One tax rate in the cart totals."
+msgstr "Un taux d'imposition dans le panier totalise."
+
+msgid "Tax name."
+msgstr "Nom de la taxe."
+
+msgid "Rate as WooCommerce shows it."
+msgstr "Taux comme le montre WooCommerce."
+
+msgid "Amount."
+msgstr "Montant."
+
+msgid "Cart totals, as WooCommerce calculated them."
+msgstr "Les totaux de panier, WooCommerce les calculaient."
+
+msgid "ISO 4217 currency of the cart."
+msgstr "ISO 4217 devise du panier."
+
+msgid "Lines before coupons, without tax."
+msgstr "Lignes avant coupons, sans taxe."
+
+msgid "Tax of the lines."
+msgstr "Taxe des lignes."
+
+msgid "Fees without tax."
+msgstr "Des frais sans taxes."
+
+msgid "Coupon discounts without tax."
+msgstr "Réductions de coupon sans taxes."
+
+msgid "Shipping without tax; null until shipping is calculated."
+msgstr "Livraison sans taxe; null jusqu'à ce que l'expédition soit calculée."
+
+msgid "All taxes."
+msgstr "Toutes les taxes."
+
+msgid "Amount to pay."
+msgstr "Montant à payer."
+
+msgid "Taxes by rate."
+msgstr "Impôts par taux."
+
+msgid "A shipping option."
+msgstr "Une option d'expédition."
+
+msgid "Rate ID for flxCartShippingRateSelect."
+msgstr "Numéro de prix pour flxCartShippingRateSelect."
+
+msgid "Shipping method (flat_rate, free_shipping …)."
+msgstr "Méthode d'expédition (flat_rate, free_shipping ...)."
+
+msgid "Name."
+msgstr "Nom."
+
+msgid "Description; may be empty."
+msgstr "Description; peut être vide."
+
+msgid "Delivery time; may be empty."
+msgstr "Délai de livraison; peut être vide."
+
+msgid "Price without tax."
+msgstr "Prix sans taxe."
+
+msgid "Whether this option is chosen."
+msgstr "Que cette option soit choisie."
+
+msgid "A group of lines shipped together and its shipping options."
+msgstr "Un groupe de lignes expédiées ensemble et ses options d'expédition."
+
+msgid "Package ID."
+msgstr "Numéro de paquet."
+
+msgid "Package name."
+msgstr "Nom du paquet."
+
+msgid "Shipping options."
+msgstr "Options d'expédition."
+
+msgid "E-mail; null on the shipping address."
+msgstr "E-mail; null sur l'adresse d'expédition."
+
+msgid "A billing or shipping address of the cart."
+msgstr "Une adresse de facturation ou d'expédition du panier."
+
+msgid "A problem with the cart the shopper has to fix before paying (e.g. a product went out of stock)."
+msgstr "Un problème avec le chariot que la trémie doit réparer avant de payer (par exemple, un produit est sorti du stock)."
+
+msgid "WooCommerce error code."
+msgstr "Code d'erreur WooCommerce."
+
+msgid "Message in the shopper's language."
+msgstr "Message dans la langue de la trémie."
+
+msgid "Where the payment step continues. Payment stays on the WooCommerce Store API checkout; card data never goes through GraphQL."
+msgstr "Lorsque l'étape de paiement se poursuit. Le paiement reste sur le WooCommerce Store API paiement; les données de carte ne passent jamais à GraphQL ."
+
+msgid "Store API checkout URL (POST with the same Cart-Token, billing address and payment method)."
+msgstr "Stocker API URL de paiement (POST avec le même panier, l'adresse de facturation et le mode de paiement)."
+
+msgid "The site's checkout page; null when WooCommerce is not loaded."
+msgstr "La page de commande du site; null lorsque WooCommerce n'est pas chargé."
+
+msgid "The site's cart page; null when WooCommerce is not loaded."
+msgstr "La page du panier du site; null lorsque WooCommerce n'est pas chargé."
+
+msgid "The shopper's WooCommerce cart (Store API)."
+msgstr "Le chariot WooCommerce de la trémie (Store API )."
+
+msgid "Cart token. Send it back as the Cart-Token header (headless front end, mobile); it is also in the Cart-Token response header. Null when WooCommerce gave none."
+msgstr "Jeton de panier. Renvoyez-le comme en-tête de Cart-Token (avant sans tête, mobile); il est également dans l'en-tête de réponse de Cart-Token. Null quand WooCommerce n'a donné aucun."
+
+msgid "Store API nonce for the same-site cookie session (Nonce header). Null when WooCommerce gave none."
+msgstr "Conservez API nonce pour la même session de cookies (en-tête Nonce). Null lorsque WooCommerce n'en a donné aucun."
+
+msgid "Number of units in the cart (quantities added up)."
+msgstr "Nombre d'unités dans le panier (quantités ajoutées)."
+
+msgid "Lines."
+msgstr "Des lignes."
+
+msgid "Applied coupons."
+msgstr "Des coupons appliqués."
+
+msgid "Fees."
+msgstr "Des frais."
+
+msgid "Totals."
+msgstr "Total."
+
+msgid "Whether the order needs a payment (false for a free cart)."
+msgstr "Que la commande ait besoin d'un paiement (false pour un panier gratuit)."
+
+msgid "Whether the order is shipped (false for donations and virtual products)."
+msgstr "Que la commande soit expédiée (fals pour les dons et les produits virtuels)."
+
+msgid "Whether shipping was calculated for the current address."
+msgstr "Si l'expédition a été calculée pour l'adresse actuelle."
+
+msgid "Shipping packages and their options."
+msgstr "Les paquets d'expédition et leurs options."
+
+msgid "IDs of the payment gateways available for this cart (payment_method of the checkout)."
+msgstr "ID des passerelles de paiement disponibles pour ce panier (paiement_méthode de la caisse)."
+
+msgid "Features a gateway must support for this cart (e.g. products, subscriptions)."
+msgstr "Caractéristiques d'une passerelle doit soutenir ce panier (p. ex. produits, abonnements)."
+
+msgid "Problems to fix before paying."
+msgstr "Problèmes à régler avant de payer."
+
+msgid "Billing address."
+msgstr "Adresse postale."
+
+msgid "Shipping address."
+msgstr "Adresse de livraison."
+
+msgid "Where the payment step continues."
+msgstr "Là où se poursuit l'étape de paiement."
+
+msgid "A variation attribute."
+msgstr "Un attribut de variation."
+
+msgid "Attribute name or taxonomy (e.g. pa_color)."
+msgstr "Attribuer le nom ou la taxonomie (p. ex. pa_color)."
+
+msgid "Chosen value."
+msgstr "La valeur choisie."
+
+msgid "Address fields to change; fields left out keep their value."
+msgstr "Adresser les champs à changer; les champs laissés hors de portée conservent leur valeur."
+
+msgid "The shopper's cart (Cart-Token session or the WooCommerce session cookie). Never cached."
+msgstr "Le chariot de la trémie (session de jeton-cart ou le cookie de session WooCommerce). Jamais mis en cache."
+
+msgid "The cart after the change; null when the change failed."
+msgstr "Le chariot après le changement; null lorsque le changement a échoué."
+
+msgid "Adds a product to the cart (Store API cart/add-item)."
+msgstr "Ajouter un produit au panier (Store API panier/add-item)."
+
+msgid "Product or variation database ID."
+msgstr "ID de base de données de produits ou de variations."
+
+msgid "Quantity; default 1."
+msgstr "Quantité; par défaut 1."
+
+msgid "Variation attributes for a variable product."
+msgstr "Les attributs de variation pour un produit variable."
+
+msgid "Key of the line that was added or increased; null when the change failed."
+msgstr "Clé de la ligne qui a été ajoutée ou augmentée; null lorsque le changement a échoué."
+
+msgid "Changes the quantity of a cart line; 0 removes it."
+msgstr "Change la quantité d'une ligne de panier; 0 la retire."
+
+msgid "Cart item key."
+msgstr "Clé d'élément de panier."
+
+msgid "New quantity."
+msgstr "Nouvelle quantité."
+
+msgid "Removes a cart line."
+msgstr "Enlève une ligne de panier."
+
+msgid "Empties the cart."
+msgstr "Il vide le chariot."
+
+msgid "Applies a coupon."
+msgstr "Ça correspond à un coupon."
+
+msgid "Removes a coupon."
+msgstr "Enlève un coupon."
+
+msgid "Chooses a shipping option."
+msgstr "Choisissez une option d'expédition."
+
+msgid "Rate ID (FlxCartShippingRate.rateId)."
+msgstr "ID de taux (FlxCartShippingRate.rateId)."
+
+msgid "Shipping package; left out = every package."
+msgstr "Emballage de livraison; laissé hors = tous les colis."
+
+msgid "Changes the billing and/or shipping address; totals, taxes and shipping options follow."
+msgstr "Modification de l'adresse de facturation et/ou d'expédition; les totaux, les taxes et les options d'expédition suivent."
+
+msgid "Billing address fields to change."
+msgstr "Les champs d'adresses de facturation à changer."
+
+msgid "Shipping address fields to change."
+msgstr "Les champs d'adresses de livraison à changer."
+
+msgid "First name."
+msgstr "Prénom."
+
+msgid "Last name."
+msgstr "Nom."
+
+msgid "Company."
+msgstr "Compagnie."
+
+msgid "Address line 1."
+msgstr "Ligne d'adresse 1."
+
+msgid "Address line 2."
+msgstr "Ligne d'adresse 2."
+
+msgid "City."
+msgstr "Ville."
+
+msgid "State or province code."
+msgstr "Code de l'État ou de la province."
+
+msgid "Postcode."
+msgstr "Code postal."
+
+msgid "ISO 3166-1 alpha-2 country code."
+msgstr "ISO 3166-1 Code de pays alpha-2."
+
+msgid "E-mail."
+msgstr "E-mail."
+
+msgid "Phone."
+msgstr "Téléphone."
+
+msgid "Choose a product."
+msgstr "Choisissez un produit."
+
+msgid "The quantity must be at least 1."
+msgstr "La quantité doit être d'au moins 1."
+
+msgid "The quantity cannot be negative."
+msgstr "La quantité ne peut pas être négative."
+
+msgid "Enter a coupon code."
+msgstr "Entrez un code promo."
+
+msgid "The shop is not available on this site."
+msgstr "La boutique n'est pas disponible sur ce site."
+
+msgid "Your cart has expired. Please reload the page."
+msgstr "Votre panier a expiré. Veuillez recharger la page."
+
+msgid "The cart could not be changed. Please reload the page."
+msgstr "Le panier n'a pas pu être modifié. Veuillez recharger la page."
+
+msgid "Select date"
+msgstr "Sélectionner une date"
+
+msgid "Today"
+msgstr "Aujourd’hui"
+
+msgid "Tomorrow"
+msgstr "Demain"
+
+msgid "Next week"
+msgstr "La semaine prochaine"
+
+msgid "In 2 weeks"
+msgstr "Dans 2 semaines"
+
+msgid "This Friday"
+msgstr "Ce vendredi"
+
+msgid "No date"
+msgstr "Aucune date"
+
+msgid "Clear"
+msgstr "Effacer"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Apply"
+msgstr "Appliquer"
+
+msgid "Month"
+msgstr "Mois"
+
+msgid "Time"
+msgstr "Heure"
+
+msgid "Previous month"
+msgstr "Mois précédent"
+
+msgid "Next month"
+msgstr "Mois suivant"
+
+msgid "Previous year"
+msgstr "Année précédente"
+
+msgid "Next year"
+msgstr "Année suivante"
+
+msgid "Choose month"
+msgstr "Choisir un mois"
+
+msgid "Choose year"
+msgstr "Choisir une année"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Are you sure?"
+msgstr "Confirmez-vous cette action ?"
+
+msgid "Notice"
+msgstr "Information"
+
+msgid "This cannot be undone."
+msgstr "Cette action est irréversible."
+
+msgid "To confirm, type %s"
+msgstr "Saisissez %s pour confirmer"

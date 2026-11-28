@@ -148,6 +148,7 @@
 .flxcrm-filters input[type=search]{min-width:260px;border-radius:9px}
 .flxcrm-filters select{border-radius:9px;max-width:220px}
 .flxcrm-check{display:inline-flex;align-items:center;gap:6px;font-size:13px}
+.flxcrm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .flxcrm-seg{display:inline-flex;flex-wrap:wrap;background:var(--c-s2);border-radius:10px;padding:3px;gap:2px}
 .flxcrm-seg__btn{padding:5px 11px;border-radius:8px;text-decoration:none;color:var(--c-mut);font-weight:500;font-size:12.5px}
 .flxcrm-seg__btn.is-on{background:var(--c-card);color:var(--c-tx);box-shadow:0 1px 2px rgba(0,0,0,.08)}
@@ -526,10 +527,10 @@ html.flxa-dark .flxcrm-evmsg__bubble{background:#202c33;color:#e9edef}
 .flxcrm-evcard__nums b{font-size:19px;font-weight:650;font-variant-numeric:tabular-nums;line-height:1.2}
 .flxcrm-evcard__nums span{font-size:12px;color:var(--c-mut)}
 .flxcrm-evcard__goal small{display:block;margin-top:4px;color:var(--c-mut);font-size:11.5px}
-.flxcrm-evcard__foot{display:flex;align-items:center;gap:6px;padding:10px 16px 14px;border-top:1px solid var(--c-bd)}
-.flxcrm-evcard__foot .button{display:inline-flex;align-items:center;gap:4px}
+.flxcrm-evcard__foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 16px 14px;border-top:1px solid var(--c-bd)}
+.flxcrm-evcard__foot .button{display:inline-flex;align-items:center;gap:4px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
 .flxcrm-evcard__sp{flex:1}
-.flxcrm-evcard .flxcrm-more__menu{right:0;left:auto}
+.flxcrm-evcard .flxcrm-more__menu{inset-inline-start:auto;inset-inline-end:0}
 .flxcrm-badge.is-info{background:var(--c-info-s);color:var(--c-info)}
 .flxcrm-badge.is-warn{background:var(--c-warn-s);color:var(--c-warn)}
 .flxcrm-badge.is-ok{background:var(--c-ok-s);color:var(--c-ok)}

@@ -1,0 +1,88 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Serves headless front ends over GraphQL"
+msgstr "Serviert kopflose Front endet über GraphQL"
+
+msgid "Headless"
+msgstr "Kopf"
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr "Dieser Bildschirm benötigt Flux GraphQL (0.4.0 oder neuer). Installieren oder aktualisieren Sie ihn vom FluxWP Packages-Bildschirm."
+
+msgid "This front end does not exist any more."
+msgstr "Dieses vordere Ende existiert nicht mehr."
+
+msgid "At most %d front ends can be added."
+msgstr "Es können maximal %d vordere Enden hinzugefügt werden."
+
+msgid "Give the front end a name."
+msgstr "Geben Sie dem vorderen Ende einen Namen."
+
+msgid "Enter the front end address with https:// (http:// only for localhost)."
+msgstr "Geben Sie die vordere Endadresse mit https:// ein (nur für localhost http://)."
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr "Das vordere Ende kann nicht die gleiche Adresse wie diese WordPress haben. Verschieben WordPress an eine andere Adresse (z.B. cms.example.com) zuerst."
+
+msgid "Another front end already has this address."
+msgstr "Ein weiteres vorderes Ende hat bereits diese Adresse."
+
+msgid "Enter the webhook address with https:// (http:// only for localhost)."
+msgstr "Geben Sie die Webhook-Adresse mit https:// ein (http:// only for localhost)."
+
+msgid "The language \"%s\" is not on this site."
+msgstr "Die Sprache \" %s \" ist nicht auf dieser Seite."
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr "Der Vorschaupfad beginnt mit \"/\" (z.B. /api/Vorschau)."
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr "Das Geheimnis muss mindestens 24 Zeichen sein. Verwenden Sie die Schaltfläche generieren."
+
+msgid "The secret could not be stored securely on this server."
+msgstr "Das Geheimnis konnte auf diesem Server nicht sicher gespeichert werden."
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr "Ein Webhook braucht ein Geheimnis, damit das vordere Ende überprüfen kann, dass der Anruf von dieser Seite kommt."
+
+msgid "Choose what WordPress does with its own pages."
+msgstr "Wählen Sie, was WordPress mit eigenen Seiten tut."
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr "Fügen Sie zuerst ein vorderes Ende hinzu; WordPress Seiten zeigen Besucher und Suchmaschinen darauf."
+
+msgid "Enter the webhook address and the secret first."
+msgstr "Geben Sie zuerst die Webhook-Adresse und das Geheimnis ein."
+
+msgid "Sent without waiting for the answer."
+msgstr "Sent, ohne auf die Antwort zu warten."
+
+msgid "The front end accepted the call."
+msgstr "Das vordere Ende nahm den Anruf an."
+
+msgid "The front end answered with HTTP %d."
+msgstr "Das vordere Ende antwortete mit HTTP %d ."
+
+msgid "Home"
+msgstr "Zuhause"
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr "Es wird noch kein vorderes Ende hinzugefügt; GraphQL funktioniert, aber Links, kanonische Adressen und der Webhook haben kein vorderes Ende zu zeigen."
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr "Der letzte Webhook-Aufruf ist nicht möglich: %s . Öffnen Sie das Lieferprotokoll auf der Headless-Seite."
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr "Kein revalidieren Webhook für: %s . Diese vorderen Enden zeigen Änderungen nur, wenn ihr Cache ausläuft."
+
+msgid "%d front end, webhook set."
+msgid_plural "%d front ends, webhooks set."
+msgstr[0] "%d vorne, Webhook-Set."
+msgstr[1] "%d vordere Enden, Webhooks-Set."
+
+msgid "Headless front ends"
+msgstr "Kopfende vordere Enden"

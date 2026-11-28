@@ -1379,7 +1379,7 @@ msgid "Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My B
 msgstr "Google Cloud › API: YouTube Data API v3 (およびビジネス向け: マイ ビジネス アカウント管理、ビジネス情報、Google マイ ビジネス API) を有効にします。 › OAuth クライアント (Web アプリケーション) › 以下の承認されたリダイレクト URL。監査されていないプロジェクトでは、YouTube にアップロードされたビデオは「非公開」のままになります。 Google API監査を申請して公開してください。ビジネス プロフィール API には、Google からのアクセス承認が必要です。"
 
 msgid "YouTube channel"
-msgstr "YouTube channel"
+msgstr "YouTubeチャンネル"
 
 msgid "Google Business location"
 msgstr "Google ビジネスの場所"

@@ -9,11 +9,11 @@
 .flxt-card{background:var(--flxt-card);border:1px solid var(--flxt-bd);border-radius:10px;padding:16px 18px;margin:0 0 16px}
 .flxt-card>p{margin:0 0 10px;color:var(--flxt-mut);max-width:760px}
 .flxt-form{display:flex;flex-direction:column;gap:14px;margin-top:8px}
-.flxt-field{display:grid;grid-template-columns:230px 1fr;gap:12px;align-items:start}
+.flxt-field{display:grid;grid-template-columns:230px minmax(0,1fr);gap:12px;align-items:start}
 .flxt-field>label,.flxt-field>.flxt-label{font-weight:600;padding-top:6px}
 .flxt-field.is-hidden{display:none}
 .flxt-app select,.flxt-app input[type=text],.flxt-app input[type=email],.flxt-app textarea{padding:6px 10px;border:1px solid var(--flxt-bd);border-radius:6px;background:var(--flux-bg);color:var(--flux-text);font:inherit;font-size:14px;max-width:100%;width:100%;box-sizing:border-box}
-.flxt-app select{width:auto;min-width:220px;height:34px;padding:0 10px}
+.flxt-app select{width:auto;min-width:min(220px,100%);height:34px;padding:0 10px}
 .flxt-app input[type=text],.flxt-app input[type=email]{height:34px;padding-block:0}
 .flxt-app textarea{min-height:76px;resize:vertical}
 .flxt-app input:focus,.flxt-app select:focus,.flxt-app textarea:focus{outline:2px solid color-mix(in srgb,var(--flxt-ac) 45%,transparent);outline-offset:0;border-color:var(--flxt-ac)}
@@ -71,7 +71,7 @@
 .flxt-fixlog th{font-weight:600;color:var(--flxt-mut)}
 .flxt-empty{padding:0 1.2em 1em;color:var(--flxt-mut)}
 @media (max-width:782px){
-.flxt-field{grid-template-columns:1fr;gap:6px}
+.flxt-field{grid-template-columns:minmax(0,1fr);gap:6px}
 .flxt-field>label,.flxt-field>.flxt-label{padding-top:0}
 .flxt-row{grid-template-columns:1.1em 1fr}
 .flxt-row .flxt-msg,.flxt-row .flxt-act{grid-column:2}

@@ -39,7 +39,7 @@ class FLXB_Payment_WooCommerce extends FLXB_Payment_Provider_Base {
 					'data' => array(
 						'flxfPayWc' => array(
 							'note'    => __( 'You will choose how to pay (card or bank transfer) on the next page.', 'flx-donate' ),
-							'monthly' => __( 'Monthly donations are paid by card; the card is stored by iyzico and charged once a month.', 'flx-donate' ),
+							'monthly' => __( 'Monthly donations are paid by card; the card is stored by the payment provider and charged once a month.', 'flx-donate' ),
 						),
 					),
 				),

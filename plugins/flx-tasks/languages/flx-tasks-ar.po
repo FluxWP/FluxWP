@@ -635,7 +635,7 @@ msgid "Today"
 msgstr "اليوم"
 
 msgid "Tomorrow"
-msgstr "غدا"
+msgstr "غدًا"
 
 msgid "Yesterday"
 msgstr "أمس"
@@ -1610,7 +1610,7 @@ msgid "AI usage"
 msgstr "استخدام الذكاء الاصطناعي"
 
 msgid "Month"
-msgstr "شهر"
+msgstr "الشهر"
 
 msgid "Requests"
 msgstr "الطلبات"
@@ -2003,7 +2003,7 @@ msgid "Later"
 msgstr "في وقت لاحق"
 
 msgid "No date"
-msgstr "لا يوجد تاريخ"
+msgstr "بلا تاريخ"
 
 msgid "No tag"
 msgstr "لا توجد علامة"
@@ -2423,16 +2423,16 @@ msgid "me"
 msgstr "أنا"
 
 msgid "Next week"
-msgstr "الاسبوع القادم"
+msgstr "الأسبوع المقبل"
 
 msgid "In 2 weeks"
-msgstr "في 2 أسابيع"
+msgstr "بعد أسبوعين"
 
 msgid "Time (optional)"
 msgstr "الوقت (اختياري)"
 
 msgid "Clear"
-msgstr "واضح"
+msgstr "مسح"
 
 msgid "Search or create a tag…"
 msgstr "بحث أو إنشاء علامة..."
@@ -2715,3 +2715,258 @@ msgstr "هذه الشاشة مماثلة لـ FluxApp. يبقى العرض ال�
 
 msgid "Could not start a chat."
 msgstr "تعذر بدء المحادثة."
+
+msgid "Select text to comment on, or use a block's menu."
+msgstr "حدّد نصًا للتعليق عليه أو استخدم قائمة الكتلة."
+
+msgid "Open comment"
+msgstr "فتح التعليق"
+
+msgid "Resolved"
+msgstr "المحلولة"
+
+msgid "No resolved comments."
+msgstr "لا توجد تعليقات محلولة."
+
+msgid "No comments yet."
+msgstr "لا توجد تعليقات بعد."
+
+msgid "Select text and press \"Comment\", or add a comment from a block's menu (⋮⋮)."
+msgstr "حدّد نصًا واضغط \"تعليق\"، أو أضف تعليقًا من قائمة الكتلة (⋮⋮)."
+
+msgid "Block"
+msgstr "كتلة"
+
+msgid "deleted"
+msgstr "محذوف"
+
+msgid "text changed"
+msgstr "تغيّر النص"
+
+msgid "Write a comment… (Ctrl+Enter sends)"
+msgstr "اكتب تعليقًا… (Ctrl+Enter للإرسال)"
+
+msgid "Comment"
+msgstr "تعليق"
+
+msgid "This comment was deleted."
+msgstr "تم حذف هذا التعليق."
+
+msgid "(edited)"
+msgstr "(معدّل)"
+
+msgid "Reopen"
+msgstr "إعادة فتح"
+
+msgid "Mark as resolved"
+msgstr "وضع علامة كمحلول"
+
+msgid "Resolved by {n}"
+msgstr "حلّه {n}"
+
+msgid "{n} more replies"
+msgstr "{n} ردود أخرى"
+
+msgid "Reply… (Ctrl+Enter sends)"
+msgstr "رد… (Ctrl+Enter للإرسال)"
+
+msgid "Reply"
+msgstr "رد"
+
+msgid "The comment will be deleted; the replies stay in the thread."
+msgstr "سيُحذف التعليق؛ وتبقى الردود في المحادثة."
+
+msgid "The comment will be permanently deleted."
+msgstr "سيُحذف التعليق نهائيًا."
+
+msgid "Comment resolved"
+msgstr "تم حل التعليق"
+
+msgid "This page is locked."
+msgstr "هذه الصفحة مقفلة."
+
+msgid "Locked by {n}, {t}."
+msgstr "قفلها {n}، {t}."
+
+msgid "Unlock it to edit."
+msgstr "افتح القفل للتعديل."
+
+msgid "Unlock"
+msgstr "فتح القفل"
+
+msgid "You can view and comment on this page."
+msgstr "يمكنك عرض هذه الصفحة والتعليق عليها."
+
+msgid "You can only view this page."
+msgstr "يمكنك عرض هذه الصفحة فقط."
+
+msgid "Page locked"
+msgstr "تم قفل الصفحة"
+
+msgid "The page was locked; your changes are saved once it is unlocked."
+msgstr "تم قفل الصفحة؛ ستُحفظ تغييراتك عند فتح القفل."
+
+msgid "This page is locked. Unlock it to edit."
+msgstr "هذه الصفحة مقفلة. افتح القفل للتعديل."
+
+msgid "Page unlocked"
+msgstr "تم فتح القفل"
+
+msgid "{n} locked this page so it is not changed by accident. If you unlock it, everyone who can edit can change it again."
+msgstr "قفل {n} هذه الصفحة حتى لا تُعدَّل عن طريق الخطأ. إذا فتحت القفل يمكن لكل من يملك صلاحية التعديل تغييرها مجددًا."
+
+msgid "If you unlock it, everyone who can edit can change the page again."
+msgstr "إذا فتحت القفل يمكن لكل من يملك صلاحية التعديل تغيير الصفحة مجددًا."
+
+msgid "Lock page"
+msgstr "قفل الصفحة"
+
+msgid "Access…"
+msgstr "الوصول…"
+
+msgid "Restricted access"
+msgstr "وصول مقيّد"
+
+msgid "Locked"
+msgstr "مقفلة"
+
+msgid "Page access"
+msgstr "الوصول إلى الصفحة"
+
+msgid "Access saved"
+msgstr "تم حفظ الوصول"
+
+msgid "Everyone with access to the document"
+msgstr "كل من يمكنه الوصول إلى المستند"
+
+msgid "Everyone in the project who can see this document also sees this page."
+msgstr "كل من في المشروع يرى هذا المستند يرى هذه الصفحة أيضًا."
+
+msgid "Only people I choose"
+msgstr "الأشخاص الذين أختارهم فقط"
+
+msgid "The page and its subpages are visible only to the people below and project admins."
+msgstr "تظهر الصفحة وصفحاتها الفرعية فقط للأشخاص أدناه ولمديري المشروع."
+
+msgid "The parent page is restricted too: only people allowed there can open this page."
+msgstr "الصفحة الأم مقيّدة أيضًا: لا يمكن فتح هذه الصفحة إلا لمن لديه إذن هناك."
+
+msgid "Can edit (you)"
+msgstr "يمكنه التعديل (أنت)"
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "+ Add person"
+msgstr "+ إضافة شخص"
+
+msgid "People and their roles"
+msgstr "الأشخاص وأدوارهم"
+
+msgid "Project admins ({n}) always have access."
+msgstr "مديرو المشروع ({n}) لديهم وصول دائمًا."
+
+msgid "Add comment"
+msgstr "إضافة تعليق"
+
+msgid "Add comment (Ctrl+Alt+M)"
+msgstr "إضافة تعليق (Ctrl+Alt+M)"
+
+msgid "This page is locked. Unlock it to make changes."
+msgstr "هذه الصفحة مقفلة. افتح القفل لإجراء تغييرات."
+
+msgid "Only people who can edit the page can lock or unlock it."
+msgstr "لا يمكن قفل الصفحة أو فتحها إلا لمن يستطيع تعديلها."
+
+msgid "Only people who can edit the page can change who has access."
+msgstr "لا يمكن تغيير صلاحيات الوصول إلا لمن يستطيع تعديل الصفحة."
+
+msgid "You are not allowed to comment on this page."
+msgstr "لا يُسمح لك بالتعليق على هذه الصفحة."
+
+msgid "Write a comment first."
+msgstr "اكتب تعليقًا أولًا."
+
+msgid "Comment not found."
+msgstr "لم يُعثر على التعليق."
+
+msgid "Select some text or a block to comment on."
+msgstr "حدّد نصًا أو كتلة للتعليق عليها."
+
+msgid "The comment could not be saved."
+msgstr "تعذّر حفظ التعليق."
+
+msgid "Only the author can edit a comment."
+msgstr "لا يمكن تعديل التعليق إلا لكاتبه."
+
+msgid "Only the author or a project admin can delete a comment."
+msgstr "لا يمكن حذف التعليق إلا لكاتبه أو لمدير المشروع."
+
+msgid "You are not allowed to resolve this comment."
+msgstr "لا يُسمح لك بحل هذا التعليق."
+
+msgid "Unresolved"
+msgstr "المفتوحة"
+
+msgid "Flux Tasks needs the Flux GraphQL plugin. Install and activate it to open this screen."
+msgstr "المهمات الفوقية تحتاج إلى الـ \"فلكس GraphQL\" وتركيبها وتفعيلها لفتح الشاشة"
+
+msgid "Nothing to change."
+msgstr "لا شيء للتغيير."
+
+msgid "You are not allowed to edit this page."
+msgstr "لا يسمح لك بتحرير هذه الصفحة"
+
+msgid "AI is off"
+msgstr "AI قبالة"
+
+msgid "Info and activity"
+msgstr "المعلومات والنشاط"
+
+msgid "created the page"
+msgstr "أُنشئت الصفحة"
+
+msgid "edited the page"
+msgstr "حرر الصفحة"
+
+msgid "moved the page"
+msgstr "نقلت الصفحة"
+
+msgid "renamed it from \"{a}\" to \"{b}\""
+msgstr "أُعيدت تسميتها من {a} إلى {b}"
+
+msgid "No activity yet"
+msgstr "لا يوجد نشاط بعد"
+
+msgid "Could not load activity"
+msgstr "لا يمكن أن يحمّل النشاط"
+
+msgid "Hide pages"
+msgstr "صفحات الاختباء"
+
+msgid "Created by"
+msgstr "تم إنشاؤها بواسطة"
+
+msgid "Cannot be moved into or under a locked page."
+msgstr "لا يمكن نقله إلى أو تحت صفحة مغلقة"
+
+msgid "Drag to resize"
+msgstr "\"دراغ\""
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Remove file"
+msgstr "إزالة الملف"
+
+msgid "Preview image for YouTube links"
+msgstr "صورة معاينة لروابط يوتيوب"
+
+msgid "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+msgstr "وتظهر حلقة يوتيوب على خطها الخاص في وثيقة كبطاقة مع إبهام الفيديو، ويحمل الإبهام من يوتيوب؛ وعندما يزول، تبقى الرابط نصاً سهلاً."
+
+msgid "Gantt"
+msgstr "Gantt"
+
+msgid "This dependency would create a loop."
+msgstr "هذه التبعية ستخلق حلقة"

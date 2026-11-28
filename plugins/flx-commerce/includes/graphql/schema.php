@@ -266,13 +266,108 @@ flx_gql_type(
 				'type'        => 'String!',
 				'description' => __( 'Product name.', 'flx-commerce' ),
 			),
+			'sku'   => array(
+				'type'        => 'String!',
+				'description' => __( 'SKU, or a dash when there is none.', 'flx-commerce' ),
+			),
 			'stock' => array(
 				'type'        => 'Int!',
 				'description' => __( 'Units in stock.', 'flx-commerce' ),
 			),
 			'url'   => array(
 				'type'        => 'String!',
-				'description' => __( 'Edit link. Empty when unknown.', 'flx-commerce' ),
+				'description' => __( 'Edit link (the parent product for a variation). Empty when unknown.', 'flx-commerce' ),
+			),
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxCommerceAwaitingOrder',
+	array(
+		'description' => __( 'An order waiting for payment, as the Overview lists it.', 'flx-commerce' ),
+		'fields'      => array(
+			'ago'         => array(
+				'type'        => 'String!',
+				'description' => __( 'How long ago it was placed.', 'flx-commerce' ),
+			),
+			'id'          => array(
+				'type'        => 'Int!',
+				'description' => __( 'Order id.', 'flx-commerce' ),
+			),
+			'method'      => array(
+				'type'        => 'String!',
+				'description' => __( 'Payment method title, or a dash.', 'flx-commerce' ),
+			),
+			'name'        => array(
+				'type'        => 'String!',
+				'description' => __( 'Billing name.', 'flx-commerce' ),
+			),
+			'number'      => array(
+				'type'        => 'String!',
+				'description' => __( 'Order number.', 'flx-commerce' ),
+			),
+			'receiptIn'   => array(
+				'type'        => 'Boolean!',
+				'description' => __( 'A bank-transfer receipt has been uploaded.', 'flx-commerce' ),
+			),
+			'statusLabel' => array(
+				'type'        => 'String!',
+				'description' => __( 'Order status name.', 'flx-commerce' ),
+			),
+			'total'       => array(
+				'type'        => 'String!',
+				'description' => __( 'Order total, formatted.', 'flx-commerce' ),
+			),
+			'url'         => array(
+				'type'        => 'String!',
+				'description' => __( 'Edit link.', 'flx-commerce' ),
+			),
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxCommerceOrderLink',
+	array(
+		'description' => __( 'A linked order on a subscription row.', 'flx-commerce' ),
+		'fields'      => array(
+			'number' => array(
+				'type'        => 'String!',
+				'description' => __( 'Order number.', 'flx-commerce' ),
+			),
+			'role'   => array(
+				'type'        => 'String!',
+				'description' => __( 'first or awaiting.', 'flx-commerce' ),
+			),
+			'url'    => array(
+				'type'        => 'String!',
+				'description' => __( 'Edit link.', 'flx-commerce' ),
+			),
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxCommerceMoneyFormat',
+	array(
+		'description' => __( 'How the store writes money.', 'flx-commerce' ),
+		'fields'      => array(
+			'decimal'  => array(
+				'type'        => 'String!',
+				'description' => __( 'Decimal separator.', 'flx-commerce' ),
+			),
+			'position' => array(
+				'type'        => 'String!',
+				'description' => __( 'Currency position: left, right, left_space or right_space.', 'flx-commerce' ),
+			),
+			'symbol'   => array(
+				'type'        => 'String!',
+				'description' => __( 'Currency symbol.', 'flx-commerce' ),
+			),
+			'thousand' => array(
+				'type'        => 'String!',
+				'description' => __( 'Thousand separator.', 'flx-commerce' ),
 			),
 		),
 	)
@@ -288,9 +383,13 @@ flx_gql_type(
 				'type'        => 'Float',
 				'description' => __( 'Percent change against the previous range. Null when the previous range was empty.', 'flx-commerce' ),
 			),
-			'awaiting'     => array(
+			'awaiting'          => array(
 				'type'        => 'Int!',
 				'description' => __( 'Orders waiting for payment.', 'flx-commerce' ),
+			),
+			'awaitingOrders'    => array(
+				'type'        => '[FlxCommerceAwaitingOrder!]!',
+				'description' => __( 'Up to six newest orders waiting for payment.', 'flx-commerce' ),
 			),
 			'customers'    => array(
 				'type'        => 'Int!',
@@ -314,7 +413,11 @@ flx_gql_type(
 			),
 			'lowStock'     => array(
 				'type'        => '[FlxCommerceStock!]!',
-				'description' => __( 'Up to eight products at or under the threshold.', 'flx-commerce' ),
+				'description' => __( 'Up to six products at or under the threshold.', 'flx-commerce' ),
+			),
+			'lowStockThreshold' => array(
+				'type'        => 'Int!',
+				'description' => __( 'Low-stock threshold from the settings.', 'flx-commerce' ),
 			),
 			'newCustomers' => array(
 				'type'        => 'Int!',
@@ -327,6 +430,10 @@ flx_gql_type(
 			'ordersDelta'  => array(
 				'type'        => 'Float',
 				'description' => __( 'Percent change in orders.', 'flx-commerce' ),
+			),
+			'period'            => array(
+				'type'        => 'String!',
+				'description' => __( 'The range and the range it is compared with, written out.', 'flx-commerce' ),
 			),
 			'revenue'      => $money,
 			'revenueDelta' => array(
@@ -471,6 +578,14 @@ flx_gql_type(
 				'description' => __( 'Customer id.', 'flx-commerce' ),
 			),
 			'lastAt'    => $when,
+			'lastDay'   => array(
+				'type'        => 'String!',
+				'description' => __( 'Day of the last order, d.m.Y. Empty when none.', 'flx-commerce' ),
+			),
+			'lastOrderUrl' => array(
+				'type'        => 'String!',
+				'description' => __( 'Edit link of the last order. Empty when unknown.', 'flx-commerce' ),
+			),
 			'name'      => array(
 				'type'        => 'String!',
 				'description' => __( 'Name.', 'flx-commerce' ),
@@ -773,6 +888,14 @@ flx_gql_type(
 				'type'        => 'String!',
 				'description' => __( 'Order screen for a shop manager, or the customer view for the owner. Empty otherwise.', 'flx-commerce' ),
 			),
+			'orderLinks'     => array(
+				'type'        => '[FlxCommerceOrderLink!]!',
+				'description' => __( 'First and awaiting renewal order, for someone who can edit orders.', 'flx-commerce' ),
+			),
+			'whenLabel'      => array(
+				'type'        => 'String!',
+				'description' => __( 'Renewal or end date written out, e.g. "Renews on 30 December 2027".', 'flx-commerce' ),
+			),
 			'name'           => array(
 				'type'        => 'String!',
 				'description' => __( 'Customer name.', 'flx-commerce' ),
@@ -876,6 +999,10 @@ flx_gql_type(
 	array(
 		'description' => __( 'Sales report totals. Daily rows and breakdowns are separate connections of at most 50.', 'flx-commerce' ),
 		'fields'      => array(
+			'counted'      => array(
+				'type'        => 'String',
+				'description' => __( 'Which order statuses the report counts, written out.', 'flx-commerce' ),
+			),
 			'aov'          => $money,
 			'aovDelta'     => array(
 				'type'        => 'Float',
@@ -1206,6 +1333,18 @@ $range_args = array(
 );
 
 flx_gql_query(
+	'flxCommerceMoneyFormat',
+	array(
+		'type'        => 'FlxCommerceMoneyFormat!',
+		'cap'         => flxcm_gql_view(),
+		'description' => __( 'Currency symbol, its position and the separators, for shortened amounts.', 'flx-commerce' ),
+		'resolve'     => static function () {
+			return FLXCM_Store_Service::money_format();
+		},
+	)
+);
+
+flx_gql_query(
 	'flxCommerceSummary',
 	array(
 		'type'        => 'FlxCommerceSummary!',
@@ -1448,7 +1587,13 @@ flx_gql_query(
 			unset( $root );
 			flxcm_gql_tag( 'flx-commerce:summary' );
 			list( $from, $to ) = flxcm_gql_range( $args );
-			return FLXCM_Store_Service::summary_between( $from, $to, true );
+			$pack              = FLXCM_Store_Service::summary_between( $from, $to, true );
+			$pack['counted']   = sprintf(
+				/* translators: %s: statuses */
+				__( 'Counted statuses: %s. Change them in Settings.', 'flx-commerce' ),
+				implode( ', ', array_map( static fn( $st ): string => FLXCM_Val::str( flxcm_status_label( FLXCM_Val::str( $st ) ) ), FLXCM_Val::arr( flxcm_paid_statuses() ) ) )
+			);
+			return $pack;
 		},
 	)
 );

@@ -119,15 +119,13 @@ export function Settings() {
               <option value="DAILY">{t('Daily')}</option>
               <option value="WEEKLY">{t('Weekly')}</option>
             </select>{' '}
-            {f.schedule === 'WEEKLY' && (
-              <select aria-label={t('Day')} value={f.scheduleDay} onChange={(e) => set('scheduleDay', num(e.target.value))}>
-                {days.map(([n, label]) => (
-                  <option key={n} value={n}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-            )}{' '}
+            <select aria-label={t('Day')} value={f.scheduleDay} onChange={(e) => set('scheduleDay', num(e.target.value))}>
+              {days.map(([n, label]) => (
+                <option key={n} value={n}>
+                  {label}
+                </option>
+              ))}
+            </select>{' '}
             <select aria-label={t('Time')} value={f.scheduleHour} onChange={(e) => set('scheduleHour', num(e.target.value))}>
               {Array.from({ length: 24 }, (_, h) => (
                 <option key={h} value={h}>

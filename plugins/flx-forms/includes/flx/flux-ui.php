@@ -250,3 +250,24 @@ function flxf_hide_panel_item(): void {
 	remove_submenu_page( 'Emsfb', 'Emsfb' );
 }
 add_action( 'admin_menu', 'flxf_hide_panel_item', 999 );
+
+/**
+ * The classic stylesheets of Dashboard, Automations and Payments: the React pages print the classic markup, so the
+ * pages look as they did (includes/flx/assets/classic/).
+ *
+ * @param string $hook Admin page hook.
+ */
+function flxf_classic_assets( $hook ): void {
+	unset( $hook );
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$raw  = $_GET['page'] ?? '';
+	$page = is_string( $raw ) ? sanitize_text_field( wp_unslash( $raw ) ) : '';
+	if ( ! isset( flxf_react_pages()[ $page ] ) ) {
+		return;
+	}
+	foreach ( array( 'dashboard', 'automations', 'payments' ) as $name ) {
+		$file = __DIR__ . '/assets/classic/' . $name . '.css';
+		wp_enqueue_style( 'flxf-classic-' . $name, plugins_url( 'assets/classic/' . $name . '.css', __FILE__ ), array(), is_readable( $file ) ? (string) filemtime( $file ) : FLXF_FORK_VERSION );
+	}
+}
+add_action( 'admin_enqueue_scripts', 'flxf_classic_assets', 20 );

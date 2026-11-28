@@ -3,32 +3,14 @@
 // General (site name, titles, search engines, IndexNow, indexing, images), Organization and social,
 // SEO check (content recommendations), Site audit (on-site + PageSpeed, agent readiness, recommendations
 // with one-click fixes, report history) and Settings (PageSpeed key, agents, security headers, schedule, guide).
-import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Chart } from '@fluxwp/ui/chart';
 import { useQueryClient } from '@tanstack/react-query';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
-import {
-  FlxSeoAuditRun,
-  FlxSeoAuditScreen,
-  FlxSeoContentCheck,
-  FlxSeoFixApply,
-  FlxSeoGuide,
-  FlxSeoIndexNowSubmit,
-  FlxSeoPsiKeySave,
-  FlxSeoSettingsSave,
-  FlxSeoSettingsScreen,
-} from '@fluxwp/graphql/operations';
-import type {
-  FlxSeoAuditScreenQuery,
-  FlxSeoGuideLang,
-  FlxSeoPriority,
-  FlxSeoSettingsFieldsFragment,
-  FlxSeoSettingsScreenQuery,
-  FlxSeoStrategy,
-  FlxSettingsFlxseoInput,
-} from '@fluxwp/graphql/types';
+import { FlxSeoAuditRun, FlxSeoAuditScreen, FlxSeoContentCheck, FlxSeoFixApply, FlxSeoGuide, FlxSeoIndexNowSubmit, FlxSeoPsiKeySave, FlxSeoSettingsSave, FlxSeoSettingsScreen } from '@fluxwp/graphql/operations';
+import type { FlxSeoAuditScreenQuery, FlxSeoGuideLang, FlxSeoPriority, FlxSeoSettingsFieldsFragment, FlxSeoSettingsScreenQuery, FlxSeoStrategy, FlxSettingsFlxseoInput } from '@fluxwp/graphql/types';
 import { Loading, Screen } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator, type Translate } from './i18n';
@@ -90,7 +72,7 @@ function Seo() {
   };
 
   return (
-    <Screen className="flxseo-app" icon={host.appIcon} title={t('SEO')} tabs={TABS.map((k) => ({ id: k, label: labels[k] }))} tab={tab} onTab={go}>
+    <Screen className="flxseo-app" icon={host.appIcon} title={t('SEO')} subtitle={t('Meta tags, schema, sitemap and SEO audit')} tabs={TABS.map((k) => ({ id: k, label: labels[k] }))} tab={tab} onTab={go}>
       {notice && (
         <div className={'flxseo-notice is-' + notice.kind} role={notice.kind === 'error' ? 'alert' : 'status'}>
           <span>{notice.text}</span>
@@ -99,13 +81,7 @@ function Seo() {
           </button>
         </div>
       )}
-      {tab === 'kontrol' ? (
-        <ContentCheck t={t} />
-      ) : tab === 'denetim' ? (
-        <Audit t={t} onNotice={setNotice} />
-      ) : (
-        <SettingsTabs tab={tab} t={t} onNotice={setNotice} dirty={dirty} setDirty={setDirty} />
-      )}
+      {tab === 'kontrol' ? <ContentCheck t={t} /> : tab === 'denetim' ? <Audit t={t} onNotice={setNotice} /> : <SettingsTabs tab={tab} t={t} onNotice={setNotice} dirty={dirty} setDirty={setDirty} />}
     </Screen>
   );
 }
@@ -114,27 +90,11 @@ function Seo() {
  * Shared bits
  * ------------------------------------------------------------------------------------------------------- */
 
-function Switch({ checked, onChange, label, disabled }: { checked: boolean; onChange: (on: boolean) => void; label: ReactNode; disabled?: boolean }) {
+function Check({ checked, onChange, label }: { checked: boolean; onChange: (on: boolean) => void; label: ReactNode }) {
   return (
-    <label className="flxseo-check">
-      <span className="flxseo-switch">
-        <input type="checkbox" checked={checked} disabled={disabled} onChange={(e) => onChange(e.currentTarget.checked)} />
-        <span aria-hidden="true" />
-      </span>
-      <span>{label}</span>
+    <label>
+      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.currentTarget.checked)} /> {label}
     </label>
-  );
-}
-
-function Row({ label, htmlFor, children, help }: { label: ReactNode; htmlFor?: string; children: ReactNode; help?: ReactNode }) {
-  return (
-    <div className="flxseo-field">
-      <label htmlFor={htmlFor}>{label}</label>
-      <div>
-        {children}
-        {help && <p className="flxseo-desc">{help}</p>}
-      </div>
-    </div>
   );
 }
 
@@ -235,221 +195,324 @@ function SettingsTabs({ tab, t, onNotice, dirty, setDirty }: { tab: Tab; t: Tran
     set(k, (m ? m[1] : raw) as Settings[typeof k]);
   };
 
-  const actions = (
-    <div className="flxseo-actions">
-      <button type="submit" className="flxseo-btn is-primary" disabled={busy}>
-        {t('Save')}
+  const classicSubmit = (
+    <p className="submit">
+      <button type="submit" className="button button-primary" disabled={busy}>
+        {t('Save Changes')}
       </button>
-      {dirty && <span className="flxseo-dirty">{t('Unsaved changes')}</span>}
-    </div>
+    </p>
   );
 
   return (
     <form onSubmit={submit}>
       {tab === 'genel' && (
-        <>
-          {setup.otherPlugin && <div className="flxseo-banner is-warn">{t('Another SEO plugin is active. To avoid conflicts this plugin\'s meta and schema output is off; favicon, SEO check and AI tools keep working.')}</div>}
-          {!setup.aiReady && <div className="flxseo-banner">{t('Flux SEO\'s AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later.')}</div>}
-          <div className="flxseo-card">
-            <div className="flxseo-form">
-              <Row label={t('SEO output')}>
-                <Switch checked={on('enabled')} onChange={(v) => set('enabled', v)} label={t('Add meta tags, Open Graph and schema')} />
-              </Row>
-              <Row
-                label={t('Site name shown in Google')}
-                htmlFor="flxseo-sn"
-                help={t('Search results show this name instead of the domain (WebSite schema). Pick a short, well-known name. A change shows in Google after it crawls again.')}
-              >
-                <input id="flxseo-sn" type="text" className="is-wide" value={text('siteName')} placeholder={setup.blogName} onChange={(e) => set('siteName', e.currentTarget.value)} />
-                <label className="flxseo-inline" htmlFor="flxseo-an">
-                  {t('Alternative name')}
-                </label>
-                <input id="flxseo-an" type="text" value={text('altName')} onChange={(e) => set('altName', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('Title separator')} htmlFor="flxseo-sep" help={t('Example: %s', t('About') + ' ' + text('sep') + ' ' + (text('altName') || setup.blogName))}>
-                <input id="flxseo-sep" type="text" className="is-small" value={text('sep')} onChange={(e) => set('sep', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('Home page title')} htmlFor="flxseo-ht">
-                <input id="flxseo-ht" type="text" className="is-wide" maxLength={70} value={text('homeTitle')} placeholder={setup.homeTitle} onChange={(e) => set('homeTitle', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('Home page description')} htmlFor="flxseo-hd" help={t('150–160 characters is ideal. When empty, the site tagline is used.')}>
-                <textarea id="flxseo-hd" rows={3} maxLength={320} value={text('homeDesc')} placeholder={setup.homeDesc} onChange={(e) => set('homeDesc', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('Default share image')} htmlFor="flxseo-og" help={t('Used on pages without a featured image. 1200×630 JPG/PNG. When empty, the plugin\'s image.')}>
-                <input id="flxseo-og" type="text" className="is-wide is-code" value={text('ogImage')} placeholder={setup.imageDefault} onChange={(e) => set('ogImage', e.currentTarget.value)} />
-              </Row>
+        <div className="flx-raw flxseo-classic">
+          {setup.otherPlugin && (
+            <div className="notice notice-warning inline">
+              <p>{t("Another SEO plugin is active. To avoid conflicts this plugin's meta and schema output is off; favicon, SEO check and AI tools keep working.")}</p>
             </div>
-          </div>
-
-          <div className="flxseo-card" id="search-engines">
-            <h2>{t('Search engines')}</h2>
-            <p className="flxseo-desc">{t('Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one\'s webmaster panel, paste the verification code below and submit the sitemap URL.')}</p>
-            <div className="flxseo-row">
-              <label htmlFor="flxseo-sitemap">
-                <strong>{t('Sitemap URL')}</strong>
-              </label>
-              <input id="flxseo-sitemap" type="text" readOnly className="is-wide is-code" value={setup.sitemapUrl} onFocus={(e) => e.currentTarget.select()} />
-              <CopyButton text={setup.sitemapUrl} t={t} />
+          )}
+          {!setup.aiReady && (
+            <div className="notice notice-info inline">
+              <p>{t("Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later.")}</p>
             </div>
-            <p className="flxseo-desc">{t('Also listed in robots.txt; add this URL in Search Console, Bing and Yandex.')}</p>
-            <table className="flxseo-table">
-              <tbody>
-                {setup.engines.map((e) => {
-                  const f = e.field as SettingsKey;
-                  return (
-                    <tr key={e.key}>
-                      <td className="flxseo-eng">
-                        <label htmlFor={'flxseo-' + e.key}>
-                          <strong>{e.name}</strong>
-                        </label>
+          )}
+          <table className="form-table" role="presentation">
+            <tbody>
+              <tr>
+                <th scope="row">{t('SEO output')}</th>
+                <td>
+                  <Check checked={on('enabled')} onChange={(v) => set('enabled', v)} label={t('Add meta tags, Open Graph and schema')} />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-sn">{t('Site name shown in Google')}</label>
+                </th>
+                <td>
+                  <input id="ys-sn" type="text" className="regular-text" value={text('siteName')} placeholder={setup.blogName} onChange={(e) => set('siteName', e.currentTarget.value)} />
+                  <p className="description">
+                    {t('Search results show this name instead of the domain (WebSite schema). Pick a short, well-known name. A change shows in Google after it crawls again.')} {t('Alternative:')}{' '}
+                    <input type="text" className="regular-text" aria-label={t('Alternative name')} value={text('altName')} onChange={(e) => set('altName', e.currentTarget.value)} />
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-sep">{t('Title separator')}</label>
+                </th>
+                <td>
+                  <input id="ys-sep" type="text" className="small-text" value={text('sep')} onChange={(e) => set('sep', e.currentTarget.value)} />{' '}
+                  <span className="description">{t('Example: %s', t('About') + ' ' + text('sep') + ' ' + text('altName'))}</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-ht">{t('Home page title')}</label>
+                </th>
+                <td>
+                  <input id="ys-ht" type="text" className="large-text" maxLength={70} value={text('homeTitle')} placeholder={setup.homeTitle} onChange={(e) => set('homeTitle', e.currentTarget.value)} />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-hd">{t('Home page description')}</label>
+                </th>
+                <td>
+                  <textarea id="ys-hd" className="large-text" rows={3} maxLength={320} value={text('homeDesc')} placeholder={setup.homeDesc} onChange={(e) => set('homeDesc', e.currentTarget.value)} />
+                  <p className="description">{t('150–160 characters is ideal. When empty, the site tagline is used.')}</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-og">{t('Default share image')}</label>
+                </th>
+                <td>
+                  <input id="ys-og" type="text" className="large-text code" value={text('ogImage')} placeholder={setup.imageDefault} onChange={(e) => set('ogImage', e.currentTarget.value)} />
+                  <p className="description">{t("Used on pages without a featured image. 1200×630 JPG/PNG. When empty, the plugin's image.")}</p>
+                </td>
+              </tr>
+              <tr id="search-engines">
+                <th scope="row">{t('Search engines')}</th>
+                <td>
+                  <p className="description">
+                    {t(
+                      "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL.",
+                    )}
+                  </p>
+                  <p>
+                    <label htmlFor="flxseo-sitemap-url">
+                      <strong>{t('Sitemap URL')}</strong>
+                    </label>
+                    <br />
+                    <input id="flxseo-sitemap-url" type="text" className="regular-text code" readOnly value={setup.sitemapUrl} onClick={(e) => e.currentTarget.select()} />{' '}
+                    <span className="description">{t('Also listed in robots.txt; add this URL in Search Console, Bing and Yandex.')}</span>
+                  </p>
+                  <table className="widefat striped" style={{ maxWidth: 760, marginTop: 8 }}>
+                    <tbody>
+                      {setup.engines.map((e) => {
+                        const f = e.field as SettingsKey;
+                        return (
+                          <tr key={e.key}>
+                            <td style={{ width: 180 }}>
+                              <label htmlFor={'flxseo-' + e.key}>
+                                <strong>{e.name}</strong>
+                              </label>
+                              <br />
+                              <a href={e.url} target="_blank" rel="noopener noreferrer">
+                                {e.link} ↗
+                              </a>
+                            </td>
+                            <td>
+                              <input id={'flxseo-' + e.key} type="text" className="regular-text code" value={text(f)} placeholder={e.placeholder} onChange={(ev) => verifyPaste(f, ev.currentTarget.value)} />
+                              {text(f) ? <span className="dashicons dashicons-yes-alt" style={{ color: '#008a20' }} title={t('Verification tag is on the site')}></span> : null}
+                              {e.key === 'verify_google' && setup.sitekit ? (
+                                <p>
+                                  <span className="dashicons dashicons-yes-alt" style={{ color: '#008a20' }}></span>{' '}
+                                  {t('Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty.')}
+                                </p>
+                              ) : null}
+                              <p className="description">{e.help}</p>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr id="indexnow">
+                <th scope="row">IndexNow</th>
+                <td>
+                  <p>
+                    <Check checked={on('indexnow')} onChange={(v) => set('indexnow', v)} label={t('Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages')} />
+                  </p>
+                  <p className="description">
+                    {t('Key file:')}{' '}
+                    <a href={setup.indexnowUrl} target="_blank" rel="noopener noreferrer">
+                      {setup.indexnowKey}.txt
+                    </a>
+                    . {t('When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google.')}
+                    {!setup.sitePublic && (
+                      <>
                         <br />
-                        <a href={e.url} target="_blank" rel="noopener noreferrer">
-                          {e.link} ↗
-                        </a>
-                      </td>
-                      <td>
-                        <div className="flxseo-row">
-                          <input id={'flxseo-' + e.key} type="text" className="is-wide is-code" value={text(f)} placeholder={e.placeholder} onChange={(ev) => verifyPaste(f, ev.currentTarget.value)} />
-                          {text(f) && (
-                            <span className="flxseo-ok" title={t('Verification tag is on the site')}>
-                              ✓
-                            </span>
-                          )}
-                        </div>
-                        {e.key === 'verify_google' && setup.sitekit && <p className="flxseo-desc">✓ {t('Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty.')}</p>}
-                        <p className="flxseo-desc">{e.help}</p>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="flxseo-card" id="indexnow">
-            <h2>{t('IndexNow')}</h2>
-            <Switch checked={on('indexnow')} onChange={(v) => set('indexnow', v)} label={t('Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages')} />
-            <p className="flxseo-desc">
-              {t('Key file:')}{' '}
-              <a href={setup.indexnowUrl} target="_blank" rel="noopener noreferrer">
-                {setup.indexnowKey}.txt
-              </a>
-              . {t('When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google.')}
-              {!setup.sitePublic && (
-                <>
-                  <br />
-                  <strong>{t('The site is hidden from search engines (Settings › Reading); IndexNow sends nothing.')}</strong>
-                </>
-              )}
-              {setup.indexnowLast && (
-                <>
-                  <br />
-                  {t('Last bulk submission:')} {setup.indexnowLast}
-                </>
-              )}
-            </p>
-            <button type="button" className="flxseo-btn" disabled={indexnow.isPending || !setup.indexnowReady} onClick={() => indexnow.mutate({ input: {} })}>
-              {t('Submit the whole site now')}
-            </button>
-          </div>
-
-          <div className="flxseo-card">
-            <h2>{t('Indexing')}</h2>
-            <div className="flxseo-stack">
-              <Switch checked={on('noindexShop')} onChange={(v) => set('noindexShop', v)} label={t('Keep cart, checkout and My Account pages out of the index')} />
-              <Switch checked={on('noindexSearch')} onChange={(v) => set('noindexSearch', v)} label={t('Keep on-site search results out of the index')} />
-              <Switch checked={on('noindexAuthor')} onChange={(v) => set('noindexAuthor', v)} label={t('Turn off author pages (redirect to the home page, remove from the sitemap)')} />
-              <Switch checked={on('noindexTags')} onChange={(v) => set('noindexTags', v)} label={t('Keep tag pages out of the index (also removed from the sitemap; categories stay open)')} />
-            </div>
-            <p className="flxseo-desc">{t('RSS feeds are always served with a "noindex" header; they should not show up as pages in Google.')}</p>
-            <h2 className="flxseo-sub">{t('Images')}</h2>
-            <Switch checked={on('autoAlt')} onChange={(v) => set('autoAlt', v)} label={t('Give images with empty alt text the media library alt text, or else the file name')} />
-          </div>
-          {actions}
-        </>
+                        <strong>{t('The site is hidden from search engines (Settings › Reading); IndexNow sends nothing.')}</strong>
+                      </>
+                    )}
+                    {setup.indexnowLast && (
+                      <>
+                        <br />
+                        {t('Last bulk submission:')} {setup.indexnowLast}
+                      </>
+                    )}
+                  </p>
+                  <p>
+                    <button type="button" className="button" disabled={indexnow.isPending} onClick={() => indexnow.mutate({ input: {} })}>
+                      {t('Submit the whole site now')}
+                    </button>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">{t('Indexing')}</th>
+                <td>
+                  <p>
+                    <Check checked={on('noindexShop')} onChange={(v) => set('noindexShop', v)} label={t('Keep cart, checkout and My Account pages out of the index')} />
+                  </p>
+                  <p>
+                    <Check checked={on('noindexSearch')} onChange={(v) => set('noindexSearch', v)} label={t('Keep on-site search results out of the index')} />
+                  </p>
+                  <p>
+                    <Check checked={on('noindexAuthor')} onChange={(v) => set('noindexAuthor', v)} label={t('Turn off author pages (redirect to the home page, remove from the sitemap)')} />
+                  </p>
+                  <p>
+                    <Check checked={on('noindexTags')} onChange={(v) => set('noindexTags', v)} label={t('Keep tag pages out of the index (also removed from the sitemap; categories stay open)')} />
+                  </p>
+                  <p className="description">{t('RSS feeds are always served with a "noindex" header; they should not show up as pages in Google.')}</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">{t('Images')}</th>
+                <td>
+                  <Check checked={on('autoAlt')} onChange={(v) => set('autoAlt', v)} label={t('Give images with empty alt text the media library alt text, or else the file name')} />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          {classicSubmit}
+        </div>
       )}
 
       {tab === 'kurum' && (
-        <>
-          <div className="flxseo-card">
-            <div className="flxseo-form">
-              <Row label={t('Organization name')} htmlFor="flxseo-on">
-                <input id="flxseo-on" type="text" className="is-wide" value={text('orgName')} onChange={(e) => set('orgName', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('Organization type')} htmlFor="flxseo-ot">
-                <select id="flxseo-ot" value={draft.orgType ?? 'ORGANIZATION'} onChange={(e) => set('orgType', e.currentTarget.value as Settings['orgType'])}>
-                  <option value="NGO">{t('Association / NGO')}</option>
-                  <option value="ORGANIZATION">{t('Organization')}</option>
-                </select>
-                <label className="flxseo-inline" htmlFor="flxseo-fy">
-                  {t('Founded')}
-                </label>
-                <input id="flxseo-fy" type="text" className="is-small" value={text('founding')} onChange={(e) => set('founding', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('Logo (square)')} htmlFor="flxseo-lg" help={t('For the Google knowledge panel. At least 112×112 PNG. When empty, the Flux SEO icon.')}>
-                <input id="flxseo-lg" type="text" className="is-wide is-code" value={text('logo')} placeholder={setup.logoDefault} onChange={(e) => set('logo', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('Address')} htmlFor="flxseo-st" help={t('Country is a two-letter code (TR, US, DE). Empty fields are filled from the organization profile (Flux Setup) when it has an address or phone.')}>
-                <div className="flxseo-wrap">
-                  <input id="flxseo-st" type="text" placeholder={t('Street, number')} value={text('street')} onChange={(e) => set('street', e.currentTarget.value)} />
-                  <input type="text" placeholder={t('District, city')} aria-label={t('District, city')} value={text('locality')} onChange={(e) => set('locality', e.currentTarget.value)} />
-                  <input type="text" className="is-small" placeholder={t('Postal code')} aria-label={t('Postal code')} value={text('postal')} onChange={(e) => set('postal', e.currentTarget.value)} />
-                  <input type="text" className="is-small" maxLength={2} placeholder="TR" aria-label={t('Country code')} value={text('country')} onChange={(e) => set('country', e.currentTarget.value)} />
-                </div>
-              </Row>
-              <Row label={t('Contact')} htmlFor="flxseo-ph">
-                <div className="flxseo-wrap">
-                  <input id="flxseo-ph" type="text" placeholder="+90 ..." value={text('phone')} onChange={(e) => set('phone', e.currentTarget.value)} />
-                  <input type="text" placeholder={t('Email')} aria-label={t('Email')} value={text('email')} onChange={(e) => set('email', e.currentTarget.value)} />
-                </div>
-              </Row>
-              <Row label={t('Social media profiles')} htmlFor="flxseo-sa" help={t('One address per line. Google matches the organization to these profiles.')}>
-                <textarea id="flxseo-sa" rows={5} className="is-code" placeholder={'https://www.instagram.com/...\nhttps://www.youtube.com/@...'} value={text('sameAs')} onChange={(e) => set('sameAs', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('X (Twitter) username')} htmlFor="flxseo-tw">
-                <input id="flxseo-tw" type="text" placeholder="@username" value={text('twitter')} onChange={(e) => set('twitter', e.currentTarget.value)} />
-              </Row>
-              <Row
-                label={t('Areas of expertise')}
-                htmlFor="flxseo-ka"
-                help={t('Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty.')}
-              >
-                <textarea id="flxseo-ka" rows={4} placeholder={t('One topic per line')} value={text('knowsAbout')} onChange={(e) => set('knowsAbout', e.currentTarget.value)} />
-              </Row>
-              <Row label={t('Area served')} htmlFor="flxseo-as" help={t('Country served (schema areaServed). Left out when empty.')}>
-                <input id="flxseo-as" type="text" placeholder={t('e.g. United States')} value={text('areaServed')} onChange={(e) => set('areaServed', e.currentTarget.value)} />
-              </Row>
-              <Row
-                label={t('Donation call to action')}
-                htmlFor="flxseo-dl"
-                help={t('For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically.')}
-              >
-                <div className="flxseo-wrap">
-                  <input id="flxseo-dl" type="text" placeholder={t('e.g. Donate')} value={text('donateLabel')} onChange={(e) => set('donateLabel', e.currentTarget.value)} />
-                  <input type="text" className="is-code" placeholder={setup.homeUrl + '…'} aria-label={t('Donation page address')} value={text('donateUrl')} onChange={(e) => set('donateUrl', e.currentTarget.value)} />
-                </div>
-              </Row>
-            </div>
-          </div>
-          {actions}
-        </>
+        <div className="flx-raw flxseo-classic">
+          <table className="form-table" role="presentation">
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-on">{t('Organization name')}</label>
+                </th>
+                <td>
+                  <input id="ys-on" type="text" className="large-text" value={text('orgName')} onChange={(e) => set('orgName', e.currentTarget.value)} />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-ot">{t('Organization type')}</label>
+                </th>
+                <td>
+                  <select id="ys-ot" value={draft.orgType ?? 'ORGANIZATION'} onChange={(e) => set('orgType', e.currentTarget.value as Settings['orgType'])}>
+                    <option value="NGO">{t('Association / NGO')}</option>
+                    <option value="ORGANIZATION">{t('Organization (Organization)')}</option>
+                  </select>{' '}
+                  {t('Founded')} <input type="text" className="small-text" aria-label={t('Founded')} value={text('founding')} onChange={(e) => set('founding', e.currentTarget.value)} />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-lg">{t('Logo (square)')}</label>
+                </th>
+                <td>
+                  <input id="ys-lg" type="text" className="large-text code" value={text('logo')} placeholder={setup.logoDefault} onChange={(e) => set('logo', e.currentTarget.value)} />
+                  <p className="description">{t('For the Google knowledge panel. At least 112×112 PNG. When empty, the Flux SEO icon.')}</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">{t('Address')}</th>
+                <td>
+                  <input type="text" className="regular-text" placeholder={t('Street, number')} aria-label={t('Street, number')} value={text('street')} onChange={(e) => set('street', e.currentTarget.value)} />{' '}
+                  <input type="text" className="regular-text" placeholder={t('District, city')} aria-label={t('District, city')} value={text('locality')} onChange={(e) => set('locality', e.currentTarget.value)} />{' '}
+                  <input type="text" className="small-text" placeholder={t('Postal code')} aria-label={t('Postal code')} value={text('postal')} onChange={(e) => set('postal', e.currentTarget.value)} />{' '}
+                  <input type="text" className="small-text" maxLength={2} placeholder="TR" aria-label={t('Country code')} value={text('country')} onChange={(e) => set('country', e.currentTarget.value)} />
+                  <p className="description">{t('Country is a two-letter code (TR, US, DE). Empty fields are filled from the organization profile (Flux Setup) when it has an address or phone.')}</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">{t('Contact')}</th>
+                <td>
+                  <input type="text" className="regular-text" placeholder="+90 ..." aria-label={t('Phone')} value={text('phone')} onChange={(e) => set('phone', e.currentTarget.value)} />{' '}
+                  <input type="text" className="regular-text" placeholder={t('email')} aria-label={t('Email')} value={text('email')} onChange={(e) => set('email', e.currentTarget.value)} />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-sa">{t('Social media profiles')}</label>
+                </th>
+                <td>
+                  <textarea
+                    id="ys-sa"
+                    className="large-text code"
+                    rows={5}
+                    placeholder={'https://www.instagram.com/...\nhttps://www.youtube.com/@...'}
+                    value={text('sameAs')}
+                    onChange={(e) => set('sameAs', e.currentTarget.value)}
+                  />
+                  <p className="description">{t('One address per line. Google matches the organization to these profiles.')}</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-tw">{t('X (Twitter) username')}</label>
+                </th>
+                <td>
+                  <input id="ys-tw" type="text" className="regular-text" placeholder={t('@username')} value={text('twitter')} onChange={(e) => set('twitter', e.currentTarget.value)} />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-ka">{t('Areas of expertise')}</label>
+                </th>
+                <td>
+                  <textarea id="ys-ka" className="large-text" rows={4} placeholder={t('One topic per line')} value={text('knowsAbout')} onChange={(e) => set('knowsAbout', e.currentTarget.value)} />
+                  <p className="description">{t('Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty.')}</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-as">{t('Area served')}</label>
+                </th>
+                <td>
+                  <input id="ys-as" type="text" className="regular-text" placeholder={t('e.g. United States')} value={text('areaServed')} onChange={(e) => set('areaServed', e.currentTarget.value)} />
+                  <p className="description">{t('Country served (schema areaServed). Left out when empty.')}</p>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label htmlFor="ys-dl">{t('Donation call to action')}</label>
+                </th>
+                <td>
+                  <input id="ys-dl" type="text" className="regular-text" placeholder={t('e.g. Donate')} value={text('donateLabel')} onChange={(e) => set('donateLabel', e.currentTarget.value)} />{' '}
+                  <input
+                    type="text"
+                    className="regular-text code"
+                    placeholder={setup.homeUrl + '…/'}
+                    aria-label={t('Donation page address')}
+                    value={text('donateUrl')}
+                    onChange={(e) => set('donateUrl', e.currentTarget.value)}
+                  />
+                  <p className="description">{t('For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically.')}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          {classicSubmit}
+        </div>
       )}
 
       {tab === 'ayarlar' && (
-        <>
-          <div className="flxseo-card">
-            <h2>{t('Site audit and agent readiness')}</h2>
-            <div className="flxseo-form">
-              <Row
-                label={t('PageSpeed Insights API key')}
-                htmlFor="flxseo-psi"
-                help={t('Optional but recommended: the keyless quota is shared and runs out quickly. In Google Cloud Console › APIs, enable "PageSpeed Insights API" and create a free key.')}
-              >
+        <div className="flx-raw flxseo-au" id="flxseo-au">
+          <section className="au-grid2">
+            <div className="au-card au-settings" data-freq={(draft.auditFreq ?? 'DAILY').toLowerCase()}>
+              <h2>{t('Site audit and agent readiness')}</h2>
+              <p>
+                <label htmlFor="au-key">
+                  <strong>{t('PageSpeed Insights API key')}</strong>
+                </label>
+                <br />
                 <input
-                  id="flxseo-psi"
                   type="password"
+                  id="au-key"
+                  className="regular-text code"
                   autoComplete="off"
-                  className="is-wide is-code"
                   value={psiKey}
                   placeholder={setup.psiKeySaved ? t('Saved (type to replace)') : 'AIza…'}
                   onChange={(e) => {
@@ -457,8 +520,8 @@ function SettingsTabs({ tab, t, onNotice, dirty, setDirty }: { tab: Tab; t: Tran
                     setDirty(true);
                   }}
                 />
-                {setup.psiKeySaved && (
-                  <Switch
+                {setup.psiKeySaved ? (
+                  <Check
                     checked={psiClear}
                     onChange={(v) => {
                       setPsiClear(v);
@@ -466,60 +529,89 @@ function SettingsTabs({ tab, t, onNotice, dirty, setDirty }: { tab: Tab; t: Tran
                     }}
                     label={t('Delete key')}
                   />
-                )}
-              </Row>
-            </div>
-            <h3 className="flxseo-sub">{t('Agentic browsing')}</h3>
-            <div className="flxseo-stack">
-              <Switch checked={on('llms')} onChange={(v) => set('llms', v)} label={t('Generate /llms.txt (site name, description, menu pages, recent content)')} />
-              <label className="flxseo-sublabel" htmlFor="flxseo-intro">
-                {t('llms.txt intro text (optional)')}
-              </label>
-              <textarea id="flxseo-intro" rows={3} placeholder={t('E.g. who your organization is, what it does, which pages agents should read first.')} value={text('llmsIntro')} onChange={(e) => set('llmsIntro', e.currentTarget.value)} />
-              <Switch checked={on('webmcp')} onChange={(v) => set('webmcp', v)} label={t('WebMCP: register site tools for browser agents (search, read page as Markdown, site overview) and mark the search form as a tool')} />
-              <Switch checked={on('markdown')} onChange={(v) => set('markdown', v)} label={t('Serve Markdown when an agent asks for it (Accept: text/markdown)')} />
-              <Switch checked={on('contentSignal')} onChange={(v) => set('contentSignal', v)} label={t('Declare Content-Signal in robots.txt')} />
-              <div className="flxseo-wrap">
-                {(
-                  [
-                    ['csSearch', t('Search (search)')],
-                    ['csAiInput', t('AI answers (ai-input)')],
-                    ['csAiTrain', t('AI training (ai-train)')],
-                  ] as [SettingsKey, string][]
-                ).map(([k, l]) => (
-                  <label key={k} className="flxseo-select">
-                    {l}
-                    <select value={text(k)} onChange={(e) => set(k, e.currentTarget.value as Settings[typeof k])}>
-                      <option value="yes">{t('Allowed')}</option>
-                      <option value="no">{t('Not allowed')}</option>
-                      <option value="">{t('Not stated')}</option>
+                ) : null}
+                <span className="description">
+                  {t('Optional but recommended: the keyless quota is shared and runs out quickly. In Google Cloud Console › APIs, enable "PageSpeed Insights API" and create a free key.')}
+                </span>
+              </p>
+              <fieldset>
+                <legend>
+                  <strong>{t('Agentic browsing')}</strong>
+                </legend>
+                <Check checked={on('llms')} onChange={(v) => set('llms', v)} label={t('Generate /llms.txt (site name, description, menu pages, recent content)')} />
+                <br />
+                <label htmlFor="au-intro" className="au-sub">
+                  {t('llms.txt intro text (optional)')}
+                </label>
+                <textarea
+                  id="au-intro"
+                  rows={3}
+                  className="large-text"
+                  placeholder={t('E.g. who your organization is, what it does, which pages agents should read first.')}
+                  value={text('llmsIntro')}
+                  onChange={(e) => set('llmsIntro', e.currentTarget.value)}
+                />
+                <Check
+                  checked={on('webmcp')}
+                  onChange={(v) => set('webmcp', v)}
+                  label={t('WebMCP: register site tools for browser agents (search, read page as Markdown, site overview) and mark the search form as a tool')}
+                />
+                <br />
+                <Check checked={on('markdown')} onChange={(v) => set('markdown', v)} label={t('Serve Markdown when an agent asks for it (Accept: text/markdown)')} />
+                <br />
+                <Check checked={on('contentSignal')} onChange={(v) => set('contentSignal', v)} label={t('Declare Content-Signal in robots.txt')} />
+                <span className="au-cs">
+                  {(
+                    [
+                      ['csSearch', t('Search (search)')],
+                      ['csAiInput', t('AI answers (ai-input)')],
+                      ['csAiTrain', t('AI training (ai-train)')],
+                    ] as [SettingsKey, string][]
+                  ).map(([k, l]) => (
+                    <label key={k}>
+                      {l}
+                      <select value={text(k)} onChange={(e) => set(k, e.currentTarget.value as Settings[typeof k])}>
+                        <option value="yes">{t('Allowed')}</option>
+                        <option value="no">{t('Not allowed')}</option>
+                        <option value="">{t('Not stated')}</option>
+                      </select>
+                    </label>
+                  ))}
+                </span>
+                <span className="description">
+                  {t(
+                    'Content signals tell crawlers how your content may be used: in search results, as live input to AI answers, and for training AI models. They are a stated preference; crawlers are not forced to follow them.',
+                  )}
+                </span>
+              </fieldset>
+              <fieldset>
+                <legend>
+                  <strong>{t('Security headers')}</strong>
+                </legend>
+                <Check checked={on('hdrFrame')} onChange={(v) => set('hdrFrame', v)} label={t("Clickjacking protection (X-Frame-Options: SAMEORIGIN, frame-ancestors 'self')")} />
+                <br />
+                <Check checked={on('hdrCoop')} onChange={(v) => set('hdrCoop', v)} label={t('Origin isolation (Cross-Origin-Opener-Policy: same-origin-allow-popups)')} />
+                <br />
+                <Check checked={on('hdrCsp')} onChange={(v) => set('hdrCsp', v)} label={t("Basic CSP (object-src 'none'; base-uri 'self'; upgrade-insecure-requests)")} />
+                <br />
+                <Check checked={on('hstsSub')} onChange={(v) => set('hstsSub', v)} label={t('HSTS covers subdomains (includeSubDomains)')} />
+                <br />
+                <Check checked={on('hstsPreload')} onChange={(v) => set('hstsPreload', v)} label={t('HSTS preload (takes months to undo; every subdomain must be HTTPS)')} />
+              </fieldset>
+              <fieldset>
+                <legend>
+                  <strong>{t('Automatic audit')}</strong>
+                </legend>
+                <span className="au-sched">
+                  <label>
+                    {t('Frequency')}
+                    <select id="au-freq" value={draft.auditFreq ?? 'DAILY'} onChange={(e) => set('auditFreq', e.currentTarget.value as Settings['auditFreq'])}>
+                      <option value="DAILY">{t('Daily')}</option>
+                      <option value="WEEKLY">{t('Weekly')}</option>
+                      <option value="OFF">{t('Off')}</option>
                     </select>
                   </label>
-                ))}
-              </div>
-              <p className="flxseo-desc">{t('Content signals tell crawlers how your content may be used: in search results, as live input to AI answers, and for training AI models. They are a stated preference; crawlers are not forced to follow them.')}</p>
-            </div>
-            <h3 className="flxseo-sub">{t('Security headers')}</h3>
-            <div className="flxseo-stack">
-              <Switch checked={on('hdrFrame')} onChange={(v) => set('hdrFrame', v)} label={t('Clickjacking protection (X-Frame-Options: SAMEORIGIN, frame-ancestors \'self\')')} />
-              <Switch checked={on('hdrCoop')} onChange={(v) => set('hdrCoop', v)} label={t('Origin isolation (Cross-Origin-Opener-Policy: same-origin-allow-popups)')} />
-              <Switch checked={on('hdrCsp')} onChange={(v) => set('hdrCsp', v)} label={t('Basic CSP (object-src \'none\'; base-uri \'self\'; upgrade-insecure-requests)')} />
-              <Switch checked={on('hstsSub')} onChange={(v) => set('hstsSub', v)} label={t('HSTS covers subdomains (includeSubDomains)')} />
-              <Switch checked={on('hstsPreload')} onChange={(v) => set('hstsPreload', v)} label={t('HSTS preload (takes months to undo; every subdomain must be HTTPS)')} />
-            </div>
-            <h3 className="flxseo-sub">{t('Automatic audit')}</h3>
-            <div className="flxseo-stack">
-              <div className="flxseo-wrap">
-                <label className="flxseo-select">
-                  {t('Frequency')}
-                  <select value={draft.auditFreq ?? 'DAILY'} onChange={(e) => set('auditFreq', e.currentTarget.value as Settings['auditFreq'])}>
-                    <option value="DAILY">{t('Daily')}</option>
-                    <option value="WEEKLY">{t('Weekly')}</option>
-                    <option value="OFF">{t('Off')}</option>
-                  </select>
-                </label>
-                {draft.auditFreq === 'WEEKLY' && (
-                  <label className="flxseo-select">
+                  <label className="au-day">
                     {t('Day')}
                     <select value={text('auditDay') || '1'} onChange={(e) => set('auditDay', e.currentTarget.value)}>
                       {[t('Monday'), t('Tuesday'), t('Wednesday'), t('Thursday'), t('Friday'), t('Saturday'), t('Sunday')].map((d, i) => (
@@ -529,9 +621,7 @@ function SettingsTabs({ tab, t, onNotice, dirty, setDirty }: { tab: Tab; t: Tran
                       ))}
                     </select>
                   </label>
-                )}
-                {draft.auditFreq !== 'OFF' && (
-                  <label className="flxseo-select">
+                  <label>
                     {t('Time')}
                     <select value={text('auditHour') || '3'} onChange={(e) => set('auditHour', e.currentTarget.value)}>
                       {Array.from({ length: 24 }, (_, h) => (
@@ -541,33 +631,41 @@ function SettingsTabs({ tab, t, onNotice, dirty, setDirty }: { tab: Tab; t: Tran
                       ))}
                     </select>
                   </label>
-                )}
-              </div>
-              <p className="flxseo-desc">{t('Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request.')}</p>
-              <Switch checked={on('auditPsi')} onChange={(v) => set('auditPsi', v)} label={t('Also run PageSpeed Insights (mobile + desktop; needs the API key)')} />
-              <Switch checked={on('auditMail')} onChange={(v) => set('auditMail', v)} label={t('Send an email when a new critical or high priority recommendation appears')} />
-              <label className="flxseo-sublabel" htmlFor="flxseo-mail">
-                {t('Email address (empty: site admin)')}
-              </label>
-              <input id="flxseo-mail" type="email" className="is-wide" value={text('auditMailTo')} placeholder={setup.adminEmail} onChange={(e) => set('auditMailTo', e.currentTarget.value)} />
+                </span>
+                <span className="description">
+                  {t('Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request.')}
+                </span>
+                <Check checked={on('auditPsi')} onChange={(v) => set('auditPsi', v)} label={t('Also run PageSpeed Insights (mobile + desktop; needs the API key)')} />
+                <br />
+                <Check checked={on('auditMail')} onChange={(v) => set('auditMail', v)} label={t('Send an email when a new critical or high priority recommendation appears')} />
+                <label htmlFor="au-mail" className="au-sub">
+                  {t('Email address (empty: site admin)')}
+                </label>
+                <input type="email" id="au-mail" className="regular-text" value={text('auditMailTo')} placeholder={setup.adminEmail} onChange={(e) => set('auditMailTo', e.currentTarget.value)} />
+              </fieldset>
+              <button type="submit" className="button button-primary" disabled={busy}>
+                {t('Save')}
+              </button>
             </div>
-          </div>
-          {actions}
 
-          <div className="flxseo-card">
-            <h2>{t('New site build guide')}</h2>
-            <p className="flxseo-desc">{t('Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool.')}</p>
-            <div className="flxseo-actions">
-              <GuideButton lang="TR" label={t('Download Turkish (.md)')} t={t} onError={fail} />
-              <GuideButton lang="EN" label={t('Download English (.md)')} t={t} onError={fail} />
+            <div className="au-card au-guide">
+              <h2>{t('New site build guide')}</h2>
+              <p>
+                {t(
+                  'Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool.',
+                )}
+              </p>
+              <p>
+                <GuideButton lang="TR" label={t('Download Turkish (.md)')} t={t} onError={fail} /> <GuideButton lang="EN" label={t('Download English (.md)')} t={t} onError={fail} />
+              </p>
+              <ul className="au-toc">
+                {setup.guideSections.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
             </div>
-            <ul className="flxseo-toc">
-              {setup.guideSections.map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-          </div>
-        </>
+          </section>
+        </div>
       )}
     </form>
   );
@@ -597,26 +695,8 @@ function GuideButton({ lang, label, t, onError }: { lang: FlxSeoGuideLang; label
     }
   };
   return (
-    <button type="button" className="flxseo-btn" disabled={busy} onClick={() => void run()}>
+    <button type="button" className="button" disabled={busy} onClick={() => void run()}>
       {label}
-    </button>
-  );
-}
-
-function CopyButton({ text, t }: { text: string; t: Translate }) {
-  const [done, setDone] = useState(false);
-  return (
-    <button
-      type="button"
-      className="flxseo-btn is-small"
-      onClick={() => {
-        void navigator.clipboard?.writeText(text).then(() => {
-          setDone(true);
-          window.setTimeout(() => setDone(false), 1500);
-        });
-      }}
-    >
-      {done ? t('Copied') : t('Copy')}
     </button>
   );
 }
@@ -625,6 +705,14 @@ function CopyButton({ text, t }: { text: string; t: Translate }) {
  * SEO check: published content with recommendations
  * ------------------------------------------------------------------------------------------------------- */
 
+/** A translated text with %1$s… placeholders filled by React nodes (bold numbers, emphasis). */
+function rich(text: string, parts: ReactNode[]): ReactNode[] {
+  return text.split(/(%\d\$s)/).map((p, i) => {
+    const m = /^%(\d)\$s$/.exec(p);
+    return m ? <Fragment key={i}>{parts[Number(m[1]) - 1]}</Fragment> : p;
+  });
+}
+
 function ContentCheck({ t }: { t: Translate }) {
   const q = useFlxQuery(FlxSeoContentCheck, { limit: 300 });
   if (q.isLoading) return <Loading />;
@@ -632,53 +720,57 @@ function ContentCheck({ t }: { t: Translate }) {
   if (q.isError || !d) return <div className="flxseo-notice is-error">{q.error?.message || t('The action could not be completed.')}</div>;
   const rows = d.items.slice(0, 100);
   return (
-    <div className="flxseo-card">
-      <p className="flxseo-lead">{t('%1$s published items were checked; %2$s have recommendations. To fix one, open the item and use the SEO panel on the right.', d.checked, d.items.length)}</p>
-      <div className="flxseo-scroll">
-        <table className="flxseo-table is-striped">
-          <thead>
-            <tr>
-              <th scope="col">{t('Content')}</th>
-              <th scope="col">{t('Type')}</th>
-              <th scope="col">{t('Recommendations')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((r) => (
-              <tr key={r.databaseId}>
-                <td>
-                  {r.editUrl ? (
-                    <a href={r.editUrl}>
-                      <strong>{r.title}</strong>
-                    </a>
-                  ) : (
+    <div className="flx-raw flxseo-classic">
+      <p>
+        {rich(t('%1$s published items were checked; %2$s have recommendations. To fix one, open the item and use the %3$s panel on the right or tell the AI assistant (MCP) "fix the SEO gaps".', '%1$s', '%2$s', '%3$s'), [
+          <strong key="c">{d.checked}</strong>,
+          <strong key="t">{d.total}</strong>,
+          <em key="e">SEO</em>,
+        ])}
+      </p>
+      <table className="widefat striped">
+        <thead>
+          <tr>
+            <th>{t('Content')}</th>
+            <th>{t('Type')}</th>
+            <th>{t('Suggestions')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.databaseId}>
+              <td>
+                {r.editUrl ? (
+                  <a href={r.editUrl}>
                     <strong>{r.title}</strong>
-                  )}
-                  <br />
-                  <a className="flxseo-small" href={r.url} target="_blank" rel="noopener noreferrer">
-                    {t('view')} ↗
                   </a>
-                </td>
-                <td>{r.postType}</td>
-                <td>
-                  <ul className="flxseo-issues">
-                    {r.issues.map((i) => (
-                      <li key={i.code} className={i.level === 'ERROR' ? 'is-error' : 'is-warn'}>
-                        {i.message}
-                      </li>
-                    ))}
-                  </ul>
-                </td>
-              </tr>
-            ))}
-            {rows.length === 0 && (
-              <tr>
-                <td colSpan={3}>{t('All good.')}</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+                ) : (
+                  <strong>{r.title}</strong>
+                )}
+                <br />
+                <a href={r.url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12 }}>
+                  {t('view')}
+                </a>
+              </td>
+              <td>{r.postType}</td>
+              <td>
+                <ul style={{ margin: 0 }}>
+                  {r.issues.map((i) => (
+                    <li key={i.code} style={{ color: i.level === 'ERROR' ? 'var(--flxa-error, #d63638)' : 'var(--flxa-warn, #8a6100)' }}>
+                      {i.message}
+                    </li>
+                  ))}
+                </ul>
+              </td>
+            </tr>
+          ))}
+          {rows.length === 0 && (
+            <tr>
+              <td colSpan={3}>{t('All good.')}</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -689,19 +781,16 @@ function ContentCheck({ t }: { t: Translate }) {
 
 const tone = (score: number | null) => (score === null ? 'na' : score >= 90 ? 'good' : score >= 50 ? 'mid' : 'bad');
 
-function Ring({ score, label }: { score: number | null; label: string }) {
-  const r = 26;
-  const c = 2 * Math.PI * r;
+function Ring({ score, label, text }: { score: number | null; label: string; text?: string }) {
+  const c = 2 * Math.PI * 26;
   const v = score === null ? 0 : Math.max(0, Math.min(100, score));
   return (
-    <figure className={'flxseo-ring is-' + tone(score)}>
-      <svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label={label + ': ' + (score ?? '–')}>
-        <circle cx="32" cy="32" r={r} className="bg" />
-        <circle cx="32" cy="32" r={r} className="fg" strokeDasharray={`${(c * v) / 100} ${c}`} transform="rotate(-90 32 32)" />
-        <text x="32" y="37" textAnchor="middle">
-          {score === null ? '–' : score}
-        </text>
+    <figure className={'au-ring au-tone-' + tone(score)}>
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="26" className="au-ring__bg" />
+        <circle cx="32" cy="32" r="26" className="au-ring__fg" strokeDasharray={`${((c * v) / 100).toFixed(1)} ${c.toFixed(1)}`} transform="rotate(-90 32 32)" />
       </svg>
+      <span className="au-ring__val">{text || (score === null ? '–' : String(v))}</span>
       <figcaption>{label}</figcaption>
     </figure>
   );
@@ -805,98 +894,101 @@ function Audit({ t, onNotice }: { t: Translate; onNotice: (n: Notice | null) => 
   const count = (p: FlxSeoPriority) => a.counts[p.toLowerCase() as 'critical'];
 
   return (
-    <div className="flxseo-audit">
-      <section className="flxseo-card">
-        <h2>{t('Site audit')}</h2>
-        <p className="flxseo-desc">{t('The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google\'s real Lighthouse results.')}</p>
-        <p className="flxseo-meta">
-          {a.local ? (
-            <>
-              {t('On-site audit: %s', a.local.time.relative)} ·{' '}
-              <a href={a.local.url} target="_blank" rel="noopener noreferrer">
-                {a.local.url}
-              </a>
-            </>
-          ) : (
-            t('No audit has run yet.')
-          )}
-        </p>
-        <form
-          className="flxseo-run"
-          onSubmit={(e) => {
-            e.preventDefault();
-            void runLocal();
-          }}
-        >
-          <label className="flxseo-sr" htmlFor="flxseo-url">
+    <div className="flx-raw flxseo-au" id="flxseo-au">
+      <section className="au-card au-head">
+        <div className="au-head__text">
+          <h2>{t('Site audit')}</h2>
+          <p>
+            {t(
+              "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab.",
+            )}
+          </p>
+          <p className="au-meta">
+            {a.local
+              ? rich(t('On-site audit: %1$s · %2$s', '%1$s', '%2$s'), [
+                  a.local.time.relative,
+                  <a key="u" href={a.local.url} target="_blank" rel="noopener noreferrer">
+                    {a.local.url}
+                  </a>,
+                ])
+              : t('No audit has run yet.')}
+          </p>
+        </div>
+        <div className="au-run" id="au-run">
+          <label className="screen-reader-text" htmlFor="au-url">
             {t('Address to audit')}
           </label>
-          <input id="flxseo-url" type="url" className="is-wide" value={url} placeholder={a.auditUrl} onChange={(e) => setUrl(e.currentTarget.value)} />
-          <button type="submit" className="flxseo-btn is-primary" disabled={running}>
+          <input
+            type="url"
+            id="au-url"
+            className="regular-text"
+            value={url}
+            placeholder={a.auditUrl}
+            onChange={(e) => setUrl(e.currentTarget.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                void runLocal();
+              }
+            }}
+          />
+          <button type="button" className="button button-primary" disabled={running} onClick={() => void runLocal()}>
             {t('On-site audit')}
           </button>
-          <button type="button" className="flxseo-btn" disabled={running} onClick={() => void runPsi()}>
+          <button type="button" className="button" disabled={running} onClick={() => void runPsi()}>
             {t('Measure with PageSpeed')}
           </button>
-        </form>
-        <p className="flxseo-status" role="status" aria-live="polite">
+        </div>
+        <p className="au-status" id="au-status" role="status" aria-live="polite">
           {running ? status : history?.running ? t('An audit is running in the background…') : ''}
         </p>
-        {history && history.errors.length > 0 && <p className="flxseo-small is-error">{history.errors.join(' · ')}</p>}
       </section>
 
-      <section className="flxseo-scores">
+      <section className="au-scores">
         {(['MOBILE', 'DESKTOP'] as FlxSeoStrategy[]).map((st) => {
           const p = a.pageSpeed.find((x) => x.strategy === st);
           return (
-            <div key={st} className="flxseo-card flxseo-strat">
+            <div key={st} className="au-card au-strat">
               <h3>
                 {st === 'MOBILE' ? t('Mobile') : t('Desktop')}
-                {p && (
-                  <span className="flxseo-meta">
-                    {' '}
-                    {p.time.relative}
-                    {p.lighthouse ? ' · Lighthouse ' + p.lighthouse : ''}
-                  </span>
-                )}
+                {p ? <span className="au-meta">{p.time.relative + (p.lighthouse ? ' · Lighthouse ' + p.lighthouse : '')}</span> : null}
               </h3>
               {!p ? (
-                <p className="flxseo-empty">{t('No PageSpeed run yet. Press "Measure with PageSpeed" (mobile + desktop takes about 1 minute).')}</p>
+                <p className="au-empty">{t('No PageSpeed run yet. Press "Measure with PageSpeed" (mobile + desktop takes about 1 minute).')}</p>
               ) : (
                 <>
-                  <div className="flxseo-rings">
+                  <div className="au-rings">
                     {p.scores.map((x) => (
-                      <Ring key={x.category} score={x.score} label={x.label} />
+                      <Ring key={x.category} score={x.score} label={catLabel[x.category] ?? x.label} />
                     ))}
                   </div>
-                  <dl className="flxseo-metrics">
-                    {p.metrics.map((m) => (
-                      <div key={m.key} className={'flxseo-metric is-' + tone(m.score === null ? null : m.score * 100)}>
-                        <dt>{m.label}</dt>
-                        <dd>{m.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
+                  {p.metrics.length ? (
+                    <dl className="au-metrics">
+                      {p.metrics.map((m) => (
+                        <div key={m.key} className={'au-metric au-tone-' + tone(m.score === null ? null : m.score * 100)}>
+                          <dt>{m.label}</dt>
+                          <dd>{m.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  ) : null}
                 </>
               )}
             </div>
           );
         })}
-        <div className="flxseo-card flxseo-strat">
+        <div className="au-card au-strat au-agentic">
           <h3>
-            {t('Agentic browsing')}{' '}
-            <span className={'flxseo-pill is-' + (a.agenticPassed === a.agentic.length ? 'good' : 'mid')}>
-              {a.agenticPassed}/{a.agentic.length}
-            </span>
+            {t('Agentic browsing')} <span className={'au-pill au-tone-' + (a.agenticPassed === a.agentic.length ? 'good' : 'mid')}>{a.agenticPassed + '/' + a.agentic.length}</span>
           </h3>
-          <ul className="flxseo-checks">
+          <ul className="au-checks">
             {a.agentic.map((c) => (
               <li key={c.id} className={c.passed ? 'is-ok' : 'is-bad'}>
                 <span aria-hidden="true">{c.passed ? '✓' : '✕'}</span> {c.label}
               </li>
             ))}
           </ul>
-          <p className="flxseo-meta">
+          <p className="au-meta">
             <a href={a.llmsUrl} target="_blank" rel="noopener noreferrer">
               /llms.txt
             </a>{' '}
@@ -905,25 +997,25 @@ function Audit({ t, onNotice }: { t: Translate; onNotice: (n: Notice | null) => 
         </div>
       </section>
 
-      <section className="flxseo-card">
-        <div className="flxseo-bar">
+      <section className="au-card au-findings">
+        <div className="au-bar">
           <h2>
-            {t('Recommendations')} <span className="flxseo-meta">{a.findings.length.toLocaleString()}</span>
+            {t('Recommendations')} <span className="au-meta">{a.findings.length.toLocaleString()}</span>
           </h2>
-          <div className="flxseo-filters" role="group" aria-label={t('Filter by priority')}>
-            <button type="button" className={'flxseo-chip' + (prio === '' ? ' is-on' : '')} aria-pressed={prio === ''} onClick={() => setPrio('')}>
+          <div className="au-filters" role="group" aria-label={t('Filter by priority')}>
+            <button type="button" className={'au-chip' + (prio === '' ? ' is-on' : '')} aria-pressed={prio === ''} onClick={() => setPrio('')}>
               {t('All')}
             </button>
             {PRIORITIES.map((p) => (
-              <button key={p} type="button" className={'flxseo-chip is-' + p.toLowerCase() + (prio === p ? ' is-on' : '')} aria-pressed={prio === p} onClick={() => setPrio(prio === p ? '' : p)}>
+              <button key={p} type="button" className={'au-chip au-p-' + p.toLowerCase() + (prio === p ? ' is-on' : '')} aria-pressed={prio === p} onClick={() => setPrio(prio === p ? '' : p)}>
                 {prioLabel[p]} <b>{count(p)}</b>
               </button>
             ))}
           </div>
-          <label className="flxseo-sr" htmlFor="flxseo-cat">
+          <label className="screen-reader-text" htmlFor="au-cat">
             {t('Section')}
           </label>
-          <select id="flxseo-cat" value={cat} onChange={(e) => setCat(e.currentTarget.value)}>
+          <select id="au-cat" value={cat} onChange={(e) => setCat(e.currentTarget.value)}>
             <option value="">{t('All sections')}</option>
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
@@ -932,54 +1024,52 @@ function Audit({ t, onNotice }: { t: Translate; onNotice: (n: Notice | null) => 
             ))}
           </select>
         </div>
-        {a.findings.length === 0 ? (
-          <p className="flxseo-empty">{a.local ? t('No recommendations. All good.') : t('Start the audit; recommendations are listed here by priority.')}</p>
-        ) : (
-          <div className="flxseo-list">
-            {list.map((f) => (
-              <details key={f.id} className={'flxseo-f is-' + f.priority.toLowerCase()}>
-                <summary>
-                  <span className={'flxseo-badge is-' + f.priority.toLowerCase()}>{f.priorityLabel}</span>
-                  <span className="flxseo-f-title">
-                    {f.title}
-                    {f.detail && <span className="flxseo-f-detail"> {f.detail}</span>}
-                  </span>
-                  <span className="flxseo-tags">
-                    {[f.category, ...f.also].map((c) => (
-                      <span key={c} className="flxseo-tag">
-                        {catLabel[c] ?? c}
-                      </span>
-                    ))}
-                  </span>
-                </summary>
-                <div className="flxseo-f-body">
-                  {f.fix && (
-                    <p>
-                      <strong>{t('How to fix:')}</strong> {f.fix}
-                    </p>
-                  )}
-                  {f.items.length > 0 && (
-                    <ul className="flxseo-items">
-                      {f.items.map((i) => (
-                        <li key={i}>{i}</li>
-                      ))}
-                    </ul>
-                  )}
-                  <p className="flxseo-meta">
-                    {f.ownerLabel && <>{t('Where to fix: %s', f.ownerLabel)} · </>}
-                    {t('Found by: %s', f.sources.map((x) => sourceLabel[x]).join(', '))}
+        {a.findings.length === 0 ? <p className="au-empty">{a.local ? t('No recommendations. All good.') : t('Start the audit; recommendations are listed here by priority.')}</p> : null}
+        <div className="au-list">
+          {list.map((f) => (
+            <details key={f.id} className={'au-f au-p-' + f.priority.toLowerCase()}>
+              <summary>
+                <span className={'au-badge au-p-' + f.priority.toLowerCase()}>{f.priorityLabel}</span>
+                <span className="au-f__title">
+                  {f.title}
+                  {f.detail ? <span className="au-f__detail"> {f.detail}</span> : null}
+                </span>
+                <span className="au-tags">
+                  {[...new Set([f.category, ...f.also])].map((c) => (
+                    <span key={c} className="au-tag">
+                      {catLabel[c] ?? c}
+                    </span>
+                  ))}
+                </span>
+              </summary>
+              <div className="au-f__body">
+                {f.fix ? (
+                  <p className="au-fix">
+                    <strong>{t('How to fix:')}</strong> {f.fix}
                   </p>
-                  {f.fixId && (
-                    <button type="button" className="flxseo-btn is-primary" disabled={fix.isPending} onClick={() => applyFix(f)}>
-                      {f.fixLabel || t('Fix')}
-                    </button>
-                  )}
-                </div>
-              </details>
-            ))}
-            {list.length === 0 && <p className="flxseo-empty">{t('No recommendations match this filter.')}</p>}
-          </div>
-        )}
+                ) : null}
+                {f.items.length > 0 ? (
+                  <ul className="au-items">
+                    {f.items.map((i) => (
+                      <li key={i}>
+                        <code>{i}</code>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                <p className="au-meta">
+                  {f.ownerLabel ? <>{t('Where to fix: %s', f.ownerLabel)} · </> : null}
+                  {f.sources.map((x) => sourceLabel[x]).join(', ')} · <code>{f.id}</code>
+                </p>
+                {f.fixId ? (
+                  <button type="button" className="button button-primary" disabled={fix.isPending} onClick={() => applyFix(f)}>
+                    {f.fixLabel || t('Fix')}
+                  </button>
+                ) : null}
+              </div>
+            </details>
+          ))}
+        </div>
       </section>
 
       <History history={history} t={t} />
@@ -998,33 +1088,37 @@ interface Series {
 }
 
 const LINE_COLORS: Record<string, string> = {
-  'is-critical': 'var(--flux-danger)',
-  'is-high': '#e8742a',
-  'is-medium': 'var(--flux-warning)',
-  'is-low': 'var(--flux-text-muted)',
+  'is-critical': '#c62828',
+  'is-high': '#d9480f',
+  'is-medium': '#b26200',
+  'is-low': '#2271b1',
   'is-c1': '#3b82f6',
   'is-c2': '#8b5cf6',
   'is-c3': '#14b8a6',
   'is-c4': '#f59e0b',
 };
 
-function LineChart({ title, series, labels, max, empty }: { title: string; series: Series[]; labels: string[]; max?: number; empty: string }) {
+function HistChart({ title, kind, series, labels, max, empty, seg }: { title: ReactNode; kind: 'bar' | 'line'; series: Series[]; labels: string[]; max?: number; empty: string; seg?: ReactNode }) {
   const has = labels.length > 0 && series.some((x) => x.points.some((p) => p !== null));
   return (
-    <figure className="flxseo-chart">
-      <figcaption>{title}</figcaption>
+    <figure className={'au-chart' + (kind === 'line' ? ' au-chart--scores' : '')}>
+      <figcaption>
+        {title}
+        {seg}
+      </figcaption>
       {has ? (
         <Chart
-          kind="line"
+          kind={kind}
+          stacked={kind === 'bar'}
           height={190}
           labels={labels}
           series={series.map((sr) => ({ label: sr.label, data: sr.points, color: LINE_COLORS[sr.cls] }))}
           legend
           format={(v) => (max === 100 ? String(Math.round(v)) : v.toLocaleString())}
-          label={title}
+          label={typeof title === 'string' ? title : undefined}
         />
       ) : (
-        <p className="flxseo-empty">{empty}</p>
+        <p className="au-empty">{empty}</p>
       )}
     </figure>
   );
@@ -1036,10 +1130,10 @@ function History({ history, t }: { history: AuditData['flxSeoAuditHistory'] | nu
   const labels = chrono.map((e) => e.time.label);
   const score = (e: HistoryEntry, strategy: FlxSeoStrategy, category: string) => e.scores.find((x) => x.strategy === strategy && x.category === category)?.score ?? null;
   const recs: Series[] = [
-    { label: t('Critical'), cls: 'is-critical', points: chrono.map((e) => e.counts.critical) },
-    { label: t('High'), cls: 'is-high', points: chrono.map((e) => e.counts.high) },
-    { label: t('Medium'), cls: 'is-medium', points: chrono.map((e) => e.counts.medium) },
-    { label: t('Low'), cls: 'is-low', points: chrono.map((e) => e.counts.low) },
+    { label: t('Critical'), cls: 'is-critical', points: chrono.map((e) => e.counts.critical || null) },
+    { label: t('High'), cls: 'is-high', points: chrono.map((e) => e.counts.high || null) },
+    { label: t('Medium'), cls: 'is-medium', points: chrono.map((e) => e.counts.medium || null) },
+    { label: t('Low'), cls: 'is-low', points: chrono.map((e) => e.counts.low || null) },
   ];
   const cats: [string, string, string][] = [
     ['performance', t('Performance'), 'is-c1'],
@@ -1047,34 +1141,68 @@ function History({ history, t }: { history: AuditData['flxSeoAuditHistory'] | nu
     ['best-practices', t('Best practices'), 'is-c3'],
     ['seo', t('SEO'), 'is-c4'],
   ];
+  const strat: [FlxSeoStrategy, string][] = [
+    ['MOBILE', t('Mobile')],
+    ['DESKTOP', t('Desktop')],
+  ];
   const hasPsi = entries.some((e) => e.scores.length > 0);
+  const strats = strat.filter(([st]) => entries.some((e) => e.scores.some((x) => x.strategy === st)));
+  const [devPick, setDev] = useState<FlxSeoStrategy | null>(null);
+  const dev = devPick ?? strats[0]?.[0] ?? 'MOBILE';
+  const shortLabels = chrono.map((e) => {
+    const d = new Date(e.time.iso);
+    return Number.isNaN(d.getTime()) ? e.time.label : d.toLocaleDateString(document.documentElement.lang || undefined, { day: 'numeric', month: 'short' });
+  });
+  const prioCls: [keyof HistoryEntry['counts'], string][] = [
+    ['critical', t('Critical')],
+    ['high', t('High')],
+    ['medium', t('Medium')],
+    ['low', t('Low')],
+  ];
   return (
-    <section className="flxseo-card">
-      <div className="flxseo-bar">
+    <section className="au-card au-history" id="au-history">
+      <div className="au-bar">
         <h2>
-          {t('Report history')} <span className="flxseo-meta">{(history?.total ?? 0).toLocaleString()}</span>
+          {t('Report history')} <span className="au-meta">{(history?.total ?? 0).toLocaleString()}</span>
         </h2>
-        <span className="flxseo-meta">{history?.next ? t('Next automatic audit: %s', history.next.label) : t('Automatic audit is off.')}</span>
+        <p className="au-meta">
+          {history?.next ? t('Next automatic audit: %s', history.next.label) : t('Automatic audit is off.')}
+          {history && history.errors.length > 0 ? (
+            <>
+              {' · '}
+              <span className="au-tone-bad">{history.errors.join(' · ')}</span>
+            </>
+          ) : null}
+        </p>
       </div>
       {entries.length === 0 ? (
-        <p className="flxseo-empty">{t('No reports yet. Every audit (manual, automatic or by AI) is saved here.')}</p>
+        <p className="au-empty">{t('No reports yet. Every audit (manual, automatic or by AI) is saved here.')}</p>
       ) : (
         <>
-          <div className="flxseo-charts">
-            <LineChart title={t('Recommendations')} series={recs} labels={labels} empty={t('No data yet.')} />
-            {(['MOBILE', 'DESKTOP'] as FlxSeoStrategy[]).map((st) => (
-              <LineChart
-                key={st}
-                title={(st === 'MOBILE' ? t('Mobile') : t('Desktop')) + ' · ' + t('PageSpeed scores')}
-                series={cats.map(([c, l, cls]) => ({ label: l, cls, points: chrono.map((e) => score(e, st, c)) }))}
-                labels={labels}
-                max={100}
-                empty={hasPsi ? t('No data yet.') : t('No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit.')}
-              />
-            ))}
+          <div className="au-charts">
+            <HistChart kind="bar" title={t('Recommendations')} series={[...recs].reverse()} labels={shortLabels} empty={t('No data yet.')} />
+            <HistChart
+              kind="line"
+              title={t('PageSpeed scores')}
+              seg={
+                strats.length > 1 ? (
+                  <span className="au-seg" role="group" aria-label={t('Device')}>
+                    {strats.map(([st, l]) => (
+                      <button key={st} type="button" className={'au-chip' + (dev === st ? ' is-on' : '')} aria-pressed={dev === st} onClick={() => setDev(st)}>
+                        {l}
+                      </button>
+                    ))}
+                  </span>
+                ) : null
+              }
+              series={cats.map(([c, l, cls]) => ({ label: l, cls, points: chrono.map((e) => score(e, dev, c)) }))}
+              labels={shortLabels}
+              max={100}
+              empty={hasPsi ? t('No data yet.') : t('No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit.')}
+            />
           </div>
-          <div className="flxseo-scroll">
-            <table className="flxseo-table is-striped">
+          <div className="au-table-wrap">
+            <table className="au-table">
               <thead>
                 <tr>
                   <th scope="col">{t('Date')}</th>
@@ -1087,45 +1215,60 @@ function History({ history, t }: { history: AuditData['flxSeoAuditHistory'] | nu
               <tbody>
                 {entries.map((e, i) => (
                   <tr key={e.time.iso + i}>
-                    <td>
+                    <td className="au-td-date">
                       {e.time.label}
                       <br />
-                      <span className="flxseo-small">{e.time.relative}</span>
+                      <span className="au-meta">{e.time.relative}</span>
                     </td>
-                    <td>{e.triggerLabel}</td>
-                    <td className="flxseo-counts">
-                      <span className="is-critical">{e.counts.critical}</span> <span className="is-high">{e.counts.high}</span> <span className="is-medium">{e.counts.medium}</span> <span className="is-low">{e.counts.low}</span>
+                    <td className="au-td-trig">{e.triggerLabel}</td>
+                    <td className="au-counts">
+                      {prioCls.map(([k, l]) => (
+                        <span key={k} className={'au-badge au-p-' + k} title={l}>
+                          {e.counts[k]}
+                        </span>
+                      ))}
                     </td>
-                    <td>
+                    <td className="au-scorecell">
                       {e.scores.length === 0 ? (
-                        <span className="flxseo-meta">{t('PageSpeed not run')}</span>
+                        <span className="au-meta">{t('PageSpeed not run')}</span>
                       ) : (
-                        (['MOBILE', 'DESKTOP'] as FlxSeoStrategy[]).map((st) => {
-                          const p = score(e, st, 'performance');
-                          return p === null && !e.scores.some((x) => x.strategy === st) ? null : (
-                            <span key={st} className={'flxseo-score is-' + tone(p)}>
-                              {st === 'MOBILE' ? t('Mobile') : t('Desktop')} {p ?? '–'}
+                        strat.map(([st, l]) => {
+                          const row = e.scores.filter((x) => x.strategy === st);
+                          return row.length ? (
+                            <span key={st} className="au-srow">
+                              <span className="au-srow__k">{l}</span>
+                              {row.map((x) => (
+                                <span key={x.category} className={'au-tone-' + tone(x.score)} title={cats.find((c) => c[0] === x.category)?.[1] ?? x.category}>
+                                  {x.score ?? '–'}
+                                </span>
+                              ))}
                             </span>
-                          );
+                          ) : null;
                         })
                       )}
                     </td>
-                    <td>
+                    <td className="au-td-diff">
                       {e.added.length === 0 && e.resolved.length === 0 ? (
-                        <span className="flxseo-meta">{t('No change')}</span>
+                        <span className="au-meta">{t('No change')}</span>
                       ) : (
-                        <>
-                          {e.added.length > 0 && (
-                            <span className="is-bad" title={e.added.map((x) => x.title).join('\n')}>
-                              +{e.added.length} {t('new')}
-                            </span>
-                          )}{' '}
-                          {e.resolved.length > 0 && (
-                            <span className="is-good" title={e.resolved.map((x) => x.title).join('\n')}>
-                              −{e.resolved.length} {t('resolved')}
-                            </span>
-                          )}
-                        </>
+                        <details>
+                          <summary>
+                            {e.added.length > 0 ? <span className="au-tone-bad">{'+' + e.added.length + ' ' + t('new')}</span> : null}{' '}
+                            {e.resolved.length > 0 ? <span className="au-tone-good">{'−' + e.resolved.length + ' ' + t('resolved')}</span> : null}
+                          </summary>
+                          <ul className="au-diff">
+                            {e.added.map((x) => (
+                              <li key={'a' + x.id} className="au-tone-bad">
+                                + {x.title}
+                              </li>
+                            ))}
+                            {e.resolved.map((x) => (
+                              <li key={'r' + x.id} className="au-tone-good">
+                                ✓ {x.title}
+                              </li>
+                            ))}
+                          </ul>
+                        </details>
                       )}
                     </td>
                   </tr>

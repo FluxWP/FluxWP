@@ -5,4 +5,5 @@ query FlxCommerceSubscriptions($first: Int = 25, $after: String, $search: String
     totalCount
   }
   flxCommerceSubscriptionCounts { all pending active pastDue cancelled expired due mrr { ...FlxCommerceMoney } }
+  flxCommerceMoneyFormat { symbol position decimal thousand }
 }

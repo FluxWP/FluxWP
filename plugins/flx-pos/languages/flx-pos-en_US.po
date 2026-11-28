@@ -35,6 +35,12 @@ msgstr "The payment record could not be created."
 msgid "İşlem bulunamadı."
 msgstr "Transaction not found."
 
+msgid "Kayıtlı kart bilgisi eksik."
+msgstr "Saved card details are missing."
+
+msgid "Bu sağlayıcıda kayıtlı kartla çekim yok."
+msgstr "This provider does not support charging a saved card."
+
 msgid "Sağlayıcı seçin."
 msgstr "Choose a provider."
 
@@ -46,33 +52,6 @@ msgstr "POS account not found."
 
 msgid "Bu sağlayıcı için henüz sürücü yok."
 msgstr "No driver for this provider yet."
-
-msgid "EsnekPOS (resmi modül)"
-msgstr "EsnekPOS (official module)"
-
-msgid "Flux POS her zaman EsnekPOS güvenli ödeme sayfasını kullanır; gerekiyorsa banka 3D Secure doğrulamasını orada ister."
-msgstr "Flux POS always uses EsnekPOS's secure payment page; the bank asks for 3D Secure there when needed."
-
-msgid "Bu ödeme yöntemini Flux POS yürütür: klasik ve blok ödeme, sepetsiz ödeme bağlantıları; her ödeme sipariş \"ödendi\" olmadan önce EsnekPOS'a sunucudan sorulur. Test için üye işyeri TEST1234 ve EsnekPOS geliştirici sayfasındaki test anahtarı."
-msgstr "Flux POS runs this payment method: classic and block checkout, payment links without a cart; every payment is checked with EsnekPOS from the server before the order is marked paid. For a test use merchant TEST1234 and the test key from EsnekPOS's developer page."
-
-msgid "EsnekPOS üye işyeri bilgileri eksik."
-msgstr "EsnekPOS merchant details are missing."
-
-msgid "Test modu (üye işyeri TEST1234)."
-msgstr "Test mode (merchant TEST1234)."
-
-msgid "Flux POS sipariş satırlarını gönderir, sepet gerekmez."
-msgstr "Flux POS sends the order lines, no cart needed."
-
-msgid "Flux POS sipariş \"ödendi\" olmadan önce EsnekPOS'a sorar (ProcessQuery)."
-msgstr "Flux POS asks EsnekPOS (ProcessQuery) before the order is marked paid."
-
-msgid "EsnekPOS ödeme sayfasında, EsnekPOS panelindeki ayara göre."
-msgstr "On EsnekPOS's payment page, as set in the EsnekPOS panel."
-
-msgid "İadeyi EsnekPOS panelinden yapın, sonra siparişi iade edildi olarak işaretleyin."
-msgstr "Refund in the EsnekPOS panel, then mark the order refunded."
 
 msgid "Ödeme bağlantısı geçersiz ya da süresi dolmuş."
 msgstr "The payment link is invalid or has expired."
@@ -317,6 +296,9 @@ msgstr "Provider's payment page"
 msgid "Sayfa içinde ödeme formu (iFrame)"
 msgstr "Payment form on the page (iFrame)"
 
+msgid "Ödeme sayfasında Stripe kart alanları (Payment Element)"
+msgstr "Stripe card fields on the checkout page (Payment Element)"
+
 msgid "Cüzdan ile öde"
 msgstr "Pay with wallet"
 
@@ -482,6 +464,21 @@ msgstr "Void/refund key (sx)"
 msgid "API anahtarı (test_… ya da live_…)"
 msgstr "API key (test_… or live_…)"
 
+msgid "Yayımlanabilir anahtar (pk_test_… ya da pk_live_…)"
+msgstr "Publishable key (pk_test_… or pk_live_…)"
+
+msgid "Gizli anahtar (sk_… ya da kısıtlı rk_…)"
+msgstr "Secret key (sk_… or restricted rk_…)"
+
+msgid "Webhook imza anahtarı (whsec_…)"
+msgstr "Webhook signing secret (whsec_…)"
+
+msgid "Stripe panelinde Geliştiriciler › Webhook: bildirim adresini ekleyin, payment_intent.succeeded, payment_intent.processing ve payment_intent.payment_failed olaylarını seçin."
+msgstr "In the Stripe Dashboard, Developers › Webhooks: add the notification URL and select the payment_intent.succeeded, payment_intent.processing and payment_intent.payment_failed events."
+
+msgid "Ekstre eki (isteğe bağlı, en çok 22 karakter)"
+msgstr "Statement descriptor suffix (optional, up to 22 characters)"
+
 msgid "Web sitesi sırası"
 msgstr "Website index"
 
@@ -505,6 +502,9 @@ msgstr "Enter this account's notification address as the callback address in the
 
 msgid "Test ya da canlı, anahtarın önekinden anlaşılır (test_… / live_…). Türk lirası desteklenmez."
 msgstr "Test or live is taken from the key's prefix (test_… / live_…). Turkish lira is not supported."
+
+msgid "Kart alanları Stripe'ın Payment Element'idir; kart bilgisi siteye gelmez. 3D Secure, Apple Pay ve Google Pay Stripe'ta. Test ya da canlı, anahtarın önekinden anlaşılır ve hesabın test anahtarıyla aynı olmalı. \"Bağlantıyı test et\" alan adını Apple Pay için de kaydeder."
+msgstr "Card fields are Stripe's Payment Element; card details never reach the site. 3D Secure, Apple Pay and Google Pay are handled by Stripe. Test or live is read from the key prefix and must match the account's test switch. \"Test connection\" also registers the domain for Apple Pay."
 
 msgid "GiroGate yöntemi"
 msgstr "GiroGate method"
@@ -538,6 +538,33 @@ msgstr "Installments by card"
 
 msgid "Sunucu bildirimi"
 msgstr "Server notification"
+
+msgid "Önceki çekimin sonucu bekleniyor."
+msgstr "The result of the previous charge is not in yet."
+
+msgid "Sonuç gelmedi."
+msgstr "No result came back."
+
+msgid "Sipariş #%s"
+msgstr "Order #%s"
+
+msgid "Kart çekilemedi."
+msgstr "The card was not charged."
+
+msgid "Öde"
+msgstr "Pay"
+
+msgid "İşleniyor…"
+msgstr "Processing…"
+
+msgid "Ödeme formu yüklenemedi. Sayfayı yenileyin ya da başka bir yöntem seçin."
+msgstr "The payment form could not be loaded. Refresh the page or choose another method."
+
+msgid "Kart bilgileriniz Stripe'ın güvenli alanlarında işlenir ve sitede saklanmaz."
+msgstr "Your card details are processed in Stripe's secure fields and are not stored on this site."
+
+msgid "Vazgeç"
+msgstr "Cancel"
 
 msgid "Bekliyor"
 msgstr "Pending"
@@ -615,6 +642,12 @@ msgstr "No active POS account; card payments are not taken."
 
 msgid "Test modunda hesap var, gerçek para çekilmez: %s"
 msgstr "An account is in test mode, no real money is charged: %s"
+
+msgid "%s: webhook imza anahtarı yok. Ödeme dönüşü yine okunur, ama ödeyen dönmeden sayfayı kapatırsa sipariş bekler. Stripe panelinde bildirim adresini ekleyip whsec_… anahtarını girin."
+msgstr "%s: no webhook signing secret. The payment return is still read, but if the payer closes the page before returning the order stays pending. Add the notification URL in the Stripe Dashboard and enter the whsec_… secret."
+
+msgid "Resmi WooCommerce Stripe eklentisi de açık. Ödeyen iki kart yöntemi görmesin diye Flux POS › Yöntemler'de tek kart yöntemini seçin."
+msgstr "The official WooCommerce Stripe plugin is also active. Pick a single card method in Flux POS › Methods so payers do not see two card options."
 
 msgid "Site HTTPS değil; bankalar dönüş adresine kart sonucu göndermez, kart formu güvensiz olur."
 msgstr "The site is not on HTTPS; banks do not send the card result to the return address and the card form is not secure."
@@ -1156,69 +1189,6 @@ msgstr "Amount to refund."
 msgid "The transaction after the refund."
 msgstr "The transaction after the refund."
 
-msgid "Genel düzen"
-msgstr "Generic layout"
-
-msgid "Ekstre düzeni tanınmadı: başlık satırında tarih, tutar ve açıklama sütunları bulunamadı."
-msgstr "Statement layout not recognized: no date, amount and description columns found in a header row."
-
-msgid "Sırada"
-msgstr "Queued"
-
-msgid "Eşleşmedi"
-msgstr "Unmatched"
-
-msgid "Öneri var"
-msgstr "Suggested"
-
-msgid "Eşleşti"
-msgstr "Matched"
-
-msgid "Yoksayıldı"
-msgstr "Ignored"
-
-msgid "Çıkan"
-msgstr "Outgoing"
-
-msgid "Dosyada hareket bulunamadı."
-msgstr "No transactions found in the file."
-
-msgid "Hareket ya da sipariş bulunamadı."
-msgstr "Transaction or order not found."
-
-msgid "Bu hareket zaten eşleşmiş."
-msgstr "This transaction is already matched."
-
-msgid "Sipariş zaten ödenmiş."
-msgstr "The order is already paid."
-
-msgid "Havale/EFT banka hareketiyle eşleşti: %1$s, %2$s, \"%3$s\" (%4$s)."
-msgstr "Matched with a bank transfer transaction: %1$s, %2$s, \"%3$s\" (%4$s)."
-
-msgid "otomatik"
-msgstr "automatic"
-
-msgid "Banka hareketi eşleşmesi kaldırıldı; sipariş durumu değiştirilmedi."
-msgstr "Bank transaction match removed; the order status was not changed."
-
-msgid "Dosya boş."
-msgstr "The file is empty."
-
-msgid "Dosya okunamadı; Excel (.xls, .xlsx) ya da CSV olarak yeniden indirin."
-msgstr "The file could not be read; download it again as Excel (.xls, .xlsx) or CSV."
-
-msgid "Sunucuda DOM uzantısı yok."
-msgstr "The DOM extension is missing on the server."
-
-msgid "Sunucuda zip uzantısı yok; dosyayı CSV olarak yükleyin."
-msgstr "The zip extension is missing on the server; upload the file as CSV."
-
-msgid "Excel dosyası açılamadı."
-msgstr "The Excel file could not be opened."
-
-msgid "Excel dosyasında sayfa bulunamadı."
-msgstr "No sheet found in the Excel file."
-
 msgid "Üye işyeri bilgileri hatalı; hesap ayarlarını kontrol edin."
 msgstr "The merchant details are wrong; check the account settings."
 
@@ -1287,6 +1257,93 @@ msgstr "The bank did not complete the 3D check."
 
 msgid "Sonuç Shopier bildirimiyle gelecek."
 msgstr "The result will come with the Shopier notification."
+
+msgid "Stripe anahtarları eksik: yayımlanabilir anahtar ve gizli anahtar gerekir."
+msgstr "Stripe keys are missing: a publishable key and a secret key are required."
+
+msgid "Stripe anahtarlarından biri test, biri canlı. İkisi aynı modda olmalı."
+msgstr "One Stripe key is test and the other is live. Both must be in the same mode."
+
+msgid "Hesap test modunda ama Stripe anahtarları canlı. Test anahtarlarını (sk_test_… / pk_test_…) girin ya da test modunu kapatın."
+msgstr "The account is in test mode but the Stripe keys are live. Enter test keys (sk_test_… / pk_test_…) or turn test mode off."
+
+msgid "Hesap canlı modda ama Stripe anahtarları test anahtarı. Canlı anahtarları girin ya da test modunu açın."
+msgstr "The account is live but the Stripe keys are test keys. Enter live keys or turn test mode on."
+
+msgid "Kart numarası geçerli değil."
+msgstr "The card number is not valid."
+
+msgid "Kart numarası hatalı."
+msgstr "The card number is incorrect."
+
+msgid "Kart numarası eksik."
+msgstr "The card number is incomplete."
+
+msgid "Son kullanma ayı geçersiz."
+msgstr "The expiry month is invalid."
+
+msgid "Son kullanma yılı geçersiz."
+msgstr "The expiry year is invalid."
+
+msgid "Son kullanma yılı geçmişte."
+msgstr "The expiry year is in the past."
+
+msgid "Son kullanma tarihi eksik."
+msgstr "The expiry date is incomplete."
+
+msgid "Kartın süresi dolmuş."
+msgstr "The card has expired."
+
+msgid "Güvenlik kodu geçersiz."
+msgstr "The security code is invalid."
+
+msgid "Güvenlik kodu hatalı."
+msgstr "The security code is incorrect."
+
+msgid "Güvenlik kodu eksik."
+msgstr "The security code is incomplete."
+
+msgid "Posta kodu doğrulanamadı."
+msgstr "The postal code failed validation."
+
+msgid "Posta kodu geçersiz; düzeltip yeniden deneyin."
+msgstr "Invalid postal code; please correct it and try again."
+
+msgid "Kart reddedildi."
+msgstr "The card was declined."
+
+msgid "Kartın bakiyesi ya da limiti yetersiz."
+msgstr "The card has insufficient funds or limit."
+
+msgid "Kartı veren banka ödemeyi onaylamadı."
+msgstr "The card issuer did not approve the payment."
+
+msgid "Kartın işlem sınırı aşıldı."
+msgstr "The card's transaction limit was exceeded."
+
+msgid "Banka kart doğrulaması (3D Secure) istiyor."
+msgstr "The bank requires card authentication (3D Secure)."
+
+msgid "3D Secure doğrulaması başarısız; yeniden deneyin ya da başka kart kullanın."
+msgstr "3D Secure authentication failed; try again or use another card."
+
+msgid "Kart işlenirken bir hata oluştu; yeniden deneyin."
+msgstr "An error occurred while processing the card; please try again."
+
+msgid "E-posta adresi geçersiz."
+msgstr "The email address is invalid."
+
+msgid "Ödeme işlenemedi; yeniden deneyin ya da başka bir yöntem kullanın."
+msgstr "The payment could not be processed; try again or use another method."
+
+msgid "Ödeme Stripe'ta işleniyor."
+msgstr "The payment is processing at Stripe."
+
+msgid "Ödeme doğrulaması bekleniyor."
+msgstr "Waiting for payment authentication."
+
+msgid "Ödeme iptal edildi."
+msgstr "The payment was canceled."
 
 msgid "Bu sağlayıcı bildirim göndermiyor."
 msgstr "This provider sends no notifications."

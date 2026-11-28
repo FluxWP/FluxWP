@@ -62,8 +62,9 @@
 .flxbk-confirm{margin:0 0 16px}
 .flxbk-modal-actions{display:flex;justify-content:flex-end;gap:8px}
 @media (max-width:782px){
-.flxbk-field{grid-template-columns:1fr;gap:6px}
+.flxbk-field{grid-template-columns:minmax(0,1fr);gap:6px}
 .flxbk-field>label{padding-top:0}
+.flxbk-btn{max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
 .flxbk-app input[type=url],.flxbk-app input[type=password],.flxbk-field input[type=text]{width:100%}
 .flxbk-list li{flex-direction:column;align-items:flex-start}
 }

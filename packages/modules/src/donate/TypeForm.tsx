@@ -7,10 +7,10 @@ import { useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxDonateTypeForm, FlxDonateTypes, FlxDonationTypeDelete, FlxDonationTypeSave } from '@fluxwp/graphql/operations';
 import type { FlxDonateTypeFormQuery, FlxDonationTypeStatus } from '@fluxwp/graphql/types';
-import { Check, DatePicker, Loading, Modal, Screen } from '@fluxwp/ui';
+import { Check, DatePicker, Loading, Modal, Screen, type ScreenBack } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { IslandNode } from './Detail';
-import { Go, Ico, useDonate } from './shared';
+import { Go, Ico, useBackButton, useDonate } from './shared';
 import { Failed } from './Subscriptions';
 
 type F = NonNullable<FlxDonateTypeFormQuery['flxDonationTypeForm']>;
@@ -138,11 +138,7 @@ export function TypeForm({ id, query, notice }: { id: number; query: string; not
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const back = (
-    <Go className="flxdn-back" href={f?.listUrl ?? 'admin.php?page=flxb-types'}>
-      <span aria-hidden="true">‹</span> {t('Donation types')}
-    </Go>
-  );
+  const back = useBackButton(f?.listUrl ?? 'admin.php?page=flxb-types', t('Donation types'));
   const title = id ? t('Edit donation type') : t('New donation type');
   if (!q.data) {
     return (
@@ -153,15 +149,15 @@ export function TypeForm({ id, query, notice }: { id: number; query: string; not
   }
   if (!f) {
     return (
-      <Screen className="flxdn" width="wide" icon={host.appIcon} title={t('Donation type not found')} notice={notice}>
-        {back}
+      <Screen className="flxdn" width="wide" icon={host.appIcon} title={t('Donation type not found')} notice={notice} backButton={back}>
+        {null}
       </Screen>
     );
   }
   return <Editor key={f.databaseId} f={f} islands={islands.current ?? []} title={title} back={back} notice={notice} />;
 }
 
-function Editor({ f, islands, title, back, notice }: { f: F; islands: F['islands']; title: string; back: ReactNode; notice: ReactNode }) {
+function Editor({ f, islands, title, back, notice }: { f: F; islands: F['islands']; title: string; back: ScreenBack | undefined; notice: ReactNode }) {
   const host = useHost();
   const { t, told } = useDonate();
   const { scope } = useGraphQL();
@@ -261,8 +257,7 @@ function Editor({ f, islands, title, back, notice }: { f: F; islands: F['islands
   const units: Choice[] = f.units;
 
   return (
-    <Screen className="flxdn" width="wide" icon={host.appIcon} title={title} notice={notice}>
-      {back}
+    <Screen className="flxdn" width="wide" icon={host.appIcon} title={title} notice={notice} backButton={back}>
       <form ref={root} className="flxdn-typeform" onSubmit={submit}>
         <div className="flxdn-grid flxdn-grid--2-1">
           <div className="flxdn-stack">

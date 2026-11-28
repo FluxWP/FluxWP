@@ -28,6 +28,7 @@ final class FLXPOS_Admin {
 			flx_admin_screen(
 				'flx-pos',
 				array(
+					'start_param'  => 'tab',
 					'module'       => 'flxpos-pos',
 					'assets_dir'   => FLXPOS_DIR . 'assets/flux/',
 					'assets_url'   => FLXPOS_URL . 'assets/flux/',
@@ -44,21 +45,20 @@ final class FLXPOS_Admin {
 	/** Ekranın açılış seçenekleri. */
 	public static function flux_options() {
 		$accent = function_exists( 'flxa_accent' ) ? (string) flxa_accent() : '#2c7a64';
-		$tab    = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		$search = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		return array(
 			'colors' => array(
 				'primary'         => $accent,
 				'primaryContrast' => function_exists( 'flxa_on_color' ) ? (string) flxa_on_color( $accent ) : '#ffffff',
 			),
-			'tab'    => $tab,
+			'appIcon' => flxpos_logo_url(),
 			'search' => $search,
 		);
 	}
 
 	/** Renkli menü logosu (WP data-URI SVG'yi tek renge boyar). */
 	public static function menu_logo() {
-		echo '<style>#toplevel_page_flx-pos .wp-menu-image{background:url(' . esc_url( FLXPOS_URL . 'assets/icon.svg?ver=' . FLXPOS_VERSION ) . ') center/20px 20px no-repeat}</style>';
+		echo '<style>#toplevel_page_flx-pos .wp-menu-image{background:url(' . esc_url( flxpos_logo_url( function_exists( 'flxa_logo_style' ) ? flxa_logo_style() : 'gradient' ) ) . ') center/20px 20px no-repeat}</style>';
 	}
 
 	public static function render() {

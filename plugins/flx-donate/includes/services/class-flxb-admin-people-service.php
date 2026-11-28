@@ -99,7 +99,7 @@ final class FLXB_Admin_People_Service {
 
 	/** Recurring donations can be canceled from here when Flux Donate takes the payments. */
 	public static function can_cancel(): bool {
-		return function_exists( 'flxb_owns_payments' ) && flxb_owns_payments() && self::can_manage();
+		return self::can_manage();
 	}
 
 	/**
@@ -388,12 +388,12 @@ final class FLXB_Admin_People_Service {
 		$dn     = flxb_table( 'donations' );
 		$gifts  = self::i( $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE subscription_id = %d AND status IN (\'completed\',\'partially_refunded\')', $dn, $id ) ) );
 		$why    = '';
-		if ( 'iyzico' === self::s( $s['provider'] ?? '' ) && 'canceled' !== $status ) {
+		if ( FLXB_Renewals::PROVIDER === self::s( $s['provider'] ?? '' ) && 'canceled' !== $status ) {
 			$sm    = self::arr( FLXB_Subscriptions::meta( $s ) );
 			$err   = self::s( $sm['last_error'] ?? '' );
 			$tries = self::i( $sm['retry_count'] ?? 0 );
 			if ( '' !== $err && $tries > 0 ) {
-				/* translators: 1: attempts made, 2: attempts allowed, 3: error from iyzico */
+				/* translators: 1: attempts made, 2: attempts allowed, 3: error from the payment provider */
 				$why = sprintf( __( 'Attempt %1$s of %2$s failed: %3$s', 'flx-donate' ), number_format_i18n( $tries ), number_format_i18n( self::max_attempts() ), $err );
 			}
 			$card = self::s( self::arr( $sm['card'] ?? null )['label'] ?? '' );
@@ -407,7 +407,6 @@ final class FLXB_Admin_People_Service {
 			? ( '' !== $canceled ? sprintf( __( 'canceled %s', 'flx-donate' ), self::date( $canceled ) ) : '' )
 			: self::date( self::s( $s['next_charge_at'] ?? '' ) );
 		$label    = self::arr( flxb_status_label( $status ) );
-		$provider = function_exists( 'flxf_payment_provider' ) ? flxf_payment_provider( self::s( $s['provider'] ?? '' ) ) : null;
 		$started  = self::s( $s['started_at'] ?? '' );
 		return array(
 			'databaseId'    => $id,
@@ -425,14 +424,13 @@ final class FLXB_Admin_People_Service {
 			'nextLabel'     => $next,
 			'gifts'         => $gifts,
 			'giftsUrl'      => self::s( FLXB_Admin_Url::page( 'flxb-donations', array( 'donor_id' => $donor, 'type' => 'recurring' ) ) ),
-			'canCancel'     => self::can_cancel() && is_object( $provider ) && method_exists( $provider, 'cancel_subscription' ) && in_array( $status, array( 'active', 'past_due' ), true ),
+			'canCancel'     => self::can_cancel() && FLXB_Renewals::PROVIDER === self::s( $s['provider'] ?? '' ) && in_array( $status, array( 'active', 'past_due' ), true ),
 		);
 	}
 
-	/** Charge attempts iyzico renewals make (FLXB_Iyzico_Recurring, loaded with the payment layer). */
+	/** Charge attempts a renewal makes (FLXB_Renewals). */
 	private static function max_attempts(): int {
-		$cb = apply_filters( 'flxb_iyzico_max_attempts_getter', 'FLXB_Iyzico_Recurring::max_attempts' );
-		return is_callable( $cb ) ? self::i( call_user_func( $cb ) ) : 0;
+		return self::i( FLXB_Renewals::max_attempts() );
 	}
 
 	private static function err( string $code, string $msg ): WP_Error {
@@ -440,7 +438,7 @@ final class FLXB_Admin_People_Service {
 	}
 
 	/**
-	 * Cancels a recurring donation at its provider (the classic flxb_sub_cancel handler).
+	 * Cancels a recurring donation: the renewal cron stops charging and the stored card ids are forgotten.
 	 *
 	 * @return array{message: string}|WP_Error
 	 */
@@ -449,23 +447,8 @@ final class FLXB_Admin_People_Service {
 		if ( ! $s ) {
 			return self::err( 'INVALID_INPUT', __( 'Recurring donation not found.', 'flx-donate' ) );
 		}
-		$ref      = self::s( $s['provider_ref'] ?? '' );
-		$gw       = self::s( $s['provider'] ?? '' );
-		$provider = function_exists( 'flxf_payment_provider' ) ? flxf_payment_provider( $gw ) : null;
-		if ( ! is_object( $provider ) || ! method_exists( $provider, 'cancel_subscription' ) || ! in_array( self::s( $s['status'] ?? '' ), array( 'active', 'past_due' ), true ) ) {
+		if ( FLXB_Renewals::PROVIDER !== self::s( $s['provider'] ?? '' ) || ! in_array( self::s( $s['status'] ?? '' ), array( 'active', 'past_due' ), true ) || ! FLXB_Renewals::cancel( $id, 'admin' ) ) {
 			return self::err( 'CONFLICT', __( 'This recurring donation cannot be canceled here.', 'flx-donate' ) );
-		}
-		$res = $provider->cancel_subscription( $ref );
-		if ( ! is_object( $res ) || ! method_exists( $res, 'is_paid' ) || ! $res->is_paid() ) {
-			$msg = is_object( $res ) && property_exists( $res, 'message' ) ? self::s( $res->message ) : '';
-			return self::err( 'CONFLICT', '' !== $msg ? $msg : __( 'The action could not be completed.', 'flx-donate' ) );
-		}
-		FLXB_Subscriptions::set_status( $gw, $ref, 'canceled', array( 'canceled_at' => flxb_now() ) );
-		if ( class_exists( 'FLXB_Payment_Records' ) ) {
-			$rec = FLXB_Payment_Records::get_by_reference( $gw, $ref, 'subscription_id' );
-			if ( is_object( $rec ) && isset( $rec->id ) ) {
-				FLXB_Payment_Records::update( $rec->id, array( 'status' => 'canceled' ) );
-			}
 		}
 		return array( 'message' => __( 'The recurring donation was canceled. No further charges will be made.', 'flx-donate' ) );
 	}

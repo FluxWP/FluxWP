@@ -252,6 +252,7 @@ function flxc_bot_sandbox_turn( array $history, array $state, $template, $model 
 	}
 	$state = flxc_bot_lang_from_text( $state, implode( "\n", array_slice( $ut, -3 ) ) );
 	flxc_bot_lang_set( flxc_bot_state_lang( $state ) );
+	flxc_bot_cur_set( flxc_bot_state_cur( $state ) ); // 1.55.0
 	$messages = array( array( 'role' => 'system', 'content' => flxc_bot_system_prompt( $chat, $state, $template ) ) );
 	$prev     = null;
 	foreach ( array_slice( $history, -60 ) as $m ) {

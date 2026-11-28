@@ -8,7 +8,7 @@
   "messages": {
     "Backups": "النسخ الاحتياطية",
     "Backups › Dashboard": "النسخ الاحتياطية › لوحة القيادة",
-    "Dashboard": "لوحة القيادة",
+    "Dashboard": "لوحة التحكم",
     "Backups › Settings": "النسخ الاحتياطية › الإعدادات",
     "Settings": "الإعدادات",
     "Permanently delete this backup?": "هل تريد حذف هذه النسخة الاحتياطية نهائيًا؟",
@@ -349,6 +349,8 @@
     "No backups": "لا توجد نسخ احتياطية",
     "Back up": "نسخ احتياطي",
     "Progress": "التقدم",
-    "Take the first backup with Back up now. Restore is done in the panel.": "خذ النسخة الاحتياطية الأولى مع النسخ الاحتياطي الآن. تتم الاستعادة في اللوحة."
+    "Take the first backup with Back up now. Restore is done in the panel.": "خذ النسخة الاحتياطية الأولى مع النسخ الاحتياطي الآن. تتم الاستعادة في اللوحة.",
+    "JavaScript is required for this screen.": "JavaScript مطلوب لهذه الشاشة.",
+    "%s%%": "%s٪"
   }
 }

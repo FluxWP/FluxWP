@@ -69,9 +69,10 @@ function flxai_chat( array $messages, array $opts = array() ) {
 	$messages = (array) apply_filters( 'flxai_request_messages', $messages, $opts );
 	$p        = flxai_parse_model( $model );
 	$t0       = microtime( true );
-	$res      = 'anthropic' === $p['provider']
+	$via      = flxai_cloud_for( $p['provider'] );
+	$res      = 'anthropic' === $p['provider'] && ! $via
 		? flxai_anthropic_request( $messages, $opts, $p['id'] )
-		: flxai_openrouter_request( $messages, $opts, $p['id'] );
+		: flxai_openrouter_request( $messages, $opts, $p['id'], $p['provider'] );
 	$ms       = (int) round( ( microtime( true ) - $t0 ) * 1000 );
 	$u        = is_wp_error( $res ) ? array() : (array) ( $res['_usage'] ?? array() );
 	$log_id   = flxai_log(
@@ -80,7 +81,7 @@ function flxai_chat( array $messages, array $opts = array() ) {
 			'purpose'     => (string) ( $opts['purpose'] ?? '' ),
 			'user_id'     => (int) ( $opts['user_id'] ?? get_current_user_id() ),
 			'chat_id'     => (int) ( $opts['chat_id'] ?? 0 ),
-			'provider'    => $p['provider'],
+			'provider'    => $via ? 'cloud' : $p['provider'],
 			'model'       => $p['full'],
 			'in_tok'      => (int) ( $u['in'] ?? 0 ),
 			'out_tok'     => (int) ( $u['out'] ?? 0 ),

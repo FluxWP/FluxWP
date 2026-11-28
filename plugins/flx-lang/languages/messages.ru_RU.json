@@ -114,6 +114,20 @@
     "Name (%s)": "Имя (%s)",
     "Description (%s)": "Описание (%s)",
     "If left empty, the Turkish name and description are shown.": "Если оставить пустым, отображаются турецкое имя и описание.",
-    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI."
+    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI.",
+    "JavaScript is required for this screen.": "Для этого экрана требуется JavaScript.",
+    "A language code has 2–3 letters and, optionally, a region such as pt-br.": "В языковом кодексе имеется 2-3 буквы и, факультативно, такой регион, как пт-бр.",
+    "A language can be listed only once.": "Язык можно перечислить только один раз.",
+    "A WordPress locale has letters, digits and an underscore, e.g. en_US.": "A WordPress У местных есть письма, цифры и подсказка, например в США.",
+    "This language is not in the catalog.": "Этот язык не в каталоге.",
+    "The default language must be one of the listed languages and cannot be removed.": "Этот язык не может быть одним из языков, перечисленных в перечне, и его нельзя исключить.",
+    "Unknown suggestion mode.": "Неизвестный способ предложения.",
+    "The suggested language must be one of the listed languages.": "Предлагаемая формулировка должна быть одним из перечисленных языков.",
+    "Unknown switcher style.": "Неизвестный стиль коммутатора.",
+    "Unknown switcher position.": "Неизвестное положение коммутатора.",
+    "Use two-letter country codes (TR, CY…).": "Использовать коды двух стран (TR, CY...).",
+    "This content type does not exist.": "Этот тип содержания отсутствует.",
+    "Unknown site text.": "Неизвестный текст на объекте.",
+    "Site texts belong to a language other than the default one.": "Тексты на месте относятся к иному языку, чем неисповедаемый."
   }
 }

@@ -3805,7 +3805,7 @@ type FlxSubscriptionItem {
   intervalLabel: String!
   """Next charge, or when it was canceled; empty when unknown."""
   nextLabel: String!
-  """Card and the last failed attempt (iyzico); empty without one."""
+  """Card and the last failed attempt; empty without one."""
   note: String!
   """Reference at the payment provider."""
   reference: String!

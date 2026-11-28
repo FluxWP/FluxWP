@@ -6,7 +6,7 @@ import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/gr
 import { Loading } from '@fluxwp/ui';
 import { Chart } from '@fluxwp/ui/chart';
 import { BreakdownTable } from './Overview';
-import { Card, dayLabel, Pill, errText, useAi, type Notice, NoticeBar } from './common';
+import { Card, dayLabel, Pill, errText, useAi, type Notice, NoticeBar, Kpi } from './common';
 import { Meters } from './Meters';
 
 export function Billing() {
@@ -152,15 +152,5 @@ export function Billing() {
         )}
       </Card>
     </>
-  );
-}
-
-function Kpi({ label, value, sub }: { label: string; value: string; sub: string }) {
-  return (
-    <div className="flxai-card flxai-kpi">
-      <div className="flxai-muted">{label}</div>
-      <div className="flxai-big">{value}</div>
-      <div className="flxai-muted">{sub}</div>
-    </div>
   );
 }

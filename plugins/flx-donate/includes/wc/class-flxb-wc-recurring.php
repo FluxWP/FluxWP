@@ -2,14 +2,13 @@
 /**
  * Flux Donate 2.0: monthly donations through WooCommerce.
  *
- * The cart line carries "monthly". The first order is paid with the Flux Donate iyzico gateway, which
- * asks iyzico to store the card. When that order is paid, each monthly line becomes a Flux Donate
- * recurring donation (provider iyzico, reference "wc-<order>-<item>", card sealed in its meta,
- * meta.wc = parent order / item / line). Flux Donate's renewal cron (FLXB_Iyzico_Recurring) charges the
- * card on each due date; for these donations it first opens a pending WooCommerce renewal order
- * (reused for retries), completes it when iyzico accepts the charge and fails it after the last
- * attempt. The ledger then records the renewal like any other paid order. Past due and cancel work
- * as before.
+ * The cart line carries "monthly". The first order is paid on the WooCommerce checkout with Flux POS's card
+ * method; Flux Donate marks such an order (`_flxpos_save` = yes) so Flux POS stores the card at the payment
+ * provider. When that order is paid, each monthly line becomes a Flux Donate recurring donation (provider
+ * flxpos, reference "wc-<order>-<item>", card ids in its meta, meta.wc = parent order / item / line). The
+ * renewal cron (FLXB_Renewals) opens a pending WooCommerce renewal order on each due date (reused for retries)
+ * and charges it through Flux POS; Flux POS pays the order and the ledger records it like any other paid
+ * order. Past due and cancel work as before.
  *
  * GPL v2 or later.
  *
@@ -25,6 +24,39 @@ class FLXB_WC_Recurring {
 	public static function init() {
 		add_action( 'woocommerce_order_status_changed', array( __CLASS__, 'on_status' ), 10, 4 );
 		add_action( 'woocommerce_payment_complete', array( __CLASS__, 'maybe_start' ), 5 );
+		add_filter( 'woocommerce_available_payment_gateways', array( __CLASS__, 'gateways' ), 50 );
+		add_action( 'woocommerce_checkout_create_order', array( __CLASS__, 'mark_order' ), 20 );
+		add_action( 'woocommerce_store_api_checkout_update_order_meta', array( __CLASS__, 'mark_order' ), 20 );
+		add_action( 'woocommerce_before_pay_action', array( __CLASS__, 'mark_order' ), 5 );
+	}
+
+	/** Monthly lines in the cart, or in the order being paid (order-pay page). */
+	public static function context_monthly() {
+		global $wp;
+		if ( isset( $wp->query_vars['order-pay'] ) && function_exists( 'is_checkout_pay_page' ) && is_checkout_pay_page() ) {
+			$o = wc_get_order( absint( $wp->query_vars['order-pay'] ) );
+			return $o && FLXB_WC_Cart::order_has_monthly( $o );
+		}
+		return FLXB_WC_Cart::cart_has_monthly();
+	}
+
+	/** A monthly gift needs a stored card: only Flux POS's card method is offered. */
+	public static function gateways( $gateways ) {
+		if ( ! is_array( $gateways ) || ( is_admin() && ! wp_doing_ajax() ) || ! self::context_monthly() ) {
+			return $gateways;
+		}
+		return isset( $gateways[ FLXB_Renewals::GATEWAY ] ) ? array( FLXB_Renewals::GATEWAY => $gateways[ FLXB_Renewals::GATEWAY ] ) : array();
+	}
+
+	/** An order with monthly lines asks Flux POS to store the card. */
+	public static function mark_order( $order ) {
+		if ( ! $order instanceof WC_Order || ! FLXB_WC_Cart::order_has_monthly( $order ) ) {
+			return;
+		}
+		$order->update_meta_data( '_flxpos_save', 'yes' );
+		if ( ! doing_action( 'woocommerce_checkout_create_order' ) ) {
+			$order->save_meta_data();
+		}
 	}
 
 	public static function on_status( $order_id, $from, $to, $order = null ) {
@@ -39,12 +71,12 @@ class FLXB_WC_Recurring {
 		if ( ! $order || self::VIA === $order->get_created_via() || ! $order->is_paid() ) {
 			return;
 		}
-		$card = $order->get_meta( '_flxb_iyz_card' );
+		$card = function_exists( 'flxpos_saved_card' ) ? flxpos_saved_card( $order ) : null;
 		foreach ( FLXB_WC_Cart::order_lines( $order ) as $item_id => $item ) {
 			if ( ! (int) $item->get_meta( 'flxb_monthly' ) || (int) $item->get_meta( '_flxb_subscription_id' ) || $item->get_meta( '_flxb_monthly_not_saved' ) ) {
 				continue;
 			}
-			if ( FLXB_WC_Iyzico::ID !== $order->get_payment_method() || ! is_array( $card ) || empty( $card['k'] ) || empty( $card['t'] ) ) {
+			if ( ! is_array( $card ) ) {
 				$item->update_meta_data( '_flxb_monthly_not_saved', 1 );
 				$item->save();
 				/* translators: %s: line name */
@@ -77,7 +109,7 @@ class FLXB_WC_Recurring {
 				'currency'       => $order->get_currency(),
 				'interval_unit'  => 'month',
 				'status'         => 'active',
-				'provider'       => 'iyzico',
+				'provider'       => FLXB_Renewals::PROVIDER,
 				'provider_ref'   => $ref,
 				'form_id'        => (int) ( $form['id'] ?? 0 ),
 				'type_id'        => (int) $l['type_id'],
@@ -89,7 +121,6 @@ class FLXB_WC_Recurring {
 		if ( ! $id ) {
 			return 0;
 		}
-		$info = $order->get_meta( '_flxb_iyzico' );
 		$line = $l;
 		unset( $line['cert'], $line['name'], $line['address'], $line['send_me'] );
 		FLXB_Subscriptions::update(
@@ -116,9 +147,8 @@ class FLXB_WC_Recurring {
 				'buyer'         => $buyer,
 				'buyer_ip'      => (string) $order->get_customer_ip_address(),
 				'form_name'     => $item->get_name(),
-				'first_payment' => is_array( $info ) ? (string) ( $info['paymentId'] ?? '' ) : '',
+				'first_payment' => (string) $order->get_transaction_id(),
 				'retry_count'   => 0,
-				'sandbox'       => (bool) $order->get_meta( '_flxb_iyz_sandbox' ),
 				'wc'            => array(
 					'order'    => (int) $order->get_id(),
 					'item'     => (int) $item->get_id(),
@@ -132,14 +162,14 @@ class FLXB_WC_Recurring {
 		$item->update_meta_data( '_flxb_subscription_id', $id );
 		$item->save();
 		/* translators: 1: line name, 2: recurring donation id */
-		$order->add_order_note( sprintf( __( '"%1$s" repeats monthly (recurring donation #%2$d); the card is stored at iyzico.', 'flx-donate' ), $item->get_name(), $id ) );
-		FLXB_Iyzico_Recurring::mail_donor( FLXB_Subscriptions::get( $id ), 'started' );
+		$order->add_order_note( sprintf( __( '"%1$s" repeats monthly (recurring donation #%2$d); the card is stored at the payment provider.', 'flx-donate' ), $item->get_name(), $id ) );
+		FLXB_Renewals::mail_donor( FLXB_Subscriptions::get( $id ), 'started' );
 		do_action( 'flxb_wc_recurring_started', $id, $order, $item );
 		return $id;
 	}
 
 	/* ------------------------------------------------------------------
-	 * Renewals (called by FLXB_Iyzico_Recurring)
+	 * Renewals (called by FLXB_Renewals)
 	 * ------------------------------------------------------------------ */
 
 	/** Is this recurring donation charged through WooCommerce renewal orders? */
@@ -205,8 +235,8 @@ class FLXB_WC_Recurring {
 			$order->set_billing_phone( (string) ( $b['phone'] ?? '' ) );
 		}
 		$order->set_currency( (string) $s['currency'] );
-		$order->set_payment_method( FLXB_WC_Iyzico::ID );
-		$order->set_payment_method_title( __( 'Card (iyzico), monthly', 'flx-donate' ) );
+		$order->set_payment_method( FLXB_Renewals::GATEWAY );
+		$order->set_payment_method_title( __( 'Card, monthly', 'flx-donate' ) );
 		$order->update_meta_data( '_flxb_subscription_id', (int) $s['id'] );
 		$order->update_meta_data( '_flxb_renewal_of', (int) ( $wc['order'] ?? 0 ) );
 		$order->update_meta_data( '_flxb_renewal_period', (string) $period );
@@ -221,25 +251,17 @@ class FLXB_WC_Recurring {
 	}
 
 	/**
-	 * The card was charged: complete the renewal order (the ledger records it).
+	 * The card was charged (Flux POS paid the renewal order): record it in the ledger.
 	 *
 	 * @return int Donation id.
 	 */
-	public static function renewal_paid( array $s, $period, array $r ) {
+	public static function renewal_paid( array $s, $period ) {
 		$order = self::renewal_order( $s, $period );
 		if ( ! $order ) {
 			return 0;
 		}
-		$info = FLXB_Iyzico_Api::payment_info( $r );
-		if ( ! $order->is_paid() ) {
-			$order->update_meta_data( '_flxb_iyzico', $info );
-			$order->save_meta_data();
-			/* translators: 1: card, 2: payment id */
-			$order->add_order_note( sprintf( __( 'Monthly charge accepted by iyzico: %1$s, payment id %2$s.', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'] ) );
-			$order->payment_complete( $info['paymentId'] );
-		}
-		$ids = FLXB_WC_Ledger::sync( wc_get_order( $order->get_id() ) );
-		$m   = FLXB_Subscriptions::meta( FLXB_Subscriptions::get( (int) $s['id'] ) );
+		$ids  = FLXB_WC_Ledger::sync( wc_get_order( $order->get_id() ) );
+		$m    = FLXB_Subscriptions::meta( FLXB_Subscriptions::get( (int) $s['id'] ) );
 		$open = (array) ( $m['wc_renewal'] ?? array() );
 		unset( $open[ $period ] );
 		FLXB_Subscriptions::update( (int) $s['id'], array( 'wc_renewal' => $open ? $open : null ) );

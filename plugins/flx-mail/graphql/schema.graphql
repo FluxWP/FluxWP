@@ -43,6 +43,8 @@ input FlxMailBrandInput {
 
 """One option in a settings list."""
 type FlxMailChoice {
+  """Preview image URL, when the option has one."""
+  image: String
   """Stored key."""
   key: String!
   """Label."""
@@ -135,6 +137,8 @@ type FlxMailLog {
   campaignId: Int!
   """Channel."""
   channel: String!
+  """Channel name for display."""
+  channelLabel: String!
   """When it was sent."""
   createdAt: FlxDateTime
   """Row id."""
@@ -155,6 +159,8 @@ type FlxMailLog {
   subject: String!
   """Template key."""
   template: String!
+  """Email name and source for display (&quot;Test · Flux Mail&quot;)."""
+  templateLabel: String!
 }
 
 """A page of send log rows."""
@@ -208,6 +214,20 @@ type FlxMailNote {
   """Account key."""
   mailbox: String!
   """Note."""
+  text: String!
+}
+
+"""Default opt-out texts and words."""
+type FlxMailOptoutDefaults {
+  """Opt-out words."""
+  keywords: String!
+  """Start words."""
+  optinKeywords: String!
+  """Reply after starting again."""
+  optinReply: String!
+  """Reply after opting out."""
+  reply: String!
+  """Opt-out line."""
   text: String!
 }
 
@@ -457,6 +477,8 @@ type FlxMailSettings {
   optinKeywords: String!
   """optinReply"""
   optinReply: String!
+  """Default opt-out texts and words in the site language."""
+  optoutDefaults: FlxMailOptoutDefaults!
   """optoutEnabled"""
   optoutEnabled: Boolean!
   """optoutFooterSms"""
@@ -731,12 +753,16 @@ type FlxMailSystemCheck {
   actionUrl: String!
   """Group."""
   group: String!
+  """Group name."""
+  groupLabel: String!
   """Check id."""
   id: ID!
   """Label."""
   label: String!
   """What was found."""
   message: String!
+  """Package that added the row."""
+  source: String!
   """ok, warning, error or info."""
   status: String!
 }

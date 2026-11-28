@@ -1199,3 +1199,9 @@ msgstr "Ventana de chat para el sitio basada en inteligencia artificial: con Flu
 
 msgid "Still answering. Please wait a moment."
 msgstr "Todavía está respondiendo. Espere un momento."
+
+msgid "Answers site chats"
+msgstr "Respuestas chats del sitio"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript es necesario para esta pantalla."

@@ -1198,3 +1198,12 @@ msgstr "[[“网站的人工智能支持聊天窗口:使用 Flux AI,对网站内
 
 msgid "Still answering. Please wait a moment."
 msgstr "仍在回答。请稍等。"
+
+msgid "Answers site chats"
+msgstr "网站聊天回复"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript 此 screen幕需要。"
+
+msgid "Chat on WhatsApp"
+msgstr "聊天时间 WhatsApp"

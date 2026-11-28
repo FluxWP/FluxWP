@@ -733,7 +733,7 @@
     "Payments on the site": "Sitedeki ödemeler",
     "Payments per click": "Tıklama başına ödeme",
     "Cost per payment": "Ödeme başı maliyet",
-    "People": "Kişi",
+    "People": "Kişiler",
     "Gave at least once": "En az bir kez bağış yapan",
     "Income": "Gelir",
     "Per person": "Kişi başı",
@@ -758,6 +758,9 @@
     "Video ad": "Video reklam",
     "Organic post": "Organik paylaşım",
     "E-mail": "E-posta",
-    "Unknown platform.": "Bilinmeyen platform."
+    "Unknown platform.": "Bilinmeyen platform.",
+    "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn.\u0000%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn.": "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın.\u0000%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın.",
+    "in %s day\u0000in %s days": "%s gün sonra\u0000%s gün sonra",
+    "%d audience is updated daily.\u0000%d audiences are updated daily.": "%d kitle her gün güncelleniyor.\u0000%d kitle her gün güncelleniyor."
   }
 }

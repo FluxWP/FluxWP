@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## Yayınlanmamış
+- Expo 58.1.0 ve SDK ile uyumlu Expo UI, kriptografi, görsel, bildirim, yönlendirme ve güncelleme bağımlılıkları yenilendi; mobil CI sürüm uyumsuzluğu giderildi.
 - Sitenin ekranları içindeki onay, uyarı ve metin isteme pencereleri telefonun kendi penceresiyle (iOS/Android uyarısı, silme gibi işlemler kırmızı), ⋯ menüleri uygulamanın alt menüsüyle açılır; sitenin bildirimleri uygulamanın bildirimi olur (flx-app 0.9.5 ile). Açılır listeler zaten telefonun seçicisiyle açılıyor. Sürüm 1.0.2.
 - FluxWP eklenti ekranları (Yedekleme, SEO, Performans, Yönetim teması, Reklamlar, İstatistik, Flux AI ayarları, Sohbet botu, Site sohbetleri, Dosyalar, Headless, Diller, reCAPTCHA, Roller, FluxWP Panel, Sosyal medya, Stüdyo, Wiki, Blok Düzenleyici) sitedeki mobil ekranın aynısıyla uygulama içinde açılır: aynı başlık, tüm sekmeler, aynı düzen ve veri. Önceki yerel çizimde sekmeler yoktu, bazı metinler İngilizce kalıyordu, düzen ve alanlar siteden farklıydı. Yazılar, Sayfalar, Ortam, Siparişler, İşler, Mesajlar, Flux AI sohbeti ve CRM/Bağış uygulamanın kendi ekranlarında kalır.
 - İşler ekranı sitedeki mobil Tasks görünümüyle eşitlendi: proje/liste menüsü, Liste/Pano görünüm sekmeleri, arama yanında Grupla ve Sırala düğmeleri, dolu renkli durum rozetleri, her grupta "Yeni görev", alt görevleri aç/kapa oku, satır sonunda alt görev/yorum/dosya sayıları, sağ altta + düğmesi.

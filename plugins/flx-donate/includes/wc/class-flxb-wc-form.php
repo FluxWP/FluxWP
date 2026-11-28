@@ -750,16 +750,13 @@ final class FLXB_WC_Form {
 	}
 
 	/**
-	 * 2.0.2: "Payments are taken securely by …" under the button, else the generic line.
-	 * 2.33.2: the name is the card method donors see now (EsnekPOS, iyzico…, FLXB_WC_Gateways::badge_provider()),
-	 * not "iyzico" whenever an iyzico plugin is on.
+	 * 2.0.2: "Payments are taken securely by …" under the button, else the generic line. The name is the card
+	 * provider the payment plugin reports (filter flx_secure_badge_provider; Flux POS fills it).
 	 */
 	public static function secure_note() {
-		$prov = class_exists( 'FLXB_WC_Gateways' ) ? (string) FLXB_WC_Gateways::badge_provider( '' ) : '';
-		if ( 'iyzico' === $prov ) {
-			$text = __( 'Payments are taken securely by iyzico.', 'flx-donate' );
-		} elseif ( '' !== $prov ) {
-			/* translators: %s: payment provider name (EsnekPOS, PayTR…) */
+		$prov = trim( wp_strip_all_tags( (string) apply_filters( 'flx_secure_badge_provider', '' ) ) );
+		if ( '' !== $prov ) {
+			/* translators: %s: payment provider name (iyzico, PayTR…) */
 			$text = sprintf( __( 'Payments are taken securely by %s.', 'flx-donate' ), $prov );
 		} else {
 			$text = __( 'Pay safely by card or bank transfer.', 'flx-donate' );

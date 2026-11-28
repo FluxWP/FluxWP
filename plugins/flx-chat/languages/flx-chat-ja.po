@@ -2576,7 +2576,7 @@ msgid "Day of month"
 msgstr "月の日"
 
 msgid "Time"
-msgstr "時間"
+msgstr "時刻"
 
 msgid "no number"
 msgstr "番号なし"
@@ -4987,6 +4987,36 @@ msgstr "続き：誤解の後の苦情ですぐ停止"
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "別れのリアクションは👍か🤲、🙏は使わない"
 
+msgid "Schedules call-center reports"
+msgstr "コールセンターレポートのスケジュール"
+
+msgid "Can receive a call-center report"
+msgstr "コールセンターレポートを受信できます。"
+
+msgid "Can receive the general call-center report"
+msgstr "コールセンターの一般レポートを受信できます。"
+
+msgid "Uses the call center"
+msgstr "コールセンターを使用します。"
+
+msgid "Manages the call center"
+msgstr "コールセンターの管理"
+
+msgid "(updates are sent to this address too)"
+msgstr "(お知らせはこのアドレスにも送信されます)"
+
+msgid "Proxy"
+msgstr "プロキシ"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "代理人に「同意します」と返信してください。"
+
+msgid "at least %s"
+msgstr "%s以上"
+
+msgid "Sent from the chat"
+msgstr "チャットから送信します。"
+
 msgid "Promotional messages"
 msgstr "プロモーションメッセージ"
 
@@ -4999,11 +5029,26 @@ msgstr "プロモーションメッセージとリマインダーは送信され
 msgid "The person replied STOP to promotional messages."
 msgstr "この人はプロモーションメッセージにSTOPと返信しました。"
 
-msgid "at least %s"
-msgstr "%s以上"
+msgid "The upload has expired. Please add the file again."
+msgstr "アップロードが終了しましたので、再度ファイルを追加してください。"
 
-msgid "(updates are sent to this address too)"
-msgstr "(お知らせはこのアドレスにも送信されます)"
+msgid "The chat could not be opened."
+msgstr "チャットが開くことができませんでした。"
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "送信者または管理者のみがこのメッセージを編集できます。"
+
+msgid "This message can't be edited on this channel."
+msgstr "このメッセージはこのチャンネルでは編集できません。"
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "編集の期限が過ぎました。WhatsApp 所要時間15分)。"
+
+msgid "The message can't be empty."
+msgstr "メッセージが空にならない。"
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp は、メッセージを編集していません。"
 
 msgid "Assistant languages"
 msgstr "アシスタントの言語"

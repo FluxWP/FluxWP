@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.55.3
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
+## 1.55.2
+- AI asistan ve öneriler, sitede kendi anahtarı yokken FluxWP hesabının Flux Cloud AI kredisiyle çalışır (Flux AI 0.36+): "Yapay zekâ anahtarı ya da modeli girilmemiş" uyarısı kredi açıkken çıkmaz. `flxc_ai_provider_usable()`.
+
+## 1.55.1
+- Asistanın kart ödeme bağlantısı Flux POS "Kart ile öde" yöntemini kullanır (Flux Donate'in iyzico yöntemi kaldırıldı). Yöntem kapalıysa kart bağlantısı verilmez; `flxc_pay_card_gateway` filtresi değişmedi.
+
+## 1.55.0
+- Asistan kişinin para birimini hatırlar: Türkçe yazana TL gösterilir; yabancı dilde yazana (site birden fazla para birimi sunuyorsa: Flux Donate'ta bağışçının seçebildiği ve türde elle fiyatı girilmiş TL/USD/EUR) fiyattan önce hangisini istediği sorulur. Seçim kişide kalıcı saklanır (yeni `set_currency` aracı, kişi hafızasında "para birimi"), sonraki fiyat listesi, özet, bağış kaydı ve ödeme o para biriminde olur. Kur çevrimi yok; fiyatı o para biriminde girilmemiş seçenek sunulmaz. Para birimi değişirse seçili bağış yeniden hesaplanır.
+- Kişinin son konuşma dili kişi hafızasına da yazılır ("konuşma dili"). Hatırlatıcı artık kişinin son dilinde ve para biriminde gider; hatırlatıcıdaki hazır mesajlar (fiyat listesi vb.) da o dile çevrilir. Başka modüller için `flxc_chat_lang( $chat )` ve `flxc_chat_currency( $chat )`.
+- `flxc_create_donation` `currency` alır (Flux Donate'taki elle fiyat). Birden fazla para biriminde `donation_options` önbelleğe girmez.
+
+## 1.54.3
+- Asistan kişinin dilinde kalır: sohbet sitenin dilinden farklıysa (ör. İngilizce) talimata "yalnız bu dilde yaz; belirsiz ya da çok kısa mesajda ("no", "ok") da bu dilde kal; site dilinde kelime ya da parantez içinde karşılık ekleme" satırı eklendi. Model "no no no" gibi mesajda Türkçeye dönüyor ve "tree donations (fidan bağışı)" yazıyordu.
+
+## 1.54.2
+- Sesli mesaja çift cevap giderdi: dil tespiti tur başında okunmuş eski sohbet kaydını geri yazıp "son işlenen mesaj" işaretini geri sarıyordu, aynı mesaj ikinci kez cevaplanıyordu ("mesajınızın tamamı ulaşmadı"). Dil artık güncel kayıttan okunur; ayrıca bir çalıştırma aynı gelen mesajı iki kez işlemez.
+- Ses çevirisi hız sınırında (429) ve geçici sağlayıcı hatasında (5xx) en fazla 2 kez yeniden denenir (1 sn, 2 sn bekleyerek); düzelmezse yedek ses modeline geçer. Toplam süre ~35 sn ile sınırlı.
+- Sohbetteki sistem notu "Provider returned error" yerine sebebi söyler (ör. "Google AI Studio hız sınırına ulaşıldı…"); metin Flux AI 0.35.2'den gelir.
+
+## 1.54.1
+- Sol menü daraltma (uygulama şeridi) kapalıyken sohbet ekranı sol menünün ve üst çubuğun üstüne taşmaz, içerik alanında kalır.
+
 ## 1.54.0
 - Sohbetler ekranı klasik WhatsApp düzeninin birebir aynısı: sohbet listesi, filtre çipleri, açık sohbet, balonlar, yazma alanı (emoji, hızlı yanıt çipleri, ek, ses kaydı), kişi bilgisi paneli, koyu tema ve mobil görünüm.
 - Liste önizlemesi son mesajı gösterir (telefon numarası yerine). Hızlı yanıt çipleri kullanım sayısına göre sıralanır.

@@ -87,6 +87,7 @@ final class FLXAI_Settings {
 		public readonly bool $log_bodies,
 		public readonly int $log_body_days,
 		public readonly bool $delete_data,
+		public readonly string $cloud_ai = 'auto',
 	) {}
 }
 
@@ -127,7 +128,8 @@ final class FLXAI_Settings_Options {
 	 * @param string                  $default_model  The model used when none is chosen.
 	 * @param string                  $renderer       gotenberg | imagick | '' (none).
 	 * @param int                     $web_month_count Web searches this month.
-	 * @param bool                    $providers_ready At least one text-model key is saved.
+	 * @param bool                    $providers_ready At least one text-model key is saved (or Flux Cloud credits).
+	 * @param FLXAI_Cloud|null        $cloud          Flux Cloud AI credits; null when the site is not connected.
 	 */
 	public function __construct(
 		public readonly array $roles,
@@ -138,6 +140,33 @@ final class FLXAI_Settings_Options {
 		public readonly string $renderer,
 		public readonly int $web_month_count,
 		public readonly bool $providers_ready,
+		public readonly ?FLXAI_Cloud $cloud = null,
+	) {}
+}
+
+/** Flux Cloud AI credits of the FluxWP account this site is connected to (1 credit = 0.001 USD). */
+final class FLXAI_Cloud {
+
+	/**
+	 * @param bool   $on       Flux Cloud offers AI credits.
+	 * @param bool   $active   Requests of the default model go through Flux Cloud now.
+	 * @param bool   $basic    The plan has basic models only.
+	 * @param int    $monthly  Monthly credits of the plan; -1 unlimited.
+	 * @param int    $left     Credits left (monthly + bought); -1 unlimited.
+	 * @param int    $resets   Unix time the monthly credits renew.
+	 */
+	public function __construct(
+		public readonly bool $on,
+		public readonly bool $active,
+		public readonly bool $basic,
+		public readonly int $monthly,
+		public readonly int $used,
+		public readonly int $bonus,
+		public readonly int $left,
+		public readonly int $site_used,
+		public readonly int $resets,
+		public readonly string $buy_url,
+		public readonly string $default_model,
 	) {}
 }
 

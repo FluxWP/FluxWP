@@ -1,0 +1,87 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Serves headless front ends over GraphQL"
+msgstr "服务于无 head的前端 GraphQL"
+
+msgid "Headless"
+msgstr "Headless"
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr "This screen needs Flux GraphQL (0.4.0或新版) FluxWP Packages screen."
+
+msgid "This front end does not exist any more."
+msgstr "这条战线并不存在。"
+
+msgid "At most %d front ends can be added."
+msgstr "多数 %d 可以增加前端。"
+
+msgid "Give the front end a name."
+msgstr "把前线定在名上。"
+
+msgid "Enter the front end address with https:// (http:// only for localhost)."
+msgstr "输入前端地址, 使用 https:// (http:// only for localhost) 。"
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr "前端不可能有与这相同的地址。 WordPress. 方式 WordPress to another address (e.g. cms.example.com) first."
+
+msgid "Another front end already has this address."
+msgstr "另一个前端已经有了这一地址。"
+
+msgid "Enter the webhook address with https:// (http:// only for localhost)."
+msgstr "输入网站hook 地址, 使用 https:// (http:// only for localhost) 。"
+
+msgid "The language \"%s\" is not on this site."
+msgstr "\"%s.的语言没有在这个网址上。"
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr "review/review(例如/pi/review/review审查)的review审查道路开始。"
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr "秘密必须是至少24个字符。使用生成按钮。"
+
+msgid "The secret could not be stored securely on this server."
+msgstr "秘密不能安全地储存在这一服务器上。"
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr "网络需要保密,以便前端能够检查这一网站的呼声。"
+
+msgid "Choose what WordPress does with its own pages."
+msgstr "选择什么 WordPress 用自己的页面进行。"
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr "先加一个前端; WordPress 页面点访客和搜索引.。"
+
+msgid "Enter the webhook address and the secret first."
+msgstr "先输入 Webhook 地址和秘密 。"
+
+msgid "Sent without waiting for the answer."
+msgstr "发货时没有等待答案"
+
+msgid "The front end accepted the call."
+msgstr "前端接受这一呼吁。"
+
+msgid "The front end answered with HTTP %d."
+msgstr "前端回答 HTTP %d。"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr "尚未增加任何前端; GraphQL 工作,但联系、 can具地址和网络库,没有前端。"
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr "上一次的网络呼吁未能做到:%s,开放了无序页上的交付记录。"
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr "No revalidate webhook for: %s.这些前线目的只是在他们的教练外出时才显示出变化。"
+
+msgid "%d front end, webhook set."
+msgid_plural "%d front ends, webhooks set."
+msgstr[0] "%d 前端,网路设置。"
+
+msgid "Headless front ends"
+msgstr "前端"

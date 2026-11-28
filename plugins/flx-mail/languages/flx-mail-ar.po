@@ -203,7 +203,7 @@ msgid "Filter"
 msgstr "تصفية"
 
 msgid "Clear"
-msgstr "واضح"
+msgstr "مسح"
 
 msgid "%s entries"
 msgstr "إدخالات %s"
@@ -221,7 +221,7 @@ msgid "No entries."
 msgstr "لا توجد إدخالات."
 
 msgid "Bulk send"
-msgstr "إرسال بالجملة"
+msgstr "إرسال جماعي"
 
 msgid "Close"
 msgstr "إغلاق"
@@ -1271,7 +1271,7 @@ msgid "Each row shows something the site needs and whether it is in place. Fix e
 msgstr "يعرض كل صف شيئًا يحتاجه الموقع وما إذا كان موجودًا أم لا. إصلاح الأخطاء أولا؛ قم أيضًا بمراجعة التحذيرات."
 
 msgid "OK"
-msgstr "حسنًا"
+msgstr "موافق"
 
 msgid "Warning"
 msgstr "تحذير"
@@ -2659,6 +2659,398 @@ msgstr "مرفوض (سر التطبيق غير موجود)"
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr "يتحقق من أن خطافات الويب الواردة تأتي من Meta. تُرفض الأحداث الواردة إلى أن يُدخل."
 
-#: includes/helpers.php
+msgid "Manages communication"
+msgstr "الاتصالات المتعلقة بالطلبات"
+
+msgid "Write the message to see how it will look."
+msgstr "أكتب الرسالة لترى كيف ستبدو"
+
+msgid "Ayşe Yılmaz"
+msgstr "جين سميث"
+
+msgid "Variables are shown filled in for %s; the length changes with each name."
+msgstr "وتُظهر المتغيرات الملأة في عام %s؛ وتتغير المدة مع كل اسم."
+
+msgid "Text message"
+msgstr "رسالة نصية"
+
+msgid "%1$s / %2$s characters · %3$s SMS"
+msgstr "%1$s /%2$s شخصيات %3$s SMS"
+
+msgid "This message is sent and billed as %1$s SMS. Keep it under %2$s characters for a single SMS."
+msgstr "هذه الرسالة مرسلة و فواتيرها %1$s SMSأبقه تحت %2$s شخصيات لشخص واحد SMS."
+
+msgid "Longer than 6 SMS: Netgsm rejects messages over its maximum length (code 20). Shorten the text."
+msgstr "أطول من 6 سنوات SMS: Netgsm rejects messages over its maximum length (code 20). Shorten the text."
+
+msgid "%1$s recipients × %2$s SMS = %3$s SMS credits."
+msgstr "%1$s متلقية × %2$s SMS = %3$s SMS"
+
+msgid "Not supported in SMS and may arrive as \"?\" or be dropped: %s"
+msgstr "غير مدعمة في SMS ويمكن أن تصل إلى \"أو أن تسقط: %s"
+
+msgid "Turkish characters are on: one SMS holds 155 characters, longer messages 146 per part. ç ğ ı ş Ğ İ Ş count as two characters."
+msgstr "الشخصيات التركية على: SMS ويحمل 155 شخصية، ورسائل أطول 146 في كل جزء."
+
+msgid "Turkish characters are off: ş, ğ, ı, ç, ö, ü are sent as s, g, i, c, o, u. One SMS holds 160 characters, longer messages 153 per part."
+msgstr "الشخصية التركية مطفأة: (ش، دوغ، LY، ç، ö، ou، ü) مرسلة على أنها S، g، i، c، o، ش. 1 SMS) تحمل 160 شخصية، رسائل أطول من 153 للجزء."
+
+msgid "Commercial message: Netgsm does not deliver to numbers without İYS consent."
+msgstr "الرسالة التجارية: لا تُسلّم شركة نيتغزم أرقاماً دون موافقة شركة إكس."
+
+msgid "%1$s / %2$s characters"
+msgstr "%1$s / %2$s شخصيات"
+
+msgid "WhatsApp accepts at most 4,096 characters in one message. Shorten the text."
+msgstr "WhatsApp تقبل ما يزيد على 096 4 شخص في رسالة واحدة، وتقصر النص."
+
+msgid "WhatsApp Cloud API: free text only reaches people who wrote to you in the last 24 hours. Others need an approved template."
+msgstr "WhatsApp كلود API: لا يصل النص الحر إلا إلى الأشخاص الذين كتبوا إليكم في الـ 24 ساعة الأخيرة، أما الآخرون فيحتاجون إلى نموذج معتمد."
+
+msgid "This WhatsApp account is not connected right now. Connect it under Connections before sending."
+msgstr "هذا الحساب رقم WhatsApp ليس متصلاً الآن إربطه تحت الإتصالات قبل إرساله"
+
+msgid "Bulk messages to people who have not saved your number can get the number restricted by WhatsApp. Send to people who expect your message and keep a delay between messages."
+msgstr "رسائل شعبية إلى أشخاص لم ينقذوا رقمك يمكن أن يقيد الرقم من قبل WhatsApp أرسلوا إلى الناس الذين يتوقعون رسالتك ويبقون تأخيراً بين الرسائل"
+
+msgid "*bold*, _italic_, ~strikethrough~ and ```monospace``` are shown formatted. Links become clickable."
+msgstr "* عفن*، _. ```monospace``` وتظهر هذه الروابط في شكلها، وتصبح قابلة للنقر."
+
+msgid "Replied \"%s\""
+msgstr "إجابة \"%s\""
+
+msgid "AI assistant"
+msgstr "مساعد الذكاء الاصطناعي"
+
+msgid "Added by %s"
+msgstr "مضافا إليها %s"
+
+msgid "Added by staff"
+msgstr "مضافا إليها الموظفون"
+
+msgid "People who asked not to be messaged. <strong>Blocked</strong>: nothing is sent on any channel. <strong>No promotions</strong>: they replied STOP, so only promotional messages stop on that channel; information messages and chats they start still go through."
+msgstr "الناس الذين طلبوا عدم الرساله <strong>مقفلة</strong>لا شيء يُرسل على أي قناة. <strong>لا ترقيات</strong>: They replied STOP, so only promotional messages stop on that channel; information messages and conversations they start still go through."
+
+msgid "Phone, email or reason"
+msgstr "الهاتف أو البريد الإلكتروني أو السبب"
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "All types"
+msgstr "جميع الأنواع"
+
+msgid "Blocked"
+msgstr "محظور"
+
+msgid "No promotions"
+msgstr "لا ترقيات"
+
+msgid "%s people"
+msgstr "%s شخص"
+
+msgid "Add to the blocklist"
+msgstr "مضافا إليها إلى القائمة الجامعة"
+
+msgid "No promotions · WhatsApp"
+msgstr "No promotions ; WhatsApp"
+
+msgid "No promotions · SMS"
+msgstr "No promotions ; SMS"
+
+msgid "Blocked · all channels"
+msgstr "جميع القنوات"
+
+msgid "Reason (optional)"
+msgstr "السبب (اختياري)"
+
+msgid "e.g. Asked on the phone"
+msgstr "على سبيل المثال، طلبت على الهاتف"
+
+msgid "Add"
+msgstr "أضف"
+
+msgid "Person"
+msgstr "شخص"
+
+msgid "When and how"
+msgstr "متى وكيف"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "No matching entries."
+msgstr "لا يوجد تطابق في القيد"
+
+msgid "Nobody is on the blocklist."
+msgstr "لا أحد على القائمة"
+
+msgid "Open chat"
+msgstr "افتح الدردشة"
+
+msgid "Contact card"
+msgstr "بطاقة الاتصال"
+
+msgid "Reason"
+msgstr "السبب"
+
+msgid "They wrote"
+msgstr "لقد كتبوا"
+
+msgid "After"
+msgstr "بعد"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Messages will be sent to this person again on all channels. Remove only if they asked for it."
+msgstr "الرسائل سترسل إلى هذا الشخص مرة أخرى على جميع القنوات لا تتحرك إلا إذا طلبوا ذلك"
+
+msgid "Promotional messages will be sent to this person again. Remove only if they asked for it."
+msgstr "الرسائل الترويجية سترسل إلى هذا الشخص مرة أخرى، لن نرحل إلا إذا طلبوا ذلك."
+
+msgid "Full blocks are kept by Flux Chat. Install it to block people on all channels from here and from chats."
+msgstr "(تحتفظ (فلوكس شات بقطع كاملة، لتضعها لحجب الناس على جميع القنوات من هنا ومن الدردشة"
+
+msgid "STOP keywords and replies"
+msgstr "الكلمات الرئيسية للبروتوكول الموحد والردود عليه"
+
+msgid "Enter a valid phone number."
+msgstr "أدخل رقم هاتف صالحًا."
+
+msgid "Blocked. Nothing will be sent to this person on any channel."
+msgstr "لا شيء سيرسل إلى هذا الشخص على أي قناة"
+
+msgid "Added to the opt-out list."
+msgstr "أضيفت إلى قائمة الاختيار."
+
+msgid "Removed from the blocklist. Messages will be sent to this person again."
+msgstr "ابعدوا من القائمة سوف ترسل رسائل الى هذا الشخص مرة اخرى"
+
+msgid "Pause"
+msgstr "وقفة"
+
+msgid "Estimated finish:"
+msgstr "النهاية المقدرة:"
+
+msgid "Resume"
+msgstr "استئناف"
+
+msgid "Site time now:"
+msgstr "وقت الموقع الآن:"
+
+msgid "Variation: {Hello|Hi|Good day} picks one at random for each person, so the same text does not go out hundreds of times."
+msgstr "الفرق: {Hello.Hi. Good day} يلتقط واحد عشوائيا لكل شخص، لذلك النص نفسه لا يخرج مئات المرات."
+
+msgid "Image, video or file (optional)"
+msgstr "صور أو فيديو أو ملف (اختياري)"
+
+msgid "Choose from media"
+msgstr "اختر من الوسائط"
+
+msgid "An image or video goes with the message as its caption; a PDF goes as a separate file after the message."
+msgstr "وتذهب صورة أو شريط فيديو مع الرسالة كإسقاط لها؛ وتذهب قوات الدفاع الشعبي كملف منفصل بعد الرسالة."
+
+msgid "Promotional message (not sent to people who replied STOP; the opt-out line is added at the bottom)"
+msgstr "رسالة ترويجية (لم تُرسل إلى الأشخاص الذين ردوا على مشروع &quot; ستوب &quot; ؛ ويُضاف خط اختيار الخروج في القاع)"
+
+msgid "Turn off only for information messages people expect, such as event details or a receipt."
+msgstr "اغلق فقط من أجل رسائل المعلومات التي يتوقعها الناس، مثل تفاصيل الحدث أو إيصاله."
+
+msgid "Paused"
+msgstr "متوقف مؤقتًا"
+
+msgid "%1$s · continues at %2$s"
+msgstr "%1$s - لا يزال في %2$s"
+
+msgid "Estimated finish: %1$s (%2$s)"
+msgstr "العدد التقديري للانتهاء: %1$s (%2$s)"
+
+msgid "Sending paused. Press Resume to continue where it stopped."
+msgstr "إرسال متوقفة، اضغطوا على المصعد ليكملوا المكان الذي توقف فيه"
+
+msgid "Sending resumed."
+msgstr "استأنفوا الارسال"
+
+msgid "%s reached"
+msgstr "%s تم الوصول إليه"
+
+msgid "%s read"
+msgstr "%s يُقرأ نصها:"
+
+msgid "%s replied"
+msgstr "%s رد"
+
+msgid "%s opted out"
+msgstr "%s اختار"
+
+msgid "All people, who allowed this channel (%s)"
+msgstr "جميع الناس الذين سمحوا لهذه القناة (%s)"
+
+msgid "Opted out of promotional messages (replied STOP): not sent"
+msgstr "مقتطف من الرسائل الترويجية (المكررة STOP): لم ترسل"
+
 msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
 msgstr "لا يمكن لـ WhatsApp Cloud API إرسال الرسائل إلى المجموعات. اختر اتصال Evolution API أو Flux WPAPI لرسائل المجموعات."
+
+msgid "If you don't want messages like this, reply STOP."
+msgstr "إذا كنت لا تريد رسائل من هذا القبيل، رد على STOP."
+
+msgid "Done, you won't get promotional messages from us anymore. You can still write to us any time. To get them again, reply START."
+msgstr "لن تحصلي على رسائل ترويجية منا بعد الآن، ما زلتِ تستطيعين الكتابة لنا في أي وقت، لتحصلي عليهم مجدداً، ردي (ستارت)."
+
+msgid "Welcome back, you will get our messages again."
+msgstr "مرحباً بعودتك، ستحصل على رسائلنا مرة أخرى."
+
+msgid "Removed from the opt-out list. Promotional messages will be sent to this person again."
+msgstr "ألغيت من قائمة الإختيارات وسترسل رسائل ترويجية إلى هذا الشخص مرة أخرى"
+
+msgid "Typed list"
+msgstr "القائمة المطبوعة"
+
+msgid "%s has no email address"
+msgid_plural "%s have no email address"
+msgstr[0] "%s لا يوجد عنوان بريد إلكتروني"
+msgstr[1] "%s لا يوجد عنوان بريد إلكتروني"
+msgstr[2] "%s لا يوجد عنوان بريد إلكتروني"
+msgstr[3] "%s لا يوجد عنوان بريد إلكتروني"
+msgstr[4] "%s لا يوجد عنوان بريد إلكتروني"
+msgstr[5] "%s لا يوجد عنوان بريد إلكتروني"
+
+msgid "%s has no valid phone number"
+msgid_plural "%s have no valid phone number"
+msgstr[0] "%s ليس لديها رقم هاتف صالح"
+msgstr[1] "رقم %s ليس له رقم هاتف صالح"
+msgstr[2] "%s ليس لديها رقم هاتف صالح"
+msgstr[3] "%s ليس لديها رقم هاتف صالح"
+msgstr[4] "%s ليس لديها رقم هاتف صالح"
+msgstr[5] "%s ليس لديها رقم هاتف صالح"
+
+msgid "email"
+msgstr "البريد الإلكتروني"
+
+msgid "%1$s has not given %2$s permission"
+msgid_plural "%1$s have not given %2$s permission"
+msgstr[0] "%1$s لم يمنحوا الإذن %2$s"
+msgstr[1] "%1$s لم يمنح الإذن %2$s"
+msgstr[2] "%1$s لم يمنحوا الإذن %2$s"
+msgstr[3] "%1$s لم يمنحوا الإذن %2$s"
+msgstr[4] "%1$s لم يمنحوا الإذن %2$s"
+msgstr[5] "%1$s لم يمنحوا الإذن %2$s"
+
+msgid "%s is already on the list"
+msgid_plural "%s are already on the list"
+msgstr[0] "%s على القائمة"
+msgstr[1] "%s على القائمة"
+msgstr[2] "%s على القائمة"
+msgstr[3] "%s على القائمة"
+msgstr[4] "%s على القائمة"
+msgstr[5] "%s على القائمة"
+
+msgid "this list is empty"
+msgstr "هذه القائمة فارغة"
+
+msgid "%1$s: %2$s of %3$s added (%4$s)."
+msgstr "%1$s: %2$s من %3$s تضاف (%4$s)."
+
+msgid "%s person unsubscribed earlier and was left out."
+msgid_plural "%s people unsubscribed earlier and were left out."
+msgstr[0] "%s شخص غير مُدانين في وقت سابق وتركوا خارجاً."
+msgstr[1] "%s شخص غير مُعاقب عليه في وقت سابق وترك خارج."
+msgstr[2] "%s شخص غير مُدانين في وقت سابق وتركوا خارجاً."
+msgstr[3] "%s شخص غير مُدانين في وقت سابق وتركوا خارجاً."
+msgstr[4] "%s شخص غير مُدانين في وقت سابق وتركوا خارجاً."
+msgstr[5] "%s شخص غير مُدانين في وقت سابق وتركوا خارجاً."
+
+msgid "This password is defined in wp-config.php and cannot be changed here."
+msgstr "هذه كلمة السر معرّفة في الـ \"ب-سي-بيغ\" ولا يمكن تغييرها هنا."
+
+msgid "File upload is not available."
+msgstr "تحميل الملفات غير متاح."
+
+msgid "Choose an email."
+msgstr "اختر بريد إلكتروني"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Ban protection (bulk sends)"
+msgstr "الحماية من الحظر (يرسل الدبابات)"
+
+msgid "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
+msgstr "WhatsApp تقيد الأعداد التي تبعث برسائل مماثلة كثيرة بسرعة، ولا تنطبق هذه الحدود إلا على الرسائل السائبة من التساؤل؛ ولا تتأخر الردود في الدردشة والرسائل الوحيدة."
+
+msgid "Minimum wait between messages (sec)"
+msgstr "الحد الأدنى للانتظار بين الرسائل (سيك)"
+
+msgid "Maximum wait between messages (sec)"
+msgstr "الحد الأقصى للانتظار بين الرسائل (سيك)"
+
+msgid "Each wait is a random time between the minimum and the maximum, so the sending does not look like a machine."
+msgstr "كل إنتظار هو وقت عشوائي بين الحد الأدنى والحد الأقصى، حتى لا يبدو إرسال مثل الآلة."
+
+msgid "Take a break every … messages"
+msgstr "خذ استراحة كل... رسائل"
+
+msgid "0 = no break."
+msgstr "صفر = لا راحة."
+
+msgid "Break length (min)"
+msgstr "طول الكسر (باللغة)"
+
+msgid "Bulk messages per hour (at most)"
+msgstr "رسائل شعبية في الساعة (في معظمها)"
+
+msgid "0 = no limit."
+msgstr "صفر = لا حدود."
+
+msgid "Bulk messages per day (at most)"
+msgstr "الرسائل الجماعية في اليوم (في معظمها)"
+
+msgid "Counted over the last 24 hours. The rest of the list waits and continues by itself. 0 = no limit."
+msgstr "حسبت خلال الـ 24 ساعة الماضية بقيت القائمة تنتظر وتستمر بحد ذاتها"
+
+msgid "Warm up a new number (daily limit starts at 20 and grows by 20 every day)"
+msgstr "استدر رقماً جديداً (يبدأ الحد اليومي في 20 وينمو بحلول 20 يوماً)"
+
+msgid "Quiet hours: from"
+msgstr "ساعات هادئة من"
+
+msgid "Quiet hours: until"
+msgstr "ساعات هادئة"
+
+msgid "Bulk messages are not sent in these hours (site time zone); the queue continues in the morning."
+msgstr "ولا تُرسل رسائل شعبية في هذه الساعات (موقع زمني)؛ ويتواصل التساؤل في الصباح."
+
+msgid "Skip numbers that do not have WhatsApp (checked before sending)"
+msgstr "أرقام Skip التي لا تملك WhatsApp (متحققة قبل إرسالها)"
+
+msgid "Pause bulk sending for 30 minutes after … failures in a row"
+msgstr "...القطعة السائبة تُرسل لـ 30 دقيقة بعد الفشل"
+
+msgid "Many failures in a row usually mean the number was disconnected or restricted. 0 = never pause."
+msgstr "وعادة ما يعني العديد من حالات الفشل في الصف أن الرقم قد تم فصله أو تقييده. صفر = لا يتوقف أبدا."
+
+msgid "Show \"typing…\" for a time that fits the message length"
+msgstr "أظهري \"الطباعة\" لوقت يناسب طول الرسالة"
+
+msgid "Paused after failures in a row"
+msgstr "مدفوعاً بعد الفشل على التوالي"
+
+msgid "Quiet hours"
+msgstr "ساعات هادئة"
+
+msgid "Waiting between messages"
+msgstr "الانتظار بين الرسائل"
+
+msgid "Hourly limit reached"
+msgstr "تم الوصول إلى الحد الأقصى للساعة"
+
+msgid "Daily limit reached"
+msgstr "الحد الأقصى اليومي"
+
+msgid "Bulk WhatsApp paused: %s"
+msgstr "Bulk WhatsApp متوقفة: %s"
+
+msgid "Several messages in a row failed, so bulk sending was paused for 30 minutes. Check that the number is connected; the queue continues by itself."
+msgstr "وفشلت عدة رسائل من الطابور، وتم وقف إرسالها بالجملة لمدة 30 دقيقة، وتحقق من أن الرقم متصل؛ ويستمر التساؤل في حد ذاته."

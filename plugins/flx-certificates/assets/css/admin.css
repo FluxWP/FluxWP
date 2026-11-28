@@ -478,3 +478,16 @@ html.flxa-dark .flxs-wrap{--gd:var(--flxa-accent-strong);--ink:var(--flxa-text);
 .flxs-locqr code{word-break:break-all;user-select:all}
 .flxs-locqr p{margin:6px 0}
 @media (max-width:600px){.flxs-locqr{flex-direction:column}}
+
+/* The range fits its filter row even when translated date labels are long. */
+@media (max-width:782px) {
+	.flxs-card button.button { max-inline-size: 100%; white-space: normal; overflow-wrap: anywhere; }
+	.flxs-dash__dates {
+		display:grid;
+		grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+		width:100%;
+		min-width:0;
+	}
+	.flxs-dash__dates .flx-dt { min-width:0; max-width:100%; height:auto; min-height:36px; }
+	.flxs-dash__dates .flx-dt .flx-dt__val { white-space:normal; font-size:12px; line-height:1.3; }
+}

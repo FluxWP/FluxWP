@@ -165,6 +165,7 @@ function flxai_gql_settings_spec(): array {
 		'logBodies'          => array( 'Boolean', __( 'Also store shortened, masked request and reply content.', 'flx-ai' ) ),
 		'logBodyDays'        => array( 'Int', __( 'Days stored content is kept; 0 keeps it forever.', 'flx-ai' ) ),
 		'deleteData'         => array( 'Boolean', __( 'Delete logs and chats when the plugin is deleted.', 'flx-ai' ) ),
+		'cloudAi'            => array( 'String', __( 'Flux Cloud AI credits: auto (own key first), always or off.', 'flx-ai' ) ),
 	);
 }
 
@@ -216,6 +217,30 @@ flx_gql_type(
 				'renderer'       => array( 'String!', __( 'Visual renderer: gotenberg, imagick or empty for none.', 'flx-ai' ) ),
 				'webMonthCount'  => array( 'Int!', __( 'Web searches this month.', 'flx-ai' ), 'web_month_count' ),
 				'providersReady' => array( 'Boolean!', __( 'A model provider key is saved.', 'flx-ai' ), 'providers_ready' ),
+				'cloud'          => array( 'FlxAiCloud', __( 'Flux Cloud AI credits of the connected FluxWP account; null when not connected.', 'flx-ai' ) ),
+			)
+		),
+	)
+);
+
+flx_gql_type(
+	'FlxAiCloud',
+	array(
+		'description' => __( 'Flux Cloud AI credits of the FluxWP account (1 credit = 0.001 USD of model cost).', 'flx-ai' ),
+		'fields'      => flxai_gql_fields(
+			FLXAI_Cloud::class,
+			array(
+				'on'           => array( 'Boolean!', __( 'Flux Cloud offers AI credits.', 'flx-ai' ) ),
+				'active'       => array( 'Boolean!', __( 'The default model runs on the account credits now.', 'flx-ai' ) ),
+				'basic'        => array( 'Boolean!', __( 'The plan has basic models only.', 'flx-ai' ) ),
+				'monthly'      => array( 'Int!', __( 'Monthly credits of the plan; -1 unlimited.', 'flx-ai' ) ),
+				'used'         => array( 'Int!', __( 'Monthly credits used this month (all sites of the account).', 'flx-ai' ) ),
+				'bonus'        => array( 'Int!', __( 'Bought credits left.', 'flx-ai' ) ),
+				'left'         => array( 'Int!', __( 'Credits left; -1 unlimited.', 'flx-ai' ) ),
+				'siteUsed'     => array( 'Int!', __( 'Credits this site used this month.', 'flx-ai' ), 'site_used' ),
+				'resets'       => array( 'Int!', __( 'Unix time the monthly credits renew.', 'flx-ai' ) ),
+				'buyUrl'       => array( 'String!', __( 'Where to buy credits or change the plan.', 'flx-ai' ), 'buy_url' ),
+				'defaultModel' => array( 'String!', __( 'Model Flux Cloud suggests when none is chosen.', 'flx-ai' ), 'default_model' ),
 			)
 		),
 	)

@@ -536,7 +536,7 @@ msgid "Settings"
 msgstr "Настройки"
 
 msgid "CSV"
-msgstr "CSV-файл"
+msgstr "CSV"
 
 msgid "Rename"
 msgstr "Переименовать"
@@ -1874,7 +1874,7 @@ msgid "Longitude"
 msgstr "Долгота"
 
 msgid "e.g."
-msgstr "e.g."
+msgstr "Например."
 
 msgid "(Avoid adding JavaScript or jQuery codes to HTML for security reasons.)"
 msgstr "(Из соображений безопасности не добавляйте коды JavaScript или jQuery в HTML.)"
@@ -1916,7 +1916,7 @@ msgid "Free Plus"
 msgstr "Бесплатный плюс"
 
 msgid "Pro Pending"
-msgstr "Pro Pending"
+msgstr "Допускается"
 
 msgid "Unlock advanced features - supported by a credit line."
 msgstr "Разблокируйте расширенные функции — при наличии кредитной линии."
@@ -1982,7 +1982,7 @@ msgid "Keep Pro"
 msgstr "KeepPro"
 
 msgid "Keep Free Plus"
-msgstr "Keep Free Plus"
+msgstr "Свободно!"
 
 msgid "Switch to Free Plus"
 msgstr "Перейти на Free Plus"
@@ -2654,13 +2654,13 @@ msgid "Method payment"
 msgstr "Способ оплаты"
 
 msgid "product"
-msgstr "product"
+msgstr "продукт"
 
 msgid "value"
 msgstr "значение"
 
 msgid "terms"
-msgstr "terms"
+msgstr "Термины"
 
 msgid "Card Number"
 msgstr "Номер карты"
@@ -3464,7 +3464,7 @@ msgid "720p (HD)"
 msgstr "720p (HD)"
 
 msgid "1080p (Full HD)"
-msgstr "1080p (Full HD)"
+msgstr "1080p (полная ОВД)"
 
 msgid "Permission to access your microphone/camera/screen was denied."
 msgstr "В доступе к вашему микрофону/камере/экрану было отказано."
@@ -4817,7 +4817,7 @@ msgid "Select a Date"
 msgstr "Выберите дату"
 
 msgid "ex: example@mail.com"
-msgstr "ex: example@mail.com"
+msgstr "Пример@mail.com"
 
 msgid "How can we help you?"
 msgstr "Чем мы можем вам помочь?"
@@ -5189,7 +5189,7 @@ msgid "Outgoing requests"
 msgstr "Исходящие запросы"
 
 msgid "WP-Cron"
-msgstr "WP-Cron"
+msgstr "РГ-Крон"
 
 msgid "Attempts made"
 msgstr "Попытки"
@@ -6761,7 +6761,7 @@ msgid "Some required PHP functions are unavailable."
 msgstr "Некоторые необходимые функции PHP недоступны."
 
 msgid "REST API:"
-msgstr "REST API:"
+msgstr "REST API :"
 
 msgid "available"
 msgstr "\\доступно"
@@ -7559,7 +7559,7 @@ msgid "Spreadsheet ID"
 msgstr "Идентификатор таблицы"
 
 msgid "tab"
-msgstr "tab"
+msgstr "вкладка"
 
 msgid "Choose Sheet"
 msgstr "Выберите лист"
@@ -8294,7 +8294,7 @@ msgid "jQuery is not properly loaded or available. AJAX and interactive form fea
 msgstr "jQuery неправильно загружен или недоступен. Функции AJAX и интерактивные формы могут работать неправильно."
 
 msgid "WhiteStudio.team"
-msgstr "WhiteStudio.team"
+msgstr "Группа WhiteStudio."
 
 msgid "EFB"
 msgstr "EFB"
@@ -9159,3 +9159,159 @@ msgstr "Не удалось подключиться к Stripe: %s"
 
 msgid "Stripe API error (HTTP %d)."
 msgstr "Ошибка API-интерфейса Stripe (HTTP %d)."
+
+msgid "Form submission"
+msgstr "Отправка формы"
+
+msgid "Public form, survey and subscribe submissions sent through GraphQL."
+msgstr "Публичные формы, результаты обследования и подписные представления направлены до GraphQL."
+
+msgid "Manages forms and responses"
+msgstr "Форматы управления и ответы"
+
+msgid "Opens the form builder"
+msgstr "Открывайте формальный строитель."
+
+msgid "Opens the forms panel"
+msgstr "Открыта форма"
+
+msgid "Manages form add-ons"
+msgstr "Добавления в форме накладных"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Flux Forms: choices"
+msgstr "Формы потоков: выбор"
+
+msgid "Flux Forms: advanced"
+msgstr "Формы потока: продвинутые"
+
+msgid "Flux Forms: payment"
+msgstr "Формы разгрузки: платеж"
+
+msgid "Flux Forms: content"
+msgstr "Формы потока: содержание"
+
+msgid "The form structure is not valid."
+msgstr "Структура формы недействительна."
+
+msgid "This form type is not supported."
+msgstr "Этот вид формы не поддерживается."
+
+msgid "This form was changed somewhere else after you opened it."
+msgstr "Эта форма была изменена где-то еще после того, как ты открыла ее."
+
+msgid "WooCommerce checkout"
+msgstr "Оформление заказа в WooCommerce"
+
+msgid "You will choose how to pay (card, bank transfer…) on the secure checkout page."
+msgstr "Ты выберешь, как платить (карт, банковский перевод...) на защищенной странице."
+
+msgid "Complete the payment in the window that opened. This page continues when it is done."
+msgstr "Заполните платежи в открытом оконе, эта страница продолжается, когда будет сделано."
+
+msgid "The payment window was blocked. Allow pop-ups for this site and try again."
+msgstr "Окона платежа была заблокирована."
+
+msgid "The payment was not completed. You can try again."
+msgstr "Платеж не был завершен. Вы можете попробовать еще раз."
+
+msgid "The order is received; the payment is confirmed when it arrives."
+msgstr "Распоряжение принимается; платеж подтверждается при его прибытии."
+
+msgid "Payment completed. You can close this window and return to the form."
+msgstr "Вы можете закрыть окно и вернуться в форму."
+
+msgid "The order is received; the payment is confirmed when it arrives. You can close this window and return to the form."
+msgstr "Распоряжение получено; платеж подтверждается, когда он прибывает, вы можете закрыть окно и вернуться в форму."
+
+msgid "The payment was not completed. You can close this window and try again on the form."
+msgstr "Вы можете закрыть окно и попробовать снова на бланке."
+
+msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms takes payments on the WooCommerce checkout."
+msgstr "Компания &quot; Флукс Донате &quot; активно действует, но не брала на себя платежи (покупки не выплачены?) &quot; Флюкс &quot; принимает платежи по чеку WooCommerce."
+
+msgid "Payment forms are paid on the WooCommerce checkout (%1$s; %2$s)."
+msgstr "Платежные бланки выдаются на основе системы проверки WooCommerce (%1$s; %2$s)."
+
+msgid "No payment form exists. WooCommerce is needed only to take payments."
+msgstr "Платежные бланки не существует. WooCommerce необходима только для оплаты."
+
+msgid "WooCommerce has no enabled payment method: %d payment form cannot take payments."
+msgid_plural "WooCommerce has no enabled payment method: %d payment forms cannot take payments."
+msgstr[0] "WooCommerce не имеет никакого способа оплаты: %d платежная форма не может производить платежи."
+msgstr[1] "WooCommerce не имеет возможности использовать метод платежа: %d платежные формы не могут производить платежи."
+msgstr[2] "WooCommerce не имеет возможности использовать метод платежа: %d платежные формы не могут производить платежи."
+
+msgid "WooCommerce is not active: %d payment form shows \"Online payment is not available\"."
+msgid_plural "WooCommerce is not active: %d payment forms show \"Online payment is not available\"."
+msgstr[0] "WooCommerce не работает: %d платежная форма показывает, что &quot; Объективная плата отсутствует &quot; ."
+msgstr[1] "WooCommerce не работает: %d платежные бланки показывают, что &quot; Объект &quot; отсутствует."
+msgstr[2] "WooCommerce не работает: %d платежные бланки показывают, что &quot; Объект &quot; отсутствует."
+
+msgid "Payment methods"
+msgstr "Способы оплаты"
+
+msgid "Card payment"
+msgstr "Оплата картой"
+
+msgid "To take online payments with a payment form, install and activate WooCommerce and enable a payment method."
+msgstr "Выплаты в режиме онлайн с формуляром платежа, установление и активация WooCommerce и возможность применения метода платежа."
+
+msgid "The form was not found."
+msgstr "Форма не была найдена."
+
+msgid "Write a reply."
+msgstr "Напиши ответ."
+
+msgid "The response was not found."
+msgstr "Ответ не был найден."
+
+msgid "The reply could not be saved."
+msgstr "Ответа нельзя спасти."
+
+msgid "The settings could not be saved."
+msgstr "Нельзя спасать условия."
+
+msgid "Choose between 1 and 7 days."
+msgstr "Выбирайте от 1 до 7 дней."
+
+msgid "Unknown track code style."
+msgstr "Неизвестный стиль кода."
+
+msgid "Unknown SMS sender."
+msgstr "Неизвестный отправитель SMS."
+
+msgid "Enter a colour like #1a2b3c."
+msgstr "Введите цвет, как 1a2b3c."
+
+msgid "Enter a valid e-mail address."
+msgstr "Введите действительный адрес электронной почты."
+
+msgid "Use numbers like +12345678900, separated by commas."
+msgstr "Используй номера, как +12345678900, разлученные комами."
+
+msgid "The template must contain the shortcode_message shortcode."
+msgstr "В шаблоне должен быть шорткод."
+
+msgid "Too many submissions. Wait a moment and try again."
+msgstr "Слишком много представлений, подождите минутку и попробуйте еще раз."
+
+msgid "The form could not be sent."
+msgstr "Форма не может быть отправлена."
+
+msgid "This form cannot be sent here."
+msgstr "Эта форма не может быть отправлена сюда."
+
+msgid "The tracking code was not found."
+msgstr "Код слежения не был найден."
+
+msgid "Upload the file again."
+msgstr "Загрузи файл снова."
+
+msgid "The confirmation code is not valid."
+msgstr "Код подтверждения не является действительным."
+
+msgid "Choose one of the listed options."
+msgstr "Выбери один из перечисленных вариантов."

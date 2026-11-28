@@ -1,0 +1,89 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Serves headless front ends over GraphQL"
+msgstr "Передние концы без головы свыше GraphQL"
+
+msgid "Headless"
+msgstr "Безголовые"
+
+msgid "This screen needs Flux GraphQL (0.4.0 or newer). Install or update it from the FluxWP Packages screen."
+msgstr "Этот экран нуждается в Flux GraphQL (0,4,0 или новичок). Установить или обновить его с экрана упаковки FluxWP."
+
+msgid "This front end does not exist any more."
+msgstr "Этот фронт больше не существует."
+
+msgid "At most %d front ends can be added."
+msgstr "На большинстве передних конечных конечных частей можно добавить %d."
+
+msgid "Give the front end a name."
+msgstr "Назови имя на переднем конце."
+
+msgid "Enter the front end address with https:// (http:// only for localhost)."
+msgstr "Введите передний адрес с https:// (http:// только для местного хоста)."
+
+msgid "The front end cannot have the same address as this WordPress. Move WordPress to another address (e.g. cms.example.com) first."
+msgstr "На переднем конце не может быть такого же адреса, как и на этом WordPress. Переместить WordPress на другой адрес (например, смс.example.com) сначала."
+
+msgid "Another front end already has this address."
+msgstr "У другого выхода уже есть этот адрес."
+
+msgid "Enter the webhook address with https:// (http:// only for localhost)."
+msgstr "Введите адрес веб-хука с https:// (http:// только для местного хоста)."
+
+msgid "The language \"%s\" is not on this site."
+msgstr "Язык %s не на этом сайте."
+
+msgid "The preview path starts with \"/\" (e.g. /api/preview)."
+msgstr "Путь предварительной оценки начинается с \"/\" (например, /апи/предвидение)."
+
+msgid "The secret must be at least 24 characters. Use the Generate button."
+msgstr "Секрет должен быть по крайней мере 24 персонажа, используй кнопку \"Генератор\"."
+
+msgid "The secret could not be stored securely on this server."
+msgstr "Секрет не может храниться в этом сервере."
+
+msgid "A webhook needs a secret so the front end can check that the call comes from this site."
+msgstr "Веб-хук нуждается в секрете, так что передний конец может проверить, что звонок поступает с этого сайта."
+
+msgid "Choose what WordPress does with its own pages."
+msgstr "Выбери то, что WordPress делает с собственными страницами."
+
+msgid "Add a front end first; WordPress pages point visitors and search engines to it."
+msgstr "Добавить передний конец сначала: WordPress страница, на которой посетители и поисковые двигатели."
+
+msgid "Enter the webhook address and the secret first."
+msgstr "Введи адрес веб-сайта и первый секрет."
+
+msgid "Sent without waiting for the answer."
+msgstr "Отправлялся, не жди ответа."
+
+msgid "The front end accepted the call."
+msgstr "Передний конец принял звонок."
+
+msgid "The front end answered with HTTP %d."
+msgstr "Передний конец отвечает HTTP %d."
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "No front end is added yet; GraphQL works, but links, canonical addresses and the webhook have no front end to point at."
+msgstr "До сих пор не добавляется ни одного конца; GraphQL произведена, но ссылки, канонические адреса и веб-рук не имеют передней точки зрения."
+
+msgid "The last webhook call failed for: %s. Open the delivery log on the Headless page."
+msgstr "Последний звонок в интернет не сработал: %s. Открыть журнал доставки на безглавной странице."
+
+msgid "No revalidate webhook for: %s. These front ends show changes only when their cache runs out."
+msgstr "Никаких обновленных веб-съемок: %s. Эти передние концы видят изменения только в том случае, если их тайна вылетает."
+
+msgid "%d front end, webhook set."
+msgid_plural "%d front ends, webhooks set."
+msgstr[0] "%d передний конец, сайт."
+msgstr[1] "%d передние концы, сайты."
+msgstr[2] "%d передние концы, сайты."
+
+msgid "Headless front ends"
+msgstr "Конец передней части без головы"

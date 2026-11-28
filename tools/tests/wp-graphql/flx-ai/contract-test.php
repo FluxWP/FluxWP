@@ -207,11 +207,15 @@ flxt_ok( ! empty( $rt['errors'] ) || ! empty( $r['errors'] ) || ! empty( $rt['re
 // Usage: log rows (the model test above wrote a failed row of its own).
 $wpdb->query( 'DELETE FROM ' . flxai_table( 'log' ) ); // phpcs:ignore
 $wpdb->query( 'DELETE FROM ' . flxai_table( 'log_body' ) ); // phpcs:ignore
+// The three recent rows stay inside today (site time), also when the run starts just after midnight.
 $now  = time();
+$ago  = static function ( $sec ) use ( $now ) {
+	return max( flxai_period_starts()['day'] + 1, $now - $sec );
+};
 $rows = array(
-	array( 'ts' => $now - 60, 'kind' => 'model', 'source' => 'flx-chat', 'purpose' => 'chat', 'user_id' => $admin, 'chat_id' => 7, 'provider' => 'openrouter', 'model' => 'google/gemini-2.5-flash', 'in_tok' => 1000, 'out_tok' => 200, 'cache_read' => 400, 'cache_write' => 0, 'cost' => 0.012, 'full_cost' => 0.02, 'est' => 0, 'ms' => 1500, 'ok' => 1 ),
-	array( 'ts' => $now - 120, 'kind' => 'tool', 'source' => 'flx-chat', 'purpose' => '', 'user_id' => $admin, 'tool' => 'flxseo_audit', 'ms' => 300, 'ok' => 1 ),
-	array( 'ts' => $now - 180, 'kind' => 'model', 'source' => 'flx-tasks', 'purpose' => 'chat', 'provider' => 'anthropic', 'model' => 'claude:claude-haiku-5-5', 'in_tok' => 500, 'out_tok' => 100, 'cost' => 0.005, 'full_cost' => 0.005, 'est' => 1, 'ms' => 900, 'ok' => 0, 'error' => 'limit' ),
+	array( 'ts' => $ago( 60 ), 'kind' => 'model', 'source' => 'flx-chat', 'purpose' => 'chat', 'user_id' => $admin, 'chat_id' => 7, 'provider' => 'openrouter', 'model' => 'google/gemini-2.5-flash', 'in_tok' => 1000, 'out_tok' => 200, 'cache_read' => 400, 'cache_write' => 0, 'cost' => 0.012, 'full_cost' => 0.02, 'est' => 0, 'ms' => 1500, 'ok' => 1 ),
+	array( 'ts' => $ago( 120 ), 'kind' => 'tool', 'source' => 'flx-chat', 'purpose' => '', 'user_id' => $admin, 'tool' => 'flxseo_audit', 'ms' => 300, 'ok' => 1 ),
+	array( 'ts' => $ago( 180 ), 'kind' => 'model', 'source' => 'flx-tasks', 'purpose' => 'chat', 'provider' => 'anthropic', 'model' => 'claude:claude-haiku-5-5', 'in_tok' => 500, 'out_tok' => 100, 'cost' => 0.005, 'full_cost' => 0.005, 'est' => 1, 'ms' => 900, 'ok' => 0, 'error' => 'limit' ),
 	array( 'ts' => $now - 9 * DAY_IN_SECONDS, 'kind' => 'model', 'source' => 'flx-chat', 'purpose' => 'chat', 'model' => 'google/gemini-2.5-flash', 'in_tok' => 10, 'out_tok' => 10, 'cost' => 1.5, 'full_cost' => 1.5, 'ms' => 100, 'ok' => 1 ),
 );
 $ids = array();

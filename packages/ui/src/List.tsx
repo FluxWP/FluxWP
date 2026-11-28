@@ -3,7 +3,7 @@
  * aynı işaretleme ve sınıflar (.flxa-list, .flxa-pages); CSS tek kaynak flx-admin/assets/css/list.css.
  * Arama + birincil filtreler görünür, kalanlar "Filtreler" düğmesiyle açılan panelde; sayfa numaraları + "Sayfa başı".
  */
-import { useState, type FormEvent, type ReactNode } from 'react';
+import { cloneElement, isValidElement, useState, type FormEvent, type ReactElement, type ReactNode } from 'react';
 
 const STR = {
   en: { filters: 'Filters', clear: 'Clear', pages: 'Pagination', prev: 'Previous page', next: 'Next page', per: 'Per page', range: '%1$s–%2$s of %3$s' },
@@ -64,7 +64,14 @@ export function ListBar({ id, search, primary, more, moreActive = 0, onClear, on
   return (
     <form className={'flxa-list' + (className ? ' ' + className : '')} onSubmit={submit} role="search">
       <div className="flxa-list__top">
-        {search ? <div className="flxa-list__search">{search}</div> : null}
+        {isValidElement(search) ? (
+          // Classic list.js puts the class on the search box itself, so it grows to fill the row.
+          cloneElement(search as ReactElement<{ className?: string }>, {
+            className: 'flxa-list__search' + ((search as ReactElement<{ className?: string }>).props.className ? ' ' + (search as ReactElement<{ className?: string }>).props.className : ''),
+          })
+        ) : search ? (
+          <div className="flxa-list__search">{search}</div>
+        ) : null}
         {more ? (
           <button
             type="button"

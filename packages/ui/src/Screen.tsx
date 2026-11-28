@@ -1,6 +1,7 @@
 // Ortak ekran kabuğu: her modül ekranı aynı başlığı, sekmeleri, kenar boşluklarını ve en fazla genişliği kullanır.
 // Modül kendi başlık/sekme CSS'ini yazmaz; içerik `className` ile modülün kök sınıfını taşır (eski CSS'i çalışır).
-import { createContext, useContext, type ReactNode } from 'react';
+import { createContext, useContext, type MouseEvent, type ReactNode } from 'react';
+import { ArrowLeft } from 'lucide-react';
 
 export interface TabItem<T extends string = string> {
   id: T;
@@ -17,29 +18,49 @@ export interface TabsProps<T extends string = string> {
   /** Ekran okuyucu etiketi (genelde ekran başlığı). */
   label?: string | undefined;
   /** İkincil sekme sırası (ekran içinde alt görünüm): daha küçük ve alt çizgisiz. */
-  size?: 'md' | 'sm';
+  /** md: underline (page sections), sm: pills, seg: segmented filter (classic package filter). */
+  size?: 'md' | 'sm' | 'seg';
   className?: string;
 }
 
 /** Ortak sekme çubuğu: eski Flux Admin sekmeleriyle aynı görünüm (alt çizgi, taşarsa yatay kaydırma). */
 export function Tabs<T extends string = string>({ items, current, onChange, label, size = 'md', className }: TabsProps<T>) {
   return (
-    <nav className={'flx-tabs' + (size === 'sm' ? ' flx-tabs--sm' : '') + (className ? ' ' + className : '')} aria-label={label}>
+    <nav className={'flx-tabs' + (size === 'md' ? '' : ' flx-tabs--' + size) + (className ? ' ' + className : '')} aria-label={label}>
       {items
         .filter((x) => !x.hidden)
         .map((x) => (
-          <button
-            key={x.id}
-            type="button"
-            className={'flx-tab' + (x.id === current ? ' is-active' : '')}
-            aria-current={x.id === current ? 'page' : undefined}
-            onClick={() => onChange(x.id)}
-          >
+          <button key={x.id} type="button" className={'flx-tab' + (x.id === current ? ' is-active' : '')} aria-current={x.id === current ? 'page' : undefined} onClick={() => onChange(x.id)}>
             {x.label}
             {x.badge ? <span className="flx-tab__badge">{x.badge}</span> : null}
           </button>
         ))}
     </nav>
+  );
+}
+
+export interface ScreenBack {
+  label: string;
+  href?: string | undefined;
+  onClick?: (() => void) | undefined;
+}
+
+/** Başlıkta simgenin yerine geçen yuvarlak geri düğmesi. */
+export function BackButton({ back }: { back: ScreenBack }) {
+  const click = (e: MouseEvent<HTMLElement>) => {
+    if (!back.onClick || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    back.onClick();
+  };
+  const icon = <ArrowLeft size={20} aria-hidden="true" />;
+  return back.href !== undefined ? (
+    <a className="flx-page__backbtn" href={back.href} aria-label={back.label} title={back.label} onClick={click}>
+      {icon}
+    </a>
+  ) : (
+    <button type="button" className="flx-page__backbtn" aria-label={back.label} title={back.label} onClick={() => back.onClick?.()}>
+      {icon}
+    </button>
   );
 }
 
@@ -50,6 +71,11 @@ export interface ScreenProps<T extends string = string> {
   icon?: string | ReactNode;
   /** Başlığın üstündeki geri bağlantısı (klasik "‹ Liste" bağlantısı). */
   back?: ReactNode;
+  /**
+   * Alt/düzenleme ekranlarında geri düğmesi: başlıktaki modül simgesinin YERİNE geçer (içerikte ayrı geri bağlantısı yok).
+   * `label` hedefin adıdır ("Segmentler"); `href` bağlantı, `onClick` uygulama içi geçiş (ikisi birlikte olabilir).
+   */
+  backButton?: ScreenBack;
   /** Başlığın sağındaki düğmeler. */
   actions?: ReactNode;
   /** Başlık ile sekmeler arasındaki bildirim alanı. */
@@ -67,26 +93,35 @@ export interface ScreenProps<T extends string = string> {
 }
 
 /** Ekranın varsayılan alt başlığı (klasik Flux Admin başlığı gibi: ekran kendi alt başlığını vermezse paket açıklaması). */
-export const ScreenDefaults = createContext<{ subtitle?: string | undefined }>({});
+export const ScreenDefaults = createContext<{ subtitle?: string | undefined; title?: string | undefined }>({});
+
+/**
+ * Ürün adıyla verilen başlık ("Flux Performance", "Flux Backup") paketin sol menüdeki adıyla değişir: kullanıcı
+ * ekranı menüde gördüğü adla ("Performans") tanır. Kayıt/alt sayfa başlıkları (ürün adı olmayanlar) aynen kalır.
+ */
+export function screenTitle(title: ReactNode, menuTitle: string | undefined): ReactNode {
+  return menuTitle && typeof title === 'string' && /^Flux\s/.test(title) ? menuTitle : title;
+}
 
 /** Ortak ekran kabuğu: başlık + sekmeler + içerik; padding, en fazla genişlik, safe area ve taşma tek yerde. */
 export function Screen<T extends string = string>(p: ScreenProps<T>) {
   const def = useContext(ScreenDefaults);
   const subtitle = p.subtitle ?? def.subtitle;
+  const title = screenTitle(p.title, def.title);
   const icon = typeof p.icon === 'string' ? <img className="flx-page__icon" src={p.icon} alt="" width={40} height={40} /> : p.icon;
   return (
     <div className={'flx-page flx-page--' + (p.width || 'md') + (p.className ? ' ' + p.className : '')}>
       {p.back ? <div className="flx-page__back">{p.back}</div> : null}
       <header className="flx-page__head">
-        {icon}
+        {p.backButton ? <BackButton back={p.backButton} /> : icon}
         <div className="flx-page__title">
-          <h1>{p.title}</h1>
+          <h1>{title}</h1>
           {subtitle ? <p>{subtitle}</p> : null}
         </div>
         {p.actions ? <div className="flx-page__actions">{p.actions}</div> : null}
       </header>
       {p.notice}
-      {p.tabs && p.onTab ? <Tabs items={p.tabs} current={p.tab} onChange={p.onTab} label={typeof p.title === 'string' ? p.title : undefined} /> : null}
+      {p.tabs && p.onTab ? <Tabs items={p.tabs} current={p.tab} onChange={p.onTab} label={typeof title === 'string' ? title : undefined} /> : null}
       {p.toolbar}
       <div className="flx-page__body">{p.children}</div>
     </div>

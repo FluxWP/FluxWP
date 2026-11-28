@@ -24,7 +24,7 @@ function flxs_page_queue() {
 	$next    = wp_next_scheduled( 'flxs_queue_tick' );
 
 	flxs_admin_header(
-		'Gönderim kuyruğu',
+		__( 'Send queue', 'flx-certificates' ),
 		array(),
 		'İşleyici: <strong>' . esc_html( flxs_queue_runner_name() ) . '</strong>. Bu sayfa açıkken bekleyen mesajlar tarayıcıdan da tetiklenir.'
 	);
@@ -59,13 +59,13 @@ function flxs_page_queue() {
 	}
 	?>
 	<div class="flxs-tabs">
-		<a href="<?php echo esc_url( $base ); ?>" class="<?php echo '' === $status ? 'is-on' : ''; ?>">Tümü <b><?php echo (int) $counts['total']; ?></b></a>
+		<a href="<?php echo esc_url( $base ); ?>" class="<?php echo '' === $status ? 'is-on' : ''; ?>"><?php esc_html_e( 'All', 'flx-certificates' ); ?> <b><?php echo (int) $counts['total']; ?></b></a>
 		<?php foreach ( $labels as $k => $l ) : ?>
 			<a href="<?php echo esc_url( add_query_arg( 'status', $k, $base ) ); ?>" class="flxs-tab--<?php echo esc_attr( $k ); ?> <?php echo $status === $k ? 'is-on' : ''; ?>"><?php echo esc_html( $l ); ?> <b><?php echo (int) $counts[ $k ]; ?></b></a>
 		<?php endforeach; ?>
 		<span class="flxs-tabs__right">
 			<?php if ( $pending ) : ?>
-				<button type="button" class="button button-small" data-queue-run>Şimdi işle</button>
+				<button type="button" class="button button-small" data-queue-run><?php esc_html_e( 'Process now', 'flx-certificates' ); ?></button>
 			<?php endif; ?>
 		</span>
 	</div>
@@ -74,21 +74,21 @@ function flxs_page_queue() {
 		<input type="hidden" name="page" value="flxs-kuyruk">
 		<?php if ( $status ) : ?><input type="hidden" name="status" value="<?php echo esc_attr( $status ); ?>"><?php endif; ?>
 		<?php if ( $batch ) : ?><input type="hidden" name="batch" value="<?php echo (int) $batch; ?>"><?php endif; ?>
-		<input type="search" name="s" value="<?php echo esc_attr( $args['search'] ); ?>" placeholder="Alıcı, numara, metin…">
+		<input type="search" name="s" value="<?php echo esc_attr( $args['search'] ); ?>" placeholder="<?php esc_attr_e( 'Recipient, number, text…', 'flx-certificates' ); ?>">
 		<select name="channel" data-flxa-primary>
-			<option value="">Tüm kanallar</option>
+			<option value=""><?php esc_html_e( 'All channels', 'flx-certificates' ); ?></option>
 			<?php foreach ( flxs_channels() as $k => $l ) : ?>
 				<option value="<?php echo esc_attr( $k ); ?>" <?php selected( $args['channel'], $k ); ?>><?php echo esc_html( $l ); ?></option>
 			<?php endforeach; ?>
 		</select>
-		<button class="button">Filtrele</button>
+		<button class="button"><?php esc_html_e( 'Filter', 'flx-certificates' ); ?></button>
 	</form>
 
 	<table class="widefat flxs-table flxs-table--queue">
-		<thead><tr><th>#</th><th>Alıcı</th><th>Kanal</th><th>Durum</th><th>Zaman</th><th>Gönderen</th><th></th></tr></thead>
+		<thead><tr><th>#</th><th><?php esc_html_e( 'Recipient', 'flx-certificates' ); ?></th><th><?php esc_html_e( 'Channel', 'flx-certificates' ); ?></th><th><?php esc_html_e( 'Status', 'flx-certificates' ); ?></th><th><?php esc_html_e( 'Time', 'flx-certificates' ); ?></th><th><?php esc_html_e( 'Sender', 'flx-certificates' ); ?></th><th></th></tr></thead>
 		<tbody>
 		<?php if ( ! $q['items'] ) : ?>
-			<tr><td colspan="7" class="flxs-empty">Mesaj yok.</td></tr>
+			<tr><td colspan="7" class="flxs-empty"><?php esc_html_e( 'No messages.', 'flx-certificates' ); ?></td></tr>
 		<?php endif; ?>
 		<?php
 		foreach ( $q['items'] as $m ) :
@@ -97,12 +97,12 @@ function flxs_page_queue() {
 			?>
 			<tr>
 				<td data-label="#"><?php echo (int) $m['id']; ?></td>
-				<td data-label="Alıcı">
+				<td data-label="<?php esc_attr_e( 'Recipient', 'flx-certificates' ); ?>">
 					<strong><?php echo esc_html( $m['recipient_name'] ? $m['recipient_name'] : '–' ); ?></strong>
 					<div class="flxs-muted"><?php echo esc_html( 'email' === $m['channel'] ? $m['recipient'] : flxs_format_phone( $m['recipient'] ) ); ?></div>
 				</td>
-				<td data-label="Kanal"><?php echo flxs_channel_icon( $m['channel'] ); // phpcs:ignore ?> <?php echo esc_html( $pn ); ?></td>
-				<td data-label="Durum">
+				<td data-label="<?php esc_attr_e( 'Channel', 'flx-certificates' ); ?>"><?php echo flxs_channel_icon( $m['channel'] ); // phpcs:ignore ?> <?php echo esc_html( $pn ); ?></td>
+				<td data-label="<?php esc_attr_e( 'Status', 'flx-certificates' ); ?>">
 					<?php echo flxs_status_badge( $m['status'] ); // phpcs:ignore ?>
 					<?php if ( (int) $m['attempts'] > 1 || ( 'queued' === $m['status'] && $m['attempts'] ) ) : ?>
 						<span class="flxs-muted"><?php echo (int) $m['attempts']; ?>. deneme</span>
@@ -111,7 +111,7 @@ function flxs_page_queue() {
 						<div class="flxs-err"><?php echo esc_html( $m['last_error'] ); ?></div>
 					<?php endif; ?>
 				</td>
-				<td data-label="Zaman" class="flxs-muted">
+				<td data-label="<?php esc_attr_e( 'Time', 'flx-certificates' ); ?>" class="flxs-muted">
 					<?php if ( 'sent' === $m['status'] ) : ?>
 						Gönderildi <?php echo esc_html( flxs_date( $m['sent_at'] ) ); ?>
 					<?php elseif ( 'queued' === $m['status'] ) : ?>
@@ -121,7 +121,7 @@ function flxs_page_queue() {
 					<?php endif; ?>
 					<div>Eklendi <?php echo esc_html( flxs_date( $m['created_at'] ) ); ?></div>
 				</td>
-				<td data-label="Gönderen"><?php echo esc_html( flxs_user_label( $m['created_by'] ) ); ?><div class="flxs-muted"><?php echo esc_html( $m['source'] ); ?></div></td>
+				<td data-label="<?php esc_attr_e( 'Sender', 'flx-certificates' ); ?>"><?php echo esc_html( flxs_user_label( $m['created_by'] ) ); ?><div class="flxs-muted"><?php echo esc_html( $m['source'] ); ?></div></td>
 				<td class="flxs-actions-cell">
 					<button type="button" class="button button-small" data-toggle="flxs-m<?php echo (int) $m['id']; ?>">Detay</button>
 					<?php if ( in_array( $m['status'], array( 'failed', 'cancelled' ), true ) ) : ?>
@@ -138,11 +138,11 @@ function flxs_page_queue() {
 							<?php if ( $m['subject'] ) : ?><div><strong>Konu:</strong> <?php echo esc_html( $m['subject'] ); ?></div><?php endif; ?>
 							<pre class="flxs-pre"><?php echo esc_html( str_replace( '{buton}', '[Sertifikayı görüntüle butonu]', $m['body'] ) ); ?></pre>
 							<?php if ( $m['certificate_id'] ) : ?>
-								<a href="<?php echo esc_url( admin_url( 'admin.php?page=flxs-kuyruk&cert=' . (int) $m['certificate_id'] ) ); ?>">Bu sertifikanın tüm gönderimleri</a>
+								<a href="<?php echo esc_url( admin_url( 'admin.php?page=flxs-kuyruk&cert=' . (int) $m['certificate_id'] ) ); ?>"><?php esc_html_e( 'All deliveries for this certificate', 'flx-certificates' ); ?></a>
 							<?php endif; ?>
 						</div>
 						<div>
-							<div><strong>Sağlayıcı yanıtı</strong> <?php echo $m['external_id'] ? '· ID: <code>' . esc_html( $m['external_id'] ) . '</code>' : ''; ?></div>
+							<div><strong><?php esc_html_e( 'Provider response', 'flx-certificates' ); ?></strong> <?php echo $m['external_id'] ? '· ID: <code>' . esc_html( $m['external_id'] ) . '</code>' : ''; ?></div>
 							<pre class="flxs-pre"><?php echo esc_html( $m['response'] ? wp_json_encode( json_decode( $m['response'], true ), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) : '–' ); ?></pre>
 						</div>
 					</div>

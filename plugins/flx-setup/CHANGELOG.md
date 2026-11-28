@@ -1,8 +1,21 @@
 # Değişiklikler
 
-## 1.6.17
-- "Sign in with FluxWP" ile bağlanırken fluxwp.com onay sayfası artık sitenin dilinde açılır (bağlantıya `lang` eklenir; fluxwp.com yoksa tarayıcı diline bakar).
-- Ziyaretçiden REST API'yi gizleyen sitelerde (Arifiye Quiz hazır ayarı) site sahipliği kanıtı 404 dönüp fluxwp.com'da "FluxWP Panel çok eski" hatası veriyordu. `/flx-setup/v1/cloud/proof` yolu `flxaq_rest_allow` filtresine eklendi; yalnız bu yol açılır.
+## 1.7.3
+- "Sign in with FluxWP" ile bağlanırken fluxwp.com onay sayfası artık sitenin dilinde açılır (bağlantıya `lang` eklenir; yoksa fluxwp.com tarayıcı diline bakar).
+
+## 1.7.2
+- Yönetim ekranları için dil katalogları güncellendi. Toplu işlem araçları dar ekranlara sığar.
+
+
+## 1.7.1
+- FluxWP hesabına bağlanırken "FluxWP Panel is too old to connect" hatası: REST API'yi gizleyen/kısıtlayan siteler (görünmez siteler, güvenlik eklentileri) sahiplik kanıtı isteğine 404 dönüyordu ve fluxwp.com bunu "eski sürüm" sayıyordu. Kanıt isteği artık diğer eklentilerden önce yanıtlanır.
+
+## 1.7.0
+- Paketler ekranı klasik sayfayla birebir: alt başlık, "Güncellemeleri kontrol et" altında son kontrol ve sonuç satırı (bildirim çubuğu yerine), Google kartı klasik görünümde.
+- Sunucuya ulaşılamıyor ve FluxWP paketi listelenemiyorsa bağlantı formu (sunucu adresi, site anahtarı, güncelleme sonrası kontrol, otomatik güncelleme, kullanım verisi) yine Paketler sayfasında; bağlantı kartında "Bağlantıyı test et".
+- Kutulu sekmeler, ikonlu arama; "Eklentiler, temalar ve güncellemeler" araç çubuğu (etkinleştir, seçilenleri kur, toplu işlem, tümünü güncelle) her zaman görünür.
+- Tabloda WordPress ve çeviri ikonları, mavi paket adları, satır şeritleri; paket listesi alınamadı notu tablonun üstünde. "WordPress güncellemeleri" bağlantısı ve kalkan ikonlu yedek şeridi klasik sırada; geçmişte yedek ikonu.
+- Ayarlar › Bağlantı formu klasik form-table düzeninde (ortak bileşen).
 
 ## 1.6.16
 - Paketler › toplu "Otomatik güncellemeyi aç/kapat" "Call to undefined function wp_is_auto_update_enabled_for_type()" hatasıyla düşüyordu: işlev wp-admin/includes/update.php içinde ve GraphQL isteğinde yüklü değildi. Dosya artık gerektiğinde yüklenir (tekli aç/kapa, toplu işlem ve tablo sütunu dahil).

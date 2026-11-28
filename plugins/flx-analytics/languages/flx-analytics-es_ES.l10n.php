@@ -172,7 +172,7 @@ return array(
   'Paid donation / order' => 'Donación / pedido pagado',
   'Remove from cart' => 'Quitar del carrito',
   'Coupon used' => 'Cupón usado',
-  'Today' => 'hoy',
+  'Today' => 'Hoy',
   'Yesterday' => 'ayer',
   'Last 30 days' => 'últimos 30 días',
   'Last 90 days' => 'últimos 90 días',
@@ -988,6 +988,7 @@ return array(
   'Şu an' => 'Ahora mismo',
   'Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.' => 'Estadísticas del sitio sin datos personales y sin cookies: visitantes, vistas, páginas más leídas, sitios de referencia, canal, dispositivo/navegador, campaña (UTM), eventos de clic y conversiones de donaciones. Los datos permanecen en el sitio; Lee con herramientas de inteligencia artificial Flux AI / Flux AI y MCP.',
   'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.' => 'Estadísticas del sitio sin datos personales y sin cookies: visitantes, vistas, páginas más leídas, sitios de referencia, canal, dispositivo/navegador, campaña (UTM), eventos de clic y conversiones de donaciones. Los datos permanecen en el sitio; Lee con herramientas de inteligencia artificial Flux AI / Flux AI y MCP.',
-
+  'View statistics' => 'Ver estadísticas',
+  'Logged-in people' => 'Gente apestosa.',
  ),
 );

@@ -654,7 +654,7 @@ msgid "The app works with your permissions: the menus and actions your role can 
 msgstr "アプリは、ユーザーの権限、つまりユーザーの役割が表示できるメニューとアクションに従って動作します。"
 
 msgid "You can revoke access at any time under Users › App access."
-msgstr "You can revoke access at any time under Users › App access."
+msgstr "ユーザー ?? アプリアクセスの下で、いつでもアクセスを解除することができます。"
 
 msgid "After approval you will return to %s."
 msgstr "承認後、%sに戻ります。"
@@ -1348,3 +1348,105 @@ msgstr "%s アカウントから電話番号が削除されました"
 
 msgid "The token does not include the scope this request needs."
 msgstr "トークンに、このリクエストが必要とするスコープが含まれていません。"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript この画面には必須です。"
+
+msgid "Open in app"
+msgstr "アプリで開く"
+
+msgid "Open in the FluxWP app"
+msgstr "FluxWP アプリで開きます。"
+
+msgid "Opening the app…"
+msgstr "アプリを開く。"
+
+msgid "The app did not open. Install it, then come back and press the button again."
+msgstr "アプリを開いていないので、インストールして戻って、もう一度ボタンを押してください。"
+
+msgid "Download on the App Store"
+msgstr "App Storeからダウンロードします。"
+
+msgid "Get it on Google Play"
+msgstr "Google Playで入手してください。"
+
+msgid "Download for Mac"
+msgstr "Mac用ダウンロード。"
+
+msgid "Open the app"
+msgstr "アプリを開きます。"
+
+msgid "This push service is not allowed."
+msgstr "このプッシュサービスは許可されていません。"
+
+msgid "Invalid subscription keys."
+msgstr "無効なサブスクリプションキー。"
+
+msgid "Browser notifications need a signed-in browser session."
+msgstr "ブラウザ通知には、サインインブラウザセッションが必要です。"
+
+msgid "Notifications are turned off on this site."
+msgstr "本サイトでは通知がオフになっています。"
+
+msgid "Notifications on"
+msgstr "お知らせします。"
+
+msgid "Notifications blocked"
+msgstr "通知がブロックされる"
+
+msgid "Get notifications in this browser, also when the site is closed."
+msgstr "サイトが閉じているときも、このブラウザで通知を取得します。"
+
+msgid "Stop notifications in this browser."
+msgstr "このブラウザで通知を停止します。"
+
+msgid "Notifications are blocked for this site in the browser settings."
+msgstr "ブラウザの設定で、本サイトの通知がブロックされます。"
+
+msgid "Notifications could not be turned on"
+msgstr "通知がオンにできません。"
+
+msgid "This browser"
+msgstr "このブラウザは"
+
+msgid "Notification types"
+msgstr "通知タイプ"
+
+msgid "Applies to all your devices, also the mobile app."
+msgstr "すべてのデバイス、モバイルアプリにも適用されます。"
+
+msgid "No notification types are available yet."
+msgstr "通知タイプはまだありません。"
+
+msgid "Could not save, try again."
+msgstr "保存することができず、もう一度試してみてください。"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Browser notifications (Web Push)"
+msgstr "ブラウザ通知(Webプッシュ)"
+
+msgid "Browsers allow notifications only on https sites."
+msgstr "ブラウザはhttpsサイト上でのみ通知を許可します。"
+
+msgid "Ready. Users turn them on per browser with Notifications in the admin bar."
+msgstr "ユーザーは、管理バーの通知でブラウザごとにそれらをオンにします。"
+
+msgid "PHP OpenSSL cannot sign P-256 keys here; browsers do not get notifications. Mobile app push still works."
+msgstr "PHP OpenSSLはP-256キーにサインできません。"
+
+msgid "Live connection (realtime)"
+msgstr "リアルタイム接続(リアルタイム接続)"
+
+msgid "The realtime service runs but has no public address (FLX_REALTIME_URL); apps poll."
+msgstr "リアルタイムサービスは実行されますが、パブリックアドレス(FLX_REALTIME_URL)はありません。"
+
+msgid "Panel and app get changes at once."
+msgstr "パネルとアプリはすぐに変更されます。"
+
+msgid "Not checked yet; shown after the next app sign-in."
+msgstr "チェックイン後、次のアプリにサインインします。"
+
+msgid "The realtime service is not answering; apps poll until it is back."
+msgstr "リアルタイムサービスは応答しない。"

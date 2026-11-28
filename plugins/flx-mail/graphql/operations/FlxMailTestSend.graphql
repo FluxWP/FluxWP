@@ -3,7 +3,7 @@ mutation FlxMailTestSend($input: FlxMailTestSendInput!) {
     ok
     to
     error
-    at { ...FlxMailDate }
+    at { ...FlxMailDate short }
     errors { code message field }
   }
 }

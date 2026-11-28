@@ -538,3 +538,29 @@ Mesaj alanı `_show`: modele giden metinden farklı görünen metin (kullanıcı
 - `flxai_tool_result( $data, $name, $args, $ctx )`: başarılı araç sonucunu değiştirir. Flux AI kendisi `flxseo_*_content` sonuçlarına `preview_url` + `edit_url` ekler.
 - `flxai_image_generate` (prompt, aspect, title, alt): varsayılan görsel modeliyle üretir, medya kütüphanesine ekler, `images[].attachment_id/url` döner. Ayar `image_tool_on`.
 - `flxai_page_screenshot` (post_id | url, width): Gotenberg (`render_url`) ile PNG. Taslaklar `flxai_preview_link( $post_id, $ttl )` imzalı süreli bağlantısıyla çekilir.
+
+## Flux Cloud AI kredisi (0.36.0)
+
+Site Flux Cloud'a bağlıysa (Flux Setup `FLXK_Cloud::connected()`) ve ilgili sağlayıcının anahtarı yoksa (`cloud_ai` = `auto`) ya da `cloud_ai` = `always` ise istek `flxai_openrouter_request()` içinden hesabın proxy'sine gider: `<ai.base>/chat/completions`, `Authorization: Bearer <Flux Cloud access token>`. Sözleşme: wp-extras `plugins/flx-cloud/docs/API.md` (3b).
+
+- `flxai_cloud_status( $fresh )`: hesap kredisi (`on, base, models, basic, default, monthly, used, bonus, left, site_used, resets, buy_url`), 5 dk önbellek (`flxai_cloud_ai`); her cevaptaki `flx_cloud` sayılarıyla güncellenir.
+- `flxai_cloud_ready()`, `flxai_cloud_for( $provider )`, `flxai_provider_usable( $provider )`.
+- `flxai_providers_ready()` anahtar yoksa `cloud` => "Flux Cloud (account AI credits)" döner; model kataloğu OpenRouter listesidir.
+- Claude kimliği OpenRouter'a çevrilir: filtre `flxai_cloud_model_id( $id, $provider )`.
+- Hata (402 kredi bitti, 403 plan modeli içermiyor, 429 sınır): `WP_Error( 'flxai_cloud', <Flux Cloud mesajı>, { provider: 'cloud', status, buy_url } )`.
+
+## Aktarım (relay) API'si (0.37.0, Anthropic 0.37.2)
+
+Aynı sitedeki başka bir eklentinin (fluxwp.com'da Flux Cloud AI kredisi proxy'si) AI isteğini Flux AI üzerinden göndermesi için. Anahtar çağıran eklentide tutulmaz; Flux AI › Ayarlar'daki OpenRouter ve Anthropic (Claude) anahtarları (ya da `FLXAI_KEY_OPENROUTER` / `FLXAI_KEY_ANTHROPIC`) kullanılır. Flux Cloud kredisine hiç dönmez (döngü olmaz). Çağıran önce `function_exists( 'flx_ai_relay' )` ile Flux AI'ın açık olduğuna bakar.
+
+Sağlayıcı seçimi (`$opts['provider']`):
+- `auto` (varsayılan): Claude modeli (`anthropic/…`, `claude:…`, `claude-…`) ve Anthropic anahtarı varsa Anthropic'e, diğerleri OpenRouter'a. Yalnız Anthropic anahtarı varsa her istek Anthropic'e gider.
+- `openrouter`: hep OpenRouter (Claude modelleri de OpenRouter kimliğiyle).
+- `anthropic`: hep Anthropic. Claude olmayan model Flux AI varsayılan Claude modeline, o da yoksa `claude-haiku-4-5`'e döner.
+- Seçilen sağlayıcının anahtarı yoksa `WP_Error flxai_relay_key` (503).
+
+Anthropic'e OpenAI uyumlu `/v1/chat/completions` ile gidilir (`x-api-key`, `anthropic-version`); OpenRouter'a özel alanlar (`usage`, `plugins`, `reasoning`, `provider`, `transforms`, `seed`) çıkarılır, akışta `stream_options.include_usage` eklenir. Kimlik `anthropic/claude-haiku-4.5` → `claude-haiku-4-5` (filtre `flxai_relay_anthropic_id`); dönüşte model yine OpenRouter biçimindedir.
+
+- `flx_ai_relay_info()` → `{ ready, provider, providers: { openrouter?: '1234', anthropic?: '5678' }, keys: 'OpenRouter …1234, Anthropic (Claude) …5678', default, key_end, settings_url, message }`. `default`: Flux AI varsayılan modeli OpenRouter kimliğiyle (`claude:claude-haiku-5-5` → `anthropic/claude-haiku-5.5`); seçilmemişse `google/gemini-2.5-flash` (yalnız Anthropic varsa `anthropic/claude-haiku-4.5`).
+- `flx_ai_relay( array $body, array $opts )`: OpenRouter `/chat/completions` gövdesi. `$opts`: `provider`, `referer`, `title`, `timeout`, akış için `on_start( int $code )` ve `on_sse( string $lines )` (ham SSE satırları, `[DONE]` hariç; akışı çağıran bitirir). Dönüş `{ code, json, raw, usage, model, id, cost, streamed, provider }` ya da `WP_Error` (`flxai_relay_key` 503, `flxai_relay_http` 502). `cost` USD: OpenRouter'da `usage.cost`, yoksa `/generation`'dan bir kez sorulur; Anthropic'te Flux AI fiyat tablosundan (önbellekli token dahil); bilinmiyorsa `null`.
+- `flx_ai_relay_key_check()` → `{ usage, limit, message }` (OpenRouter `/key`, Anthropic `/models`; ikisi varsa iki mesaj birleşir) ya da `WP_Error`.

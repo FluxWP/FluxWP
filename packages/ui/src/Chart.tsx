@@ -106,6 +106,10 @@ export interface ChartProps {
   className?: string;
   /** Y ekseni 0'dan başlasın (varsayılan true). */
   zero?: boolean;
+  /** Y ekseni önerilen üst sınırı (veri hep 0 iken eksen anlamlı kalsın). */
+  max?: number;
+  /** Çizgi noktaları (varsayılan: 40 noktaya kadar açık). */
+  points?: boolean;
 }
 
 /** Ortak palet: tema token'ları, sonra tarafsız yedekler. */
@@ -222,7 +226,7 @@ function build(el: Element, p: ChartProps, th: Theme): ChartConfiguration {
         tension: 0.3,
         borderWidth: s.dashed ? 1.5 : 2,
         borderDash: s.dashed ? [6, 4] : undefined,
-        pointRadius: s.dashed || (s.data as unknown[]).length > 40 ? 0 : 2.5,
+        pointRadius: s.dashed || p.points === false || (p.points !== true && (s.data as unknown[]).length > 40) ? 0 : 2.5,
         pointHoverRadius: 5,
         pointBackgroundColor: c,
         stack: s.dashed ? '_' + i : s.stack,
@@ -282,6 +286,7 @@ function build(el: Element, p: ChartProps, th: Theme): ChartConfiguration {
       type: 'linear',
       stacked,
       beginAtZero: p.zero !== false,
+      ...(p.max !== undefined ? { suggestedMax: p.max } : {}),
       grid: { color: th.grid, drawTicks: false },
       border: { display: false },
       ticks: valTick,
@@ -418,8 +423,8 @@ export function Chart(props: ChartProps) {
 
   // Veri değişince yeniden çiz (yeni nesne her render'da gelir; içerik anahtarıyla karşılaştır).
   const key = useMemo(
-    () => JSON.stringify([props.kind, props.labels, props.series, props.stacked, props.horizontal, props.legend, props.colors, props.zero]),
-    [props.kind, props.labels, props.series, props.stacked, props.horizontal, props.legend, props.colors, props.zero],
+    () => JSON.stringify([props.kind, props.labels, props.series, props.stacked, props.horizontal, props.legend, props.colors, props.zero, props.max, props.points]),
+    [props.kind, props.labels, props.series, props.stacked, props.horizontal, props.legend, props.colors, props.zero, props.max, props.points],
   );
 
   const draw = useMemo(

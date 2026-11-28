@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.4.2
+- Yönetim ekranları için dil katalogları güncellendi. Pano tarihleri, grafikler, menüler ve ayar etiketleri de profil dilini izler.
+
+
+## 2.4.1
+- Sertifika panosundaki tarih aralığı filtreleri dar ekranlara ve uzun tarih metinlerine uyum sağlar.
+
+## 2.4.0
+- Sertifikalar, Yeni sertifika ve Kişiler ekranları klasik sayfaların birebir düzeninde: başlık, alt başlık ve düğmeler (Excel indir, + Yeni sertifika, + Kişi ekle) ekran başlığında; arama + Durum/Etkinlik filtreleri, diğerleri "Filtreler" altında; sayfa numaraları ve sayfa başı seçimi.
+- Sertifika listesi klasik tablo: küçük görsel, d.m.Y H:i tarih, "geçmiş tarihli" etiketi, kanal simgeli gönderim çipleri, İşlemler menüsü. Kişi listesinde sertifika sayısı o kişinin sertifikalarını açar.
+- Yeni sertifika: şablon kartları (önizleme görseliyle), ortak bilgiler ve "Kişilere dağıt", telefon/e-posta kontrolü ve kayıtlı kişi önerisi, listeden yapıştır, kanal başına bağlantı seçimi, canlı önizlemede kişiler arası geçiş ve PDF, ilerleme penceresi (arka planda devam), oluşturulanlar listesi.
+- Pano, kuyruk, toplu gönderim, şablonlar, kayıtlar, ayarlar ve sistem kontrolü kendi başlık, alt başlık ve düğmelerini ekran başlığında gösterir; klasik stilleri ortak ekran sıfırlamasından etkilenmez.
+- Düzeltme: Yeni sertifika ve liste filtrelerinde referans personel listesi boş geliyordu.
+
 ## 2.3.0
 - Sertifika sayfaları Flux GraphQL ekran kabuğunda: ilk veri sayfayla birlikte gelir (preload), tıklayınca anında açılır.
 - Ortak ekran başlığı ve sekmeler: Sertifikalar, Yeni sertifika, Kişiler, Pano, Gönderim kuyruğu, Toplu gönderim, Şablonlar, Kayıtlar, Ayarlar, Sistem kontrolü tek sekme çubuğunda (kullanıcının yetkisine göre).

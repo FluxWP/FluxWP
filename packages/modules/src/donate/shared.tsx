@@ -2,7 +2,7 @@
 import { createContext, useContext, type MouseEvent, type ReactNode } from 'react';
 import type { FlxDonationListFilter } from '@fluxwp/graphql/types';
 import type { Translate, TranslateN } from './i18n';
-import { ListPages } from '@fluxwp/ui';
+import { ListPages, type ScreenBack } from '@fluxwp/ui';
 
 export type Page = 'dashboard' | 'list' | 'detail' | 'donors' | 'donor' | 'subscriptions' | 'types' | 'type' | 'add' | 'partners' | 'settle' | 'partner' | 'track' | 'item' | 'import' | 'reports' | 'report-edit' | 'settings';
 export type Notice = { kind: 'ok' | 'error'; text: string };
@@ -95,6 +95,12 @@ export function Ico({ name, size = 16 }: { name: keyof typeof PATHS | string; si
       <path d={PATHS[name] ?? ''} />
     </svg>
   );
+}
+
+/** Screen back button (replaces the header icon): opens `href` through the host. Undefined without a target. */
+export function useBackButton(href: string | undefined, label: string): ScreenBack | undefined {
+  const { open } = useDonate();
+  return href ? { label, href, onClick: () => open(href) } : undefined;
 }
 
 /** A link that opens through the host (another Flux screen opens in place) on a plain click. */

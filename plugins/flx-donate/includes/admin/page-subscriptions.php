@@ -19,9 +19,9 @@ final class FLXB_Page_Subscriptions {
 		FLXB_Admin::screen();
 	}
 
-	/** Recurring gifts can be canceled from here when Flux Donate takes the payments. */
+	/** Recurring gifts can be canceled from here (the renewal cron stops charging the card). */
 	private static function can_cancel() {
-		return function_exists( 'flxb_owns_payments' ) && flxb_owns_payments() && flxb_can_manage();
+		return flxb_can_manage();
 	}
 
 	/** The donor's recurring donations on the Flux CRM person card (FLXB_Page_Donors::crm_main_before()). */
@@ -43,11 +43,11 @@ final class FLXB_Page_Subscriptions {
 			echo '<td class="num' . ( $show_donor ? '' : ' flxb-col-main' ) . '" data-label="' . esc_attr__( 'Amount', 'flx-donate' ) . '"><span>' . esc_html( flxb_money( $s['amount'], $s['currency'] ) ) . '</span></td>';
 			echo '<td data-label="' . esc_attr__( 'Interval', 'flx-donate' ) . '"><span>' . esc_html( flxb_interval_label( $s['interval_unit'] ) ) . '</span></td>';
 			$why = '';
-			if ( 'iyzico' === $s['provider'] && 'canceled' !== $s['status'] ) {
+			if ( FLXB_Renewals::PROVIDER === $s['provider'] && 'canceled' !== $s['status'] ) {
 				$sm = FLXB_Subscriptions::meta( $s );
 				if ( ! empty( $sm['last_error'] ) && (int) ( $sm['retry_count'] ?? 0 ) > 0 ) {
-					/* translators: 1: attempts made, 2: attempts allowed, 3: error from iyzico */
-					$why = sprintf( __( 'Attempt %1$s of %2$s failed: %3$s', 'flx-donate' ), number_format_i18n( (int) $sm['retry_count'] ), number_format_i18n( FLXB_Iyzico_Recurring::max_attempts() ), (string) $sm['last_error'] );
+					/* translators: 1: attempts made, 2: attempts allowed, 3: error from the payment provider */
+					$why = sprintf( __( 'Attempt %1$s of %2$s failed: %3$s', 'flx-donate' ), number_format_i18n( (int) $sm['retry_count'] ), number_format_i18n( FLXB_Renewals::max_attempts() ), (string) $sm['last_error'] );
 				}
 				if ( ! empty( $sm['card']['label'] ) ) {
 					$why = trim( (string) $sm['card']['label'] . ( '' !== $why ? ' · ' . $why : '' ) );
@@ -59,9 +59,8 @@ final class FLXB_Page_Subscriptions {
 			echo '<td data-label="' . esc_attr__( 'Gifts', 'flx-donate' ) . '"><span><a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-donations', array( 'donor_id' => (int) $s['donor_id'], 'type' => 'recurring' ) ) ) . '">' . esc_html( number_format_i18n( $n ) ) . '</a></span></td>';
 			if ( self::can_cancel() ) {
 				echo '<td class="flxb-col-act">';
-				$p = flxf_payment_provider( $s['provider'] );
-				if ( $p && method_exists( $p, 'cancel_subscription' ) && in_array( $s['status'], array( 'active', 'past_due' ), true ) ) {
-					echo '<form method="post" class="flxb-inline" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Cancel this recurring donation at the payment provider? No further charges will be made.', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_sub_cancel"><input type="hidden" name="id" value="' . (int) $s['id'] . '"><input type="hidden" name="back" value="' . esc_attr( remove_query_arg( array( 'flxb_msg', 'flxb_err' ), wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) ) ) . '">'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				if ( FLXB_Renewals::PROVIDER === $s['provider'] && in_array( $s['status'], array( 'active', 'past_due' ), true ) ) {
+					echo '<form method="post" class="flxb-inline" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Cancel this recurring donation? No further charges will be made.', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_sub_cancel"><input type="hidden" name="id" value="' . (int) $s['id'] . '"><input type="hidden" name="back" value="' . esc_attr( remove_query_arg( array( 'flxb_msg', 'flxb_err' ), wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) ) ) . '">'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					wp_nonce_field( 'flxb_sub_cancel_' . (int) $s['id'] );
 					echo '<button type="submit" class="flxb-linkbtn flxb-linkbtn--danger">' . esc_html__( 'Cancel', 'flx-donate' ) . '</button></form>';
 				}

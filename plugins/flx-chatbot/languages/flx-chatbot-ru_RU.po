@@ -146,7 +146,7 @@ msgid "Chats"
 msgstr "Чаты"
 
 msgid "Chatbot settings"
-msgstr "Chatbot settings"
+msgstr "Установка шаттла"
 
 msgid "Choose avatar"
 msgstr "Выбрать аватар"
@@ -806,10 +806,10 @@ msgid "Site chat transcript"
 msgstr "Стенограмма чата на сайте"
 
 msgid "Chat not found."
-msgstr "Chat not found."
+msgstr "Чейт не нашел."
 
 msgid "Chat statistics"
-msgstr "Chat statistics"
+msgstr "Статистические данные о цепях"
 
 msgid "Site chat"
 msgstr "Чат на сайте"
@@ -1200,3 +1200,12 @@ msgstr "Окно чата на сайте с поддержкой искусст
 
 msgid "Still answering. Please wait a moment."
 msgstr "Ответ ещё готовится. Пожалуйста, подождите немного."
+
+msgid "Answers site chats"
+msgstr "Ответы на сайты"
+
+msgid "JavaScript is required for this screen."
+msgstr "Для этого экрана требуется JavaScript."
+
+msgid "Chat on WhatsApp"
+msgstr "Череп WhatsApp"

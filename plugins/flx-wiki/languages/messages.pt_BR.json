@@ -180,6 +180,17 @@
     "select": "selecione",
     "open": "aberto",
     "close": "fechar",
-    "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.": "Wiki do desenvolvedor no site em /wiki: páginas Markdown, seções, árvore de páginas e índice, pesquisa instantânea detalhada, resultado amigável para SEO. LLM amigável: cada página é aberta e copiada como .md, /wiki/llms.txt e llms-full.txt, aberta em ChatGPT/Claude. Ferramentas \"Pergunte ao Wiki\" e MCP (pesquisar, ler, listar, escrever) com Flux AI. Ele vem com guias para escrever plug-ins e temas e criar plug-ins com tecnologia de IA."
+    "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.": "Wiki do desenvolvedor no site em /wiki: páginas Markdown, seções, árvore de páginas e índice, pesquisa instantânea detalhada, resultado amigável para SEO. LLM amigável: cada página é aberta e copiada como .md, /wiki/llms.txt e llms-full.txt, aberta em ChatGPT/Claude. Ferramentas \"Pergunte ao Wiki\" e MCP (pesquisar, ler, listar, escrever) com Flux AI. Ele vem com guias para escrever plug-ins e temas e criar plug-ins com tecnologia de IA.",
+    "JavaScript is required for this screen.": "JavaScript é necessário para esta tela.",
+    "You cannot edit this page.": "Você não pode editar esta página.",
+    "The parent page was not found.": "A página principal não foi encontrada.",
+    "A page cannot be placed under itself.": "Uma página não pode ser colocada sob si mesma.",
+    "This status is not available.": "Este status não está disponível.",
+    "You cannot delete this page.": "Você não pode excluir esta página.",
+    "The page could not be deleted.": "A página não pode ser excluída.",
+    "You cannot manage sections.": "Você não pode gerenciar seções.",
+    "A section name is required.": "Um nome de seção é necessário.",
+    "Section not found.": "Secção não encontrada.",
+    "The section could not be deleted.": "A seção não pode ser excluída."
   }
 }

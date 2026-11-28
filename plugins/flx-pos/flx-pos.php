@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Flux POS Entegrator
- * Description:       WooCommerce için ortak sanal POS: Türkiye'deki bankalar (Akbank, Garanti BBVA, İş Bankası, Yapı Kredi, Ziraat, Halkbank, Vakıfbank, QNB, Denizbank, TEB, Kuveyt Türk…) ve ödeme kuruluşları (iyzico, PayTR, Sipay, Param, Craftgate, Moka, Paratika, EsnekPOS…) tek eklentide. Kendi kart formu (klasik ve blok ödeme), 3D Secure, test modu, taksit, siteden iade, işlem kayıtları ve sitedeki tüm ödeme yöntemlerinin yetenek tablosu.
- * Version:           0.2.3
+ * Description:       WooCommerce için ortak sanal POS: Türkiye'deki bankalar (Akbank, Garanti BBVA, İş Bankası, Yapı Kredi, Ziraat, Halkbank, Vakıfbank, QNB, Denizbank, TEB, Kuveyt Türk…) ve ödeme kuruluşları (Stripe, iyzico, PayTR, Sipay, Param, Craftgate, Moka, Paratika, EsnekPOS…) tek eklentide. Kendi kart formu (klasik ve blok ödeme), 3D Secure, test modu, taksit, siteden iade, işlem kayıtları ve sitedeki tüm ödeme yöntemlerinin yetenek tablosu.
+ * Version:           0.4.2
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  flx-graphql
@@ -25,7 +25,7 @@ if ( defined( 'FLXPOS_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXPOS_VERSION', '0.2.3' );
+define( 'FLXPOS_VERSION', '0.4.2' );
 define( 'FLXPOS_DB', 1 );
 define( 'FLXPOS_FILE', __FILE__ );
 define( 'FLXPOS_DIR', plugin_dir_path( __FILE__ ) );
@@ -43,11 +43,13 @@ require_once FLXPOS_DIR . 'includes/class-flxpos-flow.php';
 require_once FLXPOS_DIR . 'includes/class-flxpos-gateways.php';
 require_once FLXPOS_DIR . 'includes/class-flxpos-methods.php';
 require_once FLXPOS_DIR . 'includes/class-flxpos-order-box.php';
+require_once FLXPOS_DIR . 'includes/class-flxpos-stripe.php';
 require_once FLXPOS_DIR . 'includes/services/class-flxpos-dto.php';
 require_once FLXPOS_DIR . 'includes/services/class-flxpos-screen-service.php';
 require_once FLXPOS_DIR . 'includes/app.php';
 require_once FLXPOS_DIR . 'includes/rest.php';
 require_once FLXPOS_DIR . 'includes/api.php';
+require_once FLXPOS_DIR . 'includes/class-flxpos-saved-cards.php';
 require_once FLXPOS_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXPOS_DIR . 'includes/admin.php';
@@ -143,12 +145,17 @@ add_filter(
 	}
 );
 
+/** Paket logosu, Flux Admin yüklü değilken de kendi klasöründen sunulur. */
+function flxpos_logo_url( $style = 'gradient' ) {
+	return FLXPOS_URL . ( 'pastel' === $style ? 'assets/icon-pastel.svg' : 'assets/icon.svg' ) . '?ver=' . FLXPOS_VERSION;
+}
+
 /** Güncellemeler ekranında paket logosu. */
 add_filter(
 	'flxu_package_icons',
 	function ( $icons, $slug ) {
 		if ( 'flx-pos' === $slug && ! $icons ) {
-			$url   = FLXPOS_URL . 'assets/icon.svg?ver=' . FLXPOS_VERSION;
+			$url   = flxpos_logo_url();
 			$icons = array( 'svg' => $url, '1x' => $url, '2x' => $url );
 		}
 		return $icons;
@@ -178,4 +185,13 @@ add_filter(
 		$m['flx-pos'] = 'flx-pos.svg';
 		return $m;
 	}
+);
+
+add_filter(
+	'flxa_package_logo_url',
+	static function ( $url, $file, $style ) {
+		return 'flx-pos.svg' === $file ? flxpos_logo_url( $style ) : $url;
+	},
+	10,
+	3
 );

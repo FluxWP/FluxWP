@@ -279,7 +279,7 @@ function flxb_provider_label( $id ) {
 			return $p->label();
 		}
 	}
-	$map = array( 'woocommerce' => 'WooCommerce', 'stripe' => 'Stripe', 'iyzico' => 'iyzico', 'paypal' => 'PayPal', 'manual' => __( 'Manual', 'flx-donate' ), 'flxf_test' => __( 'Test provider', 'flx-donate' ), 'bank_transfer' => __( 'Bank transfer', 'flx-donate' ), 'cash' => __( 'Cash', 'flx-donate' ), 'other' => __( 'Other', 'flx-donate' ) );
+	$map = array( 'woocommerce' => 'WooCommerce', 'flxpos' => 'Flux POS', 'stripe' => 'Stripe', 'iyzico' => 'iyzico', 'paypal' => 'PayPal', 'manual' => __( 'Manual', 'flx-donate' ), 'bank_transfer' => __( 'Bank transfer', 'flx-donate' ), 'cash' => __( 'Cash', 'flx-donate' ), 'other' => __( 'Other', 'flx-donate' ) );
 	return $map[ (string) $id ] ?? (string) $id;
 }
 

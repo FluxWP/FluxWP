@@ -1,5 +1,9 @@
 # Flux Lang
 
+## 0.5.4
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.5.3
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

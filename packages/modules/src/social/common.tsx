@@ -38,6 +38,8 @@ export interface Ctx {
   tsToInput: (ts: number) => string;
   openUrl: (url: string) => void;
   appMode: boolean;
+  /** Header slot for page controls (portal target), null until mounted. */
+  topSlot: HTMLElement | null;
 }
 
 export const SocialCtx = createContext<Ctx | null>(null);

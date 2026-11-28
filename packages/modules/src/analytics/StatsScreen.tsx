@@ -150,15 +150,13 @@ function Stats() {
     <Shell
       title={t('Statistics')}
       busy={q.isFetching && !q.data}
-      head={
-        <div className="flxan-tools">
-          <FilterBar f={f} set={set} refs={refs.map((r) => ({ code: r.code, label: r.label }))} />
-          <a className="flxan-btn" href={exportHref()}>
-            {t('Download CSV')}
-          </a>
-        </div>
-      }
     >
+      <div className="flxan-tools flxan-tools--bar">
+        <FilterBar f={f} set={set} refs={refs.map((r) => ({ code: r.code, label: r.label }))} />
+        <a className="flxan-btn" href={exportHref()}>
+          {t('Download CSV')}
+        </a>
+      </div>
       <FastTest />
       {empty && (
         <div className="flxan-banner">
@@ -188,8 +186,8 @@ function Stats() {
         {kpi ? (
           <>
             <Kpi label={t('Visitors')} value={n(kpi.totals.visitors)} ch={kpi.change.visitors} sub={t('Previous period: %s', n(kpi.prev.visitors))} tone="green" icon="users" />
-            <Kpi label={t('Page views')} value={n(kpi.totals.pageviews)} ch={kpi.change.pageviews} sub={t('Previous period: %s', n(kpi.prev.pageviews))} tone="blue" icon="eye" />
-            <Kpi label={t('Visits')} value={n(kpi.visits.sessions)} ch={kpi.change.sessions} sub={t('Previous period: %s', n(kpi.visitsPrev.sessions))} tone="violet" icon="door" />
+            <Kpi label={t('Views')} value={n(kpi.totals.pageviews)} ch={kpi.change.pageviews} sub={t('Previous period: %s', n(kpi.prev.pageviews))} tone="blue" icon="eye" />
+            <Kpi label={t('Sessions')} value={n(kpi.visits.sessions)} ch={kpi.change.sessions} sub={t('Previous period: %s', n(kpi.visitsPrev.sessions))} tone="violet" icon="door" />
             {(() => {
               const ppv = kpi.totals.visitors ? kpi.totals.pageviews / kpi.totals.visitors : 0;
               const pp = kpi.prev.visitors ? kpi.prev.pageviews / kpi.prev.visitors : 0;
@@ -214,11 +212,11 @@ function Stats() {
               </span>
               <span>
                 <i style={{ background: 'var(--flxan-accent-2)' }} />
-                {t('Page views')}
+                {t('Views')}
               </span>
             </div>
           </div>
-          {kpi ? <BarChart items={kpi.series.items} group={kpi.series.group} /> : <div className="flxan-chart" style={{ minHeight: 260 }}><i className="flxan-sk" style={{ height: 220, width: '100%' }} /></div>}
+          {kpi ? <BarChart items={kpi.series.items} group={kpi.series.group} height={300} /> : <div className="flxan-chart" style={{ minHeight: 260 }}><i className="flxan-sk" style={{ height: 220, width: '100%' }} /></div>}
         </div>
         <LivePanel r={live} />
       </div>
@@ -241,7 +239,7 @@ function Stats() {
           <RefsPanel refs={d.refs} onRc={(rc) => { set({ rc }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
 
           <Panel title={t('Traffic sources')}>
-            <BarTable rows={d.dims.find((x) => x.kind === 'CHANNEL')?.items ?? []} title={t('Channel')} label={(r) => r.label} sort={(r) => r.visitors} cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Page views'), cell: (r) => n(r.pageviews), second: true }]} />
+            <BarTable rows={d.dims.find((x) => x.kind === 'CHANNEL')?.items ?? []} title={t('Channel')} label={(r) => r.label} sort={(r) => r.visitors} cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Views'), cell: (r) => n(r.pageviews), second: true }]} />
           </Panel>
           <Panel title={t('By role')}>
             <BarTable
@@ -255,12 +253,12 @@ function Stats() {
               )}
               sort={(r) => r.visitors}
               onRow={(r) => set({ seg: r.value === '' ? 'guest' : r.value })}
-              cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Page views'), cell: (r) => n(r.pageviews), second: true }]}
+              cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Views'), cell: (r) => n(r.pageviews), second: true }]}
             />
             <p className="flxan-note">{t('Click a row to filter the whole screen to that visitor type. For outside traffic only, pick "Outside visitors" above.')}</p>
           </Panel>
           <Panel title={t('Most viewed pages')}>
-            <BarTable rows={d.pages.items} title={t('Pages')} label={(r) => <PageLabel r={r} />} sort={(r) => r.pageviews} onRow={openPage} cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Page views'), cell: (r) => n(r.pageviews), second: true }]} />
+            <BarTable rows={d.pages.items} title={t('Pages')} label={(r) => <PageLabel r={r} />} sort={(r) => r.pageviews} onRow={openPage} cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Views'), cell: (r) => n(r.pageviews), second: true }]} />
             <More total={d.pages.total} shown={d.pages.items.length} onClick={() => setListCfg({ kind: 'pages', title: t('Most viewed pages') })} />
           </Panel>
           <Panel title={t('Referring sites')}>
@@ -276,7 +274,7 @@ function Stats() {
               )}
               sort={(r) => r.visitors}
               onRow={(r) => window.open('https://' + r.host, '_blank', 'noopener')}
-              cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Page views'), cell: (r) => n(r.pageviews), second: true }]}
+              cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Views'), cell: (r) => n(r.pageviews), second: true }]}
             />
             <More total={d.referrers.total} shown={d.referrers.items.length} onClick={() => setListCfg({ kind: 'referrers', title: t('Referring sites') })} />
           </Panel>
@@ -290,7 +288,7 @@ function Stats() {
 
           {d.notFound.items.length > 0 && (
             <Panel title={t('Pages not found (404)')}>
-              <BarTable rows={d.notFound.items} title={t('Address')} label={(r) => r.path} sort={(r) => r.pageviews} cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Page views'), cell: (r) => n(r.pageviews), second: true }]} />
+              <BarTable rows={d.notFound.items} title={t('Address')} label={(r) => r.path} sort={(r) => r.pageviews} cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Views'), cell: (r) => n(r.pageviews), second: true }]} />
               <More total={d.notFound.total} shown={d.notFound.items.length} onClick={() => setListCfg({ kind: 'notfound', title: t('Pages not found (404)') })} />
             </Panel>
           )}
@@ -789,7 +787,7 @@ function DimTabs({ id, title, kinds, d, cur, setCur, more }: { id: string; title
       title={title}
       head={<Tabs value={key} onChange={(k) => setCur(KIND_KEY[k]!)} items={avail.map((k) => ({ key: k, label: label(k) }))} />}
     >
-      <BarTable rows={dim?.items ?? []} title={label(key)} label={(r) => r.label} sort={(r) => r.pageviews} cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Page views'), cell: (r) => n(r.pageviews), second: true }]} />
+      <BarTable rows={dim?.items ?? []} title={label(key)} label={(r) => r.label} sort={(r) => r.pageviews} cols={[{ head: t('Visitors'), cell: (r) => n(r.visitors) }, { head: t('Views'), cell: (r) => n(r.pageviews), second: true }]} />
       <More total={dim?.total ?? 0} shown={dim?.items.length ?? 0} onClick={() => more(active, label(key))} />
     </Panel>
   );
@@ -869,7 +867,7 @@ function ListModal({ cfg, filter, onClose, onPage }: { cfg: ListCfg; filter: Flx
   };
   useEffect(() => load(null, true), [dq]); // eslint-disable-line react-hooks/exhaustive-deps
   const searchable = cfg.kind === 'pages' || cfg.kind === 'referrers' || cfg.kind === 'notfound';
-  const cols2 = [{ head: t('Visitors'), cell: (r: Row) => n(r.visitors as number) }, { head: t('Page views'), cell: (r: Row) => n(r.pageviews as number), second: true }];
+  const cols2 = [{ head: t('Visitors'), cell: (r: Row) => n(r.visitors as number) }, { head: t('Views'), cell: (r: Row) => n(r.pageviews as number), second: true }];
   return (
     <Modal title={cfg.title} onClose={onClose} wide>
       <div className="flxan flxan-react flxan-listmodal">
@@ -926,7 +924,7 @@ function PageModal({ target, title, filter, range, group, onClose }: { target: s
                 <div className="flxan-card__value">{n(r.visitors)}</div>
               </div>
               <div className="flxan-card">
-                <div className="flxan-card__label">{t('Page views')}</div>
+                <div className="flxan-card__label">{t('Views')}</div>
                 <div className="flxan-card__value">{n(r.pageviews)}</div>
               </div>
             </div>

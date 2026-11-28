@@ -50,15 +50,12 @@ function Speed() {
   const [hours, setHours] = useState(24);
   const [notice, setNotice] = useState<{ kind: 'success' | 'error'; text: string } | null>(null);
 
-  const go = useCallback<SpeedCtx['go']>(
-    (tab, extra) => {
-      setNotice(null);
-      setView((v) => ({ tab, id: extra?.id ?? 0, filter: extra?.filter ? { ...emptyFilter, ...extra.filter } : v.filter }));
-      if (extra?.hours) setHours(extra.hours);
-      window.scrollTo?.({ top: 0 });
-    },
-    [],
-  );
+  const go = useCallback<SpeedCtx['go']>((tab, extra) => {
+    setNotice(null);
+    setView((v) => ({ tab, id: extra?.id ?? 0, filter: extra?.filter ? { ...emptyFilter, ...extra.filter } : v.filter }));
+    if (extra?.hours) setHours(extra.hours);
+    window.scrollTo?.({ top: 0 });
+  }, []);
 
   // Keep the address in step (WordPress admin): ?page=flx-speed&tab=…&id=…
   useEffect(() => {
@@ -89,7 +86,12 @@ function Speed() {
   );
 
   if (q.isLoading) return <Loading />;
-  if (q.isError || !q.data || !ctx) return <div className="flxpf-app"><ErrorBox error={q.error} fallback={t('The action could not be completed.')} /></div>;
+  if (q.isError || !q.data || !ctx)
+    return (
+      <div className="flxpf-app">
+        <ErrorBox error={q.error} fallback={t('The action could not be completed.')} />
+      </div>
+    );
   const cfg = q.data.flxSpeedConfig;
   const tab = cfg.tabs.some((x) => x.key === view.tab) ? view.tab : 'summary';
 

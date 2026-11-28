@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { FlxSpeedAutoload, FlxSpeedCleanup, FlxSpeedCron, FlxSpeedDatabase, FlxSpeedServer, FlxSpeedSystem } from '@fluxwp/graphql/operations';
-import { Loading, Modal } from '@fluxwp/ui';
+import { Loading, Modal, SystemChecks } from '@fluxwp/ui';
 import { Card, Cards, ErrorBox, Kv, Table, errorText, fmtBytes, fmtMs, num, useSpeed, useT } from './ui';
 import { LiveCards } from './tabs-monitor';
 
@@ -61,7 +61,6 @@ export function DatabaseTab() {
       <p className="flxpf-desc">{t('Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config.')}</p>
       <Table
         head={[t('Job'), t('Count'), '']}
-        numeric={[1]}
         empty={t('No records.')}
         rows={[
           ...d.jobs.map((j) => [
@@ -81,7 +80,6 @@ export function DatabaseTab() {
       <h2>{t('Tables')}</h2>
       <Table
         head={[t('Table'), t('Engine'), t('Rows'), t('Data'), t('Index'), t('Free space'), t('Collation')]}
-        numeric={[2, 3, 4, 5]}
         empty={t('No records.')}
         rows={d.tables.map((x) => [<code>{x.name}</code>, x.engine, num(x.rows, lang), fmtBytes(x.data, lang), fmtBytes(x.index, lang), x.free ? fmtBytes(x.free, lang) : '—', x.collate])}
       />
@@ -122,12 +120,7 @@ export function AutoloadTab() {
         <Card label={t('Total size')} value={num(a.totalKb, lang) + ' KB'} tone={a.tone} />
       </Cards>
       <p className="flxpf-desc">{t('These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows.')}</p>
-      <Table
-        head={[t('Option'), t('Owner'), t('Size')]}
-        numeric={[2]}
-        empty={t('No records.')}
-        rows={a.largest.map((o) => [<code>{o.name}</code>, o.owner || '—', num(o.kb, lang, 1) + ' KB'])}
-      />
+      <Table head={[t('Option'), t('Owner'), t('Size')]} empty={t('No records.')} rows={a.largest.map((o) => [<code>{o.name}</code>, o.owner || '—', num(o.kb, lang, 1) + ' KB'])} />
     </>
   );
 }
@@ -148,10 +141,11 @@ export function CronTab() {
       </Cards>
       {c.disabled && <p className="flxpf-desc">{t('WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes.')}</p>}
       <h2>{t('Task durations')}</h2>
-      <p className="flxpf-desc">{t('Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. "Cut off": the task hit the time limit and stopped halfway.')}</p>
+      <p className="flxpf-desc">
+        {t('Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. "Cut off": the task hit the time limit and stopped halfway.')}
+      </p>
       <Table
         head={[t('Hook'), t('Component'), t('Runs'), t('Average'), t('Longest'), t('Last'), t('Last run')]}
-        numeric={[2, 3, 4, 5]}
         empty={t('No records.')}
         rows={c.timings.map((x) => [
           <>
@@ -169,10 +163,9 @@ export function CronTab() {
       <h2>{t('Scheduled events')}</h2>
       <Table
         head={[t('Hook'), t('Next'), t('Recurrence'), t('Args')]}
-        numeric={[3]}
         empty={t('No records.')}
         rows={c.items.map((e) => {
-          const when = e.next.short + ' · ' + (e.overdue ? t('Overdue: due %s', e.next.relative) : e.next.relative);
+          const when = e.next.short.replace(/(\d{2}:\d{2}):\d{2}/, '$1') + ' · ' + (e.overdue ? t('Overdue: due %s', e.next.relative) : e.next.relative);
           return [<code>{e.hook}</code>, <span className={e.overdue ? 'flxpf-errtext' : undefined}>{when}</span>, e.schedule || t('once'), e.args];
         })}
       />
@@ -181,51 +174,16 @@ export function CronTab() {
 }
 
 export function SystemTab() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const q = useFlxQuery(FlxSpeedSystem, {});
   if (q.isLoading) return <Loading />;
   if (q.isError || !q.data) return <ErrorBox error={q.error} fallback={t('The action could not be completed.')} />;
   const s = q.data.flxSpeedSystem;
-  const groups: { key: string; label: string; items: typeof s.checks }[] = [];
-  for (const c of s.checks) {
-    let g = groups.find((x) => x.key === c.group);
-    if (!g) groups.push((g = { key: c.group, label: c.groupLabel, items: [] }));
-    g.items.push(c);
-  }
-  const mark = (st: string) => (st === 'OK' ? '✓' : st === 'ERROR' ? '✕' : st === 'WARNING' ? '!' : 'i');
+  const at = new Date(q.dataUpdatedAt || Date.now());
+  const hm = String(at.getHours()).padStart(2, '0') + ':' + String(at.getMinutes()).padStart(2, '0');
   return (
     <>
-      <div className="flxpf-sysbar">
-        <span className="flxpf-pill is-on">{t('%s OK', s.summary.ok)}</span>
-        {s.summary.warning > 0 && <span className="flxpf-pill is-warn">{t('%s warnings', s.summary.warning)}</span>}
-        {s.summary.error > 0 && <span className="flxpf-pill is-err">{t('%s errors', s.summary.error)}</span>}
-        <button type="button" className="flxpf-btn" disabled={q.isFetching} onClick={() => void q.refetch()}>
-          {t('Check again')}
-        </button>
-      </div>
-      {groups.map((g) => (
-        <section key={g.key} className="flxpf-box">
-          <h2>{g.label}</h2>
-          <ul className="flxpf-checks">
-            {g.items.map((c) => (
-              <li key={c.id} className={'is-' + c.status.toLowerCase()}>
-                <span className="flxpf-mark" aria-hidden="true">
-                  {mark(c.status)}
-                </span>
-                <span>
-                  <strong>{c.label}</strong> {c.message}
-                  {c.actionUrl && (
-                    <>
-                      {' '}
-                      <a href={c.actionUrl}>{c.actionLabel}</a>
-                    </>
-                  )}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <SystemChecks checks={s.checks} lang={lang} busy={q.isFetching} checkedAt={hm} onRecheck={() => void q.refetch()} />
       {s.hasFixes && (
         <>
           <h2>{t('Recent fixes (AI / MCP)')}</h2>

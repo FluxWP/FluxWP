@@ -269,6 +269,33 @@ function flx_admin_screen_menu_item( string $page ): ?array {
 }
 
 /**
+ * Label of the top-level menu item a screen sits under, as the left menu shows it (translated, renamed by
+ * Flux Admin), without its count badge. Empty when the page is not in the menu.
+ *
+ * @param string $page Page slug.
+ */
+function flx_admin_screen_menu_label( string $page ): string {
+	global $menu, $submenu;
+	$top = $page;
+	foreach ( is_array( $submenu ) ? $submenu : array() as $parent => $items ) {
+		foreach ( is_array( $items ) ? $items : array() as $it ) {
+			if ( is_array( $it ) && $page === flx_gql_str( $it[2] ?? '' ) ) {
+				$top = flx_gql_str( $parent );
+				break 2;
+			}
+		}
+	}
+	foreach ( is_array( $menu ) ? $menu : array() as $it ) {
+		if ( is_array( $it ) && $top === flx_gql_str( $it[2] ?? '' ) ) {
+			// Count badges (<span class="awaiting-mod">3</span>) are not part of the name.
+			$label = (string) preg_replace( '#<span\b.*$#is', '', flx_gql_str( $it[0] ?? '' ) );
+			return trim( html_entity_decode( wp_strip_all_tags( $label ), ENT_QUOTES, 'UTF-8' ) );
+		}
+	}
+	return '';
+}
+
+/**
  * Operation name → persisted id (queries only), from the registered manifests.
  *
  * @return array<string,string>
@@ -467,6 +494,7 @@ function flx_admin_screen_options( string $page, array $s, array $extra = array(
 	$o = array_merge(
 		array(
 			'rest'     => rest_url(),
+			'graphql'  => flx_gql_http_endpoint(),
 			'nonce'    => flx_admin_screen_nonce(),
 			'locale'   => get_user_locale(),
 			'siteName' => get_bloginfo( 'name' ),
@@ -477,6 +505,11 @@ function flx_admin_screen_options( string $page, array $s, array $extra = array(
 		$extra
 	);
 	$o['module'] = $s['module'];
+	// The package's name as the left menu shows it ("Performans"), for screens titled with the product name.
+	$menu_title = flx_admin_screen_menu_label( $page );
+	if ( '' !== $menu_title ) {
+		$o['menuTitle'] = $menu_title;
+	}
 	// Classic page head logo (Flux Admin package logo, accent tile): the React header shows the same one.
 	if ( function_exists( 'flxa_page_head_info' ) && function_exists( 'flxa_enabled' ) && flxa_enabled() ) {
 		$head = flx_gql_arr( flxa_page_head_info( $page ) );
@@ -612,6 +645,8 @@ add_action(
 			1
 		);
 		wp_enqueue_style( 'flx-screens', FLXGQL_URL . 'assets/css/screens.css', array(), FLXGQL_VERSION );
+		wp_enqueue_style( 'flx-screens-responsive', FLXGQL_URL . 'assets/css/responsive.css', array( 'flx-screens' ), FLXGQL_VERSION );
+		wp_enqueue_script( 'flx-screens-responsive', FLXGQL_URL . 'assets/js/responsive.js', array( 'flx-screens' ), FLXGQL_VERSION, true );
 		add_filter(
 			'script_loader_tag',
 			static function ( $tag, $h ) use ( $modules ) {
@@ -816,7 +851,7 @@ function flx_admin_screen_print_routes( string $current, string $el ): void {
 		'current' => $current,
 		'el'      => $el,
 		'admin'   => admin_url(),
-		'graphql' => function_exists( 'graphql_get_endpoint_url' ) ? (string) graphql_get_endpoint_url() : trailingslashit( home_url() ) . 'graphql',
+		'graphql' => flx_gql_http_endpoint(),
 		'nonce'   => flx_admin_screen_nonce(),
 		'routes'  => (object) $routes,
 		'i18n'    => array(

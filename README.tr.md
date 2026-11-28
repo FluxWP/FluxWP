@@ -118,7 +118,6 @@ plugins/<slug>/      eklentiler (ana dosya <slug>/<slug>.php)
 themes/<slug>/       temalar (style.css)
 bin/                 build.sh, package-info.sh, release-notes.sh, test-update.sh, readme-table.sh
 tools/readme-media/  tanıtım ekranları, GIF'ler ve README üretici
-docker/              WordPress Docker imajları ve Coolify/Compose yığınları (ghcr.io/fluxwp/wordpress)
 .github/workflows/   release.yml, docker-images.yml, fluxapp-ci.yml, fluxapp-desktop.yml, mobile-ci.yml
 docs/                paket kurulum/API belgeleri (docs/README.md)
 .claude/skills/      Claude Code skill'leri: flx-wp-eklenti, flx-wp-tema, flx-paket-yayin, flx-readme-tanitim
@@ -172,7 +171,7 @@ Açık TypeScript paketleri npm'de [`@fluxwp`](https://www.npmjs.com/org/fluxwp)
 
 ## Docker
 
-Coolify ve düz Docker Compose için hazır WordPress yığınları (MariaDB, MySQL, MariaDB + Redis, nginx + PHP-FPM) [`docker/`](docker/README.tr.md) klasöründe. Worker ilk açılışta WordPress'i ve FluxWP Panel'i kurar. İmajlar: `ghcr.io/fluxwp/wordpress`, her gün amd64 ve arm64 için yeniden build edilir.
+Coolify ve düz Docker Compose için hazır WordPress yığınları (MariaDB, MySQL, MariaDB + Redis, nginx + PHP-FPM) kendi reposunda: [FluxWP/docker-wordpress](https://github.com/FluxWP/docker-wordpress); böylece buradaki eklenti ve tema release'leri Docker sitelerini yeniden deploy etmez. Worker ilk açılışta WordPress'i ve FluxWP Panel'i kurar. İmajlar: `ghcr.io/fluxwp/wordpress`, her gün amd64 ve arm64 için yeniden build edilir.
 
 ## Masaüstü ve mobil uygulama, ortak TS paketleri
 

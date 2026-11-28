@@ -349,19 +349,23 @@ textarea.flxst-input { resize: vertical; }
 .flxst-derr p { margin: 3px 0 0; color: var(--muted); font-size: 12.5px; }
 
 @media (max-width: 900px) {
-	.flxst-side { position: fixed; left: 0; top: 0; bottom: 0; z-index: 20; transform: translateX(-100%); transition: transform .2s; box-shadow: var(--shadow); }
-	.flxst-app.is-nav .flxst-side { transform: none; }
+	.flxst-side { position: fixed; inset-inline-start: 0; top: 0; bottom: 0; z-index: 20; transform: translateX(-100%); visibility: hidden; transition: transform .2s; box-shadow: var(--shadow); }
+	.flxst-side:dir(rtl) { transform: translateX(100%); }
+	.flxst-app.is-nav .flxst-side { transform: none; visibility: visible; }
 	.flxst-scrim { display: none; position: fixed; inset: 0; z-index: 19; background: rgba(0, 0, 0, .45); }
 	.flxst-app.is-nav .flxst-scrim { display: block; }
 	.flxst-only-m { display: inline-grid; }
 	.flxst-top { padding: 0 10px; gap: 6px; height: 54px; }
+	.flxst-banner { flex-wrap: wrap; }
+	.flxst-banner > span { flex-basis: calc(100% - 30px); min-width: 0; }
+	.flxst-banner .flxst-btn { max-inline-size: 100%; height: auto; min-height: 34px; white-space: normal; overflow-wrap: anywhere; }
 	.flxst-searchbox { width: auto; flex: 1; min-width: 80px; }
 	.flxst-gallery { padding: 10px; }
 	.flxst-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
 	.flxst-composer { margin: 0 8px calc(8px + env(safe-area-inset-bottom)); padding: 8px; border-radius: 14px; }
 	.flxst-acts .flxst-btn.is-ghost span { display: none; }
-	.flxst-acts { width: 100%; }
-	.flxst-gen { margin-left: auto; }
+	.flxst-acts { width: 100%; flex-wrap: wrap; }
+	.flxst-gen { margin-inline-start: auto; max-inline-size: 100%; height: auto; min-height: 38px; white-space: normal; overflow-wrap: anywhere; }
 	.flxst .flxst-sel { max-width: 150px; }
 	.flxst-compose-top { flex-wrap: wrap; }
 	.flxst-opts { justify-content: flex-start; }

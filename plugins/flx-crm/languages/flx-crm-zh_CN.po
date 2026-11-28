@@ -1163,3 +1163,383 @@ msgstr "同意书"
 
 msgid "People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI."
 msgstr "人员与营销:一张人卡中的捐赠者、客户、志愿者和候选人;时间线、标签、KVKK 权限、RFM 评分和损失风险、动态片段。从 Flux Donate、Flux Commerce、Flux Chat、Flux Forms 和 WordPress 用户收集数据;通过 Flux Mail、AI Flux AI 发货。"
+
+msgid "Sees contacts, segments and the CRM overview"
+msgstr "见联系、部分和客户关系管理概况"
+
+msgid "Edits contacts, segments, journeys and CRM settings"
+msgstr "编辑联系人、分区、行程和客户关系管理设置"
+
+msgid "Events"
+msgstr "活动"
+
+msgid "Journeys"
+msgstr "旅程"
+
+msgid "Delete the selected contacts?"
+msgstr "删除选定的接触?"
+
+msgid "Type the contact's name exactly to delete it."
+msgstr "联系人的姓名完全删除。"
+
+msgid "Back to %s"
+msgstr "返回到 %s"
+
+msgid "The send was cancelled."
+msgstr "发货被取消。"
+
+msgid "The send is paused."
+msgstr "发送器被停用。"
+
+msgid "The send continues."
+msgstr "发送量仍在继续。"
+
+msgid "%s messages queued in Flux Mail."
+msgstr "%s 封挂在《邮报》上的讯息。"
+
+msgid "More actions"
+msgstr "更多行动"
+
+msgid "Delete permanently"
+msgstr "永久删除"
+
+msgid "This timeline entry will be deleted."
+msgstr "这一时限的输入将予以删除。"
+
+msgid "Delete entry"
+msgstr "删除条目"
+
+msgid "allowed"
+msgstr "允许"
+
+msgid "not allowed"
+msgstr "不允许"
+
+msgid "List journeys"
+msgstr "列出旅行"
+
+msgid "Save journey draft"
+msgstr "旅途草稿"
+
+msgid "Turn journey on or pause it"
+msgstr "旅行或停车"
+
+msgid "Delete journey"
+msgstr "删除行程"
+
+msgid "This contact still has records in: %s. Merge it into another contact instead of deleting it."
+msgstr "这种联系仍然有以下记录: %s将其合并为另一次接触,而不是将其删除。"
+
+msgid "CRM event: %1$s (%2$s)"
+msgstr "客户关系活动:%1$s(%2$s)"
+
+msgid "Event name"
+msgstr "事件名称"
+
+msgid "Event date"
+msgstr "活动日期"
+
+msgid "Event time"
+msgstr "活动时间"
+
+msgid "Event place"
+msgstr "活动地点"
+
+msgid "Event page"
+msgstr "活动页面"
+
+msgid "First name"
+msgstr "名字"
+
+msgid "Event not found."
+msgstr "未发现事件。"
+
+msgid "Flux Mail is not active; messages are sent through it."
+msgstr "Flux Mail不活跃;信息通过它发送。"
+
+msgid "Pick at least one channel."
+msgstr "至少挑一个频道"
+
+msgid "Write the message."
+msgstr "写信。"
+
+msgid "Personal values (%s) need a newer Flux Mail that keeps a value for each recipient. Update Flux Mail or take them out of the text."
+msgstr "个人价值(%s)需要一个新lu的Flux Mail,它为每个接受者保留价值,更新Flux Mail,或将其从案文中删除。"
+
+msgid "No active connection for this channel in Flux Mail."
+msgstr "在通量邮件中未对此频道进行活动连接 。"
+
+msgid "No one to send to on this channel."
+msgstr "没有人会到这一渠道。"
+
+msgid "%1$s · event message (%2$s)"
+msgstr "%1$s 活动信息%2$s)"
+
+msgid "Open the file"
+msgstr "打开文件"
+
+msgid "Journey message"
+msgstr "旅行信息"
+
+msgid "Journey step skipped"
+msgstr "跳过旅程的步"
+
+msgid "Enters a value group (RFM)"
+msgstr "输入值组( RFM)"
+
+msgid "Gets a tag"
+msgstr "获得标签"
+
+msgid "Gets a role"
+msgstr "角色"
+
+msgid "Something happens (timeline event)"
+msgstr "出现一些情况(时间活动)"
+
+msgid "Is added to the CRM"
+msgstr "添加到客户关系管理"
+
+msgid "Wait"
+msgstr "Wait"
+
+msgid "Send e-mail"
+msgstr "发送电子邮件"
+
+msgid "Send WhatsApp"
+msgstr "Send WhatsApp"
+
+msgid "Send SMS"
+msgstr "Send SMS"
+
+msgid "Continue only if"
+msgstr "只在下列情况下才继续"
+
+msgid "Value group is"
+msgstr "价值组"
+
+msgid "Has tag"
+msgstr "有标签"
+
+msgid "Does not have tag"
+msgstr "没有标记"
+
+msgid "Has paid since the journey started"
+msgstr "自开始旅程以来已付"
+
+msgid "Has not paid since the journey started"
+msgstr "自开始旅程以来未付款"
+
+msgid "Draft"
+msgstr "吃水"
+
+msgid "Paused"
+msgstr "已暂停"
+
+msgid "Give the journey a name."
+msgstr "把旅程打成名。"
+
+msgid "Pick what starts the journey."
+msgstr "打勾开始的旅程。"
+
+msgid "Pick the value group, tag, role or event that starts the journey."
+msgstr "选择开始旅程的值组、标记、角色或事件。"
+
+msgid "Every e-mail step needs a subject and a text."
+msgstr "每个电子邮件步骤都需要一个主题和一个案文。"
+
+msgid "Every message step needs a text."
+msgstr "每一步都需要一个案文。"
+
+msgid "Add at least one step that does something (message or tag)."
+msgstr "增加至少一个步骤,即某种(罪行或标签)。"
+
+msgid "Journey not found."
+msgstr "找不到旅行路线 。"
+
+msgid "Flux Mail is not active for this channel."
+msgstr "Flux Mail不活跃于这一渠道。"
+
+msgid "No permission for this channel."
+msgstr "此频道没有权限 。"
+
+msgid "No e-mail address."
+msgstr "没有电子邮件地址。"
+
+msgid "No phone number."
+msgstr "没有电话号码"
+
+msgid "Not sent."
+msgstr "未发送。"
+
+msgid "%1$s · %2$s skipped: %3$s"
+msgstr "%1$s · %2$s 熟练: %3$s"
+
+msgid "%d step"
+msgid_plural "%d steps"
+msgstr[0] "%d 步骤"
+
+msgid "goal: %s"
+msgstr "目标:%s"
+
+msgid "Welcome new donors"
+msgstr "欢迎新的捐助者"
+
+msgid "Thank you, {first_name}"
+msgstr "谢谢你,{first_name}"
+
+msgid "Dear {first_name},\n\nThank you for your first donation to {site}. Here is what your support makes possible…"
+msgstr "Dear {first_name}谢谢你的第一次捐款 {site}你的支持是可能的。"
+
+msgid "Hello {first_name}, a short update from {site} on the work your donation supported. Thank you for being with us."
+msgstr "Hello {first_name}, a short update from {site} 谢谢你与我们一道工作。"
+
+msgid "Win back donors at risk"
+msgstr "赢回风险中捐助者的回赢"
+
+msgid "We miss you, {first_name}"
+msgstr "我们想你,{first_name}"
+
+msgid "Dear {first_name},\n\nIt has been a while. This is what we have been doing at {site} since your last donation…"
+msgstr "Dear {first_name}这是一个时代,这是我们一直在做的事情。 {site} 自您最后捐款以来。"
+
+msgid "Hello {first_name}, our new campaign at {site} has started. Would you like to support it again?"
+msgstr "Hello {first_name},我们的新运动 {site} 你是否愿意再次支持它?"
+
+msgid "Win-back: no answer"
+msgstr "赢回:无回答"
+
+msgid "The entry could not be saved."
+msgstr "不能挽救入境。"
+
+msgid "The entry was not found."
+msgstr "没有找到该条条目。"
+
+msgid "Only notes, calls and meetings you added can be deleted."
+msgstr "你所增加的只有笔记、电话和会议才可以删除。"
+
+msgid "Unknown action."
+msgstr "未知的行动。"
+
+msgid "Select at least one contact."
+msgstr "选择至少一次接触。"
+
+msgid "Too many contacts selected."
+msgstr "选择了许多接触。"
+
+msgid "Give a tag name."
+msgstr "用标记名称。"
+
+msgid "Pick a role."
+msgstr "发挥一定作用。"
+
+msgid "Pick the card to keep and at least one other card."
+msgstr "keep贴卡,至少加一个卡片。"
+
+msgid "e.g. National Forestation Day"
+msgstr "e.g. 国家森林日"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Short description (on the site card and at the top of the page)"
+msgstr "简短说明(关于网址卡和页顶)"
+
+msgid "Image"
+msgstr "图片"
+
+msgid "Place"
+msgstr "Place"
+
+msgid "Location announced on"
+msgstr "宣布地点"
+
+msgid "Address / directions"
+msgstr "地址/方向"
+
+msgid "Map link or coordinates"
+msgstr "地图链接或坐标"
+
+msgid "Google Maps link or 41.1612, 28.9271"
+msgstr "Google地图链接,或41.1612, 28.9271"
+
+msgid "Page on the site"
+msgstr "地点的页 次"
+
+msgid "Internal note (not shown on the site)"
+msgstr "内部说明(未在网站上注明)"
+
+msgid "Empty: 10 days before the event."
+msgstr "工作:活动前10天。"
+
+msgid "Event"
+msgstr "活动"
+
+msgid "Location"
+msgstr "地点"
+
+msgid "Internal note"
+msgstr "内部注释"
+
+msgid "The event could not be saved."
+msgstr "事件无法幸免。"
+
+msgid "The event name cannot be empty."
+msgstr "事件名称不能为空 。"
+
+msgid "The page could not be created: the theme has no event post type."
+msgstr "网页无法创建:主题没有活动后的类型。"
+
+msgid "Install and turn on Flux Mail to send e-mail, WhatsApp and SMS to the people of this event."
+msgstr "安装并打开通货邮件发送电子邮件, WhatsApp 和 SMS 故此事件,将报应众人。"
+
+msgid "Sending"
+msgstr "发送"
+
+msgid "Planned"
+msgstr "计划中"
+
+msgid "Waiting for reports"
+msgstr "准备报告"
+
+msgid "Check"
+msgstr "检查"
+
+msgid "Sent"
+msgstr "已发送"
+
+msgid "not found"
+msgstr "未找到"
+
+msgid "No date"
+msgstr "无日期"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "In %s day"
+msgid_plural "In %s days"
+msgstr[0] "In In %s 天"
+
+msgid "Over, still open"
+msgstr "完完完,还开着"
+
+msgid "Site name"
+msgstr "站点名称"
+
+msgid "Organisation phone"
+msgstr "组织电话"
+
+msgid "(no name)"
+msgstr "(无名)"
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "上传的卷宗没有找到,再次上传。"
+
+msgid "Unknown template."
+msgstr "不明模板。"
+
+msgid "Unknown source."
+msgstr "未知来源。"

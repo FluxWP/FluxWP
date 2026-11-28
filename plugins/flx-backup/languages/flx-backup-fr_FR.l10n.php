@@ -301,7 +301,7 @@ return array(
   'Update' => 'Mise à jour',
   'WP-CLI' => 'WP-CLI',
   'Before restore' => 'Avant la restauration',
-  'Plugin (API)' => 'Plugin (API)',
+  'Plugin (API)' => 'Plugin ( API )',
   'Uploaded' => 'Téléchargé',
   'The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings.' => 'La taille de sauvegarde estimée (%1$s) est supérieure au quota (%2$s). Augmentez le quota dans Paramètres.',
   'Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota.' => 'Pas assez de quota : la nouvelle sauvegarde concerne %1$s, utilisé %2$s, quota %3$s. Les sauvegardes restantes sont verrouillées ; débloquez ou supprimez-en, ou augmentez le quota.',
@@ -693,6 +693,6 @@ return array(
   'İlerleme' => 'Progrès',
   'Şimdi yedekle' => 'Sauvegarder maintenant',
   'Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır.' => 'Effectuez la première sauvegarde avec Sauvegarder maintenant. La restauration se fait dans le panneau.',
-
+  'JavaScript is required for this screen.' => 'JavaScript est nécessaire pour cet écran.',
  ),
 );

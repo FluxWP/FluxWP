@@ -284,15 +284,22 @@
     "Loading",
     "MenuIcon",
     "Modal",
+    "PageActions",
     "Screen",
     "ScreenDefaults",
+    "ScreenHeadProvider",
+    "SystemChecks",
     "Tabs",
+    "WpEditor",
+    "confirmDialog",
     "formatDate",
     "listPerPage",
     "openSanitizedLink",
     "parseDate",
     "sanitizeHtml",
-    "useOverlay"
+    "useOverlay",
+    "usePageHead",
+    "useScreenHead"
   ],
   "@fluxwp/graphql": [
     "FlxGraphQLError",

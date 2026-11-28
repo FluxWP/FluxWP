@@ -349,6 +349,8 @@
     "No backups": "Sem backups",
     "Back up": "Backup",
     "Progress": "Progresso",
-    "Take the first backup with Back up now. Restore is done in the panel.": "Faça o primeiro backup com Backup agora. A restauração é feita no painel."
+    "Take the first backup with Back up now. Restore is done in the panel.": "Faça o primeiro backup com Backup agora. A restauração é feita no painel.",
+    "JavaScript is required for this screen.": "JavaScript é necessário para esta tela.",
+    "%s%%": "%s %%"
   }
 }

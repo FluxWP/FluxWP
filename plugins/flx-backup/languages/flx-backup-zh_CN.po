@@ -8,7 +8,7 @@ msgid "Backups › Dashboard"
 msgstr "备份 › 仪表板"
 
 msgid "Dashboard"
-msgstr "仪表板"
+msgstr "仪表盘"
 
 msgid "Backups › Settings"
 msgstr "备份 › 设置"
@@ -1041,3 +1041,9 @@ msgstr "进展"
 
 msgid "Take the first backup with Back up now. Restore is done in the panel."
 msgstr "使用“立即备份”进行第一次备份。恢复是在面板中完成的。"
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript 此 screen幕需要。"
+
+msgid "%s%%"
+msgstr "%s %"

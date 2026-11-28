@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.8.5
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
+## 1.8.4
+- Ekran başlığı sol menüdeki adı gösterir.
+
+## 1.8.3
+- Panel ve Ayarlar eski klasik ekranla birebir: boş depolama geçmişi noktasız eksen, "Türlere göre" boşken "Henüz yedek yok.", ayrı aralık düğmeleri, altı çizili bağlantılar.
+- Ayarlar: satır çizgileri kaldırıldı, klasik aralık ve 200px etiket sütunu, büyük bölüm başlıkları; haftalık gün seçimi her zaman görünür.
+
 ## 1.8.2
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

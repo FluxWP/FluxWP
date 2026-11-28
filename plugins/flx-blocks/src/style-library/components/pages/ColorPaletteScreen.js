@@ -49,7 +49,12 @@ import {
 	swatchPillVariant,
 } from '../../helpers/palettes';
 import { ColorPaletteSettings } from './ColorPaletteSettings';
+import baseline from '../../../../includes/resources/Design_Tokens/Registry/Baseline/baseline.json';
 import './ColorPaletteScreen.scss';
+
+const builtinGroups = baseline.$extensions['com.flxbk.designTokens'].colorPalettes.default.groups;
+const builtinGroupNames = new Map(builtinGroups.map(({ id, label }) => [id, label]));
+const builtinSwatchNames = new Map(builtinGroups.flatMap(({ swatches }) => swatches.map(({ token, label }) => [token, label])));
 
 // A fixed count, not derived from anything — there is no "expected swatch count" to read before
 // the real palette arrives, so this just needs to fill a group row plausibly.
@@ -353,8 +358,10 @@ export function ColorPaletteScreen({ label, route, navigate, library }) {
 		() =>
 			mapPaletteToSwatchGroups(palettes.palette).map((group) => ({
 				...group,
+				displayLabel: builtinGroupNames.get(group.id) === group.label ? __(group.label, 'flx-blocks') : group.label,
 				items: group.items.map((item) => ({
 					...item,
+					name: builtinSwatchNames.get(item.id) === item.name ? __(item.name, 'flx-blocks') : item.name,
 					previewStyle: swatchPreviewStyle(item.value),
 					// The default-palette structure write this needed now exists (`reorderSwatchesFlow`),
 					// so the selected card's drag handle renders — except while the swatch is pending
@@ -489,7 +496,7 @@ export function ColorPaletteScreen({ label, route, navigate, library }) {
 								label={sprintf(
 									// translators: %s: the color group name.
 									__('Edit %s', 'flx-blocks'),
-									group.label
+									group.displayLabel
 								)}
 								isBusy={palettes.isBusy}
 								onClose={palettes.clearStructureError}

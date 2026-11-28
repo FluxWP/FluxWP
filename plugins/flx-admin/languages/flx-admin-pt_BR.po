@@ -344,7 +344,7 @@ msgid "l, F j, Y"
 msgstr "eu, F j, Y"
 
 msgid "%1$s, %2$s"
-msgstr "%1$s, %2$s"
+msgstr "%1$s , %2$s"
 
 msgid "Edit modules"
 msgstr "Editar módulos"
@@ -1200,3 +1200,54 @@ msgstr "Mês anterior"
 
 msgid "Next month"
 msgstr "Próximo mês"
+
+msgid "Learn more"
+msgstr "Saiba mais"
+
+msgid "Dismiss"
+msgstr "Dispensar"
+
+msgid "or"
+msgstr "ou"
+
+msgid "This role does not exist."
+msgstr "Este papel não existe."
+
+msgid "This permission is not in the table."
+msgstr "Esta permissão não está na mesa."
+
+msgid "There is no backup to restore."
+msgstr "Não há backup para restaurar."
+
+msgid "A layout needs at least one menu item."
+msgstr "Um layout precisa de pelo menos um item de menu."
+
+msgid "Choose a menu item."
+msgstr "Escolha um item de menu."
+
+msgid "Unknown menu action."
+msgstr "Ação de menu desconhecida."
+
+msgid "Unread WhatsApp"
+msgstr "Sem fios WhatsApp"
+
+msgid "The logo must be an image from the media library."
+msgstr "O logotipo deve ser uma imagem da biblioteca de mídia."
+
+msgid "Choose 30, 60 or 120 seconds."
+msgstr "Escolha 30, 60 ou 120 segundos."
+
+msgid "Enter a color like #1F2937."
+msgstr "Digite uma cor como #1F2937."
+
+msgid "The uploaded file was not found. Upload it again."
+msgstr "O arquivo carregado não foi encontrado."
+
+msgid "The file could not be saved on the server."
+msgstr "O arquivo não poderia ser salvo no servidor."
+
+msgid "Choose auto, light or dark."
+msgstr "Escolha auto, luz ou escuro."
+
+msgid "You do not have permission to do this."
+msgstr "Você não tem permissão para fazer isso."

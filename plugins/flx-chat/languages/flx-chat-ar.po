@@ -2288,7 +2288,7 @@ msgid "Input price $"
 msgstr "سعر الإدخال $"
 
 msgid "Clear"
-msgstr "واضح"
+msgstr "مسح"
 
 msgid "Price: 1M tokens input / output"
 msgstr "السعر: 1 مليون رمز الإدخال/الإخراج"
@@ -4987,6 +4987,36 @@ msgstr "متابعة: بعد سوء فهم، الاعتراض يغلقه فور�
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "تفاعل الوداع 👍 أو 🤲، وليس 🙏 أبدًا"
 
+msgid "Schedules call-center reports"
+msgstr "جداول تقارير مراكز الاتصال"
+
+msgid "Can receive a call-center report"
+msgstr "يمكن الحصول على تقرير مركز الاتصال"
+
+msgid "Can receive the general call-center report"
+msgstr "يمكن تلقي تقرير مركز الاتصال العام"
+
+msgid "Uses the call center"
+msgstr "يستعمل مركز الاتصال"
+
+msgid "Manages the call center"
+msgstr "إدارة مركز الاتصال"
+
+msgid "(updates are sent to this address too)"
+msgstr "(تُرسل الإشعارات إلى هذا العنوان أيضًا)"
+
+msgid "Proxy"
+msgstr "وكيل"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "من فضلك رد على \"أوافق\" أن تعطي وكيلك."
+
+msgid "at least %s"
+msgstr "على الأقل %s"
+
+msgid "Sent from the chat"
+msgstr "أرسل من الدردشة"
+
 msgid "Promotional messages"
 msgstr "الرسائل الترويجية"
 
@@ -4999,11 +5029,26 @@ msgstr "لا تُرسل الرسائل الترويجية والتذكيرات. 
 msgid "The person replied STOP to promotional messages."
 msgstr "ردّ الشخص بـ STOP على الرسائل الترويجية."
 
-msgid "at least %s"
-msgstr "على الأقل %s"
+msgid "The upload has expired. Please add the file again."
+msgstr "لقد انتهى مفعول الشحنة، من فضلك أضف الملف مرة أخرى"
 
-msgid "(updates are sent to this address too)"
-msgstr "(تُرسل الإشعارات إلى هذا العنوان أيضًا)"
+msgid "The chat could not be opened."
+msgstr "لا يمكن فتح الدردشة"
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "فقط المرسل أو المدير يمكنه تحرير هذه الرسالة"
+
+msgid "This message can't be edited on this channel."
+msgstr "هذه الرسالة لا يمكن تحريرها على هذه القناة"
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "وقد انقضى أجل التحرير (WhatsApp يسمح بـ 15 دقيقة)."
+
+msgid "The message can't be empty."
+msgstr "الرسالة لا يمكن أن تكون فارغة."
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp لم يحرر الرسالة."
 
 msgid "Assistant languages"
 msgstr "لغات المساعد"

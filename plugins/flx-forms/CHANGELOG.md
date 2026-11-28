@@ -1,5 +1,17 @@
 # Değişiklikler
 
+## 2.13.1
+- Yönetim ekranları için dil katalogları güncellendi. Arapça raporlarda grafik etiketleri ekran içinde kalır.
+
+
+## 2.13.0
+- Pano klasik ekranla birebir: aynı KPI kartları, günlük yanıt çizgisi (önceki dönemle), ödeme durumu, forma göre yanıtlar, yanıt saatleri ısı haritası, son yanıtlar ve en çok kullanılan formlar tablosu; 7/30/90 gün ve Özel aralık, CSV dışa aktarma.
+- Otomasyonlar klasik ekranla birebir: akış listesi (anahtar, adım çipleri, simge düğmeler), çalıştırma günlüğü ve dikey akış düzenleyici (tetikleyici, koşullar, adımlar, teşekkür ekranı önizlemesi).
+- Sayfa başlığı ve düğmeleri her sekmede kendi başlığını gösterir; silme onayları ortak onay penceresinde.
+
+## 2.12.0
+- Sistem Kontrolü klasik ekranla birebir: durum çipleri (simgeli, filtreli), "Kontrol: SS:DD", grup başına özet ve Durum/Kontrol/Ayrıntı/Kaynak/İşlem tablosu (Flux Speed ile ortak bileşen).
+
 ## 2.11.0
 - Headless siteler için formun tamamı GraphQL'den okunur: `flxForm` artık adım listesi (`stepList`), para birimi, alan başına yardım metni, adım, genişlik, varsayılan değer, min/max (uzunluk, sayı ya da tarih), seçenek fiyatı ve görseli, matrix satırları ve kısa bir ayar listesi (`settings`: sütun, seçim sınırı, dosya türü/boyutu, evet/hayır ve açık/kapalı metinleri, bağlantı adresi) döndürür. Gizli ayarlar ve rezervasyon sayaçları yine dışarı çıkmaz.
 - Bu verilerle formu React'te çizen bileşenler `@fluxwp/ui/forms` paketinde (FluxForm).

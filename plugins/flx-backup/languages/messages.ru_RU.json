@@ -349,6 +349,8 @@
     "No backups": "Нет резервных копий",
     "Back up": "Резервное копирование",
     "Progress": "Прогресс",
-    "Take the first backup with Back up now. Restore is done in the panel.": "Создайте первую резервную копию с помощью функции «Создать резервную копию сейчас». Восстановление осуществляется в панели."
+    "Take the first backup with Back up now. Restore is done in the panel.": "Создайте первую резервную копию с помощью функции «Создать резервную копию сейчас». Восстановление осуществляется в панели.",
+    "JavaScript is required for this screen.": "Для этого экрана требуется JavaScript.",
+    "%s%%": "%s %"
   }
 }

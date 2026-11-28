@@ -29,15 +29,27 @@ final class FLXK_Cloud {
 		add_action( 'flxu_settings_before', array( __CLASS__, 'card' ) );
 		add_filter( 'flx_system_checks', array( __CLASS__, 'system_checks' ) );
 		add_action( 'rest_api_init', array( __CLASS__, 'rest' ) );
-		// Sites that hide the REST API from visitors (Arifiye Quiz preset) must still answer the ownership proof.
-		add_filter( 'flxaq_rest_allow', array( __CLASS__, 'allow_proof_route' ) );
+		add_filter( 'rest_pre_dispatch', array( __CLASS__, 'proof_first' ), 0, 3 );
 	}
 
-	/** @param mixed $allowed Route prefixes a visitor may call. */
-	public static function allow_proof_route( $allowed ): array {
-		$allowed   = is_array( $allowed ) ? $allowed : array();
-		$allowed[] = 'flx-setup/v1/cloud/proof';
-		return $allowed;
+	/**
+	 * Answers the ownership proof before any other plugin can refuse it. Sites that hide or lock down the REST API
+	 * (private/"invisible" sites, security plugins) answered 404 here, and fluxwp.com then reported "FluxWP Panel is
+	 * too old to connect" although Flux Setup was current. The answer reveals nothing without a valid pending state.
+	 *
+	 * @param mixed           $result  Short-circuit value.
+	 * @param WP_REST_Server  $server  Server.
+	 * @param WP_REST_Request $request Request.
+	 * @return mixed
+	 */
+	public static function proof_first( $result, $server, $request ) {
+		if ( null !== $result ) {
+			return $result;
+		}
+		if ( 'GET' !== $request->get_method() || '/flx-setup/v1/cloud/proof' !== untrailingslashit( strtolower( $request->get_route() ) ) ) {
+			return $result;
+		}
+		return self::rest_proof( $request );
 	}
 
 	/**

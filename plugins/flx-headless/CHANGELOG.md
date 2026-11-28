@@ -1,5 +1,9 @@
 # Flux Headless
 
+## 0.3.5
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
 ## 0.3.4
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

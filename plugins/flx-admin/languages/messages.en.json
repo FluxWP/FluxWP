@@ -397,6 +397,23 @@
     "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.",
     "Select date": "Select date",
     "Previous month": "Previous month",
-    "Next month": "Next month"
+    "Next month": "Next month",
+    "Learn more": "Learn more",
+    "Dismiss": "Dismiss",
+    "or": "or",
+    "This role does not exist.": "This role does not exist.",
+    "This permission is not in the table.": "This permission is not in the table.",
+    "There is no backup to restore.": "There is no backup to restore.",
+    "A layout needs at least one menu item.": "A layout needs at least one menu item.",
+    "Choose a menu item.": "Choose a menu item.",
+    "Unknown menu action.": "Unknown menu action.",
+    "Unread WhatsApp": "Unread WhatsApp",
+    "The logo must be an image from the media library.": "The logo must be an image from the media library.",
+    "Choose 30, 60 or 120 seconds.": "Choose 30, 60 or 120 seconds.",
+    "Enter a color like #1F2937.": "Enter a color like #1F2937.",
+    "The uploaded file was not found. Upload it again.": "The uploaded file was not found. Upload it again.",
+    "The file could not be saved on the server.": "The file could not be saved on the server.",
+    "Choose auto, light or dark.": "Choose auto, light or dark.",
+    "You do not have permission to do this.": "You do not have permission to do this."
   }
 }

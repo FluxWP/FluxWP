@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.8.6
+- Yönetim ekranları için dil katalogları güncellendi. Ortak takvimde arayüz dili yönetim profilini izler.
+
+
+## 0.8.5
+- Ortak ekran katmanı form alanlarını dar ekran içinde tutar. Geniş tablolardaki ekran okuyucu etiketleri sayfayı yatay büyütmez; seçili sekme pencere boyutu değiştiğinde ve sayfa içi geçişlerde görünür kalır.
+
+## 0.8.4
+- Ortak dil çözümleyici: FluxWP ekranlarının GraphQL istekleri (`_locale=user`) giriş yapan kullanıcının dilinde yanıtlanır; sunucuda üretilen metinler (Sistem Kontrolü satırları, grup adları, tarihler) site dili farklı olsa da panelin dilinde gelir. İstek kendi dilini seçtiyse (Flux Lang `?lang=`) o kalır.
+- Dil değişince (bu istek, bağışçının dilinde e-posta vb.) FluxWP eklentilerinin çevirileri artık bulunuyor: eklenti klasöründeki `languages/` her dil için kullanılır. Önceden ilk yüklenen dilden başka dile geçince metinler İngilizce kalıyordu.
+- Ekran başlığı paketin sol menüdeki adını gösterir ("Flux Speed" yerine "Performans"): kabuk `menuTitle` verir.
+- Sayfa yenilemeden ekran geçişi: rotası `pageLoad` olan ekranlara (Flux Admin uygulama modu: Çağrı Merkezi, Görevler) girerken ve çıkarken sayfa yüklenir.
+- Eklenti ekranları runtime'ı yeniden derlendi.
+
+## 0.8.3
+- Düz kalıcı bağlantı (permalink) kullanan sitelerde Flux ekranlarındaki işlemler (kaydet, etkinleştir, sil) çalışıyor: ekran adresi `/index.php?rest_route=/` biçiminden doğru çıkarılıyor (önceden istek hiç gitmiyordu) ve ekranlar GraphQL'e `/?graphql=1` ile ulaşıyor (web sunucusunda `/graphql` yönlendirmesi gerekmiyor). Runtime yeniden derlendi.
+
+## 0.8.2
+- Ortak arayüz paketi yenilendi: ortak Sistem Kontrolü ekranı (`SystemChecks`) ve stili.
+
+## 0.8.1
+- Ortak arayüz paketi yenilendi: klasik WordPress editörü React ekranlarında (`WpEditor`).
+
 ## 0.8.0
 - `FlxDateTime` iki yeni alan: `short` (tablolar için kısa tarih-saat, Türkçede 24.11.2026 23:52) ve `day` (yalnız tarih).
 - Eklenti ekranlarına paket açıklaması (`appDesc`) gider; alt başlığı olmayan ekran klasik başlıktaki açıklamayı gösterir.

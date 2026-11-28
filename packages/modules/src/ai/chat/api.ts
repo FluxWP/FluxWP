@@ -63,7 +63,7 @@ export function useChatApi(netText: string) {
       boot: () => call<Boot>('boot'),
       models: async (): Promise<ModelInfo[]> => {
         const r = await call<{ models: (ModelInfo & { tools?: boolean })[] }>('models');
-        return (r.models || []).filter((m) => m.tools).map((m) => ({ id: m.id, name: m.name, family: m.family || '', ctx: m.ctx || 0, in: m.in, out: m.out }));
+        return (r.models || []).filter((m) => m.tools).map((m) => ({ id: m.id, name: m.name, family: m.family || '', ctx: m.ctx || 0, in: m.in, out: m.out, locked: !!m.locked }));
       },
       get: (id: number) => call<ChatData>(`chats/${id}`, { query: { _t: Date.now() } }),
       update: (id: number, body: { model?: string }) => call<ChatData>(`chats/${id}`, { method: 'POST', body }),

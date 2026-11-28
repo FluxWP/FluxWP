@@ -2279,7 +2279,7 @@ msgid "Provider"
 msgstr "Provedor"
 
 msgid "min"
-msgstr "min"
+msgstr "min min"
 
 msgid "max"
 msgstr "máx."
@@ -2438,7 +2438,7 @@ msgid "Every year on %1$s at %2$s"
 msgstr "Todos os anos em %1$s em %2$s"
 
 msgid "%1$s: %2$s"
-msgstr "%1$s: %2$s"
+msgstr "%1$s : %2$s"
 
 msgid "First: %s"
 msgstr "Primeiro: %s"
@@ -4616,7 +4616,7 @@ msgid "warning"
 msgstr "aviso"
 
 msgid "ok"
-msgstr "ok"
+msgstr "Está bem."
 
 msgid "Your {marka} verification code: {kod}"
 msgstr "Seu código de verificação {marka}: {kod}"
@@ -4987,6 +4987,36 @@ msgstr "Continuação: após um mal-entendido, a reclamação fecha na hora"
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "A reação de despedida é 👍 ou 🤲, nunca 🙏"
 
+msgid "Schedules call-center reports"
+msgstr "Agenda relatórios de call-center"
+
+msgid "Can receive a call-center report"
+msgstr "Pode receber um relatório de call-center"
+
+msgid "Can receive the general call-center report"
+msgstr "Pode receber o relatório geral de call-center"
+
+msgid "Uses the call center"
+msgstr "Usa o call center"
+
+msgid "Manages the call center"
+msgstr "Gerencia o call center"
+
+msgid "(updates are sent to this address too)"
+msgstr "(as notificações também vão para este endereço)"
+
+msgid "Proxy"
+msgstr "Procurador"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "Por favor, responda \"Eu concordo\" para dar o seu proxy."
+
+msgid "at least %s"
+msgstr "no mínimo %s"
+
+msgid "Sent from the chat"
+msgstr "Enviado do chat"
+
 msgid "Promotional messages"
 msgstr "Mensagens promocionais"
 
@@ -4999,11 +5029,26 @@ msgstr "Mensagens promocionais e lembretes não são enviados. Respostas às men
 msgid "The person replied STOP to promotional messages."
 msgstr "A pessoa respondeu STOP às mensagens promocionais."
 
-msgid "at least %s"
-msgstr "no mínimo %s"
+msgid "The upload has expired. Please add the file again."
+msgstr "O upload expirou. Por favor, adicione o arquivo novamente."
 
-msgid "(updates are sent to this address too)"
-msgstr "(as notificações também vão para este endereço)"
+msgid "The chat could not be opened."
+msgstr "O chat não podia ser aberto."
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "Apenas o remetente ou um administrador podem editar esta mensagem."
+
+msgid "This message can't be edited on this channel."
+msgstr "Esta mensagem não pode ser editada neste canal."
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "O limite de tempo para edição passou ( WhatsApp permite 15 minutos)."
+
+msgid "The message can't be empty."
+msgstr "A mensagem não pode estar vazia."
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp não editou a mensagem."
 
 msgid "Assistant languages"
 msgstr "Idiomas do assistente"

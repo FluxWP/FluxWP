@@ -833,7 +833,7 @@ msgid "%1$s · %2$d pcs"
 msgstr "%1$s·%2$d件"
 
 msgid "The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation."
-msgstr "The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation."
+msgstr "问问问的人 WhatsApp 取消; 助理确认后取消。"
 
 msgid "Reason: %s"
 msgstr "原因:%s"
@@ -878,7 +878,7 @@ msgid "Once the payment is approved, the certificate is also sent to this number
 msgstr "付款获得批准后,证书也会发送到 WhatsApp 上的该号码。"
 
 msgid "Any amount you like"
-msgstr "Any amount you like"
+msgstr "你喜欢的任何数额"
 
 msgid "Just write which one and how many you would like."
 msgstr "只需写下您想要哪一个以及需要多少个即可。"
@@ -3272,7 +3272,7 @@ msgid "Images"
 msgstr "图片"
 
 msgid "Let the assistant draw an image when useful (table, report, diagram); it goes to WhatsApp as a picture, the text is sent separately"
-msgstr "Let the assistant draw an image when useful (table, report, diagram); it goes to WhatsApp as a picture, the text is sent separately"
+msgstr "让助理在有用(表、报告、图表)时能够树立形象; WhatsApp 案文作为情况单独发送。"
 
 msgid "The Flux AI image renderer is used (Flux AI & MCP › Settings › Images)."
 msgstr "使用 Flux AI 图像渲染器(Flux AI 和 MCP › 设置 › 图像)。"
@@ -3383,7 +3383,7 @@ msgid "Site content"
 msgstr "网站内容"
 
 msgid "Let the assistant search published site content (e.g. \"do you have a post about tree planting\")"
-msgstr "Let the assistant search published site content (e.g. \"do you have a post about tree planting\")"
+msgstr "让助理搜索发布网站内容(例如“您是否有关于植树的文章”)"
 
 msgid "Content types to search"
 msgstr "要搜索的内容类型"
@@ -4987,6 +4987,36 @@ msgstr "续：误解后被追问时立即关闭"
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "告别反应为👍或🤲，绝不用🙏"
 
+msgid "Schedules call-center reports"
+msgstr "呼叫中心报告"
+
+msgid "Can receive a call-center report"
+msgstr "可以收到呼叫中心报告"
+
+msgid "Can receive the general call-center report"
+msgstr "能够收到一般的呼叫中心报告"
+
+msgid "Uses the call center"
+msgstr "使用呼叫中心"
+
+msgid "Manages the call center"
+msgstr "管理呼叫中心"
+
+msgid "(updates are sent to this address too)"
+msgstr "(通知也会发送到此地址)"
+
+msgid "Proxy"
+msgstr "代理"
+
+msgid "Please reply \"I agree\" to give your proxy."
+msgstr "请回答:我同意给予你的代理。"
+
+msgid "at least %s"
+msgstr "至少 %s"
+
+msgid "Sent from the chat"
+msgstr "是从聊天中发送的"
+
 msgid "Promotional messages"
 msgstr "推广消息"
 
@@ -4999,11 +5029,26 @@ msgstr "不会发送推广消息和提醒。对方本人消息的回复仍会发
 msgid "The person replied STOP to promotional messages."
 msgstr "对方已对推广消息回复 STOP。"
 
-msgid "at least %s"
-msgstr "至少 %s"
+msgid "The upload has expired. Please add the file again."
+msgstr "上传已经过期,请再次添加档案。"
 
-msgid "(updates are sent to this address too)"
-msgstr "(通知也会发送到此地址)"
+msgid "The chat could not be opened."
+msgstr "无法打开聊天 。"
+
+msgid "Only the sender or an administrator can edit this message."
+msgstr "只有发件人或管理人才能够传递这一信息。"
+
+msgid "This message can't be edited on this channel."
+msgstr "这一信息可以在这一频道上编辑。"
+
+msgid "The time limit for editing has passed (WhatsApp allows 15 minutes)."
+msgstr "编辑的时限已经过(第12条)WhatsApp 允许15分钟。"
+
+msgid "The message can't be empty."
+msgstr "信息是空洞的。"
+
+msgid "WhatsApp did not edit the message."
+msgstr "WhatsApp 没有编辑这一信息。"
 
 msgid "Assistant languages"
 msgstr "助手语言"

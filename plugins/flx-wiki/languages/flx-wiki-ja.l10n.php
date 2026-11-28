@@ -352,6 +352,16 @@ return array(
   'kapat' => '閉じる',
   'Sitede /wiki altında geliştirici wiki\'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude\'da aç. Flux AI ile "Wiki\'ye sor" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir.' => '/wiki の下のサイト上の開発者 wiki: マークダウン ページ、セクション、ページ ツリーと目次、詳細なインスタント検索、SEO に優しい出力。 LLM フレンドリー: 各ページを開いて .md、/wiki/llms.txt、llms-full.txt としてコピーし、ChatGPT / Claude で開きます。 Flux AI を使用した「Ask the Wiki」および MCP ツール (検索、読み取り、リスト、書き込み)。プラグインとテーマを作成し、プラグインを AI 搭載にするためのガイドが付属しています。',
   'Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. "Ask the Wiki" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.' => '/wiki の下のサイト上の開発者 wiki: マークダウン ページ、セクション、ページ ツリーと目次、詳細なインスタント検索、SEO に優しい出力。 LLM フレンドリー: 各ページを開いて .md、/wiki/llms.txt、llms-full.txt としてコピーし、ChatGPT / Claude で開きます。 Flux AI を使用した「Ask the Wiki」および MCP ツール (検索、読み取り、リスト、書き込み)。プラグインとテーマを作成し、プラグインを AI 搭載にするためのガイドが付属しています。',
-
+  'JavaScript is required for this screen.' => 'JavaScript この画面には必須です。',
+  'You cannot edit this page.' => 'このページは編集できません。',
+  'The parent page was not found.' => '親ページが見つかりません。',
+  'A page cannot be placed under itself.' => 'ページ自体の下に配置することはできません。',
+  'This status is not available.' => 'このステータスは利用できません。',
+  'You cannot delete this page.' => 'このページは削除できません。',
+  'The page could not be deleted.' => 'ページは削除できませんでした。',
+  'You cannot manage sections.' => 'セクションは管理できません。',
+  'A section name is required.' => 'セクション名が必要です。',
+  'Section not found.' => 'セクションが見つからない。',
+  'The section could not be deleted.' => 'セクションを削除できませんでした。',
  ),
 );

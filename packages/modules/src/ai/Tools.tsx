@@ -5,7 +5,7 @@ import { FlxAiToolPick, FlxAiTools, FlxAiToolsUpdate } from '@fluxwp/graphql/ope
 import type { FlxAiToolRowFragment } from '@fluxwp/graphql/types';
 import { flxQueryKey, useFlxMutation, useFlxQuery, useGraphQL } from '@fluxwp/graphql/react';
 import { Loading } from '@fluxwp/ui';
-import { Card, NoticeBar, Pill, Switch, errText, useAi, type Notice } from './common';
+import { Card, NoticeBar, Pill, errText, useAi, type Notice, Lead, Kpi } from './common';
 
 type Tool = FlxAiToolRowFragment;
 
@@ -65,7 +65,7 @@ export function Tools() {
   return (
     <>
       <NoticeBar notice={notice} onClose={() => setNotice(null)} t={t} />
-      <p className="flxai-lead">{t('Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time.')}</p>
+      <Lead text={t('Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time.')} />
       <div className="flxai-kpis">
         <Kpi label={t('Tool')} value={num(active.length)} sub={tn('%s plugin', '%s plugins', bySrc.length, num(bySrc.length))} />
         <Kpi label={t('On')} value={num(nOn)} sub={t('%s off', num(active.length - nOn))} />
@@ -123,8 +123,10 @@ export function Tools() {
                 <th>{t('Tool')}</th>
                 <th>{t('Source')}</th>
                 <th>{t('Type')}</th>
-                <th>{t('Available in')}</th>
+                <th>{t('Where')}</th>
+                <th>{t('Capability')}</th>
                 <th className="num">{t('30 days')}</th>
+                <th className="num">{t('Avg. time')}</th>
               </tr>
             </thead>
             <tbody>
@@ -153,24 +155,30 @@ export function Tools() {
                         {t('Use this one')}
                       </button>
                     ) : (
-                      <Switch checked={!r.off} label={t('%s on', r.title)} disabled={update.isPending} onChange={(on) => setMany([r.name], on)} />
+                      <input type="checkbox" className="flxai-syscheck" checked={!r.off} aria-label={t('%s on', r.title)} disabled={update.isPending} onChange={(e) => setMany([r.name], e.target.checked)} />
                     )}
                   </td>
                   <td>
                     <strong>{r.title}</strong> <code>{r.name}</code>
-                    <div className="flxai-muted">{trimWords(r.description, 30)}</div>
+                    <div className="flxai-muted flxai-clamp2">{trimWords(r.description, 30)}</div>
                     {r.duplicate && <Pill kind="err">{t('Conflict: off, %s is used', label(r.rivals[0] ?? ''))}</Pill>}
                     {!r.duplicate && r.rivals.length > 0 && <Pill kind="warn">{t('Conflict: this one is on, %s is off', r.rivals.map(label).join(', '))}</Pill>}
                     {!r.prefixed && <Pill>{t('unprefixed')}</Pill>}
                     {r.aliases.length > 0 && <div className="flxai-alias">{t('Old name: %s', r.aliases.join(', '))}</div>}
                   </td>
-                  <td>{r.sourceLabel}</td>
-                  <td>{r.readonly ? t('Reads') : r.approval ? t('Changes (asks approval)') : t('Changes')}</td>
+                  <td className="flxai-nowrap">
+                    <strong>{r.sourceLabel}</strong>
+                    <br />
+                    <code>{r.source}</code>
+                  </td>
+                  <td>{r.readonly ? <Pill>{t('reads')}</Pill> : r.approval ? <Pill kind="warn">{t('writes · needs approval')}</Pill> : <Pill>{t('writes')}</Pill>}</td>
                   <td>{[r.mcp ? 'MCP' : '', r.chat ? t('Chat') : ''].filter(Boolean).join(', ') || '—'}</td>
+                  <td>{r.capability ? <code>{r.capability}</code> : '—'}</td>
                   <td className="num">
-                    {r.calls > 0 ? `${num(r.calls)} · ${ms(r.avgMs)}` : '—'}
+                    {r.calls > 0 ? num(r.calls) : '—'}
                     {r.errors > 0 && <Pill kind="err">{t('%s errors', num(r.errors))}</Pill>}
                   </td>
+                  <td className="num">{r.calls > 0 ? ms(r.avgMs) : '—'}</td>
                 </tr>
               ))}
             </tbody>
@@ -194,16 +202,6 @@ function Seg({ value, onChange, opts }: { value: string; onChange: (v: string) =
           {l}
         </button>
       ))}
-    </div>
-  );
-}
-
-function Kpi({ label, value, sub }: { label: string; value: string; sub: string }) {
-  return (
-    <div className="flxai-card flxai-kpi">
-      <div className="flxai-muted">{label}</div>
-      <div className="flxai-big">{value}</div>
-      <div className="flxai-muted">{sub}</div>
     </div>
   );
 }

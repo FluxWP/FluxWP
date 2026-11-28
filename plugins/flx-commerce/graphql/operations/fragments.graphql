@@ -5,11 +5,13 @@ fragment FlxCommerceCustomerRow on FlxCommerceCustomer {
   total { ...FlxCommerceMoney }
   firstAt { ...FlxCommerceWhen }
   lastAt { ...FlxCommerceWhen }
+  lastDay lastOrderUrl
 }
 fragment FlxCommerceSubscriptionRow on FlxCommerceSubscription {
   id status hasAccess autoRenew autoCharge userId email name
   productId productName productUrl period paymentMethod
-  parentOrderId lastOrderId renewalOrderId renewals renewNow payUrl lastOrderUrl cardLabel endReason
+  parentOrderId lastOrderId renewalOrderId renewals renewNow payUrl lastOrderUrl cardLabel endReason whenLabel
+  orderLinks { number url role }
   amount { ...FlxCommerceMoney }
   startedAt { ...FlxCommerceWhen }
   periodEnd { ...FlxCommerceWhen }

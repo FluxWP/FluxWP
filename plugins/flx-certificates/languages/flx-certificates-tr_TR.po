@@ -743,7 +743,7 @@ msgid "Location to be announced"
 msgstr "Konum yakında açıklanacak"
 
 msgid "Details"
-msgstr "Detaylar"
+msgstr "Detay"
 
 msgid "Donate saplings"
 msgstr "Fidan bağışla"
@@ -755,7 +755,7 @@ msgid "SMS"
 msgstr "SMS"
 
 msgid "WhatsApp"
-msgstr "WhatsApp"
+msgstr "WhatsApp kez"
 
 msgid "Queued"
 msgstr "Bekliyor"
@@ -993,3 +993,702 @@ msgstr "Harita henüz yok: konum girilene kadar link etkinlik sayfasını açar.
 
 msgid "Person not found."
 msgstr "Kişi bulunamadı."
+
+msgid "Creates and sees certificates"
+msgstr "Sertifikaları oluşturur ve görür"
+
+msgid "Manages certificates"
+msgstr "Sertifikaları yönetir"
+
+msgid "Sends certificates in bulk"
+msgstr "Sertifikaları toplu olarak gönderir"
+
+msgid "Sees the certificate dashboard"
+msgstr "Sertifika dashboard'unu görür"
+
+msgid "Sees only certificates they created or referred"
+msgstr "Yalnız kendi oluşturduğu ve referansı olduğu sertifikaları görür"
+
+msgid "All Certificates"
+msgstr "Tüm Sertifikalar"
+
+msgid "Dashboard"
+msgstr "Pano"
+
+msgid "Bulk send"
+msgstr "Toplu gönderim"
+
+msgid "Providers"
+msgstr "Sağlayıcılar"
+
+msgid "Logs"
+msgstr "Kayıtlar (log)"
+
+msgid "Certificate settings"
+msgstr "Sertifika ayarları"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "certificates"
+msgstr "sertifika"
+
+msgid "Only certificates that you created."
+msgstr "Yalnızca sizin oluşturduğunuz sertifikalar."
+
+msgid "Sapling donations, certificates and deliveries."
+msgstr "Fidan bağışları, sertifikalar ve gönderimler."
+
+msgid "Loading…"
+msgstr "Yükleniyor…"
+
+msgid "%1$s: %2$s saplings, %3$s certificates"
+msgstr "%1$s: %2$s fidan, %3$s sertifika"
+
+msgid "%2$s saplings during %1$s"
+msgstr "%1$s döneminde %2$s fidan"
+
+msgid "%s failed"
+msgstr "%s hata"
+
+msgid "%s first-time recipients"
+msgstr "%s ilk kez"
+
+msgid "%s sent"
+msgstr "%s gönderildi"
+
+msgid "%s waiting"
+msgstr "%s bekliyor"
+
+msgid "30 days"
+msgstr "30 gün"
+
+msgid "7 days"
+msgstr "7 gün"
+
+msgid "90 days"
+msgstr "90 gün"
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "All staff"
+msgstr "Tüm personel"
+
+msgid "Archive"
+msgstr "Arşiv"
+
+msgid "Average saplings"
+msgstr "ortalama fidan"
+
+msgid "Avg."
+msgstr "ort."
+
+msgid "Busiest day"
+msgstr "En yoğun gün"
+
+msgid "Busiest month"
+msgstr "En yoğun ay"
+
+msgid "Channel and status"
+msgstr "kanal ve durum"
+
+msgid "Chart"
+msgstr "Grafik"
+
+msgid "Compared with the previous %s days"
+msgstr "Önceki %s güne göre"
+
+msgid "Could not load data:"
+msgstr "Veri alınamadı:"
+
+msgid "Cumulative"
+msgstr "Kümülatif"
+
+msgid "Daily certificates"
+msgstr "Günlük sertifika"
+
+msgid "Daily saplings"
+msgstr "Günlük fidan"
+
+msgid "Daily saplings chart"
+msgstr "Günlük fidan grafiği"
+
+msgid "Day"
+msgstr "Gün"
+
+msgid "Days of the week"
+msgstr "Haftanın günleri"
+
+msgid "Delivery"
+msgstr "Gönderim"
+
+msgid "End date"
+msgstr "Bitiş"
+
+msgid "Excluding %s revoked"
+msgstr "%s iptal hariç"
+
+msgid "Month"
+msgstr "Ay"
+
+msgid "Monthly certificates"
+msgstr "Aylık sertifika"
+
+msgid "Monthly saplings"
+msgstr "Aylık fidan"
+
+msgid "No certificates in this period."
+msgstr "Bu dönemde sertifika yok."
+
+msgid "No data."
+msgstr "Veri yok."
+
+msgid "No deliveries in this period."
+msgstr "Bu dönemde gönderim yok."
+
+msgid "No new people"
+msgstr "yeni kişi yok"
+
+msgid "No people registered in this period."
+msgstr "Bu dönemde kayıtlı kişi yok."
+
+msgid "Per certificate"
+msgstr "Sertifika başına"
+
+msgid "Referring staff"
+msgstr "Referans personel"
+
+msgid "Same as the previous period"
+msgstr "önceki dönemle aynı"
+
+msgid "Sapling goal"
+msgstr "Fidan hedefi"
+
+msgid "Saplings by day of the week"
+msgstr "Haftanın günlerine göre fidan"
+
+msgid "Saplings collected"
+msgstr "toplanan fidan"
+
+msgid "Saplings gifted to date"
+msgstr "Bugüne kadar hediye edilen fidan"
+
+msgid "Saplings · certificates"
+msgstr "fidan · sertifika"
+
+msgid "Start date"
+msgstr "Başlangıç"
+
+msgid "Table"
+msgstr "Tablo"
+
+msgid "This month"
+msgstr "Bu ay"
+
+msgid "This year"
+msgstr "Bu yıl"
+
+msgid "Today"
+msgstr "Bugün"
+
+msgid "Total"
+msgstr "Toplam"
+
+msgid "Top 10"
+msgstr "ilk 10"
+
+msgid "Top sapling donors"
+msgstr "En çok fidan hediye edenler"
+
+msgid "Total saplings"
+msgstr "Toplam fidan"
+
+msgid "Waiting"
+msgstr "Bekliyor"
+
+msgid "Without a referrer"
+msgstr "Referanssız"
+
+msgid "Without an event"
+msgstr "Etkinliksiz"
+
+msgid "new"
+msgstr "yeni"
+
+msgid "Sapling target (optional)"
+msgstr "Fidan hedefi (isteğe bağlı)"
+
+msgid "Extra saplings (donations without a certificate)"
+msgstr "Ek fidan (sertifikasız bağışlar)"
+
+msgid "Saplings of the person"
+msgstr "Kişinin fidanı"
+
+msgid "Certificates of the person"
+msgstr "Kişinin sertifika sayısı"
+
+msgid "Certificate number"
+msgstr "Sertifika numarası"
+
+msgid "saplings"
+msgstr "fidan"
+
+msgid "+%s extra"
+msgstr "+%s ek"
+
+msgid "target %s"
+msgstr "hedef %s"
+
+msgid "Certificate dashboard"
+msgstr "Sertifika panosu"
+
+msgid "Add the certificates without an event (%s) to this event"
+msgstr "Etkinliksiz sertifikaları (%s) bu etkinliğe ekle"
+
+msgid "The event name cannot be empty."
+msgstr "Etkinlik adı boş olamaz."
+
+msgid "The person could not be saved."
+msgstr "Kişi kaydedilemedi."
+
+msgid "The certificate could not be saved."
+msgstr "Sertifika kaydedilemedi."
+
+msgid "Certificate not found."
+msgstr "Sertifika bulunamadı."
+
+msgid "You cannot edit this certificate."
+msgstr "Bu sertifikayı düzenleme yetkiniz yok."
+
+msgid "That event is closed. Choose an open event."
+msgstr "Bu etkinlik kapatılmış. Açık bir etkinlik seçin."
+
+msgid "Only a manager can backdate a certificate."
+msgstr "Geçmiş tarihli sertifikayı yalnızca yönetici oluşturabilir."
+
+msgid "That issue date is not valid."
+msgstr "Geçmiş tarih geçersiz."
+
+msgid "Only a manager can delete a certificate."
+msgstr "Sertifikayı yalnızca yönetici silebilir."
+
+msgid "That channel is not valid."
+msgstr "Kanal geçersiz."
+
+msgid "That action is not valid."
+msgstr "Bu işlem geçerli değil."
+
+msgid "A revoked certificate cannot be sent."
+msgstr "İptal edilmiş sertifika gönderilemez."
+
+msgid "Choose a channel."
+msgstr "Bir kanal seçin."
+
+msgid "File upload is not available."
+msgstr "Dosya yükleme kullanılamıyor."
+
+msgid "No file was uploaded."
+msgstr "Hiç dosya yüklenmedi."
+
+msgid "That phone number belongs to someone else."
+msgstr "Bu telefon başka birine ait."
+
+msgid "That e-mail belongs to someone else."
+msgstr "Bu e-posta başka birine ait."
+
+msgid "That phone number is not valid."
+msgstr "Telefon numarası geçersiz."
+
+msgid "Only a manager can delete a person."
+msgstr "Kişiyi yalnızca yönetici silebilir."
+
+msgid "That e-mail address is not valid."
+msgstr "E-posta adresi geçersiz."
+
+msgid "The full name is required."
+msgstr "Ad soyad gerekli."
+
+msgid "This person has certificates. Delete the certificates first."
+msgstr "Bu kişinin sertifikaları var; önce sertifikaları silin."
+
+msgid "That event is closed or does not exist. A closed event cannot take certificates."
+msgstr "Bu etkinlik kapalı ya da yok. Kapalı etkinliğe sertifika eklenemez."
+
+msgid "That is not a valid PDF."
+msgstr "Geçersiz PDF."
+
+msgid "That is not a valid image (JPEG expected)."
+msgstr "Geçersiz görsel (JPEG bekleniyor)."
+
+msgid "The file is too large."
+msgstr "Dosya çok büyük."
+
+msgid "The file could not be written. Check the uploads folder permissions."
+msgstr "Dosya yazılamadı. Yükleme klasörünün izinlerine bakın."
+
+msgid "The person has no e-mail address."
+msgstr "Kişinin e-postası yok."
+
+msgid "The person has no phone number."
+msgstr "Kişinin telefonu yok."
+
+msgid "Enter an e-mail address."
+msgstr "E-posta adresi girin."
+
+msgid "Enter a phone number."
+msgstr "Telefon numarası girin."
+
+msgid "Enter a valid phone number or e-mail address."
+msgstr "Geçerli bir telefon ya da e-posta girin."
+
+msgid "The message could not be sent."
+msgstr "Mesaj gönderilemedi."
+
+msgid "The message text is empty."
+msgstr "Mesaj metni boş."
+
+msgid "The message could not be queued."
+msgstr "Mesaj kuyruğa eklenemedi."
+
+msgid "There is no active connection for %s. Set one up in Flux Mail."
+msgstr "%s için etkin bağlantı yok. Flux Mail'de ekleyin."
+
+msgid "%s: the date format is not valid."
+msgstr "%s: tarih biçimi geçersiz."
+
+msgid "%s is required."
+msgstr "%s gerekli."
+
+msgid "That phone number belongs to another person (#%d) and was not added."
+msgstr "Bu telefon başka bir kişide kayıtlı (#%d), kişiye eklenmedi."
+
+msgid "That e-mail belongs to another person (#%d) and was not added."
+msgstr "Bu e-posta başka bir kişide kayıtlı (#%d), kişiye eklenmedi."
+
+msgid "l, F j, Y"
+msgstr "j F Y, l"
+
+msgid "F j"
+msgstr "j F"
+
+msgid "F j, Y"
+msgstr "j F Y"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Staff can only see the certificates they create"
+msgstr "Personel yalnızca kendi oluşturduğu sertifikaları görsün"
+
+msgid "Additional fonts"
+msgstr "Ek fontlar"
+
+msgid "Choose a font file (TTF/OTF)"
+msgstr "Font dosyası seç (TTF/OTF)"
+
+msgid "Keep logs (days, 0 = indefinitely)"
+msgstr "Logları sakla (gün, 0 = süresiz)"
+
+msgid "Image (JPG/PNG)"
+msgstr "Görsel (JPG/PNG)"
+
+msgid "All actions"
+msgstr "Tüm işlemler"
+
+msgid "Issuing organization (on the certificate page and LinkedIn)"
+msgstr "Düzenleyen kurum (sertifika sayfasında, LinkedIn'de)"
+
+msgid "Save settings"
+msgstr "Ayarları kaydet"
+
+msgid "Action"
+msgstr "İşlem"
+
+msgid "Staff permissions"
+msgstr "Personel yetkileri"
+
+msgid "Height (pt)"
+msgstr "Yükseklik (pt)"
+
+msgid "PDF (recommended)"
+msgstr "PDF (önerilen)"
+
+msgid "Link address"
+msgstr "Link adresi"
+
+msgid "No records."
+msgstr "Kayıt yok."
+
+msgid "Font name"
+msgstr "Font adı"
+
+msgid "With sample data"
+msgstr "Örnek verilerle"
+
+msgid "Provider"
+msgstr "Sağlayıcı"
+
+msgid "User"
+msgstr "Kullanıcı"
+
+msgid "Time"
+msgstr "Saat"
+
+msgid "Certificate Staff"
+msgstr "Sertifika Personeli"
+
+msgid "Custom"
+msgstr "Özel"
+
+msgid "How?"
+msgstr "Nasıl?"
+
+msgid "Certificate number format"
+msgstr "Sertifika no biçimi"
+
+msgid "Hide certificate pages from search engines (noindex, recommended for personal data)"
+msgstr "Sertifika sayfaları Google'da çıkmasın (noindex; kişisel veri için önerilir)"
+
+msgid "Maximum retry attempts"
+msgstr "Hata olursa deneme sayısı"
+
+msgid "Send certificate links to their holders"
+msgstr "Sertifika sahiplerine sertifika linki"
+
+msgid "Recipient, number, text…"
+msgstr "Alıcı, numara, metin…"
+
+msgid "Provider response"
+msgstr "Sağlayıcı yanıtı"
+
+msgid "All users"
+msgstr "Tüm kullanıcılar"
+
+msgid "Enabled"
+msgstr "Açık"
+
+msgid "All deliveries for this certificate"
+msgstr "Bu sertifikanın tüm gönderimleri"
+
+msgid "WhatsApp (*bold*, _italic_)"
+msgstr "WhatsApp (*kalın*, _italik_)"
+
+msgid "Title (og:title)"
+msgstr "Başlık (og:title)"
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Message registered people"
+msgstr "Kayıtlı kişilere mesaj"
+
+msgid "Certificate title (on the page and in messages as {sertifika})"
+msgstr "Sertifika başlığı (sayfada, mesajlarda {sertifika})"
+
+msgid "All channels"
+msgstr "Tüm kanallar"
+
+msgid "Link sharing preview"
+msgstr "Paylaşım önizlemesi (link)"
+
+msgid "Sender"
+msgstr "Gönderen"
+
+msgid "Default messages"
+msgstr "Varsayılan mesajlar"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "All registered people"
+msgstr "Tüm kayıtlı kişiler"
+
+msgid "Recipient"
+msgstr "Alıcı"
+
+msgid "“Find my certificate” page"
+msgstr "\"Sertifikamı bul\" sayfası"
+
+msgid "Data"
+msgstr "Veri"
+
+msgid "Delete all certificate data when uninstalling the plugin"
+msgstr "Eklenti silinirse tüm sertifika verisini de sil"
+
+msgid "Preview"
+msgstr "Önizle"
+
+msgid "Date format"
+msgstr "Tarih biçimi"
+
+msgid "Allow staff to send in bulk"
+msgstr "Personel toplu gönderim yapabilsin"
+
+msgid "Email subject"
+msgstr "E-posta konusu"
+
+msgid "Import template"
+msgstr "Şablon içe aktar"
+
+msgid "No messages."
+msgstr "Mesaj yok."
+
+msgid "Maximum messages per run"
+msgstr "Bir çalışmada en çok mesaj"
+
+msgid "Template name (shown in the dashboard)"
+msgstr "Şablon adı (panelde görünür)"
+
+msgid "Solid color"
+msgstr "Düz renk"
+
+msgid "Width (pt)"
+msgstr "Genişlik (pt)"
+
+msgid "Email body"
+msgstr "E-posta metni"
+
+msgid "Process now"
+msgstr "Şimdi işle"
+
+msgid "Choose or upload a file"
+msgstr "Dosya seç / yükle"
+
+msgid "To a list of numbers or email addresses"
+msgstr "Numara / e-posta listesine"
+
+msgid "remove"
+msgstr "kaldır"
+
+msgid "Code length"
+msgstr "Kod uzunluğu"
+
+msgid "You do not have permission to send messages in bulk."
+msgstr "Toplu mesaj gönderme izniniz yok."
+
+msgid "Send certificate links or a custom message to multiple recipients. Preview the message before adding it to the send queue."
+msgstr "Sertifika bağlantılarını veya özel bir mesajı birden fazla alıcıya gönderin. Kuyruğa eklemeden önce mesajı önizleyin."
+
+msgid "Recipients"
+msgstr "Alıcılar"
+
+msgid "Template (all valid certificates issued with this template)"
+msgstr "Şablon (bu şablonla verilmiş tüm geçerli sertifikalar)"
+
+msgid "To send only specific certificates, select them in the certificate list and choose a send action."
+msgstr "Yalnızca belirli sertifikaları göndermek için bunları sertifika listesinden seçin ve bir gönderme işlemi seçin."
+
+msgid "Holders of the “%s” certificate"
+msgstr "“%s” sertifikasına sahip kişiler"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Leave this blank to use the default certificate message from the template or settings."
+msgstr "Şablondaki veya ayarlardaki varsayılan sertifika mesajını kullanmak için boş bırakın."
+
+msgid "Subject"
+msgstr "Konu"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Plugin activated"
+msgstr "Eklenti etkinleştirildi"
+
+msgid "Certificate created"
+msgstr "Sertifika oluşturuldu"
+
+msgid "Certificate updated"
+msgstr "Sertifika güncellendi"
+
+msgid "Event saved"
+msgstr "Etkinlik kaydedildi"
+
+msgid "Event closed (archived)"
+msgstr "Etkinlik kapatıldı (arşiv)"
+
+msgid "Event reopened"
+msgstr "Etkinlik yeniden açıldı"
+
+msgid "Event deleted"
+msgstr "Etkinlik silindi"
+
+msgid "Certificate revoked"
+msgstr "Sertifika iptal edildi"
+
+msgid "Certificate restored"
+msgstr "Sertifika geri alındı"
+
+msgid "Certificate deleted"
+msgstr "Sertifika silindi"
+
+msgid "Certificates exported to Excel"
+msgstr "Sertifikalar Excel'e aktarıldı"
+
+msgid "Files generated on the server"
+msgstr "Dosyalar sunucuda oluşturuldu"
+
+msgid "Server file generation failed"
+msgstr "Sunucuda dosya oluşturulamadı"
+
+msgid "Person added"
+msgstr "Kişi eklendi"
+
+msgid "Person updated"
+msgstr "Kişi güncellendi"
+
+msgid "Person deleted"
+msgstr "Kişi silindi"
+
+msgid "Template saved"
+msgstr "Şablon kaydedildi"
+
+msgid "Template deleted"
+msgstr "Şablon silindi"
+
+msgid "Provider saved"
+msgstr "Sağlayıcı kaydedildi"
+
+msgid "Provider deleted"
+msgstr "Sağlayıcı silindi"
+
+msgid "Provider test"
+msgstr "Sağlayıcı testi"
+
+msgid "Settings saved"
+msgstr "Ayarlar kaydedildi"
+
+msgid "Message queued"
+msgstr "Mesaj kuyruğa alındı"
+
+msgid "Message sent"
+msgstr "Mesaj gönderildi"
+
+msgid "Message failed"
+msgstr "Mesaj başarısız"
+
+msgid "Message scheduled for retry"
+msgstr "Mesaj yeniden denenecek"
+
+msgid "Message cancelled"
+msgstr "Mesaj iptal edildi"
+
+msgid "Bulk send started"
+msgstr "Toplu gönderim başlatıldı"
+
+msgid "Number added to contacts"
+msgstr "Rehbere numara eklendi"
+
+msgid "Number removed from contacts"
+msgstr "Rehberden numara silindi"
+
+msgid "View certificate"
+msgstr "Sertifikayı aç"
+
+msgid "View in queue"
+msgstr "Kuyrukta gör"
+
+msgid "You do not have permission to download logs."
+msgstr "Kayıtları indirme izniniz yok."

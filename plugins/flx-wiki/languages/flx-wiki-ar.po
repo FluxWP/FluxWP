@@ -543,3 +543,36 @@ msgstr "قريب"
 
 msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
 msgstr "ويكي المطور في الموقع ضمن /wiki: صفحات Markdown والأقسام وشجرة الصفحات وجدول المحتويات والبحث الفوري التفصيلي والمخرجات الملائمة لتحسين محركات البحث. متوافق مع LLM: يتم فتح كل صفحة ونسخها بتنسيق .md و/wiki/llms.txt وllms-full.txt، ويتم فتحها في ChatGPT / Claude. أدوات \"اسأل Wiki\" وMCP (البحث والقراءة والقائمة والكتابة) باستخدام Flux AI. يأتي مزودًا بأدلة لكتابة المكونات الإضافية والموضوعات، وإنشاء مكونات إضافية مدعومة بالذكاء الاصطناعي."
+
+msgid "JavaScript is required for this screen."
+msgstr "JavaScript مطلوب لهذه الشاشة."
+
+msgid "You cannot edit this page."
+msgstr "لا يمكنك تحرير هذه الصفحة"
+
+msgid "The parent page was not found."
+msgstr "لم يتم العثور على الصفحة الأم."
+
+msgid "A page cannot be placed under itself."
+msgstr "ولا يمكن وضع صفحة تحت حد ذاتها."
+
+msgid "This status is not available."
+msgstr "وهذا الوضع غير متاح."
+
+msgid "You cannot delete this page."
+msgstr "لا يمكنك حذف هذه الصفحة"
+
+msgid "The page could not be deleted."
+msgstr "ولا يمكن حذف الصفحة."
+
+msgid "You cannot manage sections."
+msgstr "لا يمكنك إدارة الأقسام."
+
+msgid "A section name is required."
+msgstr "هناك حاجة إلى اسم القسم."
+
+msgid "Section not found."
+msgstr "القسم لم يعثر عليه"
+
+msgid "The section could not be deleted."
+msgstr "ولا يمكن حذف هذا الفرع."

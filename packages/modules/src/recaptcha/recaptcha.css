@@ -1,5 +1,5 @@
 /* reCAPTCHA on FluxWP tokens. */
-.flxrc-app{--c-bd:var(--flux-border);--c-mut:var(--flux-text-muted);--c-tx:var(--flux-text);--c-ac:var(--flux-primary);--c-ac-soft:color-mix(in srgb,var(--flux-primary) 10%,var(--flux-surface));--c-card:var(--flux-surface);--c-s2:var(--flux-surface2);--c-ok:var(--flux-success);--c-ok-s:color-mix(in srgb,var(--flux-success) 14%,var(--flux-surface));--c-info:var(--flux-primary);--c-info-s:var(--c-ac-soft);--c-warn:color-mix(in srgb,var(--flux-warning) 70%,var(--flux-text));--c-warn-s:color-mix(in srgb,var(--flux-warning) 16%,var(--flux-surface));--c-bad:var(--flux-danger);--c-bad-s:color-mix(in srgb,var(--flux-danger) 12%,var(--flux-surface));--c-r:12px;color:var(--c-tx);font-size:14px;line-height:1.5}
+.flxrc-app{--c-bd:var(--flux-border);--c-mut:var(--flux-text-muted);--c-tx:var(--flux-text);--c-ac:var(--flux-primary);--c-ac-soft:color-mix(in srgb,var(--flux-primary) 10%,var(--flux-surface));--c-card:var(--flux-surface);--c-s2:var(--flux-surface2);--c-ok:var(--flux-success);--c-ok-s:color-mix(in srgb,var(--flux-success) 14%,var(--flux-surface));--c-info:color-mix(in srgb,var(--flux-info,#0369a1) 80%,var(--flux-text));--c-info-s:color-mix(in srgb,var(--flux-info,#0369a1) 12%,var(--flux-surface));--c-warn:color-mix(in srgb,var(--flux-warning) 70%,var(--flux-text));--c-warn-s:color-mix(in srgb,var(--flux-warning) 16%,var(--flux-surface));--c-bad:var(--flux-danger);--c-bad-s:color-mix(in srgb,var(--flux-danger) 12%,var(--flux-surface));--c-r:12px;color:var(--c-tx);font-size:14px;line-height:1.5}
 .flxrc-app *{box-sizing:border-box}
 .flxrc-app [hidden]{display:none!important}
 .flxrc-app a{color:var(--c-ac)}
@@ -37,6 +37,7 @@
 .flxrc-sub{font-size:12px;color:var(--c-mut);margin:14px 0 4px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
 .flxrc-card__head+.flxrc-sub,.flxrc-card__head+div>.flxrc-sub{margin-top:4px}
 .flxrc-muted{color:var(--c-mut);font-size:12.5px;line-height:1.5;margin:0 0 10px}
+.flxrc-muted a{display:inline-flex;align-items:center;gap:3px}
 .flxrc-note{display:flex;gap:6px;align-items:flex-start;margin:12px 0 0}
 .flxrc-note svg{margin-top:2px;flex:none}
 .flxrc-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;line-height:1.75;padding:0 8px;margin-left:6px;border-radius:99px;background:var(--c-s2);color:var(--c-mut);font-weight:550;white-space:nowrap}

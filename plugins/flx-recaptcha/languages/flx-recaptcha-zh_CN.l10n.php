@@ -284,6 +284,13 @@ return array(
   'Otomatik' => '自动',
   'Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur.' => '它使用 Google reCAPTCHA(v3 隐形或 v2 磁贴)保护登录、注册、密码重置、评论、WooCommerce 帐户和付款、Flux 捐赠表单和 Flux 表单提交免受垃圾邮件和机器人攻击。从面板上打开和关闭要维护的表单; Flux Speed 与自定义登录地址兼容。',
   'It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address.' => '它使用 Google reCAPTCHA(v3 隐形或 v2 磁贴)保护登录、注册、密码重置、评论、WooCommerce 帐户和付款、Flux 捐赠表单和 Flux 表单提交免受垃圾邮件和机器人攻击。从面板上打开和关闭要维护的表单; Flux Speed 与自定义登录地址兼容。',
-
+  'Choose v2 or v3.' => '选择 v2 或 v3 。',
+  'A key can only contain letters, numbers, "-" and "_".' => '关键只能包括信件、编号、 numbers- and和"_"。',
+  'The bot threshold must be between 0.1 and 0.9.' => 'ot值必须在0.1至0.9之间。',
+  'Choose the Google host.' => '选择 Google 主机 。',
+  'Choose the checkbox theme.' => '选择禁.论题。',
+  'Choose the checkbox size.' => '选择复选框大小 。',
+  'Enter an IP address or a range like 198.51.100.0/24.' => '输入IP地址或范围,如198.51.100.0/24。',
+  'This form is not known.' => '这一形式不为人所知。',
  ),
 );

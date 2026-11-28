@@ -109,6 +109,12 @@
     "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen.": "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen.",
     "All enabled permissions are enforced.": "All enabled permissions are enforced.",
     "Roles": "Roles",
-    "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.": "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
+    "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.": "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.",
+    "Unknown role.": "Unknown role.",
+    "Unknown permission: %s.": "Unknown permission: %s.",
+    "This screen is not available.": "This screen is not available.",
+    "Enter 1 to 365 days.": "Enter 1 to 365 days.",
+    "Only roles added from the panel can be deleted.": "Only roles added from the panel can be deleted.",
+    "Not found.": "Not found."
   }
 }

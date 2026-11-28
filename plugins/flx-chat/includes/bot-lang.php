@@ -176,6 +176,13 @@ function flxc_bot_lang_from_text( array $state, $text ) {
 	return $state;
 }
 
+/** 1.55.0: kişinin son konuşma dili kişi hafızasına da yazılır (sohbet temizlense de, personel de görsün). */
+function flxc_bot_lang_mem( $chat, array $state ) {
+	if ( ! empty( $state['lang'] ) && function_exists( 'flxc_mem_on' ) && flxc_mem_on() ) {
+		flxc_mem_set( $chat, 'konuşma dili', flxc_lang_name( $state['lang'] ) . ' (' . $state['lang'] . ')', 'bot' );
+	}
+}
+
 /** Sohbetin dili: durumdaki, yoksa sitenin dili. */
 function flxc_bot_state_lang( array $state ) {
 	$c = flxc_lang_clean( $state['lang'] ?? '' );
@@ -199,23 +206,35 @@ function flxc_bot_lang_set( $code ) {
  */
 function flxc_bot_lang_turn( $chat ) {
 	global $wpdb;
-	$state = flxc_bot_state( $chat );
+	// 1.54.2: $chat tur başında okunmuş eski kayıttır; durum güncel kayıttan alınır. Eski durumu geri yazmak last_in'i
+	// geri sarar ve aynı mesaja ikinci cevap gönderirdi.
+	$fresh = flxc_get_chat( $chat['id'] );
+	$state = flxc_bot_state( $fresh ? $fresh : $chat );
 	$mt    = flxc_table( 'messages' );
 	$rows  = $wpdb->get_col( $wpdb->prepare( "SELECT body FROM $mt WHERE chat_id = %d AND direction = 'in' AND type = 'text' ORDER BY id DESC LIMIT 3", (int) $chat['id'] ) ); // phpcs:ignore
 	$text  = implode( "\n", array_reverse( array_map( 'strval', (array) $rows ) ) );
 	$new   = flxc_bot_lang_from_text( $state, $text );
 	if ( ( $new['lang'] ?? '' ) !== ( $state['lang'] ?? '' ) ) {
 		flxc_bot_save_state( $chat['id'], $new );
+		flxc_bot_lang_mem( $chat, $new );
 	}
 	$lang = flxc_bot_state_lang( $new );
 	flxc_bot_lang_set( $lang );
+	flxc_bot_cur_set( flxc_bot_state_cur( $new ) ); // 1.55.0
 	return $lang;
 }
 
 /** Talimatın "Bilinenler" kısmına: kişinin dili. */
 function flxc_bot_lang_known( array $state ) {
 	$c = flxc_bot_state_lang( $state );
-	return 'Kişinin dili: ' . flxc_lang_name( $c ) . ' (' . $c . ')' . ( empty( $state['lang'] ) ? ' (henüz belli değil, sitenin dili)' : '' ) . '. Kişi hangi dilde yazıyorsa o dilde cevap ver.';
+	$out = 'Kişinin dili: ' . flxc_lang_name( $c ) . ' (' . $c . ')' . ( empty( $state['lang'] ) ? ' (henüz belli değil, sitenin dili)' : '' ) . '. Kişi hangi dilde yazıyorsa o dilde cevap ver.';
+	if ( ! empty( $state['lang'] ) && $c !== flxc_lang_site() ) {
+		// 1.54.3: talimat ve kayıtlar site dilinde olduğundan model "no no no" gibi belirsiz mesajda site diline kayıyor,
+		// tür adının site dilindeki karşılığını parantez içinde ekliyordu.
+		$out .= ' Cevabın tamamını YALNIZ ' . flxc_lang_name( $c ) . ' yaz; belirsiz ya da çok kısa mesajda ("no", "ok") da bu dilde kal. Site dilinde kelime ya da parantez içinde karşılık ekleme; tür ve ürün adlarını bu dilde yaz.';
+	}
+	$cur = flxc_bot_cur_known( $state ); // 1.55.0
+	return $out . ( '' !== $cur ? "\n" . $cur : '' );
 }
 
 /** Talimatın sabit kısmına (önbellekli): dil kuralı. */
@@ -242,6 +261,172 @@ function flxc_bot_lang_tool_defs( array $list ) {
 	return $list;
 }
 
+/* ---------- Para birimi (1.55.0) ---------- */
+
+/** Bu turun para birimi (flxc_bot_cur_set ile); '' = türün kendi para birimi. */
+function flxc_bot_cur_now() {
+	return (string) ( $GLOBALS['flxc_bot_cur'] ?? '' );
+}
+
+function flxc_bot_cur_set( $code ) {
+	$code                  = strtoupper( trim( (string) $code ) );
+	$GLOBALS['flxc_bot_cur'] = preg_match( '/^[A-Z]{3}$/', $code ) ? $code : '';
+}
+
+/**
+ * Kişiye sunulabilecek para birimleri: bağışçının seçebildiği (Flux Donate flxb_currencies) ve asistanın
+ * türlerinde fiyatı olan kodlar; sıra sitedeki sıra (mağaza para birimi önce).
+ *
+ * @return string[]
+ */
+function flxc_bot_cur_offered() {
+	$has = array();
+	foreach ( flxc_ai_types_base() as $t ) {
+		$has[ $t['currency'] ] = true;
+		foreach ( $t['options'] as $o ) {
+			foreach ( (array) $o['prices'] as $code => $price ) {
+				if ( (float) $price > 0 ) {
+					$has[ strtoupper( (string) $code ) ] = true;
+				}
+			}
+		}
+		if ( $t['free'] ) {
+			foreach ( (array) $t['min_by'] as $code => $min ) {
+				$has[ strtoupper( (string) $code ) ] = true;
+			}
+		}
+	}
+	$sel = function_exists( 'flxb_currencies' ) ? array_map( 'strtoupper', array_keys( (array) flxb_currencies() ) ) : array();
+	$out = array();
+	foreach ( $sel as $code ) {
+		if ( isset( $has[ $code ] ) ) {
+			$out[] = $code;
+		}
+	}
+	// Türlerin kendi para birimi her zaman sunulur.
+	foreach ( wp_list_pluck( flxc_ai_types_base(), 'currency' ) as $code ) {
+		if ( ! in_array( $code, $out, true ) ) {
+			$out[] = $code;
+		}
+	}
+	return (array) apply_filters( 'flxc_bot_currencies', array_values( array_unique( $out ) ) );
+}
+
+/** Birden fazla para birimi sunuluyor mu. */
+function flxc_bot_cur_multi() {
+	return count( flxc_bot_cur_offered() ) > 1;
+}
+
+/**
+ * Kişinin para birimi: seçtiği, yoksa Türkçe konuşana TRY ya da dili henüz belli değilse sitenin varsayılanı;
+ * yabancı dil + birden fazla para birimi + henüz seçmemişse '' (önce sorulur). Tek para birimi varsa o.
+ */
+function flxc_bot_state_cur( array $state ) {
+	$off = flxc_bot_cur_offered();
+	if ( ! $off ) {
+		return '';
+	}
+	if ( 1 === count( $off ) ) {
+		return $off[0];
+	}
+	$c = strtoupper( (string) ( $state['cur'] ?? '' ) );
+	if ( '' !== $c && in_array( $c, $off, true ) ) {
+		return $c;
+	}
+	$home = function_exists( 'flxb_default_currency' ) ? strtoupper( flxb_default_currency() ) : $off[0];
+	if ( empty( $state['lang'] ) ) {
+		return in_array( $home, $off, true ) ? $home : $off[0]; // dil belli değil: sitenin varsayılanı
+	}
+	if ( 0 === strpos( flxc_bot_state_lang( $state ), 'tr' ) && in_array( 'TRY', $off, true ) ) {
+		return 'TRY';
+	}
+	return '';
+}
+
+/** Fiyat araçlarından önce: para birimi sorulmadıysa modele yönerge döner, yoksa null. */
+function flxc_bot_cur_gate( array $state ) {
+	if ( flxc_bot_cur_multi() && '' === flxc_bot_state_cur( $state ) ) {
+		return array(
+			'ok'         => false,
+			'ask'        => 'currency',
+			'currencies' => flxc_bot_cur_offered(),
+			'error'      => 'Kişi henüz para birimini seçmedi. Fiyat vermeden önce kişinin dilinde tek kısa soruyla hangi para biriminde görmek istediğini sor (' . implode(', ', flxc_bot_cur_offered()) . '); cevabını set_currency ile kaydet, sonra bu aracı yeniden çağır.',
+		);
+	}
+	return null;
+}
+
+/** Talimatın "Bilinenler" kısmına: kişinin para birimi. */
+function flxc_bot_cur_known( array $state ) {
+	if ( ! flxc_bot_cur_multi() ) {
+		return '';
+	}
+	$c = flxc_bot_state_cur( $state );
+	if ( '' === $c ) {
+		return 'Para birimi: HENÜZ SEÇİLMEDİ (' . implode( ', ', flxc_bot_cur_offered() ) . '). Fiyat vermeden önce kişiye hangisini istediğini sor ve set_currency ile kaydet.';
+	}
+	$src = ! empty( $state['cur'] ) && strtoupper( (string) $state['cur'] ) === $c ? 'kişi seçti' : 'varsayılan';
+	return 'Para birimi: ' . $c . ' (' . $src . '; sunulan: ' . implode( ', ', flxc_bot_cur_offered() ) . '). Fiyatları bu para biriminde ver.';
+}
+
+/** Talimatın sabit kısmına: para birimi kuralı (yalnız birden fazla para birimi sunuluyorsa). */
+function flxc_bot_cur_rule() {
+	if ( ! flxc_bot_cur_multi() ) {
+		return '';
+	}
+	return '- Para birimi: Bilinenler\'deki para birimini kullan. "HENÜZ SEÇİLMEDİ" ise fiyat vermeden önce kişinin dilinde tek kısa soruyla hangi para biriminde (listedeki kodlar, örn. TL / USD / EUR) görmek istediğini sor ve cevabını set_currency ile kaydet. Türkçe yazana sorma, TL gösterilir. Kişi sonradan başka para birimi isterse set_currency ile değiştir; seçili bağış varsa set_order\'ı yeni para biriminde yeniden çağır. Fiyatı ASLA kendin çevirme, kur yok: araçtaki fiyatı aynen kullan.';
+}
+
+/** set_currency aracı tanımı (yalnız birden fazla para birimi sunuluyorsa). */
+function flxc_bot_cur_tool_defs( array $list, callable $f ) {
+	if ( flxc_bot_cur_multi() ) {
+		$list[] = $f(
+			'set_currency',
+			'Kişinin seçtiği para birimini kaydeder (kişi "dolar", "euro", "TL" dediğinde ya da sorduğun para birimi sorusunu cevapladığında). Sonraki fiyatlar bu para biriminde verilir.',
+			array( 'currency' => array( 'type' => 'string', 'enum' => flxc_bot_cur_offered() ) ),
+			array( 'currency' )
+		);
+	}
+	return $list;
+}
+
+/** set_currency aracı. */
+function flxc_bot_cur_tool( array $a, $chat, array $state, $sandbox, callable $save ) {
+	$want = strtoupper( trim( (string) ( $a['currency'] ?? '' ) ) );
+	$map  = array( 'TL' => 'TRY', '₺' => 'TRY', '$' => 'USD', '€' => 'EUR', '£' => 'GBP' );
+	$want = $map[ $want ] ?? $want;
+	$off  = flxc_bot_cur_offered();
+	if ( ! in_array( $want, $off, true ) ) {
+		return array( 'ok' => false, 'error' => 'Bu para birimi sunulmuyor. Sunulan: ' . implode( ', ', $off ) . '. Kişiye bunlardan birini seçtir.' );
+	}
+	$old                = flxc_bot_state_cur( $state );
+	$state['cur']       = $want;
+	$res                = array( 'ok' => true, 'currency' => $want );
+	if ( $old !== $want ) {
+		if ( ! empty( $state['order'] ) && strtoupper( (string) $state['order']['currency'] ) !== $want ) {
+			$res['note'] = 'Seçili bağış başka para biriminde kalmıştı: set_order\'ı yeni para biriminde yeniden çağırıp özeti göster.';
+		}
+		if ( ! $sandbox && function_exists( 'flxc_mem_on' ) && flxc_mem_on() ) {
+			flxc_mem_set( $chat, 'para birimi', $want, 'bot' );
+		}
+	}
+	flxc_bot_cur_set( $want );
+	$save( $state );
+	return $res;
+}
+
+/** Başka modüller için: sohbetteki kişinin son dili ('' = bilinmiyor). */
+function flxc_chat_lang( $chat ) {
+	$st = flxc_bot_state( is_array( $chat ) ? $chat : (array) flxc_get_chat( (int) $chat ) );
+	return ! empty( $st['lang'] ) ? flxc_bot_state_lang( $st ) : '';
+}
+
+/** Başka modüller için: sohbetteki kişinin para birimi ('' = sorulmadı / tek para birimi yok). */
+function flxc_chat_currency( $chat ) {
+	$st = flxc_bot_state( is_array( $chat ) ? $chat : (array) flxc_get_chat( (int) $chat ) );
+	return flxc_bot_state_cur( $st );
+}
+
 /** Tek hazır mesaj (sohbetin dilinde). */
 function flxc_bot_tr_text( $text, array $state, $ai = true ) {
 	$r = flxc_bot_tr_out( array( (string) $text ), $state, $ai );
@@ -264,6 +449,7 @@ function flxc_bot_tool_lang( $name, array $args, $chat, array &$ctx ) {
 				$st['lang']     = $given;
 				$st['lang_src'] = 'model';
 				flxc_bot_save_state( $chat['id'], $st );
+				flxc_bot_lang_mem( $chat, $st );
 			}
 		}
 		flxc_bot_lang_set( $given );
@@ -602,6 +788,10 @@ function flxc_bot_tr_out( array $texts, array $state, $ai = true ) {
 /** Önbelleğe alınabilen (kişiye özel olmayan) araçlar. */
 function flxc_bot_tool_cacheable( $name ) {
 	$list = (array) apply_filters( 'flxc_bot_tool_cacheable', array( 'donation_options', 'payment_info', 'search_site', 'read_doc' ) );
+	// 1.55.0: fiyatlar kişinin para birimine göre değişir; birden fazla para biriminde donation_options önbelleğe girmez.
+	if ( 'donation_options' === $name && flxc_bot_cur_multi() ) {
+		return false;
+	}
 	return in_array( $name, $list, true );
 }
 

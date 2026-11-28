@@ -1,5 +1,12 @@
 # Flux reCAPTCHA
 
+## 0.5.5
+- Yönetim ekranları için dil katalogları güncellendi.
+
+
+## 0.5.4
+- Ekran klasik sayfayla birebir: özet kartı ve başlık ikonları (kalkan, liste, robot, anahtar, ayar), "Test et ve kaydet" oynat ikonu, Google konsolu bağlantısında dış bağlantı ikonu, bilgi kutusu mavi zeminde.
+
 ## 0.5.3
 - Uyarı rozetlerinin (sekme güncelleme sayacı, yavaş istek işareti) içindeki yazı beyaz; koyu modda rozet zemini daha koyu amber. Ortak modül paketi yenilendi.
 

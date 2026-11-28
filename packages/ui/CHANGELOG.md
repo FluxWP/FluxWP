@@ -1,5 +1,17 @@
 # @fluxwp/ui
 
+## 0.9.0
+- `Screen`: yeni `backButton` ({ label, href?, onClick? }). Alt/düzenleme ekranlarında geri düğmesi başlıktaki modül simgesinin yerine geçer (`flx-page__backbtn`); içerikte ayrı geri bağlantısı yazılmaz. `back` (içerik üstü bağlantı) eski ekranlar için durur.
+
+## 0.8.1
+- `Screen`: ürün adıyla verilen başlık ("Flux Performance") `ScreenDefaults.title` (paketin sol menüdeki adı, ör. "Performans") ile gösterilir; kayıt ve alt sayfa başlıkları aynen kalır.
+
+## 0.8.0
+- `SystemChecks`: klasik Sistem Kontrolü ekranı (durum çipleri ve filtresi, "Kontrol: SS:DD", grup başına özet, Durum/Kontrol/Ayrıntı/Kaynak/İşlem tablosu). Metinler 10 dilde içinde (`lang`); stil styles.css'te (`flxsc-*`).
+
+## 0.7.0
+- `WpEditor`: klasik WordPress editörü (TinyMCE + Metin sekmesi) React ekranında; sayfa `wp_enqueue_editor()` ile yükler. WordPress dışında (uygulama, headless) düz metin alanına düşer.
+
 ## 0.6.0
 - `ListBar` ve `ListPages`: klasik Flux Admin liste çubuğu (arama, birincil filtreler, "Filtreler" paneli, Temizle) ve sayfalama (sayfa numaraları, "Sayfa başı"). `listPerPage(id)` kayıtlı sayfa başını okur.
 - `Screen`: `back` (başlığın üstünde geri bağlantısı); `ScreenDefaults` bağlamı ile alt başlığı olmayan ekrana varsayılan alt başlık.

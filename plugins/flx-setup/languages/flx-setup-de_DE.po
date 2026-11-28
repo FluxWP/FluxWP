@@ -152,13 +152,13 @@ msgid "%1$s: \"%2$s\" is not in the settings schema; it is written but the plugi
 msgstr "%1$s: „%2$s“ ist nicht im Einstellungsschema; Es ist geschrieben, aber das Plugin verwendet es möglicherweise nicht."
 
 msgid "Patch"
-msgstr "Patch"
+msgstr "Patchworkladen"
 
 msgid "Preset not found."
 msgstr "Voreinstellung nicht gefunden."
 
 msgid "Apply"
-msgstr "Bewerben"
+msgstr "Anwenden"
 
 msgid "What"
 msgstr "Was"
@@ -212,7 +212,7 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Time"
-msgstr "Zeit"
+msgstr "Uhrzeit"
 
 msgid "Action"
 msgstr "Aktion"
@@ -476,7 +476,7 @@ msgid "Theme"
 msgstr "Thema"
 
 msgid "Plugin"
-msgstr "Plugin"
+msgstr "Plugins"
 
 msgid "Update available"
 msgstr "Update verfügbar"
@@ -920,7 +920,7 @@ msgid "Will also be installed / activated:"
 msgstr "Wird zusätzlich installiert/aktiviert:"
 
 msgid "wordpress.org"
-msgstr "wordpress.org"
+msgstr "Wortpress.org"
 
 msgid "Remove"
 msgstr "Entfernen"
@@ -1627,7 +1627,7 @@ msgid "Shown under the name on the home page and in search results."
 msgstr "Wird unter dem Namen auf der Startseite und in den Suchergebnissen angezeigt."
 
 msgid "Logo"
-msgstr "Logo"
+msgstr "Logo und Logo"
 
 msgid "A square or wide image (PNG, JPG, WebP). You can change it later."
 msgstr "Ein quadratisches oder breites Bild (PNG, JPG, WebP). Sie können es später ändern."
@@ -1945,44 +1945,260 @@ msgstr "Der Update-Server hatte einen vorübergehenden Fehler. Versuchen Sie es 
 msgid "Download failed (HTTP %1$d: %2$s). %3$s"
 msgstr "Download fehlgeschlagen (HTTP %1$d: %2$s). %3$s"
 
-msgid "Install Flux GraphQL"
-msgstr "Flux GraphQL installieren"
+msgid "Select all changes"
+msgstr "Alle Änderungen auswählen"
 
-msgid "Activate Flux GraphQL"
-msgstr "Flux GraphQL aktivieren"
+msgid "Select all protected values (overwrite)"
+msgstr "Alle geschützten Werte auswählen (Überschreiben)"
 
-msgid "Flux GraphQL settings"
-msgstr "Flux-GraphQL-Einstellungen"
+msgid "Select %s"
+msgstr "Wählen Sie %s"
 
-msgid "%1$s needs PHP %2$s or newer; this site runs PHP %3$s. Raise the PHP version in the hosting panel."
-msgstr "%1$s benötigt PHP %2$s oder neuer; diese Website läuft mit PHP %3$s. Erhöhe die PHP-Version im Hosting-Panel."
+msgid "Apply selected changes (%d)"
+msgstr "Ausgewählte Änderungen anwenden ( %d )"
 
-msgid "%s cannot load its data because the Flux GraphQL server is not running. Open the Flux GraphQL settings to fix it."
-msgstr "%s kann keine Daten laden, weil der Flux-GraphQL-Server nicht läuft. Öffne die Flux-GraphQL-Einstellungen, um das zu beheben."
+msgid "The sign-in link expired. Start again with \"Sign in with FluxWP\"."
+msgstr "Der Anmeldelink ist abgelaufen. Starten Sie erneut mit \"Sign in with FluxWP \"."
 
-msgid "%s needs Flux GraphQL to load its data. Install and activate it; it takes a few seconds."
-msgstr "%s benötigt Flux GraphQL, um Daten zu laden. Installiere und aktiviere es; das dauert nur wenige Sekunden."
+msgid "FluxWP did not return a key. Try again."
+msgstr "FluxWP hat keinen Schlüssel zurückgegeben."
 
-msgid "PHP version"
-msgstr "PHP-Version"
+msgid "FluxWP could not be reached: %s"
+msgstr "FluxWP konnte nicht erreicht werden: %s"
 
-msgid "PHP %s. FluxWP GraphQL packages run on it."
-msgstr "PHP %s. Die FluxWP-GraphQL-Pakete laufen damit."
+msgid "FluxWP answered with HTTP %d."
+msgstr "FluxWP beantwortet mit HTTP %d ."
 
-msgid "PHP %1$s. New FluxWP packages (Flux GraphQL and the packages that use it) need PHP %2$s or newer: raise it in the hosting panel."
-msgstr "PHP %1$s. Neue FluxWP-Pakete (Flux GraphQL und die Pakete, die es nutzen) benötigen PHP %2$s oder neuer: erhöhe die Version im Hosting-Panel."
+msgid "This site is not connected to a FluxWP account."
+msgstr "Diese Seite ist nicht mit einem FluxWP Konto verbunden."
 
-msgid "Flux GraphQL %s is installed and working; no separate WPGraphQL conflict."
-msgstr "Flux GraphQL %s ist installiert und läuft; kein Konflikt mit einem separaten WPGraphQL."
+msgid "Another request is renewing the session. Try again in a moment."
+msgstr "Eine weitere Anfrage ist die Verlängerung der Sitzung. Versuchen Sie noch einmal in einem Moment."
 
-msgid "Flux GraphQL is active, but its GraphQL server is not running (usually an unsupported, separately installed WPGraphQL), so GraphQL screens are off."
-msgstr "Flux GraphQL ist aktiv, aber sein GraphQL-Server läuft nicht (meist wegen eines nicht unterstützten, separat installierten WPGraphQL), daher sind GraphQL-Ansichten aus."
+msgid "Connecting failed. Try again."
+msgstr "Das Verbinden ist fehlgeschlagen."
 
-msgid "These packages need Flux GraphQL, which is not active: %s. Their screens cannot load data."
-msgstr "Diese Pakete benötigen Flux GraphQL, das nicht aktiv ist: %s. Ihre Ansichten können keine Daten laden."
+msgid "Connected to your FluxWP account. Your plan's packages are on the Packages screen."
+msgstr "Verbindet mit Ihrem FluxWP Konto. Die Pakete Ihres Plans befinden sich auf dem Packages-Bildschirm."
 
-msgid "Flux GraphQL is installed but not active. No active package needs it."
-msgstr "Flux GraphQL ist installiert, aber nicht aktiv. Kein aktives Paket benötigt es."
+msgid "Connecting was cancelled on FluxWP."
+msgstr "Die Verbindung wurde auf FluxWP storniert."
 
-msgid "Flux GraphQL"
-msgstr "Flux GraphQL"
+msgid "Disconnected. Installed plugins keep working; updates of paid packages stop."
+msgstr "Deconnected. Installierte Plugins arbeiten weiter; Updates von bezahlten Paketen stoppen."
+
+msgid "Plan information refreshed."
+msgstr "Planen Sie Informationen aktualisiert."
+
+msgid "FluxWP %1$s · %2$s"
+msgstr "FluxWP %1$s · %2$s"
+
+msgid "Subscription ended: the Free plan applies, paid updates are paused."
+msgstr "Abonnement beendet: der freie Plan gilt, bezahlte Updates werden missbraucht."
+
+msgid "Renews or ends on %s"
+msgstr "Erneut oder endet am %s"
+
+msgid "Sets: %s"
+msgstr "Sets: %s"
+
+msgid "%d sites connected"
+msgstr "%d Standorte verbunden"
+
+msgid "%1$d of %2$d sites"
+msgstr "%1$d von %2$d Standorten"
+
+msgid "Checked %s"
+msgstr "Überprüft %s"
+
+msgid "Connect your FluxWP account"
+msgstr "Verbinden Sie Ihr FluxWP Konto"
+
+msgid "Sign in or sign up on fluxwp.com: this site gets its update key and the packages of your plan automatically. The Free plan needs no card."
+msgstr "Melden Sie sich an oder melden Sie sich auf Flusswp.com an: Diese Seite erhält ihren Update-Schlüssel und die Pakete Ihres Plans automatisch. Der Free-Plan braucht keine Karte."
+
+msgid "Manage account"
+msgstr "Managekonto"
+
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+msgid "Disconnect"
+msgstr "Vernetzen"
+
+msgid "Sign in with FluxWP"
+msgstr "Anmeldung mit FluxWP"
+
+msgid "Choose one of the listed periods."
+msgstr "Wählen Sie eine der aufgelisteten Perioden."
+
+msgid "FluxWP account"
+msgstr "FluxWP account"
+
+msgid "Connected, plan %s."
+msgstr "Verbunden, Plan %s ."
+
+msgid "Not connected. Sign in with FluxWP to get the packages of your plan."
+msgstr "Nicht verbunden. Melden Sie sich mit FluxWP an, um die Pakete Ihres Plans zu erhalten."
+
+msgid "Select at least one change."
+msgstr "Wählen Sie mindestens eine Änderung aus."
+
+msgid "The selected changes are no longer available. Refresh the preview."
+msgstr "Die ausgewählten Änderungen sind nicht mehr verfügbar."
+
+msgid "Also select the required items: %s"
+msgstr "Wählen Sie auch die gewünschten Artikel aus: %s"
+
+msgid "JavaScript is required for this screen."
+msgstr "Für diesen Bildschirm ist JavaScript erforderlich."
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "The server asked us to slow down, trying again shortly…"
+msgstr "Der Server hat uns gebeten, sich zu verlangsamen und in Kürze wieder zu versuchen..."
+
+msgid "The update engine is not available: the old Flux Updater plugin is still active. Deactivate it."
+msgstr "Die Update-Engine ist nicht verfügbar: das alte Flux Updater Plugin ist noch aktiv. Deaktivieren Sie es."
+
+msgid "All"
+msgstr "Alle"
+
+msgid "FluxWP"
+msgstr "FluxWP"
+
+msgid "Themes"
+msgstr "Themen"
+
+msgid "WordPress & translations"
+msgstr "Übersetzungen und Übersetzungen"
+
+msgid "Folder"
+msgstr "Ordner"
+
+msgid "Slug"
+msgstr "Schnecke"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "Released"
+msgstr "Freigegeben"
+
+msgid "Translation"
+msgstr "Übersetzung"
+
+msgid "Core"
+msgstr "Basis"
+
+msgid "General"
+msgstr "Allgemein"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Automatic updates are turned off for this site."
+msgstr "Automatische Updates werden für diese Seite ausgeschaltet."
+
+msgid "Automatic updates turned on for %d package."
+msgid_plural "Automatic updates turned on for %d packages."
+msgstr[0] "Automatische Updates für %d Paket."
+msgstr[1] "Automatische Updates für %d Pakete."
+
+msgid "Automatic updates turned off for %d package."
+msgid_plural "Automatic updates turned off for %d packages."
+msgstr[0] "Automatische Updates für %d Paket ausgeschaltet."
+msgstr[1] "Automatische Updates für %d Pakete."
+
+msgid "Update backup retention is set on the Flux Backup settings page."
+msgstr "Update-Backup-Retention wird auf der Flux-Backup-Einstellungen-Seite gesetzt."
+
+msgid "Enter 1 to 365 days."
+msgstr "Geben Sie 1 bis 365 Tage ein."
+
+msgid "Filter packages"
+msgstr "Filterpakete"
+
+msgid "Updates available"
+msgstr "Verfügbare Updates"
+
+msgid "Search plugins and themes"
+msgstr "Suche Plugins und Themen"
+
+msgid "Search plugins and themes…"
+msgstr "Suche Plugins und Themen..."
+
+msgid "Only updates"
+msgstr "Nur Updates"
+
+msgid "Plugins, themes and updates"
+msgstr "Plugins, Themen und Updates"
+
+msgid "Turn on automatic updates"
+msgstr "Automatische Updates aktivieren"
+
+msgid "Turn off automatic updates"
+msgstr "Automatische Updates ausschalten"
+
+msgid "Auto-update"
+msgstr "Auto-Update"
+
+msgid "Nothing matches this filter."
+msgstr "Nichts passt zu diesem Filter."
+
+msgid "No updates yet."
+msgstr "Noch keine Updates."
+
+msgid "Updating %s…"
+msgstr "Aktualisierung %s ..."
+
+msgid "Retry failed ones"
+msgstr "Retry gescheiterte"
+
+msgid "Before updating %d packages"
+msgstr "Vor der Aktualisierung von %d Paketen"
+
+msgid "This FluxWP package address is not in the expected signed form, so it was not installed. Contact FluxWP support."
+msgstr "Diese Paketadresse von FluxWP ist nicht in der erwarteten unterzeichneten Form, so dass sie nicht installiert wurde. Kontakt FluxWP Unterstützung."
+
+msgid "The package signature could not be downloaded (%s). The package was not installed. Try again in a minute."
+msgstr "Die Paketsignatur konnte nicht heruntergeladen werden ( %s ). Das Paket wurde nicht installiert."
+
+msgid "%1$s %2$s has no valid FluxWP signature (HTTP %3$d), so it was not installed. Check for updates later or contact FluxWP support."
+msgstr "%1$s %2$s hat keine gültige FluxWP Signatur (HTTP %3$d ), so dass es nicht installiert wurde."
+
+msgid "The FluxWP signature of %1$s %2$s does not match the downloaded file, so it was not installed. The package may have been changed on the way or on the server. Contact FluxWP support."
+msgstr "Die FluxWP Signatur von %1$s %2$s entspricht nicht der heruntergeladenen Datei, so dass sie nicht installiert wurde. Das Paket kann auf dem Weg oder auf dem Server geändert worden sein. Kontakt FluxWP Unterstützung."
+
+msgid "Translations"
+msgstr "Übersetzungen"
+
+msgid "New translations: %s"
+msgstr "Neue Übersetzungen: %s"
+
+msgid "All translations are up to date."
+msgstr "Alle Übersetzungen sind aktuell."
+
+msgid "%d update"
+msgid_plural "%d updates"
+msgstr[0] "%d Update"
+msgstr[1] "%d Updates"
+
+msgid "On for all FluxWP packages (FluxWP Panel › Settings)."
+msgstr "Auf für alle FluxWP Pakete ( FluxWP Panel › Einstellungen)."
+
+msgid "No download available"
+msgstr "Keine Downloads verfügbar"
+
+msgid "Not installed: %s"
+msgstr "Nicht installiert: %s"
+
+msgid "WordPress.org still offers a newer translation: %s. The file could not be written or the language folder is read-only."
+msgstr "WordPress .org bietet noch eine neuere Übersetzung: %s . Die Datei konnte nicht geschrieben werden oder der Sprachordner ist nur gelesen."
+
+msgid "%s updated."
+msgstr "%s aktualisiert."

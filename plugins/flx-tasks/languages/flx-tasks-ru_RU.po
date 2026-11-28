@@ -1172,7 +1172,7 @@ msgid "Send"
 msgstr "Отправить"
 
 msgid "Chat with the assistant"
-msgstr "Chat with the assistant"
+msgstr "Займись помощником"
 
 msgid "AI is writing…"
 msgstr "ИИ пишет..."
@@ -2715,3 +2715,258 @@ msgstr "Этот экран такой же, как в FluxApp. Классиче
 
 msgid "Could not start a chat."
 msgstr "Не удалось начать чат."
+
+msgid "Select text to comment on, or use a block's menu."
+msgstr "Выделите текст для комментария или используйте меню блока."
+
+msgid "Open comment"
+msgstr "Открыть комментарий"
+
+msgid "Resolved"
+msgstr "Решённые"
+
+msgid "No resolved comments."
+msgstr "Нет решённых комментариев."
+
+msgid "No comments yet."
+msgstr "Комментариев пока нет."
+
+msgid "Select text and press \"Comment\", or add a comment from a block's menu (⋮⋮)."
+msgstr "Выделите текст и нажмите «Комментарий» или добавьте комментарий из меню блока (⋮⋮)."
+
+msgid "Block"
+msgstr "Блок"
+
+msgid "deleted"
+msgstr "удалено"
+
+msgid "text changed"
+msgstr "текст изменён"
+
+msgid "Write a comment… (Ctrl+Enter sends)"
+msgstr "Напишите комментарий… (Ctrl+Enter — отправить)"
+
+msgid "Comment"
+msgstr "Комментировать"
+
+msgid "This comment was deleted."
+msgstr "Этот комментарий удалён."
+
+msgid "(edited)"
+msgstr "(изменено)"
+
+msgid "Reopen"
+msgstr "Открыть снова"
+
+msgid "Mark as resolved"
+msgstr "Отметить как решённый"
+
+msgid "Resolved by {n}"
+msgstr "Решено: {n}"
+
+msgid "{n} more replies"
+msgstr "Ещё ответов: {n}"
+
+msgid "Reply… (Ctrl+Enter sends)"
+msgstr "Ответить… (Ctrl+Enter — отправить)"
+
+msgid "Reply"
+msgstr "Ответить"
+
+msgid "The comment will be deleted; the replies stay in the thread."
+msgstr "Комментарий будет удалён, ответы останутся в обсуждении."
+
+msgid "The comment will be permanently deleted."
+msgstr "Комментарий будет удалён навсегда."
+
+msgid "Comment resolved"
+msgstr "Комментарий решён"
+
+msgid "This page is locked."
+msgstr "Эта страница заблокирована."
+
+msgid "Locked by {n}, {t}."
+msgstr "Заблокировал(а) {n}, {t}."
+
+msgid "Unlock it to edit."
+msgstr "Разблокируйте, чтобы редактировать."
+
+msgid "Unlock"
+msgstr "Разблокировать"
+
+msgid "You can view and comment on this page."
+msgstr "Вы можете просматривать и комментировать эту страницу."
+
+msgid "You can only view this page."
+msgstr "Вы можете только просматривать эту страницу."
+
+msgid "Page locked"
+msgstr "Страница заблокирована"
+
+msgid "The page was locked; your changes are saved once it is unlocked."
+msgstr "Страница заблокирована; изменения сохранятся после разблокировки."
+
+msgid "This page is locked. Unlock it to edit."
+msgstr "Эта страница заблокирована. Разблокируйте, чтобы редактировать."
+
+msgid "Page unlocked"
+msgstr "Страница разблокирована"
+
+msgid "{n} locked this page so it is not changed by accident. If you unlock it, everyone who can edit can change it again."
+msgstr "{n} заблокировал(а) эту страницу от случайных изменений. После разблокировки все, кто может редактировать, снова смогут её менять."
+
+msgid "If you unlock it, everyone who can edit can change the page again."
+msgstr "После разблокировки все, кто может редактировать, снова смогут менять страницу."
+
+msgid "Lock page"
+msgstr "Заблокировать страницу"
+
+msgid "Access…"
+msgstr "Доступ…"
+
+msgid "Restricted access"
+msgstr "Ограниченный доступ"
+
+msgid "Locked"
+msgstr "Заблокирована"
+
+msgid "Page access"
+msgstr "Доступ к странице"
+
+msgid "Access saved"
+msgstr "Доступ сохранён"
+
+msgid "Everyone with access to the document"
+msgstr "Все, у кого есть доступ к документу"
+
+msgid "Everyone in the project who can see this document also sees this page."
+msgstr "Все участники проекта, видящие этот документ, видят и эту страницу."
+
+msgid "Only people I choose"
+msgstr "Только выбранные люди"
+
+msgid "The page and its subpages are visible only to the people below and project admins."
+msgstr "Страница и её подстраницы видны только людям ниже и администраторам проекта."
+
+msgid "The parent page is restricted too: only people allowed there can open this page."
+msgstr "Родительская страница тоже ограничена: открыть эту страницу могут только те, у кого есть доступ там."
+
+msgid "Can edit (you)"
+msgstr "Может редактировать (вы)"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "+ Add person"
+msgstr "+ Добавить человека"
+
+msgid "People and their roles"
+msgstr "Люди и роли"
+
+msgid "Project admins ({n}) always have access."
+msgstr "Администраторы проекта ({n}) всегда имеют доступ."
+
+msgid "Add comment"
+msgstr "Добавить комментарий"
+
+msgid "Add comment (Ctrl+Alt+M)"
+msgstr "Добавить комментарий (Ctrl+Alt+M)"
+
+msgid "This page is locked. Unlock it to make changes."
+msgstr "Эта страница заблокирована. Разблокируйте её, чтобы вносить изменения."
+
+msgid "Only people who can edit the page can lock or unlock it."
+msgstr "Блокировать и разблокировать страницу могут только те, кто может её редактировать."
+
+msgid "Only people who can edit the page can change who has access."
+msgstr "Менять доступ могут только те, кто может редактировать страницу."
+
+msgid "You are not allowed to comment on this page."
+msgstr "У вас нет прав комментировать эту страницу."
+
+msgid "Write a comment first."
+msgstr "Сначала напишите комментарий."
+
+msgid "Comment not found."
+msgstr "Комментарий не найден."
+
+msgid "Select some text or a block to comment on."
+msgstr "Выделите текст или блок для комментария."
+
+msgid "The comment could not be saved."
+msgstr "Не удалось сохранить комментарий."
+
+msgid "Only the author can edit a comment."
+msgstr "Редактировать комментарий может только автор."
+
+msgid "Only the author or a project admin can delete a comment."
+msgstr "Удалить комментарий может только автор или администратор проекта."
+
+msgid "You are not allowed to resolve this comment."
+msgstr "У вас нет прав решить этот комментарий."
+
+msgid "Unresolved"
+msgstr "Открытые"
+
+msgid "Flux Tasks needs the Flux GraphQL plugin. Install and activate it to open this screen."
+msgstr "Задачи потока нуждаются в флюксе GraphQL испускают и активируют ее, чтобы открыть экран."
+
+msgid "Nothing to change."
+msgstr "Ничего не менять."
+
+msgid "You are not allowed to edit this page."
+msgstr "Вам нельзя отредактировать эту страницу."
+
+msgid "AI is off"
+msgstr "AI's off"
+
+msgid "Info and activity"
+msgstr "Информация и деятельность"
+
+msgid "created the page"
+msgstr "создал страницу"
+
+msgid "edited the page"
+msgstr "редактировал страницу"
+
+msgid "moved the page"
+msgstr "Перенесла страницу"
+
+msgid "renamed it from \"{a}\" to \"{b}\""
+msgstr "переименовали его с {a} до {b}"
+
+msgid "No activity yet"
+msgstr "Никакой активности пока нет."
+
+msgid "Could not load activity"
+msgstr "Невозможность невозможна"
+
+msgid "Hide pages"
+msgstr "Прямые страницы"
+
+msgid "Created by"
+msgstr "Создано"
+
+msgid "Cannot be moved into or under a locked page."
+msgstr "Не может быть перевезено на замкнутую страницу или под ней."
+
+msgid "Drag to resize"
+msgstr "Драг для резинки"
+
+msgid "Preview"
+msgstr "Просмотр"
+
+msgid "Remove file"
+msgstr "Убрать файл"
+
+msgid "Preview image for YouTube links"
+msgstr "Превью для ссылок YouTube"
+
+msgid "A YouTube link on its own line in a document shows as a card with the video thumbnail. The thumbnail is loaded from YouTube; when off, the link stays plain text."
+msgstr "Связь YouTube на собственной линии в документе показывается как карточка с видеонаблюдением."
+
+msgid "Gantt"
+msgstr "Gantt"
+
+msgid "This dependency would create a loop."
+msgstr "Эта зависимость создаст петлю."

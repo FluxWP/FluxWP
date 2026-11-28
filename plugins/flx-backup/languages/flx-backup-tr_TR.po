@@ -63,7 +63,7 @@ msgid "Backups › Dashboard"
 msgstr "Yedekler › Panel"
 
 msgid "Dashboard"
-msgstr "Panel"
+msgstr "Pano"
 
 msgid "Backups › Settings"
 msgstr "Yedekler › Ayarlar"
@@ -720,7 +720,7 @@ msgid "There are no backups yet. Take the first one from the dashboard with \"Ba
 msgstr "Henüz hiç yedek yok. Panelden \"Şimdi yedek al\" ile ilk yedeği alın."
 
 msgid "%1$s (%2$s): %3$s"
-msgstr "%1$s (%2$s): %3$s"
+msgstr "%1$s ( %2$s ) : %3$s"
 
 msgid "for all plugin and theme updates"
 msgstr "tüm eklenti ve tema güncellemelerinde"
@@ -1664,162 +1664,5 @@ msgstr "Eklenti silinince yedek dosyalarını sil."
 msgid "The settings after the change."
 msgstr "Değişiklikten sonra ayarlar."
 
-#: app/manifest.json
-msgid "Overview"
-msgstr "Genel bakış"
-
-#: app/manifest.json
-msgid "Storage is almost full: {{usedLabel}} of {{quotaLabel}}."
-msgstr "Depolama dolmak üzere: {{quotaLabel}} alanın {{usedLabel}} kadarı kullanılıyor."
-
-#: app/manifest.json
-msgid "{{lockedCount}} locked"
-msgstr "{{lockedCount}} kilitli"
-
-#: app/manifest.json
-msgid "Used"
-msgstr "Kullanılan"
-
-#: app/manifest.json
-msgid "{{percent}}% of {{quotaLabel}}"
-msgstr "{{quotaLabel}} alanın %{{percent}} kadarı"
-
-#: app/manifest.json
-msgid "Last backup"
-msgstr "Son yedek"
-
-#: app/manifest.json
-msgid "Recent"
-msgstr "Son yedekler"
-
-#: app/manifest.json
-msgid "{{typeLabel}} · {{sizeLabel}}"
-msgstr "{{typeLabel}} · {{sizeLabel}}"
-
-#: app/manifest.json
-msgid "Events"
-msgstr "Olaylar"
-
-#: app/manifest.json
-msgid "Full"
-msgstr "Tam"
-
-#: app/manifest.json
-msgid "Before update"
-msgstr "Güncelleme öncesi"
-
-#: app/manifest.json
-msgid "No backups"
-msgstr "Yedek yok"
-
-#: app/manifest.json
-msgid "Start the first backup from the panel."
-msgstr "İlk yedeği panelden başlatın."
-
-#: app/manifest.json
-msgid "Created"
-msgstr "Oluşturuldu"
-
-#: app/manifest.json
-msgid "Finished"
-msgstr "Bitti"
-
-#: app/manifest.json
-msgid "Status"
-msgstr "Durum"
-
-#: app/manifest.json
-msgid "Kept"
-msgstr "Saklama"
-
-#: app/manifest.json
-msgid "Packages"
-msgstr "Paketler"
-
-#: app/manifest.json
-msgid "{{count}} items"
-msgstr "{{count}} öğe"
-
-#: app/manifest.json
-msgid "Automatic backup"
-msgstr "Otomatik yedek"
-
-#: app/manifest.json
-msgid "Hour"
-msgstr "Saat"
-
-#: app/manifest.json
-msgid "Day of the week"
-msgstr "Haftanın günü"
-
-#: app/manifest.json
-msgid "0 = Sunday, 1 = Monday … 6 = Saturday."
-msgstr "0 = Pazar, 1 = Pazartesi … 6 = Cumartesi."
-
-#: app/manifest.json
-msgid "Automatic backups to keep"
-msgstr "Saklanacak otomatik yedek sayısı"
-
-#: app/manifest.json
-msgid "Backup before updates"
-msgstr "Güncellemeden önce yedek"
-
-#: app/manifest.json
-msgid "FluxWP packages"
-msgstr "FluxWP paketleri"
-
-#: app/manifest.json
-msgid "Keep pre-update backups (days)"
-msgstr "Güncelleme öncesi yedekleri sakla (gün)"
-
-#: app/manifest.json
-msgid "Storage limit (GB)"
-msgstr "Depolama sınırı (GB)"
-
-#: app/manifest.json
-msgid "Include WordPress core files"
-msgstr "WordPress çekirdek dosyalarını dahil et"
-
-#: app/manifest.json
-msgid "Excluded paths"
-msgstr "Hariç tutulan yollar"
-
-#: app/manifest.json
-msgid "One path per line."
-msgstr "Her satıra bir yol."
-
-#: app/manifest.json
-msgid "Back up the site before a restore"
-msgstr "Geri yüklemeden önce siteyi yedekle"
-
-#: app/manifest.json
-msgid "Delete backups when the plugin is removed"
-msgstr "Eklenti kaldırılınca yedekleri sil"
-
-#: app/manifest.json
-msgid "Saved"
-msgstr "Kaydedildi"
-
-#: app/manifest.json
-msgid "New backup"
-msgstr "Yeni yedek"
-
-#: app/manifest.json
-msgid "Unlocked"
-msgstr "Kilit açıldı"
-
-#: app/manifest.json
-msgid "Delete this backup?"
-msgstr "Bu yedek silinsin mi?"
-
-#: app/manifest.json
-msgid "It cannot be restored afterwards."
-msgstr "Sonradan geri getirilemez."
-
-#: app/manifest.json
-msgid "Deleted"
-msgstr "Silindi"
-
-#: app/manifest.json
-msgid "Restore in panel"
-msgstr "Panelde geri yükle"
+msgid "%s%%"
+msgstr "%%%s"

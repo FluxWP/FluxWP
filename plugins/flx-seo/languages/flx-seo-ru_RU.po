@@ -1212,3 +1212,147 @@ msgstr "Мета-заголовок/описание, канонический, 
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "Время ожидания PageSpeed истекло; этот шаг пропущен."
+
+msgid "Searches this website and returns matching pages and posts with their title and address."
+msgstr "Оцените этот веб-сайт и возвращаются на страницы и должности с указанием их названия и адреса."
+
+msgid "How many results to return (1-20)"
+msgstr "Сколько результатов можно получить (1-20)"
+
+msgid "Reads a page of this website as Markdown (title, description and main content). Without an address, reads the current page."
+msgstr "Читает страницу этого веб-сайта под названием &quot; Маркад &quot; (название, описание и основное содержание). Без адреса читать текущую страницу."
+
+msgid "Page address on this website; empty for the current page"
+msgstr "Адрес страницы на этом веб-сайте; пустой для нынешней страницы"
+
+msgid "Returns a short overview of this website (llms.txt): what it is about and its main pages."
+msgstr "Возвращение краткого обзора этого веб-сайта (llms.txt): то, что он имеет в виду, и его основные страницы."
+
+msgid "Turn on Content-Signal in robots.txt"
+msgstr "Включи Контента-Синьяла в роботах."
+
+msgid "Adds a Content-Signal line (search, ai-input, ai-train) to robots.txt so crawlers know how the content may be used. The values are set in SEO › Settings."
+msgstr "Добавляет линию &quot; Content-Signal &quot; (поиск, ай-трейн) для роботов.txt so thwrs know how the content may be used. The values are set in SEO &apos; Settings."
+
+msgid "Serve Markdown to agents"
+msgstr "Служебный Маркдаун агентам"
+
+msgid "Pages answer Accept: text/markdown with a Markdown version of the main content; far fewer tokens than HTML."
+msgstr "Принятие: текст/маркировка с вариантом Маркада, содержащим основное содержание; гораздо меньше символов, чем HTML."
+
+msgid "WebMCP tools are registered"
+msgstr "Инструменты ВебМЦХП регистрируются"
+
+msgid "Markdown is served to agents"
+msgstr "Маркадаунт отдан агентам"
+
+msgid "Content signals are declared"
+msgstr "Контентные сигналы объявлены"
+
+msgid "Organization and contact pages are complete"
+msgstr "Полные страницы для организации и связи"
+
+msgid "MCP Server Card is published"
+msgstr "MCP Серверная карточка опубликована"
+
+msgid "Flux AI & MCP"
+msgstr "Flux AI & MCP"
+
+msgid "No Content-Signal in robots.txt"
+msgstr "Нет Контента-Синьяла в роботах."
+
+msgid "A Content-Signal line (e.g. search=yes, ai-input=yes, ai-train=no) tells crawlers how your content may be used. Flux SEO adds it to the generated robots.txt; set the values in SEO › Settings. If a hand-written robots.txt sits in the site root, add the line under \"User-agent: *\" yourself."
+msgstr "Линия &quot; Контент-Синьаль &quot; (например, поисковые=да, ай-инт-бомы, ай-трейн = нет) говорит ползунам, как может использоваться твое содержание. &quot; Флюкс СЭО &quot; добавляет его к генерируемым роботам."
+
+msgid "Sitemap has no lastmod dates"
+msgstr "Отметка не имеет последних сроков"
+
+msgid "Each sitemap entry should carry <lastmod> so search engines and agents know what changed. Flux SEO adds it to the WordPress sitemap and its index; if another plugin builds the sitemap, turn on lastmod there."
+msgstr "Каждая карта должна иметь <lastmod> так, чтобы поисковые двигатели и агенты знали, что изменилось. &quot; Flux SEO &quot; добавляет ее к карте WordPress и ее индексу; если другой плугин строит сайтную карту, то включай ее в последний раз."
+
+msgid "Organization schema is missing contact details"
+msgstr "Специалисты Организации отсутствуют"
+
+msgid "Fill in the phone and address so an agent can answer questions about the organization without guessing: SEO › Organization, or the organization profile in Flux Setup (Flux SEO reads it when its own fields are empty)."
+msgstr "Заполните телефон и адрес, чтобы агент мог ответить на вопросы об организации, не догадываясь: Организация &quot; СЭО &quot; или профиль организации &quot; Flux Setup &quot; (Flux SEO &quot; читает его, когда его собственные поля пусты."
+
+msgid "About, contact or legal page is not linked from the home page"
+msgstr "С домашней страницы связь или правовая страница не связаны"
+
+msgid "Link the about, contact and privacy/terms pages from the home page (usually the footer). A mailto: link does not count as a contact page; agents look for a page they can read."
+msgstr "Связать страницы на домашней странице (обычно на страницах), с ними можно, с ними можно связаться, а также на страницах, посвященных конфиденциальности/термальному времени), по почте не считается контактной страницой; агенты ищут страницу, которую они могут прочесть."
+
+msgid "Markdown is not served when an agent asks for it"
+msgstr "Маркадад не подается, когда агент просит его."
+
+msgid "For Accept: text/markdown the page should answer with a Markdown version; it costs agents far fewer tokens than HTML. Flux SEO does this when \"Serve Markdown\" is on. If HTML still comes back, a page cache is answering first: purge the cache (LiteSpeed: Purge All) and check that the \"Flux SEO Markdown\" block is at the top of .htaccess."
+msgstr "Для принятия: на странице следует ответить с вариантом Маркада; он стоит агентам гораздо меньше токенов, чем HTML. Flux SEO делает это, когда \"Сэрв Маркдаун\" включен."
+
+msgid "No WebMCP tools are registered on page load"
+msgstr "Инструменты ВебМХП не регистрируются на страницах"
+
+msgid "Browser agents look for tools registered with navigator.modelContext.registerTool() or forms marked with toolname/tooldescription. Flux SEO registers search, read-page and site-overview tools when WebMCP is on."
+msgstr "Агенты Броузера ищут инструменты, зарегистрированные в судоходстве. Модель Контекст.регистерский инструмент (Институт) или бланки, обозначенные с помощью инструмента/программного инструментария. &quot; Flux SEO &quot; регистрирует поиск, читательскую страницу и ознакомительные средства на веб-сайте при размещении веб-MCP."
+
+msgid "No MCP Server Card"
+msgstr "No MCP Серверная карточка"
+
+msgid "Agents discover the site's MCP server from /.well-known/mcp/server-card.json (name, version, endpoint, capabilities). Flux AI & MCP publishes it when its MCP server is on (Flux AI & MCP › MCP). Without Flux AI & MCP the site has no MCP server; you can ignore this."
+msgstr "Агенты находят MCP-сервер сайта по адресу /.well-known/mcp/server-card.json (имя, версия, адрес и возможности). Flux AI & MCP публикует этот файл, когда сервер включён в разделе «Flux AI & MCP › MCP». Если Flux AI & MCP отсутствует, у сайта нет MCP-сервера и эту настройку можно пропустить."
+
+msgid "Hidden from search engines (noindex)."
+msgstr "Спрятано из поисковых двигателей (не Индекс)."
+
+msgid "Title is long (%d characters); Google cuts after about 60."
+msgstr "Название длинное (%d персонаж); Google отрезает около 60 лет."
+
+msgid "Title is very short; write a title that describes the topic."
+msgstr "Название очень короткое; напишите название, в котором описывается данная тема."
+
+msgid "No meta description; it is built from the content automatically."
+msgstr "Описание мета не содержится; оно автоматически строится из содержания."
+
+msgid "Meta description is long (%d characters)."
+msgstr "Описание мета длинное (%d персонаж)."
+
+msgid "Meta description is short (%d characters)."
+msgstr "Описание мета является коротким (%d персонаж)."
+
+msgid "No featured image (it will not show in shares or Google Discover)."
+msgstr "Ни одно изображение (он не будет показываться в долях или &quot; Google Discover &quot; )."
+
+msgid "%d images have no alt text (filled in automatically from the image name; write a meaningful alt text)."
+msgstr "%d изображения не имеют текста, в котором говорится об отказе от изображения (заполняется автоматически с изображения; напишет значимый текст в поясе)."
+
+msgid "%d images have no alt text."
+msgstr "%d изображения не имеют смс."
+
+msgid "The page has %d H1 headings; there must be only one."
+msgstr "На странице %d H1 заголовок; должен быть только один."
+
+msgid "The page has no main heading (H1)."
+msgstr "Эта страница не имеет основного заголовка (H1)."
+
+msgid "The content has an H1; the page title is already the H1. Make sub-headings H2."
+msgstr "Содержание имеет H1; название страницы уже является H1."
+
+msgid "The content is short (%d words). 300+ words are recommended."
+msgstr "Содержание является коротким (%d слова). Рекомендуется использовать слова 300+."
+
+msgid "Long content has no sub-heading (H2)."
+msgstr "Долгосрочное содержание не имеет подзаголовка (H2)."
+
+msgid "The focus keyword is not in the title."
+msgstr "Основной ключевой слова не фигурирует в названии."
+
+msgid "The focus keyword is not in the description."
+msgstr "Основной ключевой слова не содержится в описании."
+
+msgid "No internal links (link to related pages)."
+msgstr "Никаких внутренних связей (ссылка на соответствующие страницы)."
+
+msgid "Content not found."
+msgstr "Контент не найден."
+
+msgid "You are not allowed to edit this content."
+msgstr "Вам не разрешено редактировать это содержание."

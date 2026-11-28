@@ -40,6 +40,11 @@
     "tryDemo": "Try the demo",
     "footer": "{{name}} · secure connection, your password is never stored in the app"
   },
+  "screenLoadError": {
+    "title": "This screen could not be loaded",
+    "body": "If the plugin was just updated, the browser or site cache may still hold old files. Hard-reload the page (Ctrl/Cmd + Shift + R); if it persists, purge the site cache.",
+    "reload": "Reload page"
+  },
   "errors": {
     "invalid_url": "This address is not valid.",
     "unreachable": "Could not reach the site. Check the address and your connection.",

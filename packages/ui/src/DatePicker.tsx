@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent as RKeyboardEvent } from 'react';
 import { useOverlay } from './overlay';
+import STR from './date-languages.json';
 
 /**
  * Ortak tarih seçici. Görünüm ve sınıflar flx-brand `date/` ile aynı (`.flx-dp`, `.flx-dt`); CSS'i styles.css içe aktarır.
  * Değer biçimi `YYYY-MM-DD`, `time` ile `YYYY-MM-DDTHH:MM`; boş = `''`.
- * Dil: `locale` (yoksa `<html lang>`), hafta başı TR'de Pazartesi; metinler TR / EN gömülü.
+ * Dil: `locale` (yoksa `<html lang>`). Takvim etiketleri desteklenen tüm panel dillerini izler.
  */
 
 export type DateQuick = { label: string; value: string; hint?: string };
@@ -24,24 +25,36 @@ type Common = {
   weekStart?: number;
 };
 
-const STR = {
-  tr: { pick: 'Tarih seçin', today: 'Bugün', tomorrow: 'Yarın', nextWeek: 'Gelecek hafta', in2Weeks: '2 hafta sonra', thisFriday: 'Bu cuma', noDate: 'Tarih yok', clear: 'Temizle', cancel: 'Vazgeç', apply: 'Uygula', month: 'Ay', time: 'Saat', prev: 'Önceki ay', next: 'Sonraki ay', prevYear: 'Önceki yıl', nextYear: 'Sonraki yıl', pickMonth: 'Ay seçin', pickYear: 'Yıl seçin' },
-  en: { pick: 'Select date', today: 'Today', tomorrow: 'Tomorrow', nextWeek: 'Next week', in2Weeks: 'In 2 weeks', thisFriday: 'This Friday', noDate: 'No date', clear: 'Clear', cancel: 'Cancel', apply: 'Apply', month: 'Month', time: 'Time', prev: 'Previous month', next: 'Next month', prevYear: 'Previous year', nextYear: 'Next year', pickMonth: 'Choose month', pickYear: 'Choose year' },
-};
 type Strings = (typeof STR)['en'];
 
 function docLocale(): string {
   return (typeof document !== 'undefined' && document.documentElement.lang) || (typeof navigator !== 'undefined' ? navigator.language : 'en') || 'en';
 }
 function strings(locale: string): Strings {
-  return /^tr\b/i.test(locale) ? STR.tr : STR.en;
+  const language = locale.toLowerCase().split(/[-_]/)[0];
+  const key = (language === 'pt' ? 'pt-br' : language) as keyof typeof STR;
+  return STR[key] ?? STR.en;
 }
 function fmt(locale: string, o: Intl.DateTimeFormatOptions) {
   try {
-    return new Intl.DateTimeFormat(locale, o);
+    return new Intl.DateTimeFormat(locale.replaceAll('_', '-'), { calendar: 'gregory', ...o });
   } catch {
     return new Intl.DateTimeFormat('en', o);
   }
+}
+function weekStartFor(locale: string): number {
+  try {
+    type WeekInfo = { firstDay: number };
+    const language = new Intl.Locale(locale.replaceAll('_', '-')) as Intl.Locale & {
+      getWeekInfo?(): WeekInfo;
+      weekInfo?: WeekInfo;
+    };
+    const week = language.getWeekInfo?.() ?? language.weekInfo;
+    if (week) return week.firstDay % 7;
+  } catch {
+    // The caller can still use a site-specific weekStart when Intl rejects the locale.
+  }
+  return /^tr\b/i.test(locale) ? 1 : 0;
 }
 const pad = (n: number) => (n < 10 ? '0' : '') + n;
 const ymd = (x: Date) => `${x.getFullYear()}-${pad(x.getMonth() + 1)}-${pad(x.getDate())}`;
@@ -63,7 +76,7 @@ const addMonths = (x: Date, n: number) => {
     last = new Date(y, m + 1, 0).getDate();
   return new Date(y, m, Math.min(x.getDate(), last), 12);
 };
-const cap = (s: string, l: string) => (s ? s.charAt(0).toLocaleUpperCase(l) + s.slice(1) : s);
+const cap = (s: string, l: string) => (s ? s.charAt(0).toLocaleUpperCase(l.replaceAll('_', '-')) + s.slice(1) : s);
 function cleanTime(v: string): string {
   const m = /^(\d{1,2})(?::?(\d{2}))?$/.exec(v.trim());
   if (!m) return '';
@@ -80,9 +93,9 @@ export function formatDate(v: string, locale = docLocale(), style: 'long' | 'sho
   return fmt(locale, style === 'short' ? { day: 'numeric', month: 'short' } : { day: 'numeric', month: 'long', year: 'numeric' }).format(x) + (tm ? ' · ' + tm : '');
 }
 
-function defaultQuick(s: Strings, locale: string): DateQuick[] {
+function defaultQuick(s: Strings, locale: string, weekStart: number): DateQuick[] {
   const td = today();
-  const add = (8 - td.getDay()) % 7 || 7;
+  const add = (weekStart - td.getDay() + 7) % 7 || 7;
   const fri = (5 - td.getDay() + 7) % 7;
   const wd = fmt(locale, { weekday: 'short' });
   const sh = fmt(locale, { day: 'numeric', month: 'short' });
@@ -104,7 +117,7 @@ function pattern(locale: string) {
   try {
     for (const p of fmt(locale, { day: '2-digit', month: '2-digit', year: 'numeric' }).formatToParts(new Date(2026, 10, 20))) {
       if (p.type === 'day' || p.type === 'month' || p.type === 'year') order.push(p.type);
-      else if (p.type === 'literal' && p.value.trim()) sep = p.value.trim().charAt(0);
+      else if (p.type === 'literal') sep = p.value.replace(/[\u061c\u200e\u200f]/g, '').trim().charAt(0) || sep;
     }
   } catch {
     /* varsayılan */
@@ -119,7 +132,8 @@ function pattern(locale: string) {
     return o.map((k) => m[k]).join(sep);
   };
   const fromText = (str: string) => {
-    const p = str.trim().split(/[^\d]+/).filter(Boolean);
+    const digits = str.replace(/[٠-٩۰-۹]/g, (digit) => String(digit.charCodeAt(0) & 15));
+    const p = digits.trim().split(/[^\d]+/).filter(Boolean);
     if (p.length !== 3) return '';
     const m = { day: 0, month: 0, year: 0 };
     o.forEach((k, i) => (m[k] = +p[i]!));
@@ -167,7 +181,10 @@ type CalendarProps = Common & {
  */
 export function DateCalendar({ value, onPick, onCancel, time, quick = true, min, max, required, locale = docLocale(), weekStart, bare, sheet, style, theme, label }: CalendarProps) {
   const s = strings(locale);
-  const ws = weekStart ?? (/^tr\b/i.test(locale) ? 1 : 0);
+  const ws = weekStart ?? weekStartFor(locale);
+  const rtl = /^ar(?:[-_]|$)/i.test(locale);
+  const previousIcon = rtl ? I_R : I_L;
+  const nextIcon = rtl ? I_L : I_R;
   const F = useMemo(
     () => ({
       month: fmt(locale, { month: 'long' }),
@@ -206,7 +223,7 @@ export function DateCalendar({ value, onPick, onCancel, time, quick = true, min,
     wantFocus.current = false;
     ref.current?.querySelector<HTMLElement>('.flx-dp-day[tabindex="0"], .flx-dp-cell[tabindex="0"]')?.focus({ preventScroll: true });
   });
-  const q = !quick ? [] : Array.isArray(quick) ? quick : defaultQuick(s, locale);
+  const q = !quick ? [] : Array.isArray(quick) ? quick : defaultQuick(s, locale, ws);
   const commit = (d: string) => {
     if (d && !allowed(d)) return;
     const t = time ? cleanTime(tm) : '';
@@ -246,7 +263,7 @@ export function DateCalendar({ value, onPick, onCancel, time, quick = true, min,
     if (tg.classList.contains('flx-dp-cell')) {
       const cells = Array.from(ref.current!.querySelectorAll<HTMLElement>('.flx-dp-cell'));
       const ix = cells.indexOf(tg);
-      const mv = ({ ArrowLeft: -1, ArrowRight: 1, ArrowUp: -3, ArrowDown: 3 } as Record<string, number>)[e.key];
+      const mv = ({ ArrowLeft: rtl ? 1 : -1, ArrowRight: rtl ? -1 : 1, ArrowUp: -3, ArrowDown: 3 } as Record<string, number>)[e.key];
       if (mv && cells[ix + mv]) {
         e.preventDefault();
         tg.tabIndex = -1;
@@ -256,7 +273,7 @@ export function DateCalendar({ value, onPick, onCancel, time, quick = true, min,
       return;
     }
     if (!tg.classList.contains('flx-dp-day')) return;
-    const step = ({ ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 } as Record<string, number>)[e.key];
+    const step = ({ ArrowLeft: rtl ? 1 : -1, ArrowRight: rtl ? -1 : 1, ArrowUp: -7, ArrowDown: 7 } as Record<string, number>)[e.key];
     let nd: Date | null = null;
     if (step) nd = addDays(focus, step);
     else if (e.key === 'PageUp') nd = addMonths(focus, e.shiftKey ? -12 : -1);
@@ -293,10 +310,10 @@ export function DateCalendar({ value, onPick, onCancel, time, quick = true, min,
             </button>
           </span>
           <button type="button" className="flx-dp-nav" aria-label={s.prev} disabled={!!(mn && new Date(view.getFullYear(), view.getMonth(), 0, 12) < mn)} onClick={() => { const v = addMonths(view, -1); setView(v); setFocus(clampFocus(v)); }}>
-            <Ico d={I_L} />
+            <Ico d={previousIcon} />
           </button>
           <button type="button" className="flx-dp-nav" aria-label={s.next} disabled={!!(mx && new Date(view.getFullYear(), view.getMonth() + 1, 1, 12) > mx)} onClick={() => { const v = addMonths(view, 1); setView(v); setFocus(clampFocus(v)); }}>
-            <Ico d={I_R} />
+            <Ico d={nextIcon} />
           </button>
         </div>
         <div className="flx-dp-week" aria-hidden="true">
@@ -347,10 +364,10 @@ export function DateCalendar({ value, onPick, onCancel, time, quick = true, min,
             </button>
           </span>
           <button type="button" className="flx-dp-nav" aria-label={s.prevYear} onClick={() => setView(new Date(view.getFullYear() - 1, view.getMonth(), 1, 12))}>
-            <Ico d={I_L} />
+            <Ico d={previousIcon} />
           </button>
           <button type="button" className="flx-dp-nav" aria-label={s.nextYear} onClick={() => setView(new Date(view.getFullYear() + 1, view.getMonth(), 1, 12))}>
-            <Ico d={I_R} />
+            <Ico d={nextIcon} />
           </button>
         </div>
         <div className="flx-dp-cells">
@@ -383,10 +400,10 @@ export function DateCalendar({ value, onPick, onCancel, time, quick = true, min,
             </span>
           </span>
           <button type="button" className="flx-dp-nav" aria-label={s.prev} onClick={() => setView(new Date(view.getFullYear() - 12, view.getMonth(), 1, 12))}>
-            <Ico d={I_L} />
+            <Ico d={previousIcon} />
           </button>
           <button type="button" className="flx-dp-nav" aria-label={s.next} onClick={() => setView(new Date(view.getFullYear() + 12, view.getMonth(), 1, 12))}>
-            <Ico d={I_R} />
+            <Ico d={nextIcon} />
           </button>
         </div>
         <div className="flx-dp-cells">
@@ -414,6 +431,7 @@ export function DateCalendar({ value, onPick, onCancel, time, quick = true, min,
       ref={ref}
       className={'flx-dp' + (bare ? ' is-bare' : '') + (sheet ? ' is-sheet' : '') + (q.length ? ' has-side' : '')}
       role="dialog"
+      dir={rtl ? 'rtl' : undefined}
       aria-label={label ?? s.pick}
       data-theme={theme ?? th}
       style={style}

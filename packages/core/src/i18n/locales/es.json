@@ -40,6 +40,11 @@
     "tryDemo": "Pruebe la demostración",
     "footer": "{{name}} · conexión segura, su contraseña nunca se almacena en la aplicación"
   },
+  "screenLoadError": {
+    "title": "No se pudo cargar esta pantalla",
+    "body": "Si el plugin acaba de actualizarse, el navegador o el caché del sitio puede todavía tener archivos antiguos. Recargar duramente la página (Ctrl/Cmd + Shift + R); si persiste, purgar el caché del sitio.",
+    "reload": "Recargar página"
+  },
   "errors": {
     "invalid_url": "Esta dirección no es válida.",
     "unreachable": "No se pudo llegar al sitio. Verifica la dirección y tu conexión.",

@@ -8,7 +8,7 @@
     "\"Discourage search engines from indexing this site\" is checked. Uncheck it on the live site.": "\"Arama motorlarının bu siteyi dizine eklemesini engelle\" işaretli. Yayındaki sitede kaldırın.",
     "%1$d critical issues: %2$s": "%1$d kritik sorun var: %2$s",
     "%1$s is active, v%2$s. Flux Donate reads the keys from it.": "%1$s etkin, v%2$s. Flux Donate anahtarları buradan okur.",
-    "%1$s (%2$s).": "%1$s (%2$s).",
+    "%1$s (%2$s).": "%1$s ( %2$s ).",
     "%d issues": "%d sorun",
     "%s is active.": "%s etkin.",
     "%s is installed but not active. Flux Donate reads the keys from its own Payments settings.": "%s kurulu ama etkin değil. Flux Donate anahtarları kendi Ödemeler ayarından okur.",
@@ -480,7 +480,7 @@
     "None": "Yok",
     "News introduction": "Haberler açıklaması",
     "Latest news, updates and articles.": "Son haberler, güncellemeler ve yazılar.",
-    "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin.": "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin.",
+    "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin.": "%s . Hostinger  99 PHP Yapılandırmasi'ndan 8.2 veyaüstü seçin.",
     "Dots": "Dots",
     "Site visibility": "Site görünürlüğü",
     "Visibility": "Görünürlük",
@@ -519,8 +519,8 @@
     "JavaScript is required for this screen.": "Bu ekran için JavaScript gerekir.",
     "New view": "Yeni görünüm",
     "Open the new view (same features, works in the FluxWP app too).": "Yeni görünümü aç (aynı özellikler, FluxWP uygulamasında da çalışır).",
-    "Güvenli ödeme": "Güvenli ödeme",
-    "Güvenli ödeme · %s": "Güvenli ödeme · %s",
+    "Güvenli ödeme": "Güvenli Ödeme",
+    "Güvenli ödeme · %s": "Güvenli Ödeme  99 %s",
     "This choice is not available.": "Bu seçenek kullanılamıyor.",
     "The IBAN must be 26 characters starting with “TR”; it was not saved.": "IBAN “TR” ile başlayan 26 karakter olmalı; kaydedilmedi.",
     "The GA4 measurement ID must look like “G-XXXXXXX”; it was not saved.": "GA4 Ölçüm Kimliği “G-XXXXXXX” biçiminde olmalı; kaydedilmedi.",
@@ -687,10 +687,12 @@
     "Choose your account in the Google window. If it does not open, allow pop-ups for this site.": "Google penceresinde hesabınızı seçin. Pencere açılmadıysa bu sitede açılır pencerelere izin verin.",
     "Signing you in with Google. If you have no account yet, we are creating one.": "Google ile giriş yapılıyor. Hesabınız yoksa sizin için oluşturuluyor.",
     "This is taking longer than usual. You can wait a little more or cancel and try again.": "Bu her zamankinden uzun sürüyor. Biraz daha bekleyebilir ya da iptal edip tekrar deneyebilirsiniz.",
-    "Cancel": "İptal",
+    "Cancel": "Vazgeç",
     "terms of use": "kullanım şartlarını",
     "privacy policy": "gizlilik ilkesini",
     "I have read and accept the %1$s and the %2$s.": "%1$s ve %2$s okudum, kabul ediyorum.",
-    "Please accept the terms of use and the privacy policy to create an account.": "Hesap oluşturmak için kullanım şartlarını ve gizlilik ilkesini kabul edin."
+    "Please accept the terms of use and the privacy policy to create an account.": "Hesap oluşturmak için kullanım şartlarını ve gizlilik ilkesini kabul edin.",
+    "Donations can't be completed online just yet. You can keep exploring the rest of the site in the meantime.": "Bağışlar henüz çevrimiçi olarak tamamlanamıyor. Bu arada sitenin geri kalanını keşfetmeye devam edebilirsiniz.",
+    "Orders can't be placed online just yet. You can keep exploring the rest of the site in the meantime.": "Siparişler henüz çevrimiçi olarak yerleştirilemez. Bu arada sitenin geri kalanını keşfetmeye devam edebilirsiniz."
   }
 }

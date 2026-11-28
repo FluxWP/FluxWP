@@ -139,6 +139,7 @@ function HistoryChart({ h }: { h: History }) {
   if (!r) return null;
   const nf = new Intl.NumberFormat(lang);
   const quota = r.showQuota && h.quota <= r.max;
+  const empty = days.every((d) => d.values.every((v) => !v));
   return (
     <section className="flxy-card">
       <div className="flxy-card-head">
@@ -162,6 +163,8 @@ function HistoryChart({ h }: { h: History }) {
           ...(quota ? [{ label: t('Quota') + ': ' + h.quotaLabel, color: 'var(--flux-danger)', dashed: true, data: days.map(() => h.quota) }] : []),
         ]}
         legend
+        points={empty ? false : undefined}
+        max={empty ? 1.5 * 1024 * 1024 : undefined}
         format={(v) => bytes(v, lang)}
         label={t('Storage history')}
       />
@@ -173,16 +176,11 @@ function Donut({ by, total }: { by: FlxBackupDashboardQuery['flxBackupOverview']
   const { t, lang } = useBackup();
   const pct = new Intl.NumberFormat(lang, { style: 'percent', maximumFractionDigits: 0 });
   const parts = by.filter((x) => x.bytes > 0);
+  if (total <= 0 || parts.length === 0) return <p className="flxy-empty">{t('No backups yet.')}</p>;
   return (
     <div className="flxy-donut">
       <div className="flxy-donut-chart">
-        {total > 0 && parts.length > 0 ? (
-          <Chart kind="doughnut" height={170} legend={false} labels={parts.map((x) => x.label)} colors={parts.map((x) => x.color)} series={[{ label: t('By type'), data: parts.map((x) => x.bytes) }]} format={(v) => bytes(v, lang)} label={t('By type')} />
-        ) : (
-          <svg viewBox="0 0 160 160" role="img" aria-label={t('By type')}>
-            <circle cx="80" cy="80" r="60" fill="none" stroke="var(--flux-surface2)" strokeWidth="22" />
-          </svg>
-        )}
+        <Chart kind="doughnut" height={170} legend={false} labels={parts.map((x) => x.label)} colors={parts.map((x) => x.color)} series={[{ label: t('By type'), data: parts.map((x) => x.bytes) }]} format={(v) => bytes(v, lang)} label={t('By type')} />
       </div>
       <table className="flxy-donut-table">
         <tbody>

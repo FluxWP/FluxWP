@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createGraphQLClient } from '@fluxwp/graphql';
 import { FlxGraphQLProvider, useFlxViewer } from '@fluxwp/graphql/react';
-import { Loading, Screen } from '@fluxwp/ui';
+import { Loading, Screen, ScreenHeadProvider, useScreenHead } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { translator } from './i18n';
 import { BUILDER_SLUG, FormsContext, MENU_PAGES, REACT_PAGES, type FormsCtx, type Page, type Route, type RouteOpts } from './common';
@@ -65,6 +65,7 @@ function Forms() {
   const viewer = useFlxViewer();
   const [route, setRoute] = useState<Route>(() => current(host.startPage));
   const [toasts, setToasts] = useState<Toast[]>([]);
+  const head = useScreenHead();
   const wp = host.mode === 'wp';
   const admin = host.adminUrl ?? '/wp-admin/';
   // The other pages this user may open: PHP lists them on #flxf-islands (data-tabs).
@@ -133,37 +134,41 @@ function Forms() {
 
   return (
     <FormsContext.Provider value={ctx}>
-      <Screen<Page>
-        className="flxfrm-app"
-        width="wide"
-        icon={host.appIcon}
-        title={t('Forms')}
-        tabs={tabs}
-        tab={route.page}
-        onTab={(p) => go(p)}
-      >
-        {island ? (
-          <Loading />
-        ) : (
-          <>
-            {allowed === undefined ? <Loading /> : null}
-            {allowed === false ? <p className="flxfrm-empty">{t('You cannot open this screen.')}</p> : null}
-            {allowed && REACT_PAGES.includes(route.page) ? (
-              <>
-                {route.page === 'dashboard' ? <DashboardPage /> : null}
-                {route.page === 'forms' ? <FormsPage /> : null}
-                {route.page === 'responses' ? <ResponsesPage form={route.form} entry={route.entry} /> : null}
-                {route.page === 'settings' ? <SettingsPage /> : null}
-                {route.page === 'create' ? <BuilderPage key={route.form} form={route.form} /> : null}
-                {route.page === 'payments' ? <PaymentsPage /> : null}
-                {route.page === 'automations' ? <AutomationsPage flow={route.flow} tab={route.tab} /> : null}
-                {route.page === 'system' ? <SystemPage /> : null}
-                {route.page === 'addons' ? <AddonsPage /> : null}
-              </>
-            ) : null}
-          </>
-        )}
-      </Screen>
+      <ScreenHeadProvider value={head.api}>
+        <Screen<Page>
+          className="flxfrm-app"
+          width="wide"
+          icon={host.appIcon}
+          title={head.title || t('Forms')}
+          subtitle={head.sub}
+          actions={<div className="flxfrm-head__actions flx-raw flxfa flxfd" ref={head.setSlot} />}
+          tabs={tabs}
+          tab={route.page}
+          onTab={(p) => go(p)}
+        >
+          {island ? (
+            <Loading />
+          ) : (
+            <>
+              {allowed === undefined ? <Loading /> : null}
+              {allowed === false ? <p className="flxfrm-empty">{t('You cannot open this screen.')}</p> : null}
+              {allowed && REACT_PAGES.includes(route.page) ? (
+                <>
+                  {route.page === 'dashboard' ? <DashboardPage /> : null}
+                  {route.page === 'forms' ? <FormsPage /> : null}
+                  {route.page === 'responses' ? <ResponsesPage form={route.form} entry={route.entry} /> : null}
+                  {route.page === 'settings' ? <SettingsPage /> : null}
+                  {route.page === 'create' ? <BuilderPage key={route.form} form={route.form} /> : null}
+                  {route.page === 'payments' ? <PaymentsPage /> : null}
+                  {route.page === 'automations' ? <AutomationsPage flow={route.flow} tab={route.tab} /> : null}
+                  {route.page === 'system' ? <SystemPage /> : null}
+                  {route.page === 'addons' ? <AddonsPage /> : null}
+                </>
+              ) : null}
+            </>
+          )}
+        </Screen>
+      </ScreenHeadProvider>
       <div className="flxfrm-toasts" aria-live="polite">
         {toasts.map((x) => (
           <div key={x.id} className={'flxfrm-toast' + (x.kind === 'error' ? ' is-error' : '')}>

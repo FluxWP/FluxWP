@@ -1,9 +1,5 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Flux Ads\n"
-"Language: tr_TR\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Sees ad conversions"
 msgstr "Reklam dönüşümlerini görür"
@@ -291,9 +287,7 @@ msgid "This item has no daily budget here (lifetime budget, or the budget is set
 msgstr "Bunun burada günlük bütçesi yok (toplam bütçe ya da bütçe kampanyada / reklam setlerinde). Meta Reklam Yöneticisi'nden değiştirin."
 
 msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
-msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
-msgstr[0] "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
-msgstr[1] "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
+msgstr "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın.\u0000%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
 
 msgid "Pause campaign"
 msgstr "Kampanyayı duraklat"
@@ -542,9 +536,7 @@ msgid "Ad tracking status"
 msgstr "Reklam takibi durumu"
 
 msgid "%d audience is updated daily."
-msgid_plural "%d audiences are updated daily."
-msgstr[0] "%d kitle her gün güncelleniyor."
-msgstr[1] "%d kitle her gün güncelleniyor."
+msgstr "%d kitle her gün güncelleniyor.\u0000%d kitle her gün güncelleniyor."
 
 msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
 msgstr "Açık ama kimlik eksik ya da geçersiz. Hiçbir şey ölçülmüyor."
@@ -2059,9 +2051,7 @@ msgid "utm_medium choices."
 msgstr "utm_medium seçenekleri."
 
 msgid "in %s day"
-msgid_plural "in %s days"
-msgstr[0] "%s gün sonra"
-msgstr[1] "%s gün sonra"
+msgstr "%s gün sonra\u0000%s gün sonra"
 
 msgid "Similar to: %s"
 msgstr "Benzeri: %s"
@@ -2172,7 +2162,7 @@ msgid "Cost per payment"
 msgstr "Ödeme başı maliyet"
 
 msgid "People"
-msgstr "Kişi"
+msgstr "Kişiler"
 
 msgid "Gave at least once"
 msgstr "En az bir kez bağış yapan"
@@ -2248,3 +2238,18 @@ msgstr "E-posta"
 
 msgid "Unknown platform."
 msgstr "Bilinmeyen platform."
+
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
+msgstr[1] "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
+
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] "%s gün sonra"
+msgstr[1] "%s gün sonra"
+
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "%d kitle her gün güncelleniyor."
+msgstr[1] "%d kitle her gün güncelleniyor."

@@ -349,6 +349,8 @@
     "No backups": "バックアップなし",
     "Back up": "バックアップ",
     "Progress": "進捗状況",
-    "Take the first backup with Back up now. Restore is done in the panel.": "「今すぐバックアップ」で最初のバックアップを作成します。復元はパネルで行われます。"
+    "Take the first backup with Back up now. Restore is done in the panel.": "「今すぐバックアップ」で最初のバックアップを作成します。復元はパネルで行われます。",
+    "JavaScript is required for this screen.": "JavaScript この画面には必須です。",
+    "%s%%": "%s%%"
   }
 }

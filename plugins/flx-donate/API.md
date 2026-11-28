@@ -46,46 +46,31 @@ Var mı kontrolü: `function_exists( 'flxb_api_version' )`. 1.x'teki okuma fonks
 - Aksiyonlar (2.3.0): `flxb_ref_notify( string $kind, int $user_id, array $gift )` — referansı olan bağış ödenince (`paid`), iptal/başarısız olunca (`cancelled`), iade olunca (`refunded`); bağış (sipariş) ve olay başına bir kez, yalnız `flxb_ref_notify` yetkili referansa. `$gift`: `donation_id, order_id, amount, currency, donor_name, donor_phone, items[{title, option, quantity, amount}], admin_url`. (Çağrı Merkezi WhatsApp bildirimini kendi `flxb_donation_updated` dinleyicisiyle yapıyor; bu kanca e-posta vb. için.) `flxb_ref_request_created`.
 - Aksiyonlar: `flxb_type_fields`, `flxb_type_saved( $id, $old )`, `flxb_form_prices_synced( $form_id, $type_id )`, `flxb_donation_updated`
 
-## Ödeme: iyzico (1.2.0)
+## Aylık bağış: Flux POS kayıtlı kart (2.48.0)
 
-2.0'da kart ödemeleri WooCommerce yöntemleriyle alınır (yukarıda). Aşağıdaki iyzico adresleri, filtreler ve cron Flux Donate iyzico (`flxb_iyzico`) ve aylık yenilemeler için geçerli olmaya devam eder; 1.x'in WooCommerce'siz form ödemesi yalnızca "Flux Forms ödeme formları WooCommerce ödeme sayfasında devam eder" ayarı kapatılırsa kullanılır.
+Flux Donate kendi ödeme sistemini taşımaz; kart ödemeleri yalnız WooCommerce yöntemleriyle alınır. Aylık bağışın ilk ödemesi Flux POS (`flxpos_card`) ile alınır, kartı saklayan sürücü (bugün Stripe) kartı kendi tarafında tutar; sitede yalnız sürücünün kimlikleri durur. Sonraki aylar `flxpos_charge_saved_order()` ile çekilir.
 
 ### REST
 
-- `POST|GET /wp-json/flxb/v1/iyzico/callback` — iyzico Checkout Form dönüş adresi (`token`). Ödeme `checkoutform/auth/ecom/detail` ile doğrulanmadan bağış kaydedilmez; tekrar çağrı güvenlidir (idempotent).
-- `GET|POST /wp-json/flxb/v1/iyzico/cancel?s=<id>&k=<imza>` — bağışçının düzenli bağış iptal bağlantısı (e-postada gelir; GET onay sorar, POST iptal eder).
-- `POST /wp-json/flxb/v1/iyzico/notify` (1.2.4) — iyzico **İşyeri Bildirimleri Url** (işyeri başına tek adres). Gövde JSON `{iyziEventType, token, paymentConversationId, …}`, başlık `X-IYZ-SIGNATURE` = `base64(sha1(secretKey . iyziEventType . token, raw))`.
-  - Flux Donate ödemesi (`paymentConversationId` `flxb_…` / `flxbr-…` ya da kayıtlı token): imza gelirse doğrulanır (yanlışsa **400** `{error: signature_not_valid}`), ödeme token ile iyzico'dan tekrar sorgulanır, bekleyen kayıt kesinleşir; yanıt 200 `{received, handled_by: "flxb", paid}` (yenileme: `flxb_renewal`). İdempotent.
-  - Değilse ve iyzico WooCommerce eklentisinin `iyzicoWebhookUrlKey` rotası kayıtlıysa: `rest_do_request` ile `/iyzico/v1/webhook/{key}` adresine aynı gövde ve `X-IYZ-SIGNATURE` başlığıyla iletilir (çağrı süresince `$_SERVER['HTTP_X_IYZ_SIGNATURE']` da ayarlanır); onun durum kodu ve gövdesi döner.
-  - iyzico Subscription API bildirimi (`subscriptionReferenceCode` ya da `iyziEventType` `subscription…`): 200 `{handled_by: "subscription_ignored"}`.
-  - Diğerleri: 200 `{handled_by: "ignored"}`.
-  - Son bildirim: seçenek `flxb_iyzico_notify_last` `{at, kind}`; aksiyon `flxb_iyzico_notification( $kind )`.
-- `POST /wp-json/Emsfb/v1/forms/payment/webhook/iyzico` — eski adres, `flxb/v1/iyzico/notify` ile aynı davranır.
+- `GET|POST /wp-json/flxb/v1/recurring/cancel?s=<id>&k=<imza>` — bağışçının düzenli bağış iptal bağlantısı (e-postada gelir; GET onay sorar, POST iptal eder).
 
 ### Filtreler
 
 | Filtre | Ne için |
 |---|---|
-| `flxb_iyzico_credentials( array $c )` | `{api_key, secret_key, base, sandbox, source}`; kaynak `woocommerce` \| `woocommerce-subscription` \| `own` |
-| `flxb_iyzico_api_client( FLXB_Iyzico_Api $api )` | HTTP istemcisini değiştirmek (test) |
-| `flxb_iyzico_buyer( array $buyer, array $contact )` | iyzico `buyer` alanları (TC kimlik yer tutucu `11111111111`, şehir/ülke varsayılanları) |
-| `flxb_iyzico_checkout_request( array $body, array $meta )` | Checkout Form başlatma isteği |
-| `flxb_iyzico_renewal_request( array $body, array $sub )` | Yenileme ödemesi (`/payment/auth`, `paymentGroup` SUBSCRIPTION) |
-| `flxb_iyzico_retry_delays( int[] $seconds )` | Başarısız yenilemede bekleme süreleri; varsayılan 1 gün, 2 gün (toplam 3 deneme) |
-| `flxb_iyzico_donor_emails( bool $send, string $what, array $sub )` | `started` / `failed` e-postalarını kapatmak |
-| `flxb_iyzico_timeout( int $seconds )` | HTTP zaman aşımı (30) |
+| `flxb_renewal_retry_delays( int[] $seconds )` | Başarısız yenilemede bekleme süreleri; varsayılan 1 gün, 2 gün (toplam 3 deneme) |
+| `flxb_renewal_donor_emails( bool $send, string $what, array $sub )` | `started` / `failed` e-postalarını kapatmak |
 
 ### Aksiyonlar
 
-- `flxb_iyzico_paid( object $pay_row, array $iyzico_response )` — tek seferlik veya ilk ödeme doğrulandı.
-- `flxb_iyzico_renewal_paid( int $sub_id, int $donation_id, array $response )`
-- `flxb_iyzico_renewal_failed( int $sub_id, string $error, bool $past_due )`
-- `flxb_iyzico_subscription_canceled( int $sub_id, string $by )` — `admin` \| `donor`.
+- `flxb_renewal_paid( int $sub_id, int $donation_id )`
+- `flxb_renewal_failed( int $sub_id, string $error, bool $past_due )`
+- `flxb_subscription_canceled( int $sub_id, string $by )` — `admin` \| `donor`.
 
 ### Cron
 
-- `flxb_iyzico_renewals` (saatlik, WP-Cron). iyzico Subscription eklentisinin `iyzico_subscription_renewal_check` / `iyzico_subscription_retry_failed` kancalarıyla ve meta alanlarıyla ortak hiçbir şey kullanmaz.
-- Kart referansları (`cardUserKey`, `cardToken`) `wp_flxb_subscriptions.meta` içinde şifreli tutulur (anahtar `wp_salt('auth')`'tan türetilir; salt değişirse kayıtlı kartlar kullanılamaz). Hiçbir API'de dönmez.
+- `flxb_renewals` (saatlik, WP-Cron): vadesi gelen her düzenli bağış için yenileme siparişi açar ve kayıtlı kartı çeker. Sonucu belirsiz (bekleyen) çekim bir gün içinde tekrar denenmez.
+- Kart kimlikleri `wp_flxb_subscriptions.meta.card` = `{account, customer, payment_method, label}` (Flux POS hesabı, sürücünün müşteri ve ödeme yöntemi kimliği, "Visa •••• 4242"). Kart numarası hiçbir yerde tutulmaz.
 
 ## WooCommerce (2.0)
 
@@ -142,9 +127,7 @@ Seçeneklerde `badge`: `''` \| `populer` \| `avantajli` \| `aile` (filtre `flxb_
 ### Ödeme yöntemleri
 
 - `flxb_havale`: Havale (bağış). Ayarlar `woocommerce_flxb_havale_settings`. Sipariş "Beklemede" açılır; yönetici "Ödemeyi onayla" deyince tamamlanır.
-- `flxb_iyzico`: Kart (iyzico) - Flux Donate. Aylık bağışların tek yöntemi; resmî `iyzico` eklentisi yoksa tek seferlik kart ödemesi de. İkisi birlikte gösterilmez (ayar `card_gateway` = `auto` \| `flxb`).
-- Resmî iyzico WooCommerce eklentisi (`iyzico`): tek seferlik kart.
-- Stripe: WooCommerce yöntemi olarak taşınmadı (gerekirse resmî "WooCommerce Stripe" eklentisi; aylık bağış onunla olmaz). 1.x'in Flux Forms Stripe sağlayıcısı (`providers/`) kodda duruyor, WooCommerce akışında kullanılmaz.
+- Kart: WooCommerce'e kayıtlı herhangi bir kart yöntemi; önerilen Flux POS (`flxpos_card`, tek kart kuralı, blok ve logolar Flux POS'ta). Aylık bağış bağlamında yalnız `flxpos_card` sunulur, siparişe `_flxpos_save = yes` yazılır.
 
 ### REST ve adresler
 
@@ -167,8 +150,6 @@ Seçeneklerde `badge`: `''` \| `populer` \| `avantajli` \| `aile` (filtre `flxb_
 | `flxb_wc_feed_type( bool $listed, array $type )`, `flxb_wc_feed_items( array $items )` | Ürün XML'i |
 | `flxb_wc_forms_checkout( bool )` | Flux Forms ödemelerini WooCommerce'e yönlendirmek |
 | `flxb_wc_form_fallback_type( int $type_id )` | Türe bağlı olmayan formun yazılacağı tür |
-| `flxb_wc_iyzico_checkout_request( array $body, WC_Order $order )` | Flux Donate iyzico Checkout Form isteği |
-| `flxb_commerce_renewal_request( array $body, WC_Order $order, array $sub )` | Flux Commerce abonelik yenilemesinde iyzico kayıtlı kart çekim isteği (2.31.0) |
 | `flxb_create_order()` 2.3.0 | `ref_user_id` argümanı: siparişe `_flx_ref_user` yazar |
 | `flxb_wc_mirror_callcenter( bool, int $donation_id, array $data )` | Çağrı merkezi kaydına sipariş açılsın mı |
 | `flxb_wc_callcenter_emails( bool, int $donation_id )` | O siparişte WooCommerce e-postaları |
@@ -182,7 +163,6 @@ Seçeneklerde `badge`: `''` \| `populer` \| `avantajli` \| `aile` (filtre `flxb_
 - `flxb_wc_preregistered( WC_Order $order )`: havale ön kaydı açıldı.
 - `flxb_wc_receipt_uploaded( WC_Order $order, array $receipt )`. 2.3.2: yükleme önce `flx_dekont_register` (Flux Chat dekont defteri) ile kaydedilir; `$receipt['ledger']` defter kaydı, tekrar ise `$receipt['dup']` (count, source, donation_id, payer, created_at) ve sipariş meta `_flxb_dekont_dup` = 1.
 - `flxb_wc_certificates_issued( WC_Order $order, array $made )`
-- `flxb_wc_iyzico_paid( WC_Order $order, array $iyzico_response )`
 - `flxb_wc_recurring_started( int $subscription_id, WC_Order $order, $item )`
 - `flxb_wc_form_paid( string $track, WC_Order $order, object $pay_row )`
 
@@ -249,38 +229,16 @@ Seçenek: `prices` `{ "EUR": 120, "USD": 130 }` (türün kendi para birimi `pric
 
 Hepsi herkese açık API, ama blok tarafı WooCommerce'te en hızlı değişen kısım:
 
-- Blok ödeme yöntemleri: `Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType`, `woocommerce_blocks_payment_method_type_registration`, ön yüzde `wc.wcBlocksRegistry.registerPaymentMethod` ve `wc.wcSettings.getSetting` (Havale ve Flux Donate iyzico).
+- Blok ödeme yöntemleri: `Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType`, `woocommerce_blocks_payment_method_type_registration`, ön yüzde `wc.wcBlocksRegistry.registerPaymentMethod` ve `wc.wcSettings.getSetting` (Havale).
 - Uyumluluk bildirimi: `FeaturesUtil::declare_compatibility( 'custom_order_tables' | 'cart_checkout_blocks' )`.
 - Alan kısaltma: `woocommerce_get_country_locale` / `_default` (klasik ve blok ödeme sayfasında ortak).
 - Teşekkür sayfası kartları `woocommerce_thankyou` aksiyonuyla eklenir (blok temalı "Sipariş onayı" şablonunda da çalışıyor; şablon özelleştirilirse kontrol edin).
 - Tutar her hesaplamada `woocommerce_before_calculate_totals` ile türden yazılır.
 - Sipariş işlemleri yalnızca `wc_get_order()`, `$order->get_meta()/update_meta_data()`, `wc_get_orders()`, `wc_create_refund()` ile (HPOS açık/kapalı fark etmez).
 
-## Sanal POS altyapısı (2.13.0)
+## Sanal POS (2.48.0)
 
-WooCommerce'e kayıtlı her ödeme eklentisi bağış ödeme sayfasında görünür (whitelist yok). `FLXB_WC_Gateways`:
-
-- `FLXB_WC_Gateways::caps( $gateway )` → `[ cap => [ state, note ] ]`. cap: `blocks`, `no_cart`, `no_address`, `verified`, `installments`, `tokenization`, `refunds`, `monthly`. state: `yes` | `flux` (Flux Donate yapıyor) | `page` (sağlayıcının sayfasında) | `no` | `unknown`.
-- Otomatik tespit: `supports('tokenization')`, `supports('refunds')` + `process_refund` gerçekten yazılmış mı, blok kaydı (`PaymentMethodRegistry`), `has_fields`.
-- Blok fallback: kendi blok entegrasyonu olmayan, kartı kendi sayfasında alan (`has_fields = false`) etkin gateway'ler ödeme bloğuna eklenir (`FLXB_WC_Generic_Blocks`, ayar `block_fallback`). Sipariş Store API'den geçer, WooCommerce eklentinin kendi `process_payment()` yönlendirmesini izler.
-- Adaptör: bir eklentiyi tarif eder (ve gerekiyorsa düzeltir).
-
-```php
-add_filter( 'flxb_gateway_adapters', function ( $a ) {
-	$a['my_pos'] = array(
-		'label' => 'My POS',
-		'logo'  => 'https://…/logo.svg',                // Tema › Ödeme logoları'nda hazır logo (anahtar gw-my_pos)
-		'note'  => 'Test modu',                          // tabloda adın altında
-		'caps'  => array( 'installments' => array( 'page', 'POS sayfasında' ), 'verified' => array( 'yes', '' ) ),
-	);
-	return $a;
-} );
-add_filter( 'flxb_gateway_caps', function ( $caps, $gateway ) { return $caps; }, 10, 2 );
-```
-
-- EsnekPOS adaptörü (`FLXB_WC_Esnekpos`, gateway `esnekpospos`): başlatma order-pay sayfasında (`template_redirect`), dönüş `wc-api/flxb_esnekpos?order=&key=` (eski `?wc-api=WC_Gateway_Esnekpospos` de karşılanır, sipariş anahtarı verilmez). Ödendi sayılması için ProcessQuery `STATUS=SUCCESS`, `RETURN_CODE=0`, referans eşleşmesi, `AMOUNT >= toplam`, varsa `TRANSACTIONS` içinde `STATUS_ID=3`. Referans `<sipariş>-<zaman36>` (meta `_flxb_esnek_ref`), ödeme bilgisi meta `_flxb_esnekpos`. Filtreler: `flxb_esnekpos_base_url`, `flxb_esnekpos_request`, `flxb_esnekpos_amount`; aksiyon `flxb_wc_esnekpos_paid( $order, $query )`.
-- Tek kart yöntemi: ayar `card_method` (`auto` | `iyzico` | gateway id | `all`). `auto` = ilk etkin üçüncü taraf kart gateway'i, yoksa `iyzico`. `woocommerce_available_payment_gateways` (60) diğer kart yöntemlerini çıkarır; admin, aylık bağış bağlamı ve order-pay'de siparişin kendi yöntemi hariç. Yardımcılar `FLXB_WC_Gateways::card_method()`, `is_card( $gw )`, `hidden_by_card_method( $id )`.
-- Tema logoları: `flx_pay_logos_builtin` filtresine adaptör logoları `gw-<id>` anahtarıyla eklenir (`default` = gateway etkin ve seçili kart yöntemi; iyzico bandı yalnız kart yöntemi iyzico/hepsi iken varsayılan).
+Flux Donate POS adaptörü, gateway tablosu, blok fallback ve tek kart yöntemi seçimi taşımaz; bunlar Flux POS'ta (`FLXPOS_Methods`). Ödeme ayrıntısı kutusu (`FLXB_WC_Payinfo`) başka ödeme eklentilerinden `flxb_payment_details( array $info, WC_Order $order )` filtresiyle beslenir. Güvenli ödeme notundaki sağlayıcı adı `flx_secure_badge_provider( string $name )` filtresinden gelir (Flux POS doldurur).
 
 ## Referans ve roller (2.2.0, Flux Roles)
 
@@ -340,7 +298,6 @@ Flux Donate'ın satırları `flxb.*`, Flux Forms'unkiler `flxf.*` kimlikli. Flux
 
 | Anahtar | Yapı | Yazan |
 |---|---|---|
-| `iyzico` | `{paymentId, paidPrice, currency, items[{item, tx, paid, refunded}], card, at}` | iyzico sağlayıcısı |
 | `source_detail` | `'flx-chat-bot'` → "Çağrı merkezi · WhatsApp asistanı", `'flx-chat'` → "Çağrı merkezi" | Flux Chat |
 | `beneficiary_contacts` | `[{name, phone, email}]` (telefon/e-posta tıklanabilir) | Flux Chat |
 | `receipts` | `[{url, file?, at?, user?, source?}]` (`source` `whatsapp` → "WhatsApp"; yalnızca http/https bağlantılar link olur) | Flux Chat |

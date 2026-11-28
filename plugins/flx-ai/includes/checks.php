@@ -31,7 +31,7 @@ add_filter(
 
 		$model = flxai_model_for( '' );
 		$p     = flxai_parse_model( $model );
-		$ok    = '' !== $model && isset( $ready[ $p['provider'] ] );
+		$ok    = '' !== $model && flxai_provider_usable( $p['provider'] );
 		$checks[] = array(
 			'id'           => 'flxai.model',
 			'source'       => $src,
