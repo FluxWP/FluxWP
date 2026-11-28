@@ -335,7 +335,7 @@ final class FLXC_Desk_Service {
 			flxc_bot_queue( FLXC_Val::int($chat['id']) );
 		}
 		/* translators: %s: user */
-		flxc_system_message( $chat, sprintf( 'on' === $req->get_param( 'state' ) ? __( 'Assistant turned on (%s)', 'flx-chat' ) : __( 'Assistant turned off (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) );
+		flxc_system_message( $chat, sprintf( 'on' === $req->get_param( 'state' ) ? __( 'Assistant turned on (%s)', 'flx-chat' ) : __( 'Assistant turned off (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ), 'on' === $req->get_param( 'state' ) ? array( 'bot_on' => 1 ) : array() );
 		FLXC_Chat_Service::changed();
 		return array( 'chat' => flxc_chat_for_js( flxc_get_chat( $chat['id'] ) ) );
 	}

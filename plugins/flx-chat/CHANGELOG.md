@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.55.4
+- Asistan eski bir şikâyet yüzünden yeni ve normal isteği ekibe devretmez. Uzun aradan (6 saat, `flxc_bot_session_gap_hours`) sonra gelen mesajın ya da ekibin asistanı yeniden açmasının ardından modele "önceki konuşma kapandı, eski şikâyet/devir yeni isteği devretme nedeni değil" notu gider. Şikâyet istisnası yalnız kişinin şu anki mesajlarına bakar. "Asistan açıldı" sistem notu artık `bot_on` meta'sı taşır (eskiler metinden tanınır).
+- "X adına N adet sertifika oluştur" yeni bağış isteği sayılır: asistan set_order ile X adına N adet özet çıkarır, onay alıp bağışı açar; mevcut kaydı değiştirme isteği sanıp ekibe aktarmaz.
+- Ekip grubuna devir bildirimi Evolution'da 400 "[object Object]" ile reddedilirse etiketsiz bir kez daha denenir, yine olmazsa bildirim numaralarına tek tek gider. Ayrıntısız hata okunur bir sebeple yazılır.
+
 ## 1.55.3
 - Yönetim ekranları için dil katalogları güncellendi.
 

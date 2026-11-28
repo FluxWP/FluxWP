@@ -1691,6 +1691,7 @@
     "WhatsApp did not edit the message.": "WhatsApp 没有编辑这一信息。",
     "Assistant languages": "助手语言",
     "Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.": "预设消息以对方书写的语言发送。已保存的翻译模板：%s。数字、价格、IBAN 和链接不翻译，发送时填入。",
-    "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.": "预设消息以对方书写的语言发送。消息在某种语言中首次需要时翻译，之后重复使用；数字、价格、IBAN 和链接在发送时填入。"
+    "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.": "预设消息以对方书写的语言发送。消息在某种语言中首次需要时翻译，之后重复使用；数字、价格、IBAN 和链接在发送时填入。",
+    "WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group.": "WhatsApp 拒绝了该消息且未提供详情 (HTTP %d)。请检查已连接的号码是否仍在群组中。"
   }
 }

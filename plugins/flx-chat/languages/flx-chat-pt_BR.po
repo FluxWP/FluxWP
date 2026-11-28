@@ -5058,3 +5058,6 @@ msgstr "As mensagens prontas são enviadas no idioma em que a pessoa escreve. Mo
 
 msgid "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending."
 msgstr "As mensagens prontas são enviadas no idioma em que a pessoa escreve. Uma mensagem é traduzida na primeira vez que é necessária em um idioma e depois reutilizada; números, preços, IBAN e links são preenchidos no envio."
+
+msgid "WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group."
+msgstr "O WhatsApp rejeitou a mensagem sem detalhes (HTTP %d). Verifique se o número conectado ainda está no grupo."

@@ -1959,6 +1959,7 @@
     "WhatsApp did not edit the message.": "WhatsApp mesajı düzenlemedi.",
     "Assistant languages": "Asistanın dilleri",
     "Ready messages go out in the language the person writes in. Saved translation templates: %s. Numbers, prices, IBAN and links are not translated; they are filled in when sending.": "Hazır mesajlar kişinin yazdığı dilde gider. Kayıtlı çeviri şablonları: %s. Rakam, fiyat, IBAN ve linkler çevrilmez; gönderirken yerine konur.",
-    "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.": "Hazır mesajlar kişinin yazdığı dilde gider. Bir mesaj bir dilde ilk gerektiğinde çevrilir, sonra saklanan çeviri kullanılır; rakam, fiyat, IBAN ve linkler gönderirken yerine konur."
+    "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending.": "Hazır mesajlar kişinin yazdığı dilde gider. Bir mesaj bir dilde ilk gerektiğinde çevrilir, sonra saklanan çeviri kullanılır; rakam, fiyat, IBAN ve linkler gönderirken yerine konur.",
+    "WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group.": "WhatsApp mesajı ayrıntı vermeden reddetti (HTTP %d). Bağlı numaranın hâlâ grupta olduğunu kontrol edin."
   }
 }

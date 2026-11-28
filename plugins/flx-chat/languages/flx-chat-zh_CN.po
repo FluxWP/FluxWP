@@ -5058,3 +5058,6 @@ msgstr "预设消息以对方书写的语言发送。已保存的翻译模板：
 
 msgid "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending."
 msgstr "预设消息以对方书写的语言发送。消息在某种语言中首次需要时翻译，之后重复使用；数字、价格、IBAN 和链接在发送时填入。"
+
+msgid "WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group."
+msgstr "WhatsApp 拒绝了该消息且未提供详情 (HTTP %d)。请检查已连接的号码是否仍在群组中。"

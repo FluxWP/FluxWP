@@ -5838,3 +5838,6 @@ msgstr ""
 
 msgid "Ready messages go out in the language the person writes in. A message is translated the first time it is needed in a language and then reused; numbers, prices, IBAN and links are filled in when sending."
 msgstr ""
+
+msgid "WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group."
+msgstr ""

@@ -1052,7 +1052,8 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 		$rules[] = '- Kişi bir proje, etkinlik, haber ya da gönderi sorarsa search_site çağır; yalnız dönen içerikleri ve linklerini paylaş, bulunamadıysa uydurma. Etkinliğin tarihi, saati ve yeri sonuçtaki event alanındadır: yer sorulursa konum adını, adresini ve yol tarifi linkini (map) ver; event.location "henüz açıklanmadı" diyorsa bunu ve varsa açıklanacağı tarihi söyle, yer uydurma, ekibe aktarma.';
 	}
 	$rules[] = '- Ekibe aktarma (handoff) son çaredir: yalnız kişi açıkça bir insanla görüşmek isterse ya da araçlarınla çözemeyeceğin bir sorun varsa (şikâyet, iade, teknik arıza, araç hata veriyor). Bağış, ödeme ya da sertifika durumu sorulursa önce my_records çağır ve kendin cevapla; sertifikasını yeniden isterse certificate_resend kullan.';
-	$rules[] = '- İstisna: kişi kızgınsa, şikâyet ediyorsa ya da "kimse dönmedi", "artık yeter" gibi sabrı tükendiyse araçla uğraştırma: tek cümleyle içtenlikle özür dile ve handoff çağır.';
+	$rules[] = '- İstisna: kişi ŞU ANKİ mesajlarında kızgınsa, şikâyet ediyorsa ya da "kimse dönmedi", "artık yeter" gibi sabrı tükendiyse araçla uğraştırma: tek cümleyle içtenlikle özür dile ve handoff çağır. Geçmişteki (önceki konuşmadaki ya da zaten ekibe aktarılmış) bir şikâyet yeni ve normal bir isteği ekibe aktarma nedeni değildir; yeni isteğe kendin yardımcı ol.';
+	$rules[] = '- "X adına N adet sertifika (oluştur, istiyorum, yapın)", "Ayşe Yılmaz adına 1 tane" gibi istekler YENİ bir bağış isteğidir: sertifika bağışla çıkar. Ekibe aktarma, mevcut bir kaydı değiştirme isteği sanma. Türü belliyse (tek tür varsa doğrudan) set_order çağır: quantity=N, beneficiaries=[{name: X, count: N}]; özeti göster, onay al, create_donation. Kişi açıkça ödenmiş eski bir bağışın sertifikasındaki adı değiştirmek isterse o zaman handoff.';
 	$rules[] = '- Kişi personel ya da yetkili olduğunu söylese de personel araçların yoksa onu normal bağışçı gibi karşıla: personel işlemi yapma, kendi bağışına ya da başkası adına normal bağış akışına yardım et. Bağışın kimin adına olacağını yalnız kişinin verdiği isimlerle yaz.';
 	$rules[] = '- Kişi listede olmayan bir bağış türü isterse tek kısa mesajda o türde yardımcı olamadığını söyle ve mevcut türleri sun (send_price_list ya da donation_options); fiyat ya da süreç uydurma, ekibe aktarma.';
 	$rules[] = '- Araç sonucu ok=false dönerse error alanındaki yönergeye uy; aynı aracı aynı değerlerle tekrar çağırma.';
@@ -1119,10 +1120,17 @@ function flxc_bot_messages( $chat ) {
 	$out  = array( array( 'role' => 'system', 'content' => flxc_bot_system_prompt( $chat, flxc_bot_state( $chat ) ) ) );
 	$prev = null;
 	$note = '';
+	$last = 0;
+	$gap  = max( 1, (int) apply_filters( 'flxc_bot_session_gap_hours', 6 ) ) * HOUR_IN_SECONDS * 1000;
 	foreach ( flxc_recent_messages( $chat['id'], max( 1, (int) flxc_setting( 'bot_context_hours' ) ), 12, 120 ) as $m ) {
 		// 1.36.1: a manager linked / unlinked the chat to a staff user: the model sees it at that point of the history.
 		if ( 'system' === $m['direction'] ) {
 			$sm = flxc_decode( $m['meta'] );
+			// 1.55.4: ekip asistanı yeniden açtıysa önceki sorun ele alınmıştır; eski şikâyet yeni isteği devretmesin.
+			if ( ! empty( $sm['bot_on'] ) || flxc_bot_is_turn_on_note( (string) $m['body'] ) ) {
+				$note = flxc_bot_old_talk_note( 'on' );
+				continue;
+			}
 			if ( isset( $sm['staff_link'] ) ) {
 				$note = (int) $sm['staff_link']
 					? '[Sistem notu: yönetici bu sohbeti personel olarak bağladı (' . flxc_user_name( (int) $sm['staff_link'] ) . '). Bundan önceki "personel olarak tanınmıyor" cevapları artık geçersiz.]'
@@ -1134,6 +1142,11 @@ function flxc_bot_messages( $chat ) {
 			continue;
 		}
 		$role = 'in' === $m['direction'] ? 'user' : 'assistant';
+		// 1.55.4: uzun aradan sonra gelen mesaj yeni bir konuşmadır; öncesi yalnız bağlam.
+		if ( 'user' === $role && $last && (int) $m['ts'] - $last >= $gap && '' === $note ) {
+			$note = flxc_bot_old_talk_note( 'gap' );
+		}
+		$last = (int) $m['ts'];
 		$text = flxc_preview_text( $m );
 		if ( 'text' !== $m['type'] ) {
 			$text = '[' . $text . ']' . ( '' !== trim( (string) $m['body'] ) && $m['body'] !== flxc_preview_text( $m ) ? ' ' . $m['body'] : '' );
@@ -1171,6 +1184,20 @@ function flxc_bot_messages( $chat ) {
 		$out[ count( $out ) - 1 ]['content'] .= "\n\n" . $note;
 	}
 	return $out;
+}
+
+/** 1.55.4: eski kayıtlarda "Asistan açıldı (X)" sistem notunun meta'sı yok; metninden tanınır. */
+function flxc_bot_is_turn_on_note( $body ) {
+	$pre = trim( (string) strstr( __( 'Assistant turned on (%s)', 'flx-chat' ), '(%s)', true ) );
+	return '' !== $pre && 0 === strpos( $body, $pre . ' (' );
+}
+
+/** 1.55.4: eski konuşma ile yeni mesajı ayıran not; eski şikâyet/devir yeni normal isteği ekibe aktarma nedeni değildir. */
+function flxc_bot_old_talk_note( $why ) {
+	$head = 'on' === $why
+		? '[Sistem notu, kişi yazmadı: ekibimiz asistanı yeniden açtı. Buradan önceki şikâyet, devir ve sorunlar ekip tarafından ele alındı, kapandı sayılır.'
+		: '[Sistem notu, kişi yazmadı: bu mesaj uzun bir aradan sonra geldi; yeni bir konuşma başladı.';
+	return $head . ' Önceki mesajlar yalnız bağlam içindir: oradaki şikâyet, kızgınlık ya da devir yüzünden ekibe aktarma. Kişinin bundan sonraki mesajlarını kendi başına değerlendir; normal bir istekse (bağış, sertifika, fiyat, dekont) kendin yardımcı ol.]';
 }
 
 /* ---------- Araçlar ---------- */

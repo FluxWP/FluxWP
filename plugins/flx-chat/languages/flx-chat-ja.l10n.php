@@ -3275,5 +3275,6 @@ return array(
   'The time limit for editing has passed (WhatsApp allows 15 minutes).' => '編集の期限が過ぎました。WhatsApp 所要時間15分)。',
   'The message can\'t be empty.' => 'メッセージが空にならない。',
   'WhatsApp did not edit the message.' => 'WhatsApp は、メッセージを編集していません。',
+  'WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group.' => 'WhatsApp が詳細なしでメッセージを拒否しました (HTTP %d)。接続中の番号がまだグループに参加しているか確認してください。',
  ),
 );

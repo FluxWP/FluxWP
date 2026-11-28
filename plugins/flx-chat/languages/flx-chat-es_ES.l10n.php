@@ -3275,5 +3275,6 @@ return array(
   'The time limit for editing has passed (WhatsApp allows 15 minutes).' => 'El límite de tiempo para la edición ha pasado ( WhatsApp permite 15 minutos).',
   'The message can\'t be empty.' => 'El mensaje no puede estar vacío.',
   'WhatsApp did not edit the message.' => 'WhatsApp no editó el mensaje.',
+  'WhatsApp rejected the message without details (HTTP %d). Check that the connected number is still in the group.' => 'WhatsApp rechazó el mensaje sin detalles (HTTP %d). Comprueba que el número conectado sigue en el grupo.',
  ),
 );
